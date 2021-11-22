@@ -1,5 +1,5 @@
 ---
-layout: post
+flayout: post
 title: The Real Lorem Ipsum
 tags: [Image, Color]
 color: turquoise

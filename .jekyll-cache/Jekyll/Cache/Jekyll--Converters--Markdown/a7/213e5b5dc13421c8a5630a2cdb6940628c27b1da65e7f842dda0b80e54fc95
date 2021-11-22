@@ -1,0 +1,453 @@
+I"�m<h1 id="sonarqube-설치-및-jenkins-pipeline-연동하기">SonarQube 설치 및 Jenkins pipeline 연동하기</h1>
+
+<p><img src="/assets/img/titles/sonarqube.png" alt="sonarqube.png" /></p>
+
+<p><a href="https://docs.sonarqube.org/latest/">SonarQube Documentation</a></p>
+
+<p>본 문서에서는 Sonarqube 설치 및 Jenkins 파이프라인 연동한 내용을 정리하였다.</p>
+
+<hr />
+<h2 id="sonarqube란">SonarQube란</h2>
+
+<p><img src="/assets/img/contents/sj-1.png" alt="sj-1.png" /></p>
+
+<p>소스 품질 관리를 위한 자동화된 정적 코드 검증/분석 툴</p>
+<ul>
+  <li>버그 탐색</li>
+  <li>취약점 탐색</li>
+  <li>코드 냄새(Code Smell) 탐색</li>
+  <li>보안 핫스팟 탐색</li>
+</ul>
+
+<p><strong>안전(Safe)</strong> 하고 <strong>깨끗한(Clean)</strong> 코드를 유지하게끔 도움을 줌(소스코드 품질 관리)</p>
+
+<ol>
+  <li>커밋/머지(SCM)</li>
+  <li>체크아웃, 빌드, 테스트(CI/CD)</li>
+  <li>분석/검증(SonarQube)</li>
+</ol>
+
+<blockquote>
+  <p>Sonarlint: 코딩/컴파일시 소스 품질 관리를 위한 IDE 플러그인</p>
+</blockquote>
+
+<hr />
+<h2 id="sonarqube-설치">SonarQube 설치</h2>
+
+<p>두 가지 방법으로 설치해 보았다.</p>
+
+<ul>
+  <li>Using Helm Chart
+    <ul>
+      <li>k8s 위에서 관리하는 자원의 형태로 사용시</li>
+    </ul>
+  </li>
+  <li>Using Docker Compose
+    <ul>
+      <li>호스트 위에서 컨테이너형으로 간단하게 사용시</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="using-helm-chart">Using Helm Chart</h3>
+
+<blockquote>
+  <p>k8s helm을 이용하여 설치하는 방법</p>
+</blockquote>
+
+<h4 id="1-helm-설치">1. Helm 설치</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Ubuntu</span>
+<span class="nv">$ </span>curl https://baltocdn.com/helm/signing.asc | <span class="nb">sudo </span>apt-key add -
+<span class="nv">$ </span><span class="nb">sudo </span>apt-get <span class="nb">install </span>apt-transport-https <span class="nt">--yes</span>
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"deb https://baltocdn.com/helm/stable/debian/ all main"</span> | <span class="nb">sudo tee</span> /etc/apt/sources.list.d/helm-stable-debian.list
+<span class="nv">$ </span><span class="nb">sudo </span>apt-get update
+<span class="nv">$ </span><span class="nb">sudo </span>apt-get <span class="nb">install </span>helm
+</code></pre></div></div>
+
+<h4 id="2-helm-chart-valuesyaml-가져오기">2. Helm Chart values.yaml 가져오기</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="c"># helm 저장소 추가</span>
+   <span class="nv">$ </span>helm repo add oteemocharts https://oteemo.github.io/charts
+   <span class="nv">$ </span>wget https://raw.githubusercontent.com/Oteemo/charts/master/charts/sonarqube/values.yaml
+</code></pre></div></div>
+
+<blockquote>
+  <p>현시점 기준 8.5.1-community</p>
+</blockquote>
+
+<h4 id="3-ingress-리소스-설정">3. ingress 리소스 설정</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nv">$ </span>vim sonarqube-ingress.yaml
+</code></pre></div></div>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">networking.k8s.io/v1</span>
+   <span class="na">kind</span><span class="pi">:</span> <span class="s">Ingress</span>
+    <span class="s">metadata</span><span class="err">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">sonarqube</span>
+      <span class="na">namespace</span><span class="pi">:</span> <span class="s">default</span>
+      <span class="na">annotations</span><span class="pi">:</span>
+        <span class="na">kubernetes.io/ingress.class</span><span class="pi">:</span> <span class="s2">"</span><span class="s">nginx"</span>
+        <span class="na">nginx.ingress.kubernetes.io/ssl-redirect</span><span class="pi">:</span> <span class="s2">"</span><span class="s">false"</span>
+        <span class="na">nginx.ingress.kubernetes.io/force-ssl-redirect</span><span class="pi">:</span> <span class="s2">"</span><span class="s">false"</span>
+   <span class="err"> </span><span class="na">spec</span><span class="pi">:</span>
+      <span class="na">rules</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">http</span><span class="pi">:</span>
+          <span class="na">paths</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">pathType</span><span class="pi">:</span> <span class="s">Prefix</span>
+            <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/sonarqube"</span>
+            <span class="na">backend</span><span class="pi">:</span>
+              <span class="na">service</span><span class="pi">:</span>
+                <span class="na">name</span><span class="pi">:</span> <span class="s">sonarqube-sonarqube</span>
+                <span class="na">port</span><span class="pi">:</span>
+                  <span class="na">number</span><span class="pi">:</span> <span class="m">9000</span>
+</code></pre></div></div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nv">$ </span>kubectl apply <span class="nt">-f</span> sonarqube-ingress.yaml
+</code></pre></div></div>
+<blockquote>
+  <p>/sonarqube context로 설정</p>
+
+  <blockquote>
+    <p>Ingress HTTP(/sonarqube) -&gt; sonarqube 서비스(9000)</p>
+  </blockquote>
+</blockquote>
+
+<h4 id="4-persistencevolume-persistencevolumeclaim-설정">4. PersistenceVolume, PersistenceVolumeClaim 설정</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nv">$ </span>vim sonarqube-storage.yaml
+</code></pre></div></div>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="na">kind</span><span class="pi">:</span> <span class="s">PersistentVolume</span>
+    <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+    <span class="na">metadata</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">sonarqube-pv-volume</span>
+    <span class="na">spec</span><span class="pi">:</span>
+      <span class="na">storageClassName</span><span class="pi">:</span> <span class="s">manual</span>
+      <span class="na">capacity</span><span class="pi">:</span>
+        <span class="na">storage</span><span class="pi">:</span> <span class="s">25Gi</span>
+      <span class="na">accessModes</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">ReadWriteMany</span>
+      <span class="na">hostPath</span><span class="pi">:</span>
+        <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/nfs_nas/volumes/sonarqube/data"</span>
+    <span class="s">---</span>
+    <span class="na">kind</span><span class="pi">:</span> <span class="s">PersistentVolumeClaim</span>
+    <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+    <span class="na">metadata</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">sonarqube-pv-claim</span>
+    <span class="na">spec</span><span class="pi">:</span>
+      <span class="na">storageClassName</span><span class="pi">:</span> <span class="s">manual</span>
+      <span class="na">accessModes</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">ReadWriteMany</span>
+      <span class="na">resources</span><span class="pi">:</span>
+        <span class="na">requests</span><span class="pi">:</span>
+          <span class="na">storage</span><span class="pi">:</span> <span class="s">25Gi</span>
+    <span class="s">---</span>
+    <span class="na">kind</span><span class="pi">:</span> <span class="s">PersistentVolume</span>
+    <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+    <span class="na">metadata</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">sonarqube-db-pv-volume</span>
+    <span class="na">spec</span><span class="pi">:</span>
+      <span class="na">storageClassName</span><span class="pi">:</span> <span class="s">manual</span>
+      <span class="na">capacity</span><span class="pi">:</span>
+        <span class="na">storage</span><span class="pi">:</span> <span class="s">25Gi</span>
+      <span class="na">accessModes</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">ReadWriteMany</span>
+      <span class="na">hostPath</span><span class="pi">:</span>
+        <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/nfs_nas/volumes/sonarqube/postgres"</span>
+    <span class="s">---</span>
+    <span class="na">kind</span><span class="pi">:</span> <span class="s">PersistentVolumeClaim</span>
+    <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+    <span class="na">metadata</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">sonarqube-db-pv-claim</span>
+    <span class="na">spec</span><span class="pi">:</span>
+      <span class="na">storageClassName</span><span class="pi">:</span> <span class="s">manual</span>
+      <span class="na">accessModes</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">ReadWriteMany</span>
+      <span class="na">resources</span><span class="pi">:</span>
+        <span class="na">requests</span><span class="pi">:</span>
+          <span class="na">storage</span><span class="pi">:</span> <span class="s">25G</span>
+</code></pre></div></div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nv">$ </span>kubectl apply <span class="nt">-f</span> sonarqube-storage.yaml
+</code></pre></div></div>
+
+<p>sonarqube에서 사용할 volume을 지정해주기 위하여 설정</p>
+
+<p>용량과 hostPath는 사용 환경에 맞추어 변경할 것</p>
+
+<h4 id="5-valuesyaml-수정">5. values.yaml 수정</h4>
+
+<p>아래 해당하는 부분 모두 수정</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="s">...</span>
+    <span class="s">readinessProbe</span><span class="err">:</span>
+      <span class="na">initialDelaySeconds</span><span class="pi">:</span> <span class="m">60</span>
+      <span class="na">periodSeconds</span><span class="pi">:</span> <span class="m">30</span>
+      <span class="na">failureThreshold</span><span class="pi">:</span> <span class="m">6</span>
+      <span class="na">sonarWebContext</span><span class="pi">:</span> <span class="s">/sonarqube/</span> <span class="c1"># 변경(끝에 '/' 포함)</span>
+<span class="err">    </span><span class="na">livenessProbe</span><span class="pi">:</span>
+      <span class="na">initialDelaySeconds</span><span class="pi">:</span> <span class="m">60</span>
+      <span class="na">periodSeconds</span><span class="pi">:</span> <span class="m">30</span>
+      <span class="na">sonarWebContext</span><span class="pi">:</span> <span class="s">/sonarqube/</span> <span class="c1"># 변경(끝에 '/' 포함)</span>
+    <span class="s">...</span>
+    <span class="c1"># 사용할 플러그인 추가(아래 기본 플러그인은 이미 있으므로 충돌남 외부 플러그인만 적용할 것, 아래는 잘못된 예시)</span>
+    <span class="na">plugins</span><span class="pi">:</span>
+      <span class="na">install</span><span class="pi">:</span> <span class="pi">[</span>
+        <span class="s2">"</span><span class="s">https://binaries.sonarsource.com/Distribution/sonar-java-plugin/sonar-java-plugin-6.9.0.23563.jar"</span><span class="pi">,</span>
+        <span class="s2">"</span><span class="s">https://binaries.sonarsource.com/Distribution/sonar-javascript-plugin/sonar-javascript-plugin-7.4.3.15529.jar"</span><span class="pi">,</span>
+        <span class="s2">"</span><span class="s">https://binaries.sonarsource.com/Distribution/sonar-xml-plugin/sonar-xml-plugin-2.2.0.2973.jar"</span><span class="pi">,</span>
+        <span class="s2">"</span><span class="s">https://binaries.sonarsource.com/Distribution/sonar-css-plugin/sonar-css-plugin-1.4.2.2002.jar"</span><span class="pi">,</span>
+        <span class="s2">"</span><span class="s">https://binaries.sonarsource.com/Distribution/sonar-html-plugin/sonar-html-plugin-3.4.0.2754.jar"</span><span class="pi">,</span>
+        <span class="s2">"</span><span class="s">https://binaries.sonarsource.com/Distribution/sonar-typescript-plugin/sonar-typescript-plugin-2.1.0.4359.jar"</span>
+        <span class="pi">]</span>
+      <span class="na">lib</span><span class="pi">:</span> <span class="pi">[]</span>
+    <span class="s">...</span>
+    <span class="na">env</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">SONAR_WEB_CONTEXT</span> <span class="c1"># 추가</span>
+        <span class="na">value</span><span class="pi">:</span> <span class="s">/sonarqube</span>
+    <span class="s">...</span>
+    <span class="na">persistence</span><span class="pi">:</span>
+      <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">annotations</span><span class="pi">:</span> <span class="pi">{}</span>
+      <span class="na">existingClaim</span><span class="pi">:</span> <span class="s">sonarqube-pv-claim</span> <span class="c1"># 추가</span>
+    <span class="s">...</span>
+    <span class="na">postgresql</span><span class="pi">:</span>
+      <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="s">...</span>
+      <span class="na">persistence</span><span class="pi">:</span>
+        <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+        <span class="na">existingClaim</span><span class="pi">:</span> <span class="s">sonarqube-db-pv-claim</span> <span class="c1"># 추가</span>
+    <span class="s">...</span>
+</code></pre></div></div>
+
+<h4 id="6-helm-install">6. helm install</h4>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="c"># helm v3</span>
+   <span class="c"># helm install [name] [chart] [-f:value]</span>
+   <span class="nv">$ </span>helm <span class="nb">install </span>sonarqube oteemocharts/sonarqube <span class="nt">-f</span> values.yaml
+   
+   <span class="c"># helm v2</span>
+   <span class="c"># helm install [--name:name] [chart] [-f:values]</span>
+   <span class="nv">$ </span>helm <span class="nb">install</span> <span class="nt">--name</span> sonarqube oteemocharts/sonarqube <span class="nt">-f</span> values.yaml
+</code></pre></div></div>
+
+<p><strong>참고</strong></p>
+
+<p><strong>helm uninstall</strong></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="c"># helm v3</span>
+   <span class="c"># helm uninstall [name]</span>
+   <span class="nv">$ </span>helm uninstall sonarqube
+   
+   <span class="c"># helm v2</span>
+   <span class="c"># helm del [--purge] [name]</span>
+   <span class="nv">$ </span>helm del <span class="nt">--purge</span> sonarqube
+</code></pre></div></div>
+
+<p><strong>helm upgrade</strong></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="c"># helm upgrade [release] [chart] [-f:values]</span>
+   <span class="nv">$ </span>helm upgrade sonarqube oteemocharts/sonarqube <span class="nt">-f</span> values.yaml
+</code></pre></div></div>
+
+<h4 id="7-kubernetes-pods-확인-및-대시보드-접속">7. kubernetes pods 확인 및 대시보드 접속</h4>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nv">$ </span>kubectl get pods <span class="nt">-A</span> | <span class="nb">grep </span>sonarqube
+   <span class="nv">$ </span>kubectl logs <span class="o">[</span>pod name]
+   <span class="nv">$ </span>curl localhost:9000
+</code></pre></div></div>
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">http://external-ip:port/sonarqube</code> 접속 확인<br />초기 계정: admin/admin</p>
+
+  <p>접속 후 admin 비밀번호 변경 또는 비활성화 할 것</p>
+</blockquote>
+
+<h3 id="using-docker-compose">Using Docker-Compose</h3>
+
+<h4 id="1-docker-composeyaml-작성">1. docker-compose.yaml 작성</h4>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">3.1"</span>
+    <span class="na">services</span><span class="pi">:</span>
+      <span class="na">sonarqube</span><span class="pi">:</span>
+        <span class="na">image</span><span class="pi">:</span> <span class="s">sonarqube:latest</span>
+        <span class="na">restart</span><span class="pi">:</span> <span class="s">always</span>
+        <span class="na">depends_on</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="s">sonarqube-db</span>
+        <span class="na">container_name</span><span class="pi">:</span> <span class="s">sonarqube</span>
+        <span class="na">ports</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="s2">"</span><span class="s">9000:9000"</span>
+        <span class="na">networks</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="s">sonarnet</span>
+        <span class="na">environment</span><span class="pi">:</span>
+          <span class="na">TZ</span><span class="pi">:</span> <span class="s">Asia/Seoul</span>
+          <span class="na">SONAR_HOME</span><span class="pi">:</span> <span class="s">/opt/sonarqube</span>
+          <span class="na">SONAR_JDBC_USERNAME</span><span class="pi">:</span> <span class="s">sonar</span>
+          <span class="na">SONAR_JDBC_PASSWORD</span><span class="pi">:</span> <span class="s">sonar</span>
+          <span class="na">SONAR_JDBC_URL</span><span class="pi">:</span> <span class="s">jdbc:postgresql://sonarqube-db:5432/sonar</span>
+        <span class="na">ulimits</span><span class="pi">:</span>
+          <span class="na">nofile</span><span class="pi">:</span>
+            <span class="na">soft</span><span class="pi">:</span> <span class="m">65536</span>
+            <span class="na">hard</span><span class="pi">:</span> <span class="m">65536</span>
+          <span class="na">memlock</span><span class="pi">:</span>
+            <span class="na">soft</span><span class="pi">:</span> <span class="s">-1</span>
+            <span class="na">hard</span><span class="pi">:</span> <span class="s">-1</span>
+        <span class="na">volumes</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="s">/nfs_nas/volumes/sonarqube/data:/opt/sonarqube/data</span>
+          <span class="pi">-</span> <span class="s">/nfs_nas/volumes/sonarqube/extensions:/opt/sonarqube/extensions</span>
+          <span class="pi">-</span> <span class="s">/nfs_nas/volumes/sonarqube/logs:/opt/sonarqube/logs</span>
+          <span class="pi">-</span> <span class="s">/nfs_nas/volumes/sonarqube/temp:/opt/sonarqube/temp</span>
+
+      <span class="na">sonarqube-db</span><span class="pi">:</span>
+        <span class="na">image</span><span class="pi">:</span> <span class="s">postgres</span>
+        <span class="na">container_name</span><span class="pi">:</span> <span class="s">sonarqube-db</span>
+        <span class="na">networks</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="s">sonarnet</span>
+        <span class="na">environment</span><span class="pi">:</span>
+          <span class="na">TZ</span><span class="pi">:</span> <span class="s">Asia/Seoul</span>
+          <span class="na">POSTGRES_USER</span><span class="pi">:</span> <span class="s">sonar</span>
+          <span class="na">POSTGRES_PASSWORD</span><span class="pi">:</span> <span class="s">sonar</span>
+        <span class="na">volumes</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="s">/nfs_nas/volumes/sonarqube/postgres:/var/lib/postgresqli/data</span>
+</code></pre></div></div>
+
+<h4 id="2-docker-compose-실행-및-접속-확인">2. docker-compose 실행 및 접속 확인</h4>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nv">$ </span>docker-compose up <span class="nt">-d</span>
+   <span class="nv">$ </span>docker-compose ps
+   <span class="nv">$ </span>curl localhost:9000
+</code></pre></div></div>
+
+<blockquote>
+  <p>외부 접속의 경우 포트포워딩 필요</p>
+
+  <blockquote>
+    <p>이 부분은 각 인프라의 환경별로 상이하기 때문에 별도로 기술하지는 않는다.</p>
+  </blockquote>
+</blockquote>
+
+<hr />
+
+<h2 id="jenkins-연동">Jenkins 연동</h2>
+
+<h3 id="1-sonarqube-사이드">1. SonarQube 사이드</h3>
+
+<ol>
+  <li>SonarQube Web 접속</li>
+  <li>Administration &gt; Security &gt; Users</li>
+  <li>(선택) admin 계정 deactivate 및 새 관리자 계정 설정
+    <ol>
+      <li>admin 계정의 설정 &gt; Deactivate</li>
+      <li>Create User</li>
+      <li>생성된 계정의 Groups 리스트 &gt; Unselected &gt; sonar-administrators 체크</li>
+    </ol>
+  </li>
+  <li>위의 관리자 계정에서 Token 메뉴 진입</li>
+  <li>Generate Tokens &gt; Token Name(<code class="language-plaintext highlighter-rouge">jenkins-token</code>) 입력 후 Generate
+    <blockquote>
+      <p>SonarQube 입장에서는 Jenkins에서 사용할 토큰이므로 <code class="language-plaintext highlighter-rouge">jenkins-token</code>이라고 이름 지음</p>
+    </blockquote>
+  </li>
+</ol>
+
+<p><img src="/assets/img/contents/sj-2.png" alt="sj-2.png" /></p>
+
+<ol>
+  <li>생성된 토큰 복사
+    <blockquote>
+      <p>토큰값은 생성시에만 볼 수 있으므로 필히 복사 및 다른 곳에 저장할 것</p>
+    </blockquote>
+  </li>
+</ol>
+
+<h3 id="2-jenkins-사이드">2. Jenkins 사이드</h3>
+
+<ol>
+  <li>SonarQube 플러그인 설치
+    <ol>
+      <li>Jenkins 관리 &gt; 플러그인 관리</li>
+      <li><code class="language-plaintext highlighter-rouge">SonarQube</code> 검색 &gt; <code class="language-plaintext highlighter-rouge">SonarQube Scanner for Jenkins</code> 설치</li>
+    </ol>
+  </li>
+  <li>SonarQube 토큰 등록
+    <ol>
+      <li>Jenkins 관리 &gt; Manage Credentials</li>
+      <li>아래 Stores scoped to Jenkins의 Domains 항목 클릭</li>
+      <li>Add Credentials
+        <ul>
+          <li>Kind: Secret text</li>
+          <li>Scope: Global</li>
+          <li>Secret: 위 SonarQube에서 생성했던 토큰 붙여넣기</li>
+          <li>ID: 원하는 ID(<code class="language-plaintext highlighter-rouge">sonarqube-token</code>) 입력</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>SonarQube 서버 연동
+    <ol>
+      <li>Jenkins 관리 &gt; 시스템 설정 &gt; SonarQube servers</li>
+      <li>Environment variables 체크
+        <blockquote>
+          <p>SonarQube servers 항목에 입력하는 config 정보들을 Jenkins에서 환경변수로 사용할 것인지 확인하는 항목</p>
+        </blockquote>
+      </li>
+    </ol>
+
+    <p><img src="/assets/img/contents/sj-3.png" alt="sj-3.png" /></p>
+  </li>
+  <li>SonarQube Installations 항목 입력
+    <ul>
+      <li>Name: 원하는 서버 이름 입력(ex: sonarqube server)</li>
+      <li>Server URL: SonarQube 서버 주소 입력</li>
+      <li>Server authentication token: 2번 항목에서 생성한 토큰 선택</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="3-jenkins-pipeline">3. Jenkins Pipeline</h3>
+
+<p>테스트용 메이븐 프로젝트 기준으로 작성</p>
+
+<p>Gradle 프로젝트 또는 다른 설정을 보려면 <a href="#bkmrk-sonarqube-for-gradle">SonarQube for Gradle</a>을 참조</p>
+
+<p>SonarQube와 연동할 파이프라인 스크립트에 아래와 같이 Stage 추가</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">stage</span><span class="o">(</span><span class="s">"SonarQube analysis"</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">withSonarQubeEnv</span><span class="o">(</span><span class="err">'</span><span class="n">sonarqube</span> <span class="n">server</span><span class="err">'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">sh</span> <span class="err">'</span><span class="n">mvn</span> <span class="n">org</span><span class="o">.</span><span class="na">sonarsource</span><span class="o">.</span><span class="na">scanner</span><span class="o">.</span><span class="na">maven</span><span class="o">:</span><span class="n">sonar</span><span class="o">-</span><span class="n">maven</span><span class="o">-</span><span class="nl">plugin:</span><span class="mf">3.9</span><span class="o">.</span><span class="mf">0.2155</span><span class="o">:</span><span class="n">sonar</span><span class="err">'</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="n">stage</span><span class="o">(</span><span class="s">"Quality Gate"</span><span class="o">){</span>
+        <span class="n">timeout</span><span class="o">(</span><span class="nl">time:</span> <span class="mi">1</span><span class="o">,</span> <span class="nl">unit:</span> <span class="err">'</span><span class="no">HOURS</span><span class="err">'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">def</span> <span class="n">qg</span> <span class="o">=</span> <span class="n">waitForQualityGate</span><span class="o">()</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">qg</span><span class="o">.</span><span class="na">status</span> <span class="o">!=</span> <span class="err">'</span><span class="no">OK</span><span class="err">'</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">error</span> <span class="s">"Pipeline aborted due to quality gate failure: ${qg.status}"</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Stage 설명</strong></p>
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">"SonarQube analysis"</code>: mvn 빌드 파일 기준 SonarQube 검사 진행</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">"Quality Gate"</code>: 검사한 코드의 품질을 통해 통과/미통과 판별(Quality Gate 프로파일 설정은 SonarQube에서 진행)</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">withSonarEnv()</code>에는 위의 설정에서 Jenkins에서 설정한 SonarQube Server 이름으로 설정해야함<br /><br />Qulaity Gate의 경우 SonarQube에서 Jenkins로 Webhook이 설정되어 있어야함 (<a href="#bkmrk-webhook-%EC%84%A4%EC%A0%95">Webhook 설정</a> 참조)</p>
+</blockquote>
+
+<p><img src="/assets/img/contents/sj-4.png" alt="sj-4.png" /></p>
+
+<p>Jenkins 빌드시 각 Stage 정상 통과 및 SonarQube Webhook 동작 여부 확인</p>
+
+<blockquote>
+  <p>연동 성공시 Build History에 SonarQube 대시보드로 이동할 수 있는 아이콘이 나옴</p>
+</blockquote>
+
+<hr />
+
+<h3 id="reference">Reference</h3>
+
+<ol>
+  <li><a href="https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-jenkins/">SonarScanner for Jenkins</a></li>
+  <li><a href="https://www.jenkins.io/doc/pipeline/steps/sonar/#sonarqube-scanner-for-jenkins">SonarQube Scanner for Jenkins</a></li>
+</ol>
+:ET

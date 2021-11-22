@@ -1,5 +1,5 @@
 ---
-layout: post
+flayout: post
 title: Feature images
 feature-img: "assets/img/feature-img/desk-messy.jpeg"
 thumbnail: "assets/img/thumbnails/feature-img/desk-messy.jpeg"

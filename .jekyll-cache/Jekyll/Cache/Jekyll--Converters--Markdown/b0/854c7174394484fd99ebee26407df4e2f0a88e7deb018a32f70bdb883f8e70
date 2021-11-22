@@ -1,0 +1,192 @@
+I"Ä"<h1 id="using-kramdown-gfm-">Using Kramdown GFM <!--more--></h1>
+
+<!-- To be placed at the beginning of the post, it is where the table of content will be generated -->
+<ul id="markdown-toc">
+  <li><a href="#using-kramdown-gfm-" id="markdown-toc-using-kramdown-gfm-">Using Kramdown GFM <!--more--></a>    <ul>
+      <li><a href="#basic-usage" id="markdown-toc-basic-usage">Basic Usage</a></li>
+    </ul>
+  </li>
+  <li><a href="#using-tocjs" id="markdown-toc-using-tocjs">Using toc.js</a>    <ul>
+      <li><a href="#customize-with-tocjs" id="markdown-toc-customize-with-tocjs">Customize with toc.js</a>        <ul>
+          <li><a href="#use-with-this-jekyll-template" id="markdown-toc-use-with-this-jekyll-template">Use with this jekyll template</a></li>
+        </ul>
+      </li>
+      <li><a href="#basic-usage-1" id="markdown-toc-basic-usage-1">Basic Usage</a></li>
+      <li><a href="#how-it-would-look-like" id="markdown-toc-how-it-would-look-like">How it would look like</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="basic-usage">Basic Usage</h2>
+
+<p>You need to put this at the beginning of the page where you want the table of content to be displayed</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* TOC
+{:toc}
+</code></pre></div></div>
+
+<p>It will then render the markdown and html titles (lines that begins with <code class="language-plaintext highlighter-rouge">#</code> or using the <code class="language-plaintext highlighter-rouge">&lt;h1&gt;&lt;/h1&gt;</code> tages)</p>
+
+<h1 id="using-tocjs">Using toc.js</h1>
+
+<p>Demo display of <a href="https://github.com/ghiculescu/jekyll-table-of-contents">jekyll-table-of-contents</a> by ghiculescu.</p>
+
+<!-- To be placed at the beginning of the post, it is where the table of content will be generated -->
+<div id="toc"></div>
+
+<h2 id="customize-with-tocjs">Customize with toc.js</h2>
+
+<p><a href="https://github.com/ghiculescu/jekyll-table-of-contents">toc.js</a> stands for table of content, it is a js plugin that generates automatically a table of content of a post.</p>
+
+<h3 id="use-with-this-jekyll-template">Use with this jekyll template</h3>
+
+<p>If you want to customize the theme it is up to you, you can add the <code class="language-plaintext highlighter-rouge">toc.js</code> file into the <code class="language-plaintext highlighter-rouge">asset &gt; js</code> and add it into the <code class="language-plaintext highlighter-rouge">page.html</code> layout with:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/assets/js/toc.js"</span> <span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+<p>Then you can use it as it is said on the repository.</p>
+
+<h2 id="basic-usage-1">Basic Usage</h2>
+
+<p>The script requires jQuery. First, reference toc.js in templates where you would like to add the table of content. Then, create an HTML element wherever you want your table of contents to appear:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"toc"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>Then you put your post with titles and all like:</p>
+
+<div class="language-apiblueprint highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gu">## Title</span>
+<span class="gu">## Mid title 1</span>
+This is text on page one
+<span class="gu">## Mid title 2</span>
+This is text for page two
+<span class="gu">### Sub title 2.a</span>
+Some more text
+</code></pre></div></div>
+
+<p>Then at the end of your post, you call the .toc() function using:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">#toc</span><span class="dl">'</span><span class="p">).</span><span class="nx">toc</span><span class="p">();</span>
+<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<h2 id="how-it-would-look-like">How it would look like</h2>
+
+<p>So you can get a feel of it.</p>
+
+<p><img src="https://user-images.githubusercontent.com/20642750/39189661-c22099f2-47a0-11e8-826e-2ec3ef4cc4f4.png" alt="image" /></p>
+
+<script>
+// toc.js 
+// Copied here for the example, can be placed in assets/js for real use in your template.
+// https://github.com/ghiculescu/jekyll-table-of-contents
+(function($){
+  $.fn.toc = function(options) {
+    var defaults = {
+      noBackToTopLinks: false,
+      title: '<i>Jump to...</i>',
+      minimumHeaders: 3,
+      headers: 'h1, h2, h3, h4, h5, h6',
+      listType: 'ol', // values: [ol|ul]
+      showEffect: 'show', // values: [show|slideDown|fadeIn|none]
+      showSpeed: 'slow', // set to 0 to deactivate effect
+      classes: { list: '',
+                 item: ''
+               }
+    },
+    settings = $.extend(defaults, options);
+
+    function fixedEncodeURIComponent (str) {
+      return encodeURIComponent(str).replace(/[!'()*]/g, function(c) {
+        return '%' + c.charCodeAt(0).toString(16);
+      });
+    }
+    
+    function createLink (header) {
+      var innerText = (header.textContent === undefined) ? header.innerText : header.textContent;
+      return "<a href='#" + fixedEncodeURIComponent(header.id) + "'>" + innerText + "</a>";
+    }
+    
+    var headers = $(settings.headers).filter(function() {
+      // get all headers with an ID
+      var previousSiblingName = $(this).prev().attr( "name" );
+      if (!this.id && previousSiblingName) {
+        this.id = $(this).attr( "id", previousSiblingName.replace(/\./g, "-") );
+      }
+      return this.id;
+    }), output = $(this);
+    if (!headers.length || headers.length < settings.minimumHeaders || !output.length) {
+      $(this).hide();
+      return;
+    }
+    
+    if (0 === settings.showSpeed) {
+      settings.showEffect = 'none';
+    }
+    
+    var render = {
+      show: function() { output.hide().html(html).show(settings.showSpeed); },
+      slideDown: function() { output.hide().html(html).slideDown(settings.showSpeed); },
+      fadeIn: function() { output.hide().html(html).fadeIn(settings.showSpeed); },
+      none: function() { output.html(html); }
+    };
+    
+    var get_level = function(ele) { return parseInt(ele.nodeName.replace("H", ""), 10); };
+    var highest_level = headers.map(function(_, ele) { return get_level(ele); }).get().sort()[0];
+    var return_to_top = '<i class="icon-arrow-up back-to-top"> </i>';
+    
+    var level = get_level(headers[0]),
+      this_level,
+      html = settings.title + " <" +settings.listType + " class=\"" + settings.classes.list +"\">";
+    headers.on('click', function() {
+      if (!settings.noBackToTopLinks) {
+        window.location.hash = this.id;
+      }
+    })
+    .addClass('clickable-header')
+    .each(function(_, header) {
+      this_level = get_level(header);
+      if (!settings.noBackToTopLinks && this_level === highest_level) {
+        $(header).addClass('top-level-header').after(return_to_top);
+      }
+      if (this_level === level) // same level as before; same indenting
+        html += "<li class=\"" + settings.classes.item + "\">" + createLink(header);
+      else if (this_level <= level){ // higher level than before; end parent ol
+        for(var i = this_level; i < level; i++) {
+          html += "</li></"+settings.listType+">"
+        }
+        html += "<li class=\"" + settings.classes.item + "\">" + createLink(header);
+      }
+      else if (this_level > level) { // lower level than before; expand the previous to contain a ol
+        for(i = this_level; i > level; i--) {
+          html += "<" + settings.listType + " class=\"" + settings.classes.list +"\">" +
+                  "<li class=\"" + settings.classes.item + "\">"
+        }
+        html += createLink(header);
+      }
+      level = this_level; // update for the next one
+    });
+    html += "</"+settings.listType+">";
+    if (!settings.noBackToTopLinks) {
+      $(document).on('click', '.back-to-top', function() {
+        $(window).scrollTop(0);
+        window.location.hash = '';
+      });
+    }
+    
+    render[settings.showEffect]();
+  };
+})(jQuery);
+</script>
+
+<!-- To be copied at the end of the post to render the table of content -->
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#toc').toc();
+});
+</script>
+
+:ET

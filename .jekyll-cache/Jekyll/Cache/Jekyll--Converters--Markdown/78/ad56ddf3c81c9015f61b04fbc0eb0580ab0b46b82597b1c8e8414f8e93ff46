@@ -1,0 +1,73 @@
+I"<p>Hopefully you will find enough information about how to set images in your blog here.
+This is an example of a post which includes a feature image specified in the front matter of the post. 
+The feature image spans the full-width of the page, and is shown with the title on permalink pages:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">feature-img</span><span class="pi">:</span> <span class="s2">"</span><span class="s">assets/img/feature-img/desk-messy.jpeg"</span>
+<span class="na">thumbnail</span><span class="pi">:</span> <span class="s2">"</span><span class="s">assets/img/thumbnails/feature-img/desk-messy.jpeg"</span> 
+</code></pre></div></div>
+
+<p>You can also use a thumbnail, a smaller version of the same image to improve loading of the page.
+The thumbnail will also be used when you share your article on other platform (linkedin, whatsapp, facebook, …).</p>
+
+<blockquote>
+  <ul>
+    <li>And now it is working</li>
+  </ul>
+</blockquote>
+
+<p>You can also add images aligned in your post using the <code class="language-plaintext highlighter-rouge">aligner</code> include.
+Make sure to separate all of the image path from in a string separated with <code class="language-plaintext highlighter-rouge">,</code>.
+It by default look into <code class="language-plaintext highlighter-rouge">assets/img/</code> so give the path from there, example:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{</span><span class="sx">% include </span><span class="n">aligner</span><span class="p">.</span><span class="nf">html</span> <span class="n">images</span><span class="o">=</span><span class="s2">"pexels/book-glass.jpeg,triangle.png"</span> <span class="o">%</span><span class="p">}</span></code></pre></figure>
+
+<div class="row">
+    
+    <div class="column">
+        <img src="/assets/img/pexels/book-glass.jpeg" alt="book-glass.jpeg" />
+    </div>
+    
+    <div class="column">
+        <img src="/assets/img/feature-img/desk-messy.jpeg" alt="desk-messy.jpeg" />
+    </div>
+    
+</div>
+
+<p>Here you have two images side by side, but you can set more and set the amount per columns 
+(by specifying the number of columns or let it be automatic using <code class="language-plaintext highlighter-rouge">"auto"</code>):</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{</span><span class="sx">% include </span><span class="n">aligner</span><span class="p">.</span><span class="nf">html</span> <span class="n">images</span><span class="o">=</span><span class="s2">"portfolio/cabin.png,portfolio/cake.png,portfolio/circus.png"</span> <span class="n">column</span><span class="o">=</span><span class="mi">3</span> <span class="o">%</span><span class="p">}</span></code></pre></figure>
+
+<div class="row">
+    
+    <div style="flex: 33.333333333333336%">
+        <img src="/assets/img/portfolio/cabin.png" alt="cabin.png" />
+    </div>
+    
+    <div style="flex: 33.333333333333336%">
+        <img src="/assets/img/portfolio/cake.png" alt="cake.png" />
+    </div>
+    
+    <div style="flex: 33.333333333333336%">
+        <img src="/assets/img/portfolio/circus.png" alt="circus.png" />
+    </div>
+    
+</div>
+
+<p>it also works with only one images, it is made to display it smaller than normally.
+However you can just use the Markdown way of doing it to get the image normal sized and centered.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Markdown way (bigger)</span>
+<span class="o">!</span><span class="p">[</span><span class="no">Travel</span><span class="p">]({{</span> <span class="s2">"/assets/img/pexels/computer.jpeg"</span> <span class="o">|</span> <span class="n">relative_url</span><span class="p">}})</span>
+<span class="c1"># Aligner with only One (50% of width)</span>
+<span class="p">{</span><span class="sx">% include </span><span class="n">aligner</span><span class="p">.</span><span class="nf">html</span> <span class="n">images</span><span class="o">=</span><span class="s2">"pexels/computer.jpeg"</span> <span class="o">%</span><span class="p">}</span></code></pre></figure>
+
+<div class="row">
+    
+    <div class="column">
+        <img class="single" src="/assets/img/pexels/computer.jpeg" alt="computer.jpeg" />
+    </div>
+    
+</div>
+
+:ET

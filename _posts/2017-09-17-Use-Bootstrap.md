@@ -1,5 +1,5 @@
 ---
-layout: post
+flayout: post
 title: "Bootstrap"
 bootstrap: true
 tags: [Test]
