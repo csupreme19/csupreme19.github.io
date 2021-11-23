@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-11-22T17:56:21+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>생각하고 바로 행동하기</subtitle><entry><title type="html">Jekyll과 Github pages를 사용하여 간단하게 블로그를 만들어보자</title><link href="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html" rel="alternate" type="text/html" title="Jekyll과 Github pages를 사용하여 간단하게 블로그를 만들어보자" /><published>2021-11-18T00:00:00+09:00</published><updated>2021-11-18T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/18/github-pages-with-jekyll</id><content type="html" xml:base="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html">&lt;h1 id=&quot;jekyll과-github-pages를-사용하여-간단하게-블로그를-만들어보자&quot;&gt;Jekyll과 Github pages를 사용하여 간단하게 블로그를 만들어보자&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-11-23T11:27:21+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>생각하고 바로 행동하기</subtitle><entry><title type="html">Jekyll과 Github pages를 사용하여 블로그 만들기</title><link href="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html" rel="alternate" type="text/html" title="Jekyll과 Github pages를 사용하여 블로그 만들기" /><published>2021-11-18T00:00:00+09:00</published><updated>2021-11-18T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/18/github-pages-with-jekyll</id><content type="html" xml:base="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html">&lt;h1 id=&quot;jekyll과-github-pages를-사용하여-간단하게-블로그를-만들어보자&quot;&gt;Jekyll과 Github pages를 사용하여 간단하게 블로그를 만들어보자&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/titles/github-pages.png&quot; alt=&quot;github-pages.png&quot; /&gt;&lt;/p&gt;
 
@@ -209,7 +209,7 @@ origin	git@github.com:csupreme19/csupreme19.github.io.git &lt;span class=&quot;o
   &lt;li&gt;mermaid, katex 등 다이어그램, 수식 툴 지원&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;단점이라면 한글 폰트가 생각보다 크게 보인다는 것인데… 크게보니 또 나름 괜찮다.&lt;/p&gt;
+&lt;p&gt;단점이라면 한글 폰트가 생각보다 크게 보인다는 것인데… 이후 폰트 및 사이즈 변경 예정이다.&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -415,6 +415,77 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
 
 &lt;hr /&gt;
 
+&lt;h3 id=&quot;폰트-변경&quot;&gt;폰트 변경&lt;/h3&gt;
+
+&lt;p&gt;맥 환경에서 봤을땐 폰트가 사이즈 말고는 괜찮았는데 윈도우 환경에서 보니 계단 현상이 존재하고 가독성이 떨어져 보이는 문제가 발생하였다.&lt;/p&gt;
+
+&lt;p&gt;테마(템플릿)를 사용하는 이유가 UI 개발에 힘을 쏟기 싫었기 때문인데 어쩔 수 없이 입맛에 맞는 커스텀은 필요한 것 같다.&lt;/p&gt;
+
+&lt;h4 id=&quot;1-폰트-scss-파일-생성&quot;&gt;1. 폰트 .scss 파일 생성&lt;/h4&gt;
+
+&lt;p&gt;일반 폰트는 케이티의 &lt;a href=&quot;https://noonnu.cc/font_page/500&quot;&gt;Y 너만을 비춤체&lt;/a&gt;, 소스 코드 폰트는 네이버의 &lt;a href=&quot;https://github.com/naver/d2codingfont&quot;&gt;D2 coding ligature&lt;/a&gt;를 사용하였다.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;_sass/external
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vim _y-spotlight.scss
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vim _d2-coding-ligature.scss
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;폰트 배포시 별도의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@font-face&lt;/code&gt; 소스를 제공한다.&lt;/p&gt;
+
+&lt;p&gt;없다면 기본 구성되어있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_source-sans-pro.scss&lt;/code&gt; 파일을 복사하여 사용하자.&lt;/p&gt;
+
+&lt;div class=&quot;language-scss highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// _y-spotlight.scss&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;@font-face&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;Y_Spotlight&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sx&quot;&gt;url(&apos;https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/Y_Spotlight.woff&apos;)&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;woff&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;font-weight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;font-style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// _d2-coding-ligature.scss&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;@font-face&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;font-family&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;D2 coding Ligature&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sx&quot;&gt;url(&apos;https://cdn.jsdelivr.net/gh/everydayminder/assets/subset-D2Codingligature.woff&apos;)&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;woff&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;font-weight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;font-style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;폰트 소스는 cdn을 사용하였는데 D2 coding 폰트의 경우 공식으로 CDN을 제공하고 있지 않는 것 같다.&lt;/p&gt;
+
+&lt;p&gt;따라서 &lt;a href=&quot;https://luran.me/515&quot;&gt;everyminder&lt;/a&gt; 에서 제공한 woff CDN을 사용하였다.&lt;/p&gt;
+
+&lt;h4 id=&quot;2-_variablesscss-수정&quot;&gt;2. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_variables.scss&lt;/code&gt; 수정&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vim _sass/base/_variables.scss
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_variables.scss&lt;/code&gt; 파일에 테마 변수 정보들이 담겨있다.&lt;/p&gt;
+
+&lt;p&gt;아래 부분처럼 위에서 추가했던 font-family를 추가한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-scss highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cm&quot;&gt;/* TYPOGRAPHY */&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$font-family-main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;Y_Spotlight&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;Source Sans Pro&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Helvetica&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Arial&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sans-serif&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$font-family-headings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;Y_Spotlight&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;Source Sans Pro&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Helvetica&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Arial&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sans-serif&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$font-family-logo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;Y_Spotlight&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;Source Sans Pro&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Helvetica&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Arial&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sans-serif&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;.875em&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$monospace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;D2 coding ligature&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Consolas&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Menlo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Monaco&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Lucida&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Liberation&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Mono&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DejaVu&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sans&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Mono&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Bitstream&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Vera&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sans&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Mono&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Courier&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;New&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;monospace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sans-serif&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$font-size-code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;.85em&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$font-height-code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;.3em&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$border-radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;4px&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;하는 김에 글씨 크기가 커서 폰트 사이즈도 조정해 주었다.&lt;/p&gt;
+
+&lt;h4 id=&quot;3-확인&quot;&gt;3. 확인&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/gpwj-5.png&quot; alt=&quot;gpwj-5.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;폰트 적용이 된 것을 확인할 수 있다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
 &lt;h3 id=&quot;reference&quot;&gt;Reference&lt;/h3&gt;
 
 &lt;ol&gt;
@@ -422,7 +493,7 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
   &lt;li&gt;&lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;http://jekyllthemes.org/&quot;&gt;Jekyll Themes&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/Sylhare/Type-on-Strap&quot;&gt;Type-on-Strap&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>최승훈</name></author><category term="Blog" /><category term="Github" /><category term="Github pages" /><category term="Jekyll" /><summary type="html">Jekyll과 Github pages를 사용하여 간단하게 블로그를 만들어보자</summary></entry><entry><title type="html">Kubernetes RBAC Authorization 적용</title><link href="http://localhost:4000/2021/10/01/kubernetes-RBAC-auth.html" rel="alternate" type="text/html" title="Kubernetes RBAC Authorization 적용" /><published>2021-10-01T00:00:00+09:00</published><updated>2021-10-01T00:00:00+09:00</updated><id>http://localhost:4000/2021/10/01/kubernetes-RBAC-auth</id><content type="html" xml:base="http://localhost:4000/2021/10/01/kubernetes-RBAC-auth.html">&lt;h1 id=&quot;kubernetes-rbac-authorization-적용&quot;&gt;Kubernetes RBAC Authorization 적용&lt;/h1&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Blog" /><category term="Github" /><category term="Github pages" /><category term="Jekyll" /><summary type="html">Jekyll과 Github pages를 사용하여 간단하게 블로그를 만들어보자</summary></entry><entry><title type="html">Kubernetes RBAC Authorization 적용</title><link href="http://localhost:4000/2021/10/01/kubernetes-RBAC-auth.html" rel="alternate" type="text/html" title="Kubernetes RBAC Authorization 적용" /><published>2021-10-01T00:00:00+09:00</published><updated>2021-10-01T00:00:00+09:00</updated><id>http://localhost:4000/2021/10/01/kubernetes-RBAC-auth</id><content type="html" xml:base="http://localhost:4000/2021/10/01/kubernetes-RBAC-auth.html">&lt;h1 id=&quot;kubernetes-rbac-authorization-적용&quot;&gt;Kubernetes RBAC Authorization 적용&lt;/h1&gt;
 
 &lt;p&gt;본 문서에서는 쿠버네티스 API 서버에 접근하기 위한 4가지 인증 방식을 살펴보고 그 중 RBAC 인증 적용방법에 대하여 정리하였다.&lt;/p&gt;
 
@@ -995,7 +1066,7 @@ flowchart LR
   &lt;li&gt;&lt;a href=&quot;https://kubernetes.io/docs/reference/access-authn-authz/node/&quot;&gt;Using Node Authorization&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://kubernetes.io/docs/reference/access-authn-authz/node/&quot;&gt;Using ABAC Authorization&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/&quot;&gt;Certified Kubernetes Administrator(CKA) with Practice Tests&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>최승훈</name></author><category term="Kubernetes" /><category term="Authorization" /><category term="Authentication" /><category term="RBAC" /><category term="ABAC" /><category term="Security" /><summary type="html">Kubernetes RBAC Authorization 적용</summary></entry><entry><title type="html">SonarQube 설정(Jenkins, GitLab 연동, 웹훅, Ingress 인증서 등) 및 트러블슈팅</title><link href="http://localhost:4000/2021/05/10/sonarqube-config.html" rel="alternate" type="text/html" title="SonarQube 설정(Jenkins, GitLab 연동, 웹훅, Ingress 인증서 등) 및 트러블슈팅" /><published>2021-05-10T00:00:00+09:00</published><updated>2021-05-10T00:00:00+09:00</updated><id>http://localhost:4000/2021/05/10/sonarqube-config</id><content type="html" xml:base="http://localhost:4000/2021/05/10/sonarqube-config.html">&lt;h1 id=&quot;sonarqube-설정jenkins-gitlab-연동-웹훅-ingress-인증서-등-및-트러블슈팅&quot;&gt;SonarQube 설정(Jenkins, GitLab 연동, 웹훅, Ingress 인증서 등) 및 트러블슈팅&lt;/h1&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Kubernetes" /><category term="Authorization" /><category term="Authentication" /><category term="RBAC" /><category term="ABAC" /><category term="Security" /><summary type="html">Kubernetes RBAC Authorization 적용</summary></entry><entry><title type="html">SonarQube 설정 및 트러블슈팅</title><link href="http://localhost:4000/2021/05/10/sonarqube-config.html" rel="alternate" type="text/html" title="SonarQube 설정 및 트러블슈팅" /><published>2021-05-10T00:00:00+09:00</published><updated>2021-05-10T00:00:00+09:00</updated><id>http://localhost:4000/2021/05/10/sonarqube-config</id><content type="html" xml:base="http://localhost:4000/2021/05/10/sonarqube-config.html">&lt;h1 id=&quot;sonarqube-설정-및-트러블슈팅&quot;&gt;SonarQube 설정 및 트러블슈팅&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/titles/sonarqube.png&quot; alt=&quot;sonarqube.png&quot; /&gt;&lt;/p&gt;
 
@@ -1440,7 +1511,7 @@ Ingress HTTP, HTTPS(/sonarqube) -&amp;gt; sonarqube 서비스(9000)&lt;/p&gt;
   &lt;li&gt;&lt;a href=&quot;https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-jenkins/&quot;&gt;SonarScanner for Jenkins&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.jenkins.io/doc/pipeline/steps/sonar/#sonarqube-scanner-for-jenkins&quot;&gt;SonarQube Scanner for Jenkins&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://docs.sonarqube.org/latest/analysis/gitlab-integration/&quot;&gt;SonarQube GitLab Integration&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>최승훈</name></author><category term="Sonarqube" /><category term="Jenkins" /><category term="Webhook" /><category term="Ingress" /><category term="Kubernetes" /><category term="GitLab" /><summary type="html">SonarQube 설정(Jenkins, GitLab 연동, 웹훅, Ingress 인증서 등) 및 트러블슈팅</summary></entry><entry><title type="html">SonarQube 설치 및 Jenkins pipeline 연동하기</title><link href="http://localhost:4000/2021/05/07/sonarqube-jenkins.html" rel="alternate" type="text/html" title="SonarQube 설치 및 Jenkins pipeline 연동하기" /><published>2021-05-07T00:00:00+09:00</published><updated>2021-05-07T00:00:00+09:00</updated><id>http://localhost:4000/2021/05/07/sonarqube-jenkins</id><content type="html" xml:base="http://localhost:4000/2021/05/07/sonarqube-jenkins.html">&lt;h1 id=&quot;sonarqube-설치-및-jenkins-pipeline-연동하기&quot;&gt;SonarQube 설치 및 Jenkins pipeline 연동하기&lt;/h1&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Sonarqube" /><category term="Jenkins" /><category term="Webhook" /><category term="Ingress" /><category term="Kubernetes" /><category term="GitLab" /><summary type="html">SonarQube 설정 및 트러블슈팅</summary></entry><entry><title type="html">SonarQube 설치 및 Jenkins pipeline 연동하기</title><link href="http://localhost:4000/2021/05/07/sonarqube-jenkins.html" rel="alternate" type="text/html" title="SonarQube 설치 및 Jenkins pipeline 연동하기" /><published>2021-05-07T00:00:00+09:00</published><updated>2021-05-07T00:00:00+09:00</updated><id>http://localhost:4000/2021/05/07/sonarqube-jenkins</id><content type="html" xml:base="http://localhost:4000/2021/05/07/sonarqube-jenkins.html">&lt;h1 id=&quot;sonarqube-설치-및-jenkins-pipeline-연동하기&quot;&gt;SonarQube 설치 및 Jenkins pipeline 연동하기&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/titles/sonarqube.png&quot; alt=&quot;sonarqube.png&quot; /&gt;&lt;/p&gt;
 
@@ -1891,7 +1962,7 @@ Ingress HTTP, HTTPS(/sonarqube) -&amp;gt; sonarqube 서비스(9000)&lt;/p&gt;
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-jenkins/&quot;&gt;SonarScanner for Jenkins&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.jenkins.io/doc/pipeline/steps/sonar/#sonarqube-scanner-for-jenkins&quot;&gt;SonarQube Scanner for Jenkins&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>최승훈</name></author><category term="Sonarqube" /><category term="Jenkins" /><category term="Helm" /><category term="Docker" /><category term="Docker-Compose" /><summary type="html">SonarQube 설치 및 Jenkins pipeline 연동하기</summary></entry><entry><title type="html">Dark Mode</title><link href="http://localhost:4000/2021/04/27/dark-mode.html" rel="alternate" type="text/html" title="Dark Mode" /><published>2021-04-27T00:00:00+09:00</published><updated>2021-04-27T00:00:00+09:00</updated><id>http://localhost:4000/2021/04/27/dark-mode</id><content type="html" xml:base="http://localhost:4000/2021/04/27/dark-mode.html">&lt;p&gt;&lt;strong&gt;More colors with less light.&lt;/strong&gt;&lt;/p&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Sonarqube" /><category term="Jenkins" /><category term="Helm" /><category term="Docker" /><category term="Docker-Compose" /><summary type="html">SonarQube 설치 및 Jenkins pipeline 연동하기</summary></entry><entry><title type="html">Dark Mode</title><link href="http://localhost:4000/2021/04/27/dark-mode.html" rel="alternate" type="text/html" title="Dark Mode" /><published>2021-04-27T00:00:00+09:00</published><updated>2021-04-27T00:00:00+09:00</updated><id>http://localhost:4000/2021/04/27/dark-mode</id><content type="html" xml:base="http://localhost:4000/2021/04/27/dark-mode.html">&lt;p&gt;&lt;strong&gt;More colors with less light.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Click the half-moon most top-right button to turn the lights on/off.&lt;/p&gt;
 

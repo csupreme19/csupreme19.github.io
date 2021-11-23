@@ -61,22 +61,22 @@
     <meta property="og:type" content="website" />
     
     <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>SonarQube 설정(Jenkins, GitLab 연동, 웹훅, Ingress 인증서 등) 및 트러블슈팅 | Seunghoon Choi</title>
+<title>SonarQube 설정 및 트러블슈팅 | Seunghoon Choi</title>
 <meta name="generator" content="Jekyll v4.2.1" />
-<meta property="og:title" content="SonarQube 설정(Jenkins, GitLab 연동, 웹훅, Ingress 인증서 등) 및 트러블슈팅" />
-<meta name="author" content="최승훈" />
+<meta property="og:title" content="SonarQube 설정 및 트러블슈팅" />
+<meta name="author" content="csupreme19" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="SonarQube 설정(Jenkins, GitLab 연동, 웹훅, Ingress 인증서 등) 및 트러블슈팅" />
-<meta property="og:description" content="SonarQube 설정(Jenkins, GitLab 연동, 웹훅, Ingress 인증서 등) 및 트러블슈팅" />
+<meta name="description" content="SonarQube 설정 및 트러블슈팅" />
+<meta property="og:description" content="SonarQube 설정 및 트러블슈팅" />
 <link rel="canonical" href="http://localhost:4000/2021/05/10/sonarqube-config.html" />
 <meta property="og:url" content="http://localhost:4000/2021/05/10/sonarqube-config.html" />
 <meta property="og:site_name" content="Seunghoon Choi" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-05-10T00:00:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="SonarQube 설정(Jenkins, GitLab 연동, 웹훅, Ingress 인증서 등) 및 트러블슈팅" />
+<meta property="twitter:title" content="SonarQube 설정 및 트러블슈팅" />
 <script type="application/ld+json">
-{"description":"SonarQube 설정(Jenkins, GitLab 연동, 웹훅, Ingress 인증서 등) 및 트러블슈팅","headline":"SonarQube 설정(Jenkins, GitLab 연동, 웹훅, Ingress 인증서 등) 및 트러블슈팅","dateModified":"2021-05-10T00:00:00+09:00","datePublished":"2021-05-10T00:00:00+09:00","url":"http://localhost:4000/2021/05/10/sonarqube-config.html","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/05/10/sonarqube-config.html"},"author":{"@type":"Person","name":"최승훈"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"description":"SonarQube 설정 및 트러블슈팅","headline":"SonarQube 설정 및 트러블슈팅","dateModified":"2021-05-10T00:00:00+09:00","datePublished":"2021-05-10T00:00:00+09:00","url":"http://localhost:4000/2021/05/10/sonarqube-config.html","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/05/10/sonarqube-config.html"},"author":{"@type":"Person","name":"csupreme19"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -84,12 +84,12 @@
     <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Seunghoon Choi" />
 
     <!-- Twitter Cards -->
-    <meta name="twitter:title" content="SonarQube 설정(Jenkins, GitLab 연동, 웹훅, Ingress 인증서 등) 및 트러블슈팅">
-    <meta name="twitter:description" content="SonarQube 설정(Jenkins, GitLab 연동, 웹훅, Ingress 인증서 등) 및 트러블슈팅SonarQube Documentation본 문서에서는 Sonarqube Jenkins 연동, GitLab 연동, Ingress 인증서 설정, 웹훅 설정 등 내용을 모아 정리하...">
+    <meta name="twitter:title" content="SonarQube 설정 및 트러블슈팅">
+    <meta name="twitter:description" content="SonarQube 설정 및 트러블슈팅SonarQube Documentation본 문서에서는 Sonarqube Jenkins 연동, GitLab 연동, Ingress 인증서 설정, 웹훅 설정 등 내용을 모아 정리하였으며설정시 오류를 해결했던 내역을(트러블슈팅) 정리하였다.SonarQ...">
     
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="http://localhost:4000/assets/img/titles/sonarqube.png">
-    <meta name="twitter:image:alt" content="SonarQube 설정(Jenkins, GitLab 연동, 웹훅, Ingress 인증서 등) 및 트러블슈팅">
+    <meta name="twitter:image:alt" content="SonarQube 설정 및 트러블슈팅">
 </head>
 
   <body>
@@ -197,7 +197,7 @@
         
         
         <li class="separator"> | </li>
-        <li><a id="theme-toggle" title="SonarQube 설정(Jenkins, GitLab 연동, 웹훅, Ingress 인증서 등) 및 트러블슈팅 " aria-label="SonarQube 설정(Jenkins, GitLab 연동, 웹훅, Ingress 인증서 등) 및 트러블슈팅" onclick="themeToggle()"></a></li>
+        <li><a id="theme-toggle" title="SonarQube 설정 및 트러블슈팅 " aria-label="SonarQube 설정 및 트러블슈팅" onclick="themeToggle()"></a></li>
         
     </ul>
 
@@ -209,7 +209,7 @@
   <header id="main" style="">
     <div class="title-padder">
       
-      <h1 id="SonarQube+%EC%84%A4%EC%A0%95%28Jenkins%2C+GitLab+%EC%97%B0%EB%8F%99%2C+%EC%9B%B9%ED%9B%85%2C+Ingress+%EC%9D%B8%EC%A6%9D%EC%84%9C+%EB%93%B1%29+%EB%B0%8F+%ED%8A%B8%EB%9F%AC%EB%B8%94%EC%8A%88%ED%8C%85" class="title">SonarQube 설정(Jenkins, GitLab 연동, 웹훅, Ingress 인증서 등) 및 트러블슈팅</h1>
+      <h1 id="SonarQube+%EC%84%A4%EC%A0%95+%EB%B0%8F+%ED%8A%B8%EB%9F%AC%EB%B8%94%EC%8A%88%ED%8C%85" class="title">SonarQube 설정 및 트러블슈팅</h1>
       
 
 
@@ -217,7 +217,7 @@
       <img alt="Author's avatar" src="https://avatars.githubusercontent.com/u/76021703?s=400&v=4">
     
     <p class="meta">
-      최승훈 - 
+      csupreme19 - 
       
       May 10, 2021
     </p></a></div>
@@ -228,7 +228,7 @@
 
   <section class="post-content">
   
-      <h1 id="sonarqube-설정jenkins-gitlab-연동-웹훅-ingress-인증서-등-및-트러블슈팅">SonarQube 설정(Jenkins, GitLab 연동, 웹훅, Ingress 인증서 등) 및 트러블슈팅</h1>
+      <h1 id="sonarqube-설정-및-트러블슈팅">SonarQube 설정 및 트러블슈팅</h1>
 
 <p><img src="/assets/img/titles/sonarqube.png" alt="sonarqube.png" /></p>
 

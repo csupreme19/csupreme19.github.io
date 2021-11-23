@@ -1,11 +1,9 @@
 ---
 layout: post
-title: Jekyll과 Github pages를 사용하여 간단하게 블로그를 만들어보자
+title: Jekyll과 Github pages를 사용하여 블로그 만들기
 feature-img: assets/img/titles/github-pages.png
 thumbnail: assets/img/titles/github-pages.png
-color: rgb(80,140,22)
 author: csupreme19
-bootstrap: true
 tags: [Blog, Github, Github pages, Jekyll]
 
 ---
@@ -182,9 +180,7 @@ origin	git@github.com:csupreme19/csupreme19.github.io.git (push)
 
 
 
-단점이라면 한글 폰트가 생각보다 크게 보인다는 것인데... 크게보니 또 나름 괜찮다.
-
-
+단점이라면 한글 폰트가 생각보다 크게 보인다는 것인데... 이후 폰트 및 사이즈 변경 예정이다.
 
 ---
 
@@ -402,7 +398,86 @@ $ bundle exec jekyll serve
 
 ![gpwj-4.png]({{ "/assets/img/contents/gpwj-4.png" }})
 
+---
 
+### 폰트 변경
+
+맥 환경에서 봤을땐 폰트가 사이즈 말고는 괜찮았는데 윈도우 환경에서 보니 계단 현상이 존재하고 가독성이 떨어져 보이는 문제가 발생하였다.
+
+테마(템플릿)를 사용하는 이유가 UI 개발에 힘을 쏟기 싫었기 때문인데 어쩔 수 없이 입맛에 맞는 커스텀은 필요한 것 같다.
+
+
+
+#### 1. 폰트 .scss 파일 생성
+
+일반 폰트는 케이티의 [Y 너만을 비춤체](https://noonnu.cc/font_page/500), 소스 코드 폰트는 네이버의 [D2 coding ligature](https://github.com/naver/d2codingfont)를 사용하였다.
+
+```sh
+$ cd _sass/external
+$ vim _y-spotlight.scss
+$ vim _d2-coding-ligature.scss
+```
+
+폰트 배포시 별도의 `@font-face` 소스를 제공한다.
+
+없다면 기본 구성되어있는 `_source-sans-pro.scss` 파일을 복사하여 사용하자.
+
+```scss
+// _y-spotlight.scss
+@font-face {
+    font-family: 'Y_Spotlight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/Y_Spotlight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+// _d2-coding-ligature.scss
+@font-face {
+    font-family: 'D2 coding Ligature';
+    src: url('https://cdn.jsdelivr.net/gh/everydayminder/assets/subset-D2Codingligature.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+```
+
+폰트 소스는 cdn을 사용하였는데 D2 coding 폰트의 경우 공식으로 CDN을 제공하고 있지 않는 것 같다.
+
+따라서 [everyminder](https://luran.me/515) 에서 제공한 woff CDN을 사용하였다.
+
+
+
+#### 2. `_variables.scss` 수정
+
+```sh
+$ vim _sass/base/_variables.scss
+```
+
+`_variables.scss` 파일에 테마 변수 정보들이 담겨있다.
+
+아래 부분처럼 위에서 추가했던 font-family를 추가한다.
+
+```scss
+/* TYPOGRAPHY */
+$font-family-main: 'Y_Spotlight', 'Source Sans Pro', Helvetica, Arial, sans-serif;
+$font-family-headings: 'Y_Spotlight', 'Source Sans Pro', Helvetica, Arial, sans-serif;
+$font-family-logo: 'Y_Spotlight', 'Source Sans Pro', Helvetica, Arial, sans-serif;
+$font-size: 0.875em;
+
+$monospace: 'D2 coding ligature', Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, sans-serif !default;
+$font-size-code: 0.85em !default;
+$font-height-code: 1.3em !default;
+$border-radius: 4px !default;
+```
+
+하는 김에 글씨 크기가 커서 폰트 사이즈도 조정해 주었다.
+
+
+
+#### 3. 확인
+
+![gpwj-5.png]({{ "/assets/img/contents/gpwj-5.png" }})
+
+폰트 적용이 된 것을 확인할 수 있다.
 
 ---
 

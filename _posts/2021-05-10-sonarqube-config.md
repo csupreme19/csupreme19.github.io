@@ -1,6 +1,6 @@
 ---
 layout: post
-title: SonarQube 설정(Jenkins, GitLab 연동, 웹훅, Ingress 인증서 등) 및 트러블슈팅
+title: SonarQube 설정 및 트러블슈팅
 feature-img: assets/img/titles/sonarqube.png
 thumbnail: assets/img/titles/sonarqube.png
 author: csupreme19
@@ -8,7 +8,7 @@ tags: [Sonarqube, Jenkins, Webhook, Ingress, Kubernetes, GitLab]
 
 ---
 
-# SonarQube 설정(Jenkins, GitLab 연동, 웹훅, Ingress 인증서 등) 및 트러블슈팅
+# SonarQube 설정 및 트러블슈팅
 
 ![sonarqube.png]({{ "/assets/img/titles/sonarqube.png"}})
 
