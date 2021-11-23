@@ -1,0 +1,499 @@
+I"Qa<h1 id="jekyll과-github-pages를-사용하여-간단하게-블로그를-만들어보자">Jekyll과 Github pages를 사용하여 간단하게 블로그를 만들어보자</h1>
+
+<p><img src="/assets/img/titles/github-pages.png" alt="github-pages.png" /></p>
+
+<p><a href="https://pages.github.com/">GitHub Pages</a></p>
+
+<p>본 문서는 현재 보고 있는 블로그를 구현하였던 내용을 담고 있다.</p>
+
+<hr />
+
+<h2 id="시작하게된-계기">시작하게된 계기</h2>
+
+<p>문득 개발을 하고 있는데 <strong>왜 남는게 없지?</strong> 라는 생각이 들기 시작하였다.</p>
+
+<p>요즘엔 양질의 개발자료를 손가락 몇번 놀리면 쉽게 찾을 수 있다보니 정보를 검증도 하지 않고 여과없이 받아들일 수도 있겠다는 생각이 들었고 정보를 내것으로 만들어야겠다는 필요성이 느껴졌다.</p>
+
+<p>문서를 작성하면서 헷갈리는 부분도 정리할 수 있고 무엇보다 남들에게 설명하도록 나중에 내가 봐도 이해할 수 있도록 작성하려면 확실한 이해가 바탕이 되어야 하기 때문에 시작하게 되었다.</p>
+
+<hr />
+
+<h2 id="어떤걸-써야할까">어떤걸 써야할까</h2>
+
+<p>웹개발이라는 것은 익숙하지만 결코 간단한 것이 아니다. (자세히 말하면 public하게 오픈하는 것)</p>
+
+<ol>
+  <li>JS, CSS 등의 Frontend 스택을 활용하여 프론트 웹을 개발한다.</li>
+  <li>웹에서 사용할 REST API를 정의 및 개발하고 경우에 따라 DB를 구축한다.</li>
+  <li>Cloud 환경이든 자체 구축 서버든 웹을 빌드하여 올릴 서버가 필요하다.</li>
+  <li>도메인, 인증서 구매 및 적용을 통해 외부에 오픈이 필요하다.</li>
+  <li>추가적으로) 최소한의 보안과 무중단 배포를 위한 proxy 서버가 필요</li>
+</ol>
+
+<h3 id="선택기준">선택기준</h3>
+
+<ol>
+  <li>간단한 기술 블로그를 위하여 웹개발을 하기는 싫었다.</li>
+  <li>자체 서버를 구축하기 싫었다. (비용적으로든 노력으로든)</li>
+  <li>추가적인 비용을 들이기 싫었다.</li>
+</ol>
+
+<p>따라서 자체 호스팅을 하는 사이트를 이용하는 방법을 선택하였다.</p>
+
+<hr />
+
+<h2 id="블로그-플랫폼">블로그 플랫폼</h2>
+
+<p>조사 결과 여러가지 블로그 플랫폼 서비스들이 존재하였다.</p>
+
+<ol>
+  <li>
+    <p><a href="https://velog.io/">https://velog.io</a></p>
+
+    <ul>
+      <li>
+        <p>개발자를 위한 블로그 서비스(플랫폼)</p>
+      </li>
+      <li>
+        <p>마크다운 작성 가능</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a href="https://wordpress.org/">https://wordpress.org</a></p>
+
+    <ul>
+      <li>
+        <p>전세계적으로 가장 유명한 블로그 서비스</p>
+      </li>
+      <li>
+        <p>커스터마이징 기능이 강력</p>
+      </li>
+      <li>
+        <p>방대한 생태계</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a href="https://www.tistory.com/">https://www.tistory.com</a></p>
+
+    <ul>
+      <li>
+        <p>유명한 블로그 플랫폼</p>
+      </li>
+      <li>
+        <p>WYSIWYG 방식의 에디터를 제공</p>
+      </li>
+      <li>
+        <p>특정 환경에서 접속이 매우 느림</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a href="https://blog.naver.com">https://blog.naver.com</a></p>
+
+    <ul>
+      <li>
+        <p>유명한 블로그 플랫폼2</p>
+      </li>
+      <li>
+        <p>WYSIWYG 방식의 에디터를 제공</p>
+      </li>
+      <li>
+        <p>구글 검색이 안되는 치명적인 단점이 있음</p>
+      </li>
+      <li>
+        <p>개발 한정으로 매우 기능이 부실</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a href="https://pages.github.com/">https://pages.github.com</a></p>
+
+    <ul>
+      <li>
+        <p>github과 연동됨</p>
+      </li>
+      <li>
+        <p>markdown 지원</p>
+      </li>
+      <li>
+        <p>퍼블릭 도메인 간편하게 설정 가능</p>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="결론은">결론은?</h3>
+
+<p>웹 개발에 공을 들이기는 싫었고 현재 마크다운으로 작성되어 있는 문서들을 쉽게 올릴 수 있어야 하였고 github과 연동되는 Github pages를 사용하기로 하였다.</p>
+
+<hr />
+
+<h2 id="jekyll">Jekyll</h2>
+
+<p><img src="/assets/img/contents/jekyll.png" alt="jekyll.png" /></p>
+
+<p><a href="https://jekyllrb.com/">https://jekyllrb.com/</a></p>
+
+<p>GitHub 공동 설립자 Tom Preston-Werner에 의해 개발된 Ruby 기반의 정적 사이트 생성기(Static site generator)이다.</p>
+
+<p>여기서 SSG(Static Site Generator)란 DB없이 static file 즉 html만으로 돌아가는 웹을 의미한다.</p>
+
+<p>마크다운 형태로 작성이 가능하여 개발자 freindly하며 구현도 매우 간편하게 할 수 있다.</p>
+
+<p>Github pages와 궁합이 매우 좋으며 Github pages 공식 문서에서도 Jekyll을 이용하도록 안내하고 있다.</p>
+
+<hr />
+
+<h2 id="github-pages">Github pages</h2>
+
+<h3 id="1-저장소-생성">1. 저장소 생성</h3>
+
+<p><img src="/assets/img/contents/gpwj-1.png" alt="gpwj-1.png" /></p>
+
+<p>Github pages는 계정의 github repository를 기반으로 웹을 제공한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">{사용자명}.github.io</code> 의 형태로 저장소를 생성하면 해당 저장소는 자동으로 github pages 저장소로 설정이 된다.</p>
+
+<p>(올바른 branch에 커밋시 자동으로 github pages를 빌드하도록 설정이 되어있다.)</p>
+
+<blockquote>
+  <p>사진은 이미 저장소를 만들었기 때문에 중복되었다고 나옴</p>
+</blockquote>
+
+<h3 id="2-git-설정">2. git 설정</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 유저명은 csupreme19로 가정</span>
+<span class="nv">$ </span><span class="nb">mkdir</span> <span class="nt">-p</span> ~/git/csupreme19.github.io
+<span class="nv">$ </span><span class="nb">cd</span> ~/git/csupreme19.github.io
+<span class="c"># git 사용자 설정</span>
+<span class="nv">$ </span>git config <span class="nt">--local</span> user.name csupreme19
+<span class="nv">$ </span>git config <span class="nt">--local</span> user.email csupreme19@gmail.com
+
+<span class="c"># git 로컬 저장소 초기화</span>
+<span class="nv">$ </span>git init
+
+<span class="c"># git remote 저장소 연결</span>
+<span class="nv">$ </span>git remote add origin git@github.com:csupreme19/csupreme19.github.io.git
+<span class="nv">$ </span>git remote <span class="nt">-v</span>
+origin	git@github.com:csupreme19/csupreme19.github.io.git <span class="o">(</span>fetch<span class="o">)</span>
+origin	git@github.com:csupreme19/csupreme19.github.io.git <span class="o">(</span>push<span class="o">)</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>나는 사내 gitlab의 계정이 global로 설정되어 있어 해당 git 저장소에만 config를 적용하도록 <code class="language-plaintext highlighter-rouge">--local</code> flag를 사용하였다.</p>
+</blockquote>
+
+<h3 id="3-테마-설정">3. 테마 설정</h3>
+
+<p><a href="http://jekyllthemes.org/">http://jekyllthemes.org/</a></p>
+
+<p>위 사이트에서 마음에 드는 테마를 선택 후 github에서 fork 또는 clone한다.</p>
+
+<blockquote>
+  <p>jekyll을 설치 하는 것이 원래 해야 할 일이지만 보통 테마에서 jekyll gemspec 명세를 제공하므로 jekyll 설치를 뒤로하고 테마 설정을 진행한다.</p>
+</blockquote>
+
+<p><img src="/assets/img/contents/type-on-strap.png" alt="type-on-strap.png" /></p>
+
+<p>본인은 <a href="http://jekyllthemes.org/themes/Type-on-Strap/">Type on Strap</a> 테마를 선택하였다.</p>
+
+<h4 id="선택-이유">선택 이유?</h4>
+
+<ol>
+  <li>현재까지도 유지보수가 되고 있는 점(선택 시점에 10시간 전에 릴리즈된 것을 확인)</li>
+  <li>컨텐츠 중심의 가독성 좋은 테마</li>
+  <li>반응형 웹</li>
+  <li>다크 테마 지원</li>
+  <li>mermaid, katex 등 다이어그램, 수식 툴 지원</li>
+</ol>
+
+<p>단점이라면 한글 폰트가 생각보다 크게 보인다는 것인데… 이후 폰트 및 사이즈 변경 예정이다.</p>
+
+<hr />
+
+<h2 id="jekyll-설치-및-설정">Jekyll 설치 및 설정</h2>
+
+<h3 id="선행사항">선행사항</h3>
+
+<ul>
+  <li>Ruby 2.5.0 이상</li>
+  <li>RubyGems</li>
+  <li>GCC</li>
+  <li>Make</li>
+</ul>
+
+<h3 id="1-ruby-설치macos">1. Ruby 설치(macOS)</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Homebrew 설치</span>
+<span class="nv">$ </span>/bin/bash <span class="nt">-c</span> <span class="s2">"</span><span class="si">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="si">)</span><span class="s2">"</span>
+
+<span class="c"># Ruby 설치</span>
+<span class="nv">$ </span>brew <span class="nb">install </span>ruby
+<span class="c"># zsh 사용시</span>
+<span class="nb">echo</span> <span class="s1">'export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.zshrc
+<span class="c"># bash 사용시</span>
+<span class="nb">echo</span> <span class="s1">'export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.bash_profile
+
+<span class="c"># 버전 확인</span>
+<span class="nv">$ </span>ruby <span class="nt">-v</span>
+<span class="nv">$ </span>gem <span class="nt">-v</span>
+<span class="nv">$ </span>gcc <span class="nt">-v</span>
+</code></pre></div></div>
+
+<p>다른 OS 설치 방법은 <a href="https://jekyllrb.com/docs/installation/">Jekyll 설치 문서</a> 참조</p>
+
+<h3 id="2-jekyll-및-테마-설치">2. Jekyll 및 테마 설치</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ~/git/csupreme19.github.io
+<span class="nv">$ </span>git clone https://github.com/Sylhare/Type-on-Strap.git
+
+<span class="c"># install</span>
+<span class="nv">$ </span>gem <span class="nb">install </span>jekyll
+<span class="nv">$ </span>bundle add webrick
+<span class="nv">$ </span>bundle <span class="nb">install</span>
+
+<span class="c"># jekyll 로컬 서버 실행</span>
+<span class="nv">$ </span>bundle <span class="nb">exec </span>jekyll serve
+Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
+            Source: /Users/csupreme19/git/csupreme19.github.io
+       Destination: /Users/csupreme19/git/csupreme19.github.io/_site
+ Incremental build: disabled. Enable with <span class="nt">--incremental</span>
+      Generating...
+       Jekyll Feed: Generating feed <span class="k">for </span>posts
+                    <span class="k">done in </span>1.461 seconds.
+ Auto-regeneration: enabled <span class="k">for</span> <span class="s1">'/Users/csupreme19/git/csupreme19.github.io'</span>
+    Server address: http://127.0.0.1:4000/
+  Server running... press ctrl-c to stop.
+</code></pre></div></div>
+
+<h3 id="3-_configyml-수정">3. _config.yml 수정</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># SITE CONFIGURATION</span>
+<span class="na">baseurl</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span><span class="err">		</span><span class="c1"># 설정한 url이 subdomain이 된다. 즉 {url}/{baseurl} 도메인으로 접속해야함</span>
+<span class="na">url</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://csupreme19.github.io"</span><span class="err">		</span><span class="c1"># 도메인 주소 설정</span>
+
+<span class="c1"># THEME-SPECIFIC CONFIGURATION</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s">내 블로그</span>                             <span class="c1"># 타이틀</span>
+<span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">한글테스트"</span>      <span class="c1"># 구글 검색 엔진에서 사용하는 정보</span>
+<span class="na">avatar</span><span class="pi">:</span> <span class="s">assets/img/triangle.png</span>                         <span class="c1"># 상단 navbar 이미지</span>
+<span class="na">favicon</span><span class="pi">:</span> <span class="s">assets/favicon.ico</span>                             <span class="c1"># 웹 favicon</span>
+
+<span class="c1"># Header and footer text</span>
+<span class="na">header_text</span><span class="pi">:</span> <span class="s">헤더 텍스트</span>  <span class="c1"># 블로그 헤더 텍스트</span>
+<span class="na">header_feature_image</span><span class="pi">:</span> <span class="s">assets/img/pexels/triangular.jpeg</span> <span class="c1"># 헤더 이미지</span>
+<span class="c1"># 푸터 텍스트</span>
+<span class="na">footer_text</span><span class="pi">:</span> <span class="pi">&gt;</span>
+  <span class="s">Powered by &lt;a href="https://jekyllrb.com/"&gt;Jekyll&lt;/a&gt; with &lt;a href="https://github.com/sylhare/Type-on-Strap"&gt;Type on Strap&lt;/a&gt;</span>
+  
+<span class="s">...</span>
+<span class="c1"># 나머지 설정은 github 문서 참조</span>
+</code></pre></div></div>
+
+<h3 id="4-로컬-접속-테스트">4. 로컬 접속 테스트</h3>
+
+<p><img src="/assets/img/contents/gpwj-2.png" alt="gpwj-2.png" /></p>
+
+<p>http://localhost:4000 접속 확인</p>
+
+<h3 id="5-git-push-및-github-pages-설정">5. git push 및 github pages 설정</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add <span class="nb">.</span>
+<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
+<span class="nv">$ </span>git push <span class="nt">-u</span> origin main
+</code></pre></div></div>
+
+<p><img src="/assets/img/contents/gpwj-3.png" alt="gpwj-3.png" /></p>
+
+<p>github 저장소 &gt; Settings &gt; Pages</p>
+
+<h4 id="빌드-소스-변경">빌드 소스 변경</h4>
+
+<p>Source 부분 main 브랜치, / (root) 폴더로 변경</p>
+
+<p>변경 후 <code class="language-plaintext highlighter-rouge">Your site is published at https://csupreme19.github.io/</code> 빌드 성공 메시지 확인</p>
+
+<h3 id="6-접속">6. 접속</h3>
+
+<p><a href="https://csupreme19.github.io/">https://csupreme19.github.io/</a> 접속 확인</p>
+
+<hr />
+
+<h2 id="댓글창-활성화">댓글창 활성화</h2>
+
+<p>Type-on-Strap 테마는 3가지의 Comment 오픈소스를 지원한다.</p>
+
+<h3 id="1-disqus">1. Disqus</h3>
+
+<p><a href="https://disqus.com/">disqus.com</a></p>
+
+<h4 id="장점">장점</h4>
+
+<ul>
+  <li>로그인 안해도 댓글 달 수 있음</li>
+</ul>
+
+<h4 id="단점">단점</h4>
+
+<ul>
+  <li>무겁다, 무료버전은 광고가 존재</li>
+  <li>개인적인 의견이지만 댓글창이 너저분해보인다.</li>
+</ul>
+
+<h3 id="2-cusdis">2. Cusdis</h3>
+
+<p><a href="https://cusdis.com/">cusdis.com</a></p>
+
+<h4 id="장점-1">장점</h4>
+
+<ul>
+  <li>Disqus에 비해 매우 깔끔한 레이아웃</li>
+</ul>
+
+<h4 id="단점-1">단점</h4>
+
+<ul>
+  <li>중국발이라 왠지 모를 거부감</li>
+  <li>disqus와 마찬가지로 무겁다.</li>
+</ul>
+
+<h3 id="3-utterance">3. Utterance</h3>
+
+<p><a href="https://utteranc.es/">utterance.es</a></p>
+
+<h4 id="장점-2">장점</h4>
+
+<ul>
+  <li>매우 깔끔한 레이아웃</li>
+  <li>성능이 위 2 오픈소스에 비해 좋다.</li>
+  <li>완전 무료 오픈소스로 광고 없음</li>
+</ul>
+
+<h4 id="단점-2">단점</h4>
+
+<ul>
+  <li>댓글이 repo에 GitHub 이슈로 등록되는 구조라 GitHub 계정이 있어야만 댓글 가능</li>
+</ul>
+
+<p>Utterance를 사용하기로 하였다.</p>
+
+<p>일반적인 블로그가 아니라 GitHub Pages로 운영되는 GitHub 기반 블로그이며 주로 개발 내용을 다루기 때문에 GitHub 계정이 필요한 것은 큰 단점으로 다가오지 않았다.</p>
+
+<p>또한 GitHub Issue로 등록되므로 Webhook을 등록하여 Slack 알람을 받는등 Alert 기능도 활성화 가능하다고 생각하였다.</p>
+
+<hr />
+
+<h3 id="utterance-적용하기">Utterance 적용하기</h3>
+
+<p><img src="/assets/img/contents/utterance.png" alt="utterance.png" /></p>
+
+<h4 id="1-public-repo-생성">1. Public Repo 생성</h4>
+
+<p>Github pages repo가 public이므로 해당 repo 사용</p>
+
+<h4 id="2-utterance-app-설치">2. Utterance App 설치</h4>
+
+<p><a href="https://github.com/apps/utterances">https://github.com/apps/utterances</a>에서 설치</p>
+
+<h4 id="3-_configyml-설정">3. _config.yml 설정</h4>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Comments</span>
+<span class="na">comments</span><span class="pi">:</span>
+  <span class="na">utterances</span><span class="pi">:</span>
+    <span class="na">repo</span><span class="pi">:</span> <span class="s">csupreme19/csupreme19.github.io</span>
+    <span class="na">issue-term</span><span class="pi">:</span> <span class="s">comment</span>
+</code></pre></div></div>
+
+<p>위 두가지 설정만 하면 설정은 끝난다.</p>
+
+<h4 id="4-코멘트-적용-확인">4. 코멘트 적용 확인</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div></div>
+
+<p><img src="/assets/img/contents/gpwj-4.png" alt="gpwj-4.png" /></p>
+
+<hr />
+
+<h2 id="폰트-변경">폰트 변경</h2>
+
+<p>맥 환경에서 봤을땐 폰트가 사이즈 말고는 괜찮았는데 윈도우 환경에서 보니 계단 현상이 존재하고 가독성이 떨어져 보이는 문제가 발생하였다.</p>
+
+<p>테마(템플릿)를 사용하는 이유가 UI 개발에 힘을 쏟기 싫었기 때문인데 어쩔 수 없이 입맛에 맞는 커스텀은 필요한 것 같다.</p>
+
+<h3 id="1-폰트-scss-파일-생성">1. 폰트 .scss 파일 생성</h3>
+
+<p>일반 폰트는 케이티의 <a href="https://noonnu.cc/font_page/500">Y 너만을 비춤체</a>, 소스 코드 폰트는 네이버의 <a href="https://github.com/naver/d2codingfont">D2 coding ligature</a>를 사용하였다.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>_sass/external
+<span class="nv">$ </span>vim _y-spotlight.scss
+<span class="nv">$ </span>vim _d2-coding-ligature.scss
+</code></pre></div></div>
+
+<p>폰트 배포시 별도의 <code class="language-plaintext highlighter-rouge">@font-face</code> 소스를 제공한다.</p>
+
+<p>없다면 기본 구성되어있는 <code class="language-plaintext highlighter-rouge">_source-sans-pro.scss</code> 파일을 복사하여 사용하자.</p>
+
+<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// _y-spotlight.scss</span>
+<span class="k">@font-face</span> <span class="p">{</span>
+    <span class="nl">font-family</span><span class="p">:</span> <span class="s1">'Y_Spotlight'</span><span class="p">;</span>
+    <span class="nl">src</span><span class="p">:</span> <span class="sx">url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/Y_Spotlight.woff')</span> <span class="nf">format</span><span class="p">(</span><span class="s1">'woff'</span><span class="p">);</span>
+    <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">normal</span><span class="p">;</span>
+    <span class="nl">font-style</span><span class="p">:</span> <span class="nb">normal</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// _d2-coding-ligature.scss</span>
+<span class="k">@font-face</span> <span class="p">{</span>
+    <span class="nl">font-family</span><span class="p">:</span> <span class="s1">'D2 coding Ligature'</span><span class="p">;</span>
+    <span class="nl">src</span><span class="p">:</span> <span class="sx">url('https://cdn.jsdelivr.net/gh/everydayminder/assets/subset-D2Codingligature.woff')</span> <span class="nf">format</span><span class="p">(</span><span class="s1">'woff'</span><span class="p">);</span>
+    <span class="nl">font-weight</span><span class="p">:</span> <span class="m">400</span><span class="p">;</span>
+    <span class="nl">font-style</span><span class="p">:</span> <span class="nb">normal</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>폰트 소스는 cdn을 사용하였는데 D2 coding 폰트의 경우 공식으로 CDN을 제공하고 있지 않는 것 같다.</p>
+
+<p>따라서 <a href="https://luran.me/515">everyminder</a> 에서 제공한 woff CDN을 사용하였다.</p>
+
+<h3 id="2-_variablesscss-수정">2. <code class="language-plaintext highlighter-rouge">_variables.scss</code> 수정</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>vim _sass/base/_variables.scss
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">_variables.scss</code> 파일에 테마 변수 정보들이 담겨있다.</p>
+
+<p>아래 부분처럼 위에서 추가했던 font-family를 추가한다.</p>
+
+<div class="language-scss highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* TYPOGRAPHY */</span>
+<span class="nv">$font-family-main</span><span class="p">:</span> <span class="s1">'Y_Spotlight'</span><span class="o">,</span> <span class="s1">'Source Sans Pro'</span><span class="o">,</span> <span class="n">Helvetica</span><span class="o">,</span> <span class="n">Arial</span><span class="o">,</span> <span class="nb">sans-serif</span><span class="p">;</span>
+<span class="nv">$font-family-headings</span><span class="p">:</span> <span class="s1">'Y_Spotlight'</span><span class="o">,</span> <span class="s1">'Source Sans Pro'</span><span class="o">,</span> <span class="n">Helvetica</span><span class="o">,</span> <span class="n">Arial</span><span class="o">,</span> <span class="nb">sans-serif</span><span class="p">;</span>
+<span class="nv">$font-family-logo</span><span class="p">:</span> <span class="s1">'Y_Spotlight'</span><span class="o">,</span> <span class="s1">'Source Sans Pro'</span><span class="o">,</span> <span class="n">Helvetica</span><span class="o">,</span> <span class="n">Arial</span><span class="o">,</span> <span class="nb">sans-serif</span><span class="p">;</span>
+<span class="nv">$font-size</span><span class="p">:</span> <span class="m">0</span><span class="mi">.875em</span><span class="p">;</span>
+
+<span class="nv">$monospace</span><span class="p">:</span> <span class="s1">'D2 coding ligature'</span><span class="o">,</span> <span class="n">Consolas</span><span class="o">,</span> <span class="n">Menlo</span><span class="o">,</span> <span class="n">Monaco</span><span class="o">,</span> <span class="n">Lucida</span> <span class="n">Console</span><span class="o">,</span> <span class="n">Liberation</span> <span class="n">Mono</span><span class="o">,</span> <span class="n">DejaVu</span> <span class="n">Sans</span> <span class="n">Mono</span><span class="o">,</span> <span class="n">Bitstream</span> <span class="n">Vera</span> <span class="n">Sans</span> <span class="n">Mono</span><span class="o">,</span> <span class="n">Courier</span> <span class="n">New</span><span class="o">,</span> <span class="nb">monospace</span><span class="o">,</span> <span class="nb">sans-serif</span> <span class="o">!</span><span class="nb">default</span><span class="p">;</span>
+<span class="nv">$font-size-code</span><span class="p">:</span> <span class="m">0</span><span class="mi">.85em</span> <span class="o">!</span><span class="nb">default</span><span class="p">;</span>
+<span class="nv">$font-height-code</span><span class="p">:</span> <span class="m">1</span><span class="mi">.3em</span> <span class="o">!</span><span class="nb">default</span><span class="p">;</span>
+<span class="nv">$border-radius</span><span class="p">:</span> <span class="m">4px</span> <span class="o">!</span><span class="nb">default</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>하는 김에 글씨 크기가 커서 폰트 사이즈도 조정해 주었다.</p>
+
+<h3 id="3-확인">3. 확인</h3>
+
+<p><img src="/assets/img/contents/gpwj-5.png" alt="gpwj-5.png" /></p>
+
+<p>폰트 적용이 된 것을 확인할 수 있다.</p>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://jekyllrb.com/docs/installation/">Jekyll Installation</a></li>
+  <li><a href="https://pages.github.com/">GitHub Pages</a></li>
+  <li><a href="http://jekyllthemes.org/">Jekyll Themes</a></li>
+  <li><a href="https://github.com/Sylhare/Type-on-Strap">Type-on-Strap</a></li>
+</ol>
+
+:ET

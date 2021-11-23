@@ -1,0 +1,97 @@
+I"<h1 id="elasticsearch-filebeat-설치-및-설정">Elasticsearch Filebeat 설치 및 설정</h1>
+
+<p><img src="/assets/img/titles/elastic-beats-logo.png" alt="elastic-beats-logo.png" /></p>
+
+<p><a href="https://www.elastic.co/guide/en/beats/filebeat/7.16/filebeat-overview.html">Filebeat Overview</a></p>
+
+<p>로그 정보를 수집하는 Filebeat를 각 VM(Ubuntu)에 설치하여 로그 파일을 Elasticsearch로 전송한다.</p>
+
+<hr />
+<h2 id="filebeat란">Filebeat란</h2>
+
+<p><img src="/assets/img/contents/efi-1.png" alt="efi-1.png" /></p>
+
+<p>Elastic Stack에 포함되는 오픈소스로 Logstash, Elasticsearch, Kibana 등으로 파일 데이터와 로그 데이터를 경량화된 방식으로 수집하고 전달하는 수집기</p>
+
+<hr />
+<h2 id="filebeat-설치">Filebeat 설치</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 설치</span>
+<span class="nv">$ </span>curl <span class="nt">-L</span> <span class="nt">-O</span> https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.12.1-amd64.deb
+<span class="nv">$ </span>dpkg <span class="nt">-i</span> filebeat-7.12.1-amd64.deb
+
+<span class="c"># 설치 후 설치된 버전 upgrade 막기</span>
+<span class="nv">$ </span>apt-mark hold filebeat
+
+<span class="c"># bin path를 .zshrc 파일에 추가 후 적용</span>
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span>/usr/share/filebeat/bin:<span class="nv">$PATH</span>
+<span class="nv">$ </span><span class="nb">source</span> .zshrc
+
+<span class="c"># filebeat 설정</span>
+<span class="nv">$ </span><span class="nb">cd</span> /etc/filebeat
+<span class="nv">$ </span>vim filebeat.yml
+
+<span class="c"># system 재부팅 시 자동 실행 설정</span>
+<span class="nv">$ </span>systemctl <span class="nb">enable </span>filebeat
+</code></pre></div></div>
+
+<h3 id="yaml에-elasticsearch-kibana-호스트-정보-설정">yaml에 elasticsearch, kibana 호스트 정보 설정</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># =================================== Kibana ===================================</span>
+<span class="na">setup.kibana</span><span class="pi">:</span>
+  <span class="na">host</span><span class="pi">:</span> <span class="s2">"</span><span class="s">10.213.196.6:5601"</span>
+<span class="c1"># ---------------------------- Elasticsearch Output ----------------------------</span>
+<span class="na">output.elasticsearch</span><span class="pi">:</span>
+  <span class="na">hosts</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">10.213.196.68:9200"</span><span class="pi">,</span><span class="s2">"</span><span class="s">10.213.196.23:9200"</span><span class="pi">,</span><span class="s2">"</span><span class="s">10.213.196.44:9200"</span><span class="pi">]</span>
+  <span class="na">protocol</span><span class="pi">:</span> <span class="s2">"</span><span class="s">http"</span>
+  <span class="na">username</span><span class="pi">:</span> <span class="s2">"</span><span class="s">elastic"</span>
+  <span class="na">password</span><span class="pi">:</span> <span class="s2">"</span><span class="s">elastic"</span>
+<span class="c1"># ---------------------------- Filebeat inputs ----------------------------</span>
+<span class="na">filebeat.inputs</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">type</span><span class="pi">:</span> <span class="s">log</span>
+  <span class="na">enabled</span><span class="pi">:</span> <span class="no">false</span>
+</code></pre></div></div>
+
+<h3 id="elasticsearch-https-보안-설정-되어-있을-경우">elasticsearch https 보안 설정 되어 있을 경우</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># ---------------------------- Elasticsearch Output ----------------------------</span>
+<span class="na">output.elasticsearch</span><span class="pi">:</span>
+  <span class="na">hosts</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">10.213.196.68:9200"</span><span class="pi">,</span><span class="s2">"</span><span class="s">10.213.196.23:9200"</span><span class="pi">,</span><span class="s2">"</span><span class="s">10.213.196.44:9200"</span><span class="pi">]</span>
+  <span class="na">protocol</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https"</span>
+  <span class="na">username</span><span class="pi">:</span> <span class="s2">"</span><span class="s">elastic"</span>
+  <span class="na">password</span><span class="pi">:</span> <span class="s2">"</span><span class="s">elastic"</span>
+  
+  <span class="c1"># ssl verification을 하지 않거나 인증서를 수동으로 등록하여야한다. 아래 택 1</span>
+  
+  <span class="c1"># ssl 검증하지 않기</span>
+  <span class="na">ssl.verification_mode</span><span class="pi">:</span> <span class="s2">"</span><span class="s">none"</span>
+  
+  <span class="c1"># ssl 인증서</span>
+    <span class="na">ssl</span><span class="pi">:</span>
+    <span class="na">certificate_authorities</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">/etc/elasticsearch/certs/ca.crt"</span><span class="pi">]</span>
+    <span class="na">certificate</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/etc/elasticsearch/certs/data1.crt"</span>
+    <span class="na">key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/etc/elasticsearch/certs/data1.key"</span>
+</code></pre></div></div>
+
+<hr />
+<h2 id="filebeat-구동-및-확인">Filebeat 구동 및 확인</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> /usr/share/filebeat
+<span class="nv">$ </span>filebeat setup <span class="nt">-e</span> <span class="nt">-c</span> /etc/filebeat/filebeat.yml <span class="nt">--dashboards</span>
+<span class="nv">$ </span>systemctl start filebeat
+<span class="nv">$ </span>systemctl status filebeat
+</code></pre></div></div>
+
+<h3 id="로그-확인">로그 확인</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>journalctl <span class="nt">-u</span> filebeat
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://www.elastic.co/guide/en/beats/filebeat/7.16/filebeat-overview.html">Filebeat Overview</a></li>
+</ol>
+:ET

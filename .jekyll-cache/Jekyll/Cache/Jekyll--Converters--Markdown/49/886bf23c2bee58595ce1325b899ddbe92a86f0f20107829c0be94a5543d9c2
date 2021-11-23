@@ -1,0 +1,235 @@
+I"�4<h1 id="lets-encrypt-인증서-발급-및-갱신">Let’s Encrypt 인증서 발급 및 갱신</h1>
+
+<p><img src="/assets/img/titles/letsencrypt-horizontal.png" alt="letsencrypt-horizontal.png" /></p>
+
+<p><a href="https://letsencrypt.org/docs/">Let’s Encrypt Docs</a></p>
+
+<p>본 문서는 무료 SSL 인증서를 제공하는 Let’s Encrypt를 사용하여 인증서 발급 및 갱신을 하는 방법을 정리하였다.</p>
+
+<hr />
+<h2 id="사전-준비-사항">사전 준비 사항</h2>
+
+<ol>
+  <li>SSL 인증서 적용을 위해서는 도메인 구매 필수</li>
+  <li>구입한 도메인과 웹서버 연결: 가비아와 같은 도메인 구매 기관에서 설정 필요</li>
+  <li>root 유저 상태로 가정하고 진행</li>
+</ol>
+
+<p>인증서 발급 방법은 수동으로 certbot 설치 후 발급 진행 하는 방법과 docker image로 발급하는 방법이 있다.</p>
+
+<hr />
+<h2 id="docker-image로-인증서-발급-방법">docker image로 인증서 발급 방법</h2>
+<p>docker volume path의 mount 지점에 인증서가 생성된다.</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-it</span> <span class="nt">--rm</span> <span class="nt">--name</span> certbot <span class="nt">-v</span> <span class="s1">'/etc/letsencrypt:/etc/letsencrypt'</span> <span class="nt">-v</span> <span class="s1">'/var/lib/letsencrypt:/var/lib/letsencrypt'</span> certbot/certbot certonly <span class="nt">-d</span> <span class="k">*</span>.yourdomain.com <span class="nt">--manual</span> <span class="nt">--preferred-challenges</span> dns <span class="nt">--server</span> https://acme-v02.api.letsencrypt.org/directory
+</code></pre></div></div>
+
+<h2 id="certbot-설치-후-발급-방법">certbot 설치 후 발급 방법</h2>
+
+<blockquote>
+  <p>Ubuntu 20.04 LTS 대상 certbot 설치 시 ppa repo는 deprecated 됨.</p>
+
+  <blockquote>
+    <p>nginx + ubuntu 20.04 환경 시 certbot 설치 매뉴얼 참조하여 설치 진행 참고: https://certbot.eff.org/lets-encrypt/ubuntufocal-nginx</p>
+  </blockquote>
+
+</blockquote>
+
+<p>Ubuntu 20.04 환경에서 certbot 설치</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 필요 시 snapd package 설치. </span>
+<span class="c"># ubuntu 16.04 부터 기본 설치 되어 있음.(https://snapcraft.io/docs/installing-snap-on-ubuntu)</span>
+
+<span class="c"># snap 최신으로 업데이트</span>
+<span class="nv">$ </span><span class="nb">sudo </span>snap <span class="nb">install </span>core<span class="p">;</span> <span class="nb">sudo </span>snap refresh core
+
+<span class="c"># 기존 certbot 설치되어 있으면 삭제</span>
+<span class="nv">$ </span><span class="nb">sudo </span>apt-get remove certbot
+
+<span class="c"># certbot 설치</span>
+<span class="nv">$ </span><span class="nb">sudo </span>snap <span class="nb">install</span> <span class="nt">--classic</span> certbot
+
+<span class="c"># certbot 실행파일 link 설정</span>
+<span class="nv">$ </span><span class="nb">sudo ln</span> <span class="nt">-s</span> /snap/bin/certbot /usr/bin/certbot
+
+<span class="c"># certbot 버전 확인</span>
+<span class="nv">$ </span>certbot <span class="nt">--version</span>
+</code></pre></div></div>
+
+<p>Ubuntu</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>apt-get update
+<span class="nv">$ </span>apt-get <span class="nb">install </span>software-properties-common
+<span class="nv">$ </span>add-apt-repository ppa:certbot/certbot
+<span class="nv">$ </span>apt-get update
+<span class="nv">$ </span>apt-get <span class="nb">install </span>certbot
+</code></pre></div></div>
+
+<p>CentOS</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>yum <span class="nb">install </span>epel-release <span class="nt">-y</span>
+<span class="nv">$ </span><span class="nb">sudo </span>yum <span class="nb">install </span>certbot <span class="nt">-y</span>
+</code></pre></div></div>
+
+<p>Option) certbot 웹서비스 플러그인 설치</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># apach 인 경우</span>
+<span class="nv">$ </span>apt-get <span class="nb">install </span>python-certbot-apach
+
+<span class="c"># nginx 인 경우</span>
+<span class="nv">$ </span>apt-get <span class="nb">install </span>python-certbot-nginx
+</code></pre></div></div>
+
+<hr />
+<h2 id="인증서-발급">인증서 발급</h2>
+
+<ul>
+  <li>webroot, standalone, dns의 3가지 방식 중 dns 방식으로 설치 진행</li>
+  <li>DNS 방식 인증서는 와일드카드 url 지원하므로 *.yourdomain.com 형식으로 발급 요청</li>
+  <li>certonly 옵션으로 인증서만 발급 → 웹 서비스의 설정 파일 자동으로 변경하지 않음</li>
+  <li>standalone 방식으로 발급 시 web serivce를 잠시 중단해야 함</li>
+  <li>하루 동안 3번만 발급 가능하므로 발급 시 주의 필요</li>
+</ul>
+
+<h3 id="manual-옵션으로-dns-방식-지정">manual 옵션으로 dns 방식 지정</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># dns 방식 인증서 발급 </span>
+<span class="nv">$ </span>certbot certonly <span class="nt">--manual</span> <span class="nt">--preferred-challenges</span> dns-01 <span class="nt">--server</span> https://acme-v02.api.letsencrypt.org/directory <span class="nt">--agree-tos</span> <span class="nt">-m</span> csupreme19@gmail.com <span class="nt">-d</span> <span class="k">*</span>.yourdomain.com
+</code></pre></div></div>
+
+<h4 id="dns-txt-값-표시되는-화면에서-엔터-눌러-진행하지-않고-대기">DNS TXT 값 표시되는 화면에서 엔터 눌러 진행하지 않고 대기</h4>
+
+<p>dns 방식 인증서 발급 command 입력 후 더 이상 진행하지 않고 <strong>대기</strong>한 후 아래 도메인 설정 등을 진행한다.</p>
+
+<p><img src="/assets/img/contents/lr-1.png" alt="lr-1.png" /></p>
+
+<h4 id="dns-txt-record-값-설정"><strong>DNS TXT record 값 설정</strong></h4>
+
+<p>도메인 구입한 곳(가비아 등)의 DNS 관리메뉴로 진입하여 dns txt record 값을 설정.</p>
+
+<p>예를 들어 가비아의 경우 아래 그림과 같이 ‘DNS 레코드 추가’ 메뉴에서 TXT 레코드를 추가 가능</p>
+
+<p><img src="/assets/img/contents/lr-2.png" alt="lr-2.png" /></p>
+
+<p>호스트 컬럼에는 <strong>_acme-challenge</strong> 만 입력</p>
+
+<p>가비아의 경우 설정한 값 예시는 아래 이미지 참조. record 값 앞/뒤로 쌍따옴표 추가.</p>
+
+<p><img src="/assets/img/contents/lr-3.png" alt="lr-3.png" /></p>
+
+<p>해당 record 설정 후 저장하여 반영. 아래 command로 도메인 서버에 레코드가 반영 되었는지 확인 가능.</p>
+
+<h4 id="도메인-서버-레코드-확인"><strong>도메인 서버 레코드 확인</strong></h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>nslookup <span class="nt">-type</span><span class="o">=</span>txt _acme-challenge.yourdomain.com
+<span class="c"># 또는</span>
+<span class="nv">$ </span>dig +noall +answer _acme-challenge.yourdomain.com txt
+</code></pre></div></div>
+
+<p>정상 반영 시 아래 이미지와 같이 확인 가능.</p>
+
+<p><img src="/assets/img/contents/lr-4.png" alt="lr-4.png" /></p>
+
+<p>이후 앞 과정의 dns 방식 인증서 발급 대기 화면에서 enter를 눌러 진행</p>
+
+<p><img src="/assets/img/contents/lr-5.png" alt="lr-5.png" /></p>
+
+<h4 id="인증서-저장-위치">인증서 저장 위치</h4>
+
+<p>인증서 생성 후 저장되는 위치:</p>
+
+<ul>
+  <li>Certificate is saved at: /etc/letsencrypt/live/{domain name}/fullchain.pem</li>
+  <li>Key is saved at:         /etc/letsencrypt/live/{domain name}/privkey.pem</li>
+</ul>
+
+<h4 id="인증서-확인">인증서 확인</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>certbot-auto certificates
+</code></pre></div></div>
+
+<h4 id="인증서-삭제">인증서 삭제</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>certbot-auto delete
+</code></pre></div></div>
+
+<hr />
+<h2 id="인증서-갱신">인증서 갱신</h2>
+
+<p>Let’s Encrypt의 경우 무료이지만 인증서 유효 기간이 3개월로 짧다.</p>
+
+<p>인증서 만료 전 반드시 갱신을 해야만 site에 접속이 안되는 현상을 방지할 수 있다.</p>
+
+<p>google calendar에 3개월 주기로 알람을 등록하여 인증서 갱신 관리는 하는 것을 추천.</p>
+
+<p>또한 인증서를 manual 로 생성했을 경우 certbot 자동 갱신 명령어로는 갱신 되지 않는다.</p>
+
+<p>이 경우 아래 명령어로 갱신가능</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>certbot <span class="nt">--server</span> https://acme-v02.api.letsencrypt.org/directory <span class="nt">-d</span> <span class="s2">"*.ccpinfra.xyz"</span> <span class="nt">--manual</span> <span class="nt">--preferred-challenges</span> dns-01 certonly
+</code></pre></div></div>
+
+<p>명령어 입력 후 나오는 DNS TXT record 값을 도메인 구입처(예를 들어 가비아 등)에서 DNS 설정에 들어가 업데이트 후 진행한다.</p>
+
+<blockquote>
+  <p>인증서를 갱신하여 새로운 인증서를 받아도 기존 인증서는 만료되지 않는다.</p>
+</blockquote>
+
+<hr />
+<h3 id="인증서-갱신-후-서비스별-적용-가이드">인증서 갱신 후 서비스별 적용 가이드</h3>
+
+<p>기본적으로 NAS에 인증서 정보를 저장하고 각 서비스에 가져다 사용한다.</p>
+
+<p>본 예제에서는 인증서를 <code class="language-plaintext highlighter-rouge">/nas/volumes/ssl</code>에서 관리</p>
+
+<ul>
+  <li>k8s의 경우 kubernetes secret 형태로 떠져 있음</li>
+  <li>그 외 docker로 직접 올라가있는 경우 각 서비스별 인증서 정보 적용</li>
+</ul>
+
+<p>위에서 발급받은 인증서파일을 관리하는 인증서 폴더로 옮긴다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 인증서 복사</span>
+<span class="nv">$ </span><span class="nb">cp</span> /etc/letsencrypt/live/yourdomain.com-0001/fullchain.pem /nas/volumes/ssl
+<span class="nv">$ </span><span class="nb">cp</span> /etc/letsencrypt/live/yourdomain.com-0001/privkey.pem
+
+<span class="c"># 인증서 포맷 변환</span>
+<span class="nv">$ </span>openssl x509 <span class="nt">-inform</span> PEM <span class="nt">-in</span> fullchain.pem <span class="nt">-out</span> yourdomain.com.crt
+<span class="nv">$ </span>openssl rsa <span class="nt">-in</span> privkey.pem <span class="nt">-text</span> <span class="nt">-text</span> <span class="o">&gt;</span> yourdomain.com.key
+</code></pre></div></div>
+
+<blockquote>
+  <p>기존의 인증서는 백업할 것</p>
+</blockquote>
+
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<h3 id="1-neterr_cert_common_name_invalid">1. NET::ERR_CERT_COMMON_NAME_INVALID</h3>
+
+<p>인증서 갱신 및 발급 후에 인증서 적용이 성공적으로 되었으나 <code class="language-plaintext highlighter-rouge">NET::ERR_CERT_COMMON_NAME_INVALID</code>로 인증서가 유효하지 않음</p>
+
+<h4 id="인증서의-주소와-인증서가-적용된-도메인의-주소가-일치하지-않을-때-발생하는-오류">인증서의 주소와 인증서가 적용된 도메인의 주소가 일치하지 않을 때 발생하는 오류</h4>
+
+<ol>
+  <li>인증서의 도메인 주소가 제대로 적용되었는지 확인한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">*</code> wildcard가 포함되어 있는지 확인한다.</li>
+  <li>도메인 주소가 정상인 경우 전세계의 DNS 서버에 적용이 바로 되지 않고 시간이 어느정도 소요되어서 발생하는 문제로 기다리면 해결된다.</li>
+</ol>
+
+<h4 id="도메인-서버-레코드-확인-1">도메인 서버 레코드 확인</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>nslookup <span class="nt">-type</span><span class="o">=</span>txt _acme-challenge.subdomain.yourdomain.com
+<span class="c"># 또는</span>
+<span class="nv">$ </span>dig +noall +answer _acme-challenge.sbubdomain.yourdomain.com txt
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">Authoritative answers can be found from:</code>에 리스트로 도메인 서버 정보가 나오면 등록이 완료된 것</p>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://letsencrypt.org/docs/">Let’s Encrypt Docs</a></li>
+  <li><a href="https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/">Ingress Controllers</a></li>
+  <li><a href="https://kubernetes.io/docs/concepts/configuration/secret/">Secret</a></li>
+  <li><a href="https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/">Certified Kubernetes Administrator(CKA) with Practice Tests</a></li>
+</ol>
+:ET

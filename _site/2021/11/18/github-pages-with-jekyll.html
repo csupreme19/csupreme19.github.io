@@ -76,7 +76,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Jekyll과 Github pages를 사용하여 블로그 만들기" />
 <script type="application/ld+json">
-{"description":"Jekyll과 Github pages를 사용하여 간단하게 블로그를 만들어보자","headline":"Jekyll과 Github pages를 사용하여 블로그 만들기","dateModified":"2021-11-18T00:00:00+09:00","datePublished":"2021-11-18T00:00:00+09:00","url":"http://localhost:4000/2021/11/18/github-pages-with-jekyll.html","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/11/18/github-pages-with-jekyll.html"},"author":{"@type":"Person","name":"csupreme19"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"datePublished":"2021-11-18T00:00:00+09:00","description":"Jekyll과 Github pages를 사용하여 간단하게 블로그를 만들어보자","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/11/18/github-pages-with-jekyll.html"},"url":"http://localhost:4000/2021/11/18/github-pages-with-jekyll.html","author":{"@type":"Person","name":"csupreme19"},"@type":"BlogPosting","headline":"Jekyll과 Github pages를 사용하여 블로그 만들기","dateModified":"2021-11-18T00:00:00+09:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -191,9 +191,6 @@
             
             
         
-            
-            
-        
         
         
         <li class="separator"> | </li>
@@ -260,7 +257,7 @@
   <li>추가적으로) 최소한의 보안과 무중단 배포를 위한 proxy 서버가 필요</li>
 </ol>
 
-<h5 id="나는">나는</h5>
+<h3 id="선택기준">선택기준</h3>
 
 <ol>
   <li>간단한 기술 블로그를 위하여 웹개발을 하기는 싫었다.</li>
@@ -443,9 +440,9 @@ origin	git@github.com:csupreme19/csupreme19.github.io.git <span class="o">(</spa
 
 <hr />
 
-<h3 id="jekyll-설치-및-설정">Jekyll 설치 및 설정</h3>
+<h2 id="jekyll-설치-및-설정">Jekyll 설치 및 설정</h2>
 
-<h4 id="선행사항">선행사항</h4>
+<h3 id="선행사항">선행사항</h3>
 
 <ul>
   <li>Ruby 2.5.0 이상</li>
@@ -454,7 +451,7 @@ origin	git@github.com:csupreme19/csupreme19.github.io.git <span class="o">(</spa
   <li>Make</li>
 </ul>
 
-<h4 id="ruby-설치macos">Ruby 설치(macOS)</h4>
+<h3 id="1-ruby-설치macos">1. Ruby 설치(macOS)</h3>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Homebrew 설치</span>
 <span class="nv">$ </span>/bin/bash <span class="nt">-c</span> <span class="s2">"</span><span class="si">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="si">)</span><span class="s2">"</span>
@@ -474,7 +471,7 @@ origin	git@github.com:csupreme19/csupreme19.github.io.git <span class="o">(</spa
 
 <p>다른 OS 설치 방법은 <a href="https://jekyllrb.com/docs/installation/">Jekyll 설치 문서</a> 참조</p>
 
-<h4 id="jekyll-및-테마-설치">Jekyll 및 테마 설치</h4>
+<h3 id="2-jekyll-및-테마-설치">2. Jekyll 및 테마 설치</h3>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ~/git/csupreme19.github.io
 <span class="nv">$ </span>git clone https://github.com/Sylhare/Type-on-Strap.git
@@ -498,7 +495,7 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
   Server running... press ctrl-c to stop.
 </code></pre></div></div>
 
-<h4 id="_configyml-수정">_config.yml 수정</h4>
+<h3 id="3-_configyml-수정">3. _config.yml 수정</h3>
 
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># SITE CONFIGURATION</span>
 <span class="na">baseurl</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span><span class="err">		</span><span class="c1"># 설정한 url이 subdomain이 된다. 즉 {url}/{baseurl} 도메인으로 접속해야함</span>
@@ -521,15 +518,16 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
 <span class="c1"># 나머지 설정은 github 문서 참조</span>
 </code></pre></div></div>
 
-<h3 id="1-로컬-접속-테스트">1. 로컬 접속 테스트</h3>
+<h3 id="4-로컬-접속-테스트">4. 로컬 접속 테스트</h3>
 
 <p><img src="/assets/img/contents/gpwj-2.png" alt="gpwj-2.png" /></p>
 
 <p>http://localhost:4000 접속 확인</p>
 
-<h3 id="2-git-push-및-github-pages-설정">2. git push 및 github pages 설정</h3>
+<h3 id="5-git-push-및-github-pages-설정">5. git push 및 github pages 설정</h3>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git commit <span class="nt">-a</span> <span class="nt">-m</span> <span class="s2">"initial commit"</span>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add <span class="nb">.</span>
+<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"initial commit"</span>
 <span class="nv">$ </span>git push <span class="nt">-u</span> origin main
 </code></pre></div></div>
 
@@ -537,61 +535,61 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
 
 <p>github 저장소 &gt; Settings &gt; Pages</p>
 
-<h5 id="빌드-소스-변경">빌드 소스 변경</h5>
+<h4 id="빌드-소스-변경">빌드 소스 변경</h4>
 
 <p>Source 부분 main 브랜치, / (root) 폴더로 변경</p>
 
 <p>변경 후 <code class="language-plaintext highlighter-rouge">Your site is published at https://csupreme19.github.io/</code> 빌드 성공 메시지 확인</p>
 
-<h5 id="접속">접속</h5>
+<h3 id="6-접속">6. 접속</h3>
 
 <p><a href="https://csupreme19.github.io/">https://csupreme19.github.io/</a> 접속 확인</p>
 
 <hr />
 
-<h3 id="댓글창-활성화">댓글창 활성화</h3>
+<h2 id="댓글창-활성화">댓글창 활성화</h2>
 
 <p>Type-on-Strap 테마는 3가지의 Comment 오픈소스를 지원한다.</p>
 
-<h4 id="1-disqus">1. Disqus</h4>
+<h3 id="1-disqus">1. Disqus</h3>
 
 <p><a href="https://disqus.com/">disqus.com</a></p>
 
-<p>장점</p>
+<h4 id="장점">장점</h4>
 
 <ul>
   <li>로그인 안해도 댓글 달 수 있음</li>
 </ul>
 
-<p>단점</p>
+<h4 id="단점">단점</h4>
 
 <ul>
   <li>무겁다, 무료버전은 광고가 존재</li>
   <li>개인적인 의견이지만 댓글창이 너저분해보인다.</li>
 </ul>
 
-<h4 id="2-cusdis">2. Cusdis</h4>
+<h3 id="2-cusdis">2. Cusdis</h3>
 
 <p><a href="https://cusdis.com/">cusdis.com</a></p>
 
-<p>장점</p>
+<h4 id="장점-1">장점</h4>
 
 <ul>
   <li>Disqus에 비해 매우 깔끔한 레이아웃</li>
 </ul>
 
-<p>단점</p>
+<h4 id="단점-1">단점</h4>
 
 <ul>
   <li>중국발이라 왠지 모를 거부감</li>
   <li>disqus와 마찬가지로 무겁다.</li>
 </ul>
 
-<h4 id="3-utterance">3. Utterance</h4>
+<h3 id="3-utterance">3. Utterance</h3>
 
 <p><a href="https://utteranc.es/">utterance.es</a></p>
 
-<p>장점</p>
+<h4 id="장점-2">장점</h4>
 
 <ul>
   <li>매우 깔끔한 레이아웃</li>
@@ -599,7 +597,7 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
   <li>완전 무료 오픈소스로 광고 없음</li>
 </ul>
 
-<p>단점</p>
+<h4 id="단점-2">단점</h4>
 
 <ul>
   <li>댓글이 repo에 GitHub 이슈로 등록되는 구조라 GitHub 계정이 있어야만 댓글 가능</li>
@@ -645,13 +643,13 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
 
 <hr />
 
-<h3 id="폰트-변경">폰트 변경</h3>
+<h2 id="폰트-변경">폰트 변경</h2>
 
 <p>맥 환경에서 봤을땐 폰트가 사이즈 말고는 괜찮았는데 윈도우 환경에서 보니 계단 현상이 존재하고 가독성이 떨어져 보이는 문제가 발생하였다.</p>
 
 <p>테마(템플릿)를 사용하는 이유가 UI 개발에 힘을 쏟기 싫었기 때문인데 어쩔 수 없이 입맛에 맞는 커스텀은 필요한 것 같다.</p>
 
-<h4 id="1-폰트-scss-파일-생성">1. 폰트 .scss 파일 생성</h4>
+<h3 id="1-폰트-scss-파일-생성">1. 폰트 .scss 파일 생성</h3>
 
 <p>일반 폰트는 케이티의 <a href="https://noonnu.cc/font_page/500">Y 너만을 비춤체</a>, 소스 코드 폰트는 네이버의 <a href="https://github.com/naver/d2codingfont">D2 coding ligature</a>를 사용하였다.</p>
 
@@ -685,7 +683,7 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
 
 <p>따라서 <a href="https://luran.me/515">everyminder</a> 에서 제공한 woff CDN을 사용하였다.</p>
 
-<h4 id="2-_variablesscss-수정">2. <code class="language-plaintext highlighter-rouge">_variables.scss</code> 수정</h4>
+<h3 id="2-_variablesscss-수정">2. <code class="language-plaintext highlighter-rouge">_variables.scss</code> 수정</h3>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>vim _sass/base/_variables.scss
 </code></pre></div></div>
@@ -708,7 +706,7 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
 
 <p>하는 김에 글씨 크기가 커서 폰트 사이즈도 조정해 주었다.</p>
 
-<h4 id="3-확인">3. 확인</h4>
+<h3 id="3-확인">3. 확인</h3>
 
 <p><img src="/assets/img/contents/gpwj-5.png" alt="gpwj-5.png" /></p>
 
@@ -716,7 +714,7 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
 
 <hr />
 
-<h3 id="reference">Reference</h3>
+<h2 id="reference">Reference</h2>
 
 <ol>
   <li><a href="https://jekyllrb.com/docs/installation/">Jekyll Installation</a></li>
@@ -789,7 +787,7 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
  <script src="https://utteranc.es/client.js"
         repo='csupreme19/csupreme19.github.io'
         issue-term="comment"
-        theme="github-light"
+        theme="preferred-color-scheme"
 		
         crossorigin="anonymous"
         async>

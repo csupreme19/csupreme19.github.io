@@ -76,7 +76,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="SonarQube 설정 및 트러블슈팅" />
 <script type="application/ld+json">
-{"description":"SonarQube 설정 및 트러블슈팅","headline":"SonarQube 설정 및 트러블슈팅","dateModified":"2021-05-10T00:00:00+09:00","datePublished":"2021-05-10T00:00:00+09:00","url":"http://localhost:4000/2021/05/10/sonarqube-config.html","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/05/10/sonarqube-config.html"},"author":{"@type":"Person","name":"csupreme19"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"datePublished":"2021-05-10T00:00:00+09:00","description":"SonarQube 설정 및 트러블슈팅","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/05/10/sonarqube-config.html"},"url":"http://localhost:4000/2021/05/10/sonarqube-config.html","author":{"@type":"Person","name":"csupreme19"},"@type":"BlogPosting","headline":"SonarQube 설정 및 트러블슈팅","dateModified":"2021-05-10T00:00:00+09:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -191,9 +191,6 @@
             
             
         
-            
-            
-        
         
         
         <li class="separator"> | </li>
@@ -239,13 +236,15 @@
 <p>설정시 오류를 해결했던 내역을(트러블슈팅) 정리하였다.</p>
 
 <hr />
+
 <h2 id="sonarqube-설정">SonarQube 설정</h2>
 
-<h3 id="ingress-ssl-인증서-적용">Ingress SSL 인증서 적용</h3>
+<h3 id="sonarqube-ingress-ssl-인증서-적용">SonarQube Ingress SSL 인증서 적용</h3>
+
 <h4 id="1-k8s-secret-생성">1. k8s Secret 생성</h4>
 
 <blockquote>
-  <p>k8s secret 생성은 <a href="#kubernetes-ingress-nginx-https">Kubernetes ingress nginx https 인증서 적용</a> 참조</p>
+  <p>k8s secret 생성은 <a href="/2021/04/03/kubernetes-ingress.html">Kubernetes Nginx Ingress 적용</a> 참고</p>
 </blockquote>
 
 <h4 id="2-ingress-리소스-설정">2. Ingress 리소스 설정</h4>
@@ -547,44 +546,48 @@ Ingress HTTP, HTTPS(/sonarqube) -&gt; sonarqube 서비스(9000)</p>
       </li>
     </ol>
   </li>
-  <li>Java caCerts 인증서 설정(Kubernetes TLS Secret)
+  <li>
+    <h4 id="java-cacerts-인증서-설정kubernetes-tls-secret">Java caCerts 인증서 설정(Kubernetes TLS Secret)</h4>
+
     <blockquote>
       <p>Java에서는 https 통신시 기본적으로 java keystore에 인증서를 요구한다.<br />위에서 public 경로를 http로 설정하였으면 상관 없으나 https로 설정한 경우 진행</p>
 
       <p>현재 Java 기반 서비스들은 Kubernetes 환경에 떠있으므로 해당 환경으로 진행</p>
-    </blockquote>
-    <ol>
-      <li>기존 k8s에 <code class="language-plaintext highlighter-rouge">kubernetes.io/tls</code> 타입으로 떠있는 tls 타입 시크릿은 사용불가하므로 opaque 타입(기본타입) secret을 생성한다.</li>
-      <li>sonarqube-secret.yaml 생성
-        <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 	<span class="nv">$ </span>vim sonarqube-secret.yaml
-</code></pre></div>        </div>
-        <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+      <ol>
+        <li>기존 k8s에 <code class="language-plaintext highlighter-rouge">kubernetes.io/tls</code> 타입으로 떠있는 tls 타입 시크릿은 사용불가하므로 opaque 타입(기본타입) secret을 생성한다.</li>
+        <li>sonarqube-secret.yaml 생성
+          <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 	<span class="nv">$ </span>vim sonarqube-secret.yaml
+</code></pre></div>          </div>
+          <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
 <span class="na">kind</span><span class="pi">:</span> <span class="s">Secret</span>
 <span class="na">metadata</span><span class="pi">:</span>
   <span class="na">name</span><span class="pi">:</span> <span class="s">sonarqube-secret</span>
 <span class="na">data</span><span class="pi">:</span>
   <span class="na">cert-1.crt</span><span class="pi">:</span> <span class="s">MIIFIzCC...</span> <span class="c1"># .crt(X.509 포맷)의 인증서값</span>
-</code></pre></div>        </div>
-        <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl apply <span class="nt">-f</span> sonarqube-secret.yaml
-</code></pre></div>        </div>
-      </li>
-      <li>helm values.yaml 수정
-        <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>vim values.yaml
-</code></pre></div>        </div>
-        <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">...</span>
+</code></pre></div>          </div>
+          <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl apply <span class="nt">-f</span> sonarqube-secret.yaml
+</code></pre></div>          </div>
+        </li>
+        <li>helm values.yaml 수정
+          <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>vim values.yaml
+</code></pre></div>          </div>
+          <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">...</span>
  <span class="na">caCerts</span><span class="pi">:</span>
    <span class="na">image</span><span class="pi">:</span> <span class="s">adoptopenjdk/openjdk11:alpine</span>
    <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
    <span class="na">secret</span><span class="pi">:</span> <span class="s">sonarqube-secret</span>
 <span class="nn">...</span>
-</code></pre></div>        </div>
-        <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># helm upgrade</span>
+</code></pre></div>          </div>
+          <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># helm upgrade</span>
 <span class="nv">$ </span>helm upgrade sonarqube oteemocharts/sonarqube <span class="nt">-f</span> values.yaml
-</code></pre></div>        </div>
-      </li>
-    </ol>
+</code></pre></div>          </div>
+        </li>
+      </ol>
+    </blockquote>
   </li>
-  <li>테스트
+  <li>
+    <h4 id="테스트">테스트</h4>
+
     <ol>
       <li>로그아웃 후 메인페이지에 들어가면 아래 이미지와 같이 Log in with GitLab 버튼 생성 확인
  <img src="/assets/img/contents/sc-6.png" alt="sc-6.png" /></li>
@@ -606,9 +609,9 @@ Ingress HTTP, HTTPS(/sonarqube) -&gt; sonarqube 서비스(9000)</p>
 <p>대신 해당 배지를 사용하려면 SonarQube 프로젝트가 Public으로 설정되어야하며 이는 소스 취약점을 외부에서 누구나 볼 수 있다는 것을 의미한다.</p>
 
 <hr />
-<h3 id="troubleshooting">Troubleshooting</h3>
+<h2 id="troubleshooting">Troubleshooting</h2>
 
-<h4 id="1-분석-권한-없음">1. 분석 권한 없음</h4>
+<h3 id="1-분석-권한-없음">1. 분석 권한 없음</h3>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>ERROR] Error during SonarScanner execution
 <span class="o">[</span>ERROR] You<span class="s1">'re not authorized to run analysis. Please contact the project administrator.
@@ -626,7 +629,7 @@ Ingress HTTP, HTTPS(/sonarqube) -&gt; sonarqube 서비스(9000)</p>
   <li>연동된 유저가 속한 그룹 혹은 유저 자체에 Execute Analysis 권한 체크</li>
 </ol>
 
-<h4 id="2-class-파일-없음">2. class 파일 없음</h4>
+<h3 id="2-class-파일-없음">2. class 파일 없음</h3>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>ERROR] Failed to execute goal org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar <span class="o">(</span>default-cli<span class="o">)</span> on project sample-project: Your project contains .java files, please provide compiled classes with sonar.java.binaries property, or exclude them from the analysis with sonar.exclusions property. -&gt; <span class="o">[</span>Help 1]
 </code></pre></div></div>
@@ -643,7 +646,7 @@ Ingress HTTP, HTTPS(/sonarqube) -&gt; sonarqube 서비스(9000)</p>
 
 <p>만약 없을 경우, 수동으로 컴파일하여 .class 파일을 넣어줘야함.</p>
 
-<h4 id="3-소스-분석시-http-413-request-entity-too-large">3. 소스 분석시 HTTP 413 REQUEST ENTITY TOO LARGE</h4>
+<h3 id="3-소스-분석시-http-413-request-entity-too-large">3. 소스 분석시 HTTP 413 REQUEST ENTITY TOO LARGE</h3>
 
 <p>소스 분석시 <code class="language-plaintext highlighter-rouge">HTTP 413 REQUEST ENTITY TOO LARGE</code>가 나오는 경우</p>
 
@@ -667,7 +670,7 @@ Ingress HTTP, HTTPS(/sonarqube) -&gt; sonarqube 서비스(9000)</p>
 
 <hr />
 
-<h3 id="reference">Reference</h3>
+<h2 id="reference">Reference</h2>
 
 <ol>
   <li><a href="https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-jenkins/">SonarScanner for Jenkins</a></li>
@@ -730,9 +733,9 @@ Ingress HTTP, HTTPS(/sonarqube) -&gt; sonarqube 서비스(9000)</p>
 <div id="post-nav">
     
     <div id="previous-post">
-        <a alt="Kubernetes RBAC Authorization 적용" href="/2021/10/01/kubernetes-RBAC-auth.html">
+        <a alt="Elastic Metricbeat 설치 및 설정" href="/2021/07/27/elastic-metricbeat-install.html">
             <p>Previous post</p>
-            Kubernetes RBAC Authorization 적용
+            Elastic Metricbeat 설치 및 설정
         </a>
     </div>
     
@@ -753,7 +756,7 @@ Ingress HTTP, HTTPS(/sonarqube) -&gt; sonarqube 서비스(9000)</p>
  <script src="https://utteranc.es/client.js"
         repo='csupreme19/csupreme19.github.io'
         issue-term="comment"
-        theme="github-light"
+        theme="preferred-color-scheme"
 		
         crossorigin="anonymous"
         async>

@@ -1,0 +1,169 @@
+I"�"<h1 id="elastic-metricbeat-설치-및-설정">Elastic Metricbeat 설치 및 설정</h1>
+
+<p><img src="/assets/img/titles/elastic-beats-logo.png" alt="elastic-beats-logo.png" /></p>
+
+<p><a href="https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-overview.html">Metricbeat Overview</a></p>
+
+<p>로그 정보를 수집하는 Filebeat를 각 VM(Ubuntu)에 설치하여 로그 파일을 Elasticsearch로 전송한다.</p>
+
+<hr />
+<h2 id="metricbeat란">Metricbeat란</h2>
+
+<p><img src="/assets/img/contents/efi-1.png" alt="efi-1.png" /></p>
+
+<p>Elastic Stack에 포함되는 오픈소스로 시스템과 서비스의 규격화된 메트릭 정보를 경량화된 방식으로 수집하고 Logstash, Elasticsearch, Kibana 등으로 전달하는 수집기</p>
+
+<hr />
+<h2 id="metricbeat-설치">Metricbeat 설치</h2>
+<p>현재 설치된 elasticsearch 버전을 확인 후 <strong>호환되는 버전</strong>의 metricbeat를 설치한다.</p>
+
+<p>되도록 elaticsearch 버전과 동일한 버전의 metricbeat을 설치한다.</p>
+
+<p>elastic component들 과거버전 선택 download:</p>
+<ul>
+  <li>https://www.elastic.co/kr/downloads/past-releases</li>
+</ul>
+
+<p>metricbeat 7.11.2 download url:</p>
+<ul>
+  <li>https://www.elastic.co/downloads/past-releases/metricbeat-7-11-2</li>
+</ul>
+
+<p>wget 으로 7.11.2 버전을 download 및 설치:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 다운로드</span>
+<span class="nv">$ </span>wget https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.11.2-amd64.deb
+
+<span class="c"># RobotMakers EPC에는 7.12.1 설치됨</span>
+<span class="nv">$ </span>wget https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.12.1-amd64.deb
+
+<span class="c"># CentOS 7 용(rpm)</span>
+<span class="nv">$ </span>wget https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.12.1-x86_64.rpm
+
+<span class="c"># 설치</span>
+<span class="nv">$ </span>dpkg <span class="nt">-i</span> metricbeat-7.11.2-amd64.deb
+<span class="c"># 7.12.1 버전</span>
+<span class="nv">$ </span>dpkg <span class="nt">-i</span> metricbeat-7.12.1-amd64.deb
+<span class="c">#CentOS rpm</span>
+<span class="nv">$ </span>rpm <span class="nt">-ivh</span> ./metricbeat-7.12.1-x86_64.rpm
+
+<span class="c"># 설치 후 설치된 버전 upgrade 막기</span>
+<span class="nv">$ </span>apt-mark hold metricbeat
+
+<span class="c"># 설치파일 삭제</span>
+<span class="nv">$ </span><span class="nb">rm </span>metricbeat-7.11.2-amd64.deb
+
+<span class="c"># bin path를 .zshrc 파일에 추가 후 적용</span>
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span>/usr/share/metricbeat/bin:<span class="nv">$PATH</span>
+
+<span class="nv">$ </span><span class="nb">source</span> .zshrc
+</code></pre></div></div>
+
+<p>system booting 시 자동 실행 등록.</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl <span class="nb">enable </span>metricbeat.service
+<span class="nv">$ </span>systemctl daemon-reload
+</code></pre></div></div>
+
+<hr />
+<h2 id="metricbeat-설정">Metricbeat 설정</h2>
+<p>metricbeat 설치 후 elasticsearch로의 접속 설정 및 보안 설정 진행</p>
+
+<p>config directory:</p>
+<ul>
+  <li>/etc/metricbeat</li>
+</ul>
+
+<p>config file:</p>
+<ul>
+  <li>metricbeat.yml</li>
+</ul>
+
+<h3 id="metricbeat-접속-설정-및-보안-설정">Metricbeat 접속 설정 및 보안 설정</h3>
+<p>미리 구축해둔 elasticsearch에 연결할 예정이므로 <code class="language-plaintext highlighter-rouge">output.elasticsearch</code> 섹션에 연결 설정을 진행한다.</p>
+
+<p>설정 진행 시 ssl 부분도 설정하며 인증서 파일은 data node용으로 만들어둔 인증서를 사용한다.</p>
+
+<p>elasticsearch 연결 설정:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">output.elasticsearch</code> 값을 설정</li>
+  <li>username, password 는 hard-coded 하지 말고 serets keystore 등으로 대체 필요</li>
+</ul>
+
+<p>metricbeat.yml 설정 내용 - <strong>SSL 인증 키 없이</strong> http 접속 시 아래 설정 사용(RobotMakers의 경우):</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># kibana 접속 정보 설정.</span>
+setup.kibana:
+  host: <span class="s2">"http://10.213.196.6:5601"</span>
+
+output.elasticsearch:
+  <span class="c"># master node들 </span>
+  hosts: <span class="o">[</span><span class="s2">"10.213.196.68:9200"</span>,<span class="s2">"10.213.196.23:9200"</span>,<span class="s2">"10.213.196.44:9200"</span><span class="o">]</span>
+
+  <span class="c"># 보안설정 후 https 접속</span>
+  protocol: <span class="s2">"http"</span>
+
+  username: <span class="s2">"elastic"</span>
+  password: <span class="s2">"elastic"</span>
+</code></pre></div></div>
+
+<p>metricbeat.yml 설정 내용 - SSL 인증 키 생성하여 적용 시 아래 설정 사용:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># kibana 접속 정보 설정.</span>
+setup.kibana:
+  host: <span class="s2">"https://172.25.0.166:5601"</span>
+
+  ssl:
+    enabled: <span class="nb">true
+    </span>certificate_authorities: <span class="o">[</span><span class="s2">"/etc/elasticsearch/certs/ca.crt"</span><span class="o">]</span>
+    certificate: <span class="s2">"/etc/elasticsearch/certs/data1.crt"</span>
+    key: <span class="s2">"/etc/elasticsearch/certs/data1.key"</span>
+    
+output.elasticsearch:
+  <span class="c"># master node들 </span>
+  hosts: <span class="o">[</span><span class="s2">"172.25.0.92:9200"</span>, <span class="s2">"172.25.0.159:9200"</span>, <span class="s2">"172.25.0.121:9200"</span><span class="o">]</span>
+
+  <span class="c"># 보안설정 후 https 접속</span>
+  protocol: <span class="s2">"https"</span>
+
+  <span class="c"># TODO API key로 가능할지도???</span>
+  <span class="c">#api_key: "id:api_key"</span>
+  username: <span class="s2">"elastic"</span>
+  password: <span class="s2">"{암호}"</span>
+
+  <span class="c"># tls 설정 값. logstash-1 서버에 적용중이기 때문에 해당 node의 인증서를 적용</span>
+  ssl:
+    certificate_authorities: <span class="o">[</span><span class="s2">"/etc/elasticsearch/certs/ca.crt"</span><span class="o">]</span>
+    certificate: <span class="s2">"/etc/elasticsearch/certs/data1.crt"</span>
+    key: <span class="s2">"/etc/elasticsearch/certs/data1.key"</span>
+</code></pre></div></div>
+
+<p>설정파일 테스트. 설정 파일이 위치한 directory 에서 테스트 가능하며 테스트 후 OK가 출력되면 OK:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 테스트 진행 후 Confg OK 출력 확인</span>
+<span class="nv">$ </span>metricbeat <span class="nb">test </span>config <span class="nt">-e</span>
+</code></pre></div></div>
+<p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-03/image-1616814296901.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-03/scaled-1680-/image-1616814296901.png" alt="" /></a></p>
+
+<hr />
+<h2 id="system-module-설정">System module 설정</h2>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 필요 시 system 모듈 설정</span>
+<span class="nv">$ </span>vi /etc/metricbeat/modules.d/system.yml
+
+<span class="c"># 추가 module 없이 활성화를 하면 system metric만 수집함.</span>
+<span class="nv">$ </span>metricbeat modules <span class="nb">enable</span>
+</code></pre></div></div>
+
+<h3 id="metricbeat-setup">Metricbeat Setup</h3>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># asset 로딩 시 dashboard 생성을 위해 /usr/share/metricbeat 으로 이동하여 실행</span>
+<span class="nv">$ </span><span class="nb">cd</span> /usr/share/metricbeat
+
+<span class="c"># -e 옵션으로 error 여부를 stdout 으로 출력. log에서 host에 정상 접속 했는지 확인 가능</span>
+<span class="nv">$ </span>metricbeat setup <span class="nt">-e</span> <span class="nt">-c</span> /etc/metricbeat/metricbeat.yml <span class="nt">--dashboards</span>
+</code></pre></div></div>
+
+<h3 id="metricbeat-구동--metric-값-전송">Metricbeat 구동 &amp; metric 값 전송</h3>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl start metricbeat.service
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-overview.html">Metricbeat Overview</a></li>
+</ol>
+:ET

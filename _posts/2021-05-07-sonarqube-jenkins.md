@@ -373,7 +373,7 @@ sonarqube에서 사용할 volume을 지정해주기 위하여 설정
 
 테스트용 메이븐 프로젝트 기준으로 작성
 
-Gradle 프로젝트 또는 다른 설정을 보려면 [SonarQube for Gradle](#bkmrk-sonarqube-for-gradle)을 참조
+Gradle 프로젝트 또는 다른 설정을 보려면 [SonarQube for Gradle](#bkmrk-sonarqube-for-gradle)을 참고
 
 SonarQube와 연동할 파이프라인 스크립트에 아래와 같이 Stage 추가
 
@@ -399,7 +399,7 @@ SonarQube와 연동할 파이프라인 스크립트에 아래와 같이 Stage �
 
 - `"Quality Gate"`: 검사한 코드의 품질을 통해 통과/미통과 판별(Quality Gate 프로파일 설정은 SonarQube에서 진행)
 
-> `withSonarEnv()`에는 위의 설정에서 Jenkins에서 설정한 SonarQube Server 이름으로 설정해야함<br><br>Qulaity Gate의 경우 SonarQube에서 Jenkins로 Webhook이 설정되어 있어야함 ([Webhook 설정](#bkmrk-webhook-%EC%84%A4%EC%A0%95) 참조)
+> `withSonarEnv()`에는 위의 설정에서 Jenkins에서 설정한 SonarQube Server 이름으로 설정해야함<br><br>Qulaity Gate의 경우 SonarQube에서 Jenkins로 Webhook이 설정되어 있어야함 ([Webhook 설정](/2021/05/10/sonarqube-config.html) 참고)
 
 
 
@@ -412,7 +412,7 @@ Jenkins 빌드시 각 Stage 정상 통과 및 SonarQube Webhook 동작 여부 �
 
 ---
 
-### Reference
+## Reference
 
 1. [SonarScanner for Jenkins](https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-jenkins/)
 2. [SonarQube Scanner for Jenkins](https://www.jenkins.io/doc/pipeline/steps/sonar/#sonarqube-scanner-for-jenkins)

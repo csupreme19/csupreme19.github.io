@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-11-23T11:27:21+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>생각하고 바로 행동하기</subtitle><entry><title type="html">Jekyll과 Github pages를 사용하여 블로그 만들기</title><link href="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html" rel="alternate" type="text/html" title="Jekyll과 Github pages를 사용하여 블로그 만들기" /><published>2021-11-18T00:00:00+09:00</published><updated>2021-11-18T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/18/github-pages-with-jekyll</id><content type="html" xml:base="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html">&lt;h1 id=&quot;jekyll과-github-pages를-사용하여-간단하게-블로그를-만들어보자&quot;&gt;Jekyll과 Github pages를 사용하여 간단하게 블로그를 만들어보자&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-11-23T17:46:58+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>DevOps 개발 블로그</subtitle><entry><title type="html">Jekyll과 Github pages를 사용하여 블로그 만들기</title><link href="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html" rel="alternate" type="text/html" title="Jekyll과 Github pages를 사용하여 블로그 만들기" /><published>2021-11-18T00:00:00+09:00</published><updated>2021-11-18T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/18/github-pages-with-jekyll</id><content type="html" xml:base="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html">&lt;h1 id=&quot;jekyll과-github-pages를-사용하여-간단하게-블로그를-만들어보자&quot;&gt;Jekyll과 Github pages를 사용하여 간단하게 블로그를 만들어보자&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/titles/github-pages.png&quot; alt=&quot;github-pages.png&quot; /&gt;&lt;/p&gt;
 
@@ -30,7 +30,7 @@
   &lt;li&gt;추가적으로) 최소한의 보안과 무중단 배포를 위한 proxy 서버가 필요&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h5 id=&quot;나는&quot;&gt;나는&lt;/h5&gt;
+&lt;h3 id=&quot;선택기준&quot;&gt;선택기준&lt;/h3&gt;
 
 &lt;ol&gt;
   &lt;li&gt;간단한 기술 블로그를 위하여 웹개발을 하기는 싫었다.&lt;/li&gt;
@@ -213,9 +213,9 @@ origin	git@github.com:csupreme19/csupreme19.github.io.git &lt;span class=&quot;o
 
 &lt;hr /&gt;
 
-&lt;h3 id=&quot;jekyll-설치-및-설정&quot;&gt;Jekyll 설치 및 설정&lt;/h3&gt;
+&lt;h2 id=&quot;jekyll-설치-및-설정&quot;&gt;Jekyll 설치 및 설정&lt;/h2&gt;
 
-&lt;h4 id=&quot;선행사항&quot;&gt;선행사항&lt;/h4&gt;
+&lt;h3 id=&quot;선행사항&quot;&gt;선행사항&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Ruby 2.5.0 이상&lt;/li&gt;
@@ -224,7 +224,7 @@ origin	git@github.com:csupreme19/csupreme19.github.io.git &lt;span class=&quot;o
   &lt;li&gt;Make&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;ruby-설치macos&quot;&gt;Ruby 설치(macOS)&lt;/h4&gt;
+&lt;h3 id=&quot;1-ruby-설치macos&quot;&gt;1. Ruby 설치(macOS)&lt;/h3&gt;
 
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Homebrew 설치&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;/bin/bash &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-fsSL&lt;/span&gt; https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
@@ -244,7 +244,7 @@ origin	git@github.com:csupreme19/csupreme19.github.io.git &lt;span class=&quot;o
 
 &lt;p&gt;다른 OS 설치 방법은 &lt;a href=&quot;https://jekyllrb.com/docs/installation/&quot;&gt;Jekyll 설치 문서&lt;/a&gt; 참조&lt;/p&gt;
 
-&lt;h4 id=&quot;jekyll-및-테마-설치&quot;&gt;Jekyll 및 테마 설치&lt;/h4&gt;
+&lt;h3 id=&quot;2-jekyll-및-테마-설치&quot;&gt;2. Jekyll 및 테마 설치&lt;/h3&gt;
 
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/git/csupreme19.github.io
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone https://github.com/Sylhare/Type-on-Strap.git
@@ -268,7 +268,7 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
   Server running... press ctrl-c to stop.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h4 id=&quot;_configyml-수정&quot;&gt;_config.yml 수정&lt;/h4&gt;
+&lt;h3 id=&quot;3-_configyml-수정&quot;&gt;3. _config.yml 수정&lt;/h3&gt;
 
 &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# SITE CONFIGURATION&lt;/span&gt;
 &lt;span class=&quot;na&quot;&gt;baseurl&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;		&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# 설정한 url이 subdomain이 된다. 즉 {url}/{baseurl} 도메인으로 접속해야함&lt;/span&gt;
@@ -291,15 +291,16 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
 &lt;span class=&quot;c1&quot;&gt;# 나머지 설정은 github 문서 참조&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;1-로컬-접속-테스트&quot;&gt;1. 로컬 접속 테스트&lt;/h3&gt;
+&lt;h3 id=&quot;4-로컬-접속-테스트&quot;&gt;4. 로컬 접속 테스트&lt;/h3&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/contents/gpwj-2.png&quot; alt=&quot;gpwj-2.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;http://localhost:4000 접속 확인&lt;/p&gt;
 
-&lt;h3 id=&quot;2-git-push-및-github-pages-설정&quot;&gt;2. git push 및 github pages 설정&lt;/h3&gt;
+&lt;h3 id=&quot;5-git-push-및-github-pages-설정&quot;&gt;5. git push 및 github pages 설정&lt;/h3&gt;
 
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git commit &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;initial commit&quot;&lt;/span&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git add &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git commit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;initial commit&quot;&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git push &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; origin main
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -307,61 +308,61 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
 
 &lt;p&gt;github 저장소 &amp;gt; Settings &amp;gt; Pages&lt;/p&gt;
 
-&lt;h5 id=&quot;빌드-소스-변경&quot;&gt;빌드 소스 변경&lt;/h5&gt;
+&lt;h4 id=&quot;빌드-소스-변경&quot;&gt;빌드 소스 변경&lt;/h4&gt;
 
 &lt;p&gt;Source 부분 main 브랜치, / (root) 폴더로 변경&lt;/p&gt;
 
 &lt;p&gt;변경 후 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Your site is published at https://csupreme19.github.io/&lt;/code&gt; 빌드 성공 메시지 확인&lt;/p&gt;
 
-&lt;h5 id=&quot;접속&quot;&gt;접속&lt;/h5&gt;
+&lt;h3 id=&quot;6-접속&quot;&gt;6. 접속&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://csupreme19.github.io/&quot;&gt;https://csupreme19.github.io/&lt;/a&gt; 접속 확인&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h3 id=&quot;댓글창-활성화&quot;&gt;댓글창 활성화&lt;/h3&gt;
+&lt;h2 id=&quot;댓글창-활성화&quot;&gt;댓글창 활성화&lt;/h2&gt;
 
 &lt;p&gt;Type-on-Strap 테마는 3가지의 Comment 오픈소스를 지원한다.&lt;/p&gt;
 
-&lt;h4 id=&quot;1-disqus&quot;&gt;1. Disqus&lt;/h4&gt;
+&lt;h3 id=&quot;1-disqus&quot;&gt;1. Disqus&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://disqus.com/&quot;&gt;disqus.com&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;장점&lt;/p&gt;
+&lt;h4 id=&quot;장점&quot;&gt;장점&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;로그인 안해도 댓글 달 수 있음&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;단점&lt;/p&gt;
+&lt;h4 id=&quot;단점&quot;&gt;단점&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;무겁다, 무료버전은 광고가 존재&lt;/li&gt;
   &lt;li&gt;개인적인 의견이지만 댓글창이 너저분해보인다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;2-cusdis&quot;&gt;2. Cusdis&lt;/h4&gt;
+&lt;h3 id=&quot;2-cusdis&quot;&gt;2. Cusdis&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://cusdis.com/&quot;&gt;cusdis.com&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;장점&lt;/p&gt;
+&lt;h4 id=&quot;장점-1&quot;&gt;장점&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Disqus에 비해 매우 깔끔한 레이아웃&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;단점&lt;/p&gt;
+&lt;h4 id=&quot;단점-1&quot;&gt;단점&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;중국발이라 왠지 모를 거부감&lt;/li&gt;
   &lt;li&gt;disqus와 마찬가지로 무겁다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;3-utterance&quot;&gt;3. Utterance&lt;/h4&gt;
+&lt;h3 id=&quot;3-utterance&quot;&gt;3. Utterance&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://utteranc.es/&quot;&gt;utterance.es&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;장점&lt;/p&gt;
+&lt;h4 id=&quot;장점-2&quot;&gt;장점&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;매우 깔끔한 레이아웃&lt;/li&gt;
@@ -369,7 +370,7 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
   &lt;li&gt;완전 무료 오픈소스로 광고 없음&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;단점&lt;/p&gt;
+&lt;h4 id=&quot;단점-2&quot;&gt;단점&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;댓글이 repo에 GitHub 이슈로 등록되는 구조라 GitHub 계정이 있어야만 댓글 가능&lt;/li&gt;
@@ -415,13 +416,13 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
 
 &lt;hr /&gt;
 
-&lt;h3 id=&quot;폰트-변경&quot;&gt;폰트 변경&lt;/h3&gt;
+&lt;h2 id=&quot;폰트-변경&quot;&gt;폰트 변경&lt;/h2&gt;
 
 &lt;p&gt;맥 환경에서 봤을땐 폰트가 사이즈 말고는 괜찮았는데 윈도우 환경에서 보니 계단 현상이 존재하고 가독성이 떨어져 보이는 문제가 발생하였다.&lt;/p&gt;
 
 &lt;p&gt;테마(템플릿)를 사용하는 이유가 UI 개발에 힘을 쏟기 싫었기 때문인데 어쩔 수 없이 입맛에 맞는 커스텀은 필요한 것 같다.&lt;/p&gt;
 
-&lt;h4 id=&quot;1-폰트-scss-파일-생성&quot;&gt;1. 폰트 .scss 파일 생성&lt;/h4&gt;
+&lt;h3 id=&quot;1-폰트-scss-파일-생성&quot;&gt;1. 폰트 .scss 파일 생성&lt;/h3&gt;
 
 &lt;p&gt;일반 폰트는 케이티의 &lt;a href=&quot;https://noonnu.cc/font_page/500&quot;&gt;Y 너만을 비춤체&lt;/a&gt;, 소스 코드 폰트는 네이버의 &lt;a href=&quot;https://github.com/naver/d2codingfont&quot;&gt;D2 coding ligature&lt;/a&gt;를 사용하였다.&lt;/p&gt;
 
@@ -455,7 +456,7 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
 
 &lt;p&gt;따라서 &lt;a href=&quot;https://luran.me/515&quot;&gt;everyminder&lt;/a&gt; 에서 제공한 woff CDN을 사용하였다.&lt;/p&gt;
 
-&lt;h4 id=&quot;2-_variablesscss-수정&quot;&gt;2. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_variables.scss&lt;/code&gt; 수정&lt;/h4&gt;
+&lt;h3 id=&quot;2-_variablesscss-수정&quot;&gt;2. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_variables.scss&lt;/code&gt; 수정&lt;/h3&gt;
 
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vim _sass/base/_variables.scss
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -478,7 +479,7 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
 
 &lt;p&gt;하는 김에 글씨 크기가 커서 폰트 사이즈도 조정해 주었다.&lt;/p&gt;
 
-&lt;h4 id=&quot;3-확인&quot;&gt;3. 확인&lt;/h4&gt;
+&lt;h3 id=&quot;3-확인&quot;&gt;3. 확인&lt;/h3&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/contents/gpwj-5.png&quot; alt=&quot;gpwj-5.png&quot; /&gt;&lt;/p&gt;
 
@@ -486,7 +487,7 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
 
 &lt;hr /&gt;
 
-&lt;h3 id=&quot;reference&quot;&gt;Reference&lt;/h3&gt;
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;https://jekyllrb.com/docs/installation/&quot;&gt;Jekyll Installation&lt;/a&gt;&lt;/li&gt;
@@ -494,8 +495,6 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
   &lt;li&gt;&lt;a href=&quot;http://jekyllthemes.org/&quot;&gt;Jekyll Themes&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/Sylhare/Type-on-Strap&quot;&gt;Type-on-Strap&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Blog" /><category term="Github" /><category term="Github pages" /><category term="Jekyll" /><summary type="html">Jekyll과 Github pages를 사용하여 간단하게 블로그를 만들어보자</summary></entry><entry><title type="html">Kubernetes RBAC Authorization 적용</title><link href="http://localhost:4000/2021/10/01/kubernetes-RBAC-auth.html" rel="alternate" type="text/html" title="Kubernetes RBAC Authorization 적용" /><published>2021-10-01T00:00:00+09:00</published><updated>2021-10-01T00:00:00+09:00</updated><id>http://localhost:4000/2021/10/01/kubernetes-RBAC-auth</id><content type="html" xml:base="http://localhost:4000/2021/10/01/kubernetes-RBAC-auth.html">&lt;h1 id=&quot;kubernetes-rbac-authorization-적용&quot;&gt;Kubernetes RBAC Authorization 적용&lt;/h1&gt;
-
-&lt;p&gt;본 문서에서는 쿠버네티스 API 서버에 접근하기 위한 4가지 인증 방식을 살펴보고 그 중 RBAC 인증 적용방법에 대하여 정리하였다.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/titles/kubernetes-horizontal-color.png&quot; alt=&quot;kubernetes-horizontal-color.png&quot; /&gt;&lt;/p&gt;
 
@@ -559,7 +558,7 @@ flowchart LR
 
 &lt;p&gt;이 때 Kubelet의 Group은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;system:node&lt;/code&gt;에 속해 있으며 해당 그룹에 속해있는 인증 요청은 Node Authorizer에 의하여 인증된다.&lt;/p&gt;
 
-&lt;p&gt;이 방식은 보통 Kubernetes TLS 부트스트랩 과정에서 자동으로 설정되므로 더 자세한 내용은 &lt;a href=&quot;https://kubernetes.io/docs/reference/access-authn-authz/node/&quot;&gt;공식 문서&lt;/a&gt; 참조&lt;/p&gt;
+&lt;p&gt;이 방식은 보통 Kubernetes TLS 부트스트랩 과정에서 자동으로 설정되므로 더 자세한 내용은 &lt;a href=&quot;https://kubernetes.io/docs/reference/access-authn-authz/node/&quot;&gt;공식 문서&lt;/a&gt; 참고&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -631,9 +630,9 @@ flowchart LR
 
 &lt;hr /&gt;
 
-&lt;h3 id=&quot;rbac-리소스&quot;&gt;RBAC 리소스&lt;/h3&gt;
+&lt;h2 id=&quot;rbac-리소스&quot;&gt;RBAC 리소스&lt;/h2&gt;
 
-&lt;h4 id=&quot;1-role--clusterrole&quot;&gt;1. Role / ClusterRole&lt;/h4&gt;
+&lt;h3 id=&quot;1-role--clusterrole&quot;&gt;1. Role / ClusterRole&lt;/h3&gt;
 
 &lt;div class=&quot;mermaid&quot;&gt;
 flowchart LR
@@ -645,7 +644,7 @@ flowchart LR
 
 &lt;p&gt;Role과 ClusterRole이 있으며 ClusterRole은 Role과 달리 클러스터 레벨로 가지고 있어 네임스페이스가 존재하지 않는다.&lt;/p&gt;
 
-&lt;h5 id=&quot;role-예제&quot;&gt;Role 예제&lt;/h5&gt;
+&lt;h4 id=&quot;role-예제&quot;&gt;Role 예제&lt;/h4&gt;
 
 &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
 &lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rbac.authorization.k8s.io/v1&lt;/span&gt;
@@ -690,7 +689,7 @@ persistentvolumes                 pv           v1                               
 ...
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h5 id=&quot;role-확인&quot;&gt;Role 확인&lt;/h5&gt;
+&lt;h4 id=&quot;role-확인&quot;&gt;Role 확인&lt;/h4&gt;
 
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl get role &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; kube-system
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl get clusterrole &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt;
@@ -706,7 +705,7 @@ Annotations:  rbac.authorization.kubernetes.io/autoupdate: &lt;span class=&quot;
              &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;                &lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt;              &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h4 id=&quot;2-serviceaccount&quot;&gt;2. ServiceAccount&lt;/h4&gt;
+&lt;h3 id=&quot;2-serviceaccount&quot;&gt;2. ServiceAccount&lt;/h3&gt;
 
 &lt;p&gt;파드로 올라가있는 서비스에서 kubernetes 클러스터에 접근하기 위한 계정을 나타내는 리소스다.&lt;/p&gt;
 
@@ -727,7 +726,7 @@ flowchart LR
   A-.token.-B
 &lt;/div&gt;
 
-&lt;h5 id=&quot;sa-예제&quot;&gt;SA 예제&lt;/h5&gt;
+&lt;h4 id=&quot;sa-예제&quot;&gt;SA 예제&lt;/h4&gt;
 
 &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
 &lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
@@ -737,14 +736,14 @@ flowchart LR
   &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;kubernetes-dashboard&lt;/span&gt;
 &lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h5 id=&quot;sa-확인&quot;&gt;SA 확인&lt;/h5&gt;
+&lt;h4 id=&quot;sa-확인&quot;&gt;SA 확인&lt;/h4&gt;
 
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl get sa &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; kube-system
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;service account 생성시 해당 서비스 어카운트의 토큰을 가지고 있는 secret이 자동 생성된다.&lt;/p&gt;
 
-&lt;h5 id=&quot;서비스-어카운트-사용방법&quot;&gt;서비스 어카운트 사용방법&lt;/h5&gt;
+&lt;h4 id=&quot;서비스-어카운트-사용방법&quot;&gt;서비스 어카운트 사용방법&lt;/h4&gt;
 
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl describe sa/monitoring-user &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; kubernetes-dashboard
 Name:                monitoring-user
@@ -759,7 +758,7 @@ Events:              &amp;lt;none&amp;gt;
 
 &lt;p&gt;service account 생성시 해당 서비스 어카운트의 토큰을 가지고 있는 secret이 자동 생성된다.&lt;/p&gt;
 
-&lt;h5 id=&quot;토큰-확인&quot;&gt;토큰 확인&lt;/h5&gt;
+&lt;h4 id=&quot;토큰-확인&quot;&gt;토큰 확인&lt;/h4&gt;
 
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl describe secret monitoring-user-token-r6nss &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; kubernetes-dashboard
 Name:         monitoring-user-token-r6nss
@@ -783,7 +782,7 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6IlVmM2...
 
 &lt;p&gt;API 호출시 Authorization 헤더에 해당 토큰을 넣어서 요청하면 인증을 할 수 있다.&lt;/p&gt;
 
-&lt;h5 id=&quot;자원에-적용&quot;&gt;자원에 적용&lt;/h5&gt;
+&lt;h4 id=&quot;자원에-적용&quot;&gt;자원에 적용&lt;/h4&gt;
 
 &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Deployment&lt;/span&gt;
 &lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;apps/v1&lt;/span&gt;
@@ -804,13 +803,13 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6IlVmM2...
 
 &lt;p&gt;Pod 명세 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;serviceAccountName&lt;/code&gt; 에 위에서 생성한 SA 추가하면 해당 Pod는 API Server에 정의된 권한을 가지고 접근할 수 있다.&lt;/p&gt;
 
-&lt;h5 id=&quot;요청-예시&quot;&gt;요청 예시&lt;/h5&gt;
+&lt;h4 id=&quot;요청-예시&quot;&gt;요청 예시&lt;/h4&gt;
 
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 직접 호출시 토큰 명시&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Authorization: Bearer eyJhbGciOiJSUzI1...&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-ivk&lt;/span&gt; https://10.213.196.211:6443 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h4 id=&quot;3-rolebinding&quot;&gt;3. RoleBinding&lt;/h4&gt;
+&lt;h3 id=&quot;3-rolebinding&quot;&gt;3. RoleBinding&lt;/h3&gt;
 
 &lt;p&gt;위에서 생성한 ServiceAccount가 실질적으로 권한을 가지려면 해당 어카운트가 어느 자원에 접근할 수 있는지 허락하는 단계가 필요하다.&lt;/p&gt;
 
@@ -822,7 +821,7 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6IlVmM2...
 
 &lt;p&gt;각각의 Role은 ServiceAccount, User, Group에 바인딩 될 수 있다.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;User / Group&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&quot;user--group&quot;&gt;&lt;strong&gt;User / Group&lt;/strong&gt;&lt;/h4&gt;
 
 &lt;p&gt;ServiceAccount와 달리 Kubernetes API server의 User와 Group은 별도로 정의된 Kubernetes Resource가 아니다.&lt;/p&gt;
 
@@ -875,7 +874,7 @@ flowchart LR
   C -.token.- E
 &lt;/div&gt;
 
-&lt;h5 id=&quot;rolebinding-예제&quot;&gt;RoleBinding 예제&lt;/h5&gt;
+&lt;h4 id=&quot;rolebinding-예제&quot;&gt;RoleBinding 예제&lt;/h4&gt;
 
 &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
 &lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rbac.authorization.k8s.io/v1&lt;/span&gt;
@@ -910,7 +909,7 @@ flowchart LR
   &lt;p&gt;ClusterRoleBinding 역시 클러스터 레벨이므로 네임스페이스가 따로 없음&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h5 id=&quot;rolebinding-확인&quot;&gt;RoleBinding 확인&lt;/h5&gt;
+&lt;h4 id=&quot;rolebinding-확인&quot;&gt;RoleBinding 확인&lt;/h4&gt;
 
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl get rolebinding
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl get clusterrolebinding
@@ -918,15 +917,13 @@ flowchart LR
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;hr /&gt;
-&lt;h4 id=&quot;rbac-사용-예시&quot;&gt;RBAC 사용 예시&lt;/h4&gt;
+&lt;h3 id=&quot;rbac-사용-예시&quot;&gt;RBAC 사용 예시&lt;/h3&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;시나리오: k8s dashboard에 접근하기 위한 모니터링 인증을 생성한다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kubernetes-dashboard-rbac.yaml&lt;/code&gt; 작성&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h4 id=&quot;1-kubernetes-dashboard-rbacyaml-작성&quot;&gt;1. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kubernetes-dashboard-rbac.yaml&lt;/code&gt; 작성&lt;/h4&gt;
 
 &lt;p&gt;ServiceAccount, ClusterRole, ClusterRoleBinding을 설정한다.&lt;/p&gt;
 &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
@@ -973,13 +970,12 @@ flowchart LR
 
 &lt;p&gt;해당 ClusterRole을 가진 SA의 시크릿 토큰을 이용하여 위 URL에 해당하는 API를 호출할 수 있다.&lt;/p&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;Token 확인
-    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; kubernetes-dashboard get secret &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;kubectl &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; kubernetes-dashboard get sa/monitoring-user &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;jsonpath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;{.secrets[0].name}&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; go-template&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Kubernetes 클러스터 접근 테스트&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h4 id=&quot;2-token-확인&quot;&gt;2. Token 확인&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; kubernetes-dashboard get secret &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;kubectl &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; kubernetes-dashboard get sa/monitoring-user &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;jsonpath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;{.secrets[0].name}&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; go-template&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;3-kubernetes-클러스터-접근-테스트&quot;&gt;3. Kubernetes 클러스터 접근 테스트&lt;/h4&gt;
 
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Authorization: Bearer eyJhbGciOiJSUzI1...&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-k&lt;/span&gt; https://10.213.196.211:6443/livez&lt;span class=&quot;se&quot;&gt;\?&lt;/span&gt;verbose
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+]ping ok
@@ -1021,7 +1017,7 @@ livez check passed
 
 &lt;hr /&gt;
 
-&lt;h3 id=&quot;요약&quot;&gt;요약&lt;/h3&gt;
+&lt;h2 id=&quot;요약&quot;&gt;요약&lt;/h2&gt;
 
 &lt;p&gt;Kubernetes API 서버에 접근하기 위한 인증방식은 크게 4가지가 있다.&lt;/p&gt;
 
@@ -1059,14 +1055,1017 @@ flowchart LR
 
 &lt;hr /&gt;
 
-&lt;h3 id=&quot;reference&quot;&gt;Reference&lt;/h3&gt;
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&quot;&gt;Using RBAC Authorization&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://kubernetes.io/docs/reference/access-authn-authz/node/&quot;&gt;Using Node Authorization&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://kubernetes.io/docs/reference/access-authn-authz/node/&quot;&gt;Using ABAC Authorization&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/&quot;&gt;Certified Kubernetes Administrator(CKA) with Practice Tests&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Kubernetes" /><category term="Authorization" /><category term="Authentication" /><category term="RBAC" /><category term="ABAC" /><category term="Security" /><summary type="html">Kubernetes RBAC Authorization 적용</summary></entry><entry><title type="html">SonarQube 설정 및 트러블슈팅</title><link href="http://localhost:4000/2021/05/10/sonarqube-config.html" rel="alternate" type="text/html" title="SonarQube 설정 및 트러블슈팅" /><published>2021-05-10T00:00:00+09:00</published><updated>2021-05-10T00:00:00+09:00</updated><id>http://localhost:4000/2021/05/10/sonarqube-config</id><content type="html" xml:base="http://localhost:4000/2021/05/10/sonarqube-config.html">&lt;h1 id=&quot;sonarqube-설정-및-트러블슈팅&quot;&gt;SonarQube 설정 및 트러블슈팅&lt;/h1&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Kubernetes" /><category term="Authorization" /><category term="Authentication" /><category term="RBAC" /><category term="ABAC" /><category term="Security" /><summary type="html">Kubernetes RBAC Authorization 적용</summary></entry><entry><title type="html">Elasticsearch Filebeat 모듈 설정</title><link href="http://localhost:4000/2021/08/06/elastic-filebeat-modules.html" rel="alternate" type="text/html" title="Elasticsearch Filebeat 모듈 설정" /><published>2021-08-06T00:00:00+09:00</published><updated>2021-08-06T00:00:00+09:00</updated><id>http://localhost:4000/2021/08/06/elastic-filebeat-modules</id><content type="html" xml:base="http://localhost:4000/2021/08/06/elastic-filebeat-modules.html">&lt;h1 id=&quot;elastic-filebeat-모듈-설정&quot;&gt;Elastic Filebeat 모듈 설정&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/titles/elastic-beats-logo.png&quot; alt=&quot;elastic-beats-logo.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/filebeat/7.16/filebeat-modules.html&quot;&gt;Filebeat Modules&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;로그 정보를 수집하는 Filebeat의 모듈별 Output 설정방법을 정리하였다.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;module-설정&quot;&gt;Module 설정&lt;/h2&gt;
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;filebeat-설치&quot;&gt;Filebeat 설치&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;/2021/08/05/elastic-filebeat-install.html&quot;&gt;Elastic Filebeat 설치 및 설정&lt;/a&gt; 참고&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;module-확인&quot;&gt;Module 확인&lt;/h3&gt;
+
+&lt;p&gt;데이터를 수집하기 위한 filebeat의 module list 확인&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;filebeat modules list
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;system-module-설정&quot;&gt;System module 설정&lt;/h3&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;filebeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;system
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;kafka-module-설정&quot;&gt;Kafka module 설정&lt;/h3&gt;
+
+&lt;p&gt;Kafka가 설치되어 있는 VM에 진행&lt;/p&gt;
+
+&lt;h4 id=&quot;모듈-활성화&quot;&gt;모듈 활성화&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;filebeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;postgresql
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;모듈-설정&quot;&gt;모듈 설정&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/filebeat/modules.d/kafka.yml&lt;/code&gt; 수정&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;kafka&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+    
+    &lt;span class=&quot;na&quot;&gt;var.paths&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/data/kafka-logs/controller.log*&quot;&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/data/kafka-logs/server.log*&quot;&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/data/kafka-logs/state-change.log*&quot;&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/data/kafka-logs/kafka-*.log*&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ref: &lt;a href=&quot;https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-kafka.html&quot;&gt;https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-kafka.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;kafka-dashboards&quot;&gt;kafka dashboards&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/efm-1.png&quot; alt=&quot;efm-1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;nginx-module-설정&quot;&gt;Nginx module 설정&lt;/h3&gt;
+
+&lt;p&gt;Nginx가 설치되어 있는 VM에 진행&lt;/p&gt;
+
+&lt;h4 id=&quot;모듈-활성화-1&quot;&gt;모듈 활성화&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;filebeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;nginx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;모듈-설정-1&quot;&gt;모듈 설정&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/filebeat/modules.d/nginx.yml&lt;/code&gt; 수정&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nginx&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# Access logs&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;access&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;var.paths&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; 
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/var/log/nginx/access.log*&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# Error logs&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;- &quot;/var/log/nginx/error.log*&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ref: &lt;a href=&quot;https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-nginx.html&quot;&gt;https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-nginx.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;nginx-dashboards&quot;&gt;nginx dashboards&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/efm-2.png&quot; alt=&quot;efm-2.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/efm-3.png&quot; alt=&quot;efm-3.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;추가-사항&quot;&gt;추가 사항&lt;/h4&gt;
+
+&lt;p&gt;access.log에 관리자 페이지 관련하여 access_log가 많이 쌓이는 경우&lt;/p&gt;
+
+&lt;p&gt;아래와 같이 access_log off; 추가&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /etc/nginx/conf.d
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vim management.conf
+        location / &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                access_log off&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;postgresql-module-설정&quot;&gt;PostgreSQL module 설정&lt;/h3&gt;
+
+&lt;p&gt;PostgreSQL이 설치되어 있는 VM에 진행&lt;/p&gt;
+
+&lt;h4 id=&quot;모듈-활성화-2&quot;&gt;모듈 활성화&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;filebeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;postgresql
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;모듈-설정-2&quot;&gt;모듈 설정&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/filebeat/modules.d/postgresql.yml&lt;/code&gt; 수정&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;postgresql&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;var.paths&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/data/postgres/pgdata/log/*.log*&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ref: &lt;a href=&quot;https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-postgresql.html&quot;&gt;https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-postgresql.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;postgresql-dashboards&quot;&gt;postgresql dashboards&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/efm-4.png&quot; alt=&quot;efm-4.png&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;mysql-module-설정&quot;&gt;MySQL module 설정&lt;/h3&gt;
+
+&lt;p&gt;MySQL이 설치되어 있는 VM에 진행&lt;/p&gt;
+
+&lt;h4 id=&quot;모듈-활성화-3&quot;&gt;모듈 활성화&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;filebeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;mysql
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;모듈-설정-3&quot;&gt;모듈 설정&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/filebeat/modules.d/mysql.yml&lt;/code&gt; 수정&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mysql&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;var.paths&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/data/mysql/logs/error.log*&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;na&quot;&gt;slowlog&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;var.paths&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/data/mysql/logs/mysql-slow.log*&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ref: &lt;a href=&quot;https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-mysql.html&quot;&gt;https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-mysql.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;mysql-dashboards&quot;&gt;mysql dashboards&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/efm-5.png&quot; alt=&quot;efm-5.png&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;mongodb-module-설정&quot;&gt;MongoDB module 설정&lt;/h3&gt;
+
+&lt;p&gt;MongoDB가 설치되어 있는 VM에 진행&lt;/p&gt;
+
+&lt;h4 id=&quot;모듈-활성화-4&quot;&gt;모듈 활성화&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;filebeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;mongodb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;모듈-설정-4&quot;&gt;모듈 설정&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/filebeat/modules.d/mongodb.yml&lt;/code&gt; 수정&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mongodb&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;var.paths&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/data/mongo/logs/*.log*&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ref: &lt;a href=&quot;https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-mongodb.html&quot;&gt;https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-mongodb.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;mongodb-dashboards&quot;&gt;mongodb dashboards&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/efm-6.png&quot; alt=&quot;efm-6.png&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;redis-module-설정&quot;&gt;Redis module 설정&lt;/h3&gt;
+
+&lt;p&gt;Redis가 설치되어 있는 VM에 진행&lt;/p&gt;
+
+&lt;h4 id=&quot;모듈-활성화-5&quot;&gt;모듈 활성화&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;filebeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;redis
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;모듈-설정-5&quot;&gt;모듈 설정&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/filebeat/modules.d/redis.yml&lt;/code&gt; 수정&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;redis&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;var.paths&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/data/redis/redis-server.log*&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ref: &lt;a href=&quot;https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-redis.html&quot;&gt;https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-redis.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;redis-dashboards&quot;&gt;redis dashboards&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/efm-7.png&quot; alt=&quot;efm-7.png&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;filebeat-setup&quot;&gt;Filebeat setup&lt;/h3&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# dashboard 생성을 위해 /usr/share/filebeat 이동하여 실행&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /usr/share/filebeat
+
+&lt;span class=&quot;c&quot;&gt;# -e 옵션으로 error 여부를 stdout 으로 출력. log에서 host에 정상 접속 했는지 확인 가능&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;filebeat setup &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; /etc/filebeat/filebeat.yml &lt;span class=&quot;nt&quot;&gt;--dashboards&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;setup 완료 후 마지막 문장에 dashboard가 정상 로딩된 것을 확인
+&lt;img src=&quot;/assets/img/contents/efm-8.png&quot; alt=&quot;efm-8.png&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;filebeat-구동&quot;&gt;Filebeat 구동&lt;/h2&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl start filebeat.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;filebeat-log-확인&quot;&gt;Filebeat log 확인&lt;/h2&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;journalctl &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; filebeat
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/filebeat/7.16/filebeat-modules.html&quot;&gt;Filebeat Modules&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Elasticsearch" /><category term="Elastic" /><category term="ELK" /><category term="Filebeat" /><category term="Beat" /><summary type="html">Elastic Filebeat 모듈 설정</summary></entry><entry><title type="html">Elastic Filebeat 설치 및 설정</title><link href="http://localhost:4000/2021/08/05/elastic-filebeat-install.html" rel="alternate" type="text/html" title="Elastic Filebeat 설치 및 설정" /><published>2021-08-05T00:00:00+09:00</published><updated>2021-08-05T00:00:00+09:00</updated><id>http://localhost:4000/2021/08/05/elastic-filebeat-install</id><content type="html" xml:base="http://localhost:4000/2021/08/05/elastic-filebeat-install.html">&lt;h1 id=&quot;elastic-filebeat-설치-및-설정&quot;&gt;Elastic Filebeat 설치 및 설정&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/titles/elastic-beats-logo.png&quot; alt=&quot;elastic-beats-logo.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/filebeat/7.16/filebeat-overview.html&quot;&gt;Filebeat Overview&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;로그 정보를 수집하는 Filebeat를 각 VM(Ubuntu)에 설치하여 로그 파일을 Elasticsearch로 전송한다.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;filebeat란&quot;&gt;Filebeat란&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/efi-1.png&quot; alt=&quot;efi-1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Elastic Stack에 포함되는 오픈소스로 파일 데이터와 로그 데이터를 경량화된 방식으로 수집하고 Logstash, Elasticsearch, Kibana 등으로 전달하는 수집기&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;filebeat-설치&quot;&gt;Filebeat 설치&lt;/h2&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 설치&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-L&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-O&lt;/span&gt; https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.12.1-amd64.deb
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;dpkg &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; filebeat-7.12.1-amd64.deb
+
+&lt;span class=&quot;c&quot;&gt;# 설치 후 설치된 버전 upgrade 막기&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;apt-mark hold filebeat
+
+&lt;span class=&quot;c&quot;&gt;# bin path를 .zshrc 파일에 추가 후 적용&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/share/filebeat/bin:&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; .zshrc
+
+&lt;span class=&quot;c&quot;&gt;# filebeat 설정&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /etc/filebeat
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vim filebeat.yml
+
+&lt;span class=&quot;c&quot;&gt;# system 재부팅 시 자동 실행 설정&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;filebeat
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;yaml에-elasticsearch-kibana-호스트-정보-설정&quot;&gt;yaml에 elasticsearch, kibana 호스트 정보 설정&lt;/h3&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# =================================== Kibana ===================================&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;setup.kibana&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;10.213.196.6:5601&quot;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# ---------------------------- Elasticsearch Output ----------------------------&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;output.elasticsearch&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;10.213.196.68:9200&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;10.213.196.23:9200&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;10.213.196.44:9200&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;http&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;elastic&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;elastic&quot;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# ---------------------------- Filebeat inputs ----------------------------&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;filebeat.inputs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;log&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;elasticsearch-https-보안-설정-되어-있을-경우&quot;&gt;elasticsearch https 보안 설정 되어 있을 경우&lt;/h3&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# ---------------------------- Elasticsearch Output ----------------------------&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;output.elasticsearch&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;10.213.196.68:9200&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;10.213.196.23:9200&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;10.213.196.44:9200&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;https&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;elastic&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;elastic&quot;&lt;/span&gt;
+  
+  &lt;span class=&quot;c1&quot;&gt;# ssl verification을 하지 않거나 인증서를 수동으로 등록하여야한다. 아래 택 1&lt;/span&gt;
+  
+  &lt;span class=&quot;c1&quot;&gt;# ssl 검증하지 않기&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;ssl.verification_mode&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;none&quot;&lt;/span&gt;
+  
+  &lt;span class=&quot;c1&quot;&gt;# ssl 인증서&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;ssl&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;certificate_authorities&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/etc/elasticsearch/certs/ca.crt&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;certificate&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/etc/elasticsearch/certs/data1.crt&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/etc/elasticsearch/certs/data1.key&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;filebeat-구동-및-확인&quot;&gt;Filebeat 구동 및 확인&lt;/h2&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /usr/share/filebeat
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;filebeat setup &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; /etc/filebeat/filebeat.yml &lt;span class=&quot;nt&quot;&gt;--dashboards&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl start filebeat
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl status filebeat
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;로그-확인&quot;&gt;로그 확인&lt;/h3&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;journalctl &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; filebeat
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;filebeat-모듈-설정&quot;&gt;Filebeat 모듈 설정&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;/2021/08/06/elastic-filebeat-modules.html&quot;&gt;Elastic Filebeat 모듈 설정&lt;/a&gt; 참고&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/filebeat/7.16/filebeat-overview.html&quot;&gt;Filebeat Overview&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Elasticsearch" /><category term="Elastic" /><category term="ELK" /><category term="Filebeat" /><category term="Beat" /><summary type="html">Elastic Filebeat 설치 및 설정</summary></entry><entry><title type="html">Elasticsearch Metricbeat 모듈 설정</title><link href="http://localhost:4000/2021/08/02/elastic-metricbeat-modules.html" rel="alternate" type="text/html" title="Elasticsearch Metricbeat 모듈 설정" /><published>2021-08-02T00:00:00+09:00</published><updated>2021-08-02T00:00:00+09:00</updated><id>http://localhost:4000/2021/08/02/elastic-metricbeat-modules</id><content type="html" xml:base="http://localhost:4000/2021/08/02/elastic-metricbeat-modules.html">&lt;h1 id=&quot;elastic-metricbeat-모듈-설정&quot;&gt;Elastic Metricbeat 모듈 설정&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/titles/elastic-beats-logo.png&quot; alt=&quot;elastic-beats-logo.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-modules.html&quot;&gt;Metricbeat Modules&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;메트릭 정보를 수집하는 Metricbeat의 모듈별 Output 설정방법을 정리하였다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;module-설정&quot;&gt;Module 설정&lt;/h2&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;metricbeat-설치&quot;&gt;Metricbeat 설치&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;/2021/07/27/elastic-metricbeat-install.html&quot;&gt;Metricbeat 설치 및 설정&lt;/a&gt; 참고&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;module-확인&quot;&gt;Module 확인&lt;/h3&gt;
+&lt;p&gt;metric을 수집하기 위한 metricbeat의 module들 list 확인&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules list
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;hr /&gt;
+&lt;h3 id=&quot;system-module-설정&quot;&gt;System module 설정&lt;/h3&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 필요 시 system 모듈 설정&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vi /etc/metricbeat/modules.d/system.yml
+
+&lt;span class=&quot;c&quot;&gt;# 추가 module 없이 활성화를 하면 system metric만 수집함.&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;postgresql-module-설정&quot;&gt;Postgresql module 설정&lt;/h3&gt;
+
+&lt;p&gt;Postgres이 설치되어 있는 VM에 진행&lt;/p&gt;
+
+&lt;h4 id=&quot;모듈-활성화&quot;&gt;모듈 활성화&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;postgresql
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;모듈-설정&quot;&gt;모듈 설정&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/metricbeat/modules.d/postgresql.yml&lt;/code&gt; 수정&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;postgresql&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;metricsets&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;database&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;bgwriter&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;activity&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;statement&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10s&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;postgres://10.213.196.207:5432?sslmode=disable&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;postgres&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;암호&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ref: &lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-module-postgresql.html&quot;&gt;https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-module-postgresql.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;postgresql-dashboards&quot;&gt;postgresql dashboards&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/emm-1.png&quot; alt=&quot;emm-1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;redis-module-설정&quot;&gt;Redis module 설정&lt;/h3&gt;
+
+&lt;p&gt;Redis가 설치되어 있는 VM에 진행&lt;/p&gt;
+
+&lt;h4 id=&quot;모듈-활성화-1&quot;&gt;모듈 활성화&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;redis
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;모듈-설정-1&quot;&gt;모듈 설정&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/metricbeat/modules.d/redis.yml&lt;/code&gt; 수정&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;redis&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;metricsets&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;info&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;keyspace&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10s&lt;/span&gt;
+
+  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;127.0.0.1:6379&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ref: &lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-redis.html&quot;&gt;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-redis.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;redis-dashboards&quot;&gt;redis dashboards&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/emm-2.png&quot; alt=&quot;emm-2.png&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;mongodb-module-설정&quot;&gt;Mongodb module 설정&lt;/h3&gt;
+
+&lt;p&gt;Mongodb가 설치되어 있는 VM에 진행&lt;/p&gt;
+
+&lt;h4 id=&quot;모듈-활성화-2&quot;&gt;모듈 활성화&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;mongodb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;모듈-설정-2&quot;&gt;모듈 설정&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/metricbeat/modules.d/mongodb.yml&lt;/code&gt; 수정&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mongodb&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;metricsets&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;dbstats&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;status&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;collstats&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;metrics&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10s&lt;/span&gt;
+
+  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;localhost:27017&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ref: &lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-mongodb.html&quot;&gt;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-mongodb.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;mongodb-dashboards&quot;&gt;mongodb dashboards&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/emm-3.png&quot; alt=&quot;emm-3.png&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;mysql-module-설정&quot;&gt;MySQL module 설정&lt;/h3&gt;
+
+&lt;p&gt;MySQL이 설치되어 있는 VM에 진행&lt;/p&gt;
+
+&lt;h4 id=&quot;모듈-활성화-3&quot;&gt;모듈 활성화&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;mysql
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;모듈-설정-3&quot;&gt;모듈 설정&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/metricbeat/modules.d/mysql.yml&lt;/code&gt; 수정&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mysql&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;metricsets&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;status&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;performance&lt;/span&gt;
+    
+  &lt;span class=&quot;na&quot;&gt;period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10s&lt;/span&gt;
+  
+  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;metricbeat:rmakers2021@tcp(127.0.0.1:13306)/&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ref: &lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-mysql.html&quot;&gt;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-mysql.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;접속-에러시&quot;&gt;접속 에러시&lt;/h4&gt;
+
+&lt;p&gt;mysql의 root 계정이 localhost에서만 접속하도록 되어 있는지 확인&lt;/p&gt;
+
+&lt;p&gt;ex) docker의 경우 컨테이너 접속시 host ip로 접속&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# host ip 확인&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ifconfig
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;mysql 접속하여 계정 생성 및 권한부여&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docer &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-it&lt;/span&gt; mysql bash
+mysql&amp;gt; &lt;span class=&quot;k&quot;&gt;select &lt;/span&gt;host, user from mysql.user&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
++-----------+------------------+
+| host      | user             |
++-----------+------------------+
+| %         | robot            |
+| localhost | healthchecker    |
+| localhost | mysql.infoschema |
+| localhost | mysql.session    |
+| localhost | mysql.sys        |
+| localhost | robot            |
+| localhost | root             |
++-----------+------------------+
+7 rows &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.00 sec&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+mysql&amp;gt; create user &lt;span class=&quot;s1&quot;&gt;&apos;metricbeat&apos;&lt;/span&gt;@&lt;span class=&quot;s1&quot;&gt;&apos;172.18.0.1&apos;&lt;/span&gt; identified by &lt;span class=&quot;s1&quot;&gt;&apos;rmakers2021&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+Query OK, 0 rows affected &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.02 sec&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+mysql &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; grant all privilieges on &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; to &lt;span class=&quot;s1&quot;&gt;&apos;metricbeat&apos;&lt;/span&gt;@&lt;span class=&quot;s1&quot;&gt;&apos;172.18.0.1&apos;&lt;/span&gt; identified by &lt;span class=&quot;s1&quot;&gt;&apos;rmakers2021&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+mysql &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; flush privileges&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;자세한 내용은 &lt;a href=&quot;https://bookstack.ccpinfra.xyz:23443/books/mobilitymakers-infra/page/mysql-dev-zone-docker#bkmrk-%EC%99%B8%EB%B6%80-%EC%A0%91%EC%86%8D-host-%EA%B6%8C%ED%95%9C-%EC%84%A4%EC%A0%95&quot;&gt;외부 접속 host 권한 설정&lt;/a&gt; 참조&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;mysql-dashboards&quot;&gt;mysql dashboards&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/emm-4.png&quot; alt=&quot;emm-4.png&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;nginx-module-설정&quot;&gt;Nginx module 설정&lt;/h3&gt;
+
+&lt;p&gt;Nginx가 설치되어 있는 VM에 진행&lt;/p&gt;
+
+&lt;h4 id=&quot;모듈-활성화-4&quot;&gt;모듈 활성화&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;nginx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;모듈-설정-4&quot;&gt;모듈 설정&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/metricbeat/modules.d/nginx.yml&lt;/code&gt; 수정&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nginx&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;metricsets&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;stubstatus&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10s&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# Nginx hosts&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;http://127.0.0.1:9000&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# Path to server status. Default server-status&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;server_status_path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;server-status&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ref: &lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-nginx.html&quot;&gt;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-nginx.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;nginx의-ngx_http_stub_status_module-모듈-활성화&quot;&gt;nginx의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ngx_http_stub_status_module&lt;/code&gt; 모듈 활성화&lt;/h4&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd /etc/nginx/conf.d
+$ vim status.conf
+    server {
+        listen 9000;
+
+		location /server-status {
+          stub_status;	# stub_status 활성화
+          access_log off;	# 접속 로그 비활성화
+          allow 127.0.0.1;	# localhost에서만 접속 허용
+          deny all;
+		}
+    }
+$ chmod 750 status.conf
+$ chown nginx:nginx status.conf
+$ nginx -s reload
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;metricbeat가 10초마다 localhost:9000/server-status를 호출하여 stub status 정보 가져감&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;nginx-dashboards&quot;&gt;nginx dashboards&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/emm-5.png&quot; alt=&quot;emm-5.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/emm-6.png&quot; alt=&quot;emm-6.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/emm-7.png&quot; alt=&quot;emm-7.png&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;kafka-module-설정&quot;&gt;Kafka module 설정&lt;/h3&gt;
+
+&lt;p&gt;Kafka가 설치되어 있는 VM에 진행&lt;/p&gt;
+
+&lt;h4 id=&quot;모듈-활성화-5&quot;&gt;모듈 활성화&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;kafka
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;모듈-설정-5&quot;&gt;모듈 설정&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/metricbeat/modules.d/kafka.yml&lt;/code&gt; 수정&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;kafka&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;metricsets&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;partition&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;consumergroup&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;broker&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;consumer&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;producer&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10s&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;localhost:9092&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ref: &lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-kafka.html&quot;&gt;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-kafka.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;kafka-with-jolokia&quot;&gt;Kafka with jolokia&lt;/h4&gt;
+
+&lt;p&gt;broker, consumer, producer metricset을 가져오려면 jolokia를 이용하여 jmx 모니터링하여야한다.&lt;/p&gt;
+
+&lt;p&gt;kafka에 jolokia가 javaagent로 붙어서 jvm 위에 실행&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://dev.to/martinhynar/monitoring-kafka-brokers-using-jolokia-metricbeat-and-elasticsearch-5678&quot;&gt;https://dev.to/martinhynar/monitoring-kafka-brokers-using-jolokia-metricbeat-and-elasticsearch-5678&lt;/a&gt; 참조&lt;/p&gt;
+
+&lt;h4 id=&quot;kafka-dashboards&quot;&gt;kafka dashboards&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/emm-8.png&quot; alt=&quot;emm-8.png&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;zookeeper-module-설정&quot;&gt;Zookeeper module 설정&lt;/h3&gt;
+
+&lt;p&gt;Zookeeper가 설치되어 있는 VM에 진행&lt;/p&gt;
+
+&lt;h4 id=&quot;모듈-활성화-6&quot;&gt;모듈 활성화&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;zookeeper
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;모듈-설정-6&quot;&gt;모듈 설정&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/metricbeat/modules.d/zookeeper.yml&lt;/code&gt; 수정&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;zookeeper&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;metricsets&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;connection&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mntr&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;server&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10s&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;localhost:2181&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ref: &lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-zookeeper.html&quot;&gt;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-zookeeper.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;zookeeper-dashboards&quot;&gt;zookeeper dashboards&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/emm-9.png&quot; alt=&quot;emm-9.png&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;metricbeat-setup&quot;&gt;Metricbeat setup&lt;/h2&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# dashboard 생성을 위해 /usr/share/metricbeat 이동하여 실행&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /usr/share/metricbeat
+
+&lt;span class=&quot;c&quot;&gt;# -e 옵션으로 error 여부를 stdout 으로 출력. log에서 host에 정상 접속 했는지 확인 가능&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat setup &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; /etc/metricbeat/metricbeat.yml &lt;span class=&quot;nt&quot;&gt;--dashboards&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;setup 완료 후 마지막 문장에 dashboard가 정상 로딩된 것을 확인
+&lt;img src=&quot;/assets/img/contents/emm-10.png&quot; alt=&quot;emm-10.png&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;metricbeat-구동&quot;&gt;Metricbeat 구동&lt;/h2&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl start metricbeat.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;metricbeat-log-확인&quot;&gt;Metricbeat log 확인&lt;/h2&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;journalctl &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; metricbeat
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-modules.html&quot;&gt;Metricbeat Modules&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Elasticsearch" /><category term="Elastic" /><category term="ELK" /><category term="Metricbeat" /><category term="Beat" /><summary type="html">Elastic Metricbeat 모듈 설정</summary></entry><entry><title type="html">Elastic Stack Observability 개요</title><link href="http://localhost:4000/2021/07/27/elastic-observability.html" rel="alternate" type="text/html" title="Elastic Stack Observability 개요" /><published>2021-07-27T00:00:00+09:00</published><updated>2021-07-27T00:00:00+09:00</updated><id>http://localhost:4000/2021/07/27/elastic-observability</id><content type="html" xml:base="http://localhost:4000/2021/07/27/elastic-observability.html">&lt;h1 id=&quot;elastic-stack-observability-개요&quot;&gt;Elastic Stack Observability 개요&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/titles/elastic-logo.png&quot; alt=&quot;elastic-logo.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.elastic.co/kr/blog/observability-with-the-elastic-stack&quot;&gt;Observability with the elastic stack&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Elastic Stack을 이용하여 MSA 서비스 모니터링시 모니터링 중앙 집중화를 통한 가관측성(Observability)에 대하여 알아본다.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;모니터링의-3요소&quot;&gt;모니터링의 3요소&lt;/h2&gt;
+
+&lt;div class=&quot;row&quot;&gt;
+    
+    &lt;div class=&quot;column&quot;&gt;
+        &lt;img class=&quot;single&quot; src=&quot;/assets/img/contents/eo-1.png&quot; alt=&quot;eo-1.png&quot; /&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/eo-2.png&quot; alt=&quot;eo-2.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;운영시 모니터링 요소는 Logs, Metrics, APM 크게 3가지로 분류할 수 있다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Logs&lt;/li&gt;
+  &lt;li&gt;Metrics&lt;/li&gt;
+  &lt;li&gt;APM(Application Perfromance Monitoring)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;추가로 Heartbeat, Packetbeat 등을 이용한 서버의 가용성을 체크하는 Uptime Data가 있음&lt;/p&gt;
+
+&lt;h3 id=&quot;logs-data&quot;&gt;Logs Data&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/eo-3.png&quot; alt=&quot;eo-3.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;어플리케이션 로그, 서비스 로그 등의 각 모듈의 실제 로그로 Filebeat, FunctionBeat 등을 이용하여 수집한다.&lt;/p&gt;
+
+&lt;p&gt;DB 롱쿼리, 호출 내역, 이벤트 데이터 수발신, Kafka 행등 서비스 레벨에서 작성하는 로그를 통한 가시성을 챙길 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;metrics-data&quot;&gt;Metrics Data&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/eo-4.png&quot; alt=&quot;eo-4.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/eo-5.png&quot; alt=&quot;eo-5.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;호스트, 시스템의 리소스 정보 및 사용량, 부하율, 네트워크 트래픽 등&lt;/p&gt;
+
+&lt;p&gt;주기적인 전체 요약이나 통계적인 정보로 일정 기간에 걸쳐서 샘플링되는 경향을 지닌 데이터이다.&lt;/p&gt;
+
+&lt;p&gt;VM의 부하율, 메모리 점유율 등을 파악하여 Scale Out을 하거나 DB의 사용량을 파악하여 Worker node를 늘린다던지 하는 방향으로 사용할 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;apm-data&quot;&gt;APM Data&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/eo-6.png&quot; alt=&quot;eo-6.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/eo-7.png&quot; alt=&quot;eo-7.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;어플리케이션 중점의 성능 정보로 실제 어플리케이션 오류 정보나 작업 수행 시간, 서비스간 상호 연동, 트랜잭션 추적, 병목 지점등 많은 정보를 담아낸다.&lt;/p&gt;
+
+&lt;p&gt;성능 병목 파악, 에러 검출, Long Query, 트랜잭션 추적 등 어플리케이션 레벨의 가시성을 챙겨준다.&lt;/p&gt;
+
+&lt;p&gt;Application에 Agent가 사이드카 형태로 올라가는 방식으로 많이 사용한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;uptime-data&quot;&gt;Uptime Data&lt;/h3&gt;
+
+&lt;p&gt;Liveness, Readiness, Healthz 등 Uptime 정보&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;elk-stackelastic-stack을-채택한-이유&quot;&gt;ELK Stack(Elastic Stack)을 채택한 이유&lt;/h2&gt;
+
+&lt;p&gt;위의 모니터링을 통하여 가시성을 챙기는 방법은 여러가지가 있을 수 있으나 ELK Stack을 채택한 이유는 크게 다음과 같다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;루씬(Lucene) 기반의 뛰어난 분산처리를 통한 실시간 검색 기능을 제공한다.&lt;/li&gt;
+  &lt;li&gt;메트릭, 로그, APM 등의 모니터링 정보를 중앙 집중화할 수 있다.&lt;/li&gt;
+  &lt;li&gt;오픈소스 기반으로 다양한 서드파티 라이브러리를 제공하여 여러 오픈소스들을 쉽게 연동 가능&lt;/li&gt;
+  &lt;li&gt;다양한 시각화 라이브러리를 제공하여 큰 어려움 없이 데이터 시각화 가능&lt;/li&gt;
+  &lt;li&gt;시계열 데이터를 운영하는데 최적화&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;elk-적용-이전&quot;&gt;ELK 적용 이전&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/eo-8.png&quot; alt=&quot;eo-8.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/eo-9.png&quot; alt=&quot;eo-9.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;각기 다른 정보를 모니터링하기 위해 특화된 여러 툴들을 띄워놓고 모니터링한다.&lt;/p&gt;
+
+&lt;p&gt;따라서 관리 포인트가 많아지고 데이터의 중복이 발생할 수 있다.&lt;/p&gt;
+
+&lt;h4 id=&quot;elk-적용-이후&quot;&gt;ELK 적용 이후&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/eo-10.png&quot; alt=&quot;eo-10.png&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;단일 페이지에서 중앙 집중화된 로그를 쉽게 모니터링 할 수 있다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;모든 metric, apm, logs 정보들은 Elasticsearch의 인덱스이므로 데이터를 시각화, 머신러닝, 필터링 하는데 아무런 제약이 없다.&lt;/p&gt;
+
+&lt;p&gt;로그 중앙집중화 및 가시성 확보뿐만 아니라 Elasticsearch는 데이터 분석 엔진으로도 탁월한 성능을 자랑한다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/kr/blog/observability-with-the-elastic-stack&quot;&gt;Observability with the elastic stack&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Elasticsearch" /><category term="Elastic" /><category term="ELK" /><category term="Kibana" /><category term="Logstash" /><category term="Monitoring" /><category term="Observability" /><summary type="html">Elastic Stack Observability 개요</summary></entry><entry><title type="html">Elastic Metricbeat 설치 및 설정</title><link href="http://localhost:4000/2021/07/27/elastic-metricbeat-install.html" rel="alternate" type="text/html" title="Elastic Metricbeat 설치 및 설정" /><published>2021-07-27T00:00:00+09:00</published><updated>2021-07-27T00:00:00+09:00</updated><id>http://localhost:4000/2021/07/27/elastic-metricbeat-install</id><content type="html" xml:base="http://localhost:4000/2021/07/27/elastic-metricbeat-install.html">&lt;h1 id=&quot;elastic-metricbeat-설치-및-설정&quot;&gt;Elastic Metricbeat 설치 및 설정&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/titles/elastic-beats-logo.png&quot; alt=&quot;elastic-beats-logo.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-overview.html&quot;&gt;Metricbeat Overview&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;로그 정보를 수집하는 Filebeat를 각 VM(Ubuntu)에 설치하여 로그 파일을 Elasticsearch로 전송한다.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;metricbeat란&quot;&gt;Metricbeat란&lt;/h2&gt;
+
+&lt;p&gt;Elastic Stack에 포함되는 오픈소스로 시스템과 서비스의 규격화된 메트릭 정보를 경량화된 방식으로 수집하고 Logstash, Elasticsearch, Kibana 등으로 전달하는 수집기&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;metricbeat-설치&quot;&gt;Metricbeat 설치&lt;/h2&gt;
+&lt;p&gt;현재 설치된 elasticsearch 버전을 확인 후 &lt;strong&gt;호환되는 버전&lt;/strong&gt;의 metricbeat를 설치한다.&lt;/p&gt;
+
+&lt;p&gt;되도록 elaticsearch 버전과 동일한 버전의 metricbeat을 설치한다.&lt;/p&gt;
+
+&lt;p&gt;elastic component들 과거버전 선택 download:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;https://www.elastic.co/kr/downloads/past-releases&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;metricbeat 7.11.2 download url:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;https://www.elastic.co/downloads/past-releases/metricbeat-7-11-2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;wget 으로 7.11.2 버전을 download 및 설치:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 다운로드&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.11.2-amd64.deb
+
+&lt;span class=&quot;c&quot;&gt;# RobotMakers EPC에는 7.12.1 설치됨&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.12.1-amd64.deb
+
+&lt;span class=&quot;c&quot;&gt;# CentOS 7 용(rpm)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.12.1-x86_64.rpm
+
+&lt;span class=&quot;c&quot;&gt;# 설치&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;dpkg &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; metricbeat-7.11.2-amd64.deb
+&lt;span class=&quot;c&quot;&gt;# 7.12.1 버전&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;dpkg &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; metricbeat-7.12.1-amd64.deb
+&lt;span class=&quot;c&quot;&gt;#CentOS rpm&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rpm &lt;span class=&quot;nt&quot;&gt;-ivh&lt;/span&gt; ./metricbeat-7.12.1-x86_64.rpm
+
+&lt;span class=&quot;c&quot;&gt;# 설치 후 설치된 버전 upgrade 막기&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;apt-mark hold metricbeat
+
+&lt;span class=&quot;c&quot;&gt;# 설치파일 삭제&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;rm &lt;/span&gt;metricbeat-7.11.2-amd64.deb
+
+&lt;span class=&quot;c&quot;&gt;# bin path를 .zshrc 파일에 추가 후 적용&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/share/metricbeat/bin:&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; .zshrc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;system booting 시 자동 실행 등록.&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;metricbeat.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl daemon-reload
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;metricbeat-설정&quot;&gt;Metricbeat 설정&lt;/h2&gt;
+&lt;p&gt;metricbeat 설치 후 elasticsearch로의 접속 설정 및 보안 설정 진행&lt;/p&gt;
+
+&lt;p&gt;config directory:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;/etc/metricbeat&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;config file:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;metricbeat.yml&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;metricbeat-접속-설정-및-보안-설정&quot;&gt;Metricbeat 접속 설정 및 보안 설정&lt;/h3&gt;
+&lt;p&gt;미리 구축해둔 elasticsearch에 연결할 예정이므로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;output.elasticsearch&lt;/code&gt; 섹션에 연결 설정을 진행한다.&lt;/p&gt;
+
+&lt;p&gt;설정 진행 시 ssl 부분도 설정하며 인증서 파일은 data node용으로 만들어둔 인증서를 사용한다.&lt;/p&gt;
+
+&lt;p&gt;elasticsearch 연결 설정:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;output.elasticsearch&lt;/code&gt; 값을 설정&lt;/li&gt;
+  &lt;li&gt;username, password 는 hard-coded 하지 말고 serets keystore 등으로 대체 필요&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;metricbeat.yml 설정 내용 - &lt;strong&gt;SSL 인증 키 없이&lt;/strong&gt; http 접속 시 아래 설정 사용(RobotMakers의 경우):&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# kibana 접속 정보 설정.&lt;/span&gt;
+setup.kibana:
+  host: &lt;span class=&quot;s2&quot;&gt;&quot;http://10.213.196.6:5601&quot;&lt;/span&gt;
+
+output.elasticsearch:
+  &lt;span class=&quot;c&quot;&gt;# master node들 &lt;/span&gt;
+  hosts: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;10.213.196.68:9200&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;10.213.196.23:9200&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;10.213.196.44:9200&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;# 보안설정 후 https 접속&lt;/span&gt;
+  protocol: &lt;span class=&quot;s2&quot;&gt;&quot;http&quot;&lt;/span&gt;
+
+  username: &lt;span class=&quot;s2&quot;&gt;&quot;elastic&quot;&lt;/span&gt;
+  password: &lt;span class=&quot;s2&quot;&gt;&quot;elastic&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;metricbeat.yml 설정 내용 - SSL 인증 키 생성하여 적용 시 아래 설정 사용:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# kibana 접속 정보 설정.&lt;/span&gt;
+setup.kibana:
+  host: &lt;span class=&quot;s2&quot;&gt;&quot;https://172.25.0.166:5601&quot;&lt;/span&gt;
+
+  ssl:
+    enabled: &lt;span class=&quot;nb&quot;&gt;true
+    &lt;/span&gt;certificate_authorities: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/etc/elasticsearch/certs/ca.crt&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+    certificate: &lt;span class=&quot;s2&quot;&gt;&quot;/etc/elasticsearch/certs/data1.crt&quot;&lt;/span&gt;
+    key: &lt;span class=&quot;s2&quot;&gt;&quot;/etc/elasticsearch/certs/data1.key&quot;&lt;/span&gt;
+    
+output.elasticsearch:
+  &lt;span class=&quot;c&quot;&gt;# master node들 &lt;/span&gt;
+  hosts: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;172.25.0.92:9200&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;172.25.0.159:9200&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;172.25.0.121:9200&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;# 보안설정 후 https 접속&lt;/span&gt;
+  protocol: &lt;span class=&quot;s2&quot;&gt;&quot;https&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;#api_key: &quot;id:api_key&quot;&lt;/span&gt;
+  username: &lt;span class=&quot;s2&quot;&gt;&quot;elastic&quot;&lt;/span&gt;
+  password: &lt;span class=&quot;s2&quot;&gt;&quot;{암호}&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;# tls 설정 값. logstash-1 서버에 적용중이기 때문에 해당 node의 인증서를 적용&lt;/span&gt;
+  ssl:
+    certificate_authorities: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/etc/elasticsearch/certs/ca.crt&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+    certificate: &lt;span class=&quot;s2&quot;&gt;&quot;/etc/elasticsearch/certs/data1.crt&quot;&lt;/span&gt;
+    key: &lt;span class=&quot;s2&quot;&gt;&quot;/etc/elasticsearch/certs/data1.key&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;설정파일 테스트. 설정 파일이 위치한 directory 에서 테스트 가능하며 테스트 후 OK가 출력되면 OK:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 테스트 진행 후 Confg OK 출력 확인&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat &lt;span class=&quot;nb&quot;&gt;test &lt;/span&gt;config &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/emi-1.png&quot; alt=&quot;emi-1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;system-module-설정&quot;&gt;System module 설정&lt;/h2&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 필요 시 system 모듈 설정&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vi /etc/metricbeat/modules.d/system.yml
+
+&lt;span class=&quot;c&quot;&gt;# 추가 module 없이 활성화를 하면 system metric만 수집함.&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;metricbeat-setup&quot;&gt;Metricbeat Setup&lt;/h3&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# asset 로딩 시 dashboard 생성을 위해 /usr/share/metricbeat 으로 이동하여 실행&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /usr/share/metricbeat
+
+&lt;span class=&quot;c&quot;&gt;# -e 옵션으로 error 여부를 stdout 으로 출력. log에서 host에 정상 접속 했는지 확인 가능&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat setup &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; /etc/metricbeat/metricbeat.yml &lt;span class=&quot;nt&quot;&gt;--dashboards&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;metricbeat-구동--metric-값-전송&quot;&gt;Metricbeat 구동 &amp;amp; metric 값 전송&lt;/h3&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl start metricbeat.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;metricbeat-모듈-설정&quot;&gt;Metricbeat 모듈 설정&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;/2021/08/02/elastic-metricbeat-modules.html&quot;&gt;Elastic Metricbeat 모듈 설정&lt;/a&gt; 참고&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-overview.html&quot;&gt;Metricbeat Overview&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Elasticsearch" /><category term="Elastic" /><category term="ELK" /><category term="Metricbeat" /><category term="Beat" /><summary type="html">Elastic Metricbeat 설치 및 설정</summary></entry><entry><title type="html">SonarQube 설정 및 트러블슈팅</title><link href="http://localhost:4000/2021/05/10/sonarqube-config.html" rel="alternate" type="text/html" title="SonarQube 설정 및 트러블슈팅" /><published>2021-05-10T00:00:00+09:00</published><updated>2021-05-10T00:00:00+09:00</updated><id>http://localhost:4000/2021/05/10/sonarqube-config</id><content type="html" xml:base="http://localhost:4000/2021/05/10/sonarqube-config.html">&lt;h1 id=&quot;sonarqube-설정-및-트러블슈팅&quot;&gt;SonarQube 설정 및 트러블슈팅&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/titles/sonarqube.png&quot; alt=&quot;sonarqube.png&quot; /&gt;&lt;/p&gt;
 
@@ -1077,13 +2076,15 @@ flowchart LR
 &lt;p&gt;설정시 오류를 해결했던 내역을(트러블슈팅) 정리하였다.&lt;/p&gt;
 
 &lt;hr /&gt;
+
 &lt;h2 id=&quot;sonarqube-설정&quot;&gt;SonarQube 설정&lt;/h2&gt;
 
-&lt;h3 id=&quot;ingress-ssl-인증서-적용&quot;&gt;Ingress SSL 인증서 적용&lt;/h3&gt;
+&lt;h3 id=&quot;sonarqube-ingress-ssl-인증서-적용&quot;&gt;SonarQube Ingress SSL 인증서 적용&lt;/h3&gt;
+
 &lt;h4 id=&quot;1-k8s-secret-생성&quot;&gt;1. k8s Secret 생성&lt;/h4&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;k8s secret 생성은 &lt;a href=&quot;#kubernetes-ingress-nginx-https&quot;&gt;Kubernetes ingress nginx https 인증서 적용&lt;/a&gt; 참조&lt;/p&gt;
+  &lt;p&gt;k8s secret 생성은 &lt;a href=&quot;/2021/04/03/kubernetes-ingress.html&quot;&gt;Kubernetes Nginx Ingress 적용&lt;/a&gt; 참고&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h4 id=&quot;2-ingress-리소스-설정&quot;&gt;2. Ingress 리소스 설정&lt;/h4&gt;
@@ -1385,44 +2386,48 @@ Ingress HTTP, HTTPS(/sonarqube) -&amp;gt; sonarqube 서비스(9000)&lt;/p&gt;
       &lt;/li&gt;
     &lt;/ol&gt;
   &lt;/li&gt;
-  &lt;li&gt;Java caCerts 인증서 설정(Kubernetes TLS Secret)
+  &lt;li&gt;
+    &lt;h4 id=&quot;java-cacerts-인증서-설정kubernetes-tls-secret&quot;&gt;Java caCerts 인증서 설정(Kubernetes TLS Secret)&lt;/h4&gt;
+
     &lt;blockquote&gt;
       &lt;p&gt;Java에서는 https 통신시 기본적으로 java keystore에 인증서를 요구한다.&lt;br /&gt;위에서 public 경로를 http로 설정하였으면 상관 없으나 https로 설정한 경우 진행&lt;/p&gt;
 
       &lt;p&gt;현재 Java 기반 서비스들은 Kubernetes 환경에 떠있으므로 해당 환경으로 진행&lt;/p&gt;
-    &lt;/blockquote&gt;
-    &lt;ol&gt;
-      &lt;li&gt;기존 k8s에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kubernetes.io/tls&lt;/code&gt; 타입으로 떠있는 tls 타입 시크릿은 사용불가하므로 opaque 타입(기본타입) secret을 생성한다.&lt;/li&gt;
-      &lt;li&gt;sonarqube-secret.yaml 생성
-        &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; 	&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vim sonarqube-secret.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
-        &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+      &lt;ol&gt;
+        &lt;li&gt;기존 k8s에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kubernetes.io/tls&lt;/code&gt; 타입으로 떠있는 tls 타입 시크릿은 사용불가하므로 opaque 타입(기본타입) secret을 생성한다.&lt;/li&gt;
+        &lt;li&gt;sonarqube-secret.yaml 생성
+          &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; 	&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vim sonarqube-secret.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;          &lt;/div&gt;
+          &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
 &lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Secret&lt;/span&gt;
 &lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
   &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;sonarqube-secret&lt;/span&gt;
 &lt;span class=&quot;na&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
   &lt;span class=&quot;na&quot;&gt;cert-1.crt&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;MIIFIzCC...&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# .crt(X.509 포맷)의 인증서값&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
-        &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl apply &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; sonarqube-secret.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
-      &lt;/li&gt;
-      &lt;li&gt;helm values.yaml 수정
-        &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vim values.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
-        &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;          &lt;/div&gt;
+          &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl apply &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; sonarqube-secret.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;          &lt;/div&gt;
+        &lt;/li&gt;
+        &lt;li&gt;helm values.yaml 수정
+          &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vim values.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;          &lt;/div&gt;
+          &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;...&lt;/span&gt;
  &lt;span class=&quot;na&quot;&gt;caCerts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
    &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;adoptopenjdk/openjdk11:alpine&lt;/span&gt;
    &lt;span class=&quot;na&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
    &lt;span class=&quot;na&quot;&gt;secret&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;sonarqube-secret&lt;/span&gt;
 &lt;span class=&quot;nn&quot;&gt;...&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
-        &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# helm upgrade&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;          &lt;/div&gt;
+          &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# helm upgrade&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;helm upgrade sonarqube oteemocharts/sonarqube &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; values.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
-      &lt;/li&gt;
-    &lt;/ol&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;          &lt;/div&gt;
+        &lt;/li&gt;
+      &lt;/ol&gt;
+    &lt;/blockquote&gt;
   &lt;/li&gt;
-  &lt;li&gt;테스트
+  &lt;li&gt;
+    &lt;h4 id=&quot;테스트&quot;&gt;테스트&lt;/h4&gt;
+
     &lt;ol&gt;
       &lt;li&gt;로그아웃 후 메인페이지에 들어가면 아래 이미지와 같이 Log in with GitLab 버튼 생성 확인
  &lt;img src=&quot;/assets/img/contents/sc-6.png&quot; alt=&quot;sc-6.png&quot; /&gt;&lt;/li&gt;
@@ -1444,9 +2449,9 @@ Ingress HTTP, HTTPS(/sonarqube) -&amp;gt; sonarqube 서비스(9000)&lt;/p&gt;
 &lt;p&gt;대신 해당 배지를 사용하려면 SonarQube 프로젝트가 Public으로 설정되어야하며 이는 소스 취약점을 외부에서 누구나 볼 수 있다는 것을 의미한다.&lt;/p&gt;
 
 &lt;hr /&gt;
-&lt;h3 id=&quot;troubleshooting&quot;&gt;Troubleshooting&lt;/h3&gt;
+&lt;h2 id=&quot;troubleshooting&quot;&gt;Troubleshooting&lt;/h2&gt;
 
-&lt;h4 id=&quot;1-분석-권한-없음&quot;&gt;1. 분석 권한 없음&lt;/h4&gt;
+&lt;h3 id=&quot;1-분석-권한-없음&quot;&gt;1. 분석 권한 없음&lt;/h3&gt;
 
 &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ERROR] Error during SonarScanner execution
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ERROR] You&lt;span class=&quot;s1&quot;&gt;&apos;re not authorized to run analysis. Please contact the project administrator.
@@ -1464,7 +2469,7 @@ Ingress HTTP, HTTPS(/sonarqube) -&amp;gt; sonarqube 서비스(9000)&lt;/p&gt;
   &lt;li&gt;연동된 유저가 속한 그룹 혹은 유저 자체에 Execute Analysis 권한 체크&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h4 id=&quot;2-class-파일-없음&quot;&gt;2. class 파일 없음&lt;/h4&gt;
+&lt;h3 id=&quot;2-class-파일-없음&quot;&gt;2. class 파일 없음&lt;/h3&gt;
 
 &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ERROR] Failed to execute goal org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;default-cli&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; on project sample-project: Your project contains .java files, please provide compiled classes with sonar.java.binaries property, or exclude them from the analysis with sonar.exclusions property. -&amp;gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Help 1]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -1481,7 +2486,7 @@ Ingress HTTP, HTTPS(/sonarqube) -&amp;gt; sonarqube 서비스(9000)&lt;/p&gt;
 
 &lt;p&gt;만약 없을 경우, 수동으로 컴파일하여 .class 파일을 넣어줘야함.&lt;/p&gt;
 
-&lt;h4 id=&quot;3-소스-분석시-http-413-request-entity-too-large&quot;&gt;3. 소스 분석시 HTTP 413 REQUEST ENTITY TOO LARGE&lt;/h4&gt;
+&lt;h3 id=&quot;3-소스-분석시-http-413-request-entity-too-large&quot;&gt;3. 소스 분석시 HTTP 413 REQUEST ENTITY TOO LARGE&lt;/h3&gt;
 
 &lt;p&gt;소스 분석시 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HTTP 413 REQUEST ENTITY TOO LARGE&lt;/code&gt;가 나오는 경우&lt;/p&gt;
 
@@ -1505,7 +2510,7 @@ Ingress HTTP, HTTPS(/sonarqube) -&amp;gt; sonarqube 서비스(9000)&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h3 id=&quot;reference&quot;&gt;Reference&lt;/h3&gt;
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-jenkins/&quot;&gt;SonarScanner for Jenkins&lt;/a&gt;&lt;/li&gt;
@@ -1913,7 +2918,7 @@ Ingress HTTP, HTTPS(/sonarqube) -&amp;gt; sonarqube 서비스(9000)&lt;/p&gt;
 
 &lt;p&gt;테스트용 메이븐 프로젝트 기준으로 작성&lt;/p&gt;
 
-&lt;p&gt;Gradle 프로젝트 또는 다른 설정을 보려면 &lt;a href=&quot;#bkmrk-sonarqube-for-gradle&quot;&gt;SonarQube for Gradle&lt;/a&gt;을 참조&lt;/p&gt;
+&lt;p&gt;Gradle 프로젝트 또는 다른 설정을 보려면 &lt;a href=&quot;#bkmrk-sonarqube-for-gradle&quot;&gt;SonarQube for Gradle&lt;/a&gt;을 참고&lt;/p&gt;
 
 &lt;p&gt;SonarQube와 연동할 파이프라인 스크립트에 아래와 같이 Stage 추가&lt;/p&gt;
 
@@ -1944,7 +2949,7 @@ Ingress HTTP, HTTPS(/sonarqube) -&amp;gt; sonarqube 서비스(9000)&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;withSonarEnv()&lt;/code&gt;에는 위의 설정에서 Jenkins에서 설정한 SonarQube Server 이름으로 설정해야함&lt;br /&gt;&lt;br /&gt;Qulaity Gate의 경우 SonarQube에서 Jenkins로 Webhook이 설정되어 있어야함 (&lt;a href=&quot;#bkmrk-webhook-%EC%84%A4%EC%A0%95&quot;&gt;Webhook 설정&lt;/a&gt; 참조)&lt;/p&gt;
+  &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;withSonarEnv()&lt;/code&gt;에는 위의 설정에서 Jenkins에서 설정한 SonarQube Server 이름으로 설정해야함&lt;br /&gt;&lt;br /&gt;Qulaity Gate의 경우 SonarQube에서 Jenkins로 Webhook이 설정되어 있어야함 (&lt;a href=&quot;/2021/05/10/sonarqube-config.html&quot;&gt;Webhook 설정&lt;/a&gt; 참고)&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/contents/sj-4.png&quot; alt=&quot;sj-4.png&quot; /&gt;&lt;/p&gt;
@@ -1957,444 +2962,446 @@ Ingress HTTP, HTTPS(/sonarqube) -&amp;gt; sonarqube 서비스(9000)&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h3 id=&quot;reference&quot;&gt;Reference&lt;/h3&gt;
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-jenkins/&quot;&gt;SonarScanner for Jenkins&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.jenkins.io/doc/pipeline/steps/sonar/#sonarqube-scanner-for-jenkins&quot;&gt;SonarQube Scanner for Jenkins&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Sonarqube" /><category term="Jenkins" /><category term="Helm" /><category term="Docker" /><category term="Docker-Compose" /><summary type="html">SonarQube 설치 및 Jenkins pipeline 연동하기</summary></entry><entry><title type="html">Dark Mode</title><link href="http://localhost:4000/2021/04/27/dark-mode.html" rel="alternate" type="text/html" title="Dark Mode" /><published>2021-04-27T00:00:00+09:00</published><updated>2021-04-27T00:00:00+09:00</updated><id>http://localhost:4000/2021/04/27/dark-mode</id><content type="html" xml:base="http://localhost:4000/2021/04/27/dark-mode.html">&lt;p&gt;&lt;strong&gt;More colors with less light.&lt;/strong&gt;&lt;/p&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Sonarqube" /><category term="Jenkins" /><category term="Helm" /><category term="Docker" /><category term="Docker-Compose" /><summary type="html">SonarQube 설치 및 Jenkins pipeline 연동하기</summary></entry><entry><title type="html">Kubernetes Nginx Ingress 적용</title><link href="http://localhost:4000/2021/04/03/kubernetes-ingress.html" rel="alternate" type="text/html" title="Kubernetes Nginx Ingress 적용" /><published>2021-04-03T00:00:00+09:00</published><updated>2021-04-03T00:00:00+09:00</updated><id>http://localhost:4000/2021/04/03/kubernetes-ingress</id><content type="html" xml:base="http://localhost:4000/2021/04/03/kubernetes-ingress.html">&lt;h1 id=&quot;kubernetes-nginx-ingress-적용&quot;&gt;Kubernetes Nginx Ingress 적용&lt;/h1&gt;
 
-&lt;p&gt;Click the half-moon most top-right button to turn the lights on/off.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/titles/nginx-logo.svg&quot; alt=&quot;nginx-logo.svg&quot; /&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;headers&quot;&gt;Headers&lt;/h1&gt;
-&lt;h2 id=&quot;level-2&quot;&gt;Level 2&lt;/h2&gt;
-&lt;h3 id=&quot;level-3&quot;&gt;Level 3&lt;/h3&gt;
-&lt;h4 id=&quot;level-4&quot;&gt;Level 4&lt;/h4&gt;
-&lt;h5 id=&quot;level-5&quot;&gt;Level 5&lt;/h5&gt;
-&lt;h6 id=&quot;level-6&quot;&gt;Level 6&lt;/h6&gt;
+&lt;p&gt;&lt;a href=&quot;https://kubernetes.io/docs/concepts/services-networking/ingress/&quot;&gt;Kubernetes Ingress&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;headers-with-links&quot;&gt;&lt;a href=&quot;http://localhost&quot;&gt;Headers with links&lt;/a&gt;&lt;/h1&gt;
-&lt;h2 id=&quot;level-2-1&quot;&gt;&lt;a href=&quot;http://localhost&quot;&gt;Level 2&lt;/a&gt;&lt;/h2&gt;
-&lt;h3 id=&quot;level-3-1&quot;&gt;&lt;a href=&quot;http://localhost&quot;&gt;Level 3&lt;/a&gt;&lt;/h3&gt;
-&lt;h4 id=&quot;level-4-1&quot;&gt;&lt;a href=&quot;http://localhost&quot;&gt;Level 4&lt;/a&gt;&lt;/h4&gt;
-&lt;h5 id=&quot;level-5-1&quot;&gt;&lt;a href=&quot;http://localhost&quot;&gt;Level 5&lt;/a&gt;&lt;/h5&gt;
-&lt;h6 id=&quot;level-6-1&quot;&gt;&lt;a href=&quot;http://localhost&quot;&gt;Level 6&lt;/a&gt;&lt;/h6&gt;
+&lt;p&gt;본 문서는 온프레미스 환경에서의 Ingress, SSL 인증서 적용 내용을 정리하였다.&lt;/p&gt;
 
-&lt;h2 id=&quot;code-highlight&quot;&gt;Code highlight&lt;/h2&gt;
-&lt;p&gt;Mode specific code highlighting themes. &lt;a href=&quot;https://kramdown.gettalong.org/&quot;&gt;Kramdown&lt;/a&gt; which is responsible for the color highlighting may be more limited than your IDE.&lt;/p&gt;
+&lt;p&gt;nginx ingress controller를 이용하여 jenkins 서비스에 연결하는 과정을 정리하였다.&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;#!/usr/bin/env python
-&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
-Test file for syntax
-&quot;&quot;&quot;&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# TODO: Use dark mode
-&lt;/span&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; 
-    &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;except&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NameError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Variable bar is not defined&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; 
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;octal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\04&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&lt;/span&gt;
-        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;Example &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\t\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;
-    
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__exit__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;exit&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u1111\xFF&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;pass&lt;/span&gt;
-    
-    &lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;staticmethod&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;example&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;il&quot;&gt;2L&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;example&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,),&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;raw&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sa&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;unicode&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;tables&quot;&gt;Tables&lt;/h2&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;hex&lt;/th&gt;
-      &lt;th&gt;dec&lt;/th&gt;
-      &lt;th&gt;oct&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;5&lt;/td&gt;
-      &lt;td&gt;5&lt;/td&gt;
-      &lt;td&gt;5&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;A&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-      &lt;td&gt;12&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;F&lt;/td&gt;
-      &lt;td&gt;16&lt;/td&gt;
-      &lt;td&gt;20&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;F5&lt;/td&gt;
-      &lt;td&gt;21&lt;/td&gt;
-      &lt;td&gt;25&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&quot;katex&quot;&gt;KaTeX&lt;/h2&gt;
-
-&lt;p&gt;Some KaTeX diagrams to check in dark mode:&lt;/p&gt;
-
-\[\begin{CD}
-A @&amp;gt;a&amp;gt;&amp;gt; B \\
-@VbVV @AAcA \\
-C @= D
-\end{CD}\]
-
-\[\utilde{AB}\]</content><author><name></name></author><category term="Katex" /><category term="Markdown" /><summary type="html">More colors with less light.</summary></entry><entry><title type="html">Sample post</title><link href="http://localhost:4000/2019/06/30/sample-post.html" rel="alternate" type="text/html" title="Sample post" /><published>2019-06-30T00:00:00+09:00</published><updated>2019-06-30T00:00:00+09:00</updated><id>http://localhost:4000/2019/06/30/sample-post</id><content type="html" xml:base="http://localhost:4000/2019/06/30/sample-post.html">&lt;p&gt;Consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. 
-Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. 
-&lt;!--more--&gt;
-Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem.&lt;/p&gt;
-
+&lt;hr /&gt;
+&lt;h2 id=&quot;선행-사항&quot;&gt;선행 사항&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;Consectetur adipiscing elit&lt;/li&gt;
-  &lt;li&gt;Donec a diam lectus&lt;/li&gt;
-  &lt;li&gt;Sed sit amet ipsum mauris&lt;/li&gt;
+  &lt;li&gt;Let’s Encrypt 인증서 발급&lt;/li&gt;
+  &lt;li&gt;Kubernetes 환경 구축&lt;/li&gt;
+  &lt;li&gt;Ingress controller 설치&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices accumsan. Donec sed odio eros. Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In rutrum accumsan ultricies. Mauris vitae nisi at sem facilisis semper ac in est.&lt;/p&gt;
-
-&lt;p&gt;Nunc diam velit, adipiscing ut tristique vitae, sagittis vel odio. Maecenas convallis ullamcorper ultricies. Curabitur ornare, ligula &lt;em&gt;semper consectetur sagittis&lt;/em&gt;, nisi diam iaculis velit, id fringilla sem nunc vel mi. Nam dictum, odio nec pretium volutpat, arcu ante placerat erat, non tristique elit urna et turpis. Quisque mi metus, ornare sit amet fermentum et, tincidunt et orci. Fusce eget orci a orci congue vestibulum.&lt;/p&gt;
-
-&lt;div class=&quot;row&quot;&gt;
-    
-    &lt;div style=&quot;flex: 100.0%&quot;&gt;
-        &lt;img class=&quot;single&quot; src=&quot;/assets/img/pexels/travel.jpeg&quot; alt=&quot;travel.jpeg&quot; /&gt;
-    &lt;/div&gt;
-    
+&lt;hr /&gt;
+&lt;h2 id=&quot;ingress-개요&quot;&gt;Ingress 개요&lt;/h2&gt;
+&lt;div class=&quot;mermaid&quot;&gt;
+flowchart LR
+  A[User]
+  subgraph Kubernetes Cluster
+  subgraph Ingress
+  B[Service: Ingress Contoller]
+  J[Pod: Ingress Controller]
+  F[Resource: Ingress]
+  end
+  subgraph Deployment1
+  C[Service1]
+  G[Pod1]
+  end
+  subgraph Deployment2
+  D[Service2]
+  H[Pod2]
+  end
+  subgraph Deployment3
+  E[Service3]
+  I[Pod3]
+  end
+  end
+  A -.Ingress.-&amp;gt; B
+  B---J
+  C---G
+  D---H
+  E---I
+  B---F
+  B --&amp;gt; C &amp;amp; D &amp;amp; E
 &lt;/div&gt;
 
-&lt;p&gt;Ut dolor diam, elementum et vestibulum eu, porttitor vel elit. Curabitur venenatis pulvinar tellus gravida ornare. Sed et erat faucibus nunc euismod ultricies ut id justo. Nullam cursus suscipit nisi, et ultrices justo sodales nec. Fusce venenatis facilisis lectus ac semper. Aliquam at massa ipsum. Quisque bibendum purus convallis nulla ultrices ultricies. Nullam aliquam, mi eu aliquam tincidunt, purus velit laoreet tortor, viverra pretium nisi quam vitae mi. Fusce vel volutpat elit. Nam sagittis nisi dui.&lt;/p&gt;
+&lt;p&gt;외부에서 클러스터에 접근할 때 요청받는 것이 Ingress이다. 쉽게 얘기하면 일반적인 proxy, gateway라고 보면 된다.&lt;/p&gt;
+
+&lt;p&gt;동일하게 로드밸런서, 서비스 메쉬의 역할도 수행하며 경우에 따라서는 Blue Green 배포나 Canary 배포도 가능하다.&lt;/p&gt;
+
+&lt;p&gt;외부 → Ingress → Service → Pod&lt;/p&gt;
+
+&lt;p&gt;내부 서비스에 SSL 인증서를 적용하는 것이 아닌 Ingress에 인증서를 적용한다.&lt;/p&gt;
+
+&lt;p&gt;이와 같이 적용하면 서비스 종속성 없이 앞단에서 인증서 적용이 가능하므로 뒷단의 서비스가 추가되어도 쉽게 적용이 가능하다.&lt;/p&gt;
+
+&lt;h3 id=&quot;ingress-controller와-ingress-resource의-차이&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Ingress Controller&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Ingress Resource&lt;/code&gt;의 차이&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/ki-2.png&quot; alt=&quot;ki-2.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;ingress-controller&quot;&gt;Ingress Controller&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/ki-1.png&quot; alt=&quot;ki-1.png&quot; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Suspendisse lectus leo, consectetur in tempor sit amet, placerat quis neque&lt;/p&gt;
+  &lt;p&gt;이미지: &lt;a href=&quot;https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/&quot;&gt;Certified Kubernetes Administrator(CKA) with Practice Tests&lt;/a&gt; 발췌&lt;/p&gt;
 &lt;/blockquote&gt;
-
-&lt;p&gt;Etiam luctus porttitor lorem, sed suscipit est rutrum non. Curabitur lobortis nisl a enim congue semper. Aenean commodo ultrices imperdiet. Vestibulum ut justo vel sapien venenatis tincidunt.&lt;/p&gt;
-
-\[\Theta \ne \Gamma\]
-
-&lt;p&gt;Phasellus eget dolor sit amet ipsum dapibus condimentum vitae quis lectus. Aliquam ut massa in turpis dapibus convallis. Praesent elit lacus, vestibulum at malesuada et, ornare et est. Ut augue nunc, sodales ut euismod non, adipiscing vitae orci&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. Mauris ut placerat justo. Mauris in ultricies enim. Quisque nec est eleifend nulla ultrices egestas quis ut quam. Donec sollicitudin lectus a mauris pulvinar id aliquam urna cursus. Cras quis ligula sem, vel elementum mi. Phasellus non ullamcorper urna.&lt;/p&gt;
-
-&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
-
-      &lt;p&gt;&lt;span class=&quot;cit-authors&quot;&gt;John Smith&lt;/span&gt;, &lt;span class=&quot;cit-title&quot;&gt;A Title About Citations&lt;/span&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;</content><author><name></name></author><category term="A Tag" /><category term="Katex" /><summary type="html">Consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur.</summary></entry><entry><title type="html">Color Post</title><link href="http://localhost:4000/2019/05/18/color-post.html" rel="alternate" type="text/html" title="Color Post" /><published>2019-05-18T00:00:00+09:00</published><updated>2019-05-18T00:00:00+09:00</updated><id>http://localhost:4000/2019/05/18/color-post</id><content type="html" xml:base="http://localhost:4000/2019/05/18/color-post.html">&lt;h1 id=&quot;what-a-colorful-post&quot;&gt;What a colorful post!&lt;/h1&gt;
-
-&lt;p&gt;This is an idea that came from &lt;a href=&quot;https://github.com/xukimseven/HardCandy-Jekyll&quot;&gt;xukimseven/HardCandy-Jekyll&lt;/a&gt; 
-looking at this cheerful and colorful theme, I wanted to enable something similar for Type-on-Strap.&lt;/p&gt;
-
-&lt;p&gt;You can go fork and star &lt;em&gt;HardCandy-Jekyll&lt;/em&gt; too! 😉&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h2 id=&quot;how-does-it-work&quot;&gt;How does it work?&lt;/h2&gt;
-
-&lt;p&gt;Basically you need to add just one thing, the color:&lt;/p&gt;
-
-&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;post&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Color Post&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;brown&lt;/span&gt;
-&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;It can either be a html color like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;brown&lt;/code&gt; (which look like red to me). Or with the rgb:&lt;/p&gt;
-
-&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;post&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Color Post&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rgb(165,42,42)&lt;/span&gt;
-&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The background used is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lineart.png&lt;/code&gt; from &lt;a href=&quot;https://github.com/xukimseven&quot;&gt;xukimseven&lt;/a&gt; you can edit it in the config file. 
-If you want another one, put it in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/assets/img&lt;/code&gt; as well.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;⚠️ It’s a bit hacking the css in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post.html&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Sylhare</name></author><category term="Test" /><category term="Color" /><summary type="html">What a colorful post! This is an idea that came from xukimseven/HardCandy-Jekyll looking at this cheerful and colorful theme, I wanted to enable something similar for Type-on-Strap. You can go fork and star HardCandy-Jekyll too! 😉</summary></entry><entry><title type="html">Bootstrap</title><link href="http://localhost:4000/2017/09/17/Use-Bootstrap.html" rel="alternate" type="text/html" title="Bootstrap" /><published>2017-09-17T00:00:00+09:00</published><updated>2017-09-17T00:00:00+09:00</updated><id>http://localhost:4000/2017/09/17/Use-Bootstrap</id><content type="html" xml:base="http://localhost:4000/2017/09/17/Use-Bootstrap.html">&lt;p&gt;This theme is compatible with Bootstrap if you choose to use it in your pages or posts.
-Here is a little demo with a code snippet, look at the source to see how the HTML and markdown get tangled.&lt;/p&gt;
-
-&lt;h2 id=&quot;use-bootstrap&quot;&gt;Use bootstrap&lt;/h2&gt;
-
-&lt;p&gt;Add some custom Bootstrap in the custom layout!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://startbootstrap.com/assets/img/sb-logo.svg&quot; alt=&quot;startbootstrap&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;snippet-example&quot;&gt;Snippet example&lt;/h3&gt;
-
-&lt;p&gt;If you are new to Bootstrap you can  always check the &lt;a href=&quot;https://getbootstrap.com/docs/4.1/getting-started/introduction/&quot;&gt;documentation&lt;/a&gt;.&lt;br /&gt;
-Here is an example from &lt;a href=&quot;https://startbootstrap.com/snippets/portfolio-two-column&quot;&gt;startbootstrap.com&lt;/a&gt;.&lt;/p&gt;
-
-&lt;!-- Page Content --&gt;
-&lt;div class=&quot;container&quot;&gt;
-
-  &lt;div class=&quot;row&quot;&gt;
-    &lt;div class=&quot;col-lg-6 mb-4&quot;&gt;
-      &lt;div class=&quot;card h-100&quot;&gt;
-        &lt;a href=&quot;#&quot;&gt;&lt;img class=&quot;card-img-top&quot; src=&quot;http://placehold.it/700x400&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;
-        &lt;div class=&quot;card-body&quot;&gt;
-          &lt;h4 class=&quot;card-title&quot;&gt;
-            &lt;a href=&quot;#&quot;&gt;Project One&lt;/a&gt;
-          &lt;/h4&gt;
-          &lt;p class=&quot;card-text&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.&lt;/p&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;col-lg-6 mb-4&quot;&gt;
-      &lt;div class=&quot;card h-100&quot;&gt;
-        &lt;a href=&quot;#&quot;&gt;&lt;img class=&quot;card-img-top&quot; src=&quot;http://placehold.it/700x400&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;
-        &lt;div class=&quot;card-body&quot;&gt;
-          &lt;h4 class=&quot;card-title&quot;&gt;
-            &lt;a href=&quot;#&quot;&gt;Project Two&lt;/a&gt;
-          &lt;/h4&gt;
-          &lt;p class=&quot;card-text&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit aliquam aperiam nulla perferendis dolor nobis numquam, rem expedita, aliquid optio, alias illum eaque. Non magni, voluptates quae, necessitatibus unde temporibus.&lt;/p&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;col-lg-6 mb-4&quot;&gt;
-      &lt;div class=&quot;card h-100&quot;&gt;
-        &lt;a href=&quot;#&quot;&gt;&lt;img class=&quot;card-img-top&quot; src=&quot;http://placehold.it/700x400&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;
-        &lt;div class=&quot;card-body&quot;&gt;
-          &lt;h4 class=&quot;card-title&quot;&gt;
-            &lt;a href=&quot;#&quot;&gt;Project Three&lt;/a&gt;
-          &lt;/h4&gt;
-          &lt;p class=&quot;card-text&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.&lt;/p&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;col-lg-6 mb-4&quot;&gt;
-      &lt;div class=&quot;card h-100&quot;&gt;
-        &lt;a href=&quot;#&quot;&gt;&lt;img class=&quot;card-img-top&quot; src=&quot;http://placehold.it/700x400&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;
-        &lt;div class=&quot;card-body&quot;&gt;
-          &lt;h4 class=&quot;card-title&quot;&gt;
-            &lt;a href=&quot;#&quot;&gt;Project Four&lt;/a&gt;
-          &lt;/h4&gt;
-          &lt;p class=&quot;card-text&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit aliquam aperiam nulla perferendis dolor nobis numquam, rem expedita, aliquid optio, alias illum eaque. Non magni, voluptates quae, necessitatibus unde temporibus.&lt;/p&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;col-lg-6 mb-4&quot;&gt;
-      &lt;div class=&quot;card h-100&quot;&gt;
-        &lt;a href=&quot;#&quot;&gt;&lt;img class=&quot;card-img-top&quot; src=&quot;http://placehold.it/700x400&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;
-        &lt;div class=&quot;card-body&quot;&gt;
-          &lt;h4 class=&quot;card-title&quot;&gt;
-            &lt;a href=&quot;#&quot;&gt;Project Five&lt;/a&gt;
-          &lt;/h4&gt;
-          &lt;p class=&quot;card-text&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.&lt;/p&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;col-lg-6 mb-4&quot;&gt;
-      &lt;div class=&quot;card h-100&quot;&gt;
-        &lt;a href=&quot;#&quot;&gt;&lt;img class=&quot;card-img-top&quot; src=&quot;http://placehold.it/700x400&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;
-        &lt;div class=&quot;card-body&quot;&gt;
-          &lt;h4 class=&quot;card-title&quot;&gt;
-            &lt;a href=&quot;#&quot;&gt;Project Six&lt;/a&gt;
-          &lt;/h4&gt;
-          &lt;p class=&quot;card-text&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit aliquam aperiam nulla perferendis dolor nobis numquam, rem expedita, aliquid optio, alias illum eaque. Non magni, voluptates quae, necessitatibus unde temporibus.&lt;/p&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;!-- /.row --&gt;
-
-&lt;/div&gt;
-&lt;!-- /.container --&gt;
-
-&lt;h3 id=&quot;mix-it-with-markdown&quot;&gt;Mix it with Markdown&lt;/h3&gt;
-
-&lt;p&gt;All the above was custom HTML with Bootstrap.
-You can also mix it up with some markdown.&lt;/p&gt;
-
-&lt;p&gt;You can use the bootstrap’s build in javascript API to control your event.
-Here is a code snippet for the &lt;a href=&quot;https://getbootstrap.com/docs/4.0/getting-started/javascript/&quot;&gt;documentation&lt;/a&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;#myModal&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;show.bs.modal&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;preventDefault&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// stops modal from being shown&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;That’s just for demo though, you would need to properly integrate your javascript in your page.
-Usually you would put any custom javascript script in the &lt;em&gt;assets&lt;/em&gt; folder under js and reference it in your page from there.&lt;/p&gt;
-
-&lt;p&gt;So try it out using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bootstrap: true&lt;/code&gt; flag! 😉&lt;/p&gt;</content><author><name></name></author><category term="Test" /><summary type="html">This theme is compatible with Bootstrap if you choose to use it in your pages or posts. Here is a little demo with a code snippet, look at the source to see how the HTML and markdown get tangled.</summary></entry><entry><title type="html">Feature images</title><link href="http://localhost:4000/2014/11/29/feature-images.html" rel="alternate" type="text/html" title="Feature images" /><published>2014-11-29T00:00:00+09:00</published><updated>2014-11-29T00:00:00+09:00</updated><id>http://localhost:4000/2014/11/29/feature-images</id><content type="html" xml:base="http://localhost:4000/2014/11/29/feature-images.html">&lt;p&gt;Hopefully you will find enough information about how to set images in your blog here.
-This is an example of a post which includes a feature image specified in the front matter of the post. 
-The feature image spans the full-width of the page, and is shown with the title on permalink pages:&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;feature-img&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;assets/img/feature-img/desk-messy.jpeg&quot;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;thumbnail&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;assets/img/thumbnails/feature-img/desk-messy.jpeg&quot;&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You can also use a thumbnail, a smaller version of the same image to improve loading of the page.
-The thumbnail will also be used when you share your article on other platform (linkedin, whatsapp, facebook, …).&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;And now it is working&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;You can also add images aligned in your post using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aligner&lt;/code&gt; include.
-Make sure to separate all of the image path from in a string separated with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;,&lt;/code&gt;.
-It by default look into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assets/img/&lt;/code&gt; so give the path from there, example:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;% include &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;aligner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;html&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;images&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;pexels/book-glass.jpeg,triangle.png&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;div class=&quot;row&quot;&gt;
-    
-    &lt;div class=&quot;column&quot;&gt;
-        &lt;img src=&quot;/assets/img/pexels/book-glass.jpeg&quot; alt=&quot;book-glass.jpeg&quot; /&gt;
-    &lt;/div&gt;
-    
-    &lt;div class=&quot;column&quot;&gt;
-        &lt;img src=&quot;/assets/img/feature-img/desk-messy.jpeg&quot; alt=&quot;desk-messy.jpeg&quot; /&gt;
-    &lt;/div&gt;
-    
-&lt;/div&gt;
-
-&lt;p&gt;Here you have two images side by side, but you can set more and set the amount per columns 
-(by specifying the number of columns or let it be automatic using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;auto&quot;&lt;/code&gt;):&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;% include &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;aligner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;html&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;images&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;portfolio/cabin.png,portfolio/cake.png,portfolio/circus.png&quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;column&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;div class=&quot;row&quot;&gt;
-    
-    &lt;div style=&quot;flex: 33.333333333333336%&quot;&gt;
-        &lt;img src=&quot;/assets/img/portfolio/cabin.png&quot; alt=&quot;cabin.png&quot; /&gt;
-    &lt;/div&gt;
-    
-    &lt;div style=&quot;flex: 33.333333333333336%&quot;&gt;
-        &lt;img src=&quot;/assets/img/portfolio/cake.png&quot; alt=&quot;cake.png&quot; /&gt;
-    &lt;/div&gt;
-    
-    &lt;div style=&quot;flex: 33.333333333333336%&quot;&gt;
-        &lt;img src=&quot;/assets/img/portfolio/circus.png&quot; alt=&quot;circus.png&quot; /&gt;
-    &lt;/div&gt;
-    
-&lt;/div&gt;
-
-&lt;p&gt;it also works with only one images, it is made to display it smaller than normally.
-However you can just use the Markdown way of doing it to get the image normal sized and centered.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# Markdown way (bigger)&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Travel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]({{&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/assets/img/pexels/computer.jpeg&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;relative_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}})&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# Aligner with only One (50% of width)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;% include &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;aligner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;html&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;images&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;pexels/computer.jpeg&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;div class=&quot;row&quot;&gt;
-    
-    &lt;div class=&quot;column&quot;&gt;
-        &lt;img class=&quot;single&quot; src=&quot;/assets/img/pexels/computer.jpeg&quot; alt=&quot;computer.jpeg&quot; /&gt;
-    &lt;/div&gt;
-    
-&lt;/div&gt;</content><author><name></name></author><category term="Test" /><category term="Image" /><summary type="html">Hopefully you will find enough information about how to set images in your blog here. This is an example of a post which includes a feature image specified in the front matter of the post. The feature image spans the full-width of the page, and is shown with the title on permalink pages:</summary></entry><entry><title type="html">Markdown and HTML</title><link href="http://localhost:4000/2014/11/28/markdown-and-html.html" rel="alternate" type="text/html" title="Markdown and HTML" /><published>2014-11-28T00:00:00+09:00</published><updated>2014-11-28T00:00:00+09:00</updated><id>http://localhost:4000/2014/11/28/markdown-and-html</id><content type="html" xml:base="http://localhost:4000/2014/11/28/markdown-and-html.html">&lt;p&gt;Jekyll supports the use of &lt;a href=&quot;http://daringfireball.net/projects/markdown/syntax&quot;&gt;Markdown&lt;/a&gt; with inline HTML tags which makes it easier to quickly write posts with Jekyll, without having to worry too much about text formatting. A sample of the formatting follows.&lt;/p&gt;
-
-&lt;h2 id=&quot;title&quot;&gt;Title&lt;/h2&gt;
-
-&lt;h3 id=&quot;sub-title&quot;&gt;Sub title&lt;/h3&gt;
-
-&lt;p&gt;Tables have also been extended from Markdown:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;First Header&lt;/th&gt;
-      &lt;th&gt;Second Header&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Content Cell&lt;/td&gt;
-      &lt;td&gt;Content Cell&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Content Cell&lt;/td&gt;
-      &lt;td&gt;Content Cell&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Here’s an example of an image, which is included using Markdown:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/pexels/book-glass.jpeg&quot; alt=&quot;Image of a glass on a book&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This is another example of list:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;list of things
-    &lt;ol&gt;
-      &lt;li&gt;Sub list&lt;/li&gt;
-      &lt;li&gt;of Other things&lt;/li&gt;
-      &lt;li&gt;with numbers&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;And many more
-    &lt;ul&gt;
-      &lt;li&gt;Sub sub list
-        &lt;ul&gt;
-          &lt;li&gt;can go on …
-            &lt;ul&gt;
-              &lt;li&gt;and on …
-                &lt;ul&gt;
-                  &lt;li&gt;and on !&lt;/li&gt;
-                &lt;/ul&gt;
-              &lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;That’s it.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;80:31280/TCP&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;443:32443/TCP&lt;/code&gt;등의 서비스와 함께 NodePort 형식으로 외부와의 연결을 담당&lt;/li&gt;
+  &lt;li&gt;보통 nginx, haproxy 등 proxy 서버로 구현되어 있다.&lt;/li&gt;
+  &lt;li&gt;Ingress Resource의 설정값(Ingress Rule)에 따라 클러스터 내의 Service로 연결한다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;other-subtitle&quot;&gt;Other subtitle&lt;/h3&gt;
+&lt;h4 id=&quot;ingress-resource&quot;&gt;Ingress Resource&lt;/h4&gt;
 
-&lt;p&gt;Highlighting for code in Jekyll is done using Base16 or Rouge. This theme makes use of Rouge by default.&lt;/p&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;networking.k8s.io/v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Ingress&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;rules&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;service.yourdomain.com&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 이 부분 추가 (하이픈은 맨 위에만 있어야함)&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;paths&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;pathType&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Prefix&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/service&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;backend&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;service&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;service-name&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;8080&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// count to ten&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;ul&gt;
+  &lt;li&gt;Ingress Controller에서 어떤 서비스로 라우팅할 것인지 규칙을 명세한 Resource이다.&lt;/li&gt;
+  &lt;li&gt;path등의 값으로 어떤 service에 연결할 것인지에 대한 명세이다.&lt;/li&gt;
+  &lt;li&gt;Kubernetes secret 리소스를 참조하여 tls 연결을 설정할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;span class=&quot;c1&quot;&gt;// count to twenty&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;hr /&gt;
+&lt;h2 id=&quot;ingress-적용&quot;&gt;Ingress 적용&lt;/h2&gt;
 
-&lt;h3 id=&quot;math&quot;&gt;Math&lt;/h3&gt;
+&lt;h3 id=&quot;인증서-파일-구성&quot;&gt;인증서 파일 구성&lt;/h3&gt;
 
-&lt;p&gt;Type on Strap uses KaTeX to display maths. Equations such as \(S_n = a \times \frac{1-r^n}{1-r}\) can be displayed inline.&lt;/p&gt;
+&lt;p&gt;PEM 포맷의 RSA crt, key가 필요하다.&lt;/p&gt;
 
-&lt;p&gt;Alternatively, they can be shown on a new line:&lt;/p&gt;
+&lt;p&gt;본 문서에서는 Let’s Encrypt의 DNS 포맷으로 발급된 *.yourdomain.com 도메인 인증서를 사용한다.&lt;/p&gt;
 
-\[f(x) = \int \frac{2x^2+4x+6}{x-2}\]</content><author><name>rohanchandra</name></author><category term="Katex" /><category term="Markdown" /><summary type="html">Jekyll supports the use of Markdown with inline HTML tags which makes it easier to quickly write posts with Jekyll, without having to worry too much about text formatting. A sample of the formatting follows.</summary></entry></feed>
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# yourdomain.com.crt&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-----BEGIN&lt;/span&gt; CERTIFICATE-----
+MII...
+&lt;span class=&quot;nt&quot;&gt;-----END&lt;/span&gt; CERTIFICATE-----
+
+&lt;span class=&quot;c&quot;&gt;# yourdomain.com.crt&lt;/span&gt;
+Private-Key: &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;2048 bit&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+modulus:
+...
+&lt;span class=&quot;nt&quot;&gt;-----BEGIN&lt;/span&gt; RSA PRIVATE KEY-----
+MII...
+&lt;span class=&quot;nt&quot;&gt;-----END&lt;/span&gt; RSA PRIVATE KEY-----
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;kubernetes-secret-생성&quot;&gt;Kubernetes secret 생성&lt;/h3&gt;
+
+&lt;p&gt;kubernetes에서는 여러가지 시크릿 타입을 제공하는데&lt;/p&gt;
+
+&lt;p&gt;그 중 SSL 인증서에 대한 정보를 담고 있는 Secret 타입은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kubernetes.io/tls&lt;/code&gt; 이다.&lt;/p&gt;
+
+&lt;p&gt;secret 생성하는 두 가지 방법이 존재&lt;/p&gt;
+
+&lt;h4 id=&quot;1-secret-yaml-파일-생성&quot;&gt;1. secret yaml 파일 생성&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vim service-secret.yaml
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret-tls
+&lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;: kubernetes.io/tls
+data:
+  &lt;span class=&quot;c&quot;&gt;# the data is abbreviated in this example&lt;/span&gt;
+  tls.crt: |
+        MIIC2DCCAcCgAwIBAgIBATANBgkqh ...
+  tls.key: |
+        MIIEpgIBAAKCAQEA7yn3bRHQ5FHMQ ...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이 경우 인증서 값은 —–BEGIN CERTIFICATE—–와 —–END CERTIFICATE—– 사이에 있는 인코딩값을 넣어야한다고 한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;확인결과 .crt 안에 있는 인증서 값을 모두 포함하여야함&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl create &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; service-secret.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;kubernetes secret 생성&lt;/p&gt;
+
+&lt;h4 id=&quot;2-직접-생성권장&quot;&gt;2. 직접 생성(권장)&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# kubectl create secret {type} {name} --cert {certPath} --key {keyPath}&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl create secret tls secret-tls &lt;span class=&quot;nt&quot;&gt;--cert&lt;/span&gt; ssl/yourdomain.com.crt &lt;span class=&quot;nt&quot;&gt;--key&lt;/span&gt; ssl/yourdomain.com.key
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Imperative 방식으로 생성&lt;/p&gt;
+
+&lt;p&gt;인증서 파일을 설정값으로 물고갈 수 있어서 권장&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# secret 생성 확인&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl get secret
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl describe secret secret-tls
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;hr /&gt;
+&lt;h2 id=&quot;ingress-tls-적용&quot;&gt;Ingress TLS 적용&lt;/h2&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;$ vim jenkins-ingress.yaml&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;networking.k8s.io/v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Ingress&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;rules&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;jenkins.yourdomain.com&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 이 부분 추가 (하이픈은 맨 위에만 있어야함)&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; 
+      &lt;span class=&quot;na&quot;&gt;paths&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;pathType&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Prefix&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/jenkins&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;backend&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;service&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;jenkins&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+              &lt;span class=&quot;na&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;8080&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# 아래 부분 추가&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;tls&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;jenkins.yourdomain.com&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;secretName&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;secret-tls&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 적용&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl apply &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; jenkins-ingress.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;위에서 생성한 Secret을 이용하면 Ingress에 인증서를 적용할 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;인증서-적용-확인&quot;&gt;인증서 적용 확인&lt;/h3&gt;
+
+&lt;h4 id=&quot;1-ingress-controller-접속-확인&quot;&gt;1. Ingress Controller 접속 확인&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# ingress-nginx 서비스 포트매핑 확인&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl get svc &lt;span class=&quot;nt&quot;&gt;-A&lt;/span&gt;
+
+NAMESPACE       NAME                                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;S&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;                      AGE
+ingress-nginx   ingress-nginx-controller             NodePort    10.104.33.237    &amp;lt;none&amp;gt;        80:31623/TCP,443:32452/TCP   29h
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-k&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; https://10.104.33.237:443
+...
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; Connected to 10.104.33.237 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;10.104.33.237&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; port 443 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;#0)&lt;/span&gt;
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;2-외부-도메인-접속-확인&quot;&gt;2. 외부 도메인 접속 확인&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-k&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; https://jenkins.yourdomain.com:32452
+...
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; Connected to jenkins.yourdomain.com &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;...&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; port 32452 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;#0)&lt;/span&gt;
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;3-인증서-검증&quot;&gt;3. 인증서 검증&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;openssl s_client &lt;span class=&quot;nt&quot;&gt;-debug&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-connect&lt;/span&gt; https://jenkins.yourdomain.com:32452
+
+...
+&lt;span class=&quot;nv&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;CN &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.yourdomain.com
+
+&lt;span class=&quot;nv&quot;&gt;issuer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;C &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; US, O &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Let&lt;span class=&quot;s1&quot;&gt;&apos;s Encrypt, CN = R3
+...
+---
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;4-웹-브라우저로-접속하여-인증서-확인&quot;&gt;4. 웹 브라우저로 접속하여 인증서 확인&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/ki-3.png&quot; alt=&quot;ki-3.png&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;ssl-redirect-끄기&quot;&gt;SSL Redirect 끄기&lt;/h3&gt;
+
+&lt;p&gt;위처럼 Ingress 설정에 tls를 적용하면 https 접속이 강제되므로 기존에 http에 운영중인 서비스에 영향이 있다.&lt;/p&gt;
+
+&lt;p&gt;따라서 기존의 http 서비스는 https로 redirect 되지 않도록 설정하여야 한다.&lt;/p&gt;
+
+&lt;h4 id=&quot;1-ingress-rule-변경&quot;&gt;1. Ingress rule 변경&lt;/h4&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;$ vim jenkins-ingress.yaml&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;networking.k8s.io/v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Ingress&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;...&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;default&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;# 아래 annotations 추가&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;annotations&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;kubernetes.io/ingress.class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;nginx&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;nginx.ingress.kubernetes.io/ssl-redirect&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;false&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;nginx.ingress.kubernetes.io/force-ssl-redirect&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;false&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Ingress rule의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ssl-redirect&lt;/code&gt; 설정은 host 주소와 port는 그대로 둔채 http 요청을 https로 리다이렉트한다.(서버에서 https redirect 응답)&lt;/p&gt;
+
+  &lt;p&gt;예시) http://jenkins.yourdomain.com:31623/jenkins → https://jenkins.yourdomain.com:31623/jenkins&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;2-configmap-설정-변경&quot;&gt;2. ConfigMap 설정 변경&lt;/h4&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# vim ~/ingress-controller/ingress-nginx/deploy/static/provider/baremetal/deploy.yaml&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Source: ingress-nginx/templates/controller-configmap.yaml&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ConfigMap&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;helm.sh/chart&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ingress-nginx-3.23.0&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app.kubernetes.io/name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ingress-nginx&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app.kubernetes.io/instance&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ingress-nginx&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app.kubernetes.io/version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.44.0&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app.kubernetes.io/managed-by&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Helm&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app.kubernetes.io/component&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;controller&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ingress-nginx-controller&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ingress-nginx&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# 아래 부분 추가&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;hsts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;false&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;ssl-redirect&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;false&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Ingress controller의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ssl-redirect&lt;/code&gt; 설정은 host 주소는 그대로지만 https의 default port인 443으로 redirect한다.&lt;/p&gt;
+
+  &lt;p&gt;예시) http://jenkins.yourdomain.com:31623/jenkins → https://jenkins.yourdomain.com/jenkins&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;ingress-controller의 baremetal template에 있는 ConfigMap으로 띄워져 있으므로 해당 부분 수정&lt;/p&gt;
+
+&lt;p&gt;만약 다른 환경으로 인하여 ConfigMap이 없는 경우 새로 생성하여 적용할 것&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl apply &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; deploy.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;설정 변경 적용&lt;/p&gt;
+
+&lt;p&gt;추가로 적용기간에는 http와 https의 포트를 서로 다르게하여 둘 다 접속 가능하도록 만드는 것이 옳다.&lt;/p&gt;
+
+&lt;p&gt;현재 http와 https를 동시 서비스 중이기 때문에 서로 다른 포트에서 접근을 한다.&lt;/p&gt;
+
+&lt;p&gt;따라서 수동으로 Host 주소와 port를 변경해주어야 한다.&lt;/p&gt;
+
+&lt;h4 id=&quot;3-ingress-rule-변경&quot;&gt;3. Ingress rule 변경&lt;/h4&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;$ vim jenkins-ingress.yaml&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;networking.k8s.io/v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Ingress&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;...&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;namespace&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;default&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;# 아래 annotations 추가&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;annotations&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;  	&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;kubernetes.io/ingress.class&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;nginx&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;nginx.ingress.kubernetes.io/proxy-redirect-from&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;http://jenkins.yourdomain.com:31623&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;nginx.ingress.kubernetes.io/proxy-redirect-to&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;https://jenkins.yourdomain.com:32452&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;nginx.ingress.kubernetes.io/ssl-redirect&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;false&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;nginx.ingress.kubernetes.io/force-ssl-redirect&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;false&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; http://jenkins.jenkins.yourdomain.com:32452
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; About to connect&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; to jenkins.yourdomain.com port 32452 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;#0)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;   Trying ...
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; Connected to jenkins.yourdomain.com &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;...&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; port 32425 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;#0)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; GET /jenkins HTTP/1.1
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; User-Agent: curl/7.29.0
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Host: jenkins.yourdomain.com:32452
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Accept: &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&amp;lt; HTTP/1.1 302 Found
+&amp;lt; Date: Fri, 05 Mar 2021 04:51:59 GMT
+&amp;lt; Content-Length: 0
+&amp;lt; Connection: keep-alive
+&amp;lt; Location: https://jenkins.yourdomain.com:32452/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;테스트해보면 redirect가 정상적으로 되는 것을 확인할 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;크롬의-경우-hsts-기능-끄기&quot;&gt;크롬의 경우 HSTS 기능 끄기&lt;/h3&gt;
+
+&lt;p&gt;위와 같이 설정해도 크롬과 같은 웹브라우저의 경우 HSTS 기능때문에 웹브라우저 레벨에서&lt;/p&gt;
+
+&lt;p&gt;위에서 설정한 proxy가 아니라 호스트와 포트는 그대로인 상태로 http → https 리다이렉션이 강제된다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;http 접속을 한 후에 서버에서 https 응답을 주는데 http 접속 이전에 브라우저에서 https로 변경하기 때문이다.&lt;/p&gt;
+
+&lt;/blockquote&gt;
+
+&lt;p&gt;시크릿 모드로 들어가서 테스트하거나 이미 크롬에 설정된 HSTS 설정을 제거해야한다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chrome://net-internals/#hsts&lt;/code&gt; 접속&lt;/li&gt;
+  &lt;li&gt;Query HSTS/PKP domain에서 HSTS 설정되어 있는지 검색
+&lt;img src=&quot;/assets/img/contents/ki-4.png&quot; alt=&quot;ki-4.png&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Delete domain security policies에서 해당 도메인 HSTS 설정 지우기&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;이후 크롬을 통해 재접속하면 https redirect가 성공적으로 되는 것을 확인할 수 있다.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;참고사항&quot;&gt;참고사항&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;Ingress controller 기본 인증서를 가져간다?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; successfully &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;certificate verify locations:
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위처럼 Ingress Controller에서 기본 설정 SSL Cert를 가져간다고 나오는데 Ingress Controller에서 SSL을 설정하는 것이 아닌 Ingress의 Secret 설정에 있는 인증서 파일을 적용하는 것이기 때문에 무시해도 된다.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;troubleshooting&quot;&gt;Troubleshooting&lt;/h2&gt;
+
+&lt;h3 id=&quot;ingress-controller-기본-인증서를-가져간다&quot;&gt;Ingress controller 기본 인증서를 가져간다?&lt;/h3&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; successfully &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;certificate verify locations:
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;   CAfile: /etc/ssl/certs/ca-certificates.crt
+  CApath: /etc/ssl/certs
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위처럼 Ingress Controller에서 기본 설정 SSL Cert를 가져간다고 나오는데 Ingress Controller에서 SSL을 설정하는 것이 아닌 Ingress의 Secret 설정에 있는 인증서 파일을 적용하는 것이기 때문에 무시해도 된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;kubernetes-ingress-controller-fake-certificate-인증서가-적용될-때&quot;&gt;Kubernetes Ingress Controller Fake Certificate 인증서가 적용될 때&lt;/h3&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Certificate:
+    Data:
+        Version: 3 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0x2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        Serial Number:
+            0a:2a:7b:52:02:51:fe:7d:ff:ad:65:ea:41:8a:95:44
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: O &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Acme Co, CN &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Kubernetes Ingress Controller Fake Certificate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ingress에 tls 설정을 추가할 경우 기본적으로 해당 서비스는 https를 사용하게 되며 인증서 설정을 별도로 해주지 않은 경우 Ingress Controller fake certificate를 기본적으로 사용하게 된다.&lt;/p&gt;
+
+&lt;p&gt;이 경우는 위에서 설정한 인증서 적용이 안 된 경우이다.&lt;/p&gt;
+
+&lt;h4 id=&quot;1-kubernetes-secret에서-cert와-key를-잘-물고-갔는지-확인&quot;&gt;1. kubernetes secret에서 cert와 key를 잘 물고 갔는지 확인&lt;/h4&gt;
+
+&lt;h4 id=&quot;2-ingress-yaml-파일에-tls-적용이-제대로-되었는지-확인&quot;&gt;2. Ingress yaml 파일에 tls 적용이 제대로 되었는지 확인&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ssl을 적용할 경우 연동되는 서비스와 tls 설정에 host 이름을 꼭 추가해주어야한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://kubernetes.io/docs/concepts/services-networking/ingress/&quot;&gt;Ingress&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/&quot;&gt;Ingress Controllers&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://kubernetes.io/docs/concepts/configuration/secret/&quot;&gt;Secret&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/&quot;&gt;Certified Kubernetes Administrator(CKA) with Practice Tests&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Kubernetes" /><category term="Ingress" /><category term="Ingress Controller" /><category term="Certificate" /><category term="TLS" /><category term="SSL" /><category term="Nginx" /><category term="Security" /><summary type="html">Kubernetes Nginx Ingress 적용</summary></entry></feed>

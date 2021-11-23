@@ -40,7 +40,7 @@ tags: [Blog, Github, Github pages, Jekyll]
 4. 도메인, 인증서 구매 및 적용을 통해 외부에 오픈이 필요하다.
 5. 추가적으로) 최소한의 보안과 무중단 배포를 위한 proxy 서버가 필요
 
-##### 나는
+### 선택기준
 
 1. 간단한 기술 블로그를 위하여 웹개발을 하기는 싫었다.
 2. 자체 서버를 구축하기 싫었다. (비용적으로든 노력으로든)
@@ -184,9 +184,9 @@ origin	git@github.com:csupreme19/csupreme19.github.io.git (push)
 
 ---
 
-### Jekyll 설치 및 설정  
+## Jekyll 설치 및 설정  
 
-#### 선행사항
+### 선행사항
 
 - Ruby 2.5.0 이상
 - RubyGems
@@ -195,7 +195,7 @@ origin	git@github.com:csupreme19/csupreme19.github.io.git (push)
 
 
 
-#### Ruby 설치(macOS)
+### 1. Ruby 설치(macOS)
 
 ```sh
 # Homebrew 설치
@@ -218,7 +218,7 @@ $ gcc -v
 
 
 
-#### Jekyll 및 테마 설치
+### 2. Jekyll 및 테마 설치
 
 ```sh
 $ cd ~/git/csupreme19.github.io
@@ -245,7 +245,7 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
 
 
 
-#### _config.yml 수정
+### 3. _config.yml 수정
 
 ```yaml
 # SITE CONFIGURATION
@@ -271,7 +271,7 @@ footer_text: >
 
 
 
-### 1. 로컬 접속 테스트
+### 4. 로컬 접속 테스트
 
 ![gpwj-2.png]({{ "/assets/img/contents/gpwj-2.png" }})
 
@@ -279,22 +279,19 @@ http://localhost:4000 접속 확인
 
 
 
-### 2. git push 및 github pages 설정
+### 5. git push 및 github pages 설정
 
 ```sh
-$ git commit -a -m "initial commit"
+$ git add .
+$ git commit -m "initial commit"
 $ git push -u origin main
 ```
-
-
 
 ![gpwj-3.png]({{ "/assets/img/contents/gpwj-3.png" }})
 
 github 저장소 > Settings > Pages
 
-
-
-##### 빌드 소스 변경
+#### 빌드 소스 변경
 
 Source 부분 main 브랜치, / (root) 폴더로 변경
 
@@ -302,55 +299,55 @@ Source 부분 main 브랜치, / (root) 폴더로 변경
 
 
 
-##### 접속
+### 6. 접속
 
 [https://csupreme19.github.io/](https://csupreme19.github.io/) 접속 확인
 
 ---
 
-### 댓글창 활성화
+## 댓글창 활성화
 
 Type-on-Strap 테마는 3가지의 Comment 오픈소스를 지원한다.
 
 
 
-#### 1. Disqus
+### 1. Disqus
 
 [disqus.com](https://disqus.com/)
 
-장점
+#### 장점
 
 - 로그인 안해도 댓글 달 수 있음
 
-단점
+#### 단점
 
 - 무겁다, 무료버전은 광고가 존재
 - 개인적인 의견이지만 댓글창이 너저분해보인다.
 
-#### 2. Cusdis
+### 2. Cusdis
 
 [cusdis.com](https://cusdis.com/)
 
-장점
+#### 장점
 
 - Disqus에 비해 매우 깔끔한 레이아웃
 
-단점
+#### 단점
 
 - 중국발이라 왠지 모를 거부감
 - disqus와 마찬가지로 무겁다.
 
-#### 3. Utterance
+### 3. Utterance
 
 [utterance.es](https://utteranc.es/)
 
-장점
+#### 장점
 
 - 매우 깔끔한 레이아웃
 - 성능이 위 2 오픈소스에 비해 좋다.
 - 완전 무료 오픈소스로 광고 없음
 
-단점
+#### 단점
 
 - 댓글이 repo에 GitHub 이슈로 등록되는 구조라 GitHub 계정이 있어야만 댓글 가능
 
@@ -400,7 +397,7 @@ $ bundle exec jekyll serve
 
 ---
 
-### 폰트 변경
+## 폰트 변경
 
 맥 환경에서 봤을땐 폰트가 사이즈 말고는 괜찮았는데 윈도우 환경에서 보니 계단 현상이 존재하고 가독성이 떨어져 보이는 문제가 발생하였다.
 
@@ -408,7 +405,7 @@ $ bundle exec jekyll serve
 
 
 
-#### 1. 폰트 .scss 파일 생성
+### 1. 폰트 .scss 파일 생성
 
 일반 폰트는 케이티의 [Y 너만을 비춤체](https://noonnu.cc/font_page/500), 소스 코드 폰트는 네이버의 [D2 coding ligature](https://github.com/naver/d2codingfont)를 사용하였다.
 
@@ -446,7 +443,7 @@ $ vim _d2-coding-ligature.scss
 
 
 
-#### 2. `_variables.scss` 수정
+### 2. `_variables.scss` 수정
 
 ```sh
 $ vim _sass/base/_variables.scss
@@ -473,7 +470,7 @@ $border-radius: 4px !default;
 
 
 
-#### 3. 확인
+### 3. 확인
 
 ![gpwj-5.png]({{ "/assets/img/contents/gpwj-5.png" }})
 
@@ -481,7 +478,7 @@ $border-radius: 4px !default;
 
 ---
 
-### Reference
+## Reference
 
 1. [Jekyll Installation](https://jekyllrb.com/docs/installation/)
 2. [GitHub Pages](https://pages.github.com/)

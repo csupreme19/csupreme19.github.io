@@ -1,0 +1,23 @@
+I"<h1 id="kubernetes-nginx-ingress-적용">Kubernetes Nginx Ingress 적용</h1>
+
+<p><img src="/assets/img/titles/nginx-logo.svg" alt="nginx-logo.svg" /></p>
+
+<p><a href="https://kubernetes.io/docs/concepts/services-networking/ingress/">Kubernetes Ingress</a></p>
+
+<p>본 문서는 온프레미스 환경에서의 Ingress, SSL 인증서 적용 내용을 정리하였다.</p>
+
+<p>nginx ingress controller를 이용하여 jenkins 서비스에 연결하는 과정을 정리하였다.</p>
+
+<hr />
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://kubernetes.io/docs/concepts/services-networking/ingress/">Ingress</a></li>
+  <li><a href="https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/">Ingress Controllers</a></li>
+  <li><a href="https://kubernetes.io/docs/concepts/configuration/secret/">Secret</a></li>
+  <li><a href="https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/">Certified Kubernetes Administrator(CKA) with Practice Tests</a></li>
+</ol>
+:ET

@@ -1,0 +1,570 @@
+I"1�<h1 id="kubernetes-rbac-authorization-적용">Kubernetes RBAC Authorization 적용</h1>
+
+<p><img src="/assets/img/titles/kubernetes-horizontal-color.png" alt="kubernetes-horizontal-color.png" /></p>
+
+<p><a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Using RBAC Authorization</a></p>
+
+<p>본 문서에서는 쿠버네티스 API 서버에 접근하기 위한 4가지 인증 방식을 살펴보고 그 중 RBAC 인증 적용방법에 대하여 정리하였다.</p>
+
+<hr />
+
+<h2 id="인가authentication-vs-인증authorization">인가(Authentication) vs 인증(Authorization)</h2>
+
+<p><img src="/assets/img/contents/authorization-authentication.jpeg" alt="authorization-authentication.jpeg" /></p>
+
+<p><strong>인가(Authentication)</strong></p>
+
+<p>해당 사용자가 누구인지 확인하는 것(회원가입, 로그인)</p>
+
+<p><strong>인증(Authorization)</strong></p>
+
+<p>해당 사용자에 대한 권한을 허락하는 것(호, 자원 접근)</p>
+
+<hr />
+
+<h2 id="kubernetes-인증-방식">Kubernetes 인증 방식</h2>
+
+<p>Kubernetes API 서버에 접근하기 위해서는 인증 단계가 필요하다.</p>
+
+<p>쿠버네티스에서는 인증 방식이 크게 4가지가 존재한다.</p>
+
+<ol>
+  <li>Node Authorization</li>
+  <li>ABAC Authorization</li>
+  <li>RBAC Authorization</li>
+  <li>Webhook Authorization</li>
+</ol>
+
+<p>API Server의 <code class="language-plaintext highlighter-rouge">--authorization-mode</code>  flag를 확인하여 현재 활성화된 인증 모드를 확인할 수 있다.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cat</span> /etc/kubernetes/manifests/kube-apiserver.yaml | <span class="nb">grep</span> <span class="nt">-i</span> authorization
+    - <span class="nt">--authorization-mode</span><span class="o">=</span>Node,RBAC
+</code></pre></div></div>
+
+<p>기본적으로 Node, RBAC 인증 방식이 활성화되어 있는 것을 확인할 수 있다.</p>
+
+<hr />
+
+<h3 id="node-authorization">Node Authorization</h3>
+
+<div class="mermaid">
+flowchart LR
+  A[User]
+  B[Kube API]
+  C["Kubelet<br />Node"]
+  subgraph Kubernetes Cluster
+    C--Node Authorization--&gt;B
+  end
+    A--&gt;B
+</div>
+
+<p>Kubernetes Clsuter에 속하는 Node들은 Kubelet에서 API 서버에 요청할 때 TLS 인증을 이용한다.</p>
+
+<p>이 때 Kubelet의 Group은 <code class="language-plaintext highlighter-rouge">system:node</code>에 속해 있으며 해당 그룹에 속해있는 인증 요청은 Node Authorizer에 의하여 인증된다.</p>
+
+<p>이 방식은 보통 Kubernetes TLS 부트스트랩 과정에서 자동으로 설정되므로 더 자세한 내용은 <a href="https://kubernetes.io/docs/reference/access-authn-authz/node/">공식 문서</a> 참고</p>
+
+<hr />
+
+<h3 id="abacattribute-based-access-control">ABAC(Attribute Based Access Control)</h3>
+
+<p>JSON 형식의 Policy 정의를 사용하여 해당 사용자를 인증하는 방식</p>
+
+<h5 id="examples">Examples</h5>
+
+<div class="mermaid">
+flowchart LR
+  A[User: admin]
+  B[Group: system:authenticated]
+  C[Kube API]
+  subgraph Kuberntes Cluster
+  A--ABAC--&gt;C
+  B--ABAC--&gt;C
+  end
+</div>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="nl">"apiVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abac.authorization.kubernetes.io/v1beta1"</span><span class="p">,</span><span class="w"> </span><span class="nl">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Policy"</span><span class="p">,</span><span class="w"> </span><span class="nl">"spec"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">"user"</span><span class="p">:</span><span class="s2">"admin"</span><span class="p">,</span><span class="w">     </span><span class="nl">"namespace"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="p">,</span><span class="w">              </span><span class="nl">"resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="p">,</span><span class="w">         </span><span class="nl">"apiGroup"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="w">                   </span><span class="p">}}</span><span class="w">
+</span><span class="p">{</span><span class="nl">"apiVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abac.authorization.kubernetes.io/v1beta1"</span><span class="p">,</span><span class="w"> </span><span class="nl">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Policy"</span><span class="p">,</span><span class="w"> </span><span class="nl">"spec"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">"group"</span><span class="p">:</span><span class="s2">"system:authenticated"</span><span class="p">,</span><span class="w">  </span><span class="nl">"nonResourcePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="p">,</span><span class="w"> </span><span class="nl">"readonly"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">}}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>기본적으로 비활성화 되어 있으며 kube-apiserver에 <code class="language-plaintext highlighter-rouge">--authorization-mode=ABAC</code>, <code class="language-plaintext highlighter-rouge">--authorization-policy-file=파일명</code> 설정을 추가하여야 한다.</p>
+
+<p>Poilicy 정의 후 API 서버를 재시작해야하고 접근권한을 파일로 정의하기 때문에 후술할 RBAC에 비하여 관리하기가 어렵다는 단점이 있다.</p>
+
+<hr />
+
+<h3 id="rbacrole-based-access-control">RBAC(Role Based Access Control)</h3>
+
+<p>사용자, 서비스의 접근 권한(인증)을 Role(ClusterRole)과 RoleBinding(ClusterRoleBinding) 자원에 기반하여 처리하는 방식으로 일반적으로 가장 많이 사용하고 관리하기 쉬운 인증 방식이다.</p>
+
+<p>해당 User, SA(Service Account), Group등이 RoleBinding에 의하여 어떤 접근권한을 가지고 있는지 인증된다.</p>
+
+<div class="mermaid">
+flowchart LR
+  A[User]
+  B[Group]
+    subgraph Kubernetes Cluster
+    C[Service Account]
+  D[Role: Developer]
+  E[Role: Production]
+  end
+  A--RBAC--&gt;D &amp; E
+  B--RBAC--&gt;D
+  C--RBAC--&gt;E
+</div>
+
+<hr />
+<h3 id="webhook-authorization">Webhook Authorization</h3>
+
+<p>Kubernetes 내부에서 제공하는 인증이 아닌 외부의 인증 정책을 사용하기 위한 방식</p>
+
+<p>Open Policy Agent와 같은 외부 오픈소스, Admission Controller를 사용할 때 사용한다.</p>
+
+<div class="mermaid">
+flowchart LR
+  A[User]
+    subgraph Kubernetes Cluster
+  B[Kube API]
+    end
+  C[Open Policy Agent]
+  A--&gt;B
+  B--Authorization--&gt;C
+  C-.Authorization.-&gt;B
+</div>
+
+<hr />
+
+<h2 id="rbac-리소스">RBAC 리소스</h2>
+
+<h3 id="1-role--clusterrole">1. Role / ClusterRole</h3>
+
+<div class="mermaid">
+flowchart LR
+  A[Role<br />Can view Pods<br />Can watch Pods<br />Can list Pods]
+  A
+</div>
+
+<p>어떤 리소스에 어떤 호출이 가능한지 권한/역할을 정의한 리소스이다.</p>
+
+<p>Role과 ClusterRole이 있으며 ClusterRole은 Role과 달리 클러스터 레벨로 가지고 있어 네임스페이스가 존재하지 않는다.</p>
+
+<h4 id="role-예제">Role 예제</h4>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">rbac.authorization.k8s.io/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Role</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">default</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">pod-reader</span>
+<span class="na">rules</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">apiGroups</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">"</span><span class="pi">]</span> <span class="c1"># "" indicates the core API group</span>
+  <span class="na">resources</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">pods"</span><span class="pi">]</span>
+  <span class="na">verbs</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">get"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">watch"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">list"</span><span class="pi">]</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">rbac.authorization.k8s.io/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ClusterRole</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="c1"># "namespace" omitted since ClusterRoles are not namespaced</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">secret-reader</span>
+<span class="na">rules</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">apiGroups</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">"</span><span class="pi">]</span>
+  <span class="na">resources</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">secrets"</span><span class="pi">]</span>
+  <span class="na">verbs</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">get"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">watch"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">list"</span><span class="pi">]</span>
+</code></pre></div></div>
+
+<p>Resources에 해당하는 자원의 verb에 해당하는 요청이 가능하다.</p>
+
+<p>pod-reader를 예로 들면 pods를 get, watch, list 요청이 가능하다.</p>
+
+<p>kubernetes의 자원 종류는 아래 명령어로 확인 가능하다.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl api-resources
+NAME                              SHORTNAMES   APIVERSION                             NAMESPACED   KIND
+bindings                                       v1                                     <span class="nb">true         </span>Binding
+componentstatuses                 cs           v1                                     <span class="nb">false        </span>ComponentStatus
+configmaps                        cm           v1                                     <span class="nb">true         </span>ConfigMap
+endpoints                         ep           v1                                     <span class="nb">true         </span>Endpoints
+events                            ev           v1                                     <span class="nb">true         </span>Event
+limitranges                       limits       v1                                     <span class="nb">true         </span>LimitRange
+namespaces                        ns           v1                                     <span class="nb">false        </span>Namespace
+nodes                             no           v1                                     <span class="nb">false        </span>Node
+persistentvolumeclaims            pvc          v1                                     <span class="nb">true         </span>PersistentVolumeClaim
+persistentvolumes                 pv           v1                                     <span class="nb">false        </span>PersistentVolume
+...
+</code></pre></div></div>
+
+<h4 id="role-확인">Role 확인</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl get role <span class="nt">-n</span> kube-system
+<span class="nv">$ </span>kubectl get clusterrole <span class="nt">-n</span>
+<span class="nv">$ </span>kubectl describe role/kube-proxy <span class="nt">-n</span> kube-system
+<span class="nv">$ </span>kubectl describe clusterrole/cluster-admin
+Name:         cluster-admin
+Labels:       kubernetes.io/bootstrapping<span class="o">=</span>rbac-defaults
+Annotations:  rbac.authorization.kubernetes.io/autoupdate: <span class="nb">true
+</span>PolicyRule:
+  Resources  Non-Resource URLs  Resource Names  Verbs
+  <span class="nt">---------</span>  <span class="nt">-----------------</span>  <span class="nt">--------------</span>  <span class="nt">-----</span>
+  <span class="k">*</span>.<span class="k">*</span>        <span class="o">[]</span>                 <span class="o">[]</span>              <span class="o">[</span><span class="k">*</span><span class="o">]</span>
+             <span class="o">[</span><span class="k">*</span><span class="o">]</span>                <span class="o">[]</span>              <span class="o">[</span><span class="k">*</span><span class="o">]</span>
+</code></pre></div></div>
+
+<h3 id="2-serviceaccount">2. ServiceAccount</h3>
+
+<p>파드로 올라가있는 서비스에서 kubernetes 클러스터에 접근하기 위한 계정을 나타내는 리소스다.</p>
+
+<p><img src="/assets/img/contents/kra-1.png" alt="kra-1.png" /></p>
+
+<blockquote>
+  <p>이미지: <a href="https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/">Certified Kubernetes Administrator(CKA) with Practice Tests</a> 발췌</p>
+</blockquote>
+
+<p>쉽게 말해 사용자 계정이 아닌 서비스의 계정이다.</p>
+
+<p>후술할 추상적인 User, Group과 달리 Kubernetes 자원 형태로 실존한다.</p>
+
+<div class="mermaid">
+flowchart LR
+  A[Service Account]
+  B[Secret]
+  A-.token.-B
+</div>
+
+<h4 id="sa-예제">SA 예제</h4>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ServiceAccount</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">monitoring-user</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">kubernetes-dashboard</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+<h4 id="sa-확인">SA 확인</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl get sa <span class="nt">-n</span> kube-system
+</code></pre></div></div>
+
+<p>service account 생성시 해당 서비스 어카운트의 토큰을 가지고 있는 secret이 자동 생성된다.</p>
+
+<h4 id="서비스-어카운트-사용방법">서비스 어카운트 사용방법</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl describe sa/monitoring-user <span class="nt">-n</span> kubernetes-dashboard
+Name:                monitoring-user
+Namespace:           kubernetes-dashboard
+Labels:              &lt;none&gt;
+Annotations:         &lt;none&gt;
+Image pull secrets:  &lt;none&gt;
+Mountable secrets:   monitoring-user-token-r6nss
+Tokens:              monitoring-user-token-r6nss
+Events:              &lt;none&gt;
+</code></pre></div></div>
+
+<p>service account 생성시 해당 서비스 어카운트의 토큰을 가지고 있는 secret이 자동 생성된다.</p>
+
+<h4 id="토큰-확인">토큰 확인</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl describe secret monitoring-user-token-r6nss <span class="nt">-n</span> kubernetes-dashboard
+Name:         monitoring-user-token-r6nss
+Namespace:    kubernetes-dashboard
+Labels:       &lt;none&gt;
+Annotations:  kubernetes.io/service-account.name: monitoring-user
+              kubernetes.io/service-account.uid: cca1bad1-fe4f-430c-978b-52d7f7ea53c5
+
+Type:  kubernetes.io/service-account-token
+
+Data
+<span class="o">====</span>
+ca.crt:     1066 bytes
+namespace:  20 bytes
+token:      eyJhbGciOiJSUzI1NiIsImtpZCI6IlVmM2...
+
+<span class="c"># 참고) 한번에 토큰 조회</span>
+<span class="nv">$ </span>kubectl <span class="nt">-n</span> kubernetes-dashboard get secret <span class="si">$(</span>kubectl <span class="nt">-n</span> kubernetes-dashboard get sa/monitoring-user <span class="nt">-o</span> <span class="nv">jsonpath</span><span class="o">=</span><span class="s2">"{.secrets[0].name}"</span><span class="si">)</span> <span class="nt">-o</span> go-template<span class="o">=</span><span class="s2">""</span>
+eyJhbGciOiJSUzI1NiIsImtpZCI6IlVmM2...
+</code></pre></div></div>
+
+<p>API 호출시 Authorization 헤더에 해당 토큰을 넣어서 요청하면 인증을 할 수 있다.</p>
+
+<h4 id="자원에-적용">자원에 적용</h4>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">kind</span><span class="pi">:</span> <span class="s">Deployment</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">apps/v1</span>
+<span class="na">metadata</span><span class="pi">:</span>
+<span class="nn">...</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="s">...</span>
+  <span class="s">template</span><span class="err">:</span>
+    <span class="s">...</span>
+    <span class="s">spec</span><span class="err">:</span>
+      <span class="na">containers</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">dashboard-metrics-scraper</span>
+          <span class="na">image</span><span class="pi">:</span> <span class="s">kubernetesui/metrics-scraper:v1.0.6</span>
+          <span class="s">...</span>
+      <span class="na">serviceAccountName</span><span class="pi">:</span> <span class="s">kubernetes-dashboard</span><span class="err">	</span><span class="s"># 해당 부분 추가</span>
+      <span class="s">...</span>
+</code></pre></div></div>
+
+<p>Pod 명세 <code class="language-plaintext highlighter-rouge">serviceAccountName</code> 에 위에서 생성한 SA 추가하면 해당 Pod는 API Server에 정의된 권한을 가지고 접근할 수 있다.</p>
+
+<h4 id="요청-예시">요청 예시</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 직접 호출시 토큰 명시</span>
+<span class="nv">$ </span>curl <span class="nt">-H</span> <span class="s2">"Authorization: Bearer eyJhbGciOiJSUzI1..."</span> <span class="nt">-ivk</span> https://10.213.196.211:6443 
+</code></pre></div></div>
+
+<h3 id="3-rolebinding">3. RoleBinding</h3>
+
+<p>위에서 생성한 ServiceAccount가 실질적으로 권한을 가지려면 해당 어카운트가 어느 자원에 접근할 수 있는지 허락하는 단계가 필요하다.</p>
+
+<p>이것을 인증(Authorization)이라고 한다.</p>
+
+<p>kubernetes에서는 RBAC, 즉 Role 역할을 기반으로하여 인증을 하기 때문에 Role을 ServiceAccount / User / Group에 바인딩하는 방법을 사용하며 이를 나타내기 위한 리소스가 RoleBinding이다.</p>
+
+<p>RoleBinding과 ClusterRoleBinding이 있으며 ClusterRole의 경우 ClusterRoleBinding을 이용한다.</p>
+
+<p>각각의 Role은 ServiceAccount, User, Group에 바인딩 될 수 있다.</p>
+
+<h4 id="user--group"><strong>User / Group</strong></h4>
+
+<p>ServiceAccount와 달리 Kubernetes API server의 User와 Group은 별도로 정의된 Kubernetes Resource가 아니다.</p>
+
+<p>API server에 접근하기 위한 아래와 같은 보안 설정 파일에 정의되어 있는 User와 Group이라는 추상적인 개념이다.</p>
+
+<ul>
+  <li>Static Password file</li>
+  <li>Static Token file</li>
+  <li>Certificates</li>
+</ul>
+
+<p>보통은 인증서 설정에 User와 Group 정보가 정의되어 있으며 <code class="language-plaintext highlighter-rouge">system:</code>  으로 시작하는 그룹은 미리 정의된 그룹이다.</p>
+
+<p>User 정보는 kubeconfig에서 확인할 수 있다.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl config view
+</code></pre></div></div>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">clusters</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">cluster</span><span class="pi">:</span>
+    <span class="na">certificate-authority-data</span><span class="pi">:</span> <span class="s">DATA+OMITTED</span>
+    <span class="na">server</span><span class="pi">:</span> <span class="s">https://10.213.196.211:6443</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">kubernetes</span>
+<span class="na">contexts</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">context</span><span class="pi">:</span>
+    <span class="na">cluster</span><span class="pi">:</span> <span class="s">kubernetes</span>
+    <span class="na">user</span><span class="pi">:</span> <span class="s">kubernetes-admin</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">kubernetes-admin@kubernetes</span>
+<span class="na">current-context</span><span class="pi">:</span> <span class="s">kubernetes-admin@kubernetes</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Config</span>
+<span class="na">preferences</span><span class="pi">:</span> <span class="pi">{}</span>
+<span class="na">users</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">kubernetes-admin</span>
+  <span class="na">user</span><span class="pi">:</span>
+    <span class="na">client-certificate-data</span><span class="pi">:</span> <span class="s">REDACTED</span>
+    <span class="na">client-key-data</span><span class="pi">:</span> <span class="s">REDACTED</span>
+</code></pre></div></div>
+
+<div class="mermaid">
+flowchart LR
+  A[User]
+  B[Group]
+  C[Service Account]
+  D[Role]
+  E[Secret]
+  subgraph RoleBinding
+  A &amp; B &amp; C---D
+  end
+  C -.token.- E
+</div>
+
+<h4 id="rolebinding-예제">RoleBinding 예제</h4>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">rbac.authorization.k8s.io/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">RoleBinding</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">read-pods</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">default</span>
+<span class="na">subjects</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">kind</span><span class="pi">:</span> <span class="s">User</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">jane</span>
+  <span class="na">apiGroup</span><span class="pi">:</span> <span class="s">rbac.authorization.k8s.io</span>
+<span class="na">roleRef</span><span class="pi">:</span>
+  <span class="na">kind</span><span class="pi">:</span> <span class="s">Role</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">pod-reader</span>
+  <span class="na">apiGroup</span><span class="pi">:</span> <span class="s">rbac.authorization.k8s.io</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">rbac.authorization.k8s.io/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ClusterRoleBinding</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">monitoring-user</span>
+<span class="na">roleRef</span><span class="pi">:</span>
+  <span class="na">apiGroup</span><span class="pi">:</span> <span class="s">rbac.authorization.k8s.io</span>
+  <span class="na">kind</span><span class="pi">:</span> <span class="s">ClusterRole</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">cluster-monitoring</span>
+<span class="na">subjects</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">kind</span><span class="pi">:</span> <span class="s">ServiceAccount</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">monitoring-user</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">kubernetes-dashboard</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+<blockquote>
+  <p>ClusterRoleBinding 역시 클러스터 레벨이므로 네임스페이스가 따로 없음</p>
+</blockquote>
+
+<h4 id="rolebinding-확인">RoleBinding 확인</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl get rolebinding
+<span class="nv">$ </span>kubectl get clusterrolebinding
+<span class="nv">$ </span>kubectl get pods <span class="nt">--as</span> jane	<span class="c"># User 권한 확인</span>
+</code></pre></div></div>
+
+<hr />
+<h3 id="rbac-사용-예시">RBAC 사용 예시</h3>
+
+<blockquote>
+  <p>시나리오: k8s dashboard에 접근하기 위한 모니터링 인증을 생성한다.</p>
+</blockquote>
+
+<h4 id="1-kubernetes-dashboard-rbacyaml-작성">1. <code class="language-plaintext highlighter-rouge">kubernetes-dashboard-rbac.yaml</code> 작성</h4>
+
+<p>ServiceAccount, ClusterRole, ClusterRoleBinding을 설정한다.</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ServiceAccount</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">monitoring-user</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">kubernetes-dashboard</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">rbac.authorization.k8s.io/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ClusterRole</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">cluster-monitoring</span>
+<span class="na">rules</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">apiGroups</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">*"</span><span class="pi">]</span>
+  <span class="na">resources</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">namespaces"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">deployments"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">replicasets"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">pods"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">pods/log"</span><span class="pi">]</span>
+  <span class="na">verbs</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">get"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">list"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">watch"</span><span class="pi">]</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">rbac.authorization.k8s.io/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ClusterRoleBinding</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">monitoring-user</span>
+<span class="na">roleRef</span><span class="pi">:</span>
+  <span class="na">apiGroup</span><span class="pi">:</span> <span class="s">rbac.authorization.k8s.io</span>
+  <span class="na">kind</span><span class="pi">:</span> <span class="s">ClusterRole</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">cluster-monitoring</span>
+<span class="na">subjects</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">kind</span><span class="pi">:</span> <span class="s">ServiceAccount</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">monitoring-user</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">kubernetes-dashboard</span>
+</code></pre></div></div>
+
+<p>Cluster의 자원이 아닌 헬스체크등 URI로 API를 호출해야하는 경우 아래와 같이 <code class="language-plaintext highlighter-rouge">resources</code> 대신 <code class="language-plaintext highlighter-rouge">nonResourceURLs</code>를 사용한다.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">rbac.authorization.k8s.io/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ClusterRole</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">cluster-monitoring</span>
+<span class="na">rules</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">nonResourceURLs</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">/healthz*"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">/livez*"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">/readyz*"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">/version*"</span><span class="pi">]</span>
+  <span class="na">verbs</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">get"</span><span class="pi">]</span>
+</code></pre></div></div>
+
+<p>해당 ClusterRole을 가진 SA의 시크릿 토큰을 이용하여 위 URL에 해당하는 API를 호출할 수 있다.</p>
+
+<h4 id="2-token-확인">2. Token 확인</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl <span class="nt">-n</span> kubernetes-dashboard get secret <span class="si">$(</span>kubectl <span class="nt">-n</span> kubernetes-dashboard get sa/monitoring-user <span class="nt">-o</span> <span class="nv">jsonpath</span><span class="o">=</span><span class="s2">"{.secrets[0].name}"</span><span class="si">)</span> <span class="nt">-o</span> go-template<span class="o">=</span><span class="s2">""</span>
+</code></pre></div></div>
+
+<h4 id="3-kubernetes-클러스터-접근-테스트">3. Kubernetes 클러스터 접근 테스트</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-H</span> <span class="s2">"Authorization: Bearer eyJhbGciOiJSUzI1..."</span> <span class="nt">-k</span> https://10.213.196.211:6443/livez<span class="se">\?</span>verbose
+<span class="o">[</span>+]ping ok
+<span class="o">[</span>+]log ok
+<span class="o">[</span>+]etcd ok
+<span class="o">[</span>+]poststarthook/start-kube-apiserver-admission-initializer ok
+<span class="o">[</span>+]poststarthook/generic-apiserver-start-informers ok
+<span class="o">[</span>+]poststarthook/priority-and-fairness-config-consumer ok
+<span class="o">[</span>+]poststarthook/priority-and-fairness-filter ok
+<span class="o">[</span>+]poststarthook/start-apiextensions-informers ok
+<span class="o">[</span>+]poststarthook/start-apiextensions-controllers ok
+<span class="o">[</span>+]poststarthook/crd-informer-synced ok
+<span class="o">[</span>+]poststarthook/bootstrap-controller ok
+<span class="o">[</span>+]poststarthook/rbac/bootstrap-roles ok
+<span class="o">[</span>+]poststarthook/scheduling/bootstrap-system-priority-classes ok
+<span class="o">[</span>+]poststarthook/priority-and-fairness-config-producer ok
+<span class="o">[</span>+]poststarthook/start-cluster-authentication-info-controller ok
+<span class="o">[</span>+]poststarthook/aggregator-reload-proxy-client-cert ok
+<span class="o">[</span>+]poststarthook/start-kube-aggregator-informers ok
+<span class="o">[</span>+]poststarthook/apiservice-registration-controller ok
+<span class="o">[</span>+]poststarthook/apiservice-status-available-controller ok
+<span class="o">[</span>+]poststarthook/kube-apiserver-autoregistration ok
+<span class="o">[</span>+]autoregister-completion ok
+<span class="o">[</span>+]poststarthook/apiservice-openapi-controller ok
+livez check passed
+
+<span class="c"># 참고) 실패시</span>
+<span class="o">{</span>
+  <span class="s2">"kind"</span>: <span class="s2">"Status"</span>,
+  <span class="s2">"apiVersion"</span>: <span class="s2">"v1"</span>,
+  <span class="s2">"metadata"</span>: <span class="o">{</span>
+  <span class="o">}</span>,
+  <span class="s2">"status"</span>: <span class="s2">"Failure"</span>,
+  <span class="s2">"message"</span>: <span class="s2">"Unauthorized"</span>,
+  <span class="s2">"reason"</span>: <span class="s2">"Unauthorized"</span>,
+  <span class="s2">"code"</span>: 401
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="요약">요약</h2>
+
+<p>Kubernetes API 서버에 접근하기 위한 인증방식은 크게 4가지가 있다.</p>
+
+<ul>
+  <li>Node</li>
+  <li>ABAC</li>
+  <li>RBAC</li>
+  <li>Webhook</li>
+</ul>
+
+<p>일반적으로 사용하는 인증 방식으로는 RBAC가 있으며 Role에 기반하여 인증하는 방식이다.</p>
+
+<p>전체적인 구조를 보자면 아래와 같다. (ClusterRole도 동일)</p>
+
+<div class="mermaid">
+flowchart LR
+  A[User]
+  B[Group]
+  C[Service Account]
+  D[Role]
+  subgraph Kubernetes Cluster
+  E[Secret]
+  J[Pod]
+  F[Kube API]
+  RoleBinding
+  end
+  subgraph RoleBinding
+  A &amp; B &amp; C---D
+  end
+  C -.token.- E
+  C --&gt; J
+  J --Request--&gt; F
+  F -.Response.-&gt; J
+</div>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Using RBAC Authorization</a></li>
+  <li><a href="https://kubernetes.io/docs/reference/access-authn-authz/node/">Using Node Authorization</a></li>
+  <li><a href="https://kubernetes.io/docs/reference/access-authn-authz/node/">Using ABAC Authorization</a></li>
+  <li><a href="https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/">Certified Kubernetes Administrator(CKA) with Practice Tests</a></li>
+</ol>
+:ET

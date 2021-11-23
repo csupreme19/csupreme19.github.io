@@ -4,12 +4,12 @@ url: "https://csupreme19.github.io"
 
 # THEME-SPECIFIC CONFIGURATION
 title: Seunghoon Choi                             # site's title
-description: "생각하고 바로 행동하기"      # used by search engines
+description: "DevOps 개발 블로그"      # used by search engines
 avatar: assets/img/triangle.png                         # Empty for no avatar in navbar
 favicon: assets/favicon.ico                             # Icon displayed in the tab
 
 # Header and footer text
-header_text: 생각하고 바로 행동하기  # Change Blog header text
+header_text: 실행하고 정리하고 기록하기  # Change Blog header text
 header_feature_image: assets/img/pexels/triangular.jpeg
 footer_text: >
   Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
@@ -27,6 +27,7 @@ mermaid: true                                           # Enable mermaid-js for 
 google_analytics:                                       # Tracking ID, e.g. "UA-000000-01"
 cookie_consent: false                                   # To respect the usage of cookies
 color_theme: auto                                       # auto, dark or light
+prefers-colors-scheme: dark
 
 # Comments
 comments:
@@ -35,6 +36,7 @@ comments:
   utterances:                                           # Enable by filling below information. For more info, go to https://utteranc.es
     repo: csupreme19/csupreme19.github.io                                              # your public comments repository (e.g. owner/repo)
     issue-term: comment                                         # Issue term (e.g. "comment" consider issues with this word in the title as comments)
+    theme: preferred-color-scheme
 
 # PAGINATION
 paginate: 5

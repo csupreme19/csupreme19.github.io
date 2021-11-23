@@ -19,12 +19,14 @@ tags: [Sonarqube, Jenkins, Webhook, Ingress, Kubernetes, GitLab]
 설정시 오류를 해결했던 내역을(트러블슈팅) 정리하였다.
 
 ---
+
 ## SonarQube 설정
 
-### Ingress SSL 인증서 적용
+### SonarQube Ingress SSL 인증서 적용
+
 #### 1. k8s Secret 생성
 
-> k8s secret 생성은 [Kubernetes ingress nginx https 인증서 적용](#kubernetes-ingress-nginx-https) 참조
+> k8s secret 생성은 [Kubernetes Nginx Ingress 적용](/2021/04/03/kubernetes-ingress.html) 참고
 
 #### 2. Ingress 리소스 설정
 
@@ -287,7 +289,8 @@ SonarQube 로그인시 GitLab OAuth2를 사용하여 gitlab 계정 연동을 할
         - Application ID, Secret: 1-4에서 복사한 항목 각각 입력
         - Allow users to sign-up: gitlab oauth2로 처음 로그인하는 사용자를 sonarqube에 등록할 것인지? 체크
         - Synchronize user groups: 소나큐브에 gitlab 그룹명과 일치하는 그룹이 생성되어 있다면 유저를 자동으로 등록한다. 체크
-3. Java caCerts 인증서 설정(Kubernetes TLS Secret)
+3. #### Java caCerts 인증서 설정(Kubernetes TLS Secret)
+    
     > Java에서는 https 통신시 기본적으로 java keystore에 인증서를 요구한다.<br />위에서 public 경로를 http로 설정하였으면 상관 없으나 https로 설정한 경우 진행
     >
     > 현재 Java 기반 서비스들은 Kubernetes 환경에 떠있으므로 해당 환경으로 진행
@@ -323,7 +326,8 @@ SonarQube 로그인시 GitLab OAuth2를 사용하여 gitlab 계정 연동을 할
        # helm upgrade
        $ helm upgrade sonarqube oteemocharts/sonarqube -f values.yaml
        ```
-4. 테스트
+4. #### 테스트
+    
     1. 로그아웃 후 메인페이지에 들어가면 아래 이미지와 같이 Log in with GitLab 버튼 생성 확인
     ![sc-6.png]({{ "/assets/img/contents/sc-6.png"}})
     2. 버튼 누르면 GitLab에 로그인되어 있는 경우 자동으로 소나큐브 사용자 생성 및 연동이 완료된다.
@@ -341,9 +345,9 @@ markdown 형태로 실시간 정보 배지를 embed 가능
 대신 해당 배지를 사용하려면 SonarQube 프로젝트가 Public으로 설정되어야하며 이는 소스 취약점을 외부에서 누구나 볼 수 있다는 것을 의미한다.
 
 ---
-### Troubleshooting
+## Troubleshooting
 
-#### 1. 분석 권한 없음
+### 1. 분석 권한 없음
 
 ```shell
 [ERROR] Error during SonarScanner execution
@@ -360,7 +364,7 @@ SonarQube 플러그인 설치 및 실행은 완료되었으나 Jenkins - SonarQu
 2. Administration > Security > Global Permissions
 3. 연동된 유저가 속한 그룹 혹은 유저 자체에 Execute Analysis 권한 체크
 
-#### 2. class 파일 없음 
+### 2. class 파일 없음 
 
 ```shell
 [ERROR] Failed to execute goal org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar (default-cli) on project sample-project: Your project contains .java files, please provide compiled classes with sonar.java.binaries property, or exclude them from the analysis with sonar.exclusions property. -> [Help 1]
@@ -376,7 +380,7 @@ Java의 경우 sonarqube는 신뢰도를 높이기 위하여 .java 파일만으�
 
 만약 없을 경우, 수동으로 컴파일하여 .class 파일을 넣어줘야함.
 
-#### 3. 소스 분석시 HTTP 413 REQUEST ENTITY TOO LARGE
+### 3. 소스 분석시 HTTP 413 REQUEST ENTITY TOO LARGE
 
 소스 분석시 `HTTP 413 REQUEST ENTITY TOO LARGE`가 나오는 경우
 
@@ -402,7 +406,7 @@ Java의 경우 sonarqube는 신뢰도를 높이기 위하여 .java 파일만으�
 
 ---
 
-### Reference
+## Reference
 
 1. [SonarScanner for Jenkins](https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-jenkins/)
 2. [SonarQube Scanner for Jenkins](https://www.jenkins.io/doc/pipeline/steps/sonar/#sonarqube-scanner-for-jenkins)

@@ -10,8 +10,6 @@ tags: [Kubernetes, Authorization, Authentication, RBAC, ABAC, Security]
 
 # Kubernetes RBAC Authorization 적용
 
-본 문서에서는 쿠버네티스 API 서버에 접근하기 위한 4가지 인증 방식을 살펴보고 그 중 RBAC 인증 적용방법에 대하여 정리하였다.
-
 ![kubernetes-horizontal-color.png]({{ "/assets/img/titles/kubernetes-horizontal-color.png"}})
 
 [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
@@ -80,7 +78,7 @@ Kubernetes Clsuter에 속하는 Node들은 Kubelet에서 API 서버에 요청할
 
 이 때 Kubelet의 Group은 `system:node`에 속해 있으며 해당 그룹에 속해있는 인증 요청은 Node Authorizer에 의하여 인증된다.
 
-이 방식은 보통 Kubernetes TLS 부트스트랩 과정에서 자동으로 설정되므로 더 자세한 내용은 [공식 문서](https://kubernetes.io/docs/reference/access-authn-authz/node/) 참조
+이 방식은 보통 Kubernetes TLS 부트스트랩 과정에서 자동으로 설정되므로 더 자세한 내용은 [공식 문서](https://kubernetes.io/docs/reference/access-authn-authz/node/) 참고
 
 ---
 
@@ -158,9 +156,9 @@ flowchart LR
 
 ---
 
-### RBAC 리소스
+## RBAC 리소스
 
-#### 1. Role / ClusterRole
+### 1. Role / ClusterRole
 
 <div class="mermaid">
 flowchart LR
@@ -172,7 +170,7 @@ flowchart LR
 
 Role과 ClusterRole이 있으며 ClusterRole은 Role과 달리 클러스터 레벨로 가지고 있어 네임스페이스가 존재하지 않는다.
 
-##### Role 예제
+#### Role 예제
 
 ```yaml
 ---
@@ -223,7 +221,7 @@ persistentvolumes                 pv           v1                               
 
 
 
-##### Role 확인
+#### Role 확인
 
 ```sh
 $ kubectl get role -n kube-system
@@ -242,7 +240,7 @@ PolicyRule:
 
 
 
-#### 2. ServiceAccount
+### 2. ServiceAccount
 
 파드로 올라가있는 서비스에서 kubernetes 클러스터에 접근하기 위한 계정을 나타내는 리소스다. 
 
@@ -263,7 +261,7 @@ flowchart LR
   A-.token.-B
 </div>
 
-##### SA 예제
+#### SA 예제
 
 ```yaml
 ---
@@ -274,7 +272,7 @@ metadata:
   namespace: kubernetes-dashboard
 ---
 ```
-##### SA 확인
+#### SA 확인
 
 ```sh
 $ kubectl get sa -n kube-system
@@ -282,7 +280,7 @@ $ kubectl get sa -n kube-system
 
 service account 생성시 해당 서비스 어카운트의 토큰을 가지고 있는 secret이 자동 생성된다.
 
-##### 서비스 어카운트 사용방법
+#### 서비스 어카운트 사용방법
 
 ```sh
 $ kubectl describe sa/monitoring-user -n kubernetes-dashboard
@@ -298,7 +296,7 @@ Events:              <none>
 
 service account 생성시 해당 서비스 어카운트의 토큰을 가지고 있는 secret이 자동 생성된다.
 
-##### 토큰 확인
+#### 토큰 확인
 
 ```sh
 $ kubectl describe secret monitoring-user-token-r6nss -n kubernetes-dashboard
@@ -323,7 +321,7 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6IlVmM2...
 
 API 호출시 Authorization 헤더에 해당 토큰을 넣어서 요청하면 인증을 할 수 있다.
 
-##### 자원에 적용
+#### 자원에 적용
 
 ```yaml
 kind: Deployment
@@ -345,7 +343,7 @@ spec:
 
 Pod 명세 `serviceAccountName` 에 위에서 생성한 SA 추가하면 해당 Pod는 API Server에 정의된 권한을 가지고 접근할 수 있다.
 
-##### 요청 예시
+#### 요청 예시
 
 ```sh
 # 직접 호출시 토큰 명시
@@ -353,7 +351,7 @@ $ curl -H "Authorization: Bearer eyJhbGciOiJSUzI1..." -ivk https://10.213.196.21
 ```
 
 
-#### 3. RoleBinding
+### 3. RoleBinding
 
 위에서 생성한 ServiceAccount가 실질적으로 권한을 가지려면 해당 어카운트가 어느 자원에 접근할 수 있는지 허락하는 단계가 필요하다.
 
@@ -365,7 +363,7 @@ RoleBinding과 ClusterRoleBinding이 있으며 ClusterRole의 경우 ClusterRole
 
 각각의 Role은 ServiceAccount, User, Group에 바인딩 될 수 있다.
 
-**User / Group**
+#### **User / Group**
 
 ServiceAccount와 달리 Kubernetes API server의 User와 Group은 별도로 정의된 Kubernetes Resource가 아니다.
 
@@ -420,7 +418,7 @@ flowchart LR
   C -.token.- E
 </div>
 
-##### RoleBinding 예제
+#### RoleBinding 예제
 
 ```yaml
 ---
@@ -454,7 +452,7 @@ subjects:
 ```
 > ClusterRoleBinding 역시 클러스터 레벨이므로 네임스페이스가 따로 없음
 
-##### RoleBinding 확인
+#### RoleBinding 확인
 
 ```sh
 $ kubectl get rolebinding
@@ -463,13 +461,13 @@ $ kubectl get pods --as jane	# User 권한 확인
 ```
 
 ---
-#### RBAC 사용 예시
+### RBAC 사용 예시
 
 >  시나리오: k8s dashboard에 접근하기 위한 모니터링 인증을 생성한다.
 
 
 
-1. `kubernetes-dashboard-rbac.yaml` 작성
+#### 1. `kubernetes-dashboard-rbac.yaml` 작성
 
 ServiceAccount, ClusterRole, ClusterRoleBinding을 설정한다.
 ```yaml
@@ -518,14 +516,15 @@ rules:
 
 해당 ClusterRole을 가진 SA의 시크릿 토큰을 이용하여 위 URL에 해당하는 API를 호출할 수 있다.
 
-2. Token 확인
+#### 2. Token 확인
+
 ```sh
 $ kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/monitoring-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
 ```
 
 
 
-3. Kubernetes 클러스터 접근 테스트
+#### 3. Kubernetes 클러스터 접근 테스트
 
 ```sh
 $ curl -H "Authorization: Bearer eyJhbGciOiJSUzI1..." -k https://10.213.196.211:6443/livez\?verbose
@@ -568,7 +567,7 @@ livez check passed
 
 ---
 
-### 요약
+## 요약
 
 Kubernetes API 서버에 접근하기 위한 인증방식은 크게 4가지가 있다.
 
@@ -606,7 +605,7 @@ flowchart LR
 
 ---
 
-### Reference
+## Reference
 
 1. [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 2. [Using Node Authorization](https://kubernetes.io/docs/reference/access-authn-authz/node/)

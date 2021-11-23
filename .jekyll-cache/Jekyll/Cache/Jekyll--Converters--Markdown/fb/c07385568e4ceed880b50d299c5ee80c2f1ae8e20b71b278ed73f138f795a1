@@ -1,0 +1,262 @@
+I"8<h1 id="elasticsearch-filebeat-모듈-설정">Elasticsearch Filebeat 모듈 설정</h1>
+
+<p><img src="/assets/img/titles/elastic-beats-logo.png" alt="elastic-beats-logo.png" /></p>
+
+<p><a href="https://www.elastic.co/guide/en/beats/filebeat/7.16/filebeat-modules.html">Filebeat Modules</a></p>
+
+<p>로그 정보를 수집하는 Filebeat를 각 VM(Ubuntu)에 설치하여 로그 파일을 Elasticsearch로 전송한다.</p>
+
+<hr />
+<h2 id="module-설정">Module 설정</h2>
+<hr />
+<h3 id="filebeat-설치">Filebeat 설치</h3>
+
+<p><a href="https://bookstack.ccpinfra.xyz:23443/books/elk/page/filebeat">Filebeat 설치 및 설정</a> 참조</p>
+
+<hr />
+<h3 id="module-확인">Module 확인</h3>
+
+<p>데이터를 수집하기 위한 filebeat의 module list 확인</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>filebeat modules list
+</code></pre></div></div>
+<hr />
+<h3 id="system-module-설정">System module 설정</h3>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>filebeat modules <span class="nb">enable </span>system
+</code></pre></div></div>
+
+<hr />
+<h3 id="kafka-module-설정">Kafka module 설정</h3>
+
+<p>Kafka가 설치되어 있는 VM에 진행</p>
+
+<h4 id="모듈-활성화">모듈 활성화</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>filebeat modules <span class="nb">enable </span>postgresql
+</code></pre></div></div>
+
+<h4 id="모듈-설정">모듈 설정</h4>
+
+<p><code class="language-plaintext highlighter-rouge">/etc/filebeat/modules.d/kafka.yml</code> 수정</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">module</span><span class="pi">:</span> <span class="s">kafka</span>
+  <span class="na">log</span><span class="pi">:</span>
+    <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+    
+    <span class="na">var.paths</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">/data/kafka-logs/controller.log*"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">/data/kafka-logs/server.log*"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">/data/kafka-logs/state-change.log*"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">/data/kafka-logs/kafka-*.log*"</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>ref: <a href="https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-kafka.html">https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-kafka.html</a></p>
+</blockquote>
+
+<h4 id="kafka-dashboards">kafka dashboards</h4>
+<p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-08/filebeat-kafka-dashboards.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-08/scaled-1680-/filebeat-kafka-dashboards.png" alt="filebeat-kafka-dashboards.png" /></a></p>
+
+<hr />
+<h3 id="nginx-module-설정">Nginx module 설정</h3>
+
+<p>Nginx가 설치되어 있는 VM에 진행</p>
+
+<h4 id="모듈-활성화-1">모듈 활성화</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>filebeat modules <span class="nb">enable </span>nginx
+</code></pre></div></div>
+
+<h4 id="모듈-설정-1">모듈 설정</h4>
+
+<p><code class="language-plaintext highlighter-rouge">/etc/filebeat/modules.d/nginx.yml</code> 수정</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">module</span><span class="pi">:</span> <span class="s">nginx</span>
+  <span class="c1"># Access logs</span>
+  <span class="na">access</span><span class="pi">:</span>
+    <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">var.paths</span><span class="pi">:</span> 
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">/var/log/nginx/access.log*"</span>
+
+  <span class="c1"># Error logs</span>
+  <span class="na">error</span><span class="pi">:</span>
+    <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="s">- "/var/log/nginx/error.log*"</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>ref: <a href="https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-nginx.html">https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-nginx.html</a></p>
+</blockquote>
+
+<h4 id="nginx-dashboards">nginx dashboards</h4>
+
+<p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-07/metricbeat-nginx-1.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-07/scaled-1680-/metricbeat-nginx-1.png" alt="metricbeat-nginx-1.png" /></a></p>
+
+<p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-07/metricbeat-nginx-2.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-07/scaled-1680-/metricbeat-nginx-2.png" alt="metricbeat-nginx-2.png" /></a></p>
+
+<h4 id="추가-사항">추가 사항</h4>
+
+<p>access.log에 관리자 페이지 관련하여 access_log가 많이 쌓이는 경우</p>
+
+<p>아래와 같이 access_log off; 추가</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> /etc/nginx/conf.d
+<span class="nv">$ </span>vim management.conf
+        location / <span class="o">{</span>
+                access_log off<span class="p">;</span>
+        <span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+<h3 id="postgresql-module-설정">PostgreSQL module 설정</h3>
+
+<p>PostgreSQL이 설치되어 있는 VM에 진행</p>
+
+<h4 id="모듈-활성화-2">모듈 활성화</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>filebeat modules <span class="nb">enable </span>postgresql
+</code></pre></div></div>
+
+<h4 id="모듈-설정-2">모듈 설정</h4>
+
+<p><code class="language-plaintext highlighter-rouge">/etc/filebeat/modules.d/postgresql.yml</code> 수정</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">module</span><span class="pi">:</span> <span class="s">postgresql</span>
+  <span class="na">log</span><span class="pi">:</span>
+    <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">var.paths</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">/data/postgres/pgdata/log/*.log*"</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>ref: <a href="https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-postgresql.html">https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-postgresql.html</a></p>
+</blockquote>
+
+<h4 id="postgresql-dashboards">postgresql dashboards</h4>
+
+<p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-08/filebeat-postgresql-dashboards.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-08/scaled-1680-/filebeat-postgresql-dashboards.png" alt="filebeat-postgresql-dashboards.png" /></a></p>
+
+<hr />
+<h3 id="mysql-module-설정">MySQL module 설정</h3>
+
+<p>MySQL이 설치되어 있는 VM에 진행</p>
+
+<h4 id="모듈-활성화-3">모듈 활성화</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>filebeat modules <span class="nb">enable </span>mysql
+</code></pre></div></div>
+
+<h4 id="모듈-설정-3">모듈 설정</h4>
+
+<p><code class="language-plaintext highlighter-rouge">/etc/filebeat/modules.d/mysql.yml</code> 수정</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">module</span><span class="pi">:</span> <span class="s">mysql</span>
+  <span class="na">error</span><span class="pi">:</span>
+    <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">var.paths</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">/data/mysql/logs/error.log*"</span>
+
+  <span class="na">slowlog</span><span class="pi">:</span>
+    <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">var.paths</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">/data/mysql/logs/mysql-slow.log*"</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>ref: <a href="https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-mysql.html">https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-mysql.html</a></p>
+</blockquote>
+
+<h4 id="mysql-dashboards">mysql dashboards</h4>
+
+<p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-08/filebeat-mysql-dashboards.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-08/scaled-1680-/filebeat-mysql-dashboards.png" alt="filebeat-mysql-dashboards.png" /></a></p>
+
+<hr />
+<h3 id="mongodb-module-설정">MongoDB module 설정</h3>
+
+<p>MongoDB가 설치되어 있는 VM에 진행</p>
+
+<h4 id="모듈-활성화-4">모듈 활성화</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>filebeat modules <span class="nb">enable </span>mongodb
+</code></pre></div></div>
+
+<h4 id="모듈-설정-4">모듈 설정</h4>
+
+<p><code class="language-plaintext highlighter-rouge">/etc/filebeat/modules.d/mongodb.yml</code> 수정</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">module</span><span class="pi">:</span> <span class="s">mongodb</span>
+  <span class="na">log</span><span class="pi">:</span>
+    <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">var.paths</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">/data/mongo/logs/*.log*"</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>ref: <a href="https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-mongodb.html">https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-mongodb.html</a></p>
+</blockquote>
+
+<h4 id="mongodb-dashboards">mongodb dashboards</h4>
+
+<p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-08/filebeat-mongodb-dashboards.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-08/scaled-1680-/filebeat-mongodb-dashboards.png" alt="filebeat-mongodb-dashboards.png" /></a></p>
+
+<hr />
+<h3 id="redis-module-설정">Redis module 설정</h3>
+
+<p>Redis가 설치되어 있는 VM에 진행</p>
+
+<h4 id="모듈-활성화-5">모듈 활성화</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>filebeat modules <span class="nb">enable </span>redis
+</code></pre></div></div>
+
+<h4 id="모듈-설정-5">모듈 설정</h4>
+
+<p><code class="language-plaintext highlighter-rouge">/etc/filebeat/modules.d/redis.yml</code> 수정</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">module</span><span class="pi">:</span> <span class="s">redis</span>
+  <span class="na">log</span><span class="pi">:</span>
+    <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">var.paths</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">/data/redis/redis-server.log*"</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>ref: <a href="https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-redis.html">https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-redis.html</a></p>
+</blockquote>
+
+<h4 id="redis-dashboards">redis dashboards</h4>
+
+<p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-08/filebeat-redis-dashboards.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-08/scaled-1680-/filebeat-redis-dashboards.png" alt="filebeat-redis-dashboards.png" /></a></p>
+
+<hr />
+<h3 id="filebeat-setup">Filebeat setup</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># dashboard 생성을 위해 /usr/share/filebeat 이동하여 실행</span>
+<span class="nv">$ </span><span class="nb">cd</span> /usr/share/filebeat
+
+<span class="c"># -e 옵션으로 error 여부를 stdout 으로 출력. log에서 host에 정상 접속 했는지 확인 가능</span>
+<span class="nv">$ </span>filebeat setup <span class="nt">-e</span> <span class="nt">-c</span> /etc/filebeat/filebeat.yml <span class="nt">--dashboards</span>
+</code></pre></div></div>
+
+<p>setup 완료 후 마지막 문장에 dashboard가 정상 로딩된 것을 확인
+<a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-06/image-1624672761341.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-06/scaled-1680-/image-1624672761341.png" alt="" /></a></p>
+
+<hr />
+<h2 id="filebeat-구동">Filebeat 구동</h2>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl start filebeat.service
+</code></pre></div></div>
+
+<h3 id="filebeat-log-확인">Filebeat log 확인</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>journalctl <span class="nt">-u</span> filebeat
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://www.elastic.co/guide/en/beats/filebeat/7.16/filebeat-overview.html">Filebeat Overview</a></li>
+</ol>
+:ET
