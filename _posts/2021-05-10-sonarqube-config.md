@@ -213,7 +213,7 @@ Gradle 프로젝트의 경우 보통 gradlew의 wrapper 형태로 제공되는 �
     
 # multi module project의 경우
 # 아래와 같이 검사할 모듈명 명시 후 안에 적용
-project(":makers-web") {
+project(":project-web") {
 	apply plugin: 'org.sonarqube'
 
 	sonarqube {

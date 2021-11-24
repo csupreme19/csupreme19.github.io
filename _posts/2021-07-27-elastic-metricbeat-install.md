@@ -38,9 +38,6 @@ wget 으로 7.11.2 버전을 download 및 설치:
 # 다운로드
 $ wget https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.11.2-amd64.deb
 
-# RobotMakers EPC에는 7.12.1 설치됨
-$ wget https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.12.1-amd64.deb
-
 # CentOS 7 용(rpm)
 $ wget https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.12.1-x86_64.rpm
 
@@ -90,7 +87,7 @@ elasticsearch 연결 설정:
   - `output.elasticsearch` 값을 설정
   - username, password 는 hard-coded 하지 말고 serets keystore 등으로 대체 필요
 
-metricbeat.yml 설정 내용 - **SSL 인증 키 없이** http 접속 시 아래 설정 사용(RobotMakers의 경우):
+metricbeat.yml 설정 내용 - **SSL 인증 키 없이** http 접속 시 아래 설정 사용
 ```sh
 # kibana 접속 정보 설정.
 setup.kibana:

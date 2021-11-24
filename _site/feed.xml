@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-11-24T15:58:18+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>DevOps 개발 블로그</subtitle><entry><title type="html">Jekyll과 Github pages를 사용하여 블로그 만들기</title><link href="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html" rel="alternate" type="text/html" title="Jekyll과 Github pages를 사용하여 블로그 만들기" /><published>2021-11-18T00:00:00+09:00</published><updated>2021-11-18T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/18/github-pages-with-jekyll</id><content type="html" xml:base="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html">&lt;h1 id=&quot;jekyll과-github-pages를-사용하여-간단하게-블로그를-만들어보자&quot;&gt;Jekyll과 Github pages를 사용하여 간단하게 블로그를 만들어보자&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-11-24T17:10:39+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>DevOps 개발 블로그</subtitle><entry><title type="html">Jekyll과 Github pages를 사용하여 블로그 만들기</title><link href="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html" rel="alternate" type="text/html" title="Jekyll과 Github pages를 사용하여 블로그 만들기" /><published>2021-11-18T00:00:00+09:00</published><updated>2021-11-18T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/18/github-pages-with-jekyll</id><content type="html" xml:base="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html">&lt;h1 id=&quot;jekyll과-github-pages를-사용하여-간단하게-블로그를-만들어보자&quot;&gt;Jekyll과 Github pages를 사용하여 간단하게 블로그를 만들어보자&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/titles/github-pages.png&quot; alt=&quot;github-pages.png&quot; /&gt;&lt;/p&gt;
 
@@ -1660,7 +1660,7 @@ flowchart LR
     
   &lt;span class=&quot;na&quot;&gt;period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10s&lt;/span&gt;
   
-  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;metricbeat:rmakers2021@tcp(127.0.0.1:13306)/&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;metricbeat:password1234@tcp(127.0.0.1:13306)/&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;blockquote&gt;
@@ -1682,26 +1682,23 @@ mysql&amp;gt; &lt;span class=&quot;k&quot;&gt;select &lt;/span&gt;host, user fro
 +-----------+------------------+
 | host      | user             |
 +-----------+------------------+
-| %         | robot            |
-| localhost | healthchecker    |
 | localhost | mysql.infoschema |
 | localhost | mysql.session    |
 | localhost | mysql.sys        |
-| localhost | robot            |
 | localhost | root             |
 +-----------+------------------+
 7 rows &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.00 sec&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 
-mysql&amp;gt; create user &lt;span class=&quot;s1&quot;&gt;&apos;metricbeat&apos;&lt;/span&gt;@&lt;span class=&quot;s1&quot;&gt;&apos;172.18.0.1&apos;&lt;/span&gt; identified by &lt;span class=&quot;s1&quot;&gt;&apos;rmakers2021&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+mysql&amp;gt; create user &lt;span class=&quot;s1&quot;&gt;&apos;metricbeat&apos;&lt;/span&gt;@&lt;span class=&quot;s1&quot;&gt;&apos;172.18.0.1&apos;&lt;/span&gt; identified by &lt;span class=&quot;s1&quot;&gt;&apos;password1234&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 Query OK, 0 rows affected &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.02 sec&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 
-mysql &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; grant all privilieges on &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; to &lt;span class=&quot;s1&quot;&gt;&apos;metricbeat&apos;&lt;/span&gt;@&lt;span class=&quot;s1&quot;&gt;&apos;172.18.0.1&apos;&lt;/span&gt; identified by &lt;span class=&quot;s1&quot;&gt;&apos;rmakers2021&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+mysql &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; grant all privilieges on &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; to &lt;span class=&quot;s1&quot;&gt;&apos;metricbeat&apos;&lt;/span&gt;@&lt;span class=&quot;s1&quot;&gt;&apos;172.18.0.1&apos;&lt;/span&gt; identified by &lt;span class=&quot;s1&quot;&gt;&apos;password1234&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 mysql &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; flush privileges&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;자세한 내용은 &lt;a href=&quot;https://bookstack.ccpinfra.xyz:23443/books/mobilitymakers-infra/page/mysql-dev-zone-docker#bkmrk-%EC%99%B8%EB%B6%80-%EC%A0%91%EC%86%8D-host-%EA%B6%8C%ED%95%9C-%EC%84%A4%EC%A0%95&quot;&gt;외부 접속 host 권한 설정&lt;/a&gt; 참조&lt;/p&gt;
+  &lt;p&gt;자세한 내용은 &lt;a href=&quot;http://localhost:4000/2021/05/31/mysql-install.html&quot;&gt;MySQL 설치 및 사용자 생성&lt;/a&gt; 참조&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h4 id=&quot;mysql-dashboards&quot;&gt;mysql dashboards&lt;/h4&gt;
@@ -2012,9 +2009,6 @@ $ nginx -s reload
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 다운로드&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.11.2-amd64.deb
 
-&lt;span class=&quot;c&quot;&gt;# RobotMakers EPC에는 7.12.1 설치됨&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.12.1-amd64.deb
-
 &lt;span class=&quot;c&quot;&gt;# CentOS 7 용(rpm)&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.12.1-x86_64.rpm
 
@@ -2067,7 +2061,7 @@ $ nginx -s reload
   &lt;li&gt;username, password 는 hard-coded 하지 말고 serets keystore 등으로 대체 필요&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;metricbeat.yml 설정 내용 - &lt;strong&gt;SSL 인증 키 없이&lt;/strong&gt; http 접속 시 아래 설정 사용(RobotMakers의 경우):&lt;/p&gt;
+&lt;p&gt;metricbeat.yml 설정 내용 - &lt;strong&gt;SSL 인증 키 없이&lt;/strong&gt; http 접속 시 아래 설정 사용&lt;/p&gt;
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# kibana 접속 정보 설정.&lt;/span&gt;
 setup.kibana:
   host: &lt;span class=&quot;s2&quot;&gt;&quot;http://10.213.196.6:5601&quot;&lt;/span&gt;

@@ -163,7 +163,7 @@ $ metricbeat modules enable mysql
     
   period: 10s
   
-  hosts: ["metricbeat:rmakers2021@tcp(127.0.0.1:13306)/"]
+  hosts: ["metricbeat:password1234@tcp(127.0.0.1:13306)/"]
 ```
 
 > ref: [https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-mysql.html](https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-mysql.html)
@@ -185,25 +185,22 @@ mysql> select host, user from mysql.user;
 +-----------+------------------+
 | host      | user             |
 +-----------+------------------+
-| %         | robot            |
-| localhost | healthchecker    |
 | localhost | mysql.infoschema |
 | localhost | mysql.session    |
 | localhost | mysql.sys        |
-| localhost | robot            |
 | localhost | root             |
 +-----------+------------------+
 7 rows in set (0.00 sec)
 
-mysql> create user 'metricbeat'@'172.18.0.1' identified by 'rmakers2021';
+mysql> create user 'metricbeat'@'172.18.0.1' identified by 'password1234';
 Query OK, 0 rows affected (0.02 sec)
 
-mysql > grant all privilieges on *.* to 'metricbeat'@'172.18.0.1' identified by 'rmakers2021';
+mysql > grant all privilieges on *.* to 'metricbeat'@'172.18.0.1' identified by 'password1234';
 mysql > flush privileges;
 
 ```
 
-> 자세한 내용은 [외부 접속 host 권한 설정](https://bookstack.ccpinfra.xyz:23443/books/mobilitymakers-infra/page/mysql-dev-zone-docker#bkmrk-%EC%99%B8%EB%B6%80-%EC%A0%91%EC%86%8D-host-%EA%B6%8C%ED%95%9C-%EC%84%A4%EC%A0%95) 참조
+> 자세한 내용은 [MySQL 설치 및 사용자 생성](http://localhost:4000/2021/05/31/mysql-install.html) 참조
 
 #### mysql dashboards
 

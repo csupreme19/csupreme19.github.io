@@ -798,11 +798,11 @@ $ k delete pod tomcatsessionclustertest-deploy-79d5796f9c-dwxv2 -n development
 
 Tomcat에서 기본적으로 가이드하고 있는 Session Replication 방법
 
-![tsc-6.png]({{ "/assets/img/contents/tsc-13.png"}})
+![tsc-6.png]({{ "/assets/img/contents/tsc-6.png"}})
 
-![tsc-8.png]({{ "/assets/img/contents/tsc-13.png"}})
+![tsc-8.png]({{ "/assets/img/contents/tsc-8.png"}})
 
-다른 노드간 세션이 유지되는 것을 확인할 수 있었다.
+로컬 환경에서는 세션이 유지되었으나 클라우드 환경에서는 다른 노드간 세션이 유지되지 않는 것으로 확인되었다.
 
 Tomcat 서버 인메모리에 세션 정보를 저장하고 SimpleTCPCluster와 같은 클래스를 이용하여 리플리케이션 한다.
 

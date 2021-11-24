@@ -258,9 +258,6 @@
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 다운로드</span>
 <span class="nv">$ </span>wget https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.11.2-amd64.deb
 
-<span class="c"># RobotMakers EPC에는 7.12.1 설치됨</span>
-<span class="nv">$ </span>wget https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.12.1-amd64.deb
-
 <span class="c"># CentOS 7 용(rpm)</span>
 <span class="nv">$ </span>wget https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.12.1-x86_64.rpm
 
@@ -313,7 +310,7 @@
   <li>username, password 는 hard-coded 하지 말고 serets keystore 등으로 대체 필요</li>
 </ul>
 
-<p>metricbeat.yml 설정 내용 - <strong>SSL 인증 키 없이</strong> http 접속 시 아래 설정 사용(RobotMakers의 경우):</p>
+<p>metricbeat.yml 설정 내용 - <strong>SSL 인증 키 없이</strong> http 접속 시 아래 설정 사용</p>
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># kibana 접속 정보 설정.</span>
 setup.kibana:
   host: <span class="s2">"http://10.213.196.6:5601"</span>
