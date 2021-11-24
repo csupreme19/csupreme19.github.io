@@ -2,7 +2,7 @@
 layout: post
 title: SonarQube 설정 및 트러블슈팅
 feature-img: assets/img/titles/sonarqube.png
-thumbnail: assets/img/titles/sonarqube.png
+thumbnail: assets/img/contents/sc-1.png
 author: csupreme19
 tags: [Sonarqube, Jenkins, Webhook, Ingress, Kubernetes, GitLab]
 
@@ -290,7 +290,7 @@ SonarQube 로그인시 GitLab OAuth2를 사용하여 gitlab 계정 연동을 할
         - Allow users to sign-up: gitlab oauth2로 처음 로그인하는 사용자를 sonarqube에 등록할 것인지? 체크
         - Synchronize user groups: 소나큐브에 gitlab 그룹명과 일치하는 그룹이 생성되어 있다면 유저를 자동으로 등록한다. 체크
 3. #### Java caCerts 인증서 설정(Kubernetes TLS Secret)
-    
+   
     > Java에서는 https 통신시 기본적으로 java keystore에 인증서를 요구한다.<br />위에서 public 경로를 http로 설정하였으면 상관 없으나 https로 설정한 경우 진행
     >
     > 현재 Java 기반 서비스들은 Kubernetes 환경에 떠있으므로 해당 환경으로 진행
@@ -327,7 +327,7 @@ SonarQube 로그인시 GitLab OAuth2를 사용하여 gitlab 계정 연동을 할
        $ helm upgrade sonarqube oteemocharts/sonarqube -f values.yaml
        ```
 4. #### 테스트
-    
+   
     1. 로그아웃 후 메인페이지에 들어가면 아래 이미지와 같이 Log in with GitLab 버튼 생성 확인
     ![sc-6.png]({{ "/assets/img/contents/sc-6.png"}})
     2. 버튼 누르면 GitLab에 로그인되어 있는 경우 자동으로 소나큐브 사용자 생성 및 연동이 완료된다.

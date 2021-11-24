@@ -2,7 +2,7 @@
 layout: post
 title: Elastic Filebeat 설치 및 설정
 feature-img: assets/img/titles/elastic-beats-logo.png
-thumbnail: assets/img/titles/elastic-beats-logo.png
+thumbnail: assets/img/contents/efi-1.png
 author: csupreme19
 tags: [Elasticsearch, Elastic, ELK, Filebeat, Beat]
 

@@ -12,8 +12,8 @@
     <!-- Theme Mode-->
     
     <script>
-        const isAutoTheme = true;
-        document.documentElement.setAttribute('data-theme', sessionStorage.getItem('theme'))
+        const isAutoTheme = false;
+        document.documentElement.setAttribute('data-theme', "dark")
     </script>
     
 
@@ -56,7 +56,7 @@
     
 
     <!-- seo tags -->
-    <meta property="og:image" content="http://localhost:4000/assets/img/titles/github-pages.png">
+    <meta property="og:image" content="http://localhost:4000/assets/img/contents/jekyll.png">
     
     <meta property="og:type" content="website" />
     
@@ -88,7 +88,7 @@
     <meta name="twitter:description" content="Jekyll과 Github pages를 사용하여 간단하게 블로그를 만들어보자GitHub Pages본 문서는 현재 보고 있는 블로그를 구현하였던 내용을 담고 있다.시작하게된 계기문득 개발을 하고 있는데 왜 남는게 없지? 라는 생각이 들기 시작하였다.요즘엔 양질의 개발자료를 손가락 몇...">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="http://localhost:4000/assets/img/titles/github-pages.png">
+    <meta name="twitter:image" content="http://localhost:4000/assets/img/contents/jekyll.png">
     <meta name="twitter:image:alt" content="Jekyll과 Github pages를 사용하여 블로그 만들기">
 </head>
 
@@ -191,10 +191,10 @@
             
             
         
+            
+            
         
         
-        <li class="separator"> | </li>
-        <li><a id="theme-toggle" title="Jekyll과 Github pages를 사용하여 블로그 만들기 " aria-label="Jekyll과 Github pages를 사용하여 블로그 만들기" onclick="themeToggle()"></a></li>
         
     </ul>
 
@@ -274,9 +274,7 @@
 <p>조사 결과 여러가지 블로그 플랫폼 서비스들이 존재하였다.</p>
 
 <ol>
-  <li>
-    <p><a href="https://velog.io/">https://velog.io</a></p>
-
+  <li><a href="https://velog.io/">https://velog.io</a>
     <ul>
       <li>
         <p>개발자를 위한 블로그 서비스(플랫폼)</p>
@@ -773,9 +771,9 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
 
     
     <div id="next-post">
-        <a alt="Kubernetes RBAC Authorization 적용" href="/2021/10/01/kubernetes-RBAC-auth.html">
+        <a alt="Kubernetes Pod 재시작 장애 확인하기" href="/2021/10/14/kubernetes-pod-fail-test.html">
             <p>Next post</p>
-            Kubernetes RBAC Authorization 적용
+            Kubernetes Pod 재시작 장애 확인하기
         </a>
     </div>
     

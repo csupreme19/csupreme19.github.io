@@ -1,16 +1,16 @@
 ---
 layout: post
-title: Kubernetes RBAC Authorization 적용
-feature-img: assets/img/titles/kubernetes-horizontal-color.png
-thumbnail: assets/img/titles/kubernetes-horizontal-color.png
+title: Kubernetes RBAC Authorization 개요 및 적용
+feature-img: assets/img/titles/kubernetes-logo.png
+thumbnail: assets/img/contents/authorization-authentication.jpeg
 author: csupreme19
 tags: [Kubernetes, Authorization, Authentication, RBAC, ABAC, Security]
 
 ---
 
-# Kubernetes RBAC Authorization 적용
+# Kubernetes RBAC Authorization 개요 및 적용
 
-![kubernetes-horizontal-color.png]({{ "/assets/img/titles/kubernetes-horizontal-color.png"}})
+![kubernetes-logo.png]({{ "/assets/img/titles/kubernetes-logo.png"}})
 
 [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 

@@ -2,7 +2,7 @@
 layout: post
 title: Jekyll과 Github pages를 사용하여 블로그 만들기
 feature-img: assets/img/titles/github-pages.png
-thumbnail: assets/img/titles/github-pages.png
+thumbnail: assets/img/contents/jekyll.png
 author: csupreme19
 tags: [Blog, Github, Github pages, Jekyll]
 
@@ -57,11 +57,10 @@ tags: [Blog, Github, Github pages, Jekyll]
 조사 결과 여러가지 블로그 플랫폼 서비스들이 존재하였다.
 
 1. [https://velog.io](https://velog.io/)
-
    - 개발자를 위한 블로그 서비스(플랫폼)
-
+   
    - 마크다운 작성 가능
-
+   
 2. [https://wordpress.org](https://wordpress.org/)
 
    - 전세계적으로 가장 유명한 블로그 서비스

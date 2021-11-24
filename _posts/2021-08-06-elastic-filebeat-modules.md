@@ -2,7 +2,7 @@
 layout: post
 title: Elasticsearch Filebeat 모듈 설정
 feature-img: assets/img/titles/elastic-beats-logo.png
-thumbnail: assets/img/titles/elastic-beats-logo.png
+thumbnail: assets/img/contents/efm-1.png
 author: csupreme19
 tags: [Elasticsearch, Elastic, ELK, Filebeat, Beat]
 

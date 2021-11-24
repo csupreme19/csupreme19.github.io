@@ -1,0 +1,200 @@
+I"t(<h1 id="mysql-설치-및-설정">MySQL 설치 및 설정</h1>
+
+<p><img src="/assets/img/titles/mysql-logo.png" alt="mysql-logo.png" /></p>
+
+<p>MySQL을 docker-compose로 설치 후 외부 접속 host 권한 설정 진행한 내용이다.</p>
+
+<hr />
+
+<h2 id="mysql-설치">MySQL 설치</h2>
+
+<h3 id="1-호스트-볼륨-생성">1. 호스트 볼륨 생성</h3>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">mkdir</span> <span class="nt">-p</span> /data/mysql
+</code></pre></div></div>
+
+<h3 id="2-docker-composeyaml-작성">2. <code class="language-plaintext highlighter-rouge">docker-compose.yaml</code> 작성</h3>
+<p>접속 port는 13306(docker 외부) - 3306(docker 내부) 로 설정.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>vim docker-compose.yaml
+</code></pre></div></div>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3.1'</span>
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">mysql</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mysql/mysql-server:8.0</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">always</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">mysql</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">13306:3306</span><span class="err">		</span><span class="s"># 외부 port</span> <span class="err">:</span> <span class="s">내부 port</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">TZ</span><span class="pi">:</span> <span class="s">Asia/Seoul</span>
+      <span class="na">MYSQL_ROOT_PASSWORD</span><span class="pi">:</span> <span class="s2">"</span><span class="s">root"</span>
+    <span class="na">command</span><span class="pi">:</span> 
+      <span class="pi">-</span> <span class="s">--character-set-server=utf8</span>
+      <span class="pi">-</span> <span class="s">--collation-server=utf8_unicode_ci</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">/data/mysql:/var/lib/mysql</span><span class="err">	</span><span class="s"># 호스트 볼륨</span> <span class="err">:</span> <span class="s">컨테이너 볼륨</span>
+</code></pre></div></div>
+
+<h3 id="3-mysql-구동">3. MySQL 구동</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker-compose up <span class="nt">-d</span> mysql
+
+<span class="nv">$ </span>docker-compose ps mysql
+Name               Command                  State                           Ports
+<span class="nt">-----------------------------------------------------------------------------------------------------</span>
+mysql   /entrypoint.sh <span class="nt">--character</span> ...   Up <span class="o">(</span>healthy<span class="o">)</span>   0.0.0.0:13306-&gt;3306/tcp, 33060/tcp, 33061/tc
+
+<span class="nv">$ </span>docker-compose logs mysql
+Attaching to mysql
+mysql       | <span class="o">[</span>Entrypoint] MySQL Docker Image 8.0.25-1.2.3-server
+mysql       | <span class="o">[</span>Entrypoint] Starting MySQL 8.0.25-1.2.3-server
+</code></pre></div></div>
+<hr />
+
+<h3 id="mysql-설정">MySQL 설정</h3>
+
+<h3 id="1-mysql-컨테이너-접속">1. MySQL 컨테이너 접속</h3>
+
+<ul>
+  <li>
+    <h4 id="using-docker">Using docker</h4>
+  </li>
+</ul>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># container id 확인</span>
+<span class="nv">$ </span>docker ps | <span class="nb">grep</span> <span class="nt">-i</span> mysql
+cd1ae64000ec   mysql/mysql-server:8.0   <span class="s2">"/entrypoint.sh --ch…"</span>   3 months ago   Up 3 months <span class="o">(</span>healthy<span class="o">)</span>   33060-33061/tcp, 0.0.0.0:13306-&gt;3306/tcp   mysql
+
+<span class="c"># 컨테이너 접속</span>
+<span class="nv">$ </span>docker <span class="nb">exec</span> <span class="nt">-it</span> cd1ae64000ec /bin/bash
+
+<span class="c"># 접속 확인</span>
+bash-4.4#
+bash-4.4# <span class="nb">whoami
+</span>root
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <h4 id="using-docker-compose">Using docker-compose</h4>
+  </li>
+</ul>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 컨테이너 접속</span>
+<span class="nv">$ </span>docker-compose <span class="nb">exec </span>mysql /bin/bash
+
+<span class="c"># 접속 확인</span>
+bash-4.4#
+bash-4.4# <span class="nb">whoami
+</span>root
+</code></pre></div></div>
+
+<h3 id="2-mysql-사용자-생성">2. MySQL 사용자 생성</h3>
+
+<h4 id="1-mysql-로그인">1. MySQL 로그인</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash-4.4# mysql <span class="nt">-u</span> root <span class="nt">-p</span>
+Enter password:
+
+Welcome to the MySQL monitor.  Commands end with <span class="p">;</span> or <span class="se">\g</span><span class="nb">.</span>
+Your MySQL connection <span class="nb">id </span>is 1600691
+Server version: 8.0.25 MySQL Community Server - GPL
+
+Copyright <span class="o">(</span>c<span class="o">)</span> 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type <span class="s1">'help;'</span> or <span class="s1">'\h'</span> <span class="k">for </span>help. Type <span class="s1">'\c'</span> to clear the current input statement.
+
+mysql&gt;
+</code></pre></div></div>
+
+<h4 id="2-사용자-생성">2. 사용자 생성</h4>
+
+<pre><code class="language-mysql"># 사용자 확인
+mysql &gt; select host, user from mysql.user;
++-----------+------------------+
+| host      | user             |
++-----------+------------------+
+| localhost | healthchecker    |
+| localhost | mysql.infoschema |
+| localhost | mysql.session    |
+| localhost | mysql.sys        |
+| localhost | robot            |
+| localhost | root             |
++-----------+------------------+
+</code></pre>
+
+<h4 id="3-권한-부여">3. 권한 부여</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># mysql 로그인</span>
+bash-4.4# mysql <span class="nt">-u</span> root <span class="nt">-p</span>
+
+<span class="c"># robot 유저 생성</span>
+mysql&gt; create user <span class="s1">'robot'</span>@<span class="s1">'localhost'</span> identified by <span class="s1">'rmakers2021'</span><span class="p">;</span>
+
+<span class="c"># robot 유저에게 root 권한 부여</span>
+mysql&gt; grant all privileges on <span class="k">*</span>.<span class="k">*</span> to <span class="s1">'robot'</span>@<span class="s1">'localhost'</span> with grant option<span class="p">;</span>
+mysql&gt; flush privileges<span class="p">;</span>
+
+<span class="c"># 이후 production zone 대상 mysql 설정 참고하여</span>
+<span class="c"># database 생성 및 xroshot용 table 추가 등 작업 진행.</span>
+</code></pre></div></div>
+
+<p>외부 접속 계정의 경우 아래와 같이 외부 host로 user 생성해야함</p>
+
+<p>위처럼 localhost로 host 생성하는 경우 localhost에서만 접속 가능(외부 접속 불가)</p>
+
+<h4 id="외부-접속-host-권한-설정">외부 접속 host 권한 설정</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># user 확인</span>
+mysql <span class="o">&gt;</span> <span class="k">select </span>host, user from mysql.user<span class="p">;</span>
++-----------+------------------+
+| host      | user             |
++-----------+------------------+
+| localhost | healthchecker    |
+| localhost | mysql.infoschema |
+| localhost | mysql.session    |
+| localhost | mysql.sys        |
+| localhost | robot            |
+| localhost | root             |
++-----------+------------------+
+
+<span class="c"># 전체 host 권한으로 실행</span>
+mysql <span class="o">&gt;</span> create user <span class="s1">'robot'</span>@<span class="s1">'%'</span> identified by <span class="s1">'rmakers2021'</span><span class="p">;</span>
+
+<span class="c"># 참고) 단일 IP host의 경우</span>
+mysql <span class="o">&gt;</span> create user <span class="s1">'robot'</span>@<span class="s1">'{host}'</span> identified by <span class="s1">'rmakers2021'</span><span class="p">;</span>
+<span class="c"># 참고) IP 대역 host의 경우</span>
+mysql <span class="o">&gt;</span> create user <span class="s1">'robot'</span>@<span class="s1">'10.%'</span> identified by <span class="s1">'rmakers2021'</span><span class="p">;</span>
+
+<span class="c"># 스키마 권한 추가</span>
+<span class="c"># xroshot 스키마의 모든 테이블</span>
+mysql <span class="o">&gt;</span> grant all privileges on xroshot.<span class="k">*</span> to robot@<span class="s1">'%'</span><span class="p">;</span>
+<span class="c"># 전체 스키마</span>
+mysql <span class="o">&gt;</span> grant all privileges on <span class="k">*</span>.<span class="k">*</span> to robot@<span class="s1">'%'</span><span class="p">;</span>
+
+<span class="c"># 권한 적용(reload) 필수</span>
+mysql&gt; flush privileges<span class="p">;</span>
+
+<span class="c"># user 확인</span>
+mysql <span class="o">&gt;</span> <span class="k">select </span>host, user from mysql.user<span class="p">;</span>
++-----------+------------------+
+| host      | user             |
++-----------+------------------+
+| %         | robot            |
+| localhost | healthchecker    |
+| localhost | mysql.infoschema |
+| localhost | mysql.session    |
+| localhost | mysql.sys        |
+| localhost | robot            |
+| localhost | root             |
++-----------+------------------+
+
+<span class="c"># 접속 확인</span>
+<span class="nv">$ </span>mysql <span class="nt">-h</span> <span class="o">{</span>host<span class="o">}</span> <span class="nt">-u</span> robot <span class="nt">-p</span>
+</code></pre></div></div>
+:ET

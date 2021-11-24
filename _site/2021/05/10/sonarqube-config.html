@@ -12,8 +12,8 @@
     <!-- Theme Mode-->
     
     <script>
-        const isAutoTheme = true;
-        document.documentElement.setAttribute('data-theme', sessionStorage.getItem('theme'))
+        const isAutoTheme = false;
+        document.documentElement.setAttribute('data-theme', "dark")
     </script>
     
 
@@ -56,7 +56,7 @@
     
 
     <!-- seo tags -->
-    <meta property="og:image" content="http://localhost:4000/assets/img/titles/sonarqube.png">
+    <meta property="og:image" content="http://localhost:4000/assets/img/contents/sc-1.png">
     
     <meta property="og:type" content="website" />
     
@@ -88,7 +88,7 @@
     <meta name="twitter:description" content="SonarQube 설정 및 트러블슈팅SonarQube Documentation본 문서에서는 Sonarqube Jenkins 연동, GitLab 연동, Ingress 인증서 설정, 웹훅 설정 등 내용을 모아 정리하였으며설정시 오류를 해결했던 내역을(트러블슈팅) 정리하였다.SonarQ...">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="http://localhost:4000/assets/img/titles/sonarqube.png">
+    <meta name="twitter:image" content="http://localhost:4000/assets/img/contents/sc-1.png">
     <meta name="twitter:image:alt" content="SonarQube 설정 및 트러블슈팅">
 </head>
 
@@ -191,10 +191,10 @@
             
             
         
+            
+            
         
         
-        <li class="separator"> | </li>
-        <li><a id="theme-toggle" title="SonarQube 설정 및 트러블슈팅 " aria-label="SonarQube 설정 및 트러블슈팅" onclick="themeToggle()"></a></li>
         
     </ul>
 
@@ -733,9 +733,9 @@ Ingress HTTP, HTTPS(/sonarqube) -&gt; sonarqube 서비스(9000)</p>
 <div id="post-nav">
     
     <div id="previous-post">
-        <a alt="Elastic Metricbeat 설치 및 설정" href="/2021/07/27/elastic-metricbeat-install.html">
+        <a alt="Tomcat session clustering 적용기" href="/2021/05/24/tomcat-session-clustering.html">
             <p>Previous post</p>
-            Elastic Metricbeat 설치 및 설정
+            Tomcat session clustering 적용기
         </a>
     </div>
     
