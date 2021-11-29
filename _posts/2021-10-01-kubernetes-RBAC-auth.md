@@ -315,8 +315,10 @@ namespace:  20 bytes
 token:      eyJhbGciOiJSUzI1NiIsImtpZCI6IlVmM2...
 
 # 참고) 한번에 토큰 조회
+{% raw %}
 $ kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/monitoring-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
 eyJhbGciOiJSUzI1NiIsImtpZCI6IlVmM2...
+{% endraw %}
 ```
 
 API 호출시 Authorization 헤더에 해당 토큰을 넣어서 요청하면 인증을 할 수 있다.
@@ -519,7 +521,9 @@ rules:
 #### 2. Token 확인
 
 ```sh
+{% raw %}
 $ kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/monitoring-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
+{% endraw %}
 ```
 
 
