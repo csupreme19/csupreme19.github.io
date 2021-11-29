@@ -1,4 +1,4 @@
-I"�f<h1 id="sonarqube-설정-및-트러블슈팅">SonarQube 설정 및 트러블슈팅</h1>
+I"�f<h1 id="sonarqube-설정-및-트러블슈팅">SonarQube 설정 및 트러블슈팅</h1>
 
 <p><img src="/assets/img/titles/sonarqube.png" alt="sonarqube.png" /></p>
 
@@ -36,7 +36,7 @@
      <span class="na">nginx.ingress.kubernetes.io/proxy-body-size</span><span class="pi">:</span> <span class="s2">"</span><span class="s">20M"</span><span class="err">		</span><span class="s">// 20M 초과시 HTTP 413 방지하기 위하여</span>
  <span class="na">spec</span><span class="pi">:</span>
    <span class="na">rules</span><span class="pi">:</span>
-   <span class="pi">-</span> <span class="na">host</span><span class="pi">:</span> <span class="s">sonarqube.ccpinfra.xyz</span> <span class="c1"># 추가</span>
+   <span class="pi">-</span> <span class="na">host</span><span class="pi">:</span> <span class="s">sonarqube.yourdomain.com</span> <span class="c1"># 추가</span>
      <span class="na">http</span><span class="pi">:</span><span class="err">	</span><span class="c1"># -(하이픈) 제거</span>
        <span class="na">paths</span><span class="pi">:</span>
        <span class="pi">-</span> <span class="na">pathType</span><span class="pi">:</span> <span class="s">Prefix</span>

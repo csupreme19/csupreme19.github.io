@@ -172,7 +172,7 @@ google calendar에 3개월 주기로 알람을 등록하여 인증서 갱신 관
 이 경우 아래 명령어로 갱신가능
 
 ```sh
-$ certbot --server https://acme-v02.api.letsencrypt.org/directory -d "*.ccpinfra.xyz" --manual --preferred-challenges dns-01 certonly
+$ certbot --server https://acme-v02.api.letsencrypt.org/directory -d "*.yourdomain.com" --manual --preferred-challenges dns-01 certonly
 ```
 
 명령어 입력 후 나오는 DNS TXT record 값을 도메인 구입처(예를 들어 가비아 등)에서 DNS 설정에 들어가 업데이트 후 진행한다.

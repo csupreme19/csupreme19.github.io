@@ -1,4 +1,4 @@
-I"]4<h1 id="lets-encrypt-인증서-발급-및-갱신">Let’s Encrypt 인증서 발급 및 갱신</h1>
+I"_4<h1 id="lets-encrypt-인증서-발급-및-갱신">Let’s Encrypt 인증서 발급 및 갱신</h1>
 
 <p><img src="/assets/img/titles/letsencrypt-horizontal.png" alt="letsencrypt-horizontal.png" /></p>
 
@@ -162,7 +162,7 @@
 
 <p>이 경우 아래 명령어로 갱신가능</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>certbot <span class="nt">--server</span> https://acme-v02.api.letsencrypt.org/directory <span class="nt">-d</span> <span class="s2">"*.ccpinfra.xyz"</span> <span class="nt">--manual</span> <span class="nt">--preferred-challenges</span> dns-01 certonly
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>certbot <span class="nt">--server</span> https://acme-v02.api.letsencrypt.org/directory <span class="nt">-d</span> <span class="s2">"*.yourdomain.com"</span> <span class="nt">--manual</span> <span class="nt">--preferred-challenges</span> dns-01 certonly
 </code></pre></div></div>
 
 <p>명령어 입력 후 나오는 DNS TXT record 값을 도메인 구입처(예를 들어 가비아 등)에서 DNS 설정에 들어가 업데이트 후 진행한다.</p>

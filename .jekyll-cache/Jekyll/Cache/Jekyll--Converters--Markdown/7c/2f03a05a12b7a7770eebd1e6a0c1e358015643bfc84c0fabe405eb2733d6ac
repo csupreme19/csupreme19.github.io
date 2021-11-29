@@ -1,4 +1,4 @@
-I"�3<h1 id="elastic-apm-server-구축하기">Elastic APM Server 구축하기</h1>
+I"�3<h1 id="elastic-apm-server-구축하기">Elastic APM Server 구축하기</h1>
 
 <p><img src="/assets/img/titles/elastic-logo.png" alt="elastic-logo.png" /></p>
 
@@ -83,7 +83,7 @@ Loaded Ingest pipelines
 
 <h4 id="1-gitlab-접속">1. gitlab 접속</h4>
 
-<h4 id="2-robot-argocd-git-저장소">2. robot-argocd git 저장소</h4>
+<h4 id="2-argocd-git-저장소">2. argocd git 저장소</h4>
 
 <p>폴더 elastic/apm-server 생성</p>
 

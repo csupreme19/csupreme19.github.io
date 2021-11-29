@@ -95,7 +95,7 @@ $ curl -ivs localhost:8200
 
 #### 1. gitlab 접속
 
-#### 2. robot-argocd git 저장소
+#### 2. argocd git 저장소
 
 폴더 elastic/apm-server 생성
 

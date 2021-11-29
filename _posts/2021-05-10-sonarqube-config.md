@@ -46,7 +46,7 @@ kind: Ingress
      nginx.ingress.kubernetes.io/proxy-body-size: "20M"		// 20M 초과시 HTTP 413 방지하기 위하여
  spec:
    rules:
-   - host: sonarqube.ccpinfra.xyz # 추가
+   - host: sonarqube.yourdomain.com # 추가
      http:	# -(하이픈) 제거
        paths:
        - pathType: Prefix
