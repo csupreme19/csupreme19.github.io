@@ -181,6 +181,16 @@
 } ,
   
   {
+    "title"    : "Kubernetes DNS Debug",
+    "category" : "",
+    "tags"     : " Kubernetes, K8S, DNS, Proxy, Debug",
+    "url"      : "/2021/05/27/kubernetes-dns-debug.html",
+    "date"     : "May 27, 2021",
+    "excerpt"  : "Kubernetes DNS Debug\n\n\n\nDebugging DNS Resolution\n\nkubenretes DNS 서비스 접근시 디버깅 과정 정리\n\n\nKubernetes DNS Debugging\n\nkubenretes cluster 내부에서 DNS 이용하여 서비스 접근시 디버깅 과정 정리\n\n디버깅 순서\n\n1. 실 서비스 내부 파드 접속\n\n$ kubectl exec -it yourservice-prd-deploy-6fddbc47c6-sljr...",
+  "content"  : "Kubernetes DNS Debug\n\n\n\nDebugging DNS Resolution\n\nkubenretes DNS 서비스 접근시 디버깅 과정 정리\n\n\nKubernetes DNS Debugging\n\nkubenretes cluster 내부에서 DNS 이용하여 서비스 접근시 디버깅 과정 정리\n\n디버깅 순서\n\n1. 실 서비스 내부 파드 접속\n\n$ kubectl exec -it yourservice-prd-deploy-6fddbc47c6-sljr9 -n production sh\n\n\n2. /etc/resolv.conf 설정 확인\n\n# pod 내에서 진행\n$ cat /etc/resolv.conf\nnameserver 10.96.0.10\nsearch production.svc.cluster.local svc.cluster.local cluster.local\noptions ndots:5\n\n# kubernetes cluster에서 진행\n$ kubectl get svc -n kube-system kube-dns\nNAME       TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE\nkube-dns   ClusterIP   10.96.0.10   &amp;lt;none&amp;gt;        53/UDP,53/TCP,9153/TCP   14d\n\n\nkube-dns 서비스의 Cluster IP와 /etc/resolv.conf의 nameserver 주소가 일치하는지 확인\n\n3. CoreDNS pod running 확인\n\n# kubernetes cluster에서 진행\n$ kubectl get po -n kube-system\nNAME                                       READY   STATUS    RESTARTS   AGE\ncoredns-74ff55c5b-knln5                    1/1     Running   0          3h57m\ncoredns-74ff55c5b-q9z5f                    1/1     Running   0          3h58m\n\n\nDNS Daemonset 정상 배포 &amp;amp; Pod Running 확인\n\n4. nslookup으로 DNS lookup 정상 작동 확인\n\n# pod 내에서 진행\n$ nslookup kubernetes.default\nnslookup: can&#39;t resolve &#39;(null)&#39;: Name does not resolve\n\nName:      kubernetes.default\nAddress 1: 10.96.0.1 kubernetes.default.svc.cluster.local\n\n\n5. 접속하려는 서비스 이름 확인\n\n# kubernetes cluster에서 진행\n$ kubectl get svc -n kong -o wide\nNAMESPACE              NAME                         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE\nkong                   kong-kong-proxy              NodePort    10.104.186.93    &amp;lt;none&amp;gt;        80:30080/TCP,443:30443/TCP   10d\n\n\n6. 서비스 DNS lookup 확인\n\n# pod 내에서 진행\n$ nslookup kong-kong-proxy.kong.svc\nnslookup: can&#39;t resolve &#39;(null)&#39;: Name does not resolve\n\nName:      kong-kong-proxy.kong.svc\nAddress 1: 10.104.186.93 kong-kong-proxy.kong.svc.cluster.local\n\n\n서비스의 경우 my-svc.my-namespace.svc.cluster-domian.example의 형태로 DNS 이름이 정해진다.\n\n\n  예)\n\n  \n    kong-kong-proxy.kong.svc.cluster.local\n    kong-kong-proxy.kong.svc\n  \n\n\n7. curl 설치 및 요청\n\n# pod 내에서 진행\n$ apk add curl\t# curl 설치\n$ curl -v kong-kong.proxy.kong.svc\n* Connected to kong-kong-proxy.kong.svc.cluster.local (10.104.186.93) port 80 (#0)\n&amp;gt; GET / HTTP/1.1\n&amp;gt; Host: kong-kong-proxy.kong.svc.cluster.local\n&amp;gt; User-Agent: curl/7.64.0\n&amp;gt; Accept: */*\n&amp;gt;\n&amp;lt; HTTP/1.1 404 Not Found\n&amp;lt; Date: Thu, 27 May 2021 06:36:46 GMT\n&amp;lt; Content-Type: application/json; charset=utf-8\n&amp;lt; Connection: keep-alive\n&amp;lt; Content-Length: 48\n&amp;lt; X-Kong-Response-Latency: 1\n&amp;lt; Server: kong/2.3.3\n&amp;lt;\n* Connection #0 to host kong-kong-proxy.kong.svc.cluster.local left intact\n{&quot;message&quot;:&quot;no Route matched with those values&quot;}/\n\n\n  alpine 이미지의 경우 curl 패키지 없어서 설치해야함\n\n\n\n서비스 접속 확인\n\n\n\nReference\n\n\n  Debugging DNS Resolution\n\n"
+} ,
+  
+  {
     "title"    : "Tomcat session clustering 적용기",
     "category" : "",
     "tags"     : " Tomcat, Session, Clustering, Multicast, Replication",
@@ -223,7 +233,7 @@
   {
     "title"    : "Kubernetes Dashboard 설치 및 외부접속 설정",
     "category" : "",
-    "tags"     : " Kubernetes, K8S, Authorization, Authentication, RBAC, ABAC, Security",
+    "tags"     : " Kubernetes, K8S, Dashboard, Ingress, RBAC, Security",
     "url"      : "/2021/03/04/kubernetes-dashboard.html",
     "date"     : "March 4, 2021",
     "excerpt"  : "Kubernetes Dashboard 설치 및 외부접속 설정\n\n\n\nkubernetes dashboard\n\nKubernetes dashboard를 구성 후 외부접속 설정\n\n\nKubernetes dashboard 설치\n\nUsing K8S Deployment\n\n1. kubernetes dashboard template 가져오기\n\n$ wget https://raw.githubusercontent.com/kubernetes/dashboard/v2....",

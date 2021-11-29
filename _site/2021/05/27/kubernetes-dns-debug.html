@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<!--
+    Type on Strap jekyll theme v2.3.9
+    Theme free for personal and commercial use under the MIT license
+    https://github.com/sylhare/Type-on-Strap/blob/master/LICENSE
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.5, maximum-scale=5">
+
+    <!-- Theme Mode-->
+    
+    <script>
+        const isAutoTheme = false;
+        document.documentElement.setAttribute('data-theme', "dark")
+    </script>
+    
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="Seunghoon Choi" href="http://localhost:4000/feed.xml"/>
+
+    
+
+    <!-- KaTeX 0.13.9 -->
+    
+    <script defer src="/assets/js/vendor/katex.min.js"></script>
+    <script defer src="/assets/js/vendor/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    
+
+    <!-- Mermaid 8.9.2 -->
+    
+    <script defer src="/assets/js/vendor/mermaid.min.js" onload="mermaid.initialize({startOnLoad:true});"></script>
+    
+
+    <!-- Simple Jekyll Search 1.9.1 -->
+    <script src="/assets/js/vendor/simple-jekyll-search.min.js" type="text/javascript"></script>
+
+    <!-- Google Analytics / Cookie Consent -->
+    <script>
+      const cookieName = 'cookie-notice-dismissed-http://localhost:4000';
+      const isCookieConsent = 'false';
+      const analyticsName = '';
+    </script>
+
+    
+    
+
+    <!-- seo tags -->
+    <meta property="og:image" content="http://localhost:4000/assets/img/titles/kubernetes-logo.png">
+    
+    <meta property="og:type" content="website" />
+    
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Kubernetes DNS Debug | Seunghoon Choi</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Kubernetes DNS Debug" />
+<meta name="author" content="csupreme19" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Kubernetes DNS Debug" />
+<meta property="og:description" content="Kubernetes DNS Debug" />
+<link rel="canonical" href="http://localhost:4000/2021/05/27/kubernetes-dns-debug.html" />
+<meta property="og:url" content="http://localhost:4000/2021/05/27/kubernetes-dns-debug.html" />
+<meta property="og:site_name" content="Seunghoon Choi" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-05-27T00:00:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Kubernetes DNS Debug" />
+<script type="application/ld+json">
+{"datePublished":"2021-05-27T00:00:00+09:00","description":"Kubernetes DNS Debug","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/05/27/kubernetes-dns-debug.html"},"url":"http://localhost:4000/2021/05/27/kubernetes-dns-debug.html","author":{"@type":"Person","name":"csupreme19"},"@type":"BlogPosting","headline":"Kubernetes DNS Debug","dateModified":"2021-05-27T00:00:00+09:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <!-- RSS -->
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Seunghoon Choi" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:title" content="Kubernetes DNS Debug">
+    <meta name="twitter:description" content="Kubernetes DNS DebugDebugging DNS Resolutionkubenretes DNS 서비스 접근시 디버깅 과정 정리Kubernetes DNS Debuggingkubenretes cluster 내부에서 DNS 이용하여 서비스 접근시 디버깅 과정 정리디버깅 순서1...">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="http://localhost:4000/assets/img/titles/kubernetes-logo.png">
+    <meta name="twitter:image:alt" content="Kubernetes DNS Debug">
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+        
+		<a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/triangle.png" />
+		</a>
+        
+        <a class="site-title" aria-label="Seunghoon Choi" href="/">
+        Seunghoon Choi
+		</a>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fas fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        
+
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="About" title="About" href="/about/">
+                     About 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Gallery" title="Gallery" href="/gallery/">
+                     Gallery 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Portfolio" title="Portfolio" href="/portfolio/">
+                     Portfolio 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Search" title="Search" href="/search/">
+                     <i class="fas fa-search" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Tags" title="Tags" href="/tags/">
+                     <i class="fas fa-tags" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+        
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image" >
+  <header id="main" style="">
+    <div class="title-padder">
+      
+      <h1 id="Kubernetes+DNS+Debug" class="title">Kubernetes DNS Debug</h1>
+      
+
+
+<div class="post-info"><a href="https://github.com/csupreme19" target="_blank">
+      <img alt="Author's avatar" src="https://avatars.githubusercontent.com/u/76021703?s=400&v=4">
+    
+    <p class="meta">
+      csupreme19 - 
+      
+      May 27, 2021
+    </p></a></div>
+
+      
+    </div>
+  </header>
+
+  <section class="post-content">
+  
+      <h1 id="kubernetes-dns-debug">Kubernetes DNS Debug</h1>
+
+<p><img src="/assets/img/titles/kubernetes-logo.png" alt="kubernetes-logo.png" /></p>
+
+<p><a href="https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/">Debugging DNS Resolution</a></p>
+
+<p>kubenretes DNS 서비스 접근시 디버깅 과정 정리</p>
+
+<hr />
+<h2 id="kubernetes-dns-debugging">Kubernetes DNS Debugging</h2>
+
+<p>kubenretes cluster 내부에서 DNS 이용하여 서비스 접근시 디버깅 과정 정리</p>
+
+<h3 id="디버깅-순서">디버깅 순서</h3>
+
+<h4 id="1-실-서비스-내부-파드-접속">1. 실 서비스 내부 파드 접속</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl <span class="nb">exec</span> <span class="nt">-it</span> yourservice-prd-deploy-6fddbc47c6-sljr9 <span class="nt">-n</span> production sh
+</code></pre></div></div>
+
+<h4 id="2-etcresolvconf-설정-확인">2. <code class="language-plaintext highlighter-rouge">/etc/resolv.conf</code> 설정 확인</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># pod 내에서 진행</span>
+<span class="nv">$ </span><span class="nb">cat</span> /etc/resolv.conf
+nameserver 10.96.0.10
+search production.svc.cluster.local svc.cluster.local cluster.local
+options ndots:5
+
+<span class="c"># kubernetes cluster에서 진행</span>
+<span class="nv">$ </span>kubectl get svc <span class="nt">-n</span> kube-system kube-dns
+NAME       TYPE        CLUSTER-IP   EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>                  AGE
+kube-dns   ClusterIP   10.96.0.10   &lt;none&gt;        53/UDP,53/TCP,9153/TCP   14d
+</code></pre></div></div>
+
+<p>kube-dns 서비스의 Cluster IP와 <code class="language-plaintext highlighter-rouge">/etc/resolv.conf</code>의 nameserver 주소가 일치하는지 확인</p>
+
+<h4 id="3-coredns-pod-running-확인">3. CoreDNS pod running 확인</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># kubernetes cluster에서 진행</span>
+<span class="nv">$ </span>kubectl get po <span class="nt">-n</span> kube-system
+NAME                                       READY   STATUS    RESTARTS   AGE
+coredns-74ff55c5b-knln5                    1/1     Running   0          3h57m
+coredns-74ff55c5b-q9z5f                    1/1     Running   0          3h58m
+</code></pre></div></div>
+
+<p>DNS Daemonset 정상 배포 &amp; Pod Running 확인</p>
+
+<h4 id="4-nslookup으로-dns-lookup-정상-작동-확인">4. <code class="language-plaintext highlighter-rouge">nslookup</code>으로 DNS lookup 정상 작동 확인</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># pod 내에서 진행</span>
+<span class="nv">$ </span>nslookup kubernetes.default
+nslookup: can<span class="s1">'t resolve '</span><span class="o">(</span>null<span class="o">)</span><span class="s1">': Name does not resolve
+
+Name:      kubernetes.default
+Address 1: 10.96.0.1 kubernetes.default.svc.cluster.local
+</span></code></pre></div></div>
+
+<h4 id="5-접속하려는-서비스-이름-확인">5. 접속하려는 서비스 이름 확인</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># kubernetes cluster에서 진행</span>
+<span class="nv">$ </span>kubectl get svc <span class="nt">-n</span> kong <span class="nt">-o</span> wide
+NAMESPACE              NAME                         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>                      AGE
+kong                   kong-kong-proxy              NodePort    10.104.186.93    &lt;none&gt;        80:30080/TCP,443:30443/TCP   10d
+</code></pre></div></div>
+
+<h4 id="6-서비스-dns-lookup-확인">6. 서비스 DNS lookup 확인</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># pod 내에서 진행</span>
+<span class="nv">$ </span>nslookup kong-kong-proxy.kong.svc
+nslookup: can<span class="s1">'t resolve '</span><span class="o">(</span>null<span class="o">)</span><span class="s1">': Name does not resolve
+
+Name:      kong-kong-proxy.kong.svc
+Address 1: 10.104.186.93 kong-kong-proxy.kong.svc.cluster.local
+</span></code></pre></div></div>
+
+<p>서비스의 경우 <code class="language-plaintext highlighter-rouge">my-svc.my-namespace.svc.cluster-domian.example</code>의 형태로 DNS 이름이 정해진다.</p>
+
+<blockquote>
+  <p>예)</p>
+
+  <ul>
+    <li><code class="language-plaintext highlighter-rouge">kong-kong-proxy.kong.svc.cluster.local</code></li>
+    <li><code class="language-plaintext highlighter-rouge">kong-kong-proxy.kong.svc</code></li>
+  </ul>
+</blockquote>
+
+<h4 id="7-curl-설치-및-요청">7. curl 설치 및 요청</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># pod 내에서 진행</span>
+<span class="nv">$ </span>apk add curl	<span class="c"># curl 설치</span>
+<span class="nv">$ </span>curl <span class="nt">-v</span> kong-kong.proxy.kong.svc
+<span class="k">*</span> Connected to kong-kong-proxy.kong.svc.cluster.local <span class="o">(</span>10.104.186.93<span class="o">)</span> port 80 <span class="o">(</span><span class="c">#0)</span>
+<span class="o">&gt;</span> GET / HTTP/1.1
+<span class="o">&gt;</span> Host: kong-kong-proxy.kong.svc.cluster.local
+<span class="o">&gt;</span> User-Agent: curl/7.64.0
+<span class="o">&gt;</span> Accept: <span class="k">*</span>/<span class="k">*</span>
+<span class="o">&gt;</span>
+&lt; HTTP/1.1 404 Not Found
+&lt; Date: Thu, 27 May 2021 06:36:46 GMT
+&lt; Content-Type: application/json<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>utf-8
+&lt; Connection: keep-alive
+&lt; Content-Length: 48
+&lt; X-Kong-Response-Latency: 1
+&lt; Server: kong/2.3.3
+&lt;
+<span class="k">*</span> Connection <span class="c">#0 to host kong-kong-proxy.kong.svc.cluster.local left intact</span>
+<span class="o">{</span><span class="s2">"message"</span>:<span class="s2">"no Route matched with those values"</span><span class="o">}</span>/
+</code></pre></div></div>
+<blockquote>
+  <p>alpine 이미지의 경우 curl 패키지 없어서 설치해야함</p>
+
+</blockquote>
+
+<p>서비스 접속 확인</p>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/">Debugging DNS Resolution</a></li>
+</ol>
+
+    
+  </section>
+
+  <!-- Social media shares -->
+  
+
+
+   <!-- Tag list -->
+  
+  
+
+
+  <div class="tag-list">
+    <ul>
+      
+        <li class="meta">Tags</li>
+      
+
+      
+        <li><a class="button" href="/tags#DNS">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> DNS</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#Debug">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Debug</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#K8S">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> K8S</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#Kubernetes">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Kubernetes</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#Proxy">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Proxy</p>
+        </a></li>
+      
+    </ul>
+  </div>
+
+
+
+</article>
+
+<!-- Post navigation -->
+
+<div id="post-nav">
+    
+    <div id="previous-post">
+        <a alt="MySQL 설치 및 사용자 생성" href="/2021/05/31/mysql-install.html">
+            <p>Previous post</p>
+            MySQL 설치 및 사용자 생성
+        </a>
+    </div>
+    
+
+    
+    <div id="next-post">
+        <a alt="Tomcat session clustering 적용기" href="/2021/05/24/tomcat-session-clustering.html">
+            <p>Next post</p>
+            Tomcat session clustering 적용기
+        </a>
+    </div>
+    
+</div>
+
+
+
+<!--Utterances-->
+ <script src="https://utteranc.es/client.js"
+        repo='csupreme19/csupreme19.github.io'
+        issue-term="comment"
+        theme="preferred-color-scheme"
+		
+        crossorigin="anonymous"
+        async>
+</script>
+ 
+
+<!-- Cusdis -->
+
+
+<!-- Disqus -->
+
+
+<!-- To change color of links in the page -->
+<style>
+  header#main {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+  
+  
+  
+  
+  header#main { background-image: url('/assets/img/titles/kubernetes-logo.png'); }
+  
+</style>
+
+    </div>
+    <footer class="site-footer">
+    <p class="text">
+        Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
+</p>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+        
+        
+        
+        <li>
+            <a href="https://github.com/csupreme19"
+               title="Follow on Github"
+               target="_blank"
+               rel="me">
+            <span class="fa-stack fa-lg">
+              <i class="fas fa-circle fa-stack-2x"></i>
+              <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+            </span>
+            </a>
+        </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+        
+        
+        
+        <li>
+            <a href="mailto:csupreme19@gmail.com"
+               title="Follow on Mail"
+               target="_blank"
+               rel="me">
+            <span class="fa-stack fa-lg">
+              <i class="fas fa-circle fa-stack-2x"></i>
+              <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+            </span>
+            </a>
+        </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+                </ul>
+            </div>
+</footer>
+
+
+
+  </body>
+</html>

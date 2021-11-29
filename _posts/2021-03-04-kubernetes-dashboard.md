@@ -4,7 +4,7 @@ title: Kubernetes Dashboard 설치 및 외부접속 설정
 feature-img: assets/img/titles/kubernetes-logo.png
 thumbnail: assets/img/contents/kd-1.png
 author: csupreme19
-tags: [Kubernetes, K8S, Authorization, Authentication, RBAC, ABAC, Security]
+tags: [Kubernetes, K8S, Dashboard, Ingress, RBAC, Security]
 
 ---
 
