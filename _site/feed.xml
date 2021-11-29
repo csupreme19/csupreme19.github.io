@@ -1,4 +1,427 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-11-29T14:33:31+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>DevOps 개발 블로그</subtitle><entry><title type="html">Jekyll과 Github pages를 사용하여 블로그 만들기</title><link href="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html" rel="alternate" type="text/html" title="Jekyll과 Github pages를 사용하여 블로그 만들기" /><published>2021-11-18T00:00:00+09:00</published><updated>2021-11-18T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/18/github-pages-with-jekyll</id><content type="html" xml:base="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html">&lt;h1 id=&quot;jekyll과-github-pages를-사용하여-간단하게-블로그를-만들어보자&quot;&gt;Jekyll과 Github pages를 사용하여 간단하게 블로그를 만들어보자&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-11-29T15:42:39+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>DevOps 개발 블로그</subtitle><entry><title type="html">Jekyll Mermaid js 사용하기</title><link href="http://localhost:4000/2021/11/29/jekyll-mermaid.html" rel="alternate" type="text/html" title="Jekyll Mermaid js 사용하기" /><published>2021-11-29T00:00:00+09:00</published><updated>2021-11-29T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/29/jekyll-mermaid</id><content type="html" xml:base="http://localhost:4000/2021/11/29/jekyll-mermaid.html">&lt;h1 id=&quot;jekyll-mermaid-js-사용하기&quot;&gt;Jekyll Mermaid js 사용하기&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/jekyll.png&quot; alt=&quot;jekyll.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Markdown 작성시 다이어그램 툴로 많이 사용하는 Mermaid js Jekyll 적용하기&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;mermaid&quot;&gt;Mermaid&lt;/h2&gt;
+
+&lt;h3 id=&quot;mermaid-1&quot;&gt;Mermaid?&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/jm-1.png&quot; alt=&quot;jm-1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://mermaid-js.github.io/mermaid/#/&quot;&gt;mermaid-js&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Markdown에서 Mermaid syntax를 이용하여 여러 다이어그램과 차트들을 텍스트 기반으로 작성하여 렌더링할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;예를 들면 아래와 같은 다이어그램들을 외부 draw tool 없이 쉽게 작성이 가능하다.&lt;/p&gt;
+
+&lt;p&gt;관련 내용을 작성할때 매우 유용하므로 익혀두면 좋다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;flowchart&quot;&gt;Flowchart&lt;/h4&gt;
+
+&lt;h5 id=&quot;mermaid-rendered&quot;&gt;Mermaid rendered&lt;/h5&gt;
+
+&lt;div class=&quot;mermaid&quot;&gt;
+  flowchart LR
+    A[Hard edge] --&amp;gt;|Link text| B(Round edge)
+    B --&amp;gt; C{Decision}
+    C --&amp;gt;|One| D[Result one]
+    C --&amp;gt;|Two| E[Result two]
+&lt;/div&gt;
+
+&lt;h5 id=&quot;in-mermaid-syntax&quot;&gt;In Mermaid syntax&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;  flowchart LR
+    A[Hard edge] --&amp;gt;|Link text| B(Round edge)
+    B --&amp;gt; C{Decision}
+    C --&amp;gt;|One| D[Result one]
+    C --&amp;gt;|Two| E[Result two]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;sequence-diagram&quot;&gt;Sequence Diagram&lt;/h4&gt;
+
+&lt;h5 id=&quot;mermaid-rendered-1&quot;&gt;Mermaid rendered&lt;/h5&gt;
+
+&lt;div class=&quot;mermaid&quot;&gt;
+  sequenceDiagram
+    autonumber
+    Alice-&amp;gt;&amp;gt;John: Hello John, how are you?
+    loop Healthcheck
+        John-&amp;gt;&amp;gt;John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts!
+    John--&amp;gt;&amp;gt;Alice: Great!
+    John-&amp;gt;&amp;gt;Bob: How about you?
+    Bob--&amp;gt;&amp;gt;John: Jolly good!
+&lt;/div&gt;
+
+&lt;h5 id=&quot;in-mermaid-syntax-1&quot;&gt;In Mermaid syntax&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;  sequenceDiagram
+    autonumber
+    Alice-&amp;gt;&amp;gt;John: Hello John, how are you?
+    loop Healthcheck
+        John-&amp;gt;&amp;gt;John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts!
+    John--&amp;gt;&amp;gt;Alice: Great!
+    John-&amp;gt;&amp;gt;Bob: How about you?
+    Bob--&amp;gt;&amp;gt;John: Jolly good!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;class-diagram&quot;&gt;Class Diagram&lt;/h4&gt;
+
+&lt;h5 id=&quot;mermaid-rendered-2&quot;&gt;Mermaid rendered&lt;/h5&gt;
+
+&lt;div class=&quot;mermaid&quot;&gt;
+classDiagram
+  direction RL
+  class Student {
+    -idCard : IdCard
+  }
+  class IdCard{
+    -id : int
+    -name : string
+  }
+  class Bike{
+    -id : int
+    -name : string
+  }
+  Student &quot;1&quot; --o &quot;1&quot; IdCard : carries
+  Student &quot;1&quot; --o &quot;1&quot; Bike : rides
+&lt;/div&gt;
+
+&lt;h5 id=&quot;in-mermaid-syntax-2&quot;&gt;In Mermaid syntax&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;classDiagram
+  direction RL
+  class Student {
+    -idCard : IdCard
+  }
+  class IdCard{
+    -id : int
+    -name : string
+  }
+  class Bike{
+    -id : int
+    -name : string
+  }
+  Student &quot;1&quot; --o &quot;1&quot; IdCard : carries
+  Student &quot;1&quot; --o &quot;1&quot; Bike : rides
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;state-diagram&quot;&gt;State Diagram&lt;/h4&gt;
+
+&lt;h5 id=&quot;mermaid-rendered-3&quot;&gt;Mermaid rendered&lt;/h5&gt;
+
+&lt;div class=&quot;mermaid&quot;&gt;
+stateDiagram-v2
+    [*] --&amp;gt; Active
+  state Active {
+    [*] --&amp;gt; NumLockOff
+    NumLockOff --&amp;gt; NumLockOn : EvNumLockPressed
+    NumLockOn --&amp;gt; NumLockOff : EvNumLockPressed
+    --
+    [*] --&amp;gt; CapsLockOff
+    CapsLockOff --&amp;gt; CapsLockOn : EvCapsLockPressed
+    CapsLockOn --&amp;gt; CapsLockOff : EvCapsLockPressed
+    --
+    [*] --&amp;gt; ScrollLockOff
+    ScrollLockOff --&amp;gt; ScrollLockOn : EvScrollLockPressed
+    ScrollLockOn --&amp;gt; ScrollLockOff : EvScrollLockPressed
+}
+&lt;/div&gt;
+
+&lt;h5 id=&quot;in-mermaid-syntax-3&quot;&gt;In Mermaid syntax&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;stateDiagram-v2
+    [*] --&amp;gt; Active
+
+    state Active {
+        [*] --&amp;gt; NumLockOff
+        NumLockOff --&amp;gt; NumLockOn : EvNumLockPressed
+        NumLockOn --&amp;gt; NumLockOff : EvNumLockPressed
+        --
+        [*] --&amp;gt; CapsLockOff
+        CapsLockOff --&amp;gt; CapsLockOn : EvCapsLockPressed
+        CapsLockOn --&amp;gt; CapsLockOff : EvCapsLockPressed
+        --
+        [*] --&amp;gt; ScrollLockOff
+        ScrollLockOff --&amp;gt; ScrollLockOn : EvScrollLockPressed
+        ScrollLockOn --&amp;gt; ScrollLockOff : EvScrollLockPressed
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;entity-relationship-diagram&quot;&gt;Entity Relationship Diagram&lt;/h4&gt;
+
+&lt;h5 id=&quot;mermaid-rendered-4&quot;&gt;Mermaid rendered&lt;/h5&gt;
+
+&lt;div class=&quot;mermaid&quot;&gt;
+  erDiagram
+    CAR ||--o{ NAMED-DRIVER : allows
+    CAR {
+        string registrationNumber
+        string make
+        string model
+    }
+    PERSON ||--o{ NAMED-DRIVER : is
+    PERSON {
+        string firstName
+        string lastName
+        int age
+    }
+&lt;/div&gt;
+
+&lt;h5 id=&quot;in-mermaid-syntax-4&quot;&gt;In Mermaid syntax&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;erDiagram
+    CAR ||--o{ NAMED-DRIVER : allows
+    CAR {
+        string registrationNumber
+        string make
+        string model
+    }
+    PERSON ||--o{ NAMED-DRIVER : is
+    PERSON {
+        string firstName
+        string lastName
+        int age
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;user-journey&quot;&gt;User Journey&lt;/h4&gt;
+
+&lt;h5 id=&quot;mermaid-rendered-5&quot;&gt;Mermaid rendered&lt;/h5&gt;
+
+&lt;div class=&quot;mermaid&quot;&gt;
+  journey
+    title My working day
+    section Go to work
+      Make tea: 5: Me
+      Go upstairs: 3: Me
+      Do work: 1: Me, Cat
+    section Go home
+      Go downstairs: 5: Me
+      Sit down: 5: Me
+&lt;/div&gt;
+
+&lt;h5 id=&quot;in-mermaid-syntax-5&quot;&gt;In Mermaid syntax&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;journey
+    title My working day
+    section Go to work
+      Make tea: 5: Me
+      Go upstairs: 3: Me
+      Do work: 1: Me, Cat
+    section Go home
+      Go downstairs: 5: Me
+      Sit down: 5: Me
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;gantt&quot;&gt;Gantt&lt;/h4&gt;
+
+&lt;h5 id=&quot;mermaid-rendered-6&quot;&gt;Mermaid rendered&lt;/h5&gt;
+
+&lt;div class=&quot;mermaid&quot;&gt;
+  gantt
+    dateFormat  YYYY-MM-DD
+    title       Adding GANTT diagram functionality to mermaid
+    excludes    weekends
+    %% (`excludes` accepts specific dates in YYYY-MM-DD format, days of the week (&quot;sunday&quot;) or &quot;weekends&quot;, but not the word &quot;weekdays&quot;.)
+  section A section
+Completed task            :done,    des1, 2014-01-06,2014-01-08
+Active task               :active,  des2, 2014-01-09, 3d
+Future task               :         des3, after des2, 5d
+Future task2              :         des4, after des3, 5d
+  section Critical tasks
+Completed task in the critical line :crit, done, 2014-01-06,24h
+Implement parser and jison          :crit, done, after des1, 2d
+Create tests for parser             :crit, active, 3d
+Future task in critical line        :crit, 5d
+Create tests for renderer           :2d
+Add to mermaid                      :1d
+Functionality added                 :milestone, 2014-01-25, 0d
+section Documentation
+Describe gantt syntax               :active, a1, after des1, 3d
+Add gantt diagram to demo page      :after a1  , 20h
+Add another diagram to demo page    :doc1, after a1  , 48h
+section Last section
+Describe gantt syntax               :after doc1, 3d
+Add gantt diagram to demo page      :20h
+Add another diagram to demo page    :48h
+&lt;/div&gt;
+
+&lt;h5 id=&quot;in-mermaid-syntax-6&quot;&gt;In Mermaid syntax&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;gantt
+    dateFormat  YYYY-MM-DD
+    title       Adding GANTT diagram functionality to mermaid
+    excludes    weekends
+    %% (`excludes` accepts specific dates in YYYY-MM-DD format, days of the week (&quot;sunday&quot;) or &quot;weekends&quot;, but not the word &quot;weekdays&quot;.)
+
+    section A section
+    Completed task            :done,    des1, 2014-01-06,2014-01-08
+    Active task               :active,  des2, 2014-01-09, 3d
+    Future task               :         des3, after des2, 5d
+    Future task2              :         des4, after des3, 5d
+
+    section Critical tasks
+    Completed task in the critical line :crit, done, 2014-01-06,24h
+    Implement parser and jison          :crit, done, after des1, 2d
+    Create tests for parser             :crit, active, 3d
+    Future task in critical line        :crit, 5d
+    Create tests for renderer           :2d
+    Add to mermaid                      :1d
+    Functionality added                 :milestone, 2014-01-25, 0d
+
+    section Documentation
+    Describe gantt syntax               :active, a1, after des1, 3d
+    Add gantt diagram to demo page      :after a1  , 20h
+    Add another diagram to demo page    :doc1, after a1  , 48h
+
+    section Last section
+    Describe gantt syntax               :after doc1, 3d
+    Add gantt diagram to demo page      :20h
+    Add another diagram to demo page    :48h
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;pie-chart&quot;&gt;Pie Chart&lt;/h4&gt;
+
+&lt;h5 id=&quot;mermaid-rendered-7&quot;&gt;Mermaid rendered&lt;/h5&gt;
+
+&lt;div class=&quot;mermaid&quot;&gt;
+  pie
+    title Key elements in Product X
+    &quot;Calcium&quot; : 42.96
+    &quot;Potassium&quot; : 50.05
+    &quot;Magnesium&quot; : 10.01
+    &quot;Iron&quot; :  5
+&lt;/div&gt;
+
+&lt;h5 id=&quot;in-mermaid-syntax-7&quot;&gt;In Mermaid syntax&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;pie
+    title Key elements in Product X
+    &quot;Calcium&quot; : 42.96
+    &quot;Potassium&quot; : 50.05
+    &quot;Magnesium&quot; : 10.01
+    &quot;Iron&quot; :  5
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;jekyll-with-mermaid&quot;&gt;Jekyll with mermaid&lt;/h2&gt;
+
+&lt;p&gt;Jekyll에서는 기본적인 Jekyll Template에서 Mermaid를 제공하지는 않는 것으로 보인다.&lt;/p&gt;
+
+&lt;p&gt;Mermaid를 사용하려면 &lt;a href=&quot;https://github.com/jeffreytse/jekyll-spaceship&quot;&gt;jekyll-spaceship&lt;/a&gt;과 같은 별도의 플러그인을 설치해야하는 것으로 보임.&lt;/p&gt;
+
+&lt;p&gt;현재 사용중인 &lt;a href=&quot;http://jekyllthemes.org/themes/Type-on-Strap/&quot;&gt;Type on Strap&lt;/a&gt; 테마에서는 mermaid-js를 포함하고 있어 아래와 같이 HTML 문법으로 매핑하여 작성이 가능하다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;현재 사용중인 테마에서 지원 여부를 확인 후 plugin 도입을 검토해보면 좋을 것 같다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;mermaid-rendered-8&quot;&gt;Mermaid rendered&lt;/h4&gt;
+
+&lt;div class=&quot;mermaid&quot;&gt;
+sequenceDiagram
+    Alice-&amp;gt;&amp;gt;John: Hello John, how are you?
+    John--&amp;gt;&amp;gt;Alice: Great!
+&lt;/div&gt;
+
+&lt;h4 id=&quot;in-mermaid-syntax-wrapped-in-html&quot;&gt;In Mermaid syntax wrapped in HTML&lt;/h4&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mermaid&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+sequenceDiagram
+    Alice-&amp;gt;&amp;gt;John: Hello John, how are you?
+    John--&amp;gt;&amp;gt;Alice: Great!
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mermaid-js.github.io/mermaid/#/&quot;&gt;Mermaid-js&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/Sylhare/Type-on-Strap&quot;&gt;Type-on-Strap&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/jeffreytse/jekyll-spaceship&quot;&gt;jekyll-spaceship&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Blog" /><category term="Jekyll" /><category term="Mermaid" /><category term="Liquid" /><category term="Markdown" /><category term="Template" /><summary type="html">Jekyll Mermaid js 사용하기</summary></entry><entry><title type="html">Jekyll Liquid 문법 빠져나오기(중괄호 무시)</title><link href="http://localhost:4000/2021/11/29/jekyll-escape-liquid.html" rel="alternate" type="text/html" title="Jekyll Liquid 문법 빠져나오기(중괄호 무시)" /><published>2021-11-29T00:00:00+09:00</published><updated>2021-11-29T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/29/jekyll-escape-liquid</id><content type="html" xml:base="http://localhost:4000/2021/11/29/jekyll-escape-liquid.html">&lt;h1 id=&quot;jekyll-liquid-문법-빠져나오기중괄호-무시&quot;&gt;Jekyll Liquid 문법 빠져나오기(중괄호 무시)&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/jekyll.png&quot; alt=&quot;jekyll.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jekyllrb.com/docs/liquid/&quot;&gt;Jekyll Liquid&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Jekyll 작성시 Liquid template `` 이중 중괄호 및 중괄호 빠져나오기 (무시하기)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;escape-liquid&quot;&gt;Escape Liquid&lt;/h2&gt;
+
+&lt;p&gt;Jekyll은 내부 템플릿 언어로 &lt;a href=&quot;https://shopify.github.io/liquid/&quot;&gt;Liquid&lt;/a&gt;를 사용한다.&lt;/p&gt;
+
+&lt;p&gt;Liquid는 Ruby로 작성된 템플릿 언어로&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;o&quot;&gt;{{&lt;/span&gt; variable &lt;span class=&quot;o&quot;&gt;}}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;{{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;sentence &lt;span class=&quot;o&quot;&gt;}}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;등의 중괄호를 이용한 문법을 통하여 템플릿 변수나 로직을 실행한다.&lt;/p&gt;
+
+&lt;p&gt;문서를 작성하다 보니 아래와 같은 에러를 발견하게 되었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/jel-1.png&quot; alt=&quot;jel-1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이는 kubernetes에서 사용하는 go-template이 똑같은 이중괄호를 사용해서 나타난 문제였다.&lt;/p&gt;
+
+&lt;p&gt;이를 해결하기 위해서는 아래와 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{% raw %}&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{% endraw %}&lt;/code&gt;  사이에 문법을 적어주면 된다.&lt;/p&gt;
+
+&lt;h4 id=&quot;raw&quot;&gt;Raw&lt;/h4&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{% raw %}
+$ kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/monitoring-user -o jsonpath=&quot;{.secrets[0].name}&quot;) -o go-template=&quot;{{.data.token | base64decode}}&quot;
+eyJhbGciOiJSUzI1NiIsImtpZCI6IlVmM2...
+{% endraw %}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;template-processed&quot;&gt;Template processed&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; kubernetes-dashboard get secret &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;kubectl &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; kubernetes-dashboard get sa/monitoring-user &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;jsonpath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;{.secrets[0].name}&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; go-template&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;{{.data.token | base64decode}}&quot;&lt;/span&gt;
+eyJhbGciOiJSUzI1NiIsImtpZCI6IlVmM2...
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://jekyllrb.com/docs/liquid/&quot;&gt;Jekyll Liquid&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://shopify.github.io/liquid/tags/template/&quot;&gt;Liquid Template&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Blog" /><category term="Jekyll" /><category term="Liquid" /><category term="Markdown" /><category term="Template" /><summary type="html">Jekyll Liquid 문법 빠져나오기(중괄호 무시)</summary></entry><entry><title type="html">Jekyll과 Github pages를 사용하여 블로그 만들기</title><link href="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html" rel="alternate" type="text/html" title="Jekyll과 Github pages를 사용하여 블로그 만들기" /><published>2021-11-18T00:00:00+09:00</published><updated>2021-11-18T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/18/github-pages-with-jekyll</id><content type="html" xml:base="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html">&lt;h1 id=&quot;jekyll과-github-pages를-사용하여-간단하게-블로그를-만들어보자&quot;&gt;Jekyll과 Github pages를 사용하여 간단하게 블로그를 만들어보자&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/titles/github-pages.png&quot; alt=&quot;github-pages.png&quot; /&gt;&lt;/p&gt;
 
@@ -1990,553 +2413,4 @@ $ nginx -s reload
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-modules.html&quot;&gt;Metricbeat Modules&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Elasticsearch" /><category term="Elastic" /><category term="ELK" /><category term="Metricbeat" /><category term="Beat" /><summary type="html">Elastic Metricbeat 모듈 설정</summary></entry><entry><title type="html">Elastic APM Java Agent 적용하기</title><link href="http://localhost:4000/2021/07/27/elastic-apm-java-agent.html" rel="alternate" type="text/html" title="Elastic APM Java Agent 적용하기" /><published>2021-07-27T00:00:00+09:00</published><updated>2021-07-27T00:00:00+09:00</updated><id>http://localhost:4000/2021/07/27/elastic-apm-java-agent</id><content type="html" xml:base="http://localhost:4000/2021/07/27/elastic-apm-java-agent.html">&lt;h1 id=&quot;elastic-apm-java-agent-적용하기&quot;&gt;Elastic APM Java Agent 적용하기&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/titles/elastic-logo.png&quot; alt=&quot;elastic-logo.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Elastic APM Java Agent 적용기&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;apm-agent-설치&quot;&gt;APM Agent 설치&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/apm/agent/index.html&quot;&gt;APM Agents&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;apm-agent를 사용하기 위해서는 apm-server가 필요하다.&lt;/p&gt;
-
-&lt;p&gt;apm-server가 구축되어 있지 않으면 &lt;a href=&quot;/2021/07/22/elastic-apm-server.html&quot;&gt;Elastic APM Server&lt;/a&gt; 문서 참고&lt;/p&gt;
-
-&lt;p&gt;APM Java Agent 공식 지원 설치 방법은 3가지가 있다.&lt;/p&gt;
-
-&lt;h4 id=&quot;1-manual-setup-with--javaagent-flag&quot;&gt;1. Manual setup with -javaagent flag&lt;/h4&gt;
-
-&lt;h4 id=&quot;2-automatic-setup-with-apm-agent-attach-clijar&quot;&gt;2. Automatic setup with apm-agent-attach-cli.jar&lt;/h4&gt;
-
-&lt;h4 id=&quot;3-programmatic-api-setup-to-self-attach&quot;&gt;3. Programmatic API setup to self-attach&lt;/h4&gt;
-
-&lt;p&gt;본 문서에서는 최종적으로 아래 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-javaagent&lt;/code&gt;와 k8s의 InitContainer를 사용하는 방법을 사용&lt;/p&gt;
-
-&lt;h4 id=&quot;4--javaagent-flag-with-kubernetes-initcontainer&quot;&gt;4. -javaagent flag with Kubernetes InitContainer&lt;/h4&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;manual-setup-with--javaagent-flag&quot;&gt;Manual setup with -javaagent flag&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/apm/agent/java/current/index.html&quot;&gt;APM Java Agent Reference&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;별도 코드 수정이 필요없는 -javaagent 플래그를 이용한 에이전트 설치 방법&lt;/p&gt;
-
-&lt;h4 id=&quot;1-dockerfile-수정&quot;&gt;1. Dockerfile 수정&lt;/h4&gt;
-
-&lt;div class=&quot;language-Dockerfile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; openjdk:8-jre-alpine&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;ADD&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; your-project/build/libs/*.jar makers-web.jar&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;ADD&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; https://search.maven.org/remotecontent?filepath=co/elastic/apm/elastic-apm-agent/1.25.0/elastic-apm-agent-1.25.0.jar elastic-apm-agent.jar&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;ENTRYPOINT&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; [&quot;java&quot;, &quot;-javaagent:/elastic-apm-agent.jar&quot;, &quot;-Delastic.apm.service_name=your-project&quot;, &quot;-Delastic.apm.application_packages=com.company.app&quot;, &quot;-Delastic.apm.server_url=http://{엘라스틱 APM 서버 주소}:{포트}&quot;, &quot;-Delastic.apm.environment=local&quot;, &quot;-jar&quot;, &quot;your-project.jar&quot;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;maven repo에서 APM Agent jar를 받아서 -javaagent 플래그로 JVM 위에 같이 실행한다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h5 id=&quot;플래그&quot;&gt;플래그&lt;/h5&gt;
-&lt;ul&gt;
-  &lt;li&gt;-Delastic.apm.service_name=your-project
-    &lt;ul&gt;
-      &lt;li&gt;APM 모니터링시 확인할 서비스명(필수)&lt;/li&gt;
-      &lt;li&gt;APM 메뉴에 표출될 서비스명을 적기&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;-Delastic.apm.application_packages=com.company.app
-    &lt;ul&gt;
-      &lt;li&gt;APM 모니터링할 root package(필수)&lt;/li&gt;
-      &lt;li&gt;APM 모니터링할 Java root package명 적기&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;-Delastic.apm.server_url=http://{엘라스틱  APM 서버 주소}:{포트}
-    &lt;ul&gt;
-      &lt;li&gt;APM Server 주소(필수)&lt;/li&gt;
-      &lt;li&gt;APM Server 엔드포인트&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;-Delastic.apm.environment=local
-    &lt;ul&gt;
-      &lt;li&gt;APM 모니터링 환경(옵션)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;그 외 자세한 configuration 값은 &lt;a href=&quot;https://www.elastic.co/guide/en/apm/agent/java/current/configuration.html&quot;&gt;APM Java Agent Configuration&lt;/a&gt; 참조&lt;/p&gt;
-
-&lt;h4 id=&quot;2-jenkins-빌드&quot;&gt;2. Jenkins 빌드&lt;/h4&gt;
-
-&lt;h4 id=&quot;3-로그-확인&quot;&gt;3. 로그 확인&lt;/h4&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2021-07-27 14:21:04,144 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] INFO  co.elastic.apm.agent.util.JmxUtils - Found JVM-specific OperatingSystemMXBean interface: com.sun.management.OperatingSystemMXBean
-2021-07-27 14:21:04,535 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] INFO  co.elastic.apm.agent.configuration.StartupInfo - Starting Elastic APM 1.25.0 as makers-web on Java 1.8.0_212 Runtime version: 1.8.0_212-b04 VM version: 25.212-b04 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;IcedTea&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; Linux 4.15.0-144-generic
-2021-07-27 14:21:04,535 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] INFO  co.elastic.apm.agent.configuration.StartupInfo - environment: &lt;span class=&quot;s1&quot;&gt;&apos;local&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;: Java System Properties&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-2021-07-27 14:21:04,535 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] INFO  co.elastic.apm.agent.configuration.StartupInfo - server_url: &lt;span class=&quot;s1&quot;&gt;&apos;http://{엘라스틱 APM 서버 주소}:{포트}&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;: Java System Properties&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-2021-07-27 14:21:04,536 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] INFO  co.elastic.apm.agent.configuration.StartupInfo - application_packages: &lt;span class=&quot;s1&quot;&gt;&apos;com.company.app&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;: Java System Properties&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-2021-07-27 14:21:11,952 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] INFO  co.elastic.apm.agent.impl.ElasticApmTracer - Tracer switched to RUNNING state
-2021-07-27 14:21:12,340 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;elastic-apm-server-healthcheck] INFO  co.elastic.apm.agent.report.ApmServerHealthChecker - Elastic APM server is available: &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;  &lt;span class=&quot;s2&quot;&gt;&quot;build_date&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;2021-04-20T19:55:39Z&quot;&lt;/span&gt;,  &lt;span class=&quot;s2&quot;&gt;&quot;build_sha&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;32f34ed4298d648bf9476790f2a8a54d72805bb6&quot;&lt;/span&gt;,  &lt;span class=&quot;s2&quot;&gt;&quot;version&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;7.12.1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Application 시작 전에 위와 같은 로그가 나오면 정상 동작 확인&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;automatic-setup-with-apm-agent-attach-clijar&quot;&gt;Automatic setup with apm-agent-attach-cli.jar&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/apm/agent/java/current/setup-attach-cli.html#setup-attach-cli-supported-environments&quot;&gt;Automatic setup with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apm-agent-attach-cli.jar&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;해당 방법은 현재 Host에서 실행되는 모든 JVM에 적용하므로 원하는 서비스만 선택 적용이 어렵다는 단점이 있음&lt;/p&gt;
-
-&lt;p&gt;또한 서비스별 config를 적용할 수 있는 가이드가 제공되지 않는다.&lt;/p&gt;
-
-&lt;p&gt;APM 서버에서 수집하는 서비스명이 동일하게 나오는 문제가 있음&lt;/p&gt;
-
-&lt;p&gt;아래는 모든 k8s worker 노드에 수행되어야함&lt;/p&gt;
-
-&lt;h4 id=&quot;1-apm-agent-attach-clijar-다운로드&quot;&gt;1. apm-agent-attach-cli.jar 다운로드&lt;/h4&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-O&lt;/span&gt; apm-agent-attach-cli-1.25.0.jar https://search.maven.org/remotecontent?filepath&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;co/elastic/apm/apm-agent-attach-cli/1.25.0/apm-agent-attach-cli-1.25.0.jar
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h4 id=&quot;2-attachsh-작성&quot;&gt;2. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;attach.sh&lt;/code&gt; 작성&lt;/h4&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/env bash&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-ex&lt;/span&gt;
-
-attach &lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# only attempt attachment if this looks like a java container&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;docker inspect &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;container_id&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; | jq &lt;span class=&quot;nt&quot;&gt;--raw-output&lt;/span&gt; .[0].Config.Cmd[0]&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; java &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;then
-        &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo &lt;/span&gt;attaching to &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;docker ps &lt;span class=&quot;nt&quot;&gt;--no-trunc&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;container_id&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
-        docker &lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; ./apm-agent-attach-&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-cli&lt;/span&gt;.jar &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;container_id&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;:/apm-agent-attach-cli.jar
-        docker &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;container_id&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; java &lt;span class=&quot;nt&quot;&gt;-jar&lt;/span&gt; /apm-agent-attach-cli.jar &lt;span class=&quot;nt&quot;&gt;--config&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# attach to running containers&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;container_id &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;docker ps &lt;span class=&quot;nt&quot;&gt;--quiet&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--no-trunc&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do
-    &lt;/span&gt;attach
-&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# listen for starting containers and attach to those&lt;/span&gt;
-
-docker events &lt;span class=&quot;nt&quot;&gt;--filter&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;event=start&apos;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--format&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;{{.ID}}&apos;&lt;/span&gt; |
-&lt;span class=&quot;k&quot;&gt;while &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;IFS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;read&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; container_id
-&lt;span class=&quot;k&quot;&gt;do
-    &lt;/span&gt;attach
-&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;현재 구동중인 JVM 컨테이너와 앞으로 구동될 JVM 컨테이너에 java agent attach하는 방법&lt;/p&gt;
-
-&lt;h4 id=&quot;3-jq-설치&quot;&gt;3. jq 설치&lt;/h4&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;jq
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;jq &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
-jq-1.5-1-a5b5cbe
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;위 attach 스크립트에서 java를 검사하는 방법은 jq 사용하여 json 검사하는 방법이므로 jq 설치 필요&lt;/p&gt;
-
-&lt;h4 id=&quot;4-스크립트-실행&quot;&gt;4. 스크립트 실행&lt;/h4&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;chmod&lt;/span&gt; +x ./attach.sh
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;./attach.sh &amp;amp;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;programmatic-api-setup-to-self-attach&quot;&gt;Programmatic API setup to self-attach&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/apm/agent/java/current/setup-attach-api.html&quot;&gt;Programmatic API setup to self-attach&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;소스코드 dependency 추가하여 직접 설정하는 방법&lt;/p&gt;
-
-&lt;p&gt;어플리케이션 코드에 직접적인 코드 및 수정이 필요하므로 별로 추천하지는 않는다.&lt;/p&gt;
-
-&lt;p&gt;마이크로서비스에서의 많은 서비스들 일일이 추가하기도 어렵고 중복되기 때문&lt;/p&gt;
-
-&lt;h4 id=&quot;1-pomxml&quot;&gt;1. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pom.xml&lt;/code&gt;&lt;/h4&gt;
-
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;co.elastic.apm&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;apm-agent-attach&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;${elastic-apm.version}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;2-applicationjava&quot;&gt;2. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Application.java&lt;/code&gt;&lt;/h4&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;co.elastic.apm.attach.ElasticApmAttacher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.boot.SpringApplication&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;nd&quot;&gt;@SpringBootApplication&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyApplication&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;ElasticApmAttacher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;attach&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;SpringApplication&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;MyApplication&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;각 어플리케이션의 java main class에 위 코드를 추가한다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;kubernetes-initcontainer사용&quot;&gt;Kubernetes InitContainer(사용)&lt;/h3&gt;
-
-&lt;p&gt;참고: &lt;a href=&quot;https://m.blog.naver.com/olpaemi/221788820388&quot;&gt;엘라스틱서치 APM을 이용해서 쿠버네티스 환경의 자바 어플리케이션 모니터링하기(1)&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-javaagent&lt;/code&gt; 와 Kubernetes에서 제공하는 InitContainer 기능을 사용하는 방법&lt;/p&gt;
-
-&lt;h4 id=&quot;initcontainer&quot;&gt;InitContainer&lt;/h4&gt;
-
-&lt;div class=&quot;mermaid&quot;&gt;
-flowchart LR
-  subgraph Pod
-	  A[InitContainer]
-    B[Container]
-    subgraph Volume
-    C[EmptyDir]
-  	end
-  end
-  A--Create--&amp;gt;C
-  C-.Delete.-&amp;gt;A
-  C--Mount--&amp;gt;B
-&lt;/div&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://kubernetes.io/docs/concepts/workloads/pods/init-containers/&quot;&gt;Init Containers&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Deployment 파드 안에 컨테이너 앱 실행 이전에 실행된다.&lt;/p&gt;
-
-&lt;p&gt;InitContainer는 항상 실행이 보장되어 있으므로 서비스와 모니터링을 별개의 레벨로 분리할 수 있음&lt;/p&gt;
-
-&lt;p&gt;공유 볼륨을 이용하여 apm-agent jar를 공유 볼륨에 넣어놓고&lt;/p&gt;
-
-&lt;p&gt;컨테이너 실행시 InitContainer에서 apm-agent jar를 복사하는 방식&lt;/p&gt;
-
-&lt;h4 id=&quot;kubernetesyaml-수정추가된-부분만-작성&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kubernetes.yaml&lt;/code&gt; 수정(추가된 부분만 작성)&lt;/h4&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;apiVersion: apps/v1
-kind: Deployment
-...
-spec:
-  template:
-    metadata:
-    ...
-    spec:
-      initContainers:                        &lt;span class=&quot;c&quot;&gt;# apm-agent 적용을 위한 initContainer&lt;/span&gt;
-      - name: elastic-java-agent
-        image: docker.elastic.co/observability/apm-agent-java:1.25.0
-        volumeMounts:
-        - mountPath: /elastic/apm-agent
-          name: elastic-apm-agent
-        &lt;span class=&quot;nb&quot;&gt;command&lt;/span&gt;: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;cp&apos;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&apos;-v&apos;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&apos;/usr/agent/elastic-apm-agent.jar&apos;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&apos;/elastic/apm-agent&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-      containers:
-      - name: your-project
-        image: abcde
-        volumeMounts:
-        ...
-        - name: elastic-apm-agent
-          mountPath: /elastic/apm-agent
-        &lt;span class=&quot;nb&quot;&gt;env&lt;/span&gt;:                                &lt;span class=&quot;c&quot;&gt;# apm-agent 필수 환경변수 추가&lt;/span&gt;
-        - name: ELASTIC_APM_SERVER_URL 
-          value: &lt;span class=&quot;s2&quot;&gt;&quot;http://{엘라스틱 APM 서버 주소}:{포트}&quot;&lt;/span&gt;
-        - name: ELASTIC_APM_SERVICE_NAME 
-          value: &lt;span class=&quot;s2&quot;&gt;&quot;your-project&quot;&lt;/span&gt;  
-        - name: ELASTIC_APM_ENVIRONMENT 
-          value: &lt;span class=&quot;nb&quot;&gt;local&lt;/span&gt;
-        - name: JAVA_TOOL_OPTIONS
-          value: &lt;span class=&quot;nt&quot;&gt;-javaagent&lt;/span&gt;:/elastic/apm-agent/elastic-apm-agent.jar
-      ...
-      volumes:
-      ...
-      - name: elastic-apm-agent
-        emptyDir: &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
-...
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;적용 이후 Jenkins 배포&lt;/p&gt;
-
-&lt;h4 id=&quot;pod-로그-확인&quot;&gt;pod 로그 확인&lt;/h4&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Picked up JAVA_TOOL_OPTIONS: &lt;span class=&quot;nt&quot;&gt;-javaagent&lt;/span&gt;:/elastic/apm-agent/elastic-apm-agent.jar
-2021-08-04 14:13:53,838 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] INFO  co.elastic.apm.agent.util.JmxUtils - Found JVM-specific OperatingSystemMXBean interface: com.sun.management.OperatingSystemMXBean
-2021-08-04 14:13:54,174 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] INFO  co.elastic.apm.agent.configuration.StartupInfo - Starting Elastic APM 1.25.0 as your-project on Java 1.8.0_212 Runtime version: 1.8.0_212-b04 VM version: 25.212-b04 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;IcedTea&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; Linux 4.15.0-144-generic
-2021-08-04 14:13:54,226 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] INFO  co.elastic.apm.agent.configuration.StartupInfo - service_name: &lt;span class=&quot;s1&quot;&gt;&apos;your-project&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;: Environment Variables&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-2021-08-04 14:13:54,227 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] INFO  co.elastic.apm.agent.configuration.StartupInfo - environment: &lt;span class=&quot;s1&quot;&gt;&apos;local&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;: Environment Variables&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-2021-08-04 14:13:54,227 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] INFO  co.elastic.apm.agent.configuration.StartupInfo - server_url: &lt;span class=&quot;s1&quot;&gt;&apos;http://{엘라스틱 APM 서버 주소}:{포트}&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;: Environment Variables&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-2021-08-04 14:13:54,227 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] WARN  co.elastic.apm.agent.configuration.StartupInfo - To &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;all features and decrease startup &lt;span class=&quot;nb&quot;&gt;time&lt;/span&gt;, please configure application_packages
-2021-08-04 14:14:01,639 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;main] INFO  co.elastic.apm.agent.impl.ElasticApmTracer - Tracer switched to RUNNING state
-2021-08-04 14:14:02,030 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;elastic-apm-server-healthcheck] INFO  co.elastic.apm.agent.report.ApmServerHealthChecker - Elastic APM server is available: &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;  &lt;span class=&quot;s2&quot;&gt;&quot;build_date&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;2021-04-20T19:55:39Z&quot;&lt;/span&gt;,  &lt;span class=&quot;s2&quot;&gt;&quot;build_sha&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;32f34ed4298d648bf9476790f2a8a54d72805bb6&quot;&lt;/span&gt;,  &lt;span class=&quot;s2&quot;&gt;&quot;version&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;7.12.1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;apm-server 접속 및 available 확인&lt;/p&gt;
-
-&lt;h3 id=&quot;kibana-확인&quot;&gt;Kibana 확인&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/eaja-1.png&quot; alt=&quot;eaja-1.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/eaja-2.png&quot; alt=&quot;eaja-2.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/eaja-3.png&quot; alt=&quot;eaja-3.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/eaja-4.png&quot; alt=&quot;eaja-4.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;인덱스 정상 수집 확인&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/apm/agent/index.html&quot;&gt;APM Agents&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/apm/agent/java/current/index.html&quot;&gt;APM Java Agent Reference&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/apm/agent/java/current/configuration.html&quot;&gt;APM Java Agent Configuration&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/apm/agent/java/current/setup-attach-cli.html#setup-attach-cli-supported-environments&quot;&gt;Automatic setup with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apm-agent-attach-cli.jar&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/apm/agent/java/current/setup-attach-api.html&quot;&gt;Programmatic API setup to self-attach&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://m.blog.naver.com/olpaemi/221788820388&quot;&gt;엘라스틱서치 APM을 이용해서 쿠버네티스 환경의 자바 어플리케이션 모니터링하기(1)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://kubernetes.io/docs/concepts/workloads/pods/init-containers/&quot;&gt;Init Containers&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Elasticsearch" /><category term="Elastic" /><category term="ELK" /><category term="APM" /><category term="ArgoCD" /><category term="GitOps" /><category term="Helm" /><category term="Java" /><category term="JVM" /><summary type="html">Elastic APM Java Agent 적용하기</summary></entry><entry><title type="html">Elastic Stack Monitoring with Metricbeat</title><link href="http://localhost:4000/2021/07/27/elastic-stack-monitoring.html" rel="alternate" type="text/html" title="Elastic Stack Monitoring with Metricbeat" /><published>2021-07-27T00:00:00+09:00</published><updated>2021-07-27T00:00:00+09:00</updated><id>http://localhost:4000/2021/07/27/elastic-stack-monitoring</id><content type="html" xml:base="http://localhost:4000/2021/07/27/elastic-stack-monitoring.html">&lt;h1 id=&quot;elastic-stack-monitoring-with-metricbeat&quot;&gt;Elastic Stack Monitoring with Metricbeat&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/titles/elastic-logo.png&quot; alt=&quot;elastic-logo.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Elastic Stack(ELK) 노드 자체의 메트릭 정보를 모니터링하기 위한 metricbeat 구축하기&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;개요&quot;&gt;개요&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/7.x/monitoring-metricbeat-collection.html&quot;&gt;Use Metricbeat to send monitoring data&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Metricbeat를 사용하여 ELS(Elastic Stack) 모니터링 구축&lt;/p&gt;
-
-&lt;p&gt;기존 Legacy 수집 방식과 Metricbeat 수집 방식이 있으나 7.x 버전에서는 Metricbeat를 사용하여 모니터링하도록 가이드하고 있다.&lt;/p&gt;
-
-&lt;p&gt;아래 5가지 항목을 모니터링한다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Elasticsearch&lt;/li&gt;
-  &lt;li&gt;Logstash&lt;/li&gt;
-  &lt;li&gt;Kibana&lt;/li&gt;
-  &lt;li&gt;Beats&lt;/li&gt;
-  &lt;li&gt;APM&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;기존 Metricbeat로 수집되는 메트릭 정보들은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;metricbeat-*&lt;/code&gt; 인덱스에 수집이 되지만 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;xpack.enabled&lt;/code&gt; 옵션으로 xpack 기능 활성화시 별도의 monitoring cluster로 수집하며 Kibana의 Stack Monitoring 메뉴에서 확인할 수 있다.&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;h3 id=&quot;metricbeat-설치&quot;&gt;Metricbeat 설치&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;2021-07-27-elastic-metricbeat-install&quot;&gt;Elastic Metricbeat 설치 및 설정&lt;/a&gt; 참고&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;h3 id=&quot;metricbeat-설정&quot;&gt;Metricbeat 설정&lt;/h3&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;metricbeat.yml&lt;/code&gt; 수정&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;setup.kibana&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;http://10.213.196.6:5601&quot;&lt;/span&gt;
-  
-  &lt;span class=&quot;c1&quot;&gt;# ssl 인증서 생성 시 https 사용&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;https://172.25.0.166:5601&quot;&lt;/span&gt;
-
-  &lt;span class=&quot;c1&quot;&gt;# ssl 인증서 적용 시 추가&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;ssl&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;certificate_authorities&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/etc/logstash/certs/ca.crt&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;certificate&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/etc/logstash/certs/logstash-1.crt&quot;&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/etc/logstash/certs/logstash-1.key&quot;&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;output.elasticsearch&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# elasticsearch 노드 IP 넣기&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{엘라스틱서치1}:9200&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{엘라스틱서치2}:9200&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{엘라스틱서치3}:9200&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-
-  &lt;span class=&quot;c1&quot;&gt;# ssl 인증서 적용 시 https, 미 적용 시 http 사용&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;https&quot;&lt;/span&gt;
-
-  &lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;elastic&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{암호}&quot;&lt;/span&gt;
-
-  &lt;span class=&quot;c1&quot;&gt;# ssl 인증서 적용시&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;ssl&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;certificate_authorities&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/etc/logstash/certs/ca.crt&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;certificate&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/etc/logstash/certs/logstash-1.crt&quot;&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/etc/logstash/certs/logstash-1.key&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;elastic stack monitoring 활성화시 시스템 정보를 수집해도 UI에 보이지 않으므로 비활성화한다.&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules disable system
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;hr /&gt;
-&lt;h2 id=&quot;elasticsearch-monitoring&quot;&gt;Elasticsearch Monitoring&lt;/h2&gt;
-
-&lt;h3 id=&quot;elasticsearch-설정&quot;&gt;Elasticsearch 설정&lt;/h3&gt;
-&lt;h4 id=&quot;elasticsearchyml-수정&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;elasticsearch.yml&lt;/code&gt; 수정&lt;/h4&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;xpack.monitoring.collection.enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;	&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;# xpack 모니터링(metricbeat 사용)&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;monitoring.enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;									&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;# legacy 모니터링(metricbeat 미사용)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;기존 legacy 방식 모니터링은 false, xpack 모니터링은 true로 설정&lt;/p&gt;
-
-&lt;h4 id=&quot;elasticsearch-xpack-module-활성화&quot;&gt;elasticsearch-xpack module 활성화&lt;/h4&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules disable elasticsearch
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;elasticsearch-xpack
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;xpack과 기본 모듈중 하나만 사용해야 하기 때문에 기존의 모듈은 disable&lt;/p&gt;
-
-&lt;h4 id=&quot;elasticsearch-xpack-module-설정&quot;&gt;elasticsearch-xpack module 설정&lt;/h4&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;modules.d/elasticsearch-xpack.yml&lt;/code&gt; 수정&lt;/p&gt;
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;elasticsearch&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;xpack.enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10s&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;http://localhost:9200&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;http://localhost:9201&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;http://localhost:9202&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-  
-  &lt;span class=&quot;c1&quot;&gt;# elasticsearch 모니터링용 user(Optional)&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;#username: &quot;user&quot;&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;#password: &quot;secret&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;elasticsearch-모니터링용-사용자-생성optional&quot;&gt;elasticsearch 모니터링용 사용자 생성(Optional)&lt;/h4&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;remote_monitoring_collector&lt;/code&gt; 롤을 가진 사용자를 생성. 생성한 사용자 id는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;elasticsearch_monitoring&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;metricbeat-구동-및-kibana에서-확인&quot;&gt;Metricbeat 구동 및 kibana에서 확인&lt;/h3&gt;
-&lt;h4 id=&quot;metricbeat-서비스-구동&quot;&gt;metricbeat 서비스 구동&lt;/h4&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl start metricbeat.service
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;kibana-stack-monitoring-메뉴에서-metricbeat-monitoring-상태임을-확인&quot;&gt;kibana Stack Monitoring 메뉴에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Metricbeat monitoring&lt;/code&gt; 상태임을 확인&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/esm-1.png&quot; alt=&quot;esm-1.png&quot; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;h2 id=&quot;logstash-monitoring&quot;&gt;Logstash Monitoring&lt;/h2&gt;
-
-&lt;h3 id=&quot;logstash-설정&quot;&gt;Logstash 설정&lt;/h3&gt;
-
-&lt;h4 id=&quot;기본-모니터링-설정-끄기&quot;&gt;기본 모니터링 설정 끄기&lt;/h4&gt;
-&lt;p&gt;kibana에서 stack monitoring 확인 시 Self monitoring으로 표기될 시 기본 모니터링 옵션을 끈다.
-&lt;img src=&quot;/assets/img/contents/esm-2.png&quot; alt=&quot;esm-2.png&quot; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;logstashyml에-추가&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;logstash.yml&lt;/code&gt;에 추가&lt;/h4&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;monitoring.enabled: &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;logstash-xpack-모듈-활성화&quot;&gt;logstash-xpack 모듈 활성화&lt;/h4&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules disable logstash
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;logstash-xpack
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;xpack과 기본 모듈중 하나만 사용해야 하기 때문에 기존의 모듈은 disable&lt;/p&gt;
-
-&lt;h4 id=&quot;logstash-xpack-모듈-설정&quot;&gt;logstash-xpack 모듈 설정&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/logstash/7.12/monitoring-with-metricbeat.html&quot;&gt;Collect Logstash monitorin data with Metricbeat&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;modulesdlogstash-xpackyml-수정&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;modules.d/logstash-xpack.yml&lt;/code&gt; 수정&lt;/h4&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;logstash&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;metricsets&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;node&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;node_stats&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;xpack.enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# hosts 값에는 metric 수집 대상을 추가. &lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;http://172.25.0.66:9600&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10s&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# logstash 모니터링용 사용자(Optional)&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;logstash_monitoring&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Infra1111&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;logstash-모니터링용-user-생성optional&quot;&gt;logstash 모니터링용 user 생성(Optional)&lt;/h4&gt;
-&lt;p&gt;kibana web ui 에서 아래 화면과 같이 모니터링용 user를 생성
-&lt;img src=&quot;/assets/img/contents/esm-3.png&quot; alt=&quot;esm-3.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;roles에는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;remote_monitoring_collector&lt;/code&gt; 를 선택&lt;/p&gt;
-
-&lt;h3 id=&quot;metricbeat-구동-및-kibana에서-확인-1&quot;&gt;Metricbeat 구동 및 kibana에서 확인&lt;/h3&gt;
-
-&lt;h4 id=&quot;metricbeat-서비스-구동-1&quot;&gt;metricbeat 서비스 구동&lt;/h4&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl start metricbeat.service
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;kibana-stack-monitoring-메뉴에서-metricbeat-monitoring-상태임을-확인-1&quot;&gt;kibana Stack Monitoring 메뉴에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Metricbeat monitoring&lt;/code&gt; 상태임을 확인&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/esm-4.png&quot; alt=&quot;esm-4.png&quot; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;h2 id=&quot;kibana-monitoring&quot;&gt;Kibana Monitoring&lt;/h2&gt;
-
-&lt;h3 id=&quot;kibana-설정&quot;&gt;Kibana 설정&lt;/h3&gt;
-
-&lt;h4 id=&quot;기본-모니터링-설정-끄기-1&quot;&gt;기본 모니터링 설정 끄기&lt;/h4&gt;
-
-&lt;p&gt;kibana에서 stack monitoring 확인 시 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Self monitoring&lt;/code&gt;으로 표기될 시 기본 모니터링 옵션을 끈다.
-&lt;img src=&quot;/assets/img/contents/esm-5.png&quot; alt=&quot;esm-5.png&quot; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;kibanayml에-추가&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kibana.yml&lt;/code&gt;에 추가&lt;/h4&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;monitoring.kibana.collection.enabled: &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;기존 legacy 방식으로 모니터링 데이터를 수집하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;monitoring.kibana.collection.enabled&lt;/code&gt; 설정 값을 false로 변경.&lt;/p&gt;
-
-&lt;h4 id=&quot;kibana-xpack-module-활성화&quot;&gt;kibana-xpack module 활성화&lt;/h4&gt;
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules disable kibana
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;kibana-xpack
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;xpack과 기본 모듈중 하나만 사용해야 하기 때문에 기존의 모듈은 disable&lt;/p&gt;
-
-&lt;h4 id=&quot;kibana-xpack-module-설정&quot;&gt;kibana-xpack module 설정&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-module-kibana.html&quot;&gt;Kibana module&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;modulesdkibana-xpackyml-수정&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;modules.d/kibana-xpack.yml&lt;/code&gt; 수정&lt;/h4&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;kibana&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# 두 개의 metricset 설정 가능.&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;metricsets&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;stats&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;status&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# metricbeat로 모니터링 시 아래 옵션을 true로 설정해야 함&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;xpack.enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10s&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# kibana 서버 url&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;http://10.213.196.6:5601&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;scopse&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;node&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# kibana 모니터링용 user(Optional)&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;kibana_monitoring&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Infra1111&quot;&lt;/span&gt;
-
-  &lt;span class=&quot;c1&quot;&gt;# ssl 인증서 생성하여 적용 시 아래 옵션 적용&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;ssl.enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;ssl.certificate_authorities&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/etc/kibana/certs/ca.crt&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;ssl.certificate&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/etc/kibana/certs/rmakers-kibana.crt&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;ssl.key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/etc/kibana/certs/rmakers-kibana.key&quot;&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;ssl.verification_mode&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;full&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;kibana-모니터링용-사용자-생성optional&quot;&gt;kibana 모니터링용 사용자 생성(Optional)&lt;/h4&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;remote_monitoring_collector&lt;/code&gt; 롤을 가진 사용자를 생성. 생성한 사용자 id는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kibana_monitoring&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;metricbeat-구동-및-kibana에서-확인-2&quot;&gt;Metricbeat 구동 및 kibana에서 확인&lt;/h3&gt;
-&lt;h4 id=&quot;metricbeat-서비스-구동-2&quot;&gt;metricbeat 서비스 구동&lt;/h4&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl start metricbeat.service
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;kibana-stack-monitoring-메뉴에서-metricbeat-monitoring-상태임을-확인-2&quot;&gt;kibana Stack Monitoring 메뉴에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Metricbeat monitoring&lt;/code&gt; 상태임을 확인&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/esm-6.png&quot; alt=&quot;esm-6.png&quot; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/7.x/monitoring-metricbeat-collection.html&quot;&gt;Use Metricbeat to send monitoring data&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/logstash/7.12/monitoring-with-metricbeat.html&quot;&gt;Collect Logstash monitorin data with Metricbeat&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-module-kibana.html&quot;&gt;Kibana module&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Elasticsearch" /><category term="Elastic" /><category term="ELK" /><category term="Metricbeat" /><category term="Metric" /><category term="Monitoring" /><category term="Observability" /><summary type="html">Elastic Stack Monitoring with Metricbeat</summary></entry></feed>
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Elasticsearch" /><category term="Elastic" /><category term="ELK" /><category term="Metricbeat" /><category term="Beat" /><summary type="html">Elastic Metricbeat 모듈 설정</summary></entry></feed>

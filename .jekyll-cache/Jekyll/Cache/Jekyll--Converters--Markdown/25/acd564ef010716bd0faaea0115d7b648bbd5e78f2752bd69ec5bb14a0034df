@@ -1,0 +1,412 @@
+I"�2<h1 id="jekyll-liquid-문법-빠져나오기중괄호-무시">Jekyll Liquid 문법 빠져나오기(중괄호 무시)</h1>
+
+<p><img src="/assets/img/contents/jekyll.png" alt="jekyll.png" /></p>
+
+<p><a href="https://jekyllrb.com/docs/liquid/">Jekyll Liquid</a></p>
+
+<p>Jekyll 작성시 Liquid template `` 이중 중괄호 및 중괄호 빠져나오기 (무시하기)</p>
+
+<hr />
+
+<h2 id="mermaid">Mermaid</h2>
+
+<h3 id="mermaid-1">Mermaid?</h3>
+
+<p><a href="https://mermaid-js.github.io/mermaid/#/">mermaid-js</a></p>
+
+<p>Markdown에서 Mermaid syntax를 이용하여 여러 다이어그램과 차트들을 텍스트 기반으로 작성하여 렌더링할 수 있다.</p>
+
+<p>예를 들면 아래와 같은 다이어그램들을 외부 draw tool 없이 쉽게 작성이 가능하다.</p>
+
+<p>관련 내용을 작성할때 매우 유용하므로 익혀두면 좋다.</p>
+
+<p><br /></p>
+
+<h4 id="flowchart">Flowchart</h4>
+
+<h5 id="mermaid-rendered">Mermaid rendered</h5>
+
+<div class="mermaid">
+  flowchart LR
+    A[Hard edge] --&gt;|Link text| B(Round edge)
+    B --&gt; C{Decision}
+    C --&gt;|One| D[Result one]
+    C --&gt;|Two| E[Result two]
+</div>
+
+<h5 id="in-mermaid-syntax">In Mermaid syntax</h5>
+
+<pre><code class="language-mermaid">  flowchart LR
+    A[Hard edge] --&gt;|Link text| B(Round edge)
+    B --&gt; C{Decision}
+    C --&gt;|One| D[Result one]
+    C --&gt;|Two| E[Result two]
+</code></pre>
+
+<p><br /></p>
+
+<h4 id="sequence-diagram">Sequence Diagram</h4>
+
+<h5 id="mermaid-rendered-1">Mermaid rendered</h5>
+
+<div class="mermaid">
+  sequenceDiagram
+    autonumber
+    Alice-&gt;&gt;John: Hello John, how are you?
+    loop Healthcheck
+        John-&gt;&gt;John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts!
+    John--&gt;&gt;Alice: Great!
+    John-&gt;&gt;Bob: How about you?
+    Bob--&gt;&gt;John: Jolly good!
+</div>
+
+<h5 id="in-mermaid-syntax-1">In Mermaid syntax</h5>
+
+<pre><code class="language-mermaid">  sequenceDiagram
+    autonumber
+    Alice-&gt;&gt;John: Hello John, how are you?
+    loop Healthcheck
+        John-&gt;&gt;John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts!
+    John--&gt;&gt;Alice: Great!
+    John-&gt;&gt;Bob: How about you?
+    Bob--&gt;&gt;John: Jolly good!
+</code></pre>
+
+<p><br /></p>
+
+<h4 id="class-diagram">Class Diagram</h4>
+
+<h5 id="mermaid-rendered-2">Mermaid rendered</h5>
+
+<div class="mermaid">
+classDiagram
+  direction RL
+  class Student {
+    -idCard : IdCard
+  }
+  class IdCard{
+    -id : int
+    -name : string
+  }
+  class Bike{
+    -id : int
+    -name : string
+  }
+  Student "1" --o "1" IdCard : carries
+  Student "1" --o "1" Bike : rides
+</div>
+
+<h5 id="in-mermaid-syntax-2">In Mermaid syntax</h5>
+
+<pre><code class="language-mermaid">classDiagram
+  direction RL
+  class Student {
+    -idCard : IdCard
+  }
+  class IdCard{
+    -id : int
+    -name : string
+  }
+  class Bike{
+    -id : int
+    -name : string
+  }
+  Student "1" --o "1" IdCard : carries
+  Student "1" --o "1" Bike : rides
+</code></pre>
+
+<p><br /></p>
+
+<h4 id="state-diagram">State Diagram</h4>
+
+<h5 id="mermaid-rendered-3">Mermaid rendered</h5>
+
+<div class="mermaid">
+stateDiagram-v2
+    [*] --&gt; Active
+  state Active {
+    [*] --&gt; NumLockOff
+    NumLockOff --&gt; NumLockOn : EvNumLockPressed
+    NumLockOn --&gt; NumLockOff : EvNumLockPressed
+    --
+    [*] --&gt; CapsLockOff
+    CapsLockOff --&gt; CapsLockOn : EvCapsLockPressed
+    CapsLockOn --&gt; CapsLockOff : EvCapsLockPressed
+    --
+    [*] --&gt; ScrollLockOff
+    ScrollLockOff --&gt; ScrollLockOn : EvScrollLockPressed
+    ScrollLockOn --&gt; ScrollLockOff : EvScrollLockPressed
+}
+</div>
+
+<h5 id="in-mermaid-syntax-3">In Mermaid syntax</h5>
+
+<pre><code class="language-mermaid">stateDiagram-v2
+    [*] --&gt; Active
+
+    state Active {
+        [*] --&gt; NumLockOff
+        NumLockOff --&gt; NumLockOn : EvNumLockPressed
+        NumLockOn --&gt; NumLockOff : EvNumLockPressed
+        --
+        [*] --&gt; CapsLockOff
+        CapsLockOff --&gt; CapsLockOn : EvCapsLockPressed
+        CapsLockOn --&gt; CapsLockOff : EvCapsLockPressed
+        --
+        [*] --&gt; ScrollLockOff
+        ScrollLockOff --&gt; ScrollLockOn : EvScrollLockPressed
+        ScrollLockOn --&gt; ScrollLockOff : EvScrollLockPressed
+    }
+</code></pre>
+
+<p><br /></p>
+
+<h4 id="entity-relationship-diagram">Entity Relationship Diagram</h4>
+
+<h5 id="mermaid-rendered-4">Mermaid rendered</h5>
+
+<div class="mermaid">
+  erDiagram
+    CAR ||--o{ NAMED-DRIVER : allows
+    CAR {
+        string registrationNumber
+        string make
+        string model
+    }
+    PERSON ||--o{ NAMED-DRIVER : is
+    PERSON {
+        string firstName
+        string lastName
+        int age
+    }
+</div>
+
+<h5 id="in-mermaid-syntax-4">In Mermaid syntax</h5>
+
+<pre><code class="language-mermaid">erDiagram
+    CAR ||--o{ NAMED-DRIVER : allows
+    CAR {
+        string registrationNumber
+        string make
+        string model
+    }
+    PERSON ||--o{ NAMED-DRIVER : is
+    PERSON {
+        string firstName
+        string lastName
+        int age
+    }
+</code></pre>
+
+<p><br /></p>
+
+<h4 id="user-journey">User Journey</h4>
+
+<h5 id="mermaid-rendered-5">Mermaid rendered</h5>
+
+<div class="mermaid">
+  journey
+    title My working day
+    section Go to work
+      Make tea: 5: Me
+      Go upstairs: 3: Me
+      Do work: 1: Me, Cat
+    section Go home
+      Go downstairs: 5: Me
+      Sit down: 5: Me
+</div>
+
+<h5 id="in-mermaid-syntax-5">In Mermaid syntax</h5>
+
+<pre><code class="language-mermaid">journey
+    title My working day
+    section Go to work
+      Make tea: 5: Me
+      Go upstairs: 3: Me
+      Do work: 1: Me, Cat
+    section Go home
+      Go downstairs: 5: Me
+      Sit down: 5: Me
+</code></pre>
+
+<p><br /></p>
+
+<h4 id="gantt">Gantt</h4>
+
+<h5 id="mermaid-rendered-6">Mermaid rendered</h5>
+
+<div class="mermaid">
+  gantt
+    dateFormat  YYYY-MM-DD
+    title       Adding GANTT diagram functionality to mermaid
+    excludes    weekends
+    %% (`excludes` accepts specific dates in YYYY-MM-DD format, days of the week ("sunday") or "weekends", but not the word "weekdays".)
+  section A section
+Completed task            :done,    des1, 2014-01-06,2014-01-08
+Active task               :active,  des2, 2014-01-09, 3d
+Future task               :         des3, after des2, 5d
+Future task2              :         des4, after des3, 5d
+  section Critical tasks
+Completed task in the critical line :crit, done, 2014-01-06,24h
+Implement parser and jison          :crit, done, after des1, 2d
+Create tests for parser             :crit, active, 3d
+Future task in critical line        :crit, 5d
+Create tests for renderer           :2d
+Add to mermaid                      :1d
+Functionality added                 :milestone, 2014-01-25, 0d
+section Documentation
+Describe gantt syntax               :active, a1, after des1, 3d
+Add gantt diagram to demo page      :after a1  , 20h
+Add another diagram to demo page    :doc1, after a1  , 48h
+section Last section
+Describe gantt syntax               :after doc1, 3d
+Add gantt diagram to demo page      :20h
+Add another diagram to demo page    :48h
+</div>
+
+<h5 id="in-mermaid-syntax-6">In Mermaid syntax</h5>
+
+<pre><code class="language-mermaid">gantt
+    dateFormat  YYYY-MM-DD
+    title       Adding GANTT diagram functionality to mermaid
+    excludes    weekends
+    %% (`excludes` accepts specific dates in YYYY-MM-DD format, days of the week ("sunday") or "weekends", but not the word "weekdays".)
+
+    section A section
+    Completed task            :done,    des1, 2014-01-06,2014-01-08
+    Active task               :active,  des2, 2014-01-09, 3d
+    Future task               :         des3, after des2, 5d
+    Future task2              :         des4, after des3, 5d
+
+    section Critical tasks
+    Completed task in the critical line :crit, done, 2014-01-06,24h
+    Implement parser and jison          :crit, done, after des1, 2d
+    Create tests for parser             :crit, active, 3d
+    Future task in critical line        :crit, 5d
+    Create tests for renderer           :2d
+    Add to mermaid                      :1d
+    Functionality added                 :milestone, 2014-01-25, 0d
+
+    section Documentation
+    Describe gantt syntax               :active, a1, after des1, 3d
+    Add gantt diagram to demo page      :after a1  , 20h
+    Add another diagram to demo page    :doc1, after a1  , 48h
+
+    section Last section
+    Describe gantt syntax               :after doc1, 3d
+    Add gantt diagram to demo page      :20h
+    Add another diagram to demo page    :48h
+</code></pre>
+
+<p><br /></p>
+
+<h4 id="pie-chart">Pie Chart</h4>
+
+<h5 id="mermaid-rendered-7">Mermaid rendered</h5>
+
+<div class="mermaid">
+  pie
+    title Key elements in Product X
+    "Calcium" : 42.96
+    "Potassium" : 50.05
+    "Magnesium" : 10.01
+    "Iron" :  5
+</div>
+
+<h5 id="in-mermaid-syntax-7">In Mermaid syntax</h5>
+
+<pre><code class="language-mermaid">pie
+    title Key elements in Product X
+    "Calcium" : 42.96
+    "Potassium" : 50.05
+    "Magnesium" : 10.01
+    "Iron" :  5
+</code></pre>
+
+<hr />
+
+<h2 id="jekyll-with-mermaid">Jekyll with mermaid</h2>
+
+<p>Jekyll에서는 기본적인 Jekyll Template에서 Mermaid를 제공하지는 않는 것으로 보인다.</p>
+
+<p>Mermaid를 사용하려면 <a href="https://github.com/jeffreytse/jekyll-spaceship">jekyll-spaceship</a>과 같은 별도의 플러그인을 설치해야하는 것으로 보임.</p>
+
+<p>현재 사용중인 <a href="http://jekyllthemes.org/themes/Type-on-Strap/">Type on Strap</a> 테마에서는 mermaid-js를 포함하고 있어 아래와 같이 HTML 문법으로 매핑하여 작성이 가능하다.</p>
+
+<blockquote>
+  <p>현재 사용중인 테마에서 지원 여부를 확인 후 plugin 도입을 검토해보면 좋을 것 같다.</p>
+</blockquote>
+
+<h4 id="mermaid-rendered-8">Mermaid rendered</h4>
+
+<div class="mermaid">
+sequenceDiagram
+    Alice-&gt;&gt;John: Hello John, how are you?
+    John--&gt;&gt;Alice: Great!
+</div>
+
+<h4 id="in-mermaid-syntax-wrapped-in-html">In Mermaid syntax wrapped in HTML</h4>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"mermaid"</span><span class="nt">&gt;</span>
+sequenceDiagram
+    Alice-&gt;&gt;John: Hello John, how are you?
+    John--&gt;&gt;Alice: Great!
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="escape-liquid">Escape Liquid</h2>
+
+<p>Jekyll은 내부 템플릿 언어로 <a href="https://shopify.github.io/liquid/">Liquid</a>를 사용한다.</p>
+
+<p>Liquid는 Ruby로 작성된 템플릿 언어로</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="o">{{</span> variable <span class="o">}}</span>
+<span class="o">{{</span> <span class="k">if </span>sentence <span class="o">}}</span>
+
+</code></pre></div></div>
+
+<p>등의 중괄호를 이용한 문법을 통하여 템플릿 변수나 로직을 실행한다.</p>
+
+<p>문서를 작성하다 보니 아래와 같은 에러를 발견하게 되었다.</p>
+
+<p><img src="/assets/img/contents/jm-1.png" alt="jm-1.png" /></p>
+
+<p>이는 kubernetes에서 사용하는 go-template이 똑같은 이중괄호를 사용해서 나타난 문제였다.</p>
+
+<p>이를 해결하기 위해서는 아래와 같이 <code class="language-plaintext highlighter-rouge">{% raw %}</code>, <code class="language-plaintext highlighter-rouge">{% endraw %}</code>  사이에 문법을 적어주면 된다.</p>
+
+<h4 id="raw">Raw</h4>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% raw %}
+$ kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/monitoring-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
+eyJhbGciOiJSUzI1NiIsImtpZCI6IlVmM2...
+{% endraw %}
+</code></pre></div></div>
+
+<h4 id="template-processed">Template processed</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nv">$ </span>kubectl <span class="nt">-n</span> kubernetes-dashboard get secret <span class="si">$(</span>kubectl <span class="nt">-n</span> kubernetes-dashboard get sa/monitoring-user <span class="nt">-o</span> <span class="nv">jsonpath</span><span class="o">=</span><span class="s2">"{.secrets[0].name}"</span><span class="si">)</span> <span class="nt">-o</span> go-template<span class="o">=</span><span class="s2">"{{.data.token | base64decode}}"</span>
+eyJhbGciOiJSUzI1NiIsImtpZCI6IlVmM2...
+
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://jekyllrb.com/docs/liquid/">https://jekyllrb.com/docs/liquid/</a></li>
+  <li><a href="https://pages.github.com/">GitHub Pages</a></li>
+  <li><a href="http://jekyllthemes.org/">Jekyll Themes</a></li>
+  <li><a href="https://github.com/Sylhare/Type-on-Strap">Type-on-Strap</a></li>
+</ol>
+
+:ET
