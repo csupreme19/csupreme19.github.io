@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-11-24T17:10:39+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>DevOps 개발 블로그</subtitle><entry><title type="html">Jekyll과 Github pages를 사용하여 블로그 만들기</title><link href="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html" rel="alternate" type="text/html" title="Jekyll과 Github pages를 사용하여 블로그 만들기" /><published>2021-11-18T00:00:00+09:00</published><updated>2021-11-18T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/18/github-pages-with-jekyll</id><content type="html" xml:base="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html">&lt;h1 id=&quot;jekyll과-github-pages를-사용하여-간단하게-블로그를-만들어보자&quot;&gt;Jekyll과 Github pages를 사용하여 간단하게 블로그를 만들어보자&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-11-29T13:06:19+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>DevOps 개발 블로그</subtitle><entry><title type="html">Jekyll과 Github pages를 사용하여 블로그 만들기</title><link href="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html" rel="alternate" type="text/html" title="Jekyll과 Github pages를 사용하여 블로그 만들기" /><published>2021-11-18T00:00:00+09:00</published><updated>2021-11-18T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/18/github-pages-with-jekyll</id><content type="html" xml:base="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html">&lt;h1 id=&quot;jekyll과-github-pages를-사용하여-간단하게-블로그를-만들어보자&quot;&gt;Jekyll과 Github pages를 사용하여 간단하게 블로그를 만들어보자&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/titles/github-pages.png&quot; alt=&quot;github-pages.png&quot; /&gt;&lt;/p&gt;
 
@@ -580,7 +580,7 @@ dummy-pod                  0/1     Completed   5          3m33s
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy&quot;&gt;Container restart policy&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Kubernetes" /><category term="Pod" /><category term="Fail" /><summary type="html">Kubernetes Pod 재시작 장애 확인하기</summary></entry><entry><title type="html">Kubernetes RBAC Authorization 개요 및 적용</title><link href="http://localhost:4000/2021/10/01/kubernetes-RBAC-auth.html" rel="alternate" type="text/html" title="Kubernetes RBAC Authorization 개요 및 적용" /><published>2021-10-01T00:00:00+09:00</published><updated>2021-10-01T00:00:00+09:00</updated><id>http://localhost:4000/2021/10/01/kubernetes-RBAC-auth</id><content type="html" xml:base="http://localhost:4000/2021/10/01/kubernetes-RBAC-auth.html">&lt;h1 id=&quot;kubernetes-rbac-authorization-개요-및-적용&quot;&gt;Kubernetes RBAC Authorization 개요 및 적용&lt;/h1&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Kubernetes" /><category term="K8S" /><category term="Pod" /><category term="Fail" /><summary type="html">Kubernetes Pod 재시작 장애 확인하기</summary></entry><entry><title type="html">Kubernetes RBAC Authorization 개요 및 적용</title><link href="http://localhost:4000/2021/10/01/kubernetes-RBAC-auth.html" rel="alternate" type="text/html" title="Kubernetes RBAC Authorization 개요 및 적용" /><published>2021-10-01T00:00:00+09:00</published><updated>2021-10-01T00:00:00+09:00</updated><id>http://localhost:4000/2021/10/01/kubernetes-RBAC-auth</id><content type="html" xml:base="http://localhost:4000/2021/10/01/kubernetes-RBAC-auth.html">&lt;h1 id=&quot;kubernetes-rbac-authorization-개요-및-적용&quot;&gt;Kubernetes RBAC Authorization 개요 및 적용&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/titles/kubernetes-logo.png&quot; alt=&quot;kubernetes-logo.png&quot; /&gt;&lt;/p&gt;
 
@@ -1148,7 +1148,126 @@ flowchart LR
   &lt;li&gt;&lt;a href=&quot;https://kubernetes.io/docs/reference/access-authn-authz/node/&quot;&gt;Using Node Authorization&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://kubernetes.io/docs/reference/access-authn-authz/node/&quot;&gt;Using ABAC Authorization&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/&quot;&gt;Certified Kubernetes Administrator(CKA) with Practice Tests&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Kubernetes" /><category term="Authorization" /><category term="Authentication" /><category term="RBAC" /><category term="ABAC" /><category term="Security" /><summary type="html">Kubernetes RBAC Authorization 개요 및 적용</summary></entry><entry><title type="html">Elasticsearch Filebeat 모듈 설정</title><link href="http://localhost:4000/2021/08/06/elastic-filebeat-modules.html" rel="alternate" type="text/html" title="Elasticsearch Filebeat 모듈 설정" /><published>2021-08-06T00:00:00+09:00</published><updated>2021-08-06T00:00:00+09:00</updated><id>http://localhost:4000/2021/08/06/elastic-filebeat-modules</id><content type="html" xml:base="http://localhost:4000/2021/08/06/elastic-filebeat-modules.html">&lt;h1 id=&quot;elastic-filebeat-모듈-설정&quot;&gt;Elastic Filebeat 모듈 설정&lt;/h1&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Kubernetes" /><category term="K8S" /><category term="Authorization" /><category term="Authentication" /><category term="RBAC" /><category term="ABAC" /><category term="Security" /><summary type="html">Kubernetes RBAC Authorization 개요 및 적용</summary></entry><entry><title type="html">Apt 자동 업그레이드 비활성화(Unattended upgrade)</title><link href="http://localhost:4000/2021/09/09/unattended-upgrade.html" rel="alternate" type="text/html" title="Apt 자동 업그레이드 비활성화(Unattended upgrade)" /><published>2021-09-09T00:00:00+09:00</published><updated>2021-09-09T00:00:00+09:00</updated><id>http://localhost:4000/2021/09/09/unattended-upgrade</id><content type="html" xml:base="http://localhost:4000/2021/09/09/unattended-upgrade.html">&lt;h1 id=&quot;apt-자동-업그레이드-비활성화unattended-upgrade&quot;&gt;Apt 자동 업그레이드 비활성화(Unattended upgrade)&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/titles/ubuntu-logo.svg&quot; alt=&quot;ubuntu-logo.svg&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;개요&quot;&gt;개요&lt;/h2&gt;
+
+&lt;p&gt;Ubuntu 16, 18, 20에서는 기본적으로 Apt 패키지의 Unattended upgrade라는 자동 업데이트 타이머가 활성화 되어 있다. (크론잡 형태)&lt;/p&gt;
+
+&lt;p&gt;리눅스 커널, SSH, OpenSSL 등의 보안 패치를 위하여 자동으로  업데이트를 진행하도록 기본 설정되어 있다.&lt;/p&gt;
+
+&lt;p&gt;보안 취약점을 패치한다는 취지에서는 좋지만 Install, Upgrade된 버전을 사용하려면 서버 재시작이 필수이며&lt;/p&gt;
+
+&lt;p&gt;커널 업데이트로 인하여 OS레벨에서의 문제점이나 장애가 발생할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;이런 장애는 파악하기 매우 어려우므로 운영 관점에서는 해당 기능을 비활성화 하는 것이 좋다.&lt;/p&gt;
+
+&lt;h3 id=&quot;apt-로그-확인&quot;&gt;apt 로그 확인&lt;/h3&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /var/log/apt
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;tail &lt;/span&gt;history.log
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;apt-daily-비활성화&quot;&gt;apt-daily 비활성화&lt;/h3&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl stop apt-daily.timer
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl stop apt-daily-upgrade.timer
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl disable apt-daily.timer
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl disable apt-daily.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl disable apt-daily-upgrade.timer
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl disable apt-daily-upgrade.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;unattended-upgrade-비활성화&quot;&gt;unattended-upgrade 비활성화&lt;/h3&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vim /etc/apt/apt.conf.d/20auto-upgrades
+APT::Periodic::Update-Package-Lists &lt;span class=&quot;s2&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+APT::Periodic::Download-Upgradeable-Packages &lt;span class=&quot;s2&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+APT::Periodic::AutocleanInterval &lt;span class=&quot;s2&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+APT::Periodic::Unattended-Upgrade &lt;span class=&quot;s2&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;비활성화-확인&quot;&gt;비활성화 확인&lt;/h3&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl status apt-daily.timer
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl status apt-daily.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl status apt-daily-upgrade.timer
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl status apt-daily-upgrade.service
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl list-unit-files | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;apt-daily
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;apt-config dump | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;Update-Package-Lists
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>csupreme19</name></author><category term="Linux" /><category term="OS" /><category term="Ubuntu" /><category term="Package Manager" /><category term="APT" /><category term="Upgrade" /><summary type="html">Apt 자동 업그레이드 비활성화(Unattended upgrade)</summary></entry><entry><title type="html">Elasticsearch ILM 로그 주기 관리</title><link href="http://localhost:4000/2021/08/11/elastic-ilm.html" rel="alternate" type="text/html" title="Elasticsearch ILM 로그 주기 관리" /><published>2021-08-11T00:00:00+09:00</published><updated>2021-08-11T00:00:00+09:00</updated><id>http://localhost:4000/2021/08/11/elastic-ilm</id><content type="html" xml:base="http://localhost:4000/2021/08/11/elastic-ilm.html">&lt;h1 id=&quot;elasticsearch-ilm-로그-주기-관리-정책&quot;&gt;Elasticsearch ILM 로그 주기 관리 정책&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/titles/elastic-logo.png&quot; alt=&quot;elastic-logo.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Elasticsearch의 인덱스 주기 정책 개요 및 설정&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;개요&quot;&gt;개요&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/7.x/index-lifecycle-management.html&quot;&gt;ILM: Manage the index lifecycle&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;ILM(Index Lifecycle Management) 정책을 이용하여 로그 수집 주기를 관리한다.&lt;/p&gt;
+
+&lt;h4 id=&quot;ex&quot;&gt;ex)&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;3달치 로그를 저장하고 나머지는 archive&lt;/li&gt;
+  &lt;li&gt;인덱스 개수가 일정치를 넘어가면 archive&lt;/li&gt;
+  &lt;li&gt;인덱스 사이즈가 일정치를 넘어가면 archive&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;위 임계값을 넘으면 아래와 같은 액션 수행이 가능&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Rollover&lt;/strong&gt;: 새로운 쓰기 인덱스를 생성한다.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Shrink&lt;/strong&gt;: 인덱스의 primary shard 수를 줄인다.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Force merge&lt;/strong&gt;: 인덱스 shard의 segment 수를 줄인다.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Freeze&lt;/strong&gt;: 인덱스를 read-only로 만든다.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Delete&lt;/strong&gt;: data, metadata를 포함한 인덱스를 지운다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;index-lifecycle&quot;&gt;Index Lifecycle&lt;/h2&gt;
+
+&lt;p&gt;인덱스의 생명주기는 5가지 페이즈가 있다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Hot&lt;/strong&gt;: 활발하게 업데이트되고 쿼리되는 인덱스&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Warm&lt;/strong&gt;: 업데이트는 되지 않지만 쿼리되는 인덱스&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Cold&lt;/strong&gt;: 업데이트 되지 않으며 자주 쿼리되지 않는 인덱스(검색이 되어야하지만 느려도 상관 없는 인덱스)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Frozen&lt;/strong&gt;: 업데이트 되지 않으며 드물게 쿼리되는 인덱스(검색이 되어야하지만 심하게 느려도 상관 없는 인덱스)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Delete&lt;/strong&gt;: 더 이상 필요하지 않으며 지워도 상관없는 인덱스&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;각 phase의 minimum age를 설정할 수 있음, 기본값은 0으로 현재 페이즈의 모든 액션이 끝나면 바로 다음 페이즈로 넘어감&lt;/p&gt;
+
+&lt;h3 id=&quot;ilm-기본-정책&quot;&gt;ILM 기본 정책&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/7.x/getting-started-index-lifecycle-management.html&quot;&gt;Tutorial: Automate rollover with ILM&lt;/a&gt; 참고&lt;/p&gt;
+
+&lt;h3 id=&quot;kibana-ui-이용&quot;&gt;Kibana UI 이용&lt;/h3&gt;
+
+&lt;p&gt;Kibana 메뉴 - Stack Management - Data - Index Lifecycle Policies&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/el-1.png&quot; alt=&quot;el-1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Beats와 Logstash등에 ILM을 활성화하면 기본 정책이 설정된다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;기본정책 확인 가능&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/7.x/index-lifecycle-management.html&quot;&gt;ILM: Manage the index lifecycle&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/7.x/getting-started-index-lifecycle-management.html&quot;&gt;Tutorial: Automate rollover with ILM&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Elasticsearch" /><category term="Elastic" /><category term="ELK" /><category term="Index" /><category term="ILM" /><summary type="html">Elasticsearch ILM 로그 주기 관리 정책</summary></entry><entry><title type="html">Elasticsearch Filebeat 모듈 설정</title><link href="http://localhost:4000/2021/08/06/elastic-filebeat-modules.html" rel="alternate" type="text/html" title="Elasticsearch Filebeat 모듈 설정" /><published>2021-08-06T00:00:00+09:00</published><updated>2021-08-06T00:00:00+09:00</updated><id>http://localhost:4000/2021/08/06/elastic-filebeat-modules</id><content type="html" xml:base="http://localhost:4000/2021/08/06/elastic-filebeat-modules.html">&lt;h1 id=&quot;elastic-filebeat-모듈-설정&quot;&gt;Elastic Filebeat 모듈 설정&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/titles/elastic-beats-logo.png&quot; alt=&quot;elastic-beats-logo.png&quot; /&gt;&lt;/p&gt;
 
@@ -1867,116 +1986,7 @@ $ nginx -s reload
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-modules.html&quot;&gt;Metricbeat Modules&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Elasticsearch" /><category term="Elastic" /><category term="ELK" /><category term="Metricbeat" /><category term="Beat" /><summary type="html">Elastic Metricbeat 모듈 설정</summary></entry><entry><title type="html">Elastic Stack Observability 개요</title><link href="http://localhost:4000/2021/07/27/elastic-observability.html" rel="alternate" type="text/html" title="Elastic Stack Observability 개요" /><published>2021-07-27T00:00:00+09:00</published><updated>2021-07-27T00:00:00+09:00</updated><id>http://localhost:4000/2021/07/27/elastic-observability</id><content type="html" xml:base="http://localhost:4000/2021/07/27/elastic-observability.html">&lt;h1 id=&quot;elastic-stack-observability-개요&quot;&gt;Elastic Stack Observability 개요&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/titles/elastic-logo.png&quot; alt=&quot;elastic-logo.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.elastic.co/kr/blog/observability-with-the-elastic-stack&quot;&gt;Observability with the elastic stack&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Elastic Stack을 이용하여 MSA 서비스 모니터링시 모니터링 중앙 집중화를 통한 가관측성(Observability)에 대하여 알아본다.&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;h2 id=&quot;모니터링의-3요소&quot;&gt;모니터링의 3요소&lt;/h2&gt;
-
-&lt;div class=&quot;row&quot;&gt;
-    
-    &lt;div class=&quot;column&quot;&gt;
-        &lt;img class=&quot;single&quot; src=&quot;/assets/img/contents/eo-1.png&quot; alt=&quot;eo-1.png&quot; /&gt;
-    &lt;/div&gt;
-    
-&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/eo-2.png&quot; alt=&quot;eo-2.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;운영시 모니터링 요소는 Logs, Metrics, APM 크게 3가지로 분류할 수 있다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Logs&lt;/li&gt;
-  &lt;li&gt;Metrics&lt;/li&gt;
-  &lt;li&gt;APM(Application Perfromance Monitoring)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;추가로 Heartbeat, Packetbeat 등을 이용한 서버의 가용성을 체크하는 Uptime Data가 있음&lt;/p&gt;
-
-&lt;h3 id=&quot;logs-data&quot;&gt;Logs Data&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/eo-3.png&quot; alt=&quot;eo-3.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;어플리케이션 로그, 서비스 로그 등의 각 모듈의 실제 로그로 Filebeat, FunctionBeat 등을 이용하여 수집한다.&lt;/p&gt;
-
-&lt;p&gt;DB 롱쿼리, 호출 내역, 이벤트 데이터 수발신, Kafka 행등 서비스 레벨에서 작성하는 로그를 통한 가시성을 챙길 수 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;metrics-data&quot;&gt;Metrics Data&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/eo-4.png&quot; alt=&quot;eo-4.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/eo-5.png&quot; alt=&quot;eo-5.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;호스트, 시스템의 리소스 정보 및 사용량, 부하율, 네트워크 트래픽 등&lt;/p&gt;
-
-&lt;p&gt;주기적인 전체 요약이나 통계적인 정보로 일정 기간에 걸쳐서 샘플링되는 경향을 지닌 데이터이다.&lt;/p&gt;
-
-&lt;p&gt;VM의 부하율, 메모리 점유율 등을 파악하여 Scale Out을 하거나 DB의 사용량을 파악하여 Worker node를 늘린다던지 하는 방향으로 사용할 수 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;apm-data&quot;&gt;APM Data&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/eo-6.png&quot; alt=&quot;eo-6.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/eo-7.png&quot; alt=&quot;eo-7.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;어플리케이션 중점의 성능 정보로 실제 어플리케이션 오류 정보나 작업 수행 시간, 서비스간 상호 연동, 트랜잭션 추적, 병목 지점등 많은 정보를 담아낸다.&lt;/p&gt;
-
-&lt;p&gt;성능 병목 파악, 에러 검출, Long Query, 트랜잭션 추적 등 어플리케이션 레벨의 가시성을 챙겨준다.&lt;/p&gt;
-
-&lt;p&gt;Application에 Agent가 사이드카 형태로 올라가는 방식으로 많이 사용한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;uptime-data&quot;&gt;Uptime Data&lt;/h3&gt;
-
-&lt;p&gt;Liveness, Readiness, Healthz 등 Uptime 정보&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;elk-stackelastic-stack을-채택한-이유&quot;&gt;ELK Stack(Elastic Stack)을 채택한 이유&lt;/h2&gt;
-
-&lt;p&gt;위의 모니터링을 통하여 가시성을 챙기는 방법은 여러가지가 있을 수 있으나 ELK Stack을 채택한 이유는 크게 다음과 같다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;루씬(Lucene) 기반의 뛰어난 분산처리를 통한 실시간 검색 기능을 제공한다.&lt;/li&gt;
-  &lt;li&gt;메트릭, 로그, APM 등의 모니터링 정보를 중앙 집중화할 수 있다.&lt;/li&gt;
-  &lt;li&gt;오픈소스 기반으로 다양한 서드파티 라이브러리를 제공하여 여러 오픈소스들을 쉽게 연동 가능&lt;/li&gt;
-  &lt;li&gt;다양한 시각화 라이브러리를 제공하여 큰 어려움 없이 데이터 시각화 가능&lt;/li&gt;
-  &lt;li&gt;시계열 데이터를 운영하는데 최적화&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h4 id=&quot;elk-적용-이전&quot;&gt;ELK 적용 이전&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/eo-8.png&quot; alt=&quot;eo-8.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/eo-9.png&quot; alt=&quot;eo-9.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;각기 다른 정보를 모니터링하기 위해 특화된 여러 툴들을 띄워놓고 모니터링한다.&lt;/p&gt;
-
-&lt;p&gt;따라서 관리 포인트가 많아지고 데이터의 중복이 발생할 수 있다.&lt;/p&gt;
-
-&lt;h4 id=&quot;elk-적용-이후&quot;&gt;ELK 적용 이후&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/eo-10.png&quot; alt=&quot;eo-10.png&quot; /&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;단일 페이지에서 중앙 집중화된 로그를 쉽게 모니터링 할 수 있다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;모든 metric, apm, logs 정보들은 Elasticsearch의 인덱스이므로 데이터를 시각화, 머신러닝, 필터링 하는데 아무런 제약이 없다.&lt;/p&gt;
-
-&lt;p&gt;로그 중앙집중화 및 가시성 확보뿐만 아니라 Elasticsearch는 데이터 분석 엔진으로도 탁월한 성능을 자랑한다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/kr/blog/observability-with-the-elastic-stack&quot;&gt;Observability with the elastic stack&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Elasticsearch" /><category term="Elastic" /><category term="ELK" /><category term="Kibana" /><category term="Logstash" /><category term="Monitoring" /><category term="Observability" /><summary type="html">Elastic Stack Observability 개요</summary></entry><entry><title type="html">Elastic Metricbeat 설치 및 설정</title><link href="http://localhost:4000/2021/07/27/elastic-metricbeat-install.html" rel="alternate" type="text/html" title="Elastic Metricbeat 설치 및 설정" /><published>2021-07-27T00:00:00+09:00</published><updated>2021-07-27T00:00:00+09:00</updated><id>http://localhost:4000/2021/07/27/elastic-metricbeat-install</id><content type="html" xml:base="http://localhost:4000/2021/07/27/elastic-metricbeat-install.html">&lt;h1 id=&quot;elastic-metricbeat-설치-및-설정&quot;&gt;Elastic Metricbeat 설치 및 설정&lt;/h1&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Elasticsearch" /><category term="Elastic" /><category term="ELK" /><category term="Metricbeat" /><category term="Beat" /><summary type="html">Elastic Metricbeat 모듈 설정</summary></entry><entry><title type="html">Elastic Metricbeat 설치 및 설정</title><link href="http://localhost:4000/2021/07/27/elastic-metricbeat-install.html" rel="alternate" type="text/html" title="Elastic Metricbeat 설치 및 설정" /><published>2021-07-27T00:00:00+09:00</published><updated>2021-07-27T00:00:00+09:00</updated><id>http://localhost:4000/2021/07/27/elastic-metricbeat-install</id><content type="html" xml:base="http://localhost:4000/2021/07/27/elastic-metricbeat-install.html">&lt;h1 id=&quot;elastic-metricbeat-설치-및-설정&quot;&gt;Elastic Metricbeat 설치 및 설정&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/titles/elastic-beats-logo.png&quot; alt=&quot;elastic-beats-logo.png&quot; /&gt;&lt;/p&gt;
 
@@ -2145,237 +2155,243 @@ output.elasticsearch:
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-overview.html&quot;&gt;Metricbeat Overview&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Elasticsearch" /><category term="Elastic" /><category term="ELK" /><category term="Metricbeat" /><category term="Beat" /><summary type="html">Elastic Metricbeat 설치 및 설정</summary></entry><entry><title type="html">MySQL dump &amp;amp; restore</title><link href="http://localhost:4000/2021/06/15/mysql-dump.html" rel="alternate" type="text/html" title="MySQL dump &amp;amp; restore" /><published>2021-06-15T00:00:00+09:00</published><updated>2021-06-15T00:00:00+09:00</updated><id>http://localhost:4000/2021/06/15/mysql-dump</id><content type="html" xml:base="http://localhost:4000/2021/06/15/mysql-dump.html">&lt;h1 id=&quot;mysql-dump--restore&quot;&gt;MySQL dump &amp;amp; restore&lt;/h1&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Elasticsearch" /><category term="Elastic" /><category term="ELK" /><category term="Metricbeat" /><category term="Beat" /><summary type="html">Elastic Metricbeat 설치 및 설정</summary></entry><entry><title type="html">Elastic Stack Monitoring with Metricbeat</title><link href="http://localhost:4000/2021/07/27/elastic-stack-monitoring.html" rel="alternate" type="text/html" title="Elastic Stack Monitoring with Metricbeat" /><published>2021-07-27T00:00:00+09:00</published><updated>2021-07-27T00:00:00+09:00</updated><id>http://localhost:4000/2021/07/27/elastic-stack-monitoring</id><content type="html" xml:base="http://localhost:4000/2021/07/27/elastic-stack-monitoring.html">&lt;h1 id=&quot;elastic-stack-monitoring-with-metricbeat&quot;&gt;Elastic Stack Monitoring with Metricbeat&lt;/h1&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/titles/mysql-logo.png&quot; alt=&quot;mysql-logo.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/titles/elastic-logo.png&quot; alt=&quot;elastic-logo.png&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;MySQL Dump 및 Restore 내용 정리&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;dump--restore&quot;&gt;Dump &amp;amp; Restore&lt;/h2&gt;
-
-&lt;h4 id=&quot;dump&quot;&gt;Dump&lt;/h4&gt;
-
-&lt;p&gt;현재 DB의 스키마와 데이터, 상태 등을 sql 쿼리 형태로 추출하는 것&lt;/p&gt;
-
-&lt;h4 id=&quot;restore&quot;&gt;Restore&lt;/h4&gt;
-
-&lt;p&gt;Dump된 결과물의 쿼리를 수행하는 것&lt;/p&gt;
-
-&lt;p&gt;이론적으로는 dump 한 DB의 상태가 같아진다.&lt;/p&gt;
-
-&lt;h3 id=&quot;1-mysql-컨테이너-접속&quot;&gt;1. MySQL 컨테이너 접속&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;h4 id=&quot;using-docker&quot;&gt;Using docker&lt;/h4&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# container id 확인&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker ps | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; mysql
-cd1ae64000ec   mysql/mysql-server:8.0   &lt;span class=&quot;s2&quot;&gt;&quot;/entrypoint.sh --ch…&quot;&lt;/span&gt;   3 months ago   Up 3 months &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;healthy&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;   33060-33061/tcp, 0.0.0.0:13306-&amp;gt;3306/tcp   mysql
-
-&lt;span class=&quot;c&quot;&gt;# 컨테이너 접속&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-it&lt;/span&gt; cd1ae64000ec /bin/bash
-
-&lt;span class=&quot;c&quot;&gt;# 접속 확인&lt;/span&gt;
-bash-4.4#
-bash-4.4# &lt;span class=&quot;nb&quot;&gt;whoami
-&lt;/span&gt;root
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;h4 id=&quot;using-docker-compose&quot;&gt;Using docker-compose&lt;/h4&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 컨테이너 접속&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker-compose &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;mysql /bin/bash
-
-&lt;span class=&quot;c&quot;&gt;# 접속 확인&lt;/span&gt;
-bash-4.4#
-bash-4.4# &lt;span class=&quot;nb&quot;&gt;whoami
-&lt;/span&gt;root
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;2-mysql-dump&quot;&gt;2. MySQL Dump&lt;/h3&gt;
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# --databses: 복구할 db, --add-drop-database: database drop문 포함&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mysqldump &lt;span class=&quot;nt&quot;&gt;--databases&lt;/span&gt; db1 db2 &lt;span class=&quot;nt&quot;&gt;--add-drop-database&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-h&lt;/span&gt; localhost &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; root &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;비밀번호&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;파일명&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;.sql
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mysqldump &lt;span class=&quot;nt&quot;&gt;--databases&lt;/span&gt; mydb &lt;span class=&quot;nt&quot;&gt;--add-drop-database&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-h&lt;/span&gt; localhost &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; root &lt;span class=&quot;nt&quot;&gt;-ppassword1234&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; mysql_mydb_dump_20210615.sql
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;3-mysql-restore&quot;&gt;3. MySQL Restore&lt;/h3&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mysql &lt;span class=&quot;nt&quot;&gt;-h&lt;/span&gt; localhost &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; root &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;비밀번호&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &amp;lt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;파일명&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;.sql
-&lt;span class=&quot;c&quot;&gt;# 예시&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mysql &lt;span class=&quot;nt&quot;&gt;-h&lt;/span&gt; localhost &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; root &lt;span class=&quot;nt&quot;&gt;-ppassword1234&lt;/span&gt; &amp;lt; mysql_mydb_dump_20210615.sql
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>csupreme19</name></author><category term="MySQL" /><category term="DB" /><category term="RDBMS" /><category term="SQL" /><category term="Dump" /><category term="Restore" /><summary type="html">MySQL dump &amp;amp; restore</summary></entry><entry><title type="html">MySQL 설치 및 사용자 생성</title><link href="http://localhost:4000/2021/05/31/mysql-install.html" rel="alternate" type="text/html" title="MySQL 설치 및 사용자 생성" /><published>2021-05-31T00:00:00+09:00</published><updated>2021-05-31T00:00:00+09:00</updated><id>http://localhost:4000/2021/05/31/mysql-install</id><content type="html" xml:base="http://localhost:4000/2021/05/31/mysql-install.html">&lt;h1 id=&quot;mysql-설치-및-사용자-생성&quot;&gt;MySQL 설치 및 사용자 생성&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/titles/mysql-logo.png&quot; alt=&quot;mysql-logo.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;MySQL을 docker-compose로 설치 후 사용자 생성, 권한 설정을 진행한 내용이다.&lt;/p&gt;
+&lt;p&gt;Elastic Stack(ELK) 노드 자체의 메트릭 정보를 모니터링하기 위한 metricbeat 구축하기&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&quot;mysql-설치&quot;&gt;MySQL 설치&lt;/h2&gt;
+&lt;h2 id=&quot;개요&quot;&gt;개요&lt;/h2&gt;
 
-&lt;h3 id=&quot;1-호스트-볼륨-생성&quot;&gt;1. 호스트 볼륨 생성&lt;/h3&gt;
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; /data/mysql
+&lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/7.x/monitoring-metricbeat-collection.html&quot;&gt;Use Metricbeat to send monitoring data&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Metricbeat를 사용하여 ELS(Elastic Stack) 모니터링 구축&lt;/p&gt;
+
+&lt;p&gt;기존 Legacy 수집 방식과 Metricbeat 수집 방식이 있으나 7.x 버전에서는 Metricbeat를 사용하여 모니터링하도록 가이드하고 있다.&lt;/p&gt;
+
+&lt;p&gt;아래 5가지 항목을 모니터링한다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Elasticsearch&lt;/li&gt;
+  &lt;li&gt;Logstash&lt;/li&gt;
+  &lt;li&gt;Kibana&lt;/li&gt;
+  &lt;li&gt;Beats&lt;/li&gt;
+  &lt;li&gt;APM&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;기존 Metricbeat로 수집되는 메트릭 정보들은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;metricbeat-*&lt;/code&gt; 인덱스에 수집이 되지만 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;xpack.enabled&lt;/code&gt; 옵션으로 xpack 기능 활성화시 별도의 monitoring cluster로 수집하며 Kibana의 Stack Monitoring 메뉴에서 확인할 수 있다.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;metricbeat-설치&quot;&gt;Metricbeat 설치&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;2021-07-27-elastic-metricbeat-install&quot;&gt;Elastic Metricbeat 설치 및 설정&lt;/a&gt; 참고&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;metricbeat-설정&quot;&gt;Metricbeat 설정&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;metricbeat.yml&lt;/code&gt; 수정&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;setup.kibana&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;http://10.213.196.6:5601&quot;&lt;/span&gt;
+  
+  &lt;span class=&quot;c1&quot;&gt;# ssl 인증서 생성 시 https 사용&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;https://172.25.0.166:5601&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# ssl 인증서 적용 시 추가&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;ssl&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;certificate_authorities&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/etc/logstash/certs/ca.crt&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;certificate&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/etc/logstash/certs/logstash-1.crt&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/etc/logstash/certs/logstash-1.key&quot;&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;output.elasticsearch&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# elasticsearch 노드 IP 넣기&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{엘라스틱서치1}:9200&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{엘라스틱서치2}:9200&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{엘라스틱서치3}:9200&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# ssl 인증서 적용 시 https, 미 적용 시 http 사용&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;https&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;elastic&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{암호}&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# ssl 인증서 적용시&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;ssl&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;certificate_authorities&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/etc/logstash/certs/ca.crt&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;certificate&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/etc/logstash/certs/logstash-1.crt&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/etc/logstash/certs/logstash-1.key&quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;2-docker-composeyaml-작성&quot;&gt;2. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose.yaml&lt;/code&gt; 작성&lt;/h3&gt;
-&lt;p&gt;접속 port는 13306(docker 외부) - 3306(docker 내부) 로 설정.&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vim docker-compose.yaml
+&lt;p&gt;elastic stack monitoring 활성화시 시스템 정보를 수집해도 UI에 보이지 않으므로 비활성화한다.&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules disable system
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;3.1&apos;&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;mysql&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mysql/mysql-server:8.0&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;always&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;container_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mysql&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;13306:3306&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;		&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;# 외부 port&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;내부 port&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;TZ&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Asia/Seoul&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;MYSQL_ROOT_PASSWORD&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;root&quot;&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; 
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;--character-set-server=utf8&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;--collation-server=utf8_unicode_ci&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/data/mysql:/var/lib/mysql&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;	&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;# 호스트 볼륨&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;컨테이너 볼륨&lt;/span&gt;
+&lt;hr /&gt;
+&lt;h2 id=&quot;elasticsearch-monitoring&quot;&gt;Elasticsearch Monitoring&lt;/h2&gt;
+
+&lt;h3 id=&quot;elasticsearch-설정&quot;&gt;Elasticsearch 설정&lt;/h3&gt;
+&lt;h4 id=&quot;elasticsearchyml-수정&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;elasticsearch.yml&lt;/code&gt; 수정&lt;/h4&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;xpack.monitoring.collection.enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;	&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;# xpack 모니터링(metricbeat 사용)&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;monitoring.enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;									&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;# legacy 모니터링(metricbeat 미사용)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;기존 legacy 방식 모니터링은 false, xpack 모니터링은 true로 설정&lt;/p&gt;
+
+&lt;h4 id=&quot;elasticsearch-xpack-module-활성화&quot;&gt;elasticsearch-xpack module 활성화&lt;/h4&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules disable elasticsearch
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;elasticsearch-xpack
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;xpack과 기본 모듈중 하나만 사용해야 하기 때문에 기존의 모듈은 disable&lt;/p&gt;
+
+&lt;h4 id=&quot;elasticsearch-xpack-module-설정&quot;&gt;elasticsearch-xpack module 설정&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;modules.d/elasticsearch-xpack.yml&lt;/code&gt; 수정&lt;/p&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;elasticsearch&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;xpack.enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10s&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;http://localhost:9200&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;http://localhost:9201&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;http://localhost:9202&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+  
+  &lt;span class=&quot;c1&quot;&gt;# elasticsearch 모니터링용 user(Optional)&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;#username: &quot;user&quot;&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;#password: &quot;secret&quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;3-mysql-구동&quot;&gt;3. MySQL 구동&lt;/h3&gt;
+&lt;h4 id=&quot;elasticsearch-모니터링용-사용자-생성optional&quot;&gt;elasticsearch 모니터링용 사용자 생성(Optional)&lt;/h4&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;remote_monitoring_collector&lt;/code&gt; 롤을 가진 사용자를 생성. 생성한 사용자 id는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;elasticsearch_monitoring&lt;/code&gt;&lt;/p&gt;
 
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker-compose up &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; mysql
+&lt;h3 id=&quot;metricbeat-구동-및-kibana에서-확인&quot;&gt;Metricbeat 구동 및 kibana에서 확인&lt;/h3&gt;
+&lt;h4 id=&quot;metricbeat-서비스-구동&quot;&gt;metricbeat 서비스 구동&lt;/h4&gt;
 
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker-compose ps mysql
-Name               Command                  State                           Ports
-&lt;span class=&quot;nt&quot;&gt;-----------------------------------------------------------------------------------------------------&lt;/span&gt;
-mysql   /entrypoint.sh &lt;span class=&quot;nt&quot;&gt;--character&lt;/span&gt; ...   Up &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;healthy&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;   0.0.0.0:13306-&amp;gt;3306/tcp, 33060/tcp, 33061/tc
-
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker-compose logs mysql
-Attaching to mysql
-mysql       | &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Entrypoint] MySQL Docker Image 8.0.25-1.2.3-server
-mysql       | &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Entrypoint] Starting MySQL 8.0.25-1.2.3-server
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl start metricbeat.service
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;kibana-stack-monitoring-메뉴에서-metricbeat-monitoring-상태임을-확인&quot;&gt;kibana Stack Monitoring 메뉴에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Metricbeat monitoring&lt;/code&gt; 상태임을 확인&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/esm-1.png&quot; alt=&quot;esm-1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;logstash-monitoring&quot;&gt;Logstash Monitoring&lt;/h2&gt;
+
+&lt;h3 id=&quot;logstash-설정&quot;&gt;Logstash 설정&lt;/h3&gt;
+
+&lt;h4 id=&quot;기본-모니터링-설정-끄기&quot;&gt;기본 모니터링 설정 끄기&lt;/h4&gt;
+&lt;p&gt;kibana에서 stack monitoring 확인 시 Self monitoring으로 표기될 시 기본 모니터링 옵션을 끈다.
+&lt;img src=&quot;/assets/img/contents/esm-2.png&quot; alt=&quot;esm-2.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;logstashyml에-추가&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;logstash.yml&lt;/code&gt;에 추가&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;monitoring.enabled: &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;logstash-xpack-모듈-활성화&quot;&gt;logstash-xpack 모듈 활성화&lt;/h4&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules disable logstash
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;logstash-xpack
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;xpack과 기본 모듈중 하나만 사용해야 하기 때문에 기존의 모듈은 disable&lt;/p&gt;
+
+&lt;h4 id=&quot;logstash-xpack-모듈-설정&quot;&gt;logstash-xpack 모듈 설정&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/logstash/7.12/monitoring-with-metricbeat.html&quot;&gt;Collect Logstash monitorin data with Metricbeat&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;modulesdlogstash-xpackyml-수정&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;modules.d/logstash-xpack.yml&lt;/code&gt; 수정&lt;/h4&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;logstash&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;metricsets&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;node&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;node_stats&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;xpack.enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# hosts 값에는 metric 수집 대상을 추가. &lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;http://172.25.0.66:9600&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10s&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# logstash 모니터링용 사용자(Optional)&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;logstash_monitoring&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Infra1111&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;logstash-모니터링용-user-생성optional&quot;&gt;logstash 모니터링용 user 생성(Optional)&lt;/h4&gt;
+&lt;p&gt;kibana web ui 에서 아래 화면과 같이 모니터링용 user를 생성
+&lt;img src=&quot;/assets/img/contents/esm-3.png&quot; alt=&quot;esm-3.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;roles에는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;remote_monitoring_collector&lt;/code&gt; 를 선택&lt;/p&gt;
+
+&lt;h3 id=&quot;metricbeat-구동-및-kibana에서-확인-1&quot;&gt;Metricbeat 구동 및 kibana에서 확인&lt;/h3&gt;
+
+&lt;h4 id=&quot;metricbeat-서비스-구동-1&quot;&gt;metricbeat 서비스 구동&lt;/h4&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl start metricbeat.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;kibana-stack-monitoring-메뉴에서-metricbeat-monitoring-상태임을-확인-1&quot;&gt;kibana Stack Monitoring 메뉴에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Metricbeat monitoring&lt;/code&gt; 상태임을 확인&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/esm-4.png&quot; alt=&quot;esm-4.png&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;kibana-monitoring&quot;&gt;Kibana Monitoring&lt;/h2&gt;
+
+&lt;h3 id=&quot;kibana-설정&quot;&gt;Kibana 설정&lt;/h3&gt;
+
+&lt;h4 id=&quot;기본-모니터링-설정-끄기-1&quot;&gt;기본 모니터링 설정 끄기&lt;/h4&gt;
+
+&lt;p&gt;kibana에서 stack monitoring 확인 시 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Self monitoring&lt;/code&gt;으로 표기될 시 기본 모니터링 옵션을 끈다.
+&lt;img src=&quot;/assets/img/contents/esm-5.png&quot; alt=&quot;esm-5.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;kibanayml에-추가&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kibana.yml&lt;/code&gt;에 추가&lt;/h4&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;monitoring.kibana.collection.enabled: &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;기존 legacy 방식으로 모니터링 데이터를 수집하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;monitoring.kibana.collection.enabled&lt;/code&gt; 설정 값을 false로 변경.&lt;/p&gt;
+
+&lt;h4 id=&quot;kibana-xpack-module-활성화&quot;&gt;kibana-xpack module 활성화&lt;/h4&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules disable kibana
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;kibana-xpack
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;xpack과 기본 모듈중 하나만 사용해야 하기 때문에 기존의 모듈은 disable&lt;/p&gt;
+
+&lt;h4 id=&quot;kibana-xpack-module-설정&quot;&gt;kibana-xpack module 설정&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-module-kibana.html&quot;&gt;Kibana module&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;modulesdkibana-xpackyml-수정&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;modules.d/kibana-xpack.yml&lt;/code&gt; 수정&lt;/h4&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;kibana&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# 두 개의 metricset 설정 가능.&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;metricsets&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;stats&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;status&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# metricbeat로 모니터링 시 아래 옵션을 true로 설정해야 함&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;xpack.enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10s&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# kibana 서버 url&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;http://10.213.196.6:5601&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;scopse&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;node&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# kibana 모니터링용 user(Optional)&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;kibana_monitoring&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Infra1111&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# ssl 인증서 생성하여 적용 시 아래 옵션 적용&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;ssl.enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;ssl.certificate_authorities&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/etc/kibana/certs/ca.crt&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;ssl.certificate&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/etc/kibana/certs/rmakers-kibana.crt&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;ssl.key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/etc/kibana/certs/rmakers-kibana.key&quot;&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;ssl.verification_mode&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;full&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;kibana-모니터링용-사용자-생성optional&quot;&gt;kibana 모니터링용 사용자 생성(Optional)&lt;/h4&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;remote_monitoring_collector&lt;/code&gt; 롤을 가진 사용자를 생성. 생성한 사용자 id는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kibana_monitoring&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;metricbeat-구동-및-kibana에서-확인-2&quot;&gt;Metricbeat 구동 및 kibana에서 확인&lt;/h3&gt;
+&lt;h4 id=&quot;metricbeat-서비스-구동-2&quot;&gt;metricbeat 서비스 구동&lt;/h4&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl start metricbeat.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;kibana-stack-monitoring-메뉴에서-metricbeat-monitoring-상태임을-확인-2&quot;&gt;kibana Stack Monitoring 메뉴에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Metricbeat monitoring&lt;/code&gt; 상태임을 확인&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/esm-6.png&quot; alt=&quot;esm-6.png&quot; /&gt;&lt;/p&gt;
+
 &lt;hr /&gt;
 
-&lt;h3 id=&quot;mysql-설정&quot;&gt;MySQL 설정&lt;/h3&gt;
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
 
-&lt;h3 id=&quot;1-mysql-컨테이너-접속&quot;&gt;1. MySQL 컨테이너 접속&lt;/h3&gt;
-
-&lt;ul&gt;
+&lt;ol&gt;
   &lt;li&gt;
-    &lt;h4 id=&quot;using-docker&quot;&gt;Using docker&lt;/h4&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/7.x/monitoring-metricbeat-collection.html&quot;&gt;Use Metricbeat to send monitoring data&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# container id 확인&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker ps | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; mysql
-cd1ae64000ec   mysql/mysql-server:8.0   &lt;span class=&quot;s2&quot;&gt;&quot;/entrypoint.sh --ch…&quot;&lt;/span&gt;   3 months ago   Up 3 months &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;healthy&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;   33060-33061/tcp, 0.0.0.0:13306-&amp;gt;3306/tcp   mysql
-
-&lt;span class=&quot;c&quot;&gt;# 컨테이너 접속&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-it&lt;/span&gt; cd1ae64000ec /bin/bash
-
-&lt;span class=&quot;c&quot;&gt;# 접속 확인&lt;/span&gt;
-bash-4.4#
-bash-4.4# &lt;span class=&quot;nb&quot;&gt;whoami
-&lt;/span&gt;root
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;h4 id=&quot;using-docker-compose&quot;&gt;Using docker-compose&lt;/h4&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 컨테이너 접속&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker-compose &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;mysql /bin/bash
-
-&lt;span class=&quot;c&quot;&gt;# 접속 확인&lt;/span&gt;
-bash-4.4#
-bash-4.4# &lt;span class=&quot;nb&quot;&gt;whoami
-&lt;/span&gt;root
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;2-mysql-사용자-생성&quot;&gt;2. MySQL 사용자 생성&lt;/h3&gt;
-
-&lt;p&gt;MySQL 계정의 경우 계정명과 호스트가 같이 있다.&lt;/p&gt;
-
-&lt;p&gt;위처럼 localhost로 host 생성하는 경우 localhost에서만 접속 가능(외부 접속 불가)하므로 외부 접속을 위한 계정을 생성해보자.&lt;/p&gt;
-
-&lt;h4 id=&quot;1-mysql-로그인&quot;&gt;1. MySQL 로그인&lt;/h4&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bash-4.4# mysql &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; root &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt;
-Enter password:
-
-Welcome to the MySQL monitor.  Commands end with &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; or &lt;span class=&quot;se&quot;&gt;\g&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
-Your MySQL connection &lt;span class=&quot;nb&quot;&gt;id &lt;/span&gt;is 1600691
-Server version: 8.0.25 MySQL Community Server - GPL
-
-Copyright &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;c&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 2000, 2021, Oracle and/or its affiliates.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type &lt;span class=&quot;s1&quot;&gt;&apos;help;&apos;&lt;/span&gt; or &lt;span class=&quot;s1&quot;&gt;&apos;\h&apos;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;help. Type &lt;span class=&quot;s1&quot;&gt;&apos;\c&apos;&lt;/span&gt; to clear the current input statement.
-
-mysql&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;2-사용자-생성&quot;&gt;2. 사용자 생성&lt;/h4&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 사용자 확인&lt;/span&gt;
-mysql &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;select &lt;/span&gt;host, user from mysql.user&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-+-----------+------------------+
-| host      | user             |
-+-----------+------------------+
-| localhost | mysql.infoschema |
-| localhost | mysql.session    |
-| localhost | mysql.sys        |
-| localhost | root             |
-+-----------+------------------+
-
-&lt;span class=&quot;c&quot;&gt;# 전체 host에서 접속 가능한 사용자 생성&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# create user {사용자명}@{호스트} identified by {비밀번호};&lt;/span&gt;
-mysql &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; create user &lt;span class=&quot;s1&quot;&gt;&apos;csupreme19&apos;&lt;/span&gt;@&lt;span class=&quot;s1&quot;&gt;&apos;%&apos;&lt;/span&gt; identified by &lt;span class=&quot;s1&quot;&gt;&apos;password1234&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# 참고) 단일 IP host의 경우&lt;/span&gt;
-mysql &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; create user &lt;span class=&quot;s1&quot;&gt;&apos;csupreme19&apos;&lt;/span&gt;@&lt;span class=&quot;s1&quot;&gt;&apos;127.0.0.1&apos;&lt;/span&gt; identified by &lt;span class=&quot;s1&quot;&gt;&apos;password1234&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# 참고) IP 대역 host의 경우&lt;/span&gt;
-mysql &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; create user &lt;span class=&quot;s1&quot;&gt;&apos;csupreme19&apos;&lt;/span&gt;@&lt;span class=&quot;s1&quot;&gt;&apos;127.%&apos;&lt;/span&gt; identified by &lt;span class=&quot;s1&quot;&gt;&apos;password1234&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# 사용자 확인&lt;/span&gt;
-mysql &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;select &lt;/span&gt;host, user from mysql.user&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-+-----------+------------------+
-| host      | user             |
-+-----------+------------------+
-| %         | csupreme19       |
-| localhost | mysql.infoschema |
-| localhost | mysql.session    |
-| localhost | mysql.sys        |
-| localhost | root             |
-+-----------+------------------+
-
-&lt;span class=&quot;c&quot;&gt;# 접속 확인&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mysql &lt;span class=&quot;nt&quot;&gt;-h&lt;/span&gt; 127.0.0.1 &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; csupreme19 &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;3-권한-부여&quot;&gt;3. 권한 부여&lt;/h4&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 스키마 권한 추가&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# myschema 스키마의 모든 테이블&lt;/span&gt;
-mysql &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; grant all privileges on myschema.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; to csupreme19@&lt;span class=&quot;s1&quot;&gt;&apos;%&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# 전체 스키마&lt;/span&gt;
-mysql &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; grant all privileges on &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; to csupreme19@&lt;span class=&quot;s1&quot;&gt;&apos;%&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# 권한 적용 필수&lt;/span&gt;
-mysql&amp;gt; flush privileges&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>csupreme19</name></author><category term="MySQL" /><category term="DB" /><category term="RDBMS" /><category term="Docker" /><category term="Docker-compose" /><summary type="html">MySQL 설치 및 사용자 생성</summary></entry></feed>
+  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/logstash/7.12/monitoring-with-metricbeat.html&quot;&gt;Collect Logstash monitorin data with Metricbeat&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-module-kibana.html&quot;&gt;Kibana module&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Elasticsearch" /><category term="Elastic" /><category term="ELK" /><category term="Metricbeat" /><category term="Metric" /><category term="Monitoring" /><category term="Observability" /><summary type="html">Elastic Stack Monitoring with Metricbeat</summary></entry></feed>

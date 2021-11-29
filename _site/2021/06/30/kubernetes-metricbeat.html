@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<!--
+    Type on Strap jekyll theme v2.3.9
+    Theme free for personal and commercial use under the MIT license
+    https://github.com/sylhare/Type-on-Strap/blob/master/LICENSE
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.5, maximum-scale=5">
+
+    <!-- Theme Mode-->
+    
+    <script>
+        const isAutoTheme = false;
+        document.documentElement.setAttribute('data-theme', "dark")
+    </script>
+    
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="Seunghoon Choi" href="http://localhost:4000/feed.xml"/>
+
+    
+
+    <!-- KaTeX 0.13.9 -->
+    
+    <script defer src="/assets/js/vendor/katex.min.js"></script>
+    <script defer src="/assets/js/vendor/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    
+
+    <!-- Mermaid 8.9.2 -->
+    
+    <script defer src="/assets/js/vendor/mermaid.min.js" onload="mermaid.initialize({startOnLoad:true});"></script>
+    
+
+    <!-- Simple Jekyll Search 1.9.1 -->
+    <script src="/assets/js/vendor/simple-jekyll-search.min.js" type="text/javascript"></script>
+
+    <!-- Google Analytics / Cookie Consent -->
+    <script>
+      const cookieName = 'cookie-notice-dismissed-http://localhost:4000';
+      const isCookieConsent = 'false';
+      const analyticsName = '';
+    </script>
+
+    
+    
+
+    <!-- seo tags -->
+    <meta property="og:image" content="http://localhost:4000/assets/img/contents/km-1.png">
+    
+    <meta property="og:type" content="website" />
+    
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Kubernetes Metricbeat 적용하기 | Seunghoon Choi</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Kubernetes Metricbeat 적용하기" />
+<meta name="author" content="csupreme19" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Kubernetes Metricbeat" />
+<meta property="og:description" content="Kubernetes Metricbeat" />
+<link rel="canonical" href="http://localhost:4000/2021/06/30/kubernetes-metricbeat.html" />
+<meta property="og:url" content="http://localhost:4000/2021/06/30/kubernetes-metricbeat.html" />
+<meta property="og:site_name" content="Seunghoon Choi" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-30T00:00:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Kubernetes Metricbeat 적용하기" />
+<script type="application/ld+json">
+{"datePublished":"2021-06-30T00:00:00+09:00","description":"Kubernetes Metricbeat","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/06/30/kubernetes-metricbeat.html"},"url":"http://localhost:4000/2021/06/30/kubernetes-metricbeat.html","author":{"@type":"Person","name":"csupreme19"},"@type":"BlogPosting","headline":"Kubernetes Metricbeat 적용하기","dateModified":"2021-06-30T00:00:00+09:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <!-- RSS -->
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Seunghoon Choi" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:title" content="Kubernetes Metricbeat 적용하기">
+    <meta name="twitter:description" content="Kubernetes MetricbeatKubernetes 클러스터, 노드, 파드의 메트릭 정보 수집을 위한 kube-state-metrics와 metricbeat를 배포하여 메트릭 정보를 수집, 모니터링한다.개요Kubernetes 메트릭 정보 수집을 위해 Metricbeat를 Da...">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="http://localhost:4000/assets/img/contents/km-1.png">
+    <meta name="twitter:image:alt" content="Kubernetes Metricbeat 적용하기">
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+        
+		<a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/triangle.png" />
+		</a>
+        
+        <a class="site-title" aria-label="Seunghoon Choi" href="/">
+        Seunghoon Choi
+		</a>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fas fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        
+
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="About" title="About" href="/about/">
+                     About 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Gallery" title="Gallery" href="/gallery/">
+                     Gallery 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Portfolio" title="Portfolio" href="/portfolio/">
+                     Portfolio 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Search" title="Search" href="/search/">
+                     <i class="fas fa-search" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Tags" title="Tags" href="/tags/">
+                     <i class="fas fa-tags" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+        
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image" >
+  <header id="main" style="">
+    <div class="title-padder">
+      
+      <h1 id="Kubernetes+Metricbeat+%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0" class="title">Kubernetes Metricbeat 적용하기</h1>
+      
+
+
+<div class="post-info"><a href="https://github.com/csupreme19" target="_blank">
+      <img alt="Author's avatar" src="https://avatars.githubusercontent.com/u/76021703?s=400&v=4">
+    
+    <p class="meta">
+      csupreme19 - 
+      
+      June 30, 2021
+    </p></a></div>
+
+      
+    </div>
+  </header>
+
+  <section class="post-content">
+  
+      <h1 id="kubernetes-metricbeat">Kubernetes Metricbeat</h1>
+
+<p><img src="/assets/img/titles/kubernetes-logo.png" alt="kubernetes-logo.png" /></p>
+
+<p>Kubernetes 클러스터, 노드, 파드의 메트릭 정보 수집을 위한 <code class="language-plaintext highlighter-rouge">kube-state-metrics</code>와 metricbeat를 배포하여 메트릭 정보를 수집, 모니터링한다.</p>
+
+<hr />
+
+<h2 id="개요">개요</h2>
+
+<p>Kubernetes 메트릭 정보 수집을 위해 Metricbeat를 DaemonSet 형태로 띄워 메트릭 수집</p>
+
+<hr />
+<h2 id="kube-state-metrics"><code class="language-plaintext highlighter-rouge">kube-state-metrics</code></h2>
+<p>kube-system의 <code class="language-plaintext highlighter-rouge">kube-state-metrics</code> deployment 필요</p>
+
+<p>helm-chart를 이용하여 구성할 것임</p>
+
+<p>GitOps인 ArgoCD를 활용하여 구성한다고 가정</p>
+
+<p>아닌 경우 일반 디렉토리 생성하여 구성하여도 동일함</p>
+
+<h3 id="kube-state-metrics-using-helm"><code class="language-plaintext highlighter-rouge">kube-state-metrics</code> using helm</h3>
+
+<p><a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-state-metrics">helm-charts/kube-state-metrics</a></p>
+
+<h4 id="1-gitlab-argocd-repo에-kube-system-디렉토리-생성새-네임스페이스이므로">1. GitLab ArgoCD repo에 kube-system 디렉토리 생성(새 네임스페이스이므로)</h4>
+
+<h4 id="2-kube-systemkube-state-metrics-디렉토리-생성">2. kube-system/kube-state-metrics 디렉토리 생성</h4>
+
+<h4 id="3-위-helm-링크에서-helm-chart-다운받아-kube-state-metrics에-넣기">3. 위 helm 링크에서 helm chart 다운받아 kube-state-metrics에 넣기</h4>
+
+<h4 id="4-valuesyaml-수정">4. <code class="language-plaintext highlighter-rouge">values.yaml</code> 수정</h4>
+
+<p>worker 노드에 파드를 띄우기 위해 아래 nodeSelector 지정</p>
+
+<p>(zone과 role에 대한 label이 노드에 이미 지정되어 있다고 가정)</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">nodeSelector</span><span class="pi">:</span>
+ <span class="na">zone</span><span class="pi">:</span> <span class="s">private</span>
+ <span class="na">role</span><span class="pi">:</span> <span class="s">kong</span>
+</code></pre></div></div>
+
+<h4 id="5-argocd-new-app-생성kube-system">5. ArgoCD New App 생성(kube-system)</h4>
+
+<h4 id="6-argocd-sync-진행">6. ArgoCD sync 진행</h4>
+
+<h4 id="7-배포-확인">7. 배포 확인</h4>
+
+<hr />
+<h2 id="metricbeat-kubernetes">Metricbeat-kubernetes</h2>
+
+<p>kubernetes 메트릭을 모니터링하기위해 metricbeat를 DaemonSet 형태로 k8s cluster에 띄워야함</p>
+
+<h3 id="metricbeat-kubernetes-daemonset-배포">Metricbeat-kubernetes DaemonSet 배포</h3>
+
+<h4 id="1-gitlab-argocd-repo-kube-systemmetricbeat-kubernetes-생성">1. GitLab ArgoCD repo kube-system/metricbeat-kubernetes 생성</h4>
+
+<h4 id="2-metricbeat-kubernetesyaml-다운로드">2. <code class="language-plaintext highlighter-rouge">metricbeat-kubernetes.yaml</code> 다운로드</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 현재 ELK 버전 7.12.1이므로 버전을 맞춘다.</span>
+<span class="nv">$ </span>curl <span class="nt">-L</span> <span class="nt">-O</span>    https://raw.githubusercontent.com/elastic/beats/7.12/deploy/kubernetes/metricbeat-kubernetes.yaml
+</code></pre></div></div>
+
+<h4 id="3-위에서-받은-metricbeat-kubernetesyaml-gitlab-repo에-파일-추가">3. 위에서 받은 <code class="language-plaintext highlighter-rouge">metricbeat-kubernetes.yaml</code> gitlab repo에 파일 추가</h4>
+
+<h4 id="4-valuesyaml-수정-1">4. <code class="language-plaintext highlighter-rouge">values.yaml</code> 수정</h4>
+
+<p>elastic search 호스트 지정</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">ELASTICSEARCH_HOST</span>
+   <span class="na">value</span><span class="pi">:</span> <span class="s">elasticsearch</span>
+ <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">ELASTICSEARCH_PORT</span>
+   <span class="na">value</span><span class="pi">:</span> <span class="s2">"</span><span class="s">9200"</span>
+ <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">ELASTICSEARCH_USERNAME</span>
+   <span class="na">value</span><span class="pi">:</span> <span class="s">elastic</span>
+ <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">ELASTICSEARCH_PASSWORD</span>
+   <span class="na">value</span><span class="pi">:</span> <span class="s">changeme</span>
+</code></pre></div></div>
+
+<h4 id="5-argocd-sync-진행">5. ArgoCD sync 진행</h4>
+
+<h4 id="6-배포-확인">6. 배포 확인</h4>
+
+<hr />
+<h2 id="kibana-대시보드-확인">Kibana 대시보드 확인</h2>
+
+<p><img src="/assets/img/contents/km-1.png" alt="km-1.png" /></p>
+
+<hr />
+<h2 id="참고사항">참고사항</h2>
+
+<h3 id="수집-영역">수집 영역</h3>
+<ul>
+  <li>kubelet</li>
+  <li>kube-state-metrics</li>
+  <li>apiserver</li>
+  <li>controller-manager</li>
+  <li>scheduler</li>
+  <li>proxy</li>
+</ul>
+
+<h3 id="metricsets">Metricsets</h3>
+<p>사용 가능한 Metricset들 리스트</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    apiserver
+    container
+    controllermanager
+    event
+    node
+    pod
+    proxy
+    scheduler
+    state_container
+    state_cronjob
+    state_daemonset
+    state_deployment
+    state_node
+    state_persistentvolumeclaim
+    state_pod
+    state_replicaset
+    state_resourcequota
+    state_service
+    state_statefulset
+    state_storageclass
+    system
+    volume
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li>
+    <p><a href="https://www.elastic.co/guide/en/beats/metricbeat/current/running-on-kubernetes.html">Run Metricbeat on Kubernetes</a></p>
+  </li>
+  <li><a href="https://www.elastic.co/kr/blog/kubernetes-observability-tutorial-k8s-metrics-collection-and-analysis">Kubernetes 통합 가시성 자습서: 메트릭 수집 및 분석</a></li>
+  <li><a href="https://github.com/kubernetes/kube-state-metrics#kubernetes-deployment">kube-state-metrics</a></li>
+  <li><a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-state-metrics">helm-charts/kube-state-metrics</a></li>
+</ol>
+
+    
+  </section>
+
+  <!-- Social media shares -->
+  
+
+
+   <!-- Tag list -->
+  
+  
+
+
+  <div class="tag-list">
+    <ul>
+      
+        <li class="meta">Tags</li>
+      
+
+      
+        <li><a class="button" href="/tags#ELK">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> ELK</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#Elastic">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Elastic</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#Elasticsearch">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Elasticsearch</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#Helm">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Helm</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#K8S">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> K8S</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#Kubernetes">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Kubernetes</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#Metric">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Metric</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#Metricbeat">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Metricbeat</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#Monitoring">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Monitoring</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#Observability">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Observability</p>
+        </a></li>
+      
+    </ul>
+  </div>
+
+
+
+</article>
+
+<!-- Post navigation -->
+
+<div id="post-nav">
+    
+    <div id="previous-post">
+        <a alt="Elastic Metricbeat 설치 및 설정" href="/2021/07/27/elastic-metricbeat-install.html">
+            <p>Previous post</p>
+            Elastic Metricbeat 설치 및 설정
+        </a>
+    </div>
+    
+
+    
+    <div id="next-post">
+        <a alt="MySQL dump & restore" href="/2021/06/15/mysql-dump.html">
+            <p>Next post</p>
+            MySQL dump & restore
+        </a>
+    </div>
+    
+</div>
+
+
+
+<!--Utterances-->
+ <script src="https://utteranc.es/client.js"
+        repo='csupreme19/csupreme19.github.io'
+        issue-term="comment"
+        theme="preferred-color-scheme"
+		
+        crossorigin="anonymous"
+        async>
+</script>
+ 
+
+<!-- Cusdis -->
+
+
+<!-- Disqus -->
+
+
+<!-- To change color of links in the page -->
+<style>
+  header#main {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+  
+  
+  
+  
+  header#main { background-image: url('/assets/img/titles/kubernetes-logo.png'); }
+  
+</style>
+
+    </div>
+    <footer class="site-footer">
+    <p class="text">
+        Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
+</p>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+        
+        
+        
+        <li>
+            <a href="https://github.com/csupreme19"
+               title="Follow on Github"
+               target="_blank"
+               rel="me">
+            <span class="fa-stack fa-lg">
+              <i class="fas fa-circle fa-stack-2x"></i>
+              <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+            </span>
+            </a>
+        </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+        
+        
+        
+        <li>
+            <a href="mailto:csupreme19@gmail.com"
+               title="Follow on Mail"
+               target="_blank"
+               rel="me">
+            <span class="fa-stack fa-lg">
+              <i class="fas fa-circle fa-stack-2x"></i>
+              <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+            </span>
+            </a>
+        </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+                </ul>
+            </div>
+</footer>
+
+
+
+  </body>
+</html>

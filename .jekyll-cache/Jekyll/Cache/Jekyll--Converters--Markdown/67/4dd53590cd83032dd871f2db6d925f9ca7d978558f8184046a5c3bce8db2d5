@@ -1,0 +1,417 @@
+I"|]<h1 id="gitlab-백업-및-기타-설정">GitLab 백업 및 기타 설정</h1>
+
+<p><img src="/assets/img/titles/gitlab-horizontal-color.png" alt="gitlab-horizontal-color.png" /></p>
+
+<p><a href="https://docs.gitlab.com/omnibus/settings/README.html">Configuring Omnibus GitLab</a></p>
+
+<p>GitLab 백업, SSH, 메일 서버 등 설정</p>
+
+<hr />
+<h2 id="backup-설정">Backup 설정</h2>
+<h3 id="backup-플랜">Backup 플랜</h3>
+
+<ul>
+  <li>백업 주기: 3일</li>
+  <li>백업 범위(기본값)
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">db</code> (database)</li>
+      <li><code class="language-plaintext highlighter-rouge">uploads</code> (attachments)</li>
+      <li><code class="language-plaintext highlighter-rouge">builds</code> (CI job output logs)</li>
+      <li><code class="language-plaintext highlighter-rouge">artifacts</code> (CI job artifacts)</li>
+      <li><code class="language-plaintext highlighter-rouge">lfs</code> (LFS objects)</li>
+      <li><code class="language-plaintext highlighter-rouge">registry</code> (Container Registry images)</li>
+      <li><code class="language-plaintext highlighter-rouge">pages</code> (Pages content)</li>
+      <li><code class="language-plaintext highlighter-rouge">repositories</code> (Git repositories data)</li>
+    </ul>
+  </li>
+  <li>백업 위치: GitLab 로컬, nas의 nfs</li>
+  <li>백업 실행: 3일마다 새벽 2시</li>
+  <li>보관 주기: 30일</li>
+</ul>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">gitlab.rb</code>, <code class="language-plaintext highlighter-rouge">gitlab-secrets.json</code>과 같은 설정파일들은 기본적으로 백업되지 않으며 필요시 별도로 백업 실행</p>
+</blockquote>
+
+<h3 id="수동-backup">수동 Backup</h3>
+
+<h4 id="1-백업-실행">1. 백업 실행</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker <span class="nb">exec</span> <span class="nt">-it</span> gitlab-ce bash <span class="c"># -t: 실행 쉘 확인 용도</span>
+<span class="nv">$ </span>gitlab-backup create
+
+<span class="c"># 12.1 이하 버전인 경우</span>
+<span class="nv">$ </span>gitlab-rake gitlab:backup:create
+</code></pre></div></div>
+
+<h4 id="2-백업-파일-확인">2. 백업 파일 확인</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># cd {docker_volume}/gitlab/data/backups</span>
+<span class="nv">$ </span><span class="nb">cd</span> /data/docker_volumes/gitlab/data/backups
+</code></pre></div></div>
+
+<p>[TIMESTAMP]_gitlab_backup.tar 생성 확인</p>
+
+<h4 id="3-설정-파일-백업시">3. 설정 파일 백업시</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/data/docker_volumes/gitlab/config/gitlab-secrets.json
+/data/docker_volumes/gitlab/config/gitlab.rb
+</code></pre></div></div>
+
+<p>위 두 파일 별도로 백업할 것</p>
+
+<h3 id="수동-restore">수동 Restore</h3>
+
+<h4 id="1-복구-준비">1. 복구 준비</h4>
+
+<ol>
+  <li>
+    <h5 id="복구된-버전과-복구하려는-gitlab-버전이-같아야함">복구된 버전과 복구하려는 gitlab 버전이 같아야함</h5>
+  </li>
+  <li>
+    <h5 id="gitlab-reconfigure-실행-필요">gitlab reconfigure 실행 필요</h5>
+  </li>
+  <li>
+    <h5 id="gitlab이-실행되고-있어야함">gitlab이 실행되고 있어야함</h5>
+  </li>
+  <li>
+    <h5 id="복구할-파일tar-위치는-varoptgitlabbackups-에-있다고-가정">복구할 파일(.tar) 위치는 /var/opt/gitlab/backups 에 있다고 가정</h5>
+  </li>
+</ol>
+
+<p>DB 접근하는 프로세스 종료</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># gitlab shell 진입</span>
+<span class="nv">$ </span>docker <span class="nb">exec</span> <span class="nt">-it</span> gitlab-ce bash
+
+<span class="c"># process 정지 처리</span>
+<span class="nv">$ </span>gitlab-ctl stop unicorn
+<span class="nv">$ </span>gitlab-ctl stop puma
+<span class="nv">$ </span>gitlab-ctl stop sidekiq
+
+<span class="c"># 종료 확인</span>
+<span class="nv">$ </span>gitlab-ctl status 
+</code></pre></div></div>
+
+<h4 id="2-복구-실행">2. 복구 실행</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">chmod </span>0644 1612940314_2021_092_10_13.8.1_gitlab_backup.tar	<span class="c"># 모든 사용자 읽기 권한 추가</span>
+<span class="nv">$ </span>docker <span class="nb">exec</span> <span class="nt">-t</span> gitlab-ce gitlab-backup restore <span class="nv">BACKUP</span><span class="o">={</span>TIMESTAMP<span class="o">}</span> <span class="nv">force</span><span class="o">=</span><span class="nb">yes</span>
+
+<span class="c"># 12.1 이하 버전인 경우</span>
+<span class="nv">$ </span>docker <span class="nb">exec</span> <span class="nt">-t</span> gitlab-ce gitlab-rake gitlab:backup:restore <span class="nv">BACKUP</span><span class="o">={</span>TIMESTAMP<span class="o">}</span> <span class="nv">force</span><span class="o">=</span><span class="nb">yes</span>
+</code></pre></div></div>
+
+<p>예를 들어 파일명이 1612940314_2021_092_10_13.8.1_gitlab_backup.tar이라면</p>
+
+<p>[TIMESTAMP]_gitlab_backup.tar 이므로 TIMESTAMP는 1612940314_2021_092_10_13.8.1</p>
+
+<p>복구 시점에 psql must be owner of 관련 오류는 정상임</p>
+
+<h4 id="3-서비스-재구동-및-점검">3. 서비스 재구동 및 점검</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker <span class="nb">exec</span> <span class="nt">-it</span> gitlab-ce bash
+<span class="nv">$ </span>gitlab-ctl reconfigure
+<span class="nv">$ </span>gitlab-ctl restart
+
+<span class="nv">$ </span>gitlab-rake gitlab:check <span class="nv">SANITIZE</span><span class="o">=</span><span class="nb">true</span>
+</code></pre></div></div>
+
+<h3 id="자동-backup-설정">자동 Backup 설정</h3>
+
+<h4 id="1-nfs-설정">1. NFS 설정</h4>
+
+<p>mount 및 권한 설정은 완료되었다는 가정하에 작성하였습니다.</p>
+
+<p>GitLab 백업 폴더 생성</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># mkdir -p {nfs 볼륨 경로}/gitlab/data/backups</span>
+<span class="nv">$ </span><span class="nb">mkdir</span> <span class="nt">-p</span> /nfs_nas/volumes/gitlab/data/backups
+</code></pre></div></div>
+
+<h4 id="2-docker-compose-설정">2. docker compose 설정</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># docker_compose yaml 설정 파일</span>
+<span class="nv">$ </span>vim ~/gitlab-ce/docker-compose.yml
+</code></pre></div></div>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">...</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">GITLAB_OMNIBUS_CONFIG</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="s">gitlab_rails['backup_keep_time'] = 2592000</span>
+<span class="s">...</span>
+</code></pre></div></div>
+
+<p>gitlab_rails 설정값 변경(추가)</p>
+
+<ul>
+  <li>backup_path: 백업 경로(local)</li>
+  <li>backup_keep_time: 백업 파일 보관 주기 (2592000초 = 30일)</li>
+</ul>
+
+<p>gitlab이 설치된 volume의  gitlab.rb 설정파일 수정해도 됨</p>
+
+<h4 id="3-백업-스크립트-작성">3. 백업 스크립트 작성</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>vim ~/gitlab-ce/gitlab_backup.sh
+</code></pre></div></div>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c">#!/bin/sh</span>
+ <span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s1">'/data/docker_volumes/gitlab/data/backups'</span>
+ <span class="nv">BACKUP_REMOTE_DIR</span><span class="o">=</span><span class="s1">'/nfs_nas1/volumes/gitlab/data/backups'</span>
+ <span class="nv">BACKUP_REMOTE_DIR2</span><span class="o">=</span><span class="s1">'/nfs_nas2/backups/gitlab'</span>
+ <span class="nv">BACKUP_LIFETIME</span><span class="o">=</span>30
+ docker <span class="nb">exec </span>gitlab-ce gitlab-backup create <span class="nv">CRON</span><span class="o">=</span>1
+ <span class="nv">BACKUP_FILE</span><span class="o">=</span><span class="sb">`</span><span class="nb">ls</span> <span class="nt">-t</span> <span class="nv">$BACKUP_DIR</span> | <span class="nb">head</span> <span class="nt">-n</span> 1<span class="sb">`</span>
+ <span class="nb">echo</span> <span class="s2">"gitlab-backup create::: </span><span class="nv">$BACKUP_DIR</span><span class="s2">/</span><span class="nv">$BACKUP_FILE</span><span class="s2"> "</span>
+
+ <span class="nv">BACKUP_REMOVE_FILES</span><span class="o">=</span><span class="sb">`</span>find <span class="nv">$BACKUP_DIR</span> <span class="nt">-name</span> <span class="s2">"*_gitlab_backup.tar"</span> <span class="nt">-mtime</span> +<span class="nv">$BACKUP_LIFETIME</span> <span class="nt">-type</span> f<span class="sb">`</span>
+ <span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$BACKUP_REMOVE_FILES</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+ </span><span class="nb">echo</span> <span class="s2">"gitlab-backup remove old backups::: </span><span class="nv">$BACKUP_REMOVE_FILES</span><span class="s2">"</span>
+ <span class="nb">rm</span> <span class="nt">-rf</span> <span class="nv">$BACKUP_REMOVE_FILES</span>
+ <span class="k">fi
+
+ </span><span class="nv">BACKUP_REMOTE_REMOVE_FILES</span><span class="o">=</span><span class="sb">`</span>find <span class="nv">$BACKUP_REMOTE_DIR</span> <span class="nt">-name</span> <span class="s2">"*_gitlab_backup.tar"</span> <span class="nt">-mtime</span> +<span class="nv">$BACKUP_LIFETIME</span> <span class="nt">-type</span> f<span class="sb">`</span>
+ <span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$BACKUP_REMOTE_REMOVE_FILES</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+ </span><span class="nb">echo</span> <span class="s2">"gitlab-backup remove old backups::: </span><span class="nv">$BACKUP_REMOTE_REMOVE_FILES</span><span class="s2">"</span>
+ <span class="nb">rm</span> <span class="nt">-rf</span> <span class="nv">$BACKUP_REMOTE_REMOVE_FILES</span>
+ <span class="k">fi
+
+ </span><span class="nv">BACKUP_REMOTE_REMOVE_FILES2</span><span class="o">=</span><span class="sb">`</span>find <span class="nv">$BACKUP_REMOTE_DIR2</span> <span class="nt">-name</span> <span class="s2">"*_gitlab_backup.tar"</span> <span class="nt">-mtime</span> +<span class="nv">$BACKUP_LIFETIME</span> <span class="nt">-type</span> f<span class="sb">`</span>
+ <span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$BACKUP_REMOTE_REMOVE_FILES2</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+ </span><span class="nb">echo</span> <span class="s2">"gitlab-backup remove old backups::: </span><span class="nv">$BACKUP_RETMOE_REMOVE_FILES2</span><span class="s2">"</span>
+ <span class="nb">rm</span> <span class="nt">-rf</span> <span class="nv">$BACKUP_REMOTE_REMOVE_FILES2</span>
+ <span class="k">fi
+
+ </span><span class="nb">cp</span> <span class="nv">$BACKUP_DIR</span>/<span class="nv">$BACKUP_FILE</span> <span class="nv">$BACKUP_REMOTE_DIR</span>
+ <span class="nb">echo</span> <span class="s2">"gitlab-backup copy to storage::: </span><span class="nv">$BACKUP_REMOTE_DIR</span><span class="s2">/</span><span class="nv">$BACKUP_FILE</span><span class="s2"> </span><span class="nv">$BACKUP_REMOTE_DIR</span><span class="s2">/</span><span class="nv">$BACKUP_FILE</span><span class="s2">"</span>
+ <span class="nb">cp</span> <span class="nv">$BACKUP_DIR</span>/<span class="nv">$BACKUP_FILE</span> <span class="nv">$BACKUP_REMOTE_DIR2</span>
+ <span class="nb">echo</span> <span class="s2">"gitlab-backup copy to storage::: </span><span class="nv">$BACKUP_REMOTE_DIR2</span><span class="s2">/</span><span class="nv">$BACKUP_FILE</span><span class="s2"> </span><span class="nv">$BACKUP_REMOTE_DIR2</span><span class="s2">/</span><span class="nv">$BACKUP_FILE</span><span class="s2">"</span>
+ <span class="nb">echo</span> <span class="s2">"gitlab-backup done."</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>위 스크립트는 백업 명령 실행 후 백업 파일을 mv, rm 하는 간단한 스크립트이며 상황별로 다를 수 있음</p>
+</blockquote>
+
+<h4 id="4-백업-cron-등록">4. 백업 cron 등록</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crontab <span class="nt">-e</span>
+0 2 <span class="k">*</span>/3 <span class="k">*</span> <span class="k">*</span> /root/gitlab-ce/gitlab_backup.sh <span class="o">&gt;</span> /root/gitlab-ce/gitlab_backup.sh.log
+</code></pre></div></div>
+
+<p>gitlab 컨테이너 내부에서 crontab 설정도 가능</p>
+
+<ul>
+  <li>CRON=1: 에러가 발생한 경우에만 출력</li>
+</ul>
+
+<h4 id="5-cron-테스트">5. cron 테스트</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>run-parts /var/spool/cron <span class="nt">-v</span>
+</code></pre></div></div>
+
+<hr />
+<h3 id="email-설정">Email 설정</h3>
+
+<blockquote>
+  <p>docker container 환경에서 gitlab의 email 설정</p>
+</blockquote>
+
+<h4 id="사전-준비-사항">사전 준비 사항</h4>
+<ul>
+  <li>mail server 정보 확인: gmail 또는 별도 무료 사용 가능한 mail server 확보</li>
+  <li>본 문서에서는 mailgun 서버를 적용</li>
+</ul>
+
+<h4 id="참조-site">참조 site</h4>
+<ul>
+  <li>https://docs.gitlab.com/omnibus/settings/smtp.html#mailgun</li>
+</ul>
+
+<h4 id="설정법">설정법</h4>
+
+<h3 id="gitlab의-설정파일-수정">gitlab의 설정파일 수정</h3>
+<ul>
+  <li>docker-compose.yml의 gitlab environment에 추가 또는</li>
+  <li>gitlab 설치된 volume에서 gitlab.rb 파일 찾아 수정</li>
+  <li>해당 파일 내용 중 mailgun 메일서버 정보를 추가
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># mailgun smtp 설정</span>
+gitlab_rails[<span class="s1">'smtp_enable'</span><span class="o">]</span> <span class="o">=</span> <span class="nb">true
+</span>gitlab_rails[<span class="s1">'smtp_address'</span><span class="o">]</span> <span class="o">=</span> <span class="s2">"smtp.mailgun.org"</span>
+gitlab_rails[<span class="s1">'smtp_port'</span><span class="o">]</span> <span class="o">=</span> 587
+gitlab_rails[<span class="s1">'smtp_authentication'</span><span class="o">]</span> <span class="o">=</span> <span class="s2">"plain"</span>
+gitlab_rails[<span class="s1">'smtp_enable_starttls_auto'</span><span class="o">]</span> <span class="o">=</span> <span class="nb">true
+</span>gitlab_rails[<span class="s1">'smtp_user_name'</span><span class="o">]</span> <span class="o">=</span> <span class="s2">"mail서버 발급받은 id"</span>
+gitlab_rails[<span class="s1">'smtp_password'</span><span class="o">]</span> <span class="o">=</span> <span class="s2">"암호"</span>
+gitlab_rails[<span class="s1">'smtp_domain'</span><span class="o">]</span> <span class="o">=</span> <span class="s2">"mg.gitlab.com"</span>
+</code></pre></div>    </div>
+  </li>
+  <li>docker container 재기동</li>
+  <li>mail 보내기 테스트
+    <ul>
+      <li>gitlab의 shell로 진입</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker <span class="nb">exec</span> <span class="nt">-it</span> &lt;container <span class="nb">id</span><span class="o">&gt;</span> bash
+</code></pre></div></div>
+<ul>
+  <li>gitlab-rails console 실행
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>gitlab-rails console
+</code></pre></div>    </div>
+  </li>
+  <li>gitlab-rails console 상에서 mail 보내기 테스트
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>Notify.test_email<span class="o">(</span><span class="s1">'&lt;받는 email address&gt;'</span>, <span class="s1">'&lt;email 제목&gt;'</span>, <span class="s1">'&lt;email 내용&gt;'</span><span class="o">)</span>.deliver_now
+</code></pre></div>    </div>
+  </li>
+  <li>email이 왔는지 확인</li>
+</ul>
+
+<hr />
+<h3 id="ssh-key-설정">SSH Key 설정</h3>
+
+<ol>
+  <li>
+    <p>접속하고자 하는 사용자에서 SSH Key 발급</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh-keygen <span class="nt">-t</span> rsa
+</code></pre></div>    </div>
+
+    <p>RSA 키 발급, passphrase는 일반적으로 비워둠(Enter)</p>
+  </li>
+  <li>
+    <p>발급된 Public key 확인</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod </span>755 ~/.ssh/id_rsa.pub
+vi ~/.ssh/id_rsa.pub
+</code></pre></div>    </div>
+
+    <p>id_rsa.pub안의 퍼블릭키 복사해두기</p>
+  </li>
+  <li>
+    <p>GitLab 계정에 public key 등록</p>
+
+    <p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-02/osOgitlab1.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-02/scaled-1680-/osOgitlab1.png" alt="gitlab_setting1.png" /></a></p>
+
+    <p>User Settings - SSH Keys</p>
+
+    <p>id_rsa.pub에 있는 전체 키 내용 복사하여 붙여넣기</p>
+
+    <p>Title은 자신이 구분할  수 있는 제목 아무거나</p>
+
+    <p>만료일은 해당 키의 만료일로 설정</p>
+  </li>
+  <li>
+    <p>git 계정 설정</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--global</span> user.name <span class="s2">"{USERNAME}"</span>
+git config <span class="nt">--global</span> user.email <span class="o">{</span>USER_EMAIL<span class="o">}</span>
+</code></pre></div>    </div>
+
+    <p>USERNAME: gitlab 계정명
+USER_EMAIL: gitlab 계정의 이메일 주소</p>
+  </li>
+  <li>
+    <p>SSH 접속 확인</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># ssh -T git@{host} -p {port} -v</span>
+<span class="nv">$ </span>ssh <span class="nt">-T</span> git@gitlab.ccpinfra.xyz <span class="nt">-p</span> 20722 <span class="nt">-v</span>
+Welcome to GitLab, @csupreme!
+</code></pre></div>    </div>
+
+    <p>-p: 포트 설정</p>
+
+    <p>-v: 디버그 로그 확인</p>
+
+    <p>처음 접속시 호스트 키 저장 여부를 물으면 yes</p>
+  </li>
+  <li>
+    <p>Git clone 확인</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># git clone ssh://git@{host}:{port}/{repository}.git</span>
+git clone ssh://git@gitlab.ccpinfra.xyz:20722/csupreme/commit-test.git
+</code></pre></div>    </div>
+
+    <p>별도의 사용자, 암호 입력 없이 SSH Key를 이용하여 clone 확인</p>
+  </li>
+</ol>
+
+<hr />
+<h3 id="nginx-ssl-설정">nginx SSL 설정</h3>
+<h4 id="선행사항">선행사항</h4>
+
+<ul>
+  <li>Docker Container 환경(GitLab Omnibus)</li>
+  <li>Let’s Encrypt Key 발급 완료</li>
+</ul>
+
+<ol>
+  <li>
+    <p>docker_compose.yml 수정</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">GITLAB_OMNIBUS_CONFIG</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="s">letsencrypt['enable'] = false</span>
+        <span class="s">external_url 'https://gitlab.ccpinfra.xyz:20443'</span>
+        <span class="s">nginx['redirect_http_to_https'] = true</span>
+    <span class="na">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s1">'</span><span class="s">20780:20443'</span>
+        <span class="pi">-</span> <span class="s1">'</span><span class="s">20443:20443'</span>
+        <span class="pi">-</span> <span class="s1">'</span><span class="s">20722:22'</span>
+</code></pre></div>    </div>
+
+    <p>letsencrypt[‘enable’] = false로 설정하는 이유</p>
+
+    <p>gitlab-ctl reconfigure시 자동으로 인증서를 갱신하여 덮어쓰기 때문</p>
+
+    <p>수동으로 발급한 인증서이므로 letsencrypt의 자동 갱신 기능을 비활성화 하기 위해</p>
+  </li>
+  <li>
+    <p>SSL 인증서 복사</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 참고) 컨테이너 /etc/gitlab에 마운트된 경로</span>
+<span class="nv">$ </span><span class="nb">sudo mkdir</span> <span class="nt">-p</span> /data/docker_volumes/gitlab/config/ssl
+<span class="nv">$ </span><span class="nb">sudo chmod </span>755 /data/docker_volumes/gitlab/config/ssl
+<span class="nv">$ </span><span class="nb">cp</span> /etc/letsencrypt/live/ccpinfra.xyz/privkey.pem /data/docker_volumes/gitlab_2/config/ssl
+<span class="nv">$ </span><span class="nb">cp</span> /etc/letsencrypt/live/ccpinfra.xyz/fullchain.pem /data/docker_volumes/gitlab_2/config/ssl
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>PEM 변환</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>openssl rsa <span class="nt">-in</span> privkey.pem <span class="nt">-text</span> <span class="o">&gt;</span> gitlab.ccpinfra.xyz.key
+<span class="nv">$ </span>openssl x509 <span class="nt">-inform</span> PEM <span class="nt">-in</span> fullchain.pem <span class="nt">-out</span> gitlab.ccpinfra.xyz.crt
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>GitLab 재설정</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker <span class="nb">exec</span> <span class="nt">-t</span> gitlab-ce gitlab-ctl reconfigure
+   
+<span class="c"># 도커 포트 매핑이 변경된 경우 컨테이너 재실행 필요</span>
+<span class="nv">$ </span>docker-compose down
+<span class="nv">$ </span>docker-compose up <span class="nt">-d</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Https 접속 확인 및 인증서 확인</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cat</span> /data/docker_volumes/gitlab/logs/nginx/gitlab_access.log
+</code></pre></div>    </div>
+    <p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-02/gitlab-setting2.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-02/scaled-1680-/gitlab-setting2.png" alt="gitlab_setting2.png" /></a></p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://docs.gitlab.com/omnibus/settings/README.html">Configuring Omnibus GitLab</a></li>
+  <li><a href="https://kubernetes.io/docs/reference/access-authn-authz/node/">Using Node Authorization</a></li>
+  <li><a href="https://kubernetes.io/docs/reference/access-authn-authz/node/">Using ABAC Authorization</a></li>
+  <li><a href="https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/">Certified Kubernetes Administrator(CKA) with Practice Tests</a></li>
+</ol>
+:ET

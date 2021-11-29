@@ -4,7 +4,7 @@ title: Kubernetes RBAC Authorization 개요 및 적용
 feature-img: assets/img/titles/kubernetes-logo.png
 thumbnail: assets/img/contents/authorization-authentication.jpeg
 author: csupreme19
-tags: [Kubernetes, Authorization, Authentication, RBAC, ABAC, Security]
+tags: [Kubernetes, K8S, Authorization, Authentication, RBAC, ABAC, Security]
 
 ---
 

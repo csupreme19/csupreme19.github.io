@@ -1,0 +1,177 @@
+I""<h1 id="kubernetes-metricbeat">Kubernetes Metricbeat</h1>
+
+<p><img src="/assets/img/titles/gitlab-horizontal-color.png" alt="gitlab-horizontal-color.png" /></p>
+
+<p><a href="https://docs.gitlab.com/omnibus/settings/README.html">Configuring Omnibus GitLab</a></p>
+
+<p>Kubernetes 클러스터, 노드, 파드의 메트릭 정보 수집을 위한 <code class="language-plaintext highlighter-rouge">kube-state-metrics</code>와 metricbeat를 배포하여 메트릭 정보를 수집, 모니터링한다.</p>
+
+<hr />
+
+<h2 id="개요">개요</h2>
+
+<p>Kubernetes 메트릭 정보 수집을 위해 Metricbeat를 DaemonSet 형태로 띄워 메트릭 수집</p>
+
+<hr />
+<h3 id="kube-state-metrics-띄우기"><code class="language-plaintext highlighter-rouge">kube-state-metrics</code> 띄우기</h3>
+<p>kube-system의 <code class="language-plaintext highlighter-rouge">kube-state-metrics</code> deployment 필요</p>
+
+<p>helm-chart를 이용하여 구성할 것임</p>
+
+<p><a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-state-metrics">helm-charts/kube-state-metrics</a></p>
+
+<ol>
+  <li>GitLab ArgoCD repo에 kube-system 디렉토리 생성(새 네임스페이스이므로)</li>
+  <li>kube-system/kube-state-metrics 디렉토리 생성</li>
+  <li>위 helm 링크에서 helm chart 다운받아 kube-state-metrics에 넣기</li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">values.yaml</code> 수정</p>
+
+    <p>worker 노드에 파드를 띄우기 위해 아래 nodeSelector 지정</p>
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">nodeSelector</span><span class="pi">:</span>
+ <span class="na">zone</span><span class="pi">:</span> <span class="s">private</span>
+ <span class="na">role</span><span class="pi">:</span> <span class="s">kong</span>
+</code></pre></div>    </div>
+  </li>
+  <li>ArgoCD New App 생성(kube-system)</li>
+  <li>ArgoCD sync 진행</li>
+  <li>배포 확인</li>
+</ol>
+
+<hr />
+<h3 id="metricbeat-kubernetes-daemonset-배포">Metricbeat-kubernetes DaemonSet 배포</h3>
+
+<p>kubernetes 메트릭을 모니터링하기위해 metricbeat를 DaemonSet 형태로 k8s cluster에 띄워야함</p>
+
+<ol>
+  <li>GitLab ArgoCD repo kube-system/metricbeat-kubernetes 생성</li>
+  <li><code class="language-plaintext highlighter-rouge">metricbeat-kubernetes.yaml</code> 다운로드
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 현재 ELK 버전 7.12.1이므로 버전을 맞춘다.</span>
+curl <span class="nt">-L</span> <span class="nt">-O</span>    https://raw.githubusercontent.com/elastic/beats/7.12/deploy/kubernetes/metricbeat-kubernetes.yaml
+</code></pre></div>    </div>
+  </li>
+  <li>위에서 받은 <code class="language-plaintext highlighter-rouge">metricbeat-kubernetes.yaml</code> gitlab repo에 파일 추가</li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">values.yaml</code> 수정</p>
+
+    <p>elastic search 호스트 지정</p>
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">ELASTICSEARCH_HOST</span>
+   <span class="na">value</span><span class="pi">:</span> <span class="s">elasticsearch</span>
+ <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">ELASTICSEARCH_PORT</span>
+   <span class="na">value</span><span class="pi">:</span> <span class="s2">"</span><span class="s">9200"</span>
+ <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">ELASTICSEARCH_USERNAME</span>
+   <span class="na">value</span><span class="pi">:</span> <span class="s">elastic</span>
+ <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">ELASTICSEARCH_PASSWORD</span>
+   <span class="na">value</span><span class="pi">:</span> <span class="s">changeme</span>
+</code></pre></div>    </div>
+  </li>
+  <li>ArgoCD sync 진행</li>
+  <li>배포 확인</li>
+</ol>
+
+<hr />
+<h3 id="kibana-대시보드-확인">Kibana 대시보드 확인</h3>
+
+<p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-06/kubernetes-metricbeat-1.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-06/scaled-1680-/kubernetes-metricbeat-1.png" alt="kubernetes-metricbeat-1.png" /></a></p>
+
+<hr />
+<h3 id="참고사항">참고사항</h3>
+
+<h4 id="deployment">deployment</h4>
+<p>수집 형태에 따른 metricbeat의 deployment 종류:</p>
+<ul>
+  <li>daemonset: 전체 각각의 node의 정보 수집</li>
+  <li>deployment(1개의 replication): 전체에서 단 1개만 있으면 됨</li>
+</ul>
+
+<h4 id="수집-영역">수집 영역</h4>
+<ul>
+  <li>kubelet</li>
+  <li>kube-state-metrics</li>
+  <li>apiserver</li>
+  <li>controller-manager</li>
+  <li>scheduler</li>
+  <li>proxy</li>
+</ul>
+
+<h4 id="apiserver">apiserver</h4>
+<p>ssl(https) or toklen 인증 필요.</p>
+
+<p><code class="language-plaintext highlighter-rouge">/metrics</code> API 서비스에 접근을 위한 아래의 permission을 ClusterRole에 추가 필요할 수도 있음:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rules:
+- nonResourceURLs:
+  - /metrics
+  verbs:
+  - get
+</code></pre></div></div>
+
+<h4 id="proxy">proxy</h4>
+<p>각각 모든 node에 접근 필요. =&gt; Metricbeat DaemonSet 으로 배포.</p>
+
+<h4 id="scheduler-and-controllermanager">scheduler and controllermanager</h4>
+<p>kubernetes의 <code class="language-plaintext highlighter-rouge">controller-manager</code>와 <code class="language-plaintext highlighter-rouge">scheduler</code>에 access 필요.</p>
+
+<p>오직 master node에만 배포, service로 노출 안시키나 아래 2가지 방식 가능:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Kubernetes Service</code> 생성(kube-controller-manager, kube-scheduler) 후 이 서비스들로부터 정보를 가져오는 Metricbeat Deployment 로 배포</li>
+  <li>Metdicbeat DaemonSet의 기능 중 하나인 <code class="language-plaintext highlighter-rouge">Autodiscovery</code>를 사용 -&gt; ??</li>
+</ul>
+
+<h4 id="kubernetes-rbac">Kubernetes RBAC</h4>
+<p>Metricbeat은 metric 정보들을 가져오기 위해 권한 필요할 수 있음.</p>
+
+<h4 id="kubernetes-module-호환성">Kubernetes module 호환성</h4>
+<p>Kubernetes 1.13.x, 1.14.x, 1.15.x, 1.16.x, 1.17.x, and 1.18.x</p>
+<ul>
+  <li>KT 제공 OKD 3.11 은 k8s 1.8 기반이기 때문에 적용 불가능 할수도…</li>
+</ul>
+
+<h4 id="dashboard">Dashboard</h4>
+<p>kubernetes module은 <code class="language-plaintext highlighter-rouge">apiserver</code>, <code class="language-plaintext highlighter-rouge">controllermanager</code>, <code class="language-plaintext highlighter-rouge">shceduler</code>, <code class="language-plaintext highlighter-rouge">proxy</code>를 위한 기본 dashboard를 포함.</p>
+
+<p>HA 적용 시 보통 평균 값을 보여주기 땜누에 주의 필요.</p>
+<ul>
+  <li>hosts 또는 service address로 필터링 처리</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">controllermanager</code>, <code class="language-plaintext highlighter-rouge">shceduler</code>, <code class="language-plaintext highlighter-rouge">proxy</code> dashbaord는 kibana 7.2.0 하위 버전과 호환성 없음.</p>
+
+<h4 id="metricsets">Metricsets</h4>
+<p>사용 가능한 Metricset들 리스트</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    apiserver
+    container
+    controllermanager
+    event
+    node
+    pod
+    proxy
+    scheduler
+    state_container
+    state_cronjob
+    state_daemonset
+    state_deployment
+    state_node
+    state_persistentvolumeclaim
+    state_pod
+    state_replicaset
+    state_resourcequota
+    state_service
+    state_statefulset
+    state_storageclass
+    system
+    volume
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li>
+    <p><a href="https://www.elastic.co/guide/en/beats/metricbeat/current/running-on-kubernetes.html">Run Metricbeat on Kubernetes</a></p>
+  </li>
+  <li><a href="https://www.elastic.co/kr/blog/kubernetes-observability-tutorial-k8s-metrics-collection-and-analysis">Kubernetes 통합 가시성 자습서: 메트릭 수집 및 분석</a></li>
+  <li><a href="https://github.com/kubernetes/kube-state-metrics#kubernetes-deployment">kube-state-metrics</a></li>
+  <li><a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-state-metrics">helm-charts/kube-state-metrics</a></li>
+</ol>
+:ET

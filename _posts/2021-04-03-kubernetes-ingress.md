@@ -4,7 +4,7 @@ title: Kubernetes Nginx Ingress 적용기
 feature-img: assets/img/titles/nginx-logo.svg
 thumbnail: assets/img/contents/ki-1.png
 author: csupreme19
-tags: [Kubernetes, Ingress, Ingress Controller, Certificate, TLS, SSL, Nginx, Security]
+tags: [Kubernetes, K8S, Ingress, Ingress Controller, Certificate, TLS, SSL, Nginx, Security]
 
 ---
 

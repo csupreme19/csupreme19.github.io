@@ -1,0 +1,182 @@
+I"Y(<h1 id="gitlab-구축하기">Gitlab 구축하기</h1>
+
+<p><img src="/assets/img/titles/gitlab-horizontal-color.png" alt="gitlab-horizontal-color.png" /></p>
+
+<p><a href="https://docs.gitlab.com/omnibus/docker/#install-gitlab-using-docker-compose">Gitlab Docker Images</a></p>
+
+<p>Docker를 활용한 Gitlab 컨테이너</p>
+
+<hr />
+<h3 id="docker-compose-설치">Docker Compose 설치</h3>
+<p>docker-compose 버전이 매번 변경 됨</p>
+
+<p>최신 버전 설치 스크립트는 <a href="https://docs.docker.com/compose/install/">docker-compose home</a> 에서 확인</p>
+
+<ol>
+  <li>
+    <p>Docker compose stable 설치</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-L</span> <span class="s2">"https://github.com/docker/compose/releases/download/1.28.2/docker-compose-</span><span class="si">$(</span><span class="nb">uname</span> <span class="nt">-s</span><span class="si">)</span><span class="s2">-</span><span class="si">$(</span><span class="nb">uname</span> <span class="nt">-m</span><span class="si">)</span><span class="s2">"</span> <span class="nt">-o</span> /usr/local/bin/docker-compose
+</code></pre></div>    </div>
+
+    <p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-02/gitlab1.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-02/scaled-1680-/gitlab1.png" alt="gitlab1.png" /></a></p>
+  </li>
+  <li>
+    <p>바이너리 실행 권한 설정 및 시스템 바이너리 등록</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">chmod</span> +x /usr/local/bin/docker-compose
+<span class="nv">$ </span><span class="nb">ln</span> <span class="nt">-s</span> /usr/local/bin/docker-compose /usr/bin/docker-compose
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>설치 및 버전 확인</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker-compose <span class="nt">--version</span>
+</code></pre></div>    </div>
+
+    <p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-02/gitlab2.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-02/scaled-1680-/gitlab2.png" alt="gitlab2.png" /></a></p>
+  </li>
+</ol>
+
+<hr />
+<h3 id="gitlab-설치-docker-compose">Gitlab 설치 (Docker-Compose)</h3>
+
+<ol>
+  <li>
+    <p>GitLab working directory 생성</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> ~/gitlab-ce
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>docker-compose.yml 작성</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim ~/gitlab-ce/docker-compose.yml
+</code></pre></div>    </div>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3'</span>
+   
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">gitlab</span><span class="pi">:</span>
+    <span class="c1"># gitlab 백업 후 복원 시 gitlab의 버전이 일치해야 하기 때문에 최신 버전 대신 특정 버전을 사용</span>
+    <span class="c1"># image: 'gitlab/gitlab-ce:latest'</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s1">'</span><span class="s">gitlab/gitlab-ce:13.8.4-ce.0'</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">always</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s1">'</span><span class="s">gitlab-ce'</span>
+    <span class="na">hostname</span><span class="pi">:</span> <span class="s1">'</span><span class="s">gitlab.ccpinfra.xyz'</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">TZ</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Asia/Seoul"</span>
+      <span class="na">GITLAB_OMNIBUS_CONFIG</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">external_url 'http://gitlab.ccpinfra.xyz:20780'</span>
+      <span class="s">gitlab_rails['time_zone'] = 'Asia/Seoul'</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s1">'</span><span class="s">20780:20780'</span>
+      <span class="pi">-</span> <span class="s1">'</span><span class="s">20443:443'</span>
+      <span class="pi">-</span> <span class="s1">'</span><span class="s">20722:22'</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s1">'</span><span class="s">/data/docker_volumes/gitlab/config:/etc/gitlab'</span>
+      <span class="pi">-</span> <span class="s1">'</span><span class="s">/data/docker_volumes/gitlab/logs:/var/log/gitlab'</span>
+      <span class="pi">-</span> <span class="s1">'</span><span class="s">/data/docker_volumes/gitlab/data:/var/opt/gitlab'</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<blockquote>
+  <p>현재 gitlab wiki의 file attach API 버그로 접속한 포트가 아닌 설정값의 external_url을 host로 물고 가고 있어서 도커 포트 매핑을 동일한 포트로 설정</p>
+</blockquote>
+
+<p><strong>New dev(10.x)</strong></p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1"># gitlab</span>
+  <span class="na">gitlab</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s1">'</span><span class="s">gitlab/gitlab-ce:13.8.4-ce.0'</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">always</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s1">'</span><span class="s">gitlab'</span>
+    <span class="na">hostname</span><span class="pi">:</span> <span class="s1">'</span><span class="s">211.184.190.64'</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">TZ</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Asia/Seoul"</span>
+      <span class="na">GITLAB_OMNIBUS_CONFIG</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="s">gitlab_rails['time_zone'] = 'Asia/Seoul'</span>
+        <span class="s">gitlab_rails['backup_keep_time'] = 2592000</span>
+        <span class="s">gitlab_rails['gitlab_shell_ssh_port'] = 30722</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s1">'</span><span class="s">30780:80'</span>
+      <span class="pi">-</span> <span class="s1">'</span><span class="s">30722:22'</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">/data/gitlab/config:/etc/gitlab</span>
+      <span class="pi">-</span> <span class="s">/data/gitlab/logs:/var/log/gitlab</span>
+      <span class="pi">-</span> <span class="s">/data/gitlab/data:/var/opt/gitlab</span>
+</code></pre></div></div>
+
+<p>포트의 경우 사용하고자 하는 포트 매핑 (도커 포트:GitLab 포트)</p>
+
+<ol>
+  <li>
+    <p>Docker-compose 실행</p>
+
+    <p><strong>실행</strong></p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~/gitlab-ce
+docker-compose up <span class="nt">-d</span>
+</code></pre></div>    </div>
+
+    <p><strong>로그 확인</strong></p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose logs <span class="nt">-f</span>
+</code></pre></div>    </div>
+
+    <p><strong>컨테이너 목록 확인</strong></p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose ps <span class="nt">-a</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>GitLab Web 접속 확인</p>
+
+    <p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-02/gitlab3.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-02/scaled-1680-/gitlab3.png" alt="gitlab3.png" /></a></p>
+  </li>
+  <li>
+    <p>초기 접속시 root 계정 비밀번호 설정</p>
+  </li>
+</ol>
+
+<hr />
+<h3 id="gitlab-설정">GitLab 설정</h3>
+
+<ol>
+  <li>
+    <p>사용자 계정 등록 비활성화</p>
+
+    <p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-02/gitlab4.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-02/scaled-1680-/gitlab4.png" alt="gitlab4.png" /></a></p>
+
+    <p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-02/gitlab5.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-02/scaled-1680-/gitlab5.png" alt="gitlab5.png" /></a></p>
+
+    <p>Admin Area - Settings - General - Sign-up restrictions에서</p>
+
+    <p>Sign-up enabled 체크 해제</p>
+  </li>
+  <li>
+    <p>저장소 Https Clone 비활성화</p>
+
+    <p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-02/gitlab6.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-02/scaled-1680-/gitlab6.png" alt="gitlab6.png" /></a></p>
+
+    <p>Admin Area - Settings - General - Visibility and access controls</p>
+
+    <p>Enabled Git access protocols - Only SSH로 변경 - Save Changes</p>
+  </li>
+</ol>
+
+<blockquote>
+  <p>Application level에서 막는 것으로 Https 프로토콜 및 포트 접근을 막는 것은 아님</p>
+</blockquote>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Using RBAC Authorization</a></li>
+  <li><a href="https://kubernetes.io/docs/reference/access-authn-authz/node/">Using Node Authorization</a></li>
+  <li><a href="https://kubernetes.io/docs/reference/access-authn-authz/node/">Using ABAC Authorization</a></li>
+  <li><a href="https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/">Certified Kubernetes Administrator(CKA) with Practice Tests</a></li>
+</ol>
+:ET

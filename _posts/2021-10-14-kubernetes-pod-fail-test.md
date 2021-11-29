@@ -4,7 +4,7 @@ title: Kubernetes Pod 재시작 장애 확인하기
 feature-img: assets/img/titles/kubernetes-logo.png
 thumbnail: assets/img/titles/kubernetes-logo.png
 author: csupreme19
-tags: [Kubernetes, Pod, Fail]
+tags: [Kubernetes, K8S, Pod, Fail]
 
 ---
 

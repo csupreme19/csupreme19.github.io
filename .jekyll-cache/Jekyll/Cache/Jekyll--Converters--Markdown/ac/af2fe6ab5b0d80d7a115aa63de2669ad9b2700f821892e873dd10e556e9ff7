@@ -1,0 +1,217 @@
+I"oE<h3 id="개요">개요</h3>
+
+<p><a href="https://www.elastic.co/guide/en/beats/metricbeat/7.x/monitoring-metricbeat-collection.html">https://www.elastic.co/guide/en/beats/metricbeat/7.x/monitoring-metricbeat-collection.html</a></p>
+
+<p>Metricbeat를 사용하여 ELS(Elastic Stack) 모니터링 구축</p>
+
+<p>기존 Legacy 수집 방식과 Metricbeat 수집 방식이 있으나 7.x 버전에서는 Metricbeat를 사용하여 모니터링하도록 가이드하고 있다.</p>
+
+<p>아래 5가지 항목을 모니터링한다.</p>
+
+<ol>
+  <li>Elasticsearch</li>
+  <li>Logstash</li>
+  <li>Kibana</li>
+  <li>Beats</li>
+  <li>APM</li>
+</ol>
+
+<p>기존 Metricbeat로 수집되는 메트릭 정보들은 <code class="language-plaintext highlighter-rouge">metricbeat-*</code> 인덱스에 수집이 되지만 <code class="language-plaintext highlighter-rouge">xpack.enabled</code> 옵션으로 xpack 기능 활성화시 별도의 monitoring cluster로 수집하며 Kibana의 Stack Monitoring 메뉴에서 확인할 수 있다.</p>
+
+<hr />
+<h3 id="metricbeat-설치">Metricbeat 설치</h3>
+
+<p><a href="https://bookstack.ccpinfra.xyz:23443/books/elk/page/metricbeat">Metricbeat 설치 및 설정</a> 참고</p>
+
+<hr />
+<h3 id="metricbeat-설정">Metricbeat 설정</h3>
+<p><code class="language-plaintext highlighter-rouge">metricbeat.yml</code> 수정</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">setup.kibana</span><span class="pi">:</span>
+  <span class="na">host</span><span class="pi">:</span> <span class="s2">"</span><span class="s">http://10.213.196.6:5601"</span>
+  
+  <span class="c1"># ssl 인증서 생성 시 https 사용</span>
+  <span class="na">host</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://172.25.0.166:5601"</span>
+
+  <span class="c1"># ssl 인증서 적용 시 추가</span>
+  <span class="na">ssl</span><span class="pi">:</span>
+    <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">certificate_authorities</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">/etc/logstash/certs/ca.crt"</span><span class="pi">]</span>
+    <span class="na">certificate</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/etc/logstash/certs/logstash-1.crt"</span>
+    <span class="na">key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/etc/logstash/certs/logstash-1.key"</span>
+
+<span class="na">output.elasticsearch</span><span class="pi">:</span>
+  <span class="na">hosts</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">172.25.0.92:9200"</span><span class="pi">,</span><span class="s2">"</span><span class="s">172.25.0.159:9200"</span><span class="pi">,</span><span class="s2">"</span><span class="s">172.25.0.121:9200"</span><span class="pi">]</span>
+
+  <span class="c1"># ssl 인증서 적용 시 https, 미 적용 시 http 사용</span>
+  <span class="na">protocol</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https"</span>
+
+  <span class="na">username</span><span class="pi">:</span> <span class="s2">"</span><span class="s">elastic"</span>
+  <span class="na">password</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{암호}"</span>
+
+  <span class="c1"># ssl 인증서 적용시</span>
+  <span class="na">ssl</span><span class="pi">:</span>
+    <span class="na">certificate_authorities</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">/etc/logstash/certs/ca.crt"</span><span class="pi">]</span>
+    <span class="na">certificate</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/etc/logstash/certs/logstash-1.crt"</span>
+    <span class="na">key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/etc/logstash/certs/logstash-1.key"</span>
+</code></pre></div></div>
+
+<p>elastic stack monitoring 활성화시 시스템 정보를 수집해도 UI에 보이지 않으므로 비활성화한다.</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>metricbeat modules disable system
+</code></pre></div></div>
+
+<hr />
+<h3 id="elasticsearch-monitoring">Elasticsearch Monitoring</h3>
+
+<h4 id="elasticsearch-설정">Elasticsearch 설정</h4>
+<p><code class="language-plaintext highlighter-rouge">elasticsearch.yml</code> 수정</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">xpack.monitoring.collection.enabled</span><span class="pi">:</span> <span class="no">true</span><span class="err">	</span><span class="s"># xpack 모니터링(metricbeat 사용)</span>
+<span class="na">monitoring.enabled</span><span class="pi">:</span> <span class="no">false</span><span class="err">					</span><span class="s"># legacy 모니터링(metricbeat 미사용)</span>
+</code></pre></div></div>
+<p>기존 legacy 방식 모니터링은 false, xpack 모니터링은 true로 설정</p>
+
+<h4 id="elasticsearch-xpack-module-활성화">elasticsearch-xpack module 활성화</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>metricbeat modules disable elasticsearch
+<span class="nv">$ </span>metricbeat modules <span class="nb">enable </span>elasticsearch-xpack
+</code></pre></div></div>
+<p>xpack과 기본 모듈중 하나만 사용해야 하기 때문에 기존의 모듈은 disable</p>
+
+<h4 id="elasticsearch-xpack-module-설정">elasticsearch-xpack module 설정</h4>
+
+<p><code class="language-plaintext highlighter-rouge">modules.d/elasticsearch-xpack.yml</code> 수정</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">module</span><span class="pi">:</span> <span class="s">elasticsearch</span>
+  <span class="na">xpack.enabled</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">period</span><span class="pi">:</span> <span class="s">10s</span>
+  <span class="na">hosts</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">http://localhost:9200"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">http://localhost:9201"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">http://localhost:9202"</span><span class="pi">]</span>
+  
+  <span class="c1"># elasticsearch 모니터링용 user(Optional)</span>
+  <span class="c1">#username: "user"</span>
+  <span class="c1">#password: "secret"</span>
+</code></pre></div></div>
+
+<h4 id="elasticsearch-모니터링용-사용자-생성optional">elasticsearch 모니터링용 사용자 생성(Optional)</h4>
+<p><code class="language-plaintext highlighter-rouge">remote_monitoring_collector</code> 롤을 가진 사용자를 생성. 생성한 사용자 id는 <code class="language-plaintext highlighter-rouge">elasticsearch_monitoring</code></p>
+
+<h4 id="metricbeat-구동-및-kibana에서-확인">Metricbeat 구동 및 kibana에서 확인</h4>
+<p>metricbeat 서비스 구동</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl start metricbeat.service
+</code></pre></div></div>
+
+<p>kibana Stack Monitoring 메뉴에서 <code class="language-plaintext highlighter-rouge">Metricbeat monitoring</code> 상태임을 확인
+<a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-08/metricbeat-elasticsearch-monitoring.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-08/scaled-1680-/metricbeat-elasticsearch-monitoring.png" alt="metricbeat-elasticsearch-monitoring.png" /></a></p>
+
+<hr />
+<h3 id="logstash-monitoring">Logstash Monitoring</h3>
+
+<h4 id="기본-모니터링-설정-끄기">기본 모니터링 설정 끄기</h4>
+<p>kibana에서 stack monitoring 확인 시 Self monitoring으로 표기될 시 기본 모니터링 옵션을 끈다.
+<a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-04/image-1617961072947.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-04/scaled-1680-/image-1617961072947.png" alt="" /></a></p>
+
+<p><code class="language-plaintext highlighter-rouge">logstash.yml</code>에 추가</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>monitoring.enabled: <span class="nb">false</span>
+</code></pre></div></div>
+
+<h4 id="logstash-xpack-모듈-활성화">logstash-xpack 모듈 활성화</h4>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>metricbeat modules disable logstash
+<span class="nv">$ </span>metricbeat modules <span class="nb">enable </span>logstash-xpack
+</code></pre></div></div>
+<p>xpack과 기본 모듈중 하나만 사용해야 하기 때문에 기존의 모듈은 disable</p>
+
+<h4 id="logstash-xpack-모듈-설정">logstash-xpack 모듈 설정</h4>
+<p><a href="https://www.elastic.co/guide/en/logstash/7.12/monitoring-with-metricbeat.html">https://www.elastic.co/guide/en/logstash/7.12/monitoring-with-metricbeat.html</a></p>
+
+<p><code class="language-plaintext highlighter-rouge">modules.d/logstash-xpack.yml</code> 수정</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">module</span><span class="pi">:</span> <span class="s">logstash</span>
+  <span class="na">metricsets</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">node"</span><span class="pi">,</span><span class="s2">"</span><span class="s">node_stats"</span><span class="pi">]</span>
+  <span class="na">xpack.enabled</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="c1"># hosts 값에는 metric 수집 대상을 추가. </span>
+  <span class="na">hosts</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">http://172.25.0.66:9600"</span><span class="pi">]</span>
+  <span class="na">period</span><span class="pi">:</span> <span class="s">10s</span>
+  <span class="c1"># logstash 모니터링용 사용자(Optional)</span>
+  <span class="na">username</span><span class="pi">:</span> <span class="s2">"</span><span class="s">logstash_monitoring"</span>
+  <span class="na">password</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Infra1111"</span>
+</code></pre></div></div>
+
+<h4 id="logstash-모니터링용-user-생성optional">logstash 모니터링용 user 생성(Optional)</h4>
+<p>kibana web ui 에서 아래 화면과 같이 모니터링용 user를 생성
+<a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-06/image-1624616364993.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-06/scaled-1680-/image-1624616364993.png" alt="" /></a></p>
+
+<p>roles에는 <code class="language-plaintext highlighter-rouge">remote_monitoring_collector</code> 를 선택</p>
+
+<h4 id="metricbeat-구동-및-kibana에서-확인-1">Metricbeat 구동 및 kibana에서 확인</h4>
+
+<p>metricbeat 서비스 구동</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl start metricbeat.service
+</code></pre></div></div>
+
+<p>kibana Stack Monitoring 메뉴에서 <code class="language-plaintext highlighter-rouge">Metricbeat monitoring</code> 상태임을 확인
+<a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-04/image-1617963211011.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-04/scaled-1680-/image-1617963211011.png" alt="" /></a></p>
+
+<hr />
+<h3 id="kibana-monitoring">Kibana Monitoring</h3>
+
+<h4 id="기본-모니터링-설정-끄기-1">기본 모니터링 설정 끄기</h4>
+
+<p>kibana에서 stack monitoring 확인 시 <code class="language-plaintext highlighter-rouge">Self monitoring</code>으로 표기될 시 기본 모니터링 옵션을 끈다.
+<a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-04/image-1617945436022.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-04/scaled-1680-/image-1617945436022.png" alt="" /></a></p>
+
+<p><code class="language-plaintext highlighter-rouge">kibana.yml</code>에 추가</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>monitoring.kibana.collection.enabled: <span class="nb">false</span>
+</code></pre></div></div>
+<p>기존 legacy 방식으로 모니터링 데이터를 수집하는 <code class="language-plaintext highlighter-rouge">monitoring.kibana.collection.enabled</code> 설정 값을 false로 변경.</p>
+
+<h4 id="kibana-xpack-module-활성화">kibana-xpack module 활성화</h4>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>metricbeat modules disable kibana
+<span class="nv">$ </span>metricbeat modules <span class="nb">enable </span>kibana-xpack
+</code></pre></div></div>
+<p>xpack과 기본 모듈중 하나만 사용해야 하기 때문에 기존의 모듈은 disable</p>
+
+<h4 id="kibana-xpack-module-설정">kibana-xpack module 설정</h4>
+<p><a href="https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-module-kibana.html">https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-module-kibana.html</a></p>
+
+<p><code class="language-plaintext highlighter-rouge">modules.d/kibana-xpack.yml</code> 수정</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">module</span><span class="pi">:</span> <span class="s">kibana</span>
+  <span class="c1"># 두 개의 metricset 설정 가능.</span>
+  <span class="na">metricsets</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">stats"</span><span class="pi">,</span><span class="s2">"</span><span class="s">status"</span><span class="pi">]</span>
+  <span class="c1"># metricbeat로 모니터링 시 아래 옵션을 true로 설정해야 함</span>
+  <span class="na">xpack.enabled</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">period</span><span class="pi">:</span> <span class="s">10s</span>
+  <span class="c1"># kibana 서버 url</span>
+  <span class="na">hosts</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">http://10.213.196.6:5601"</span><span class="pi">]</span>
+  <span class="na">scopse</span><span class="pi">:</span> <span class="s">node</span>
+  <span class="c1"># kibana 모니터링용 user(Optional)</span>
+  <span class="na">username</span><span class="pi">:</span> <span class="s2">"</span><span class="s">kibana_monitoring"</span>
+  <span class="na">password</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Infra1111"</span>
+
+  <span class="c1"># ssl 인증서 생성하여 적용 시 아래 옵션 적용</span>
+  <span class="na">ssl.enabled</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">ssl.certificate_authorities</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">/etc/kibana/certs/ca.crt"</span><span class="pi">]</span>
+  <span class="na">ssl.certificate</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/etc/kibana/certs/rmakers-kibana.crt"</span>
+  <span class="na">ssl.key</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/etc/kibana/certs/rmakers-kibana.key"</span>
+  <span class="na">ssl.verification_mode</span><span class="pi">:</span> <span class="s2">"</span><span class="s">full"</span>
+</code></pre></div></div>
+
+<h4 id="kibana-모니터링용-사용자-생성optional">kibana 모니터링용 사용자 생성(Optional)</h4>
+<p><code class="language-plaintext highlighter-rouge">remote_monitoring_collector</code> 롤을 가진 사용자를 생성. 생성한 사용자 id는 <code class="language-plaintext highlighter-rouge">kibana_monitoring</code></p>
+
+<h4 id="metricbeat-구동-및-kibana에서-확인-2">Metricbeat 구동 및 kibana에서 확인</h4>
+<p>metricbeat 서비스 구동</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl start metricbeat.service
+</code></pre></div></div>
+
+<p>kibana Stack Monitoring 메뉴에서 <code class="language-plaintext highlighter-rouge">Metricbeat monitoring</code> 상태임을 확인
+<a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-04/image-1617948604221.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-04/scaled-1680-/image-1617948604221.png" alt="" /></a></p>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li>
+    <p><a href="https://www.elastic.co/guide/en/beats/metricbeat/current/running-on-kubernetes.html">Run Metricbeat on Kubernetes</a></p>
+  </li>
+  <li><a href="https://www.elastic.co/kr/blog/kubernetes-observability-tutorial-k8s-metrics-collection-and-analysis">Kubernetes 통합 가시성 자습서: 메트릭 수집 및 분석</a></li>
+  <li><a href="https://github.com/kubernetes/kube-state-metrics#kubernetes-deployment">kube-state-metrics</a></li>
+  <li><a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-state-metrics">helm-charts/kube-state-metrics</a></li>
+</ol>
+:ET
