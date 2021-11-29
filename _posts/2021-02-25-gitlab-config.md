@@ -1,6 +1,6 @@
 ---
 layout: post
-title: GitLab 백업 및 기타 설정
+title: GitLab 백업 및 기타 설정 그리고 트러블슈팅
 feature-img: assets/img/titles/gitlab-horizontal-color.png
 thumbnail: assets/img/contents/gc-1.png
 author: csupreme19
@@ -8,7 +8,7 @@ tags: [Gitlab, Docker, SSH, Git, Backup, Restore, SSL, TLS, SMTP, Nginx]
 
 ---
 
-# GitLab 백업 및 기타 설정
+# GitLab 백업 및 기타 설정 그리고 트러블슈팅
 
 ![gitlab-horizontal-color.png]({{ "/assets/img/titles/gitlab-horizontal-color.png"}})
 
@@ -414,6 +414,95 @@ $ cat /data/docker_volumes/gitlab/logs/nginx/gitlab_access.log
 ```
 ![gc-2.png]({{ "/assets/img/contents/gc-2.png"}})
 
+
+---
+
+## Troubleshooting
+
+### 1. SSH Connection은 성공이지만 서버에서 Connection을 닫을 때
+
+![gc-3.png]({{ "/assets/img/contents/gc-3.png"}})
+
+로그 확인
+
+```sh
+$ cat /data/docker_volumes/gitlab/logs/sshd/current
+```
+
+```sh
+2021-02-10_01:55:53.62004 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+2021-02-10_01:55:53.62005 @         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+2021-02-10_01:55:53.62005 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+2021-02-10_01:55:53.62005 Permissions 0755 for '/etc/gitlab/ssh_host_rsa_key' are too open.
+2021-02-10_01:55:53.62006 It is required that your private key files are NOT accessible by others.
+2021-02-10_01:55:53.62006 This private key will be ignored.
+2021-02-10_01:55:53.62006 key_load_private: bad permissions
+2021-02-10_01:55:53.62006 Could not load host key: /etc/gitlab/ssh_host_rsa_key
+2021-02-10_01:55:53.62007 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+2021-02-10_01:55:53.62007 @         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+2021-02-10_01:55:53.62007 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+2021-02-10_01:55:53.62007 Permissions 0755 for '/etc/gitlab/ssh_host_ecdsa_key' are too open.
+2021-02-10_01:55:53.62007 It is required that your private key files are NOT accessible by others.
+2021-02-10_01:55:53.62007 This private key will be ignored.
+2021-02-10_01:55:53.62007 key_load_private: bad permissions
+2021-02-10_01:55:53.62014 Could not load host key: /etc/gitlab/ssh_host_ecdsa_key
+2021-02-10_01:55:53.62014 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+2021-02-10_01:55:53.62015 @         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+2021-02-10_01:55:53.62015 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+2021-02-10_01:55:53.62019 Permissions 0755 for '/etc/gitlab/ssh_host_ed25519_key' are too open.
+2021-02-10_01:55:53.62019 It is required that your private key files are NOT accessible by others.
+2021-02-10_01:55:53.62019 This private key will be ignored.
+2021-02-10_01:55:53.62020 key_load_private: bad permissions
+2021-02-10_01:55:53.62020 Could not load host key: /etc/gitlab/ssh_host_ed25519_key
+
+```
+
+Private Key 파일 권한이 755로 되어 있어 SSHD에서 자체적으로 Bad Permission을 리턴
+
+
+
+#### 권한 수정
+
+```sh
+$ chmod 600 ssh_host_ecdsa_key
+$ chmod 600 ssh_host_ed25519_key
+$ chmod 600 ssh_host_rsa_key
+$ chmod 644 ssh_host_ecdsa_key.pub
+$ chmod 644 ssh_host_ed25519_key.pub
+$ chmod 644 ssh_host_rsa_key.pub
+```
+
+
+
+#### 접속 및 커밋 확인
+
+```sh
+$ ssh -T git@gitlab.yourdomain.com -p 20722
+Welcome to GitLab, @csupreme!
+```
+
+```sh
+$ git clone ssh://git@gitlab.yourdomain.com:20722/csupreme/commit-test.git
+```
+
+
+### 2. ssh 접속시 아래와 같이 Host 정보가 변경되었다고 나올 때
+
+![gc-4.png]({{ "/assets/img/contents/gc-4.png"}})
+
+기존 서버의 IP는 동일하지만 서버의 SHA256 fingerprint가 바뀐 상황
+
+ssh의 known_host에 있는 해당 서버의 RSA Host key키 부분을 삭제한 뒤 접속하면 된다.
+
+```sh
+$ vim /Users/{USERNAME}/.ssh/known_hosts
+```
+
+[gitlab.yourdomain.com]:20722 부분 삭제 후 재접속
+
+![gc-5.png]({{ "/assets/img/contents/gc-5.png"}})
+
+접속시 바뀐 호스트 키 등록 yes후 진행
 
 ---
 

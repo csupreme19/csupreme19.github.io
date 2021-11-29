@@ -61,22 +61,22 @@
     <meta property="og:type" content="website" />
     
     <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>GitLab 백업 및 기타 설정 | Seunghoon Choi</title>
+<title>GitLab 백업 및 기타 설정 그리고 트러블슈팅 | Seunghoon Choi</title>
 <meta name="generator" content="Jekyll v4.2.1" />
-<meta property="og:title" content="GitLab 백업 및 기타 설정" />
+<meta property="og:title" content="GitLab 백업 및 기타 설정 그리고 트러블슈팅" />
 <meta name="author" content="csupreme19" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="GitLab 백업 및 기타 설정" />
-<meta property="og:description" content="GitLab 백업 및 기타 설정" />
+<meta name="description" content="GitLab 백업 및 기타 설정 그리고 트러블슈팅" />
+<meta property="og:description" content="GitLab 백업 및 기타 설정 그리고 트러블슈팅" />
 <link rel="canonical" href="http://localhost:4000/2021/02/25/gitlab-config.html" />
 <meta property="og:url" content="http://localhost:4000/2021/02/25/gitlab-config.html" />
 <meta property="og:site_name" content="Seunghoon Choi" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-02-25T00:00:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="GitLab 백업 및 기타 설정" />
+<meta property="twitter:title" content="GitLab 백업 및 기타 설정 그리고 트러블슈팅" />
 <script type="application/ld+json">
-{"headline":"GitLab 백업 및 기타 설정","description":"GitLab 백업 및 기타 설정","datePublished":"2021-02-25T00:00:00+09:00","dateModified":"2021-02-25T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/02/25/gitlab-config.html"},"url":"http://localhost:4000/2021/02/25/gitlab-config.html","author":{"@type":"Person","name":"csupreme19"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"datePublished":"2021-02-25T00:00:00+09:00","description":"GitLab 백업 및 기타 설정 그리고 트러블슈팅","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/02/25/gitlab-config.html"},"url":"http://localhost:4000/2021/02/25/gitlab-config.html","author":{"@type":"Person","name":"csupreme19"},"@type":"BlogPosting","headline":"GitLab 백업 및 기타 설정 그리고 트러블슈팅","dateModified":"2021-02-25T00:00:00+09:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -84,12 +84,12 @@
     <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Seunghoon Choi" />
 
     <!-- Twitter Cards -->
-    <meta name="twitter:title" content="GitLab 백업 및 기타 설정">
-    <meta name="twitter:description" content="GitLab 백업 및 기타 설정Configuring Omnibus GitLabGitLab 백업, SSH, 메일 서버 등 설정Backup 설정Backup 플랜  백업 주기: 3일  백업 범위(기본값)          db (database)      uploads (attachmen...">
+    <meta name="twitter:title" content="GitLab 백업 및 기타 설정 그리고 트러블슈팅">
+    <meta name="twitter:description" content="GitLab 백업 및 기타 설정 그리고 트러블슈팅Configuring Omnibus GitLabGitLab 백업, SSH, 메일 서버 등 설정Backup 설정Backup 플랜  백업 주기: 3일  백업 범위(기본값)          db (database)      uploads ...">
     
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="http://localhost:4000/assets/img/contents/gc-1.png">
-    <meta name="twitter:image:alt" content="GitLab 백업 및 기타 설정">
+    <meta name="twitter:image:alt" content="GitLab 백업 및 기타 설정 그리고 트러블슈팅">
 </head>
 
   <body>
@@ -212,7 +212,7 @@
   <header id="main" style="">
     <div class="title-padder">
       
-      <h1 id="GitLab+%EB%B0%B1%EC%97%85+%EB%B0%8F+%EA%B8%B0%ED%83%80+%EC%84%A4%EC%A0%95" class="title">GitLab 백업 및 기타 설정</h1>
+      <h1 id="GitLab+%EB%B0%B1%EC%97%85+%EB%B0%8F+%EA%B8%B0%ED%83%80+%EC%84%A4%EC%A0%95+%EA%B7%B8%EB%A6%AC%EA%B3%A0+%ED%8A%B8%EB%9F%AC%EB%B8%94%EC%8A%88%ED%8C%85" class="title">GitLab 백업 및 기타 설정 그리고 트러블슈팅</h1>
       
 
 
@@ -231,7 +231,7 @@
 
   <section class="post-content">
   
-      <h1 id="gitlab-백업-및-기타-설정">GitLab 백업 및 기타 설정</h1>
+      <h1 id="gitlab-백업-및-기타-설정-그리고-트러블슈팅">GitLab 백업 및 기타 설정 그리고 트러블슈팅</h1>
 
 <p><img src="/assets/img/titles/gitlab-horizontal-color.png" alt="gitlab-horizontal-color.png" /></p>
 
@@ -617,6 +617,82 @@ git clone ssh://git@gitlab.yourdomain.com:20722/csupreme/commit-test.git
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cat</span> /data/docker_volumes/gitlab/logs/nginx/gitlab_access.log
 </code></pre></div></div>
 <p><img src="/assets/img/contents/gc-2.png" alt="gc-2.png" /></p>
+
+<hr />
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<h3 id="1-ssh-connection은-성공이지만-서버에서-connection을-닫을-때">1. SSH Connection은 성공이지만 서버에서 Connection을 닫을 때</h3>
+
+<p><img src="/assets/img/contents/gc-3.png" alt="gc-3.png" /></p>
+
+<p>로그 확인</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cat</span> /data/docker_volumes/gitlab/logs/sshd/current
+</code></pre></div></div>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2021-02-10_01:55:53.62004 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+2021-02-10_01:55:53.62005 @         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+2021-02-10_01:55:53.62005 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+2021-02-10_01:55:53.62005 Permissions 0755 <span class="k">for</span> <span class="s1">'/etc/gitlab/ssh_host_rsa_key'</span> are too open.
+2021-02-10_01:55:53.62006 It is required that your private key files are NOT accessible by others.
+2021-02-10_01:55:53.62006 This private key will be ignored.
+2021-02-10_01:55:53.62006 key_load_private: bad permissions
+2021-02-10_01:55:53.62006 Could not load host key: /etc/gitlab/ssh_host_rsa_key
+2021-02-10_01:55:53.62007 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+2021-02-10_01:55:53.62007 @         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+2021-02-10_01:55:53.62007 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+2021-02-10_01:55:53.62007 Permissions 0755 <span class="k">for</span> <span class="s1">'/etc/gitlab/ssh_host_ecdsa_key'</span> are too open.
+2021-02-10_01:55:53.62007 It is required that your private key files are NOT accessible by others.
+2021-02-10_01:55:53.62007 This private key will be ignored.
+2021-02-10_01:55:53.62007 key_load_private: bad permissions
+2021-02-10_01:55:53.62014 Could not load host key: /etc/gitlab/ssh_host_ecdsa_key
+2021-02-10_01:55:53.62014 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+2021-02-10_01:55:53.62015 @         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+2021-02-10_01:55:53.62015 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+2021-02-10_01:55:53.62019 Permissions 0755 <span class="k">for</span> <span class="s1">'/etc/gitlab/ssh_host_ed25519_key'</span> are too open.
+2021-02-10_01:55:53.62019 It is required that your private key files are NOT accessible by others.
+2021-02-10_01:55:53.62019 This private key will be ignored.
+2021-02-10_01:55:53.62020 key_load_private: bad permissions
+2021-02-10_01:55:53.62020 Could not load host key: /etc/gitlab/ssh_host_ed25519_key
+
+</code></pre></div></div>
+
+<p>Private Key 파일 권한이 755로 되어 있어 SSHD에서 자체적으로 Bad Permission을 리턴</p>
+
+<h4 id="권한-수정">권한 수정</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">chmod </span>600 ssh_host_ecdsa_key
+<span class="nv">$ </span><span class="nb">chmod </span>600 ssh_host_ed25519_key
+<span class="nv">$ </span><span class="nb">chmod </span>600 ssh_host_rsa_key
+<span class="nv">$ </span><span class="nb">chmod </span>644 ssh_host_ecdsa_key.pub
+<span class="nv">$ </span><span class="nb">chmod </span>644 ssh_host_ed25519_key.pub
+<span class="nv">$ </span><span class="nb">chmod </span>644 ssh_host_rsa_key.pub
+</code></pre></div></div>
+
+<h4 id="접속-및-커밋-확인">접속 및 커밋 확인</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ssh <span class="nt">-T</span> git@gitlab.yourdomain.com <span class="nt">-p</span> 20722
+Welcome to GitLab, @csupreme!
+</code></pre></div></div>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone ssh://git@gitlab.yourdomain.com:20722/csupreme/commit-test.git
+</code></pre></div></div>
+
+<h3 id="2-ssh-접속시-아래와-같이-host-정보가-변경되었다고-나올-때">2. ssh 접속시 아래와 같이 Host 정보가 변경되었다고 나올 때</h3>
+
+<p><img src="/assets/img/contents/gc-4.png" alt="gc-4.png" /></p>
+
+<p>기존 서버의 IP는 동일하지만 서버의 SHA256 fingerprint가 바뀐 상황</p>
+
+<p>ssh의 known_host에 있는 해당 서버의 RSA Host key키 부분을 삭제한 뒤 접속하면 된다.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>vim /Users/<span class="o">{</span>USERNAME<span class="o">}</span>/.ssh/known_hosts
+</code></pre></div></div>
+
+<p><img src="/assets/img/contents/gc-5.png" alt="gc-5.png" /></p>
+
+<p>접속시 바뀐 호스트 키 등록 yes후 진행</p>
 
 <hr />
 

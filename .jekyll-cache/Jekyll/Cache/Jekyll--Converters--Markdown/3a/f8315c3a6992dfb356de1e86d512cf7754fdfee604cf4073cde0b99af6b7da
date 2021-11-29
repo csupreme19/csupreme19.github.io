@@ -1,0 +1,494 @@
+I"�s<h1 id="kubernetes-dashboard-설치-및-외부접속-설정">Kubernetes Dashboard 설치 및 외부접속 설정</h1>
+
+<p><img src="/assets/img/titles/kubernetes-logo.png" alt="kubernetes-logo.png" /></p>
+
+<p><a href="https://github.com/kubernetes/dashboard">kubernetes dashboard</a></p>
+
+<p>Kubernetes dashboard를 구성 후 외부접속 설정</p>
+
+<hr />
+<h2 id="kubernetes-dashboard-설치">Kubernetes dashboard 설치</h2>
+
+<h3 id="using-k8s-deployment">Using K8S Deployment</h3>
+
+<h4 id="1-kubernetes-dashboard-template-가져오기">1. kubernetes dashboard template 가져오기</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.2.0/aio/deploy/recommended.yaml
+<span class="nv">$ </span><span class="nb">mv </span>recommended.yaml kubernetes-dashboard.yaml <span class="c"># 이름 변경(편의상)</span>
+</code></pre></div></div>
+
+<h4 id="2-serviceaccount-생성-및-rbac-설정">2. ServiceAccount 생성 및 RBAC 설정</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>vim kubernetes-dashboard-rbac.yaml
+</code></pre></div></div>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ServiceAccount</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">admin-user</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">kubernetes-dashboard</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">rbac.authorization.k8s.io/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ClusterRoleBinding</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">admin-user</span>
+<span class="na">roleRef</span><span class="pi">:</span>
+  <span class="na">apiGroup</span><span class="pi">:</span> <span class="s">rbac.authorization.k8s.io</span>
+  <span class="na">kind</span><span class="pi">:</span> <span class="s">ClusterRole</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">cluster-admin</span>
+<span class="na">subjects</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">kind</span><span class="pi">:</span> <span class="s">ServiceAccount</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">admin-user</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">kubernetes-dashboard</span>
+</code></pre></div></div>
+
+<p>위 설정은 현재 k8s에 미리 정의되어 있는 cluster-admin 역할을 바인딩하므로 해당 SA의 토큰으로 접속시 cluster의 모든 권한을 획득한다.</p>
+
+<p>모니터링 SA의 경우 아래와 같이 신규 Role을 생성하여 권한을 지정하여 바인딩한다.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">---</span>
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: monitoring-user
+  namespace: kubernetes-dashboard
+<span class="nt">---</span>
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: cluster-monitoring
+rules:
+- apiGroups: <span class="o">[</span><span class="s2">"*"</span><span class="o">]</span>
+  resources: <span class="o">[</span><span class="s2">"namespaces"</span>, <span class="s2">"deployments"</span>, <span class="s2">"pods"</span><span class="o">]</span>
+  verbs: <span class="o">[</span><span class="s2">"get"</span>, <span class="s2">"list"</span>, <span class="s2">"watch"</span><span class="o">]</span>
+<span class="nt">---</span>
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: monitoring-user
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-monitoring
+subjects:
+- kind: ServiceAccount
+  name: monitoring-user
+  namespace: kubernetes-dashboard
+</code></pre></div></div>
+
+<blockquote>
+  <p>네임스페이스, 디플로이먼트, 파드 3가지 리소스에 대해서 읽기 권한만 부여</p>
+</blockquote>
+
+<h4 id="3-로컬-접속-테스트">3. 로컬 접속 테스트</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 로컬 k8s 프록시 실행</span>
+<span class="nv">$ </span>kubectl proxy
+Starting to serve on 127.0.0.1:8001
+<span class="c"># 접속 확인</span>
+<span class="nv">$ </span>curl <span class="nt">-v</span> http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+</code></pre></div></div>
+
+<blockquote>
+  <p>참고: <code class="language-plaintext highlighter-rouge">kubernetes-dashboard.yaml</code>의 모든 리소스는 모두 kubernetes-dashboard라는 namespace안에 존재한다.</p>
+</blockquote>
+
+<h4 id="4-베어러-토큰-발급">4. 베어러 토큰 발급</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 토큰 발급</span>
+
+<span class="nv">$ </span>kubectl <span class="nt">-n</span> kubernetes-dashboard get secret <span class="si">$(</span>kubectl <span class="nt">-n</span> kubernetes-dashboard get sa/<span class="o">{</span>위에서 생성한 SA명<span class="o">}</span> <span class="nt">-o</span> <span class="nv">jsonpath</span><span class="o">=</span><span class="s2">"{.secrets[0].name}"</span><span class="si">)</span> <span class="nt">-o</span> go-template<span class="o">=</span><span class="s2">"{{.data.token | base64decode}}"</span> <span class="o">&gt;&gt;</span> token
+
+
+<span class="c"># 토큰 확인</span>
+<span class="nv">$ </span><span class="nb">cat </span>token
+</code></pre></div></div>
+
+<p>Kubernetes dashboard는 기본적으로 API형태로의 로컬 접근만 허용하고 있어 외부 접속 설정이 따로 필요하다.</p>
+
+<hr />
+<h2 id="kubernetes-dashboard-외부-접속-설정">Kubernetes Dashboard 외부 접속 설정</h2>
+
+<blockquote>
+  <p>참고: Kubernetes Dashboard는 기본적으로 https 연결을 하도록 설정되어 있으며 로컬에서의 접근만 허용한다</p>
+</blockquote>
+
+<p>Kubernetes를 외부에 노출시키는 방법은 크게 4가지가 있다.</p>
+
+<h4 id="1-proxy-방식">1. Proxy 방식</h4>
+
+<h4 id="2-nodeport-방식">2. NodePort 방식</h4>
+
+<h4 id="3-api-server-방식">3. API Server 방식</h4>
+
+<h4 id="4-ingress-방식">4. Ingress 방식</h4>
+
+<p>본 문서에서는 4번 Ingress 방식을 사용한다.</p>
+
+<h3 id="1-proxy-방식-1">1. Proxy 방식</h3>
+
+<blockquote>
+  <p>kubectl proxy를 이용하여 포트와 주소를 지정한 후 Host 머신에 띄우는 방식</p>
+</blockquote>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl proxy <span class="nt">--port</span><span class="o">=</span>9090 <span class="nt">--address</span><span class="o">=</span>10.109.190.106 <span class="nt">--accept-hosts</span><span class="o">=</span><span class="s1">'^*$'</span>
+
+<span class="nv">$ </span>curl <span class="nt">-k</span> <span class="nt">-v</span> http://10.109.190.106:9090/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
+</code></pre></div></div>
+
+<p>Host가 외부에 노출되어 있는 상황이라면 해당 IP를 이용하여 외부에서도 접근이 가능하다.</p>
+
+<h4 id="단점">단점</h4>
+
+<ul>
+  <li>Host가 외부와 직접 연결되는 환경에서만 사용할 수 있다.</li>
+  <li>대시보드가 localhost에서 띄워져야만 로그인 기능을 사용할 수 있다.</li>
+  <li>외부에서 무차별 접속이 가능하며 모든 권한을 갖는다.</li>
+  <li>방화벽 등 보안 설정이 추가로 필요하다.</li>
+</ul>
+
+<h3 id="2-nodeport-방식-1">2. NodePort 방식</h3>
+
+<blockquote>
+  <p>NodePort 방식의 서비스를 사용하여 포트를 직접 외부에 노출시키는 방식</p>
+</blockquote>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>vim kubernetes-dashboard.yaml
+</code></pre></div></div>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nn">---</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Service</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">k8s-app</span><span class="pi">:</span> <span class="s">kubernetes-dashboard</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">kubernetes-dashboard</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">kubernetes-dashboard</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">NodePort</span>
+  <span class="na">ports</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">port</span><span class="pi">:</span> <span class="m">9090</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">9090</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">k8s-app</span><span class="pi">:</span> <span class="s">kubernetes-dashboard</span>
+
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<p>Service type을 NodePort로 변경</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl get svc <span class="nt">-n</span> kubernetes-dashboard
+kubernetes-dashboard	NodePort	10.109.190.106	&lt;none&gt;	443:31384/TCP	28s
+
+<span class="c"># master ip 확인</span>
+<span class="nv">$ </span>kubectl cluster-info
+</code></pre></div></div>
+
+<p>NodePort 설정 확인</p>
+
+<p>31384 포트로 외부에 오픈되어 있는 것을 확인할 수 있다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">https://master-ip:31384</code>로 접속 확인</p>
+
+<h4 id="단점-1">단점</h4>
+
+<ul>
+  <li>Host가 외부와 직접 연결되는 환경에서만 사용할 수 있다.</li>
+  <li>대시보드는 https 연결을 기본으로 하므로 인증서가 없어 접속 불가</li>
+</ul>
+
+<h3 id="3-api-server-방식-1">3. API Server 방식</h3>
+
+<blockquote>
+  <p>위의 Proxy 방식과 비슷하나 API 서버가 외부에 노출되어 있어 API 서버에 직접 접속하는 방식</p>
+</blockquote>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-k</span> <span class="nt">-v</span> https://&lt;master-ip&gt;:&lt;apiserver-port&gt;/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+</code></pre></div></div>
+
+<p>이 경우 kubernetes dashboard 인증서를 브라우저 자체에 따로 추가해주어야 하는 추가 작업이 존재한다. (본 문서에서는 다루지 않는다.)</p>
+
+<p>게다가 kube-apiserver를 외부에 직접 노출하는것은 권장하지 않는다.</p>
+
+<h4 id="단점-2">단점</h4>
+
+<ul>
+  <li>Host가 외부와 직접 연결되는 환경에서만 사용할 수 있다.</li>
+  <li>Kubernetes 관리자가 아닌 사용자가 직접 브라우저에 인증서를 설치하는 과정이 필요하다.</li>
+  <li>Kubernetes API Server를 외부와 직접 노출하는 것은 바람직하지 않다.</li>
+</ul>
+
+<h3 id="4-ingress-방식-1">4. Ingress 방식</h3>
+
+<blockquote>
+  <p>Kubernetes service를 외부와 연결시켜주는 Ingress를 사용하는 방식</p>
+</blockquote>
+
+<h4 id="선행사항">선행사항</h4>
+
+<ul>
+  <li>Ingress Controller 설치</li>
+  <li>도메인 연결 및 SSL 인증서 발급</li>
+</ul>
+
+<p>kubernetes-dashboard는 https 요청을 강제하지만 외부에서 Ingress Controller로 들어오는 부분이</p>
+
+<p>TLS 인증 처리가 되어 있으므로 kubernetes 내부에서 동작하는 dashboard 서비스 및 pod는 http를 사용 가능하다.</p>
+
+<h4 id="1-kubernetes-dashboardyaml-수정">1. <code class="language-plaintext highlighter-rouge">kubernetes-dashboard.yaml</code> 수정</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>vim kubernetes-dashboard.yaml
+</code></pre></div></div>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nn">...</span>
+<span class="nn">---</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Service</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">k8s-app</span><span class="pi">:</span> <span class="s">kubernetes-dashboard</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">kubernetes-dashboard</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">kubernetes-dashboard</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">ports</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">port</span><span class="pi">:</span> <span class="s">9090</span><span class="err">			</span><span class="s"># 포트 수정</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="s">9090</span><span class="err">		</span><span class="s"># 포트 수정</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">k8s-app</span><span class="pi">:</span> <span class="s">kubernetes-dashboard</span>
+<span class="nn">---</span>
+<span class="nn">...</span>
+<span class="nn">---</span>
+
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Deployment</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">apps/v1</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="s">...</span>
+  <span class="s">spec</span><span class="err">:</span>
+      <span class="na">containers</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">kubernetes-dashboard</span>
+          <span class="na">image</span><span class="pi">:</span> <span class="s">kubernetesui/dashboard:v2.2.0</span>
+          <span class="na">imagePullPolicy</span><span class="pi">:</span> <span class="s">Always</span>
+          <span class="na">ports</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">9090</span> <span class="c1"># 포트 수정</span>
+              <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+          <span class="na">args</span><span class="pi">:</span>
+            <span class="c1">#- --auto-generate-certificates 주석 처리</span>
+            <span class="pi">-</span> <span class="s">--namespace=kubernetes-dashboard</span>
+            <span class="pi">-</span> <span class="s">--insecure-bind-address=0.0.0.0</span> <span class="c1"># 추가</span>
+            <span class="pi">-</span> <span class="s">--enable-insecure-login</span> <span class="c1"># 추가</span>
+            <span class="pi">-</span> <span class="s">--token-ttl=10800</span><span class="err">	</span><span class="s"># 토큰 세션 유지시간(선택)</span>
+            <span class="c1"># Uncomment the following line to manually specify Kubernetes API server Host</span>
+            <span class="c1"># If not specified, Dashboard will attempt to auto discover the API server and connect</span>
+            <span class="c1"># to it. Uncomment only if the default does not work.</span>
+            <span class="c1"># - --apiserver-host=http://my-address:port</span>
+            <span class="s">...</span>
+          <span class="na">livenessProbe</span><span class="pi">:</span>
+            <span class="na">httpGet</span><span class="pi">:</span>
+              <span class="na">scheme</span><span class="pi">:</span> <span class="s">HTTP</span> <span class="c1"># HTTP로 변경</span>
+              <span class="na">path</span><span class="pi">:</span> <span class="s">/</span>
+              <span class="na">port</span><span class="pi">:</span> <span class="m">9090</span> <span class="c1"># 포트 수정</span>
+            <span class="na">initialDelaySeconds</span><span class="pi">:</span> <span class="m">30</span>
+            <span class="na">timeoutSeconds</span><span class="pi">:</span> <span class="m">30</span>
+<span class="nn">...</span>
+
+</code></pre></div></div>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl apply <span class="nt">-f</span> kubernetes-dashboard.yaml
+</code></pre></div></div>
+
+<h5 id="참고">참고</h5>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">--namespace=kubernetes-dashboard</code>: namespace 설정</li>
+  <li><code class="language-plaintext highlighter-rouge">--insecure-bind-address=0.0.0.0</code>: http 모든 IP 접속 허용</li>
+  <li><code class="language-plaintext highlighter-rouge">--enbale-insecure-login</code>: http 접속 허용</li>
+</ul>
+
+<h4 id="2-kubernetes-dashboard-ingressyaml-생성">2. <code class="language-plaintext highlighter-rouge">kubernetes-dashboard-ingress.yaml</code> 생성</h4>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">networking.k8s.io/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Ingress</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">kubernetes-dashboard</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">kubernetes-dashboard</span>
+  <span class="na">annotations</span><span class="pi">:</span>
+    <span class="na">kubernetes.io/ingress.class</span><span class="pi">:</span> <span class="s2">"</span><span class="s">nginx"</span> <span class="c1"># kong ingress의 경우 kong</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">rules</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">http</span><span class="pi">:</span>
+      <span class="na">paths</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">pathType</span><span class="pi">:</span> <span class="s">Prefix</span>
+        <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/"</span>
+        <span class="na">backend</span><span class="pi">:</span>
+          <span class="na">service</span><span class="pi">:</span>
+            <span class="na">name</span><span class="pi">:</span> <span class="s">kubernetes-dashboard</span>
+            <span class="na">port</span><span class="pi">:</span>
+              <span class="na">number</span><span class="pi">:</span> <span class="m">9090</span>
+
+</code></pre></div></div>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl apply <span class="nt">-f</span> kubernetes-dashboard-ingress.yaml
+</code></pre></div></div>
+
+<h4 id="3-접속-확인">3. 접속 확인</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Ingress Controller 외부 노출 포트 확인</span>
+<span class="nv">$ </span>kubectl get svc <span class="nt">-n</span> ingress-ngninx
+ingress-nginx-controller             NodePort    10.104.33.237   &lt;none&gt;        80:31623/TCP,443:32452/TCP   5h
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">http://external-ip:31623/</code> 접속
+(방화벽 포트포워딩 된 경우 해당 포트로 접속)</p>
+
+<p><img src="/assets/img/contents/kd-1.png" alt="kd-1.png" /></p>
+
+<p>http를 이용하여 접속할시 로그인이 비활성화 된다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">https://external-ip:32452/</code> 접속
+(방화벽 포트포워딩 된 경우 해당 포트로 접속)</p>
+
+<p><img src="/assets/img/contents/kd-2.png" alt="kd-2.png" /></p>
+
+<p><img src="/assets/img/contents/kd-3.png" alt="kd-3.png" /></p>
+
+<p>https를 이용하여 접속시 로그인은 활성화 되지만 인증서 정보가 유효하지 않다고 나온다.</p>
+
+<p>이제 SSL 인증서를 서버 Ingress에 적용할 차례이다.</p>
+
+<h4 id="4-kubernetes-secret-생성">4. Kubernetes secret 생성</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># kubectl create secret {secretType} {secretName} --namespace={namespace} --cert={certPath} --key={keyPath}</span>
+<span class="nv">$ </span>kubectl create secret tls secret-tls <span class="nt">--namespace</span><span class="o">=</span>kubernetes-dashboard <span class="nt">--cert</span><span class="o">=</span>ssl/yourdomain.com <span class="nt">--key</span><span class="o">=</span>ssl/yourdomain.com
+
+<span class="c"># 생성 확인</span>
+<span class="nv">$ </span>kubectl get secret <span class="nt">-n</span> kubernetes-dashboard
+<span class="nv">$ </span>kubectl describe secret secret-tls <span class="nt">-n</span> kubernetes-dashboard
+</code></pre></div></div>
+
+<p>ssl 인증서 정보를 담고 있는 kubernetes secret을 생성한다.</p>
+
+<p>이 때, namespace는 Pod의 namespace와 동일해야하므로 설정해준다.</p>
+
+<blockquote>
+  <p>인증서 경로는 ssl 하위에 있다고 가정</p>
+</blockquote>
+
+<h4 id="5-kubernetes-dashboard-ingressyaml-수정">5. <code class="language-plaintext highlighter-rouge">kubernetes-dashboard-ingress.yaml</code> 수정</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>vim kubernetes-dashboard-ingress.yaml
+</code></pre></div></div>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">networking.k8s.io/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Ingress</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">kubernetes-dashboard</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">kubernetes-dashboard</span>
+  <span class="na">annotations</span><span class="pi">:</span>
+    <span class="na">kubernetes.io/ingress.class</span><span class="pi">:</span> <span class="s2">"</span><span class="s">nginx"</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="c1"># 아래 tls 부분 추가</span>
+  <span class="na">tls</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">hosts</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">k8s.yourdomain.com</span>
+    <span class="na">secretName</span><span class="pi">:</span> <span class="s">secret-tls</span>
+  <span class="na">rules</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">host</span><span class="pi">:</span> <span class="s">k8s.yourdomain.com</span> <span class="c1"># host 도메인 추가</span>
+    <span class="na">http</span><span class="pi">:</span>
+      <span class="na">paths</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">pathType</span><span class="pi">:</span> <span class="s">Prefix</span>
+        <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/"</span>
+        <span class="na">backend</span><span class="pi">:</span>
+          <span class="na">service</span><span class="pi">:</span>
+            <span class="na">name</span><span class="pi">:</span> <span class="s">kubernetes-dashboard</span>
+            <span class="na">port</span><span class="pi">:</span>
+              <span class="na">number</span><span class="pi">:</span> <span class="m">9090</span>
+              
+</code></pre></div></div>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl apply <span class="nt">-f</span> kubernetes-dashboard-ingress.yaml
+</code></pre></div></div>
+
+<h4 id="6-https-접속-및-인증서-확인">6. HTTPS 접속 및 인증서 확인</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Ingress Controller 외부 노출 포트 확인</span>
+<span class="nv">$ </span>kubectl get svc <span class="nt">-n</span> ingress-ngninx
+ingress-nginx-controller             NodePort    10.104.33.237   &lt;none&gt;        80:31623/TCP,443:32452/TCP   5h
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">https://external-ip:32452/</code> 접속
+(방화벽 포트포워딩 된 경우 해당 포트로 접속)</p>
+
+<p><img src="/assets/img/contents/kd-4.png" alt="kd-4.png" /></p>
+
+<p><img src="/assets/img/contents/kd-5.png" alt="kd-5.png" /></p>
+
+<p>인증서 적용 확인</p>
+
+<h4 id="7-베어러-토큰-발급">7. 베어러 토큰 발급</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 토큰 발급</span>
+
+<span class="nv">$ </span>kubectl <span class="nt">-n</span> kubernetes-dashboard get secret <span class="si">$(</span>kubectl <span class="nt">-n</span> kubernetes-dashboard get sa/admin-user <span class="nt">-o</span> <span class="nv">jsonpath</span><span class="o">=</span><span class="s2">"{.secrets[0].name}"</span><span class="si">)</span> <span class="nt">-o</span> go-template<span class="o">=</span><span class="s2">"{{.data.token | base64decode}}"</span> <span class="o">&gt;&gt;</span> token
+
+
+<span class="c"># 토큰 확인</span>
+<span class="nv">$ </span><span class="nb">cat </span>token
+</code></pre></div></div>
+
+<p><img src="/assets/img/contents/kd-3.png" alt="kd-3.png" /></p>
+
+<p>로그인 화면에서 Token 입력 후 로그인</p>
+
+<p><img src="/assets/img/contents/kd-6.png" alt="kd-6.png" /></p>
+
+<p>로그인 확인</p>
+
+<hr />
+
+<h2 id="metric-server-설치">Metric-server 설치</h2>
+<p>각 서버에서 cpu, memory metric을 가져와 dashboard에서 그래프로 보여주려면 설치해야한다.</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl apply <span class="nt">-f</span> https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+</code></pre></div></div>
+
+<p>metrics-server error because it doesn’t contain any IP SANs 에러 발생할 경우</p>
+
+<p>deployment에 아래를 추가한다.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="pi">-</span> <span class="na">args</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">--kubelet-insecure-tls</span>
+</code></pre></div></div>
+
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<h3 id="1-404-page-not-found">1. 404 page not found</h3>
+<p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-03/dashboard7.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-03/scaled-1680-/dashboard7.png" alt="dashboard7.png" /></a></p>
+
+<p>위와 같이 404 page not found가 나오는 경우</p>
+
+<p>Ingress에서 서비스를 찾지 못한 경우로 경로 설정을 잘 확인해본다.</p>
+
+<p>나는 ingress Path 설정을 <code class="language-plaintext highlighter-rouge">"/"</code>가 아니라 <code class="language-plaintext highlighter-rouge">"/dashboard"</code>로 해놓았었는데 root path가 아니면 적용이 되지 않는 버그가 존재하였다.</p>
+
+<h3 id="2-kubernetes-dashboard-pod가-자꾸-죽어서-재시작되는-경우">2. kubernetes-dashboard pod가 자꾸 죽어서 재시작되는 경우</h3>
+
+<p>위에서 대시보드가 http 프로토콜로 작동하도록 설정한 부분에 누락되거나 잘못 설정한 값이 있는지 확인</p>
+
+<p>작성자의 경우 deployment쪽의 Liveness probe 설정에 http가 아닌 https로 되어 있어서 문제가 발생하였다.</p>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Using RBAC Authorization</a></li>
+  <li><a href="https://kubernetes.io/docs/reference/access-authn-authz/node/">Using Node Authorization</a></li>
+  <li><a href="https://kubernetes.io/docs/reference/access-authn-authz/node/">Using ABAC Authorization</a></li>
+  <li><a href="https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/">Certified Kubernetes Administrator(CKA) with Practice Tests</a></li>
+</ol>
+:ET

@@ -14,7 +14,7 @@ tags: [Blog, Jekyll, Liquid, Markdown, Template]
 
 [Jekyll Liquid](https://jekyllrb.com/docs/liquid/)
 
-Jekyll 작성시 Liquid template `{{`, `}}` 이중 중괄호 및 중괄호 빠져나오기 (무시하기)
+Jekyll 작성시 Liquid template `{{ "{{" }} , }}` 이중 중괄호 및 중괄호 빠져나오기 (무시하기)
 
 ---
 

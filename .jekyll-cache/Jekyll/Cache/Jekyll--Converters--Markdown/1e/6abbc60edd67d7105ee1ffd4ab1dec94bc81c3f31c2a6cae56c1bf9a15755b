@@ -1,0 +1,58 @@
+I"<h1 id="jekyll-liquid-문법-빠져나오기중괄호-무시">Jekyll Liquid 문법 빠져나오기(중괄호 무시)</h1>
+
+<p><img src="/assets/img/contents/jekyll.png" alt="jekyll.png" /></p>
+
+<p><a href="https://jekyllrb.com/docs/liquid/">Jekyll Liquid</a></p>
+
+<p>Jekyll 작성시 Liquid template <code class="language-plaintext highlighter-rouge">{{ , }}</code> 이중 중괄호 및 중괄호 빠져나오기 (무시하기)</p>
+
+<hr />
+
+<h2 id="escape-liquid">Escape Liquid</h2>
+
+<p>Jekyll은 내부 템플릿 언어로 <a href="https://shopify.github.io/liquid/">Liquid</a>를 사용한다.</p>
+
+<p>Liquid는 Ruby로 작성된 템플릿 언어로</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="o">{{</span> variable <span class="o">}}</span>
+<span class="o">{{</span> <span class="k">if </span>sentence <span class="o">}}</span>
+
+</code></pre></div></div>
+
+<p>등의 중괄호를 이용한 문법을 통하여 템플릿 변수나 로직을 실행한다.</p>
+
+<p>문서를 작성하다 보니 아래와 같은 에러를 발견하게 되었다.</p>
+
+<p><img src="/assets/img/contents/jel-1.png" alt="jel-1.png" /></p>
+
+<p>이는 kubernetes에서 사용하는 go-template이 똑같은 이중괄호를 사용해서 나타난 문제였다.</p>
+
+<p>이를 해결하기 위해서는 아래와 같이 <code class="language-plaintext highlighter-rouge">{% raw %}</code>, <code class="language-plaintext highlighter-rouge">{% endraw %}</code>  사이에 문법을 적어주면 된다.</p>
+
+<h4 id="raw">Raw</h4>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% raw %}
+$ kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/monitoring-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
+eyJhbGciOiJSUzI1NiIsImtpZCI6IlVmM2...
+{% endraw %}
+</code></pre></div></div>
+
+<h4 id="template-processed">Template processed</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nv">$ </span>kubectl <span class="nt">-n</span> kubernetes-dashboard get secret <span class="si">$(</span>kubectl <span class="nt">-n</span> kubernetes-dashboard get sa/monitoring-user <span class="nt">-o</span> <span class="nv">jsonpath</span><span class="o">=</span><span class="s2">"{.secrets[0].name}"</span><span class="si">)</span> <span class="nt">-o</span> go-template<span class="o">=</span><span class="s2">"{{.data.token | base64decode}}"</span>
+eyJhbGciOiJSUzI1NiIsImtpZCI6IlVmM2...
+
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://jekyllrb.com/docs/liquid/">Jekyll Liquid</a></li>
+  <li><a href="https://shopify.github.io/liquid/tags/template/">Liquid Template</a></li>
+</ol>
+
+:ET
