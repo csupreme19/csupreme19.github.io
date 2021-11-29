@@ -1,0 +1,229 @@
+I"�/<h1 id="kubernetes-kpod-oomkilled-원인-찾기">Kubernetes kPod OOMKilled 원인 찾기</h1>
+
+<p><img src="/assets/img/titles/kubernetes-logo.png" alt="kubernetes-logo.png" /></p>
+
+<p>Kubernetes Pod OOMKilled 원인 찾는 과정을 정리한 문서이다.</p>
+
+<hr />
+
+<h2 id="oomkilled-원인을-찾아서">OOMKilled 원인을 찾아서…</h2>
+
+<h3 id="발단">발단</h3>
+
+<p><img src="/assets/img/contents/kpot-1.png" alt="kpot-1.png" /></p>
+
+<p>오전 1시 50분 production 운영 cluster에 올라간 Pod중 하나가 죽었다는 알림이 발생하였다.</p>
+
+<p>보통 k8s cluster에서는 controller-manager과 kube-scheduler에 의해 자동 복구 되므로 큰 이슈는 없으나 추후 문제를 최소화하기 위하여 기록해본다.</p>
+
+<p>상태는 <code class="language-plaintext highlighter-rouge">OOMKilled</code>로 파드에 Out Of Memory가 발생하여 재시작됨</p>
+
+<h4 id="1-해당-시점-로그-확인">1. 해당 시점 로그 확인</h4>
+
+<p><img src="/assets/img/contents/kpot-2.png" alt="kpot-2.png" /></p>
+
+<p>Elastic Stack을 구축하여 메트릭과 로그를 수집하고 있으므로 Kibana에서 Application Log를 살펴보았다.(stdout)</p>
+
+<p>유의미한 로그는 찾기 힘들지만 1시 50분에 재구동된 사실을 double-check 할 수 있었다.</p>
+
+<h4 id="2-해당-시점-메트릭-확인">2. 해당 시점 메트릭 확인</h4>
+
+<p><img src="/assets/img/contents/kpot-3.png" alt="kpot-3.png" /></p>
+
+<p>메모리 사용량이 지속적으로 누적되어 100%를 초과하여 아웃 오브 메모리가 발생하였다.</p>
+
+<h4 id="3-상세-내용-확인">3. 상세 내용 확인</h4>
+
+<p>상세 내용을 확인하기 위하여 OOMKilled가 발생한 해당 서비스 deployment에 Java APM Agent를 적용 후 경과를 관찰하였다.</p>
+
+<p><img src="/assets/img/contents/kpot-4.png" alt="kpot-4.png" /></p>
+
+<p><img src="/assets/img/contents/kpot-5.png" alt="kpot-5.png" /></p>
+
+<p>System memory usage, Heap memory, Thread count가 지속적으로 상승하는 것을 확인하였다.</p>
+
+<p>Java heap 메모리 누수로 인한 것으로 결론지었다.</p>
+
+<p>하지만</p>
+
+<h3 id="메모리-사용량이-이상하다">메모리 사용량이 이상하다?</h3>
+
+<p><img src="/assets/img/contents/kpot-6.png" alt="kpot-6.png" /></p>
+
+<p>위 메모리 사용량의 경우 <code class="language-plaintext highlighter-rouge">kubernetes.pod.memory.usage.limit.pct</code> 메트릭을 이용하여 확인하였는데.</p>
+
+<p>해당 메트릭은 일부 파드의 경우 위와 같이 메모리가 99.9% 사용량(1.5GB)을 유지하지만 Pod 상태에는 문제가 없다는 것을 발견하였다.</p>
+
+<p>99.9%가 유지되는 것도 이상하지만 OOMKilled가 발생하지 않고 정상적으로 작동하는 것이 이상하다고 생각하여 아래와 같이 생각해보았다.</p>
+
+<ol>
+  <li>메트릭 정보가 잘못된 경우</li>
+  <li><code class="language-plaintext highlighter-rouge">kubernetes.pod.memory.usage.limit.pct</code> 메트릭이 메모리 사용량만을 나타내는 것이 아닌 경우</li>
+</ol>
+
+<h4 id="kubectl-top-확인">kubectl top 확인</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl top pod <span class="nt">-n</span> production | g
+<span class="o">{</span>서비스명<span class="o">}</span><span class="nt">-prd-deploy-86975ffd89-kvdr4</span>	54m	298Mi
+<span class="o">{</span>서비스명<span class="o">}</span><span class="nt">-prd-deploy-86975ffd89-n4r85</span>	43m	254Mi
+</code></pre></div></div>
+
+<p>실제 pod의 메모리 사용량으로 산정되는것과 다른 것을 확인할 수 있었다.</p>
+
+<p><img src="/assets/img/contents/kpot-7.png" alt="kpot-7.png" /></p>
+
+<p>kubernetes metricbeat에 따르면 kubernetes 메모리 관련 메트릭은 위와 같다.</p>
+
+<p>kubelet은 내부적으로 cAdvisor를 사용하여 자원 사용량을 모니터링한다.</p>
+
+<blockquote>
+  <p><a href="https://github.com/google/cadvisor">cAdvisor</a>는 리눅스 cgroup의 메트릭 정보를 수집하는 오픈소스이다.</p>
+</blockquote>
+
+<p>이중 위 빨간 박스의 3가지 메트릭은 cAdvisor의 프로메테우스 형식의 메트릭에 대응된다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">kubernetes.pod.memory.usage.bytes</code> = <code class="language-plaintext highlighter-rouge">container_memory_usage_bytes</code></li>
+  <li><code class="language-plaintext highlighter-rouge">kubernetes.pod.memory.working_set.bytes</code> = <code class="language-plaintext highlighter-rouge">container_memory_working_set_bytes</code></li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">kubernetes.pod.memory.rss.bytes</code> = <code class="language-plaintext highlighter-rouge">container_memory_rss</code></p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">container_memory_working_set_bytes</code></li>
+</ul>
+
+<p>최근 할당된 메모리, 더티 메모리, 커널 메모리를 포함하는 메모리 사용량</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">container_memory_rss</code></li>
+</ul>
+
+<p>swap 캐시 메모리를 포함하는 메모리 사용량</p>
+
+<p><img src="/assets/img/contents/kpot-8.png" alt="kpot-8.png" /></p>
+
+<p>실제 메트릭 정보를 살펴보면 Pod의 메모리 사용량은</p>
+
+<p><code class="language-plaintext highlighter-rouge">kubernetes.pod.memory.working_set.bytes</code>, <code class="language-plaintext highlighter-rouge">kubernetes.pod.memory.rss.bytes</code>에 근접한다는 것을 확인할 수 있다.</p>
+
+<h3 id="메모리-확인-결과">메모리 확인 결과</h3>
+
+<p><code class="language-plaintext highlighter-rouge">kubernetes.pod.memory.working_set.bytes</code>이 limit에 도달하거나 <code class="language-plaintext highlighter-rouge">kubernetes.pod.memory.rss.bytes</code>가 limit에 가깝다면 OOMKilled의 대상이될 가능성이 높아진다.</p>
+
+<p>kubectl pod 조회 결과 나타나는 메모리 사용량은 <code class="language-plaintext highlighter-rouge">kubernetes.pod.memory.working_set.bytes</code>와 동일하다.</p>
+
+<p>따라서 두 메트릭을 조회하여 limit에 근접하는 경우 OOMKilled 가능성이 높음을 확인할 수 있다.</p>
+
+<h3 id="메모리-누수-pod-확인-결과">메모리 누수 Pod 확인 결과</h3>
+
+<p>모든 pod를 수동으로 확인 결과 사용 메모리가 꾸준히 우상향하는 Pod 리스트</p>
+
+<ol>
+  <li>{서비스1}</li>
+</ol>
+
+<p><img src="/assets/img/contents/kpot-9.png" alt="kpot-9.png" /></p>
+
+<ol>
+  <li>{서비스2}</li>
+</ol>
+
+<p><img src="/assets/img/contents/kpot-10.png" alt="kpot-10.png" /></p>
+
+<ol>
+  <li>{서비스3}</li>
+</ol>
+
+<p><img src="/assets/img/contents/kpot-11.png" alt="kpot-11.png" /></p>
+
+<ol>
+  <li>{서비스4}</li>
+</ol>
+
+<p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-11/oomkilled-troubleshooting-12.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-11/scaled-1680-/oomkilled-troubleshooting-12.png" alt="OOMKilled-troubleshooting-12.png" /></a></p>
+
+<ol>
+  <li>{서비스5}</li>
+</ol>
+
+<p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-11/oomkilled-troubleshooting-13.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-11/scaled-1680-/oomkilled-troubleshooting-13.png" alt="OOMKilled-troubleshooting-13.png" /></a></p>
+
+<ol>
+  <li>{서비스6}</li>
+</ol>
+
+<p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-11/oomkilled-troubleshooting-14.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-11/scaled-1680-/oomkilled-troubleshooting-14.png" alt="OOMKilled-troubleshooting-14.png" /></a></p>
+
+<ol>
+  <li>{서비스7}</li>
+</ol>
+
+<p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-11/oomkilled-troubleshooting-15.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-11/scaled-1680-/oomkilled-troubleshooting-15.png" alt="OOMKilled-troubleshooting-15.png" /></a></p>
+
+<ol>
+  <li>{서비스8}</li>
+</ol>
+
+<p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-11/oomkilled-troubleshooting-16.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-11/scaled-1680-/oomkilled-troubleshooting-16.png" alt="OOMKilled-troubleshooting-16.png" /></a></p>
+
+<ol>
+  <li>{서비스9}</li>
+</ol>
+
+<p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-11/oomkilled-troubleshooting-17.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-11/scaled-1680-/oomkilled-troubleshooting-17.png" alt="OOMKilled-troubleshooting-17.png" /></a></p>
+
+<ol>
+  <li>{서비스10}</li>
+</ol>
+
+<p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-11/oomkilled-troubleshooting-18.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-11/scaled-1680-/oomkilled-troubleshooting-18.png" alt="OOMKilled-troubleshooting-18.png" /></a></p>
+
+<h3 id="jvm-heap-메모리-확인-결과">JVM Heap 메모리 확인 결과</h3>
+
+<p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-11/oomkilled-troubleshooting-5.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-11/scaled-1680-/oomkilled-troubleshooting-5.png" alt="OOMKilled-troubleshooting-5.png" /></a></p>
+
+<p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-11/oomkilled-troubleshooting-19.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-11/scaled-1680-/oomkilled-troubleshooting-19.png" alt="OOMKilled-troubleshooting-19.png" /></a></p>
+
+<p><code class="language-plaintext highlighter-rouge">rmmessage-prd-deploy</code> 파드 메모리 확인 결과</p>
+
+<p>system memory와 thread count는 지속적으로 증가하지만 heap memory는 약 250mb 도달시 GC되는 것을 확인할 수 있었다.</p>
+
+<p>따라서 JVM Heap Memory 문제는 아니라고 판단하여 OS 레벨을 확인해보았다.</p>
+
+<h3 id="os-memory-leak">OS memory leak?</h3>
+
+<p>top, free 명령어를 이용하여 메모리 모니터링을 해보았으나 유의미한 값을 찾지는 못하였다.</p>
+
+<h3 id="다시-jvm으로">다시 JVM으로…</h3>
+
+<p>APM에서 수집한 JVM 메트릭 정보를 다시 확인해보니 Non-Heap Memory와 thread count가 지속적으로 증가하는 것을 확인하였다.</p>
+
+<h4 id="thread-count-증가">Thread count 증가</h4>
+
+<p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-11/oomkilled-troubleshooting-20.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-11/scaled-1680-/oomkilled-troubleshooting-20.png" alt="OOMKilled-troubleshooting-20.png" /></a></p>
+
+<h4 id="non-heap-memory-증가">Non Heap memory 증가</h4>
+
+<p><a href="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-11/oomkilled-troubleshooting-21.png"><img src="https://bookstack.ccpinfra.xyz:23443/uploads/images/gallery/2021-11/scaled-1680-/oomkilled-troubleshooting-21.png" alt="OOMKilled-troubleshooting-21.png" /></a></p>
+
+<p>106mb에서 107.5mb로 점진적으로 증가한 모습을 보였다.</p>
+
+<p>확인 결과 <code class="language-plaintext highlighter-rouge">misson-controller-prd</code>와 <code class="language-plaintext highlighter-rouge">rmspacehss-prd</code>를 제외하고 모두 non-heap memory가 증가되는 것으로 보임</p>
+
+<hr />
+
+<h2 id="후기">후기</h2>
+
+<p>Memory 누수가 어디서 발생하는지는 찾았지만 JVM 메모리 모니터링 및 디버깅을 통하여 deep dive로 직접적인 원인을 찾지 못하여 찜찜하다.</p>
+
+<p>현재 다른 업무로 인하여 관심에서 멀어졌으나 언제 한번 기회가 된다면 다시 찾아봐야겠다.</p>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li>https://www.magalix.com/blog/memory_working_set-vs-memory_rss</li>
+  <li>https://www.getoutsidedoor.com/2021/03/30/kubernetes-pod-memory-monitoring/</li>
+  <li>https://engineering.linecorp.com/ko/blog/prometheus-container-kubernetes-cluster/</li>
+</ol>
+:ET

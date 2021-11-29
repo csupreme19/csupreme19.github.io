@@ -1,0 +1,99 @@
+I"�<h1 id="postgresql-shutdown-mode">PostgreSQL Shutdown mode</h1>
+
+<p><img src="/assets/img/titles/postgresql-logo.svg" alt="postgresql-logo.svg" /></p>
+
+<p><a href="https://www.postgresql.org/docs/9.4/runtime-config-connection.html">Connection Settings</a></p>
+
+<p>Postgres 셧다운 모드에 대하여 알아보고 모드를 바꿔본다.</p>
+
+<hr />
+<h2 id="postgresql-shutdown-mode-1">PostgreSQL Shutdown Mode</h2>
+
+<p><a href="https://www.postgresql.org/docs/11/server-shutdown.html">Shutting Down the server</a></p>
+
+<p>Postgres를 중지하는 방법은 3가지가 있다.</p>
+
+<ol>
+  <li>
+    <h4 id="smart-shutdownsigterm">Smart Shutdown(SIGTERM)</h4>
+  </li>
+  <li>
+    <h4 id="fast-shutdownsigint">Fast Shutdown(SIGINT)</h4>
+  </li>
+  <li>
+    <h4 id="immediate-shutdownsigquit">Immediate Shutdown(SIGQUIT)</h4>
+  </li>
+</ol>
+
+<h3 id="smart-shutdownsigterm-1">Smart Shutdown(SIGTERM)</h3>
+
+<p><code class="language-plaintext highlighter-rouge">pg_ctl shutdown -m s[mart]</code></p>
+
+<p>내부적으로 SIGTERM 명령과 동일</p>
+
+<p>pg_ctl shutdown</p>
+
+<p>새로운 connection 접속을 막고 현재 connection의 쿼리를 모두 수행후 세션이 종료되면 Server shutdown을 진행한다.</p>
+
+<p>가장 안전한 방법이지만 long query가 존재할 경우 서버의 중지가 느릴 수 있음</p>
+
+<h3 id="fast-shutdownsigint-1">Fast Shutdown(SIGINT)</h3>
+
+<p><code class="language-plaintext highlighter-rouge">pg_ctl shutdown -m f[ast]</code></p>
+
+<p>내부적으로 SIGINT 명령과 동일</p>
+
+<p>새로운 connection 접속을 막고 현재 connection의 쿼리를 중지(abort)하고 Server shutdown을 진행한다.</p>
+
+<p>수행중인 query는 rollback 되며 서버를 즉시 중지할 수 있는 장점이 있다.</p>
+
+<h3 id="immediate-shutdownsigquit-1">Immediate Shutdown(SIGQUIT)</h3>
+
+<p><code class="language-plaintext highlighter-rouge">pg_ctl shutdown -m i[mmediate]</code></p>
+
+<p>내부적으로 SIGQUIT(SIGKILL) 명령과 동일</p>
+
+<p>쿼리 수행여부와 관계없이 서버를 즉시 kill한다.</p>
+
+<p>일반적인 Server shutdown의 프로세스를 하지 않으므로 서버 재시작시 복구 모드에 돌입한다.</p>
+
+<h3 id="shutdown-기본-모드-확인">Shutdown 기본 모드 확인</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl <span class="nb">cat </span>postgresql@11-main.service
+...
+<span class="o">[</span>Service]
+<span class="nv">ExecStart</span><span class="o">=</span>-/usr/bin/pg_ctlcluster <span class="nt">--skip-systemctl-redirect</span> %i start
+<span class="nv">ExecStop</span><span class="o">=</span>/usr/bin/pg_ctlcluster <span class="nt">--skip-systemctl-redirect</span> <span class="nt">-m</span> fast %i stop
+<span class="nv">ExecReload</span><span class="o">=</span>/usr/bin/pg_ctlcluster <span class="nt">--skip-systemctl-redirect</span> %i reload
+...
+</code></pre></div></div>
+
+<p>위 예시에서는 설정값이 fast shutdown 모드로 되어 있음을 확인할 수 있다.</p>
+
+<h3 id="shutdown-모드-수정">Shutdown 모드 수정</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl edit postgresql@11-main.service
+<span class="o">[</span>Service]
+<span class="nv">ExecStop</span><span class="o">=</span>
+<span class="nv">ExecStop</span><span class="o">=</span>/usr/bin/pg_ctlcluster <span class="nt">--skip-systemctl-redirect</span> <span class="nt">-m</span> smart %i stop
+</code></pre></div></div>
+
+<p>override.conf 생성 및 적용 확인</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl <span class="nb">cat </span>postgresql@11-main.service
+<span class="c"># /etc/systemd/system/postgresql@11-main.service.d/override.conf</span>
+<span class="o">[</span>Service]
+<span class="nv">ExecStop</span><span class="o">=</span>
+<span class="nv">ExecStop</span><span class="o">=</span>/usr/bin/pg_ctlcluster <span class="nt">--skip-systemctl-redirect</span> <span class="nt">-m</span> smart %i stop
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://www.postgresql.org/docs/9.4/runtime-config-connection.html">Connection Settings</a></li>
+  <li><a href="https://dba.stackexchange.com/a/161761">https://dba.stackexchange.com/a/161761</a></li>
+  <li><a href="https://stackoverflow.com/a/48576319">https://stackoverflow.com/a/48576319</a></li>
+</ol>
+:ET
