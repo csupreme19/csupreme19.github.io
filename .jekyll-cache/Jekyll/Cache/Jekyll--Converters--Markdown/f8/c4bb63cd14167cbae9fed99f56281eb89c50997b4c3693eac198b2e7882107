@@ -1,0 +1,270 @@
+I"Z7<h1 id="시스템-graceful-shutdown">시스템 Graceful shutdown</h1>
+
+<p><img src="/assets/img/titles/postgresql-logo.svg" alt="postgresql-logo.svg" /></p>
+
+<p><a href="https://www.postgresql.org/docs/9.4/runtime-config-connection.html">Connection Settings</a></p>
+
+<p>PostgreSQL max_connections 설정 방법</p>
+
+<hr />
+<h2 id="시스템-재부팅-방법">시스템 재부팅 방법</h2>
+
+<p>시스템을 장애 없이 Graceful 하게 shutdown하는 방법을 다룬다.</p>
+
+<hr />
+
+<h2 id="서버별-재부팅">서버별 재부팅</h2>
+
+<h3 id="kubernetes-서버">Kubernetes 서버</h3>
+<p>Gracefully shutdown kubernetes nodes</p>
+
+<blockquote>
+  <p><a href="https://stackoverflow.com/a/59576322/15263734">https://stackoverflow.com/a/59576322/15263734</a></p>
+</blockquote>
+
+<h4 id="1-노드-drain">1. 노드 drain</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl drain <span class="nv">$NODENAME</span> <span class="nt">--ignore-daemonsets</span><span class="o">=</span><span class="nb">true</span>
+
+<span class="c"># local storage 때문에 지울 수 없는 경우</span>
+<span class="nv">$ </span>kubectl drain <span class="nv">$NODENAME</span> <span class="nt">--ignore-daemonsets</span><span class="o">=</span><span class="nb">true</span> <span class="nt">--delete-emptydir-data</span>
+</code></pre></div></div>
+<p>해당 노드에서 실행되는 파드를 모두 제거하고 해당 노드의 파드 스케줄링을 비활성화한다.</p>
+<blockquote>
+  <p>Replica가 1개인 Deployment들은 다운타임 발생할 수 있음</p>
+</blockquote>
+
+<h4 id="2-노드-drain-확인">2. 노드 drain 확인</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl get nodes <span class="nv">$NODENAME</span>
+NAME               STATUS   					ROLES                  AGE    VERSION
+<span class="nv">$NODENAME</span>          Ready SchedulingDisabled     control-plane,master   118d   v1.20.6
+<span class="nv">$ </span>kubectl get pod <span class="nt">-A</span> <span class="nt">-o</span> wide | <span class="nb">grep</span> <span class="nv">$NODENAME</span>
+argocd                 argocd-application-controller-0                  1/1     Succeeded   1          92d     10.244.2.96     <span class="nv">$NODENAME</span>    &lt;none&gt;           &lt;none&gt;
+kube-system            filebeat-2svwt                                   1/1     Succeeded   0          21d     10.222.222.22   <span class="nv">$NODENAME</span>    &lt;none&gt;           &lt;none&gt;
+kube-system            kube-flannel-ds-4whmt                            1/1     Succeeded   5          118d    10.222.222.22   <span class="nv">$NODENAME</span>    &lt;none&gt;           &lt;none&gt;
+kube-system            kube-proxy-qjsc8                                 1/1     Succeeded   4          118d    10.222.222.22   <span class="nv">$NODENAME</span>    &lt;none&gt;           &lt;none&gt;
+kube-system            metricbeat-2ggh2                                 1/1     Succeeded   1          69d     10.222.222.22   <span class="nv">$NODENAME</span>    &lt;none&gt;           &lt;none&gt;
+kubernetes-dashboard   kubernetes-dashboard-64b46974f-56h9x             1/1     Succeeded   2          81d     10.244.2.98     <span class="nv">$NODENAME</span>    &lt;none&gt;           &lt;none&gt;
+production               yourapp-prd-deploy-57f9947968-zklkq             1/1     Succeeded   0          4d15h   10.244.2.130    <span class="nv">$NODENAME</span>    &lt;none&gt;           &lt;none&gt;
+</code></pre></div></div>
+<ul>
+  <li>노드 상태 <code class="language-plaintext highlighter-rouge">SchedulingDisabled</code> 확인</li>
+  <li>파드 상태 <code class="language-plaintext highlighter-rouge">Succeeded</code> 정상종료 확인
+    <ul>
+      <li>파드 상태가 <code class="language-plaintext highlighter-rouge">Terminating</code>인 경우 파드가 중지되는 중이니 대기</li>
+    </ul>
+
+    <blockquote>
+      <p><code class="language-plaintext highlighter-rouge">drain</code> 명령어는 파드의 정상 종료(Graceful shutdown)를 보장한다</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h4 id="3-서버-재부팅">3. 서버 재부팅</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 아래 두 명령어중 아무거나 수행</span>
+<span class="nv">$ </span>shutdown <span class="nt">-r</span> now
+<span class="nv">$ </span>systemctl reboot
+</code></pre></div></div>
+
+<h4 id="4-노드-파드-스케줄링-재활성화">4. 노드 파드 스케줄링 재활성화</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl uncordon <span class="nv">$NODENAME</span>
+</code></pre></div></div>
+
+<h4 id="5-노드-상태-확인">5. 노드 상태 확인</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl get nodes <span class="nv">$NODENAME</span>
+NAME               STATUS   ROLES                  AGE    VERSION
+<span class="nv">$NODENAME</span>          Ready    control-plane,master   118d   v1.20.6
+</code></pre></div></div>
+
+<p>노드 상태 <code class="language-plaintext highlighter-rouge">Ready</code>만 있는 것 확인</p>
+
+<h3 id="rdbms-서버-재부팅">RDBMS 서버 재부팅</h3>
+<h4 id="1-rdbms-캐시-flush">1. RDBMS 캐시 flush</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sync</span><span class="p">;</span><span class="nb">sync</span>
+</code></pre></div></div>
+
+<h4 id="2-rdbms-서비스-중지">2. rdbms 서비스 중지</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl stop postgresql <span class="c"># postgresql의 경우</span>
+<span class="nv">$ </span>systemctl stop mysql <span class="c"># mysql의 경우</span>
+</code></pre></div></div>
+
+<h4 id="3-재부팅">3. 재부팅</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 아래 두 명령어중 아무거나 수행</span>
+<span class="nv">$ </span>shutdown <span class="nt">-r</span> now
+<span class="nv">$ </span>systemctl reboot
+</code></pre></div></div>
+
+<h4 id="4-서비스-정상-실행-확인">4. 서비스 정상 실행 확인</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl status postgresql@11-main.service <span class="c"># postgresql의 경우</span>
+<span class="nv">$ </span>systemctl status mysql.service <span class="c"># mysql의 경우</span>
+
+<span class="nv">$ </span>systemctl status metricbeat.service <span class="c"># metricbeat</span>
+<span class="nv">$ </span>systemctl status filebeat.service <span class="c"># filebeat</span>
+</code></pre></div></div>
+
+<p>정상 실행 안되었을시 하단 수동 구동 명령어 참고</p>
+
+<h3 id="오픈소스-서버-재부팅">오픈소스 서버 재부팅</h3>
+<h4 id="1-재부팅">1. 재부팅</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 아래 두 명령어중 아무거나 수행</span>
+<span class="nv">$ </span>shutdown <span class="nt">-r</span> now
+<span class="nv">$ </span>systemctl reboot
+</code></pre></div></div>
+
+<h4 id="2-서비스-정상-실행-확인">2. 서비스 정상 실행 확인</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 각 서버의 오픈소스에 해당되는 서비스 점검</span>
+<span class="nv">$ </span>systemctl status mongos.service <span class="c"># mongos</span>
+<span class="nv">$ </span>systemctl status mongod.service <span class="c"># mongod</span>
+<span class="nv">$ </span>systemctl status zookeeper.service <span class="c"># zookeeper</span>
+<span class="nv">$ </span>systemctl status kafka.service <span class="c"># kafka</span>
+<span class="nv">$ </span>systemctl status elasticsearch.service <span class="c"># elasticsearch</span>
+<span class="nv">$ </span>systemctl status logstash.service <span class="c"># logstash</span>
+<span class="nv">$ </span>systemctl status kibana.service <span class="c"># kibana</span>
+<span class="nv">$ </span>systemctl status nginx.service <span class="c"># nginx</span>
+<span class="nv">$ </span>systemctl status metricbeat.service <span class="c"># metricbeat</span>
+<span class="nv">$ </span>systemctl status filebeat.service <span class="c"># filebeat</span>
+</code></pre></div></div>
+
+<p>정상 실행 안되었을시 하단 수동 구동 명령어 참고</p>
+
+<hr />
+
+<h2 id="참고사항">참고사항</h2>
+
+<h3 id="재부팅-정보-확인">재부팅 정보 확인</h3>
+
+<h4 id="최근-재부팅-시간-확인">최근 재부팅 시간 확인</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">who</span> <span class="nt">-b</span>
+         system boot  2021-06-15 19:00
+
+<span class="nv">$ </span>last reboot
+reboot   system boot  3.10.0-1160.31.1 Tue Jun 15 19:00 - 10:06 <span class="o">(</span>55+15:06<span class="o">)</span>
+reboot   system boot  3.10.0-1160.25.1 Wed Jun  9 20:25 - 10:06 <span class="o">(</span>61+13:40<span class="o">)</span>
+reboot   system boot  3.10.0-957.el7.x Tue Jun  8 17:43 - 10:06 <span class="o">(</span>62+16:23<span class="o">)</span>
+</code></pre></div></div>
+
+<h4 id="업타임-확인">업타임 확인</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">uptime
+</span>10:05:54 up 55 days, 15:05,  1 user,  load average: 0.00, 0.01, 0.05
+</code></pre></div></div>
+
+<h3 id="systemd-정보-확인">systemd 정보 확인</h3>
+
+<h4 id="systemd-등록-서비스-리스트-확인">systemd 등록 서비스 리스트 확인</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl list-unit-files | <span class="nb">grep </span>enabled
+<span class="nv">$ </span>systemctl status 오픈소스
+<span class="nv">$ </span>ps <span class="nt">-ef</span>
+</code></pre></div></div>
+<p>systemd 시스템 데몬에 등록된 프로세스들은 리부트시 자동으로 실행된다.</p>
+
+<p>systemd를 사용하지 않는 프로세스는 OS 재시작시 재기동 여부 확인 후 재기동되지 않으면 수동 구동 필요</p>
+
+<p>systemd에 등록이 되어 자동 실행된다고 하더라도 실제 작동 여부 확인 필요하다.</p>
+
+<h3 id="서비스별-systemd-사용-여부">서비스별 systemd 사용 여부</h3>
+
+<p>아래 테이블은 오픈소스 리스트와 systemd 등록 여부 및 수동 시작 명령어를 작성하였다.</p>
+
+<p>설치형을 기준으로 작성되었으며 버전 및 환경별로 다를 수 있으니 참고만 할 것</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>서비스</th>
+      <th>systemd</th>
+      <th>수동 시작 명령어(systemctl 불가시)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>metricbeat</td>
+      <td>O</td>
+      <td>/usr/share/metricbeat/bin/metricbeat –environment systemd -c /etc/metricbeat/metricbeat.yml –path.home /usr/share/metricbeat –path.config /etc/metricbeat –path.data /var/lib/metricbeat –path.logs /var/log/metricbeat</td>
+    </tr>
+    <tr>
+      <td>filebeat</td>
+      <td>O</td>
+      <td>/usr/share/filebeat/bin/filebeat –environment systemd -c /etc/filebeat/filebeat.yml –path.home /usr/share/filebeat –path.config /etc/filebeat –path.data /var/lib/filebeat –path.logs /var/log/filebeat</td>
+    </tr>
+    <tr>
+      <td>mongos</td>
+      <td>O</td>
+      <td>/usr/bin/mongos –config /etc/mongos.conf</td>
+    </tr>
+    <tr>
+      <td>mongod</td>
+      <td>O</td>
+      <td>/usr/bin/mongod –config /etc/mongod.conf</td>
+    </tr>
+    <tr>
+      <td>postgresql</td>
+      <td>O</td>
+      <td>/usr/bin/pg_ctlcluster –skip-systemctl-redirect %i start</td>
+    </tr>
+    <tr>
+      <td>mysql</td>
+      <td>O</td>
+      <td>/usr/sbin/mysqld</td>
+    </tr>
+    <tr>
+      <td>zookeeper</td>
+      <td>O</td>
+      <td>/usr/local/zookeeper/bin/zkServer.sh start</td>
+    </tr>
+    <tr>
+      <td>kafka</td>
+      <td>O</td>
+      <td>/usr/local/kafka/bin/kafka-server-start.sh /usr/local/kafka/config/server.properties</td>
+    </tr>
+    <tr>
+      <td>elasticseaerch</td>
+      <td>O</td>
+      <td>/usr/share/elasticsearch/bin/systemd-entrypoint -p /var/run/elasticsearch/elasticsearch.pid –quiet</td>
+    </tr>
+    <tr>
+      <td>logstash</td>
+      <td>O</td>
+      <td>/usr/share/logstash/bin/logstash “–path.settings” “/etc/logstash”</td>
+    </tr>
+    <tr>
+      <td>kibana</td>
+      <td>O</td>
+      <td>/usr/share/kibana/bin/kibana “-c /etc/kibana/kibana.yml” –logging.dest=”/var/log/kibana/kibana.log</td>
+    </tr>
+    <tr>
+      <td>nginx</td>
+      <td>O</td>
+      <td>nginx -c /etc/config/nginx.conf</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>해당하는 서버 재부팅후 <code class="language-plaintext highlighter-rouge">systemctl status 서비스</code> 명령어로 각 서비스의 구동상태 확인 후</p>
+
+<p>구동되어 있지 않으면 <code class="language-plaintext highlighter-rouge">systemctl start 서비스</code>로 정상 실행여부 확인한다</p>
+
+<p>그래도 실행되지 않으면 위 표에 있는 수동 시작 명령어 실행(권장하지 않음)</p>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://www.postgresql.org/docs/9.4/runtime-config-connection.html">Connection Settings</a></li>
+  <li><a href="https://dba.stackexchange.com/a/161761">https://dba.stackexchange.com/a/161761</a></li>
+  <li><a href="https://stackoverflow.com/a/48576319">https://stackoverflow.com/a/48576319</a></li>
+</ol>
+:ET

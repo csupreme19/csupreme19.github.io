@@ -1,0 +1,401 @@
+I"]J<h1 id="시스템-graceful-shutdown">시스템 Graceful shutdown</h1>
+
+<p><img src="/assets/img/titles/postgresql-logo.svg" alt="postgresql-logo.svg" /></p>
+
+<p><a href="https://www.postgresql.org/docs/9.4/runtime-config-connection.html">Connection Settings</a></p>
+
+<p>PostgreSQL max_connections 설정 방법</p>
+
+<hr />
+<h2 id="시스템-재부팅-방법">시스템 재부팅 방법</h2>
+
+<p>시스템을 장애 없이 Graceful 하게 shutdown하는 방법을 다룬다.</p>
+
+<h2 id="서버별-재부팅">서버별 재부팅</h2>
+
+<h3 id="kubernetes-서버">Kubernetes 서버</h3>
+<p>Gracefully shutdown kubernetes nodes</p>
+
+<blockquote>
+  <p><a href="https://stackoverflow.com/a/59576322/15263734">https://stackoverflow.com/a/59576322/15263734</a></p>
+</blockquote>
+
+<ol>
+  <li>노드 drain
+```shell
+$ kubectl drain $NODENAME –ignore-daemonsets=true</li>
+</ol>
+
+<h1 id="local-storage-때문에-지울-수-없는-경우">local storage 때문에 지울 수 없는 경우</h1>
+<p>$ kubectl drain $NODENAME –ignore-daemonsets=true –delete-emptydir-data</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>해당 노드에서 실행되는 파드를 모두 제거하고 해당 노드의 파드 스케줄링을 비활성화한다.
+&gt; Replica가 1개인 Deployment들은 다운타임 발생할 수 있음
+
+2. 노드 drain 확인
+```shell
+$ kubectl get nodes $NODENAME
+NAME               STATUS   					ROLES                  AGE    VERSION
+$NODENAME          Ready SchedulingDisabled     control-plane,master   118d   v1.20.6
+$ kubectl get pod -A -o wide | grep $NODENAME
+argocd                 argocd-application-controller-0                  1/1     Succeeded   1          92d     10.244.2.96     $NODENAME    &lt;none&gt;           &lt;none&gt;
+kube-system            filebeat-2svwt                                   1/1     Succeeded   0          21d     10.222.222.22   $NODENAME    &lt;none&gt;           &lt;none&gt;
+kube-system            kube-flannel-ds-4whmt                            1/1     Succeeded   5          118d    10.222.222.22   $NODENAME    &lt;none&gt;           &lt;none&gt;
+kube-system            kube-proxy-qjsc8                                 1/1     Succeeded   4          118d    10.222.222.22   $NODENAME    &lt;none&gt;           &lt;none&gt;
+kube-system            metricbeat-2ggh2                                 1/1     Succeeded   1          69d     10.222.222.22   $NODENAME    &lt;none&gt;           &lt;none&gt;
+kubernetes-dashboard   kubernetes-dashboard-64b46974f-56h9x             1/1     Succeeded   2          81d     10.244.2.98     $NODENAME    &lt;none&gt;           &lt;none&gt;
+production               yourapp-prd-deploy-57f9947968-zklkq             1/1     Succeeded   0          4d15h   10.244.2.130    $NODENAME    &lt;none&gt;           &lt;none&gt;
+</code></pre></div></div>
+<ul>
+  <li>노드 상태 <code class="language-plaintext highlighter-rouge">SchedulingDisabled</code> 확인</li>
+  <li>파드 상태 <code class="language-plaintext highlighter-rouge">Succeeded</code> 정상종료 확인
+    <ul>
+      <li>파드 상태가 <code class="language-plaintext highlighter-rouge">Terminating</code>인 경우 파드가 중지되는 중이니 대기</li>
+    </ul>
+
+    <blockquote>
+      <p><code class="language-plaintext highlighter-rouge">drain</code> 명령어는 파드의 정상 종료(Graceful shutdown)를 보장한다</p>
+    </blockquote>
+  </li>
+</ul>
+
+<ol>
+  <li>서버 재부팅
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 아래 두 명령어중 아무거나 수행</span>
+<span class="nv">$ </span>shutdown <span class="nt">-r</span> now
+<span class="nv">$ </span>systemctl reboot
+</code></pre></div>    </div>
+  </li>
+  <li>노드 파드 스케줄링 재활성화
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl uncordon <span class="nv">$NODENAME</span>
+</code></pre></div>    </div>
+  </li>
+  <li>노드 상태 확인
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl get nodes <span class="nv">$NODENAME</span>
+NAME               STATUS   ROLES                  AGE    VERSION
+<span class="nv">$NODENAME</span>          Ready    control-plane,master   118d   v1.20.6
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>노드 상태 <code class="language-plaintext highlighter-rouge">Ready</code>만 있는 것 확인</p>
+
+<h3 id="rdbms-서버-재부팅">RDBMS 서버 재부팅</h3>
+<ol>
+  <li>RDBMS 캐시 flush
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sync</span><span class="p">;</span><span class="nb">sync</span>
+</code></pre></div>    </div>
+  </li>
+  <li>rdbms 서비스 중지
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl stop postgresql <span class="c"># postgresql의 경우</span>
+<span class="nv">$ </span>systemctl stop mysql <span class="c"># mysql의 경우</span>
+</code></pre></div>    </div>
+  </li>
+  <li>재부팅
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 아래 두 명령어중 아무거나 수행</span>
+<span class="nv">$ </span>shutdown <span class="nt">-r</span> now
+<span class="nv">$ </span>systemctl reboot
+</code></pre></div>    </div>
+  </li>
+  <li>서비스 정상 실행 확인
+```shell
+$ systemctl status postgresql@11-main.service # postgresql의 경우
+$ systemctl status mysql.service # mysql의 경우</li>
+</ol>
+
+<p>$ systemctl status metricbeat.service # metricbeat
+$ systemctl status filebeat.service # filebeat</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+정상 실행 안되었을시 하단 수동 구동 명령어 참고
+
+### 오픈소스 서버 재부팅
+
+1. 재부팅
+```shell
+# 아래 두 명령어중 아무거나 수행
+$ shutdown -r now
+$ systemctl reboot
+</code></pre></div></div>
+
+<ol>
+  <li>서비스 정상 실행 확인
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 각 서버의 오픈소스에 해당되는 서비스 점검</span>
+<span class="nv">$ </span>systemctl status mongos.service <span class="c"># mongos</span>
+<span class="nv">$ </span>systemctl status mongod.service <span class="c"># mongod</span>
+<span class="nv">$ </span>systemctl status zookeeper.service <span class="c"># zookeeper</span>
+<span class="nv">$ </span>systemctl status kafka.service <span class="c"># kafka</span>
+<span class="nv">$ </span>systemctl status elasticsearch.service <span class="c"># elasticsearch</span>
+<span class="nv">$ </span>systemctl status logstash.service <span class="c"># logstash</span>
+<span class="nv">$ </span>systemctl status kibana.service <span class="c"># kibana</span>
+<span class="nv">$ </span>systemctl status nginx.service <span class="c"># nginx</span>
+<span class="nv">$ </span>systemctl status metricbeat.service <span class="c"># metricbeat</span>
+<span class="nv">$ </span>systemctl status filebeat.service <span class="c"># filebeat</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>정상 실행 안되었을시 하단 수동 구동 명령어 참고</p>
+
+<h3 id="에이전트-서버-재부팅">에이전트 서버 재부팅</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>서버명</th>
+      <th>오픈소스</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>prd-agent</td>
+      <td>SafeDB v3.2.18<br />Xroshot v4.0.0</td>
+    </tr>
+  </tbody>
+</table>
+
+<ol>
+  <li>재부팅
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 아래 두 명령어중 아무거나 수행</span>
+<span class="nv">$ </span>shutdown <span class="nt">-r</span> now
+<span class="nv">$ </span>systemctl reboot
+</code></pre></div>    </div>
+  </li>
+  <li>서비스 구동(수동)
+```shell
+    <h1 id="safedb-agent1">SafeDB Agent1</h1>
+    <p>$ cd /root/SafeDB/Agent1/bin
+$ ./startup.sh</p>
+  </li>
+</ol>
+
+<h1 id="safedb-agent2">SafeDB Agent2</h1>
+<p>$ cd /root/SafeDB/Agent2/bin
+$ ./startup.sh</p>
+
+<h1 id="xroshot-agent">Xroshot Agent</h1>
+<p>$ cd /home/xroshot/X_McsAgent
+$ ./startAgent.sh</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+3. 서비스 정상 실행 확인
+```shell
+# SafeDB Agent
+$ ps -ef | grep SafeDB
+$ tail /root/SafeDB/Agent1/logs/inisafe_framework_agent.log
+$ tail /root/SafeDB/Agent2/logs/inisafe_framework_agent.log
+
+# Xroshot Agent
+$ ps -ef | grep MCS
+$ cd /home/xroshot/X_McsAgent
+$ ./agentStatus.sh
+</code></pre></div></div>
+<p>정상 실행 안되었을시 하단 수동 구동 명령어 참고</p>
+
+<h2 id="참고사항">참고사항</h2>
+
+<h3 id="재부팅-정보-확인">재부팅 정보 확인</h3>
+
+<p><strong>최근 재부팅 시간 확인</strong></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">who</span> <span class="nt">-b</span>
+         system boot  2021-06-15 19:00
+
+<span class="nv">$ </span>last reboot
+reboot   system boot  3.10.0-1160.31.1 Tue Jun 15 19:00 - 10:06 <span class="o">(</span>55+15:06<span class="o">)</span>
+reboot   system boot  3.10.0-1160.25.1 Wed Jun  9 20:25 - 10:06 <span class="o">(</span>61+13:40<span class="o">)</span>
+reboot   system boot  3.10.0-957.el7.x Tue Jun  8 17:43 - 10:06 <span class="o">(</span>62+16:23<span class="o">)</span>
+</code></pre></div></div>
+
+<p><strong>업타임 확인</strong></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">uptime
+</span>10:05:54 up 55 days, 15:05,  1 user,  load average: 0.00, 0.01, 0.05
+</code></pre></div></div>
+
+<h3 id="systemd-정보-확인">systemd 정보 확인</h3>
+
+<p><strong>systemd 등록 서비스 리스트 확인</strong></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl list-unit-files | <span class="nb">grep </span>enabled
+<span class="nv">$ </span>systemctl status 오픈소스
+<span class="nv">$ </span>ps <span class="nt">-ef</span>
+</code></pre></div></div>
+<p>systemd 시스템 데몬에 등록된 프로세스들은 리부트시 자동으로 실행된다.</p>
+
+<p>systemd를 사용하지 않는 프로세스는 OS 재시작시 재기동 여부 확인 후 재기동되지 않으면 수동 구동 필요</p>
+
+<p>systemd에 등록이 되어 자동 실행된다고 하더라도 실제 작동 여부 확인 필요하다.</p>
+
+<h3 id="서비스별-systemd-사용-여부">서비스별 systemd 사용 여부</h3>
+
+<p>아래 테이블은 현재 상용 구축되어 있는 오픈소스 리스트와 systemd 등록 여부 및 수동 시작 명령어를 작성하였다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>서비스</th>
+      <th>설치 서버</th>
+      <th>systemd</th>
+      <th>수동 시작 명령어(systemctl 불가시)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>metricbeat</td>
+      <td>All</td>
+      <td>O</td>
+      <td>/usr/share/metricbeat/bin/metricbeat –environment systemd -c /etc/metricbeat/metricbeat.yml –path.home /usr/share/metricbeat –path.config /etc/metricbeat –path.data /var/lib/metricbeat –path.logs /var/log/metricbeat</td>
+    </tr>
+    <tr>
+      <td>rsyslog</td>
+      <td>All</td>
+      <td>O</td>
+      <td>/usr/sbin/rsyslogd -n</td>
+    </tr>
+    <tr>
+      <td>Server-i</td>
+      <td>All</td>
+      <td>X</td>
+      <td>/opt/serveri/bin/piagenta</td>
+    </tr>
+    <tr>
+      <td>SMP, MetiEye</td>
+      <td>All</td>
+      <td>X</td>
+      <td>/SSR/SA-linux-64 –start</td>
+    </tr>
+    <tr>
+      <td>Trend Micro 서버백신</td>
+      <td>All</td>
+      <td>O</td>
+      <td>/opt/ds_agent/ds_agent.init start</td>
+    </tr>
+    <tr>
+      <td>filebeat</td>
+      <td>prd-mongo-config-1,2,3<br />prd-rdbms-1<br />prd-postgres-1,2<br />prd-mysql-1<br />prd-zkp-1,2,3<br />prd-kafka-1,2,3<br />prd-dmz-proxy-1,2</td>
+      <td>O</td>
+      <td>/usr/share/filebeat/bin/filebeat –environment systemd -c /etc/filebeat/filebeat.yml –path.home /usr/share/filebeat –path.config /etc/filebeat –path.data /var/lib/filebeat –path.logs /var/log/filebeat</td>
+    </tr>
+    <tr>
+      <td>mongos</td>
+      <td>prd-mongo-config1,2,3</td>
+      <td>O</td>
+      <td>/usr/bin/mongos –config /etc/mongos.conf</td>
+    </tr>
+    <tr>
+      <td>mongod</td>
+      <td>prd-mongo-config1,2,3<br />prd-mongo-shard1-1,2,3<br />prd-mongo-shard2-1,2,3</td>
+      <td>O</td>
+      <td>/usr/bin/mongod –config /etc/mongod.conf</td>
+    </tr>
+    <tr>
+      <td>redis-enterprise</td>
+      <td>prd-redis-enterprise-1,2</td>
+      <td>X</td>
+      <td>/home/redis/ent714/redis-start.sh<br />/home/redis/ent714/src/redis-ecli -p 6379</td>
+    </tr>
+    <tr>
+      <td>postgresql</td>
+      <td>prd-rdbms-1<br />prd-postgresql-1,2</td>
+      <td>O</td>
+      <td>/usr/bin/pg_ctlcluster –skip-systemctl-redirect %i start</td>
+    </tr>
+    <tr>
+      <td>mysql</td>
+      <td>prd-mysql-1</td>
+      <td>O</td>
+      <td>/usr/sbin/mysqld</td>
+    </tr>
+    <tr>
+      <td>zookeeper</td>
+      <td>prd-zkp-1,2,3</td>
+      <td>O</td>
+      <td>/usr/local/zookeeper/bin/zkServer.sh start</td>
+    </tr>
+    <tr>
+      <td>kafka</td>
+      <td>prd-kafka-1,2,3</td>
+      <td>O</td>
+      <td>/usr/local/kafka/bin/kafka-server-start.sh /usr/local/kafka/config/server.properties</td>
+    </tr>
+    <tr>
+      <td>elasticseaerch</td>
+      <td>prd-elastic-master-1,2,3<br />prd-elastic-data-1,2,3</td>
+      <td>O</td>
+      <td>/usr/share/elasticsearch/bin/systemd-entrypoint -p /var/run/elasticsearch/elasticsearch.pid –quiet</td>
+    </tr>
+    <tr>
+      <td>logstash</td>
+      <td>prd-elastic-logstash-1,2</td>
+      <td>O</td>
+      <td>/usr/share/logstash/bin/logstash “–path.settings” “/etc/logstash”</td>
+    </tr>
+    <tr>
+      <td>kibana</td>
+      <td>prd-elastic-kibana</td>
+      <td>O</td>
+      <td>/usr/share/kibana/bin/kibana “-c /etc/kibana/kibana.yml” –logging.dest=”/var/log/kibana/kibana.log</td>
+    </tr>
+    <tr>
+      <td>nginx</td>
+      <td>prd-dmz-nginx</td>
+      <td>O</td>
+      <td>nginx -c /etc/config/nginx.conf</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>에이전트</th>
+      <th>설치 서버</th>
+      <th>systemd</th>
+      <th>수동 시작 명령어</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SafeDB</td>
+      <td>prd-agent</td>
+      <td>X</td>
+      <td>/root/SafeDB/Agent1/bin/startup.sh<br />/root/SafeDB/Agent2/bin/startup.sh</td>
+    </tr>
+    <tr>
+      <td>Xroshot</td>
+      <td>prd-agent</td>
+      <td>X</td>
+      <td>/home/xroshot/X_McsAgent/startAgent.sh</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>해당하는 서버 재부팅후 <code class="language-plaintext highlighter-rouge">systemctl status 서비스</code> 명령어로 각 서비스의 구동상태 확인 후</p>
+
+<p>구동되어 있지 않으면 <code class="language-plaintext highlighter-rouge">systemctl start 서비스</code>로 정상 실행여부 확인한다</p>
+
+<p>그래도 실행되지 않으면 위 표에 있는 수동 시작 명령어 실행(권장하지 않음)</p>
+
+<h3 id="서버별-서비스-목록">서버별 서비스 목록</h3>
+<p>| 서버                                                         | 서비스                                                       |
+| ———————————————————— | ———————————————————— |
+| prd-k8s-master-1,2,3<br />prd-k8s-data-1,2,3<br />prd-k8s-worker-1,2,3,4,5,6<br />prd-k8s-ingress-1,2 | kubadm/kubelet/kubctl v1.20.6<br />metricbeat 7.12.1<br />Server-i<br />SMP, MetiEye<br />Trend Micro 서버백신<br />rsyslog |
+| prd-mongo-config-1,2,3                                       | mongos/mongod v4.4.4<br />metricbeat/filebeat 7.12.1<br />Server-i<br />SMP, MetiEye<br />Trend Micro 서버백신<br />rsyslog |
+| prd-mongo-shard1,2-1,2,3                                     | mongod v4.4.4<br />metricbeat 7.12.1<br />Server-i<br />SMP, MetiEye<br />Trend Micro 서버백신<br />rsyslog |
+| prd-redis-enterprise-1,2                                     | redis enterprise 7.1.4<br />metricbeat 7.12.1<br />Server-i<br />SMP, MetiEye<br />Trend Micro 서버백신<br />rsyslog |
+| prd-rdbms-1                                                  | postgresql 11.11<br />metricbeat/filebeat 7.12.1<br />Server-i<br />SMP, MetiEye<br />Trend Micro 서버백신<br />rsyslog |
+| prd-postgres-1,2                                             | postgresql 11.7<br />metricbeat/filebeat 7.12.1<br />Server-i<br />SMP, MetiEye<br />Trend Micro 서버백신<br />rsyslog |
+| prd-mysql-1                                                  | mysql 8.0.25<br />metricbeat/filebeat 7.12.1<br />Server-i<br />SMP, MetiEye<br />Trend Micro 서버백신<br />rsyslog |
+| prd-zkp-1,2,3                                                | zookeeper 3.6.2<br />metricbeat/filebeat 7.12.1<br />Server-i<br />SMP, MetiEye<br />Trend Micro 서버백신<br />rsyslog |
+| prd-kafka-1,2,3                                              | kafka 2.7.0<br />scala 2.13<br />metricbeat/filebeat 7.12.1<br />Server-i<br />SMP, MetiEye<br />Trend Micro 서버백신<br />rsyslog |
+| prd-elastic-master1,2,3<br />prd-elastic-data-1,2,3            | elasticsearch 7.12.1<br />metricbeat 7.12.1<br />Server-i<br />SMP, MetiEye<br />Trend Micro 서버백신<br />rsyslog |
+| prd-elastic-logstash-1,2                                     | logstash 7.12.1<br />metricbeat 7.12.1<br />Server-i<br />SMP, MetiEye<br />Trend Micro 서버백신<br />rsyslog |
+| prd-elastic-kibana                                           | kibana 7.12.1<br />metricbeat 7.12.1<br />Server-i<br />SMP, MetiEye<br />Trend Micro 서버백신<br />rsyslog |
+| prd-dmz-proxy-1,2                                            | nginx 1.14.0<br />metricbeat/filebeat 7.12.1<br />Server-i<br />SMP, MetiEye<br />Trend Micro 서버백신<br />rsyslog |
+| prd-agent                                                    | X_MCS Agent v4.0.0<br />filebeat 6.2.4<br /> SafeDB Agent v3.2.18<br />metricbeat 7.12.1<br />Server-i<br />SMP, MetiEye<br />Trend Micro 서버백신<br />rsyslog |</p>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://www.postgresql.org/docs/9.4/runtime-config-connection.html">Connection Settings</a></li>
+  <li><a href="https://dba.stackexchange.com/a/161761">https://dba.stackexchange.com/a/161761</a></li>
+  <li><a href="https://stackoverflow.com/a/48576319">https://stackoverflow.com/a/48576319</a></li>
+</ol>
+:ET

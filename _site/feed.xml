@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-11-29T16:40:30+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>DevOps 개발 블로그</subtitle><entry><title type="html">Jekyll Mermaid js 사용하기</title><link href="http://localhost:4000/2021/11/29/jekyll-mermaid.html" rel="alternate" type="text/html" title="Jekyll Mermaid js 사용하기" /><published>2021-11-29T00:00:00+09:00</published><updated>2021-11-29T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/29/jekyll-mermaid</id><content type="html" xml:base="http://localhost:4000/2021/11/29/jekyll-mermaid.html">&lt;h1 id=&quot;jekyll-mermaid-js-사용하기&quot;&gt;Jekyll Mermaid js 사용하기&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-11-29T17:09:11+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>DevOps 개발 블로그</subtitle><entry><title type="html">Jekyll Mermaid js 사용하기</title><link href="http://localhost:4000/2021/11/29/jekyll-mermaid.html" rel="alternate" type="text/html" title="Jekyll Mermaid js 사용하기" /><published>2021-11-29T00:00:00+09:00</published><updated>2021-11-29T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/29/jekyll-mermaid</id><content type="html" xml:base="http://localhost:4000/2021/11/29/jekyll-mermaid.html">&lt;h1 id=&quot;jekyll-mermaid-js-사용하기&quot;&gt;Jekyll Mermaid js 사용하기&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/contents/jekyll.png&quot; alt=&quot;jekyll.png&quot; /&gt;&lt;/p&gt;
 
@@ -1622,7 +1622,7 @@ APT::Periodic::Unattended-Upgrade &lt;span class=&quot;s2&quot;&gt;&quot;0&quot;
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl list-unit-files | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;apt-daily
 
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;apt-config dump | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;Update-Package-Lists
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>csupreme19</name></author><category term="Linux" /><category term="OS" /><category term="Ubuntu" /><category term="Package Manager" /><category term="APT" /><category term="Upgrade" /><summary type="html">Apt 자동 업그레이드 비활성화(Unattended upgrade)</summary></entry><entry><title type="html">Elasticsearch ILM 로그 주기 관리</title><link href="http://localhost:4000/2021/08/11/elastic-ilm.html" rel="alternate" type="text/html" title="Elasticsearch ILM 로그 주기 관리" /><published>2021-08-11T00:00:00+09:00</published><updated>2021-08-11T00:00:00+09:00</updated><id>http://localhost:4000/2021/08/11/elastic-ilm</id><content type="html" xml:base="http://localhost:4000/2021/08/11/elastic-ilm.html">&lt;h1 id=&quot;elasticsearch-ilm-로그-주기-관리-정책&quot;&gt;Elasticsearch ILM 로그 주기 관리 정책&lt;/h1&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>csupreme19</name></author><category term="Linux" /><category term="OS" /><category term="Ubuntu" /><category term="Debian" /><category term="Package Manager" /><category term="APT" /><category term="Upgrade" /><summary type="html">Apt 자동 업그레이드 비활성화(Unattended upgrade)</summary></entry><entry><title type="html">Elasticsearch ILM 로그 주기 관리</title><link href="http://localhost:4000/2021/08/11/elastic-ilm.html" rel="alternate" type="text/html" title="Elasticsearch ILM 로그 주기 관리" /><published>2021-08-11T00:00:00+09:00</published><updated>2021-08-11T00:00:00+09:00</updated><id>http://localhost:4000/2021/08/11/elastic-ilm</id><content type="html" xml:base="http://localhost:4000/2021/08/11/elastic-ilm.html">&lt;h1 id=&quot;elasticsearch-ilm-로그-주기-관리-정책&quot;&gt;Elasticsearch ILM 로그 주기 관리 정책&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/titles/elastic-logo.png&quot; alt=&quot;elastic-logo.png&quot; /&gt;&lt;/p&gt;
 
@@ -1694,7 +1694,273 @@ APT::Periodic::Unattended-Upgrade &lt;span class=&quot;s2&quot;&gt;&quot;0&quot;
   &lt;li&gt;
     &lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/7.x/getting-started-index-lifecycle-management.html&quot;&gt;Tutorial: Automate rollover with ILM&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Elasticsearch" /><category term="Elastic" /><category term="ELK" /><category term="Index" /><category term="ILM" /><summary type="html">Elasticsearch ILM 로그 주기 관리 정책</summary></entry><entry><title type="html">Elasticsearch Filebeat 모듈 설정</title><link href="http://localhost:4000/2021/08/06/elastic-filebeat-modules.html" rel="alternate" type="text/html" title="Elasticsearch Filebeat 모듈 설정" /><published>2021-08-06T00:00:00+09:00</published><updated>2021-08-06T00:00:00+09:00</updated><id>http://localhost:4000/2021/08/06/elastic-filebeat-modules</id><content type="html" xml:base="http://localhost:4000/2021/08/06/elastic-filebeat-modules.html">&lt;h1 id=&quot;elastic-filebeat-모듈-설정&quot;&gt;Elastic Filebeat 모듈 설정&lt;/h1&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Elasticsearch" /><category term="Elastic" /><category term="ELK" /><category term="Index" /><category term="ILM" /><summary type="html">Elasticsearch ILM 로그 주기 관리 정책</summary></entry><entry><title type="html">시스템 Graceful shutdown</title><link href="http://localhost:4000/2021/08/10/system-graceful-shutdown.html" rel="alternate" type="text/html" title="시스템 Graceful shutdown" /><published>2021-08-10T00:00:00+09:00</published><updated>2021-08-10T00:00:00+09:00</updated><id>http://localhost:4000/2021/08/10/system-graceful-shutdown</id><content type="html" xml:base="http://localhost:4000/2021/08/10/system-graceful-shutdown.html">&lt;h1 id=&quot;시스템-graceful-shutdown&quot;&gt;시스템 Graceful shutdown&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/titles/ubuntu-logo.svg&quot; alt=&quot;postgresql-logo.svg&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;PostgreSQL max_connections 설정 방법(Ubuntu 기준으로 작성)&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;시스템-재부팅-방법&quot;&gt;시스템 재부팅 방법&lt;/h2&gt;
+
+&lt;p&gt;시스템을 장애 없이 Graceful 하게 shutdown하는 방법을 다룬다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;서버별-재부팅&quot;&gt;서버별 재부팅&lt;/h2&gt;
+
+&lt;h3 id=&quot;kubernetes-서버&quot;&gt;Kubernetes 서버&lt;/h3&gt;
+&lt;p&gt;Gracefully shutdown kubernetes nodes&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://stackoverflow.com/a/59576322/15263734&quot;&gt;https://stackoverflow.com/a/59576322/15263734&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;1-노드-drain&quot;&gt;1. 노드 drain&lt;/h4&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl drain &lt;span class=&quot;nv&quot;&gt;$NODENAME&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--ignore-daemonsets&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# local storage 때문에 지울 수 없는 경우&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl drain &lt;span class=&quot;nv&quot;&gt;$NODENAME&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--ignore-daemonsets&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--delete-emptydir-data&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;해당 노드에서 실행되는 파드를 모두 제거하고 해당 노드의 파드 스케줄링을 비활성화한다.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Replica가 1개인 Deployment들은 다운타임 발생할 수 있음&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;2-노드-drain-확인&quot;&gt;2. 노드 drain 확인&lt;/h4&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl get nodes &lt;span class=&quot;nv&quot;&gt;$NODENAME&lt;/span&gt;
+NAME               STATUS   					ROLES                  AGE    VERSION
+&lt;span class=&quot;nv&quot;&gt;$NODENAME&lt;/span&gt;          Ready SchedulingDisabled     control-plane,master   118d   v1.20.6
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl get pod &lt;span class=&quot;nt&quot;&gt;-A&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; wide | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$NODENAME&lt;/span&gt;
+argocd                 argocd-application-controller-0                  1/1     Succeeded   1          92d     10.244.2.96     &lt;span class=&quot;nv&quot;&gt;$NODENAME&lt;/span&gt;    &amp;lt;none&amp;gt;           &amp;lt;none&amp;gt;
+kube-system            filebeat-2svwt                                   1/1     Succeeded   0          21d     10.222.222.22   &lt;span class=&quot;nv&quot;&gt;$NODENAME&lt;/span&gt;    &amp;lt;none&amp;gt;           &amp;lt;none&amp;gt;
+kube-system            kube-flannel-ds-4whmt                            1/1     Succeeded   5          118d    10.222.222.22   &lt;span class=&quot;nv&quot;&gt;$NODENAME&lt;/span&gt;    &amp;lt;none&amp;gt;           &amp;lt;none&amp;gt;
+kube-system            kube-proxy-qjsc8                                 1/1     Succeeded   4          118d    10.222.222.22   &lt;span class=&quot;nv&quot;&gt;$NODENAME&lt;/span&gt;    &amp;lt;none&amp;gt;           &amp;lt;none&amp;gt;
+kube-system            metricbeat-2ggh2                                 1/1     Succeeded   1          69d     10.222.222.22   &lt;span class=&quot;nv&quot;&gt;$NODENAME&lt;/span&gt;    &amp;lt;none&amp;gt;           &amp;lt;none&amp;gt;
+kubernetes-dashboard   kubernetes-dashboard-64b46974f-56h9x             1/1     Succeeded   2          81d     10.244.2.98     &lt;span class=&quot;nv&quot;&gt;$NODENAME&lt;/span&gt;    &amp;lt;none&amp;gt;           &amp;lt;none&amp;gt;
+production               yourapp-prd-deploy-57f9947968-zklkq             1/1     Succeeded   0          4d15h   10.244.2.130    &lt;span class=&quot;nv&quot;&gt;$NODENAME&lt;/span&gt;    &amp;lt;none&amp;gt;           &amp;lt;none&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;노드 상태 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SchedulingDisabled&lt;/code&gt; 확인&lt;/li&gt;
+  &lt;li&gt;파드 상태 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Succeeded&lt;/code&gt; 정상종료 확인
+    &lt;ul&gt;
+      &lt;li&gt;파드 상태가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Terminating&lt;/code&gt;인 경우 파드가 중지되는 중이니 대기&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;drain&lt;/code&gt; 명령어는 파드의 정상 종료(Graceful shutdown)를 보장한다&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;3-서버-재부팅&quot;&gt;3. 서버 재부팅&lt;/h4&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 아래 두 명령어중 아무거나 수행&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;shutdown &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; now
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl reboot
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;4-노드-파드-스케줄링-재활성화&quot;&gt;4. 노드 파드 스케줄링 재활성화&lt;/h4&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl uncordon &lt;span class=&quot;nv&quot;&gt;$NODENAME&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;5-노드-상태-확인&quot;&gt;5. 노드 상태 확인&lt;/h4&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl get nodes &lt;span class=&quot;nv&quot;&gt;$NODENAME&lt;/span&gt;
+NAME               STATUS   ROLES                  AGE    VERSION
+&lt;span class=&quot;nv&quot;&gt;$NODENAME&lt;/span&gt;          Ready    control-plane,master   118d   v1.20.6
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;노드 상태 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Ready&lt;/code&gt;만 있는 것 확인&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;기존 떠있는 Pod들은 Reschedule 시점까지 새로 생긴 Node로 스케줄 되지 않음&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;rdbms-서버-재부팅&quot;&gt;RDBMS 서버 재부팅&lt;/h3&gt;
+&lt;h4 id=&quot;1-rdbms-캐시-flush&quot;&gt;1. RDBMS 캐시 flush&lt;/h4&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sync&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;2-rdbms-서비스-중지&quot;&gt;2. rdbms 서비스 중지&lt;/h4&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl stop postgresql &lt;span class=&quot;c&quot;&gt;# postgresql의 경우&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl stop mysql &lt;span class=&quot;c&quot;&gt;# mysql의 경우&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;3-재부팅&quot;&gt;3. 재부팅&lt;/h4&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 아래 두 명령어중 아무거나 수행&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;shutdown &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; now
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl reboot
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;4-서비스-정상-실행-확인&quot;&gt;4. 서비스 정상 실행 확인&lt;/h4&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl status postgresql@11-main.service &lt;span class=&quot;c&quot;&gt;# postgresql의 경우&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl status mysql.service &lt;span class=&quot;c&quot;&gt;# mysql의 경우&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl status metricbeat.service &lt;span class=&quot;c&quot;&gt;# metricbeat&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl status filebeat.service &lt;span class=&quot;c&quot;&gt;# filebeat&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;오픈소스-서버-재부팅&quot;&gt;오픈소스 서버 재부팅&lt;/h3&gt;
+&lt;h4 id=&quot;1-재부팅&quot;&gt;1. 재부팅&lt;/h4&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 아래 두 명령어중 아무거나 수행&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;shutdown &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; now
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl reboot
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;2-서비스-정상-실행-확인&quot;&gt;2. 서비스 정상 실행 확인&lt;/h4&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 각 서버의 오픈소스에 해당되는 서비스 점검&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl status mongos.service &lt;span class=&quot;c&quot;&gt;# mongos&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl status mongod.service &lt;span class=&quot;c&quot;&gt;# mongod&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl status zookeeper.service &lt;span class=&quot;c&quot;&gt;# zookeeper&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl status kafka.service &lt;span class=&quot;c&quot;&gt;# kafka&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl status elasticsearch.service &lt;span class=&quot;c&quot;&gt;# elasticsearch&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl status logstash.service &lt;span class=&quot;c&quot;&gt;# logstash&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl status kibana.service &lt;span class=&quot;c&quot;&gt;# kibana&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl status nginx.service &lt;span class=&quot;c&quot;&gt;# nginx&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl status metricbeat.service &lt;span class=&quot;c&quot;&gt;# metricbeat&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl status filebeat.service &lt;span class=&quot;c&quot;&gt;# filebeat&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;정상 실행 안되었을시 하단 수동 구동 명령어 참고&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;참고사항&quot;&gt;참고사항&lt;/h2&gt;
+
+&lt;h3 id=&quot;재부팅-정보-확인&quot;&gt;재부팅 정보 확인&lt;/h3&gt;
+
+&lt;h4 id=&quot;최근-재부팅-시간-확인&quot;&gt;최근 재부팅 시간 확인&lt;/h4&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;who&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt;
+         system boot  2021-06-15 19:00
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;last reboot
+reboot   system boot  3.10.0-1160.31.1 Tue Jun 15 19:00 - 10:06 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;55+15:06&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+reboot   system boot  3.10.0-1160.25.1 Wed Jun  9 20:25 - 10:06 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;61+13:40&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+reboot   system boot  3.10.0-957.el7.x Tue Jun  8 17:43 - 10:06 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;62+16:23&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;업타임-확인&quot;&gt;업타임 확인&lt;/h4&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;uptime
+&lt;/span&gt;10:05:54 up 55 days, 15:05,  1 user,  load average: 0.00, 0.01, 0.05
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;systemd-정보-확인&quot;&gt;systemd 정보 확인&lt;/h3&gt;
+
+&lt;h4 id=&quot;systemd-등록-서비스-리스트-확인&quot;&gt;systemd 등록 서비스 리스트 확인&lt;/h4&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl list-unit-files | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;enabled
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl status 오픈소스
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ps &lt;span class=&quot;nt&quot;&gt;-ef&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;systemd 시스템 데몬에 등록된 프로세스들은 리부트시 자동으로 실행된다.&lt;/p&gt;
+
+&lt;p&gt;systemd를 사용하지 않는 프로세스는 OS 재시작시 재기동 여부 확인 후 재기동되지 않으면 수동 구동 필요&lt;/p&gt;
+
+&lt;p&gt;systemd에 등록이 되어 자동 실행된다고 하더라도 실제 작동 여부 확인 필요하다.&lt;/p&gt;
+
+&lt;h3 id=&quot;서비스별-systemd-사용-여부&quot;&gt;서비스별 systemd 사용 여부&lt;/h3&gt;
+
+&lt;p&gt;아래 테이블은 오픈소스 리스트와 systemd 등록 여부 및 수동 시작 명령어를 작성하였다.&lt;/p&gt;
+
+&lt;p&gt;설치형을 기준으로 작성되었으며 버전 및 환경별로 다를 수 있으니 참고만 할 것&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;서비스&lt;/th&gt;
+      &lt;th&gt;systemd&lt;/th&gt;
+      &lt;th&gt;수동 시작 명령어(systemctl 불가시)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;metricbeat&lt;/td&gt;
+      &lt;td&gt;O&lt;/td&gt;
+      &lt;td&gt;/usr/share/metricbeat/bin/metricbeat –environment systemd -c /etc/metricbeat/metricbeat.yml –path.home /usr/share/metricbeat –path.config /etc/metricbeat –path.data /var/lib/metricbeat –path.logs /var/log/metricbeat&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;filebeat&lt;/td&gt;
+      &lt;td&gt;O&lt;/td&gt;
+      &lt;td&gt;/usr/share/filebeat/bin/filebeat –environment systemd -c /etc/filebeat/filebeat.yml –path.home /usr/share/filebeat –path.config /etc/filebeat –path.data /var/lib/filebeat –path.logs /var/log/filebeat&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;mongos&lt;/td&gt;
+      &lt;td&gt;O&lt;/td&gt;
+      &lt;td&gt;/usr/bin/mongos –config /etc/mongos.conf&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;mongod&lt;/td&gt;
+      &lt;td&gt;O&lt;/td&gt;
+      &lt;td&gt;/usr/bin/mongod –config /etc/mongod.conf&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;postgresql&lt;/td&gt;
+      &lt;td&gt;O&lt;/td&gt;
+      &lt;td&gt;/usr/bin/pg_ctlcluster –skip-systemctl-redirect %i start&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;mysql&lt;/td&gt;
+      &lt;td&gt;O&lt;/td&gt;
+      &lt;td&gt;/usr/sbin/mysqld&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;zookeeper&lt;/td&gt;
+      &lt;td&gt;O&lt;/td&gt;
+      &lt;td&gt;/usr/local/zookeeper/bin/zkServer.sh start&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;kafka&lt;/td&gt;
+      &lt;td&gt;O&lt;/td&gt;
+      &lt;td&gt;/usr/local/kafka/bin/kafka-server-start.sh /usr/local/kafka/config/server.properties&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;elasticseaerch&lt;/td&gt;
+      &lt;td&gt;O&lt;/td&gt;
+      &lt;td&gt;/usr/share/elasticsearch/bin/systemd-entrypoint -p /var/run/elasticsearch/elasticsearch.pid –quiet&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;logstash&lt;/td&gt;
+      &lt;td&gt;O&lt;/td&gt;
+      &lt;td&gt;/usr/share/logstash/bin/logstash “–path.settings” “/etc/logstash”&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;kibana&lt;/td&gt;
+      &lt;td&gt;O&lt;/td&gt;
+      &lt;td&gt;/usr/share/kibana/bin/kibana “-c /etc/kibana/kibana.yml” –logging.dest=”/var/log/kibana/kibana.log&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;nginx&lt;/td&gt;
+      &lt;td&gt;O&lt;/td&gt;
+      &lt;td&gt;nginx -c /etc/config/nginx.conf&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;해당하는 서버 재부팅후 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;systemctl status 서비스&lt;/code&gt; 명령어로 각 서비스의 구동상태 확인 후&lt;/p&gt;
+
+&lt;p&gt;구동되어 있지 않으면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;systemctl start 서비스&lt;/code&gt;로 정상 실행여부 확인한다&lt;/p&gt;
+
+&lt;p&gt;그래도 실행되지 않으면 위 표에 있는 수동 시작 명령어 실행(권장하지 않음)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://stackoverflow.com/a/59576322/15263734&quot;&gt;https://stackoverflow.com/a/59576322/15263734&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="System" /><category term="OS" /><category term="Ubuntu" /><category term="Linux" /><category term="Debian" /><summary type="html">시스템 Graceful shutdown</summary></entry><entry><title type="html">Elasticsearch Filebeat 모듈 설정</title><link href="http://localhost:4000/2021/08/06/elastic-filebeat-modules.html" rel="alternate" type="text/html" title="Elasticsearch Filebeat 모듈 설정" /><published>2021-08-06T00:00:00+09:00</published><updated>2021-08-06T00:00:00+09:00</updated><id>http://localhost:4000/2021/08/06/elastic-filebeat-modules</id><content type="html" xml:base="http://localhost:4000/2021/08/06/elastic-filebeat-modules.html">&lt;h1 id=&quot;elastic-filebeat-모듈-설정&quot;&gt;Elastic Filebeat 모듈 설정&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/titles/elastic-beats-logo.png&quot; alt=&quot;elastic-beats-logo.png&quot; /&gt;&lt;/p&gt;
 
@@ -2056,361 +2322,4 @@ APT::Periodic::Unattended-Upgrade &lt;span class=&quot;s2&quot;&gt;&quot;0&quot;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/filebeat/7.16/filebeat-overview.html&quot;&gt;Filebeat Overview&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Elasticsearch" /><category term="Elastic" /><category term="ELK" /><category term="Filebeat" /><category term="Beat" /><summary type="html">Elastic Filebeat 설치 및 설정</summary></entry><entry><title type="html">Elasticsearch Metricbeat 모듈 설정</title><link href="http://localhost:4000/2021/08/02/elastic-metricbeat-modules.html" rel="alternate" type="text/html" title="Elasticsearch Metricbeat 모듈 설정" /><published>2021-08-02T00:00:00+09:00</published><updated>2021-08-02T00:00:00+09:00</updated><id>http://localhost:4000/2021/08/02/elastic-metricbeat-modules</id><content type="html" xml:base="http://localhost:4000/2021/08/02/elastic-metricbeat-modules.html">&lt;h1 id=&quot;elastic-metricbeat-모듈-설정&quot;&gt;Elastic Metricbeat 모듈 설정&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/titles/elastic-beats-logo.png&quot; alt=&quot;elastic-beats-logo.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-modules.html&quot;&gt;Metricbeat Modules&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;메트릭 정보를 수집하는 Metricbeat의 모듈별 Output 설정방법을 정리하였다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;module-설정&quot;&gt;Module 설정&lt;/h2&gt;
-
-&lt;hr /&gt;
-&lt;h3 id=&quot;metricbeat-설치&quot;&gt;Metricbeat 설치&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;/2021/07/27/elastic-metricbeat-install.html&quot;&gt;Metricbeat 설치 및 설정&lt;/a&gt; 참고&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;h3 id=&quot;module-확인&quot;&gt;Module 확인&lt;/h3&gt;
-&lt;p&gt;metric을 수집하기 위한 metricbeat의 module들 list 확인&lt;/p&gt;
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules list
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;hr /&gt;
-&lt;h3 id=&quot;system-module-설정&quot;&gt;System module 설정&lt;/h3&gt;
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 필요 시 system 모듈 설정&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vi /etc/metricbeat/modules.d/system.yml
-
-&lt;span class=&quot;c&quot;&gt;# 추가 module 없이 활성화를 하면 system metric만 수집함.&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;hr /&gt;
-&lt;h3 id=&quot;postgresql-module-설정&quot;&gt;Postgresql module 설정&lt;/h3&gt;
-
-&lt;p&gt;Postgres이 설치되어 있는 VM에 진행&lt;/p&gt;
-
-&lt;h4 id=&quot;모듈-활성화&quot;&gt;모듈 활성화&lt;/h4&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;postgresql
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;모듈-설정&quot;&gt;모듈 설정&lt;/h4&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/metricbeat/modules.d/postgresql.yml&lt;/code&gt; 수정&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;postgresql&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;metricsets&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;database&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;bgwriter&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;activity&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;statement&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10s&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;postgres://10.213.196.207:5432?sslmode=disable&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;postgres&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;암호&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;ref: &lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-module-postgresql.html&quot;&gt;https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-module-postgresql.html&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;postgresql-dashboards&quot;&gt;postgresql dashboards&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/emm-1.png&quot; alt=&quot;emm-1.png&quot; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;h3 id=&quot;redis-module-설정&quot;&gt;Redis module 설정&lt;/h3&gt;
-
-&lt;p&gt;Redis가 설치되어 있는 VM에 진행&lt;/p&gt;
-
-&lt;h4 id=&quot;모듈-활성화-1&quot;&gt;모듈 활성화&lt;/h4&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;redis
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;모듈-설정-1&quot;&gt;모듈 설정&lt;/h4&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/metricbeat/modules.d/redis.yml&lt;/code&gt; 수정&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;redis&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;metricsets&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;info&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;keyspace&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10s&lt;/span&gt;
-
-  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;127.0.0.1:6379&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;ref: &lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-redis.html&quot;&gt;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-redis.html&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;redis-dashboards&quot;&gt;redis dashboards&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/emm-2.png&quot; alt=&quot;emm-2.png&quot; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;h3 id=&quot;mongodb-module-설정&quot;&gt;Mongodb module 설정&lt;/h3&gt;
-
-&lt;p&gt;Mongodb가 설치되어 있는 VM에 진행&lt;/p&gt;
-
-&lt;h4 id=&quot;모듈-활성화-2&quot;&gt;모듈 활성화&lt;/h4&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;mongodb
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;모듈-설정-2&quot;&gt;모듈 설정&lt;/h4&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/metricbeat/modules.d/mongodb.yml&lt;/code&gt; 수정&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mongodb&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;metricsets&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;dbstats&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;status&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;collstats&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;metrics&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10s&lt;/span&gt;
-
-  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;localhost:27017&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;ref: &lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-mongodb.html&quot;&gt;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-mongodb.html&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;mongodb-dashboards&quot;&gt;mongodb dashboards&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/emm-3.png&quot; alt=&quot;emm-3.png&quot; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;h3 id=&quot;mysql-module-설정&quot;&gt;MySQL module 설정&lt;/h3&gt;
-
-&lt;p&gt;MySQL이 설치되어 있는 VM에 진행&lt;/p&gt;
-
-&lt;h4 id=&quot;모듈-활성화-3&quot;&gt;모듈 활성화&lt;/h4&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;mysql
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;모듈-설정-3&quot;&gt;모듈 설정&lt;/h4&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/metricbeat/modules.d/mysql.yml&lt;/code&gt; 수정&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mysql&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;metricsets&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;status&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;performance&lt;/span&gt;
-    
-  &lt;span class=&quot;na&quot;&gt;period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10s&lt;/span&gt;
-  
-  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;metricbeat:password1234@tcp(127.0.0.1:13306)/&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;ref: &lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-mysql.html&quot;&gt;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-mysql.html&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;접속-에러시&quot;&gt;접속 에러시&lt;/h4&gt;
-
-&lt;p&gt;mysql의 root 계정이 localhost에서만 접속하도록 되어 있는지 확인&lt;/p&gt;
-
-&lt;p&gt;ex) docker의 경우 컨테이너 접속시 host ip로 접속&lt;/p&gt;
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# host ip 확인&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ifconfig
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;mysql 접속하여 계정 생성 및 권한부여&lt;/p&gt;
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docer &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-it&lt;/span&gt; mysql bash
-mysql&amp;gt; &lt;span class=&quot;k&quot;&gt;select &lt;/span&gt;host, user from mysql.user&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-+-----------+------------------+
-| host      | user             |
-+-----------+------------------+
-| localhost | mysql.infoschema |
-| localhost | mysql.session    |
-| localhost | mysql.sys        |
-| localhost | root             |
-+-----------+------------------+
-7 rows &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.00 sec&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-mysql&amp;gt; create user &lt;span class=&quot;s1&quot;&gt;&apos;metricbeat&apos;&lt;/span&gt;@&lt;span class=&quot;s1&quot;&gt;&apos;172.18.0.1&apos;&lt;/span&gt; identified by &lt;span class=&quot;s1&quot;&gt;&apos;password1234&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-Query OK, 0 rows affected &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.02 sec&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-mysql &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; grant all privilieges on &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; to &lt;span class=&quot;s1&quot;&gt;&apos;metricbeat&apos;&lt;/span&gt;@&lt;span class=&quot;s1&quot;&gt;&apos;172.18.0.1&apos;&lt;/span&gt; identified by &lt;span class=&quot;s1&quot;&gt;&apos;password1234&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-mysql &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; flush privileges&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;자세한 내용은 &lt;a href=&quot;http://localhost:4000/2021/05/31/mysql-install.html&quot;&gt;MySQL 설치 및 사용자 생성&lt;/a&gt; 참조&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;mysql-dashboards&quot;&gt;mysql dashboards&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/emm-4.png&quot; alt=&quot;emm-4.png&quot; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;h3 id=&quot;nginx-module-설정&quot;&gt;Nginx module 설정&lt;/h3&gt;
-
-&lt;p&gt;Nginx가 설치되어 있는 VM에 진행&lt;/p&gt;
-
-&lt;h4 id=&quot;모듈-활성화-4&quot;&gt;모듈 활성화&lt;/h4&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;nginx
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;모듈-설정-4&quot;&gt;모듈 설정&lt;/h4&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/metricbeat/modules.d/nginx.yml&lt;/code&gt; 수정&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nginx&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;metricsets&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;stubstatus&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10s&lt;/span&gt;
-
-  &lt;span class=&quot;c1&quot;&gt;# Nginx hosts&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;http://127.0.0.1:9000&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-
-  &lt;span class=&quot;c1&quot;&gt;# Path to server status. Default server-status&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;server_status_path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;server-status&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;ref: &lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-nginx.html&quot;&gt;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-nginx.html&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;nginx의-ngx_http_stub_status_module-모듈-활성화&quot;&gt;nginx의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ngx_http_stub_status_module&lt;/code&gt; 모듈 활성화&lt;/h4&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd /etc/nginx/conf.d
-$ vim status.conf
-    server {
-        listen 9000;
-
-		location /server-status {
-          stub_status;	# stub_status 활성화
-          access_log off;	# 접속 로그 비활성화
-          allow 127.0.0.1;	# localhost에서만 접속 허용
-          deny all;
-		}
-    }
-$ chmod 750 status.conf
-$ chown nginx:nginx status.conf
-$ nginx -s reload
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;metricbeat가 10초마다 localhost:9000/server-status를 호출하여 stub status 정보 가져감&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;nginx-dashboards&quot;&gt;nginx dashboards&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/emm-5.png&quot; alt=&quot;emm-5.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/emm-6.png&quot; alt=&quot;emm-6.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/emm-7.png&quot; alt=&quot;emm-7.png&quot; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;h3 id=&quot;kafka-module-설정&quot;&gt;Kafka module 설정&lt;/h3&gt;
-
-&lt;p&gt;Kafka가 설치되어 있는 VM에 진행&lt;/p&gt;
-
-&lt;h4 id=&quot;모듈-활성화-5&quot;&gt;모듈 활성화&lt;/h4&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;kafka
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;모듈-설정-5&quot;&gt;모듈 설정&lt;/h4&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/metricbeat/modules.d/kafka.yml&lt;/code&gt; 수정&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;kafka&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;metricsets&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;partition&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;consumergroup&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;broker&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;consumer&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;producer&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10s&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;localhost:9092&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;ref: &lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-kafka.html&quot;&gt;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-kafka.html&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;kafka-with-jolokia&quot;&gt;Kafka with jolokia&lt;/h4&gt;
-
-&lt;p&gt;broker, consumer, producer metricset을 가져오려면 jolokia를 이용하여 jmx 모니터링하여야한다.&lt;/p&gt;
-
-&lt;p&gt;kafka에 jolokia가 javaagent로 붙어서 jvm 위에 실행&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://dev.to/martinhynar/monitoring-kafka-brokers-using-jolokia-metricbeat-and-elasticsearch-5678&quot;&gt;https://dev.to/martinhynar/monitoring-kafka-brokers-using-jolokia-metricbeat-and-elasticsearch-5678&lt;/a&gt; 참조&lt;/p&gt;
-
-&lt;h4 id=&quot;kafka-dashboards&quot;&gt;kafka dashboards&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/emm-8.png&quot; alt=&quot;emm-8.png&quot; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;h3 id=&quot;zookeeper-module-설정&quot;&gt;Zookeeper module 설정&lt;/h3&gt;
-
-&lt;p&gt;Zookeeper가 설치되어 있는 VM에 진행&lt;/p&gt;
-
-&lt;h4 id=&quot;모듈-활성화-6&quot;&gt;모듈 활성화&lt;/h4&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat modules &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;zookeeper
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;모듈-설정-6&quot;&gt;모듈 설정&lt;/h4&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/metricbeat/modules.d/zookeeper.yml&lt;/code&gt; 수정&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;zookeeper&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;metricsets&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;connection&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mntr&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;server&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;period&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;10s&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;hosts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;localhost:2181&quot;&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;ref: &lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-zookeeper.html&quot;&gt;https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-zookeeper.html&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;zookeeper-dashboards&quot;&gt;zookeeper dashboards&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/emm-9.png&quot; alt=&quot;emm-9.png&quot; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;h2 id=&quot;metricbeat-setup&quot;&gt;Metricbeat setup&lt;/h2&gt;
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# dashboard 생성을 위해 /usr/share/metricbeat 이동하여 실행&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /usr/share/metricbeat
-
-&lt;span class=&quot;c&quot;&gt;# -e 옵션으로 error 여부를 stdout 으로 출력. log에서 host에 정상 접속 했는지 확인 가능&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;metricbeat setup &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; /etc/metricbeat/metricbeat.yml &lt;span class=&quot;nt&quot;&gt;--dashboards&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;setup 완료 후 마지막 문장에 dashboard가 정상 로딩된 것을 확인
-&lt;img src=&quot;/assets/img/contents/emm-10.png&quot; alt=&quot;emm-10.png&quot; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;h2 id=&quot;metricbeat-구동&quot;&gt;Metricbeat 구동&lt;/h2&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;systemctl start metricbeat.service
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;metricbeat-log-확인&quot;&gt;Metricbeat log 확인&lt;/h2&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;journalctl &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; metricbeat
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-modules.html&quot;&gt;Metricbeat Modules&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Elasticsearch" /><category term="Elastic" /><category term="ELK" /><category term="Metricbeat" /><category term="Beat" /><summary type="html">Elastic Metricbeat 모듈 설정</summary></entry></feed>
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Elasticsearch" /><category term="Elastic" /><category term="ELK" /><category term="Filebeat" /><category term="Beat" /><summary type="html">Elastic Filebeat 설치 및 설정</summary></entry></feed>

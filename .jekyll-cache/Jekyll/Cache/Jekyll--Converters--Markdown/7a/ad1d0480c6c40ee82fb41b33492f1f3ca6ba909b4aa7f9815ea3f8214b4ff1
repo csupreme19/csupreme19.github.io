@@ -1,0 +1,70 @@
+I"�<h1 id="postgresql-max_connections-설정">PostgreSQL max_connections 설정</h1>
+
+<p><img src="/assets/img/titles/kubernetes-logo.png" alt="kubernetes-logo.png" /></p>
+
+<p><a href="https://www.postgresql.org/docs/9.4/runtime-config-connection.html">Connection Settings</a></p>
+
+<p>PostgreSQL max_connections 설정 방법</p>
+
+<hr />
+<h2 id="max_connections-queries">max_connections Queries</h2>
+
+<h3 id="max_connections-관련-쿼리">max_connections 관련 쿼리</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 현재 max_connections 수 확인</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">pg_settings</span> <span class="k">where</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">'max_connections'</span><span class="p">;</span>
+
+<span class="c1">-- 현재 connection 정보 확인</span>
+<span class="k">select</span> <span class="n">max_conn</span><span class="p">,</span><span class="n">used</span><span class="p">,</span><span class="n">res_for_super</span><span class="p">,</span><span class="n">max_conn</span><span class="o">-</span><span class="n">used</span><span class="o">-</span><span class="n">res_for_super</span> <span class="n">res_for_normal</span> 
+<span class="k">from</span> 
+  <span class="p">(</span><span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">used</span> <span class="k">from</span> <span class="n">pg_stat_activity</span><span class="p">)</span> <span class="n">t1</span><span class="p">,</span>
+  <span class="p">(</span><span class="k">select</span> <span class="n">setting</span><span class="p">::</span><span class="nb">int</span> <span class="n">res_for_super</span> <span class="k">from</span> <span class="n">pg_settings</span> <span class="k">where</span> <span class="n">name</span><span class="o">=</span><span class="err">$$</span><span class="n">superuser_reserved_connections</span><span class="err">$$</span><span class="p">)</span> <span class="n">t2</span><span class="p">,</span>
+  <span class="p">(</span><span class="k">select</span> <span class="n">setting</span><span class="p">::</span><span class="nb">int</span> <span class="n">max_conn</span> <span class="k">from</span> <span class="n">pg_settings</span> <span class="k">where</span> <span class="n">name</span><span class="o">=</span><span class="err">$$</span><span class="n">max_connections</span><span class="err">$$</span><span class="p">)</span> <span class="n">t3</span>
+  
+<span class="c1">-- 현재 쿼리 정보</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">pg_stat_activity</span><span class="p">;</span>
+
+<span class="c1">-- 현재 접속되어 있는 idle, active 쿼리 정보 확인</span>
+<span class="k">SELECT</span> 
+    <span class="n">pid</span>
+    <span class="p">,</span><span class="n">datname</span>
+    <span class="p">,</span><span class="n">usename</span>
+    <span class="p">,</span><span class="n">application_name</span>
+    <span class="p">,</span><span class="n">client_hostname</span>
+    <span class="p">,</span><span class="n">client_port</span>
+    <span class="p">,</span><span class="n">backend_start</span>
+    <span class="p">,</span><span class="n">query_start</span>
+    <span class="p">,</span><span class="n">query</span>
+    <span class="p">,</span><span class="k">state</span>
+<span class="k">FROM</span> <span class="n">pg_stat_activity</span>
+<span class="k">WHERE</span> <span class="k">state</span> <span class="o">=</span> <span class="s1">'active'</span> <span class="k">or</span> <span class="k">state</span> <span class="o">=</span> <span class="s1">'idle'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>쿼리 출처</p>
+
+  <blockquote>
+    <p><a href="https://dba.stackexchange.com/a/161761">https://dba.stackexchange.com/a/161761</a><br /><a href="https://stackoverflow.com/a/48576319">https://stackoverflow.com/a/48576319</a></p>
+  </blockquote>
+</blockquote>
+
+<h3 id="max_connections-조정">max_connections 조정</h3>
+
+<p><code class="language-plaintext highlighter-rouge">/var/lib/postgresql/data/postgres.conf</code> 수정</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>max_connections = 100
+</code></pre></div></div>
+<p>원하는 max_connections로 수정</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># postgres 재시작</span>
+<span class="nv">$ </span>docker-compose restart postgres	<span class="c"># docker-compose의 경우</span>
+<span class="nv">$ </span>/etc/init.d/postgresql restart	<span class="c"># 설치형의 경우</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/">Debugging DNS Resolution</a></li>
+</ol>
+:ET

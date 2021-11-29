@@ -56,27 +56,27 @@
     
 
     <!-- seo tags -->
-    <meta property="og:image" content="http://localhost:4000/assets/img/titles/mysql-logo.png">
+    <meta property="og:image" content="http://localhost:4000/assets/img/titles/postgresql-logo.svg">
     
     <meta property="og:type" content="website" />
     
     <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>MySQL dump &amp; restore | Seunghoon Choi</title>
+<title>PostgreSQL max_connections 설정 | Seunghoon Choi</title>
 <meta name="generator" content="Jekyll v4.2.1" />
-<meta property="og:title" content="MySQL dump &amp; restore" />
+<meta property="og:title" content="PostgreSQL max_connections 설정" />
 <meta name="author" content="csupreme19" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="MySQL dump &amp; restore" />
-<meta property="og:description" content="MySQL dump &amp; restore" />
-<link rel="canonical" href="http://localhost:4000/2021/06/15/mysql-dump.html" />
-<meta property="og:url" content="http://localhost:4000/2021/06/15/mysql-dump.html" />
+<meta name="description" content="PostgreSQL max_connections 설정" />
+<meta property="og:description" content="PostgreSQL max_connections 설정" />
+<link rel="canonical" href="http://localhost:4000/2021/06/02/postgresql-max-connection.html" />
+<meta property="og:url" content="http://localhost:4000/2021/06/02/postgresql-max-connection.html" />
 <meta property="og:site_name" content="Seunghoon Choi" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-06-15T00:00:00+09:00" />
+<meta property="article:published_time" content="2021-06-02T00:00:00+09:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="MySQL dump &amp; restore" />
+<meta property="twitter:title" content="PostgreSQL max_connections 설정" />
 <script type="application/ld+json">
-{"datePublished":"2021-06-15T00:00:00+09:00","description":"MySQL dump &amp; restore","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/06/15/mysql-dump.html"},"url":"http://localhost:4000/2021/06/15/mysql-dump.html","author":{"@type":"Person","name":"csupreme19"},"@type":"BlogPosting","headline":"MySQL dump &amp; restore","dateModified":"2021-06-15T00:00:00+09:00","@context":"https://schema.org"}</script>
+{"datePublished":"2021-06-02T00:00:00+09:00","description":"PostgreSQL max_connections 설정","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/06/02/postgresql-max-connection.html"},"url":"http://localhost:4000/2021/06/02/postgresql-max-connection.html","author":{"@type":"Person","name":"csupreme19"},"@type":"BlogPosting","headline":"PostgreSQL max_connections 설정","dateModified":"2021-06-02T00:00:00+09:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -84,12 +84,12 @@
     <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Seunghoon Choi" />
 
     <!-- Twitter Cards -->
-    <meta name="twitter:title" content="MySQL dump & restore">
-    <meta name="twitter:description" content="MySQL dump &amp; restoreMySQL Dump 및 Restore 내용 정리Dump &amp; RestoreDump현재 DB의 스키마와 데이터, 상태 등을 sql 쿼리 형태로 추출하는 것RestoreDump된 결과물의 쿼리를 수행하는 것이론적으로는 dump 한 DB의...">
+    <meta name="twitter:title" content="PostgreSQL max_connections 설정">
+    <meta name="twitter:description" content="PostgreSQL max_connections 설정Connection SettingsPostgreSQL max_connections 설정 방법max_connections Queriesmax_connections 관련 쿼리-- 현재 max_connections 수 확인select ...">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="http://localhost:4000/assets/img/titles/mysql-logo.png">
-    <meta name="twitter:image:alt" content="MySQL dump & restore">
+    <meta name="twitter:image" content="http://localhost:4000/assets/img/titles/postgresql-logo.svg">
+    <meta name="twitter:image:alt" content="PostgreSQL max_connections 설정">
 </head>
 
   <body>
@@ -212,7 +212,7 @@
   <header id="main" style="">
     <div class="title-padder">
       
-      <h1 id="MySQL+dump+%26+restore" class="title">MySQL dump & restore</h1>
+      <h1 id="PostgreSQL+max_connections+%EC%84%A4%EC%A0%95" class="title">PostgreSQL max_connections 설정</h1>
       
 
 
@@ -222,7 +222,7 @@
     <p class="meta">
       csupreme19 - 
       
-      June 15, 2021
+      June 02, 2021
     </p></a></div>
 
       
@@ -231,75 +231,78 @@
 
   <section class="post-content">
   
-      <h1 id="mysql-dump--restore">MySQL dump &amp; restore</h1>
+      <h1 id="postgresql-max_connections-설정">PostgreSQL max_connections 설정</h1>
 
-<p><img src="/assets/img/titles/mysql-logo.png" alt="mysql-logo.png" /></p>
+<p><img src="/assets/img/titles/postgresql-logo.svg" alt="postgresql-logo.svg" /></p>
 
-<p>MySQL Dump 및 Restore 내용 정리</p>
+<p><a href="https://www.postgresql.org/docs/9.4/runtime-config-connection.html">Connection Settings</a></p>
+
+<p>PostgreSQL max_connections 설정 방법</p>
+
+<hr />
+<h2 id="max_connections-queries">max_connections Queries</h2>
+
+<h3 id="max_connections-관련-쿼리">max_connections 관련 쿼리</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 현재 max_connections 수 확인</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">pg_settings</span> <span class="k">where</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">'max_connections'</span><span class="p">;</span>
+
+<span class="c1">-- 현재 connection 정보 확인</span>
+<span class="k">select</span> <span class="n">max_conn</span><span class="p">,</span><span class="n">used</span><span class="p">,</span><span class="n">res_for_super</span><span class="p">,</span><span class="n">max_conn</span><span class="o">-</span><span class="n">used</span><span class="o">-</span><span class="n">res_for_super</span> <span class="n">res_for_normal</span> 
+<span class="k">from</span> 
+  <span class="p">(</span><span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="n">used</span> <span class="k">from</span> <span class="n">pg_stat_activity</span><span class="p">)</span> <span class="n">t1</span><span class="p">,</span>
+  <span class="p">(</span><span class="k">select</span> <span class="n">setting</span><span class="p">::</span><span class="nb">int</span> <span class="n">res_for_super</span> <span class="k">from</span> <span class="n">pg_settings</span> <span class="k">where</span> <span class="n">name</span><span class="o">=</span><span class="err">$$</span><span class="n">superuser_reserved_connections</span><span class="err">$$</span><span class="p">)</span> <span class="n">t2</span><span class="p">,</span>
+  <span class="p">(</span><span class="k">select</span> <span class="n">setting</span><span class="p">::</span><span class="nb">int</span> <span class="n">max_conn</span> <span class="k">from</span> <span class="n">pg_settings</span> <span class="k">where</span> <span class="n">name</span><span class="o">=</span><span class="err">$$</span><span class="n">max_connections</span><span class="err">$$</span><span class="p">)</span> <span class="n">t3</span>
+  
+<span class="c1">-- 현재 쿼리 정보</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">pg_stat_activity</span><span class="p">;</span>
+
+<span class="c1">-- 현재 접속되어 있는 idle, active 쿼리 정보 확인</span>
+<span class="k">SELECT</span> 
+    <span class="n">pid</span>
+    <span class="p">,</span><span class="n">datname</span>
+    <span class="p">,</span><span class="n">usename</span>
+    <span class="p">,</span><span class="n">application_name</span>
+    <span class="p">,</span><span class="n">client_hostname</span>
+    <span class="p">,</span><span class="n">client_port</span>
+    <span class="p">,</span><span class="n">backend_start</span>
+    <span class="p">,</span><span class="n">query_start</span>
+    <span class="p">,</span><span class="n">query</span>
+    <span class="p">,</span><span class="k">state</span>
+<span class="k">FROM</span> <span class="n">pg_stat_activity</span>
+<span class="k">WHERE</span> <span class="k">state</span> <span class="o">=</span> <span class="s1">'active'</span> <span class="k">or</span> <span class="k">state</span> <span class="o">=</span> <span class="s1">'idle'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>쿼리 출처</p>
+
+  <blockquote>
+    <p><a href="https://dba.stackexchange.com/a/161761">https://dba.stackexchange.com/a/161761</a><br /><a href="https://stackoverflow.com/a/48576319">https://stackoverflow.com/a/48576319</a></p>
+  </blockquote>
+</blockquote>
+
+<h3 id="max_connections-조정">max_connections 조정</h3>
+
+<p><code class="language-plaintext highlighter-rouge">/var/lib/postgresql/data/postgres.conf</code> 수정</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>max_connections = 100
+</code></pre></div></div>
+<p>원하는 max_connections로 수정</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># postgres 재시작</span>
+<span class="nv">$ </span>docker-compose restart postgres	<span class="c"># docker-compose의 경우</span>
+<span class="nv">$ </span>/etc/init.d/postgresql restart	<span class="c"># 설치형의 경우</span>
+</code></pre></div></div>
 
 <hr />
 
-<h2 id="dump--restore">Dump &amp; Restore</h2>
+<h2 id="reference">Reference</h2>
 
-<h4 id="dump">Dump</h4>
-
-<p>현재 DB의 스키마와 데이터, 상태 등을 sql 쿼리 형태로 추출하는 것</p>
-
-<h4 id="restore">Restore</h4>
-
-<p>Dump된 결과물의 쿼리를 수행하는 것</p>
-
-<p>이론적으로는 dump 한 DB의 상태가 같아진다.</p>
-
-<h3 id="1-mysql-컨테이너-접속">1. MySQL 컨테이너 접속</h3>
-
-<ul>
-  <li>
-    <h4 id="using-docker">Using docker</h4>
-  </li>
-</ul>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># container id 확인</span>
-<span class="nv">$ </span>docker ps | <span class="nb">grep</span> <span class="nt">-i</span> mysql
-cd1ae64000ec   mysql/mysql-server:8.0   <span class="s2">"/entrypoint.sh --ch…"</span>   3 months ago   Up 3 months <span class="o">(</span>healthy<span class="o">)</span>   33060-33061/tcp, 0.0.0.0:13306-&gt;3306/tcp   mysql
-
-<span class="c"># 컨테이너 접속</span>
-<span class="nv">$ </span>docker <span class="nb">exec</span> <span class="nt">-it</span> cd1ae64000ec /bin/bash
-
-<span class="c"># 접속 확인</span>
-bash-4.4#
-bash-4.4# <span class="nb">whoami
-</span>root
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <h4 id="using-docker-compose">Using docker-compose</h4>
-  </li>
-</ul>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 컨테이너 접속</span>
-<span class="nv">$ </span>docker-compose <span class="nb">exec </span>mysql /bin/bash
-
-<span class="c"># 접속 확인</span>
-bash-4.4#
-bash-4.4# <span class="nb">whoami
-</span>root
-</code></pre></div></div>
-
-<h3 id="2-mysql-dump">2. MySQL Dump</h3>
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># --databses: 복구할 db, --add-drop-database: database drop문 포함</span>
-<span class="nv">$ </span>mysqldump <span class="nt">--databases</span> db1 db2 <span class="nt">--add-drop-database</span> <span class="nt">-h</span> localhost <span class="nt">-u</span> root <span class="nt">-p</span><span class="o">{</span>비밀번호<span class="o">}</span> <span class="o">&gt;</span> <span class="o">{</span>파일명<span class="o">}</span>.sql
-<span class="nv">$ </span>mysqldump <span class="nt">--databases</span> mydb <span class="nt">--add-drop-database</span> <span class="nt">-h</span> localhost <span class="nt">-u</span> root <span class="nt">-ppassword1234</span> <span class="o">&gt;</span> mysql_mydb_dump_20210615.sql
-</code></pre></div></div>
-
-<h3 id="3-mysql-restore">3. MySQL Restore</h3>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>mysql <span class="nt">-h</span> localhost <span class="nt">-u</span> root <span class="nt">-p</span><span class="o">{</span>비밀번호<span class="o">}</span> &lt; <span class="o">{</span>파일명<span class="o">}</span>.sql
-<span class="c"># 예시</span>
-<span class="nv">$ </span>mysql <span class="nt">-h</span> localhost <span class="nt">-u</span> root <span class="nt">-ppassword1234</span> &lt; mysql_mydb_dump_20210615.sql
-</code></pre></div></div>
-
+<ol>
+  <li><a href="https://www.postgresql.org/docs/9.4/runtime-config-connection.html">Connection Settings</a></li>
+  <li><a href="https://dba.stackexchange.com/a/161761">https://dba.stackexchange.com/a/161761</a></li>
+  <li><a href="https://stackoverflow.com/a/48576319">https://stackoverflow.com/a/48576319</a></li>
+</ol>
 
     
   </section>
@@ -324,24 +327,16 @@ bash-4.4# <span class="nb">whoami
           <p><i class="fas fa-tag fa-fw fa-sm"></i> DB</p>
         </a></li>
       
-        <li><a class="button" href="/tags#Dump">
-          <p><i class="fas fa-tag fa-fw fa-sm"></i> Dump</p>
+        <li><a class="button" href="/tags#PostgreSQL">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> PostgreSQL</p>
         </a></li>
       
-        <li><a class="button" href="/tags#MySQL">
-          <p><i class="fas fa-tag fa-fw fa-sm"></i> MySQL</p>
+        <li><a class="button" href="/tags#Postgres">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Postgres</p>
         </a></li>
       
         <li><a class="button" href="/tags#RDBMS">
           <p><i class="fas fa-tag fa-fw fa-sm"></i> RDBMS</p>
-        </a></li>
-      
-        <li><a class="button" href="/tags#Restore">
-          <p><i class="fas fa-tag fa-fw fa-sm"></i> Restore</p>
-        </a></li>
-      
-        <li><a class="button" href="/tags#SQL">
-          <p><i class="fas fa-tag fa-fw fa-sm"></i> SQL</p>
         </a></li>
       
     </ul>
@@ -356,18 +351,18 @@ bash-4.4# <span class="nb">whoami
 <div id="post-nav">
     
     <div id="previous-post">
-        <a alt="Kubernetes Metricbeat 적용하기" href="/2021/06/30/kubernetes-metricbeat.html">
+        <a alt="MySQL dump & restore" href="/2021/06/15/mysql-dump.html">
             <p>Previous post</p>
-            Kubernetes Metricbeat 적용하기
+            MySQL dump & restore
         </a>
     </div>
     
 
     
     <div id="next-post">
-        <a alt="PostgreSQL max_connections 설정" href="/2021/06/02/postgresql-max-connection.html">
+        <a alt="MySQL 설치 및 사용자 생성" href="/2021/05/31/mysql-install.html">
             <p>Next post</p>
-            PostgreSQL max_connections 설정
+            MySQL 설치 및 사용자 생성
         </a>
     </div>
     
@@ -403,7 +398,7 @@ bash-4.4# <span class="nb">whoami
   
   
   
-  header#main { background-image: url('/assets/img/titles/mysql-logo.png'); }
+  header#main { background-image: url('/assets/img/titles/postgresql-logo.svg'); }
   
 </style>
 
