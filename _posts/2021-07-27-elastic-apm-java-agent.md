@@ -47,7 +47,7 @@ APM Java Agent 공식 지원 설치 방법은 3가지가 있다.
 ```Dockerfile
 FROM openjdk:8-jre-alpine
 
-ADD your-project/build/libs/*.jar makers-web.jar
+ADD your-project/build/libs/*.jar your-project.jar
 ADD https://search.maven.org/remotecontent?filepath=co/elastic/apm/elastic-apm-agent/1.25.0/elastic-apm-agent-1.25.0.jar elastic-apm-agent.jar
 
 ENTRYPOINT ["java", "-javaagent:/elastic-apm-agent.jar", "-Delastic.apm.service_name=your-project", "-Delastic.apm.application_packages=com.company.app", "-Delastic.apm.server_url=http://{엘라스틱 APM 서버 주소}:{포트}", "-Delastic.apm.environment=local", "-jar", "your-project.jar"]
@@ -68,7 +68,7 @@ ENTRYPOINT ["java", "-javaagent:/elastic-apm-agent.jar", "-Delastic.apm.service_
 - -Delastic.apm.environment=local
   - APM 모니터링 환경(옵션)
 
-그 외 자세한 configuration 값은 [APM Java Agent Configuration](https://www.elastic.co/guide/en/apm/agent/java/current/configuration.html) 참조
+그 외 자세한 configuration 값은 [APM Java Agent Configuration](https://www.elastic.co/guide/en/apm/agent/java/current/configuration.html) 참고
 
 #### 2. Jenkins 빌드
 
@@ -76,7 +76,7 @@ ENTRYPOINT ["java", "-javaagent:/elastic-apm-agent.jar", "-Delastic.apm.service_
 
 ```shell
 2021-07-27 14:21:04,144 [main] INFO  co.elastic.apm.agent.util.JmxUtils - Found JVM-specific OperatingSystemMXBean interface: com.sun.management.OperatingSystemMXBean
-2021-07-27 14:21:04,535 [main] INFO  co.elastic.apm.agent.configuration.StartupInfo - Starting Elastic APM 1.25.0 as makers-web on Java 1.8.0_212 Runtime version: 1.8.0_212-b04 VM version: 25.212-b04 (IcedTea) Linux 4.15.0-144-generic
+2021-07-27 14:21:04,535 [main] INFO  co.elastic.apm.agent.configuration.StartupInfo - Starting Elastic APM 1.25.0 as your-project on Java 1.8.0_212 Runtime version: 1.8.0_212-b04 VM version: 25.212-b04 (IcedTea) Linux 4.15.0-144-generic
 2021-07-27 14:21:04,535 [main] INFO  co.elastic.apm.agent.configuration.StartupInfo - environment: 'local' (source: Java System Properties)
 2021-07-27 14:21:04,535 [main] INFO  co.elastic.apm.agent.configuration.StartupInfo - server_url: 'http://{엘라스틱 APM 서버 주소}:{포트}' (source: Java System Properties)
 2021-07-27 14:21:04,536 [main] INFO  co.elastic.apm.agent.configuration.StartupInfo - application_packages: 'com.company.app' (source: Java System Properties)

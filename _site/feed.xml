@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-11-30T14:47:30+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>개발일지</subtitle><entry><title type="html">Jekyll Mermaid js 사용하기</title><link href="http://localhost:4000/2021/11/29/jekyll-mermaid.html" rel="alternate" type="text/html" title="Jekyll Mermaid js 사용하기" /><published>2021-11-29T00:00:00+09:00</published><updated>2021-11-29T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/29/jekyll-mermaid</id><content type="html" xml:base="http://localhost:4000/2021/11/29/jekyll-mermaid.html">&lt;h1 id=&quot;jekyll-mermaid-js-사용하기&quot;&gt;Jekyll Mermaid js 사용하기&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-12-01T18:19:46+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>개발일지</subtitle><entry><title type="html">Jekyll Mermaid js 사용하기</title><link href="http://localhost:4000/2021/11/29/jekyll-mermaid.html" rel="alternate" type="text/html" title="Jekyll Mermaid js 사용하기" /><published>2021-11-29T00:00:00+09:00</published><updated>2021-11-29T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/29/jekyll-mermaid</id><content type="html" xml:base="http://localhost:4000/2021/11/29/jekyll-mermaid.html">&lt;h1 id=&quot;jekyll-mermaid-js-사용하기&quot;&gt;Jekyll Mermaid js 사용하기&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/contents/jekyll.png&quot; alt=&quot;jekyll.png&quot; /&gt;&lt;/p&gt;
 
@@ -663,7 +663,7 @@ origin	git@github.com:csupreme19/csupreme19.github.io.git &lt;span class=&quot;o
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gcc &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;다른 OS 설치 방법은 &lt;a href=&quot;https://jekyllrb.com/docs/installation/&quot;&gt;Jekyll 설치 문서&lt;/a&gt; 참조&lt;/p&gt;
+&lt;p&gt;다른 OS 설치 방법은 &lt;a href=&quot;https://jekyllrb.com/docs/installation/&quot;&gt;Jekyll 설치 문서&lt;/a&gt; 참고&lt;/p&gt;
 
 &lt;h3 id=&quot;2-jekyll-및-테마-설치&quot;&gt;2. Jekyll 및 테마 설치&lt;/h3&gt;
 
@@ -709,7 +709,7 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
   &lt;span class=&quot;s&quot;&gt;Powered by &amp;lt;a href=&quot;https://jekyllrb.com/&quot;&amp;gt;Jekyll&amp;lt;/a&amp;gt; with &amp;lt;a href=&quot;https://github.com/sylhare/Type-on-Strap&quot;&amp;gt;Type on Strap&amp;lt;/a&amp;gt;&lt;/span&gt;
   
 &lt;span class=&quot;s&quot;&gt;...&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# 나머지 설정은 github 문서 참조&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# 나머지 설정은 github 문서 참고&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;4-로컬-접속-테스트&quot;&gt;4. 로컬 접속 테스트&lt;/h3&gt;

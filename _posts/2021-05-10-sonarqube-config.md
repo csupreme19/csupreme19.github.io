@@ -374,7 +374,7 @@ pipeline 또는 job 실행 순서에 빌드 이전에 분석을 시도하고 있
 
 Java의 경우 sonarqube는 신뢰도를 높이기 위하여 .java 파일만으로 코드 분석을 하지 않고 .java와 .class 파일을 함께 분석한다고 한다.
 
-> [https://docs.sonarqube.org/latest/analysis/languages/java/#header-2](https://docs.sonarqube.org/latest/analysis/languages/java/#header-2) 참조
+> [https://docs.sonarqube.org/latest/analysis/languages/java/#header-2](https://docs.sonarqube.org/latest/analysis/languages/java/#header-2) 참고
 
 따라서 컴파일된 .class 파일이 있어야하므로 maven 또는 gradle 플러그인을 사용하여야함.
 

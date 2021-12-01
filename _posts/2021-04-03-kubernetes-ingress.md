@@ -106,7 +106,7 @@ spec:
 
 - Ingress Controller에서 어떤 서비스로 라우팅할 것인지 규칙을 명세한 Resource이다.
 - path등의 값으로 어떤 service에 연결할 것인지에 대한 명세이다.
-- Kubernetes secret 리소스를 참조하여 tls 연결을 설정할 수 있다.
+- Kubernetes secret 리소스를 참고하여 tls 연결을 설정할 수 있다.
 
 ---
 ## Ingress 적용

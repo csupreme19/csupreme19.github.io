@@ -285,7 +285,7 @@ spring boot와 같이 설치형 tomcat이 아닌 embedded tomcat에서는 server
 
 `TomcatContextCustomizer`를 이용하여 Context에 설정한다.
 
-> 항목별 자세한 설명은 [공식문서](http://tomcat.apache.org/tomcat-9.0-doc/cluster-howto.html) 참조
+> 항목별 자세한 설명은 [공식문서](http://tomcat.apache.org/tomcat-9.0-doc/cluster-howto.html) 참고
 
 
 

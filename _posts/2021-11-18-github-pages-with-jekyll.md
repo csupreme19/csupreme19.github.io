@@ -213,7 +213,7 @@ $ gem -v
 $ gcc -v
 ```
 
-다른 OS 설치 방법은 [Jekyll 설치 문서](https://jekyllrb.com/docs/installation/) 참조 
+다른 OS 설치 방법은 [Jekyll 설치 문서](https://jekyllrb.com/docs/installation/) 참고
 
 
 
@@ -265,7 +265,7 @@ footer_text: >
   Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
   
 ...
-# 나머지 설정은 github 문서 참조
+# 나머지 설정은 github 문서 참고
 ```
 
 

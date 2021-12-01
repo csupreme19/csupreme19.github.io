@@ -200,7 +200,7 @@ mysql > flush privileges;
 
 ```
 
-> 자세한 내용은 [MySQL 설치 및 사용자 생성](http://localhost:4000/2021/05/31/mysql-install.html) 참조
+> 자세한 내용은 [MySQL 설치 및 사용자 생성](http://localhost:4000/2021/05/31/mysql-install.html) 참고
 
 #### mysql dashboards
 
@@ -301,7 +301,7 @@ broker, consumer, producer metricset을 가져오려면 jolokia를 이용하여 
 
 kafka에 jolokia가 javaagent로 붙어서 jvm 위에 실행
 
-[https://dev.to/martinhynar/monitoring-kafka-brokers-using-jolokia-metricbeat-and-elasticsearch-5678](https://dev.to/martinhynar/monitoring-kafka-brokers-using-jolokia-metricbeat-and-elasticsearch-5678) 참조
+[https://dev.to/martinhynar/monitoring-kafka-brokers-using-jolokia-metricbeat-and-elasticsearch-5678](https://dev.to/martinhynar/monitoring-kafka-brokers-using-jolokia-metricbeat-and-elasticsearch-5678) 참고
 
 #### kafka dashboards
 
@@ -369,4 +369,5 @@ $ journalctl -u metricbeat
 ## Reference
 
 1. [Metricbeat Modules](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-modules.html)
+2. [https://dev.to/martinhynar/monitoring-kafka-brokers-using-jolokia-metricbeat-and-elasticsearch-5678](https://dev.to/martinhynar/monitoring-kafka-brokers-using-jolokia-metricbeat-and-elasticsearch-5678)
 

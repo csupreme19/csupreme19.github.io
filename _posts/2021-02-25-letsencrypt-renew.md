@@ -36,7 +36,7 @@ $ docker run -it --rm --name certbot -v '/etc/letsencrypt:/etc/letsencrypt' -v '
 
 > Ubuntu 20.04 LTS 대상 certbot 설치 시 ppa repo는 deprecated 됨.
 >
-> > nginx + ubuntu 20.04 환경 시 certbot 설치 매뉴얼 참조하여 설치 진행 참고: https://certbot.eff.org/lets-encrypt/ubuntufocal-nginx
+> > nginx + ubuntu 20.04 환경 시 certbot 설치 매뉴얼 참고하여 설치 진행 참고: https://certbot.eff.org/lets-encrypt/ubuntufocal-nginx
 >
 
 Ubuntu 20.04 환경에서 certbot 설치
@@ -117,7 +117,7 @@ dns 방식 인증서 발급 command 입력 후 더 이상 진행하지 않고 **
 
 호스트 컬럼에는 **_acme-challenge** 만 입력
 
-가비아의 경우 설정한 값 예시는 아래 이미지 참조. record 값 앞/뒤로 쌍따옴표 추가. 
+가비아의 경우 설정한 값 예시는 아래 이미지 참고. record 값 앞/뒤로 쌍따옴표 추가. 
 
 ![lr-3.png]({{ "/assets/img/contents/lr-3.png"}})
 

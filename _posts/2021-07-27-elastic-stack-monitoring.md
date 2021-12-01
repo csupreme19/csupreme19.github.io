@@ -225,13 +225,13 @@ xpack과 기본 모듈중 하나만 사용해야 하기 때문에 기존의 모�
   scopse: node
   # kibana 모니터링용 user(Optional)
   username: "kibana_monitoring"
-  password: "Infra1111"
+  password: "changeme"
 
   # ssl 인증서 생성하여 적용 시 아래 옵션 적용
   ssl.enabled: true
   ssl.certificate_authorities: ["/etc/kibana/certs/ca.crt"]
-  ssl.certificate: "/etc/kibana/certs/rmakers-kibana.crt"
-  ssl.key: "/etc/kibana/certs/rmakers-kibana.key"
+  ssl.certificate: "/etc/kibana/certs/kibana.crt"
+  ssl.key: "/etc/kibana/certs/kibana.key"
   ssl.verification_mode: "full"
 ```
 
