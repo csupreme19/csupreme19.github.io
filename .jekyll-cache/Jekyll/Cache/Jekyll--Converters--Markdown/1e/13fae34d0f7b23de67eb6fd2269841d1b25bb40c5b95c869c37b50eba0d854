@@ -1,0 +1,351 @@
+I"�N<h1 id="postgresql-백업-및-복구-방법">PostgreSQL 백업 및 복구 방법</h1>
+
+<p><img src="/assets/img/titles/postgresql-logo.svg" alt="postgresql-logo.svg" /></p>
+
+<p><a href="https://www.postgresql.org/docs/14/continuous-archiving.html">Continuous Archiving</a></p>
+
+<hr />
+
+<h2 id="postgresql-백업-및-복구">Postgresql 백업 및 복구</h2>
+
+<h3 id="백업-방식">백업 방식</h3>
+
+<p>Postgres 백업 방식은 <a href="https://bookstack.ccpinfra.xyz:23443/books/postgresql/page/postgresql-f4f">Continuous Archiving</a> 방식으로 두 가지의 파일을 백업하고 있다.</p>
+
+<ol>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">basebackup</code></p>
+
+    <p>postgresql data 파일 자체 백업</p>
+
+    <p>이후 WAL 파일을 이용하여 복구시 기준이 되는 postgres 파일이다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">pg_wal</code></p>
+
+    <p>postgres WAL(write ahead log) 미리쓰기 파일로 수행된 모든 쿼리를 담고 있다.</p>
+  </li>
+</ol>
+
+<h3 id="백업-방법">백업 방법</h3>
+
+<ol>
+  <li>pg_wal 자동 archiving 설정</li>
+</ol>
+
+<p><code class="language-plaintext highlighter-rouge">postgresql.conf</code> 설정파일 수정</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wal_level <span class="o">=</span> replica
+archive_mode <span class="o">=</span> on
+archive_command <span class="o">=</span> <span class="s1">'test ! -f /data/archivedir/%f &amp;&amp; cp %p /data/archivedir/%f'</span> <span class="c"># %p: 아카이브 폴더, %f: 아카이브할 파일명</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">archive_command</code> 명령어는 아카이빙 시점에 실행되는 커맨드로 0을 리턴해야함</p>
+
+<p>이후 postgres restart가 필요</p>
+
+<blockquote>
+  <p>config reload 수행하여 설정파일을 reload하는 방식은 모든 셋팅에 적용되는 건 아님<br />위의 <code class="language-plaintext highlighter-rouge">wal_level</code>, <code class="language-plaintext highlighter-rouge">archive_mode</code> setting은 restart 필요</p>
+</blockquote>
+
+<p>postgresql restart</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl restart postgresql@11-main.service
+</code></pre></div></div>
+
+<p>만약 <code class="language-plaintext highlighter-rouge">archive_command</code>만 수정되었다면 postgres restart 필요 없이 아래 쿼리로 설정 reload 가능</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">postgres</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="n">pg_reload_conf</span><span class="p">();</span>
+ <span class="n">pg_reload_conf</span>
+<span class="c1">----------------</span>
+ <span class="n">t</span>
+<span class="p">(</span><span class="mi">1</span> <span class="k">row</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ol>
+  <li>pg_basebackup(수동)</li>
+</ol>
+
+<p>백업의 기준이 되는 basebackup 파일은 <code class="language-plaintext highlighter-rouge">pg_basebackup</code> 명령어로 수동 생성하여야 한다.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>su - postgres
+<span class="nv">$ </span>/usr/bin/pg_basebackup <span class="nt">-D</span> /data/basebackup_<span class="si">$(</span><span class="nb">date</span> +%Y%m%d%H%M%S<span class="si">)</span> <span class="nt">-v</span> <span class="nt">-Ft</span> <span class="nt">-z</span> <span class="nt">-P</span> <span class="nt">-X</span> stream
+<span class="c"># -v: verbose -Ft: format tar -z: gzip -P: Enable progress reporting -X stream: wal method</span>
+<span class="nv">$ </span><span class="nb">cp</span> <span class="nt">-R</span> /data/basebackup_<span class="o">(</span>생성시간<span class="o">)</span> /mnt/postgresql
+<span class="nv">$ </span><span class="nb">chown</span> <span class="nt">-R</span> postgres:postgres /mnt/postgresql/basebackup_<span class="o">(</span>생성시간<span class="o">)</span>
+</code></pre></div></div>
+
+<p>백업 output 폴더는 비어있거나 존재하지 않아야하며 db user(<code class="language-plaintext highlighter-rouge">postgres</code>) permission이 있어야 한다.</p>
+
+<p>LOCAL 백업 -&gt; NAS 백업 cronjob 생성</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>su postgres
+<span class="nv">$ </span><span class="nb">cd</span> ~
+<span class="nv">$ </span>vim archivedir_backup.sh
+<span class="c">#!/bin/sh</span>
+
+<span class="nv">LOCAL_DIR</span><span class="o">=</span><span class="s1">'/data/archivedir'</span>
+<span class="nv">NAS_DIR</span><span class="o">=</span><span class="s1">'/mnt/postgresql'</span>
+
+<span class="nb">echo</span> <span class="s2">"cp LOCAL archivedir to NAS archivedir"</span>
+<span class="nb">cp</span> <span class="nt">--verbose</span> <span class="nt">-n</span> <span class="nt">-R</span> <span class="nv">$LOCAL_DIR</span> <span class="nv">$NAS_DIR</span>
+<span class="nb">echo</span> <span class="s2">"done."</span>
+
+<span class="nv">$ </span>crontab <span class="nt">-e</span>
+<span class="c"># m h  dom mon dow   command</span>
+0 2 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> /var/lib/postgresql/archivedir_backup.sh <span class="o">&gt;</span> /var/lib/postgresql/archivedir_backup.sh.log
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="복구postgresql-12-이전">복구(Postgresql 12 이전)</h2>
+
+<p>Postgresql 12 이전 버전에서는<code class="language-plaintext highlighter-rouge">recovery.conf</code>를 사용하지만 12버전부터는 <code class="language-plaintext highlighter-rouge">postgresql.conf</code>와 <code class="language-plaintext highlighter-rouge">recovery.signal</code> 사용</p>
+
+<p><strong>참고사항</strong></p>
+<blockquote>
+  <p>현재 RobotMakers 운영 환경은 설치형 Postgresql 11을 사용, 개발 환경은 도커기반 Postgresql 13을 사용중</p>
+</blockquote>
+
+<ol>
+  <li>서버 중지
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl stop postgresql@11-main.service
+</code></pre></div>    </div>
+
+    <p>shutdown 종류에 관한 설명은 <a href="https://bookstack.ccpinfra.xyz:23443/books/postgresql/page/postgresql-shutdown">Postgresql shutdown</a> 참조</p>
+  </li>
+  <li>용량이 충분하다면 data 디렉토리 아니면 <code class="language-plaintext highlighter-rouge">pg_wal</code> 디렉토리만이라도 백업
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cp</span> /var/lib/postgresql/11/main /var/lib/postgresql/11/main_<span class="si">$(</span><span class="nb">date</span> +%Y%m%d%H%M%S<span class="si">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>data 하위 파일 모두 제거
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">rm</span> <span class="nt">-rf</span> /var/lib/postgresql/11/main/<span class="k">*</span>	<span class="c"># 사용시 주의</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>기존에 백업한 data 백업 파일 복구(복사)</p>
+
+    <p>db user(<code class="language-plaintext highlighter-rouge">postgres</code>)로 permission이 있어야함</p>
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> /mnt/postgresql/basebackup
+<span class="nv">$ </span><span class="nb">tar</span> <span class="nt">-xvzf</span> base.tar.gz <span class="nt">-C</span> /var/lib/postgresql/11/main
+</code></pre></div>    </div>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">pg_wal</code> 하위 파일 모두 삭제
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">rm</span> <span class="nt">-rf</span> /var/lib/postgresql/11/main/pg_wal/<span class="k">*</span>  <span class="c"># 사용시 주의</span>
+</code></pre></div>    </div>
+  </li>
+  <li>data 하위 <code class="language-plaintext highlighter-rouge">recovery.conf</code> 생성
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>vim /var/lib/postgresql/11/main/recovery.conf
+   
+restore_command <span class="o">=</span> <span class="s1">'cp /mnt/postgresql/archivedir/%f %p'</span>		<span class="c"># %f: archive file, %p: pg_wal path</span>
+recovery_target_time <span class="o">=</span> <span class="s1">'2021-07-22 10:53:58'</span>	<span class="c"># Optional</span>
+</code></pre></div>    </div>
+    <p><code class="language-plaintext highlighter-rouge">recovery_target_time</code>은 복구 시점(해당 시점으로 DB가 복구된다)</p>
+
+    <p><code class="language-plaintext highlighter-rouge">recovery_target</code> 미지정시 마지막 WAL 레코드까지 복구 수행함</p>
+
+    <p>자세한 내용은 <a href="https://www.postgresql.org/docs/11/recovery-target-settings.html">Recovery Target Settings</a> 참조</p>
+  </li>
+  <li>
+    <p>서버 시작시 <code class="language-plaintext highlighter-rouge">recovery.conf</code> 파일을 감지하고 복구 모드에 돌입함</p>
+
+    <p>복구 완료시 <code class="language-plaintext highlighter-rouge">recovery.conf</code>를 <code class="language-plaintext highlighter-rouge">recovery.done</code>으로 파일명 자동 변경</p>
+  </li>
+  <li>복구 완료되었는지 체크
+    <ol>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">recovery.conf</code> 파일명이 <code class="language-plaintext highlighter-rouge">recovery.done</code>으로 변경되어 있는지 확인</p>
+
+        <p><code class="language-plaintext highlighter-rouge">recovery.conf</code> 파일이 존재하면 Postgresql이 복구 모드에 돌입하여 모든 transaction이 read-only 상태이다.</p>
+      </li>
+      <li>
+        <p>DB 쿼리 조회하여 데이터가 해당 시점으로 복구가 되었는지 확인</p>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<blockquote>
+  <p>복구시 사용 가능한 WAL segment들을 사용하므로 마지막에는 <code class="language-plaintext highlighter-rouge">file not found</code> 메세지가 나오는데 이는 정상이다.</p>
+</blockquote>
+
+<h3 id="복구-방법개발-postgresql-12-이상">복구 방법(개발: Postgresql 12 이상)</h3>
+
+<p>Postgresql 12 이전 버전에서는<code class="language-plaintext highlighter-rouge">recovery.conf</code>를 사용하지만 12버전부터는 <code class="language-plaintext highlighter-rouge">postgresql.conf</code>와 <code class="language-plaintext highlighter-rouge">recovery.signal</code> 사용</p>
+
+<p><strong>참고사항</strong></p>
+
+<blockquote>
+  <p>현재 RobotMakers 운영 환경은 Postgresql 11을 사용, 개발 환경은 Postgresql 13을 사용중</p>
+</blockquote>
+
+<ol>
+  <li>
+    <p>서버 중지</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker-compose stop postgres
+</code></pre></div>    </div>
+  </li>
+  <li>용량이 충분하다면 data 디렉토리 아니면 <code class="language-plaintext highlighter-rouge">pg_wal</code> 디렉토리만이라도 백업
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cp</span> /data/postgres/pgdata /data/postgres/pgdata_<span class="si">$(</span><span class="nb">date</span> +%Y%m%d%H%M%S<span class="si">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>data 하위 파일 모두 제거
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">rm</span> <span class="nt">-rf</span> /data/postgres/pgdata/<span class="k">*</span>	<span class="c"># 사용시 주의</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>기존에 백업한 basebackup 파일 복구(복사)</p>
+
+    <p>db user(<code class="language-plaintext highlighter-rouge">postgres</code>)로 permission이 있어야함</p>
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> /data/postgres/basebackup
+<span class="nv">$ </span><span class="nb">tar</span> <span class="nt">-xvzf</span> base.tar.gz <span class="nt">-C</span> /data/postgres/pgdata
+</code></pre></div>    </div>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">pg_wal</code> 하위 파일 모두 삭제
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">rm</span> <span class="nt">-rf</span> /data/postgres/pgdata/pg_wal/<span class="k">*</span>		<span class="c"># 사용시 주의</span>
+</code></pre></div>    </div>
+  </li>
+  <li>data 하위 <code class="language-plaintext highlighter-rouge">postgresql.conf</code> 수정
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>vim /data/postgres/pgdata/postgresql.conf
+   
+<span class="c"># docker container 내부 경로를 사용하여야한다.</span>
+restore_command <span class="o">=</span> <span class="s1">'cp /var/lib/postgresql/data/archivedir/%f %p'</span>		<span class="c"># %f: archive file, %p: pg_wal path</span>
+recovery_target_time <span class="o">=</span> <span class="s1">'2021-08-05 21:00:00'</span>	<span class="c"># Optional</span>
+</code></pre></div>    </div>
+    <p><code class="language-plaintext highlighter-rouge">recovery_target_time</code>은 복구를 원하는 시간(해당 시점으로 DB가 복구된다)</p>
+
+    <p><code class="language-plaintext highlighter-rouge">recovery_target</code> 미지정시 마지막 WAL 레코드까지 복구 수행함</p>
+
+    <p>자세한 내용은 <a href="https://www.postgresql.org/docs/11/recovery-target-settings.html">Recovery Target Settings</a> 참조</p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">recovery.signal</code> 생성
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">touch</span> /data/psotgres/pgdata/recovery.signal
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>서버 시작시 <code class="language-plaintext highlighter-rouge">recovery.signal</code> 파일을 감지하고 복구 모드에 돌입함</p>
+
+    <p>복구 완료시 <code class="language-plaintext highlighter-rouge">recovery.signal</code>을 자동 삭제</p>
+  </li>
+  <li>복구 완료되었는지 체크
+    <ol>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">recovery.signal</code> 파일이 지워졌는지 확인, 안지워졌으면 지워준다.</p>
+
+        <p><code class="language-plaintext highlighter-rouge">recovery.signal</code> 파일이 존재하면 Postgresql이 복구 모드에 돌입하여 모든 transaction이 read-only 상태이다.</p>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">postgresql.conf</code> 복구 관련 설정 주석 처리
+        <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># restore_command = 'cp /var/lib/postgresql/data/archivedir/%f %p'</span>
+<span class="c"># recovery_target_time = '2021-08-05 21:00:00'</span>
+</code></pre></div>        </div>
+        <p>복구 모드가 아니라면 해당 명령어 실행되지 않지만 만약을 대비하여 주석처리</p>
+      </li>
+      <li>DB 쿼리 조회하여 데이터가 해당 시점으로 복구가 되었는지 확인</li>
+    </ol>
+  </li>
+</ol>
+
+<blockquote>
+  <p>복구시 사용 가능한 WAL segment들을 사용하므로 마지막에는 <code class="language-plaintext highlighter-rouge">file not found</code> 메세지가 나오는데 이는 정상이다.</p>
+</blockquote>
+
+<h3 id="복구-시점-이해">복구 시점 이해</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Base Backup Label</th>
+      <th>WAL Archive</th>
+      <th>복원 가능</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td>001</td>
+      <td>X</td>
+      <td>베이스 백업 없어서 복구 불가</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>002</td>
+      <td>X</td>
+      <td>베이스 백업 없어서 복구 불가</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>003</td>
+      <td>X</td>
+      <td>베이스 백업 없어서 복구 불가</td>
+    </tr>
+    <tr>
+      <td>basebackup_004</td>
+      <td>004<br />004.backup</td>
+      <td>O</td>
+      <td>004.backup 이후 WAL 복원 가능</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>005</td>
+      <td>O</td>
+      <td>004.backup 이후 WAL 복원 가능</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>006</td>
+      <td>O</td>
+      <td>004.backup 이후 WAL 복원 가능</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>007</td>
+      <td>O</td>
+      <td>004.backup 이후 WAL 복원 가능</td>
+    </tr>
+    <tr>
+      <td>basebackup_008</td>
+      <td>008<br />008.backup</td>
+      <td>O</td>
+      <td>008.backup 이후 WAL 복원 가능</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>009</td>
+      <td>O</td>
+      <td>008.backup 이후 WAL 복원 가능</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="troubleshooting">Troubleshooting</h3>
+
+<p>만약 복구 수행시 오류가 난다면 꼬일 가능성이 높기 때문에</p>
+
+<p>복구를 처음부터 재수행 하는 것을 권장한다.</p>
+
+<h4 id="max_connections-is-a-lower-setting">max_connections is a lower setting</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>postgres    | 2021-08-05 22:58:17.453 KST <span class="o">[</span>27] FATAL:  hot standby is not possible because max_connections <span class="o">=</span> 100 is a lower setting than on the master server <span class="o">(</span>its value was 200<span class="o">)</span>
+</code></pre></div></div>
+
+<p>basebackup 수행 이후로 max_connections 설정이 늘어난 경우로 <code class="language-plaintext highlighter-rouge">postgresql.conf</code>의 max_connections를 해당 수치로 수정</p>
+
+<h4 id="archive-command-fail">archive command fail</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>postgres    | 2021-08-05 23:30:28.801 KST <span class="o">[</span>31] LOG:  archive <span class="nb">command </span>failed with <span class="nb">exit </span>code 1
+postgres    | 2021-08-05 23:30:28.801 KST <span class="o">[</span>31] DETAIL:  The failed archive <span class="nb">command </span>was: <span class="nb">test</span> <span class="o">!</span> <span class="nt">-f</span> /var/lib/postgresql/data/archivedir/0000000100000000000000E8 <span class="o">&amp;&amp;</span> <span class="nb">cp </span>pg_wal/0000000100000000000000E8 /var/lib/postgresql/data/archivedir/0000000100000000000000E8
+</code></pre></div></div>
+
+<p>복구 이후 아카이브 되는 시점에 문제가 발생하는 경우로 복구 이후에 모종의 이유로 꼬였을 때 나는 오류이다.</p>
+
+<p>충돌이 발생하는 파일을 archivedir에서 제거하여 해결(pg_wal에 있는 WAL이 다시 복사되어 문제 없음)</p>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://www.postgresql.org/docs/14/continuous-archiving.html">Continuous Archiving</a></li>
+  <li><a href="https://www.postgresql.org/docs/current/runtime-config-wal.html#RUNTIME-CONFIG-WAL-RECOVERY-TARGET">WAL Recovery target</a></li>
+</ol>
+:ET

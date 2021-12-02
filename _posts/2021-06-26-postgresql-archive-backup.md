@@ -68,7 +68,7 @@ WAL 아카이빙을 사용하지 않으면 몇개의 세그먼트만 재활용�
 
 - 아카이빙시 overwrite 안하도록 설정 overwrite 수행시 0이 리턴되지 않음
 - 아카이브 커맨드 성공 결과 꼭 확인할 것 
-   
+  
    > (`pg_wal/` 용량이 가득차게 되면 PostgreSQL이 PANIC shutdown됨)
 - `postgresql.conf`, `pg_hba.conf`, `pg_ident.conf` 등과 같은 설정 파일은 백업하지 않음
 - 아카이브 단위는 WAL segment
@@ -140,7 +140,7 @@ SELECT pg_start_backup('label', false, false);
 
 - `'label'`: 백업을 구분할 레이블
 - 두번째 `false`: `checkpoint_completion_target` 설정으로 체크포인트 간격을 반으로 줄여 I/O 사용량을 줄인다.
-   
+  
    > 만약 속도가 매우 느리다면 true로 설정하여 빠르게 할 수 있으나 DB 퍼포먼스에 영향 줄 가능성도 있음
 - 세번째 `false`: exclusive 백업 여부
 
@@ -168,41 +168,6 @@ SELECT * FROM pg_stop_backup(false, true);
 6. `pg_internal.init`: 캐시 데이터로 복구됨
 
 ---
-## 아카이브 백업 복구
-
-아카이브된 파일 (WAL backup, base backup)을 통해 복구하는 방법
-
-1. 서버 중지
-2. 용량이 충분하다면 `data` 디렉토리, tablespaces 임시 폴더 복사(복구 실패시 대비), 용량이 충분하지 않다면 `pg_wal/` 디렉토리만이라도 백업
-3. `data` 하위 디렉토리/파일 모두 제거(tablespaces 존재하면 그것도 삭제)
-4. 기존에 백업한 data 백업 파일 복구
-   복구시 `root` user가 아닌 db user(`postgres`)로 permission이 있어야함
-   테이블스페이스 복구시 `pg_tblspc/`의 심볼릭 링크가 생성되었는지 확인
-5. 복구된 `pg_wal/` 하위 파일 모두 삭제
-6. 2번에서 복구 전 백업한 `pg_wal/` 복구
-7. `data` 하위 `recovery.conf` 생성
-   ```
-   restore_command = 'cp /mnt/server/archivedir/%f %p'
-   recovery_target_time = '2021-07-22 10:53:58'
-   ```
-   `recovery_target_time`은 복구 시점(선택)
-   
-   필요시 `pg_hba.conf` 수정하여 외부 접근 제한
-8. 서버 시작
-
-   서버가 `recovery.conf` 파일을 감지하고 복구 모드에 돌입함
-   
-   복구 완료시 `recovery.conf`를 `recovery.done`으로 파일명 자동 변경
-9. 복구 완료되었는지 체크
-   
-   필요시 `pg_hba.conf` 수정하여 사용자 접속 허용
-
-복구시 사용 가능한 WAL segment들을 사용하므로 마지막에는 `file not found` 메세지가 나오는데 이는 정상이다.
-
-복구시 특정 시점으로 복구하고 싶다면 중지점을 지정하면 되는데 [WAL 설정값 recovery target](https://www.postgresql.org/docs/current/runtime-config-wal.html#RUNTIME-CONFIG-WAL-RECOVERY-TARGET) 참고 
-
-> 복구 시점은 base backup이 끝난 시점 이후여야한다. 
-> base backup 진행 중인 시점으로 지정 불가
 
 ### 복구 시점 이해
 

@@ -1,4 +1,4 @@
-I"x?<h1 id="postgresql-wal-아카이브-백업">PostgreSQL WAL 아카이브 백업</h1>
+I"R3<h1 id="postgresql-wal-아카이브-백업">PostgreSQL WAL 아카이브 백업</h1>
 
 <p><img src="/assets/img/titles/postgresql-logo.svg" alt="postgresql-logo.svg" /></p>
 
@@ -178,49 +178,6 @@
 </ol>
 
 <hr />
-<h2 id="아카이브-백업-복구">아카이브 백업 복구</h2>
-
-<p>아카이브된 파일 (WAL backup, base backup)을 통해 복구하는 방법</p>
-
-<ol>
-  <li>서버 중지</li>
-  <li>용량이 충분하다면 <code class="language-plaintext highlighter-rouge">data</code> 디렉토리, tablespaces 임시 폴더 복사(복구 실패시 대비), 용량이 충분하지 않다면 <code class="language-plaintext highlighter-rouge">pg_wal/</code> 디렉토리만이라도 백업</li>
-  <li><code class="language-plaintext highlighter-rouge">data</code> 하위 디렉토리/파일 모두 제거(tablespaces 존재하면 그것도 삭제)</li>
-  <li>기존에 백업한 data 백업 파일 복구
-복구시 <code class="language-plaintext highlighter-rouge">root</code> user가 아닌 db user(<code class="language-plaintext highlighter-rouge">postgres</code>)로 permission이 있어야함
-테이블스페이스 복구시 <code class="language-plaintext highlighter-rouge">pg_tblspc/</code>의 심볼릭 링크가 생성되었는지 확인</li>
-  <li>복구된 <code class="language-plaintext highlighter-rouge">pg_wal/</code> 하위 파일 모두 삭제</li>
-  <li>2번에서 복구 전 백업한 <code class="language-plaintext highlighter-rouge">pg_wal/</code> 복구</li>
-  <li><code class="language-plaintext highlighter-rouge">data</code> 하위 <code class="language-plaintext highlighter-rouge">recovery.conf</code> 생성
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>restore_command = 'cp /mnt/server/archivedir/%f %p'
-recovery_target_time = '2021-07-22 10:53:58'
-</code></pre></div>    </div>
-    <p><code class="language-plaintext highlighter-rouge">recovery_target_time</code>은 복구 시점(선택)</p>
-
-    <p>필요시 <code class="language-plaintext highlighter-rouge">pg_hba.conf</code> 수정하여 외부 접근 제한</p>
-  </li>
-  <li>
-    <p>서버 시작</p>
-
-    <p>서버가 <code class="language-plaintext highlighter-rouge">recovery.conf</code> 파일을 감지하고 복구 모드에 돌입함</p>
-
-    <p>복구 완료시 <code class="language-plaintext highlighter-rouge">recovery.conf</code>를 <code class="language-plaintext highlighter-rouge">recovery.done</code>으로 파일명 자동 변경</p>
-  </li>
-  <li>
-    <p>복구 완료되었는지 체크</p>
-
-    <p>필요시 <code class="language-plaintext highlighter-rouge">pg_hba.conf</code> 수정하여 사용자 접속 허용</p>
-  </li>
-</ol>
-
-<p>복구시 사용 가능한 WAL segment들을 사용하므로 마지막에는 <code class="language-plaintext highlighter-rouge">file not found</code> 메세지가 나오는데 이는 정상이다.</p>
-
-<p>복구시 특정 시점으로 복구하고 싶다면 중지점을 지정하면 되는데 <a href="https://www.postgresql.org/docs/current/runtime-config-wal.html#RUNTIME-CONFIG-WAL-RECOVERY-TARGET">WAL 설정값 recovery target</a> 참고</p>
-
-<blockquote>
-  <p>복구 시점은 base backup이 끝난 시점 이후여야한다. 
-base backup 진행 중인 시점으로 지정 불가</p>
-</blockquote>
 
 <h3 id="복구-시점-이해">복구 시점 이해</h3>
 
