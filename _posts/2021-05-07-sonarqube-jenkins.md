@@ -17,7 +17,7 @@ tags: [Sonarqube, Jenkins, Helm, Docker, Docker-Compose]
 본 문서에서는 Sonarqube 설치 및 Jenkins 파이프라인 연동한 내용을 정리하였다.
 
 ---
-## SonarQube란
+## SonarQube란?
 
 ![sj-1.png]({{ "/assets/img/contents/sj-1.png"}})
 

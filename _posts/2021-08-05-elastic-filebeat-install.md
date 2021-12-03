@@ -17,7 +17,7 @@ tags: [Elasticsearch, Elastic, ELK, Filebeat, Beat]
 로그 정보를 수집하는 Filebeat를 각 VM(Ubuntu)에 설치하여 로그 파일을 Elasticsearch로 전송한다.
 
 ---
-## Filebeat란
+## Filebeat란?
 
 ![efi-1.png]({{ "/assets/img/contents/efi-1.png"}})
 

@@ -1,0 +1,42 @@
+I"�<h1 id="spring-core-정리">Spring Core 정리</h1>
+
+<p><img src="/assets/img/titles/github-pages.png" alt="github-pages.png" /></p>
+
+<p><a href="https://pages.github.com/">GitHub Pages</a></p>
+
+<p>Spring 라이브러리를 사용하여 실제 개발을 하고 있으나 항상 High-Level에서만 접근하여 안의 세세한 부분들을 놓치는 경우가 많았다.</p>
+
+<p>이 기회에 처음부터 내용을 정리해보는 과정을 가졌다.</p>
+
+<hr />
+
+<h2 id="spring이-뭐고-왜-쓰지">Spring이 뭐고 왜 쓰지?</h2>
+
+<p>스프링 프레임워크 등장 이전에는 기업 수준의 Java 어플리케이션을 개발할 때 J2EE(Java 2.0 Enterprise Edition)이라는 명세를 사용하였다.</p>
+
+<h3 id="j2ee">J2EE</h3>
+
+<html>
+
+flowchart LR
+
+A[Client-Side<br />Presentation]
+
+B[Server-Side
+
+Presentation]
+
+</html>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://jekyllrb.com/docs/installation/">Jekyll Installation</a></li>
+  <li><a href="https://pages.github.com/">GitHub Pages</a></li>
+  <li><a href="http://jekyllthemes.org/">Jekyll Themes</a></li>
+  <li><a href="https://github.com/Sylhare/Type-on-Strap">Type-on-Strap</a></li>
+</ol>
+
+:ET

@@ -17,7 +17,7 @@ tags: [Elasticsearch, Elastic, ELK, Metricbeat, Beat]
 로그 정보를 수집하는 Filebeat를 각 VM(Ubuntu)에 설치하여 로그 파일을 Elasticsearch로 전송한다.
 
 ---
-## Metricbeat란
+## Metricbeat란?
 
 Elastic Stack에 포함되는 오픈소스로 시스템과 서비스의 규격화된 메트릭 정보를 경량화된 방식으로 수집하고 Logstash, Elasticsearch, Kibana 등으로 전달하는 수집기
 
