@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-12-06T16:29:08+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>개발일지</subtitle><entry><title type="html">Spring Framework 정리</title><link href="http://localhost:4000/2021/12/03/spring-framework.html" rel="alternate" type="text/html" title="Spring Framework 정리" /><published>2021-12-03T00:00:00+09:00</published><updated>2021-12-03T00:00:00+09:00</updated><id>http://localhost:4000/2021/12/03/spring-framework</id><content type="html" xml:base="http://localhost:4000/2021/12/03/spring-framework.html">&lt;h1 id=&quot;spring-framework-정리&quot;&gt;Spring Framework 정리&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-12-07T17:47:17+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>개발일지</subtitle><entry><title type="html">Spring Framework 정리</title><link href="http://localhost:4000/2021/12/03/spring-framework.html" rel="alternate" type="text/html" title="Spring Framework 정리" /><published>2021-12-03T00:00:00+09:00</published><updated>2021-12-03T00:00:00+09:00</updated><id>http://localhost:4000/2021/12/03/spring-framework</id><content type="html" xml:base="http://localhost:4000/2021/12/03/spring-framework.html">&lt;h1 id=&quot;spring-framework-정리&quot;&gt;Spring Framework 정리&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/titles/spring-logo.svg&quot; alt=&quot;spring-logo.svg&quot; /&gt;&lt;/p&gt;
 
@@ -10,11 +10,17 @@
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/contents/sf-1.png&quot; alt=&quot;sf-1.png&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;스프링이란 Spring Framework를 의미하기도 하지만 더 나아가 Spring Boot, Spring Data, Spring Cloud, Spring Batch 등 다양한 프로젝트를 포함하는 스프링 생태계(Spring Ecosystem)를 말한다.&lt;/p&gt;
+&lt;p&gt;스프링이란 Spring Framework를 의미하기도 하지만 더 나아가 Spring Boot, Spring Data, Spring Cloud, Spring Batch 등 다양한 스프링 프로젝트를 포함하는 스프링 생태계(Spring Ecosystem)를 말한다.&lt;/p&gt;
 
-&lt;p&gt;초기에는 스프링 프레임워크로 시작을 하였지만 점차 추가적인 모듈/프로젝트들이 추가되어 현재의 스프링 생태계를 구성하고 있으며 현재도 활발하게 확장되고 있다.&lt;/p&gt;
+&lt;p&gt;초기에는 스프링 프레임워크로 시작을 하였으나 점차 추가적인 모듈/프로젝트들이 추가되었고 현재의 스프링 생태계를 구성하고 있다.&lt;/p&gt;
 
-&lt;p&gt;그래도 일반적으로 Spring를 말할때는 Spring Framework를 의미하고 추가적인 프로젝트들은 Spring Data, Spring Cloud등의 이름으로 부르고 있다.&lt;/p&gt;
+&lt;p&gt;스프링 프로젝트들은 활발한 오픈소스 생태계를 구성하고 있어 활발하게 확장되고 있다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://github.com/orgs/spring-projects/repositories&quot;&gt;Spring Projects Github&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;통상적으로 Spring를 말할때는 Spring Framework를 의미하고 추가적인 프로젝트들은 Spring Data, Spring Cloud등의 이름으로 부르고 있다.&lt;/p&gt;
 
 &lt;p&gt;어떠한 프로젝트가 있는지는 spring.io 공식 홈페이지에서 확인할 수 있다.&lt;/p&gt;
 
@@ -24,24 +30,26 @@
 
 &lt;hr /&gt;
 
-&lt;h2 id=&quot;spring-탄생-배경&quot;&gt;Spring 탄생 배경&lt;/h2&gt;
+&lt;h2 id=&quot;spring-등장-배경&quot;&gt;Spring 등장 배경&lt;/h2&gt;
 
 &lt;p&gt;Spring 탄생 이전에는 자바를 이용한 엔터프라이즈 앱/서비스를 개발할 때 J2EE(Java EE)를 사용하여야했다.&lt;/p&gt;
 
-&lt;p&gt;EJB등의 개념은 매우 뛰어났으나 스프링 등장 이전의 EJB v1, EJB v2는&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/sf-7.png&quot; alt=&quot;sf-7.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;EJB의 개념은 매우 뛰어났으나 스프링 등장 이전의 EJB v1, EJB v2는&lt;/p&gt;
 
 &lt;p&gt;EJB를 구현하기 위해서 XML 디스크립터를 작성하고 홈 인터페이스, 컴포넌트 인터페이스를 생성해야만 하여 매우 복잡하였고 이는 곧 느린 성능을 의미하였다.&lt;/p&gt;
 
-&lt;p&gt;이런 EJB에 대한 대안으로 POJO(Plain Old Java Object) 객체를 사용하는 것이 낫다는 주장이 나왔다.&lt;/p&gt;
+&lt;p&gt;이런 복잡한 EJB에 대한 대안으로 POJO(Plain Old Java Object) 객체를 사용하는 것이 낫다는 주장이 나왔다.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;POJO(Plain Old Java Object)?&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;POJO(Plain Old Java Object)?&lt;/strong&gt;&lt;/p&gt;
 
   &lt;p&gt;&lt;a href=&quot;https://martinfowler.com/bliki/POJO.html&quot;&gt;https://martinfowler.com/bliki/POJO.html&lt;/a&gt;&lt;/p&gt;
 
   &lt;p&gt;POJO는 종속성이 없는 일반 자바 클래스 객체를 말하는 것이며 그다지 새로운 개념이 아니다.&lt;/p&gt;
 
-  &lt;p&gt;마틴 파울러는 비즈니스 로직을 구현할 때 일반 자바 객체를 사용하는 것이 EJB를 사용하는 것 보다 훨씬 많은 장점을 가지고 있다고 생각하였고&lt;/p&gt;
+  &lt;p&gt;마틴 파울러(Martin Folwer)는 비즈니스 로직을 구현할 때 일반 자바 객체를 사용하는 것이 EJB를 사용하는 것 보다 훨씬 많은 장점을 가지고 있다고 생각하였고&lt;/p&gt;
 
   &lt;p&gt;사람들이 일반 자바 객체를 사용하는 것을 망설이는 이유가 그럴듯한 이름이 없다고 생각하였다.&lt;/p&gt;
 
@@ -66,18 +74,22 @@
 
 &lt;p&gt;스프링 프레임워크의 모듈들은 위와같이 구성된다.&lt;/p&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h3 id=&quot;1-spring-core&quot;&gt;1. Spring Core&lt;/h3&gt;
 
 &lt;p&gt;Spring의 기본이자 핵심 모듈로 Spring Container, IoC Container이다.&lt;/p&gt;
 
-&lt;p&gt;스프링 프레임워크에서 지원하는 IoC, DI 등의 개념이 탄생한 Bean을 관리하는 핵심 기능을 담당한다.&lt;/p&gt;
+&lt;p&gt;스프링 프레임워크에서 지원하는 IoC, DI 등의 개념의 주체인 Bean을 관리하는 핵심 기능을 담당한다.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;&lt;strong&gt;Spring Bean?&lt;/strong&gt;&lt;/p&gt;
 
   &lt;p&gt;Spring Framework에서 관리하는 자바 객체로 일반 자바 클래스와 같다고 생각하면 된다.&lt;/p&gt;
 
-  &lt;p&gt;Spring에서는 기존의 J2EE의 EJB 방식의 복잡한 구현을 피하기 위하여 POJO를 사용하는데 해당 POJO가 Spring Container에 의해 생성되고 관리되면 해당 객체는 Bean이라고 한다.&lt;/p&gt;
+  &lt;p&gt;Spring에서는 기존의 J2EE의 EJB 방식의 복잡한 구현을 피하기 위하여 POJO를 사용하는데&lt;/p&gt;
+
+  &lt;p&gt;해당 POJO가 Spring Container에 의해 생성되고 관리되면 해당 객체는 Bean이라고 한다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;아래와 같은 4가지 모듈로 구성된다.&lt;/p&gt;
@@ -99,14 +111,16 @@
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spring-expression&lt;/code&gt;
     &lt;ul&gt;
       &lt;li&gt;JSP 명세에 의한 EL(Expression Language)의 확장 기능을 제공한다.&lt;/li&gt;
-      &lt;li&gt;모델 객체에 쿼리하고 접근하기 위한 EL로 스프링 컨테이너의 오브젝트와 프로퍼티, 변수, 사칙연산 등을 제공한다.&lt;/li&gt;
+      &lt;li&gt;모델, 빈 객체에 쿼리하고 접근하기 위한 EL로 스프링 컨테이너의 오브젝트와 프로퍼티, 변수, 사칙연산 등을 제공한다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h3 id=&quot;2-spring-aop&quot;&gt;2. Spring AOP&lt;/h3&gt;
 
-&lt;p&gt;스프링에서 DI, IoC와 함께 주요 기능인 AOP(Aspect Oriented Programming) 관점 지향 프로그래밍 기능을 제공한다. pointcut과 메소드 인터셉터들을 지원한다.&lt;/p&gt;
+&lt;p&gt;스프링에서 DI, IoC와 함께 주요 개념인 AOP(Aspect Oriented Programming): 관점 지향 프로그래밍 기능을 제공한다. pointcut과 메소드 인터셉터들을 지원한다.&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spring-aop&lt;/code&gt;
@@ -127,9 +141,13 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h3 id=&quot;3-spring-messaging&quot;&gt;3. Spring Messaging&lt;/h3&gt;
 
 &lt;p&gt;Spring Integration 프로젝트의 추상체를 제공하여 메시지 기반의 어플리케이션을 지원한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;4-spring-dao&quot;&gt;4. Spring DAO&lt;/h3&gt;
 
@@ -165,6 +183,8 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h3 id=&quot;5-spring-web&quot;&gt;5. Spring Web&lt;/h3&gt;
 
 &lt;ul&gt;
@@ -180,6 +200,8 @@
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;6-spring-test&quot;&gt;6. Spring Test&lt;/h3&gt;
 
@@ -197,31 +219,66 @@
 
 &lt;p&gt;스프링 컨테이너, IoC 컨테이너 그 자체라고 보아도 무방하다.&lt;/p&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h3 id=&quot;inversion-of-controlioc&quot;&gt;Inversion Of Control(IoC)&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;제어의 역전; 객체의 생성과 관리를 외부에 맡기는 것&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;기존 초기 자바 어플리케이션의 경우 아래와 같이 개발자가 객체의 생성과 라이프사이클을 관리해주어야 하였다.&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;ioc-개념-도입-전&quot;&gt;IoC 개념 도입 전&lt;/h4&gt;
+
+&lt;div class=&quot;mermaid&quot;&gt;
+  flowchart LR
+    A[Application]
+    B[Class A]
+    A--new--&amp;gt;B
+    B-.return Instance A.-&amp;gt;A
+&lt;/div&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// POJO&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Cat&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gender&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  
-  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Cat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Cat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Constructed!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;nc&quot;&gt;Cat&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myCat&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Cat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;myCat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// sysout&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;Constructed&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;하지만 위와 같이 사용한다면 생성된 Cat을 여러 클래스에서 사용하기 어려우며 해당 Cat에 대한 속성을 관리하기가 힘들고 또한 여러개의 중복된 Cat 객체가 생성될 가능성이 있다.&lt;/p&gt;
+&lt;p&gt;기존 초기 자바 어플리케이션의 경우 위와 같이 개발자가 객체의 생성과 초기화 등의 라이프사이클을 관리해주어야 하였다.&lt;/p&gt;
+
+&lt;p&gt;하지만 이런 방식은 생성된 Cat을 여러 클래스에서 사용 및 관리하기가 힘들고 또한 여러개의 중복된 Cat 객체가 생성될 가능성이 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;ioc-개념-도입-후&quot;&gt;IoC 개념 도입 후&lt;/h4&gt;
+
+&lt;div class=&quot;mermaid&quot;&gt;
+  flowchart LR
+    A[Application]
+    B[Spring Container]
+    C[XML Configuration]
+    D[Cat Bean]
+    C--1. Metadata--&amp;gt;B
+    B--2. Generate---D
+    A--3. getBean--&amp;gt;B
+    B-.4. Bean.-&amp;gt;A
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/contents/sf-4.png&quot; alt=&quot;sf-4.png&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;이를 해결하기 위하여 스프링에서는 모든 객체의 생성과 관리를 Bean으로 등록하여 스프링 컨테이너에게 위임한다 이를 제어의 역전(Inversion Of Control)이라고 한다.&lt;/p&gt;
+&lt;p&gt;이를 해결하기 위하여 스프링에서는 모든 객체의 생성과 관리를 Bean으로 등록하여 스프링 컨테이너에게 위임한다. 이를 제어의 역전(Inversion Of Control)이라고 한다.&lt;/p&gt;
 
 &lt;p&gt;제어의 역전이라는 특성을 통하여 개발자는 더 이상 객체의 생성과 관리에 대하여 신경쓰지 않고 비즈니스 로직에만 집중하여 생산성을 높일 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;xml-설정-예시&quot;&gt;XML 설정 예시&lt;/h4&gt;
 
@@ -234,7 +291,7 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
   
-  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- 역전 제어 --&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- 역전 제어 --&amp;gt;&lt;/span&gt;
 	&lt;span class=&quot;nt&quot;&gt;&amp;lt;bean&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;cat&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;com.csupreme19.springdemo.Cat&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
     
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/beans&amp;gt;&lt;/span&gt;
@@ -242,25 +299,18 @@
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;ApplicationContext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ClassPathXmlApplicationContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;applicationContext.xml&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;nc&quot;&gt;Cat&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myCat&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;cat&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Cat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// sysout&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;Constructed&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;빈은 어플리케이션의 실행과 종료까지의 생명주기를 가지는 ApplicationContext에 등록되어 사용되고 해당 ApplicationContext는 XML 파일, 어노테이션, 자바 코드 등으로 설정할 수 있다.&lt;/p&gt;
 
 &lt;p&gt;컨텍스트 생성 시점 Bean들을 주입(생성)하여 초기화하며 컨텍스트에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getBean()&lt;/code&gt; 호출시 스프링 컨테이너에 객체가 존재하는지 확인하고 객체를 가져온다.&lt;/p&gt;
 
-&lt;div class=&quot;mermaid&quot;&gt;
-  flowchart LR
-    A[Application]
-    B[Spring Container]
-    C[XML Configuration]
-    D[Cat Bean]
-    C--1. Config--&amp;gt;B
-    B--2. Generate---D
-    A--3. getBean--&amp;gt;B
-    B-.4. Bean.-&amp;gt;A
-&lt;/div&gt;
-
 &lt;p&gt;이를 통해 개발자는 더 이상 객체의 생성과  관리에 대해서 걱정할 필요가 없이 싱글턴 객체를 사용할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;dependency-injectiondi&quot;&gt;Dependency Injection(DI)&lt;/h3&gt;
 
@@ -272,11 +322,39 @@
 
 &lt;p&gt;해당 객체는 스프링 컨테이너에서 사용 못하고 개발자가 직접 수동으로 생성해야 할까?&lt;/p&gt;
 
-&lt;p&gt;정답은 아니다.&lt;/p&gt;
-
 &lt;p&gt;스프링에서는 이러한 의존성을 해결하기 위하여 의존성 주입이라는 개념이 등장한다.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Constructor Dependency Injection 예시&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;mermaid&quot;&gt;
+  flowchart LR
+    A[Application]
+    B[Spring Container]
+    C[XML Configuration]
+    D[Cat Bean]
+    E[Eye Bean]
+    C--1. Metadata--&amp;gt;B
+    B--2. Generate---E
+    B--2. Generate---D
+    E--3. Dependency Inject--&amp;gt;D
+    A--4. getBean--&amp;gt;B
+    B-.5. Bean.-&amp;gt;A
+&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;초기 스프링 컨테이너 구동시 IoC 개념에 의해 모든 Bean은 생성된다.&lt;/li&gt;
+  &lt;li&gt;이후 DI를 통해 의존성을 주입하여 의존성이 주입된 Bean이 준비된다.&lt;/li&gt;
+  &lt;li&gt;스프링 컨테이너에서 getBean을 통하여 사용하는 모든 Bean은 DI가 완료된 빈이다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;constructor-dependency-injection-예시&quot;&gt;Constructor Dependency Injection 예시&lt;/h4&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;bean&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;eye&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;com.csupreme19.springdemo.Eye&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;bean&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;cat&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;com.csupreme19.springdemo.Cat&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- 의존성 주입 --&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;constructor-arg&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;ref=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;eye&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/bean&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Cat&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 	
@@ -284,9 +362,12 @@
 	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gender&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Eye&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eye&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Cat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Cat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Constructed!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 	
 	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Cat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Eye&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eye&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Constructed!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 		&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;eye&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eye&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
@@ -298,33 +379,26 @@
 
 &lt;p&gt;Cat에 Eye라는 dependency를 추가하였다.&lt;/p&gt;
 
-&lt;p&gt;스프링의 DI를 사용하려면 해당 Eye 또한 Bean으로 등록되어 이후 DI 시점에 주입되어야한다.&lt;/p&gt;
+&lt;p&gt;스프링의 DI를 사용하려면 해당 Eye 또한 Bean으로 등록되어 있어야 이후 DI 시점에 주입이 될 수 있다.&lt;/p&gt;
 
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;bean&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;eye&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;com.csupreme19.springdemo.Eye&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;bean&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;cat&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;com.csupreme19.springdemo.Cat&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-	  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- 의존성 주입 --&amp;gt;&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;&amp;lt;constructor-arg&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;ref=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;eye&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/bean&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;mermaid&quot;&gt;
-  flowchart LR
-    A[Application]
-    B[Spring Container]
-    C[XML Configuration]
-    D[Cat Bean]
-    E[Eye Bean]
-    C--1. Metadata--&amp;gt;B
-    B--2-1. Generate---E
-    B--2-2. Generate---D
-    E--3. Dependency Inject--&amp;gt;D
-    A--4. getBean--&amp;gt;B
-    B-.5. Bean.-&amp;gt;A
-&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;bean-scope&quot;&gt;Bean Scope&lt;/h3&gt;
 
 &lt;h4 id=&quot;singleton&quot;&gt;Singleton&lt;/h4&gt;
+
+&lt;div class=&quot;mermaid&quot;&gt;
+  flowchart LR
+    A[Class B]
+    B[Class C]
+    C[Class D]
+    D[Spring Container]
+    F[Instance A]
+    A--getBean--&amp;gt;D
+    B--getBean--&amp;gt;D
+    C--getBean--&amp;gt;D
+    D&amp;lt;-.manage.-&amp;gt;F
+&lt;/div&gt;
 
 &lt;p&gt;스프링 컨테이너는 기본적으로 단일 빈 정의에 대해서 단 하나의 빈 객체(인스턴스)만을 관리한다.&lt;/p&gt;
 
@@ -346,11 +420,34 @@
 &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;csupreme19&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;springdemo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Cat&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ed4ae0f&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h4 id=&quot;prototype&quot;&gt;Prototype&lt;/h4&gt;
+
+&lt;div class=&quot;mermaid&quot;&gt;
+  flowchart LR
+    A[Class B]
+    B[Class C]
+    C[Class D]
+    subgraph Application Context
+    D[Spring Container]
+    I[Spring Container]
+    J[Spring Container]
+    end
+    F[Instance A]
+    G[Instance A&apos;]
+    H[Instance A&apos;&apos;]
+    A--getBean--&amp;gt;D
+    B--getBean--&amp;gt;I
+    C--getBean--&amp;gt;J
+    D&amp;lt;-.manage.-&amp;gt;F
+    I&amp;lt;-.manage.-&amp;gt;G
+    J&amp;lt;-.manage.-&amp;gt;H
+&lt;/div&gt;
 
 &lt;p&gt;스프링에서는 또다른 빈 스코프가 있는데 Prototype 스코프이다.&lt;/p&gt;
 
-&lt;p&gt;객체가 참조될 때마다 새로운 인스턴스가 생성된다.&lt;/p&gt;
+&lt;p&gt;각 스코프별로 컨테이너에 객체가 참조될 때마다 새로운 인스턴스가 생성된다.&lt;/p&gt;
 
 &lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;bean&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;eye&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;com.csupreme19.springdemo.Eye&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;scope=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;prototype&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -377,6 +474,8 @@
 &lt;/blockquote&gt;
 
 &lt;p&gt;singleton, prototype 이외에도 request, session, global-session 스코프가 존재한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;bean-lifecycle&quot;&gt;Bean Lifecycle&lt;/h3&gt;
 
@@ -439,40 +538,44 @@ F-&amp;gt;&amp;gt;G: Custom destruction
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	&lt;span class=&quot;nt&quot;&gt;&amp;lt;bean&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;cat&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;com.csupreme19.springdemo.Cat&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;init-method=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;printInit&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;destroy-method=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;printDestroy&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-		&lt;span class=&quot;nt&quot;&gt;&amp;lt;constructor-arg&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;ref=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;eye&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;&amp;lt;/bean&amp;gt;&lt;/span&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;생명주기-확인&quot;&gt;생명주기 확인&lt;/h4&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;bean&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;testBean&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;com.csupreme19.springdemo.TestBean&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;init-method=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;printInit&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;destroy-method=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;printDestroy&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Cat&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TestBean&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 	
-	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gender&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Eye&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eye&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-	
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Cat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
-	
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Cat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Eye&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eye&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;eye&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eye&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;TestBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getClass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; Constructed!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 	
 	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;printInit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;init-method!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+		&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getClass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; Init bean!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 	
 	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;printDestroy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;destroy-method!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+		&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getClass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; Destroy bean!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-&lt;span class=&quot;nc&quot;&gt;Cat&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myCat&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;cat&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Cat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;ApplicationContext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ClassPathXmlApplicationContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;applicationContext.xml&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;TestBean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;testBean&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;testBean&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TestBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Closing Application Context!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;AbstractApplicationContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Closed Application Context!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;init-method!
-destroy-method!
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class com.csupreme19.springdemo.TestBean Constructed!
+class com.csupreme19.springdemo.TestBean Init bean!
+com.csupreme19.springdemo.TestBean@54e1c68b
+Closing Application Context!
+class com.csupreme19.springdemo.TestBean Destroy bean!
+Closed Application Context!
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;별도의 메서드를 호출하지 않았으나 init method와 destroy method가 호출된 것을 확인할 수 있다.&lt;/p&gt;
+&lt;p&gt;생성자 -&amp;gt; Bean 초기화 메서드 -&amp;gt; 빈 확인 -&amp;gt; 컨테이너 종료시 빈 종료 확인&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -480,25 +583,23 @@ destroy-method!
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/contents/sf-5.png&quot; alt=&quot;sf-5.png&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Spring Framework의 또 다른 핵심 기능인 AOP를 담당한다.&lt;/p&gt;
+&lt;p&gt;Spring Framework의 또 다른 핵심 기능인 AOP 관점지향 프로그래밍을 담당한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;aop가-도대체-뭐야&quot;&gt;AOP가 도대체 뭐야?&lt;/h3&gt;
 
 &lt;p&gt;AOP는 Aspect Oriented Programming 관점 지향 프로그래밍이다.&lt;/p&gt;
 
-&lt;p&gt;어떤 로직에서 부가 기능(관심사)을 분리한 관점으로 보는 것&lt;/p&gt;
+&lt;p&gt;어떤 로직에서 부가 기능(관심사, 공통 로직)을 분리한 관점으로 보는 것&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/contents/sf-6.png&quot; alt=&quot;sf-6.png&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;핵심 기능(비즈니스 로직)에서 부가 기능(로깅, 트랜잭션, 예외)을 분리하기 위하여 횡단 분리하는 것(관점)&lt;/p&gt;
+&lt;p&gt;핵심 기능(비즈니스 로직)에서 부가 기능(로깅, 트랜잭션, 예외)을 분리하기 위하여 횡단 분리(cross-cutting)하는 것(관점)&lt;/p&gt;
 
-&lt;h5 id=&quot;a는-로그에-관심이-있다&quot;&gt;A는 로그에 관심이 있다.&lt;/h5&gt;
+&lt;p&gt;공통 기능을 관점 지향으로 바라보고 해당 기능을 비즈니스 로직에 영향을 주지 않으면서 적용할 수 있다.&lt;/p&gt;
 
-&lt;h5 id=&quot;b는-보안-설정에-관심이-있다&quot;&gt;B는 보안 설정에 관심이 있다.&lt;/h5&gt;
-
-&lt;h5 id=&quot;c는-예외-처리에-관심이-있다&quot;&gt;C는 예외 처리에 관심이 있다.&lt;/h5&gt;
-
-&lt;p&gt;따라서 공통 기능을 관점 지향으로 바라보고 해당 기능을 비즈니스 로직에 영향을 주지 않으면서 적용할 수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;aop를-왜-써&quot;&gt;AOP를 왜 써?&lt;/h3&gt;
 
@@ -515,8 +616,8 @@ destroy-method!
 &lt;p&gt;아래와 같이 코드는 늘어날 것이다.&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;addAccount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Account&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;account&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// 로깅 코드 &lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// 보안 체크&lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;// 로깅 코드 &lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;// 보안 체크&lt;/span&gt;
 	&lt;span class=&quot;nc&quot;&gt;Session&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;session&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sessionFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getCurrentSession&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 	&lt;span class=&quot;n&quot;&gt;currentSession&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;account&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
@@ -527,15 +628,15 @@ destroy-method!
 &lt;p&gt;로깅을 DAO뿐만이 아니라 서비스와 컨트롤러에도 적용하고 싶다면 아래와 같이 코드는 늘어날 것이다.&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AccountService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// 로깅 코드&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// 보안 체크&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;accountDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addAccount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;account&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;// 로깅 코드&lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;// 보안 체크&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;accountDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addAccount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;account&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AccountController&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// 로깅 코드&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// 보안 체크&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;accountService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addAccount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;account&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;// 로깅 코드&lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;// 보안 체크&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;accountService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addAccount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;account&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -549,11 +650,15 @@ destroy-method!
 
 &lt;p&gt;해당 클래스가 2, 3개라면 큰 문제가 없겠지만 100개 아니 1000개라면 상상도 하기 싫다.&lt;/p&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h3 id=&quot;oop로-해결해보자-oop의-한계&quot;&gt;OOP로 해결해보자, OOP의 한계&lt;/h3&gt;
 
 &lt;h4 id=&quot;1-상속을-쓰면-되잖아&quot;&gt;1. 상속을 쓰면 되잖아&lt;/h4&gt;
 
 &lt;p&gt;객체지향이 좋은게 뭐겠어? =&amp;gt; 상속과 다형성이지&lt;/p&gt;
+
+&lt;p&gt;한번 해보자&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Logging&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
@@ -562,12 +667,12 @@ destroy-method!
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AccountService&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Logging&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 	&lt;span class=&quot;n&quot;&gt;accountDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addAccount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;account&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AccountController&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Logging&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 	&lt;span class=&quot;n&quot;&gt;accountService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addAccount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;account&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -579,6 +684,8 @@ destroy-method!
 &lt;p&gt;별도의 인터페이스를 상속 받는 클래스에는 사용이 불가능하다.&lt;/p&gt;
 
 &lt;p&gt;마찬가지로 다중상속이 안되어 보안 처리에 대한 클래스를 별도로 분리할 수 없다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;2-위임delegation&quot;&gt;2. 위임(Delegation)&lt;/h4&gt;
 
@@ -597,18 +704,18 @@ destroy-method!
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AccountServiceImpl&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AccountService&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;Logging&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;Security&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;security&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Security&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;security&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;checkSecurity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;nc&quot;&gt;Logging&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;nc&quot;&gt;Security&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;security&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Security&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;security&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;checkSecurity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 	&lt;span class=&quot;n&quot;&gt;accountDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addAccount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;account&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AccountController&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Logging&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;Logging&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;Security&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;security&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Security&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;security&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;checkSecurity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;nc&quot;&gt;Logging&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;nc&quot;&gt;Security&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;security&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Security&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;security&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;checkSecurity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 	&lt;span class=&quot;n&quot;&gt;accountService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addAccount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;account&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -617,7 +724,13 @@ destroy-method!
 
 &lt;p&gt;결론적으로는 코드의 복잡도만 늘어났고 로깅/보안 체크 수정시에는 모든 클래스를 수정해야하는 문제가 있다.&lt;/p&gt;
 
-&lt;h3 id=&quot;aop를-사용해보자&quot;&gt;AOP를 사용해보자&lt;/h3&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;aop를-사용한다면&quot;&gt;AOP를 사용한다면&lt;/h3&gt;
+
+&lt;p&gt;기존의 OOP를 이용하여 문제를 해결할 수는 있으나 절대로 아름다운 코드라고는 할 수 없다.&lt;/p&gt;
+
+&lt;p&gt;이러한 문제를 해결하기 위하여 나온 개념이 관점 지향 프로그래밍 AOP이다.&lt;/p&gt;
 
 &lt;h4 id=&quot;장점&quot;&gt;장점&lt;/h4&gt;
 
@@ -654,13 +767,17 @@ destroy-method!
   &lt;/li&gt;
 &lt;/ol&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h3 id=&quot;aop-용어-정리&quot;&gt;AOP 용어 정리&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/sf-8.png&quot; alt=&quot;sf-8.png&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;advice&quot;&gt;Advice&lt;/h4&gt;
 
-&lt;p&gt;What?: 어떤 액션을 취할지 정의한 공통 코드&lt;/p&gt;
+&lt;p&gt;어떤 액션을 취할지 정의한 공통 코드(실제 구현 코드)&lt;/p&gt;
 
-&lt;p&gt;4가지 타입이 있다.&lt;/p&gt;
+&lt;p&gt;Advice에는 시점에 따른 4가지 타입이 있다.&lt;/p&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
@@ -695,29 +812,40 @@ destroy-method!
 
 &lt;h4 id=&quot;join-point&quot;&gt;Join Point&lt;/h4&gt;
 
-&lt;p&gt;When?: 해당 코드에 언제 적용되는지 정의한 포인트&lt;/p&gt;
+&lt;p&gt;Aspect가 해당 코드의 어느 시점에(어디에) 적용되는지 정의한 지점으로 포인트컷의 후보군이 된다.&lt;/p&gt;
 
 &lt;h4 id=&quot;pointcut&quot;&gt;Pointcut&lt;/h4&gt;
 
-&lt;p&gt;표현식을 통해 필터링한 특정 조인포인트로 적용 대상을 결정&lt;/p&gt;
+&lt;p&gt;조인포인트중 표현식을 통해 필터링한 특정 조인포인트로 적용 대상을 결정&lt;/p&gt;
 
 &lt;h4 id=&quot;aspect&quot;&gt;Aspect&lt;/h4&gt;
 
-&lt;p&gt;어떤 포인트컷에 어떤 어드바이스를 취할지 정의된 코드 모듈&lt;/p&gt;
+&lt;p&gt;횡단 관심사로 어떤 포인트컷에 어떤 어드바이스를 취할지 정의된 코드 모듈(로그 출력, 캐싱, 예외처리 등)&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;weaving&quot;&gt;Weaving&lt;/h4&gt;
 
-&lt;p&gt;아스펙트를 목표 타겟 객체에 연결하는 것&lt;/p&gt;
+&lt;p&gt;Aspect를 목표 타겟 객체에 연결하는 것&lt;/p&gt;
 
 &lt;p&gt;컴파일타임 위빙, 로드타임 위빙, 런타임 위빙이 있다.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;런타임 위빙이 가장 느리다.&lt;/p&gt;
+  &lt;p&gt;컴파일타임 위빙은 추가적인 컴파일 단계가 필요하며 런타임 위빙이 가장 느리다.&lt;/p&gt;
 &lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;aop-프레임워크&quot;&gt;AOP 프레임워크&lt;/h3&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;Spring AOP&lt;/li&gt;
+  &lt;li&gt;AspectJ&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;p&gt;Java의 대표적인 두 가지 AOP 프레임워크를 지원한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;spring-aop-1&quot;&gt;Spring AOP&lt;/h3&gt;
 
@@ -739,6 +867,14 @@ destroy-method!
 
 &lt;p&gt;AOP Proxy를 통하여 Aspect 위빙된 타겟 어플리케이션과 통신한다.&lt;/p&gt;
 
+&lt;blockquote&gt;
+  &lt;p&gt;Spring AOP는 AOP 인터페이스의 일부만을 구현하고 있다.&lt;/p&gt;
+
+  &lt;p&gt;따라서 특정 기능을 사용하려면 결국 AspectJ 라이브러리가 필요하다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h4 id=&quot;장점-1&quot;&gt;장점&lt;/h4&gt;
 
 &lt;ol&gt;
@@ -755,6 +891,8 @@ destroy-method!
   &lt;li&gt;런타임 위빙으로 약간의 성능 저하가 있을 수 있다.&lt;/li&gt;
 &lt;/ol&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h3 id=&quot;aspectj&quot;&gt;AspectJ&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://www.eclipse.org/aspectj&quot;&gt;https://www.eclipse.org/aspectj&lt;/a&gt;&lt;/p&gt;
@@ -762,6 +900,8 @@ destroy-method!
 &lt;p&gt;AOP 인터페이스의 확실한 구현체 프레임워크로 2001년에 발표된 오리지널 AOP 프레임워크이다.&lt;/p&gt;
 
 &lt;p&gt;AOP 기능의 모든 기능을 지원하며 생성자, 필드 joinpoint 및 컴파일 타임, 로드타임 위빙을 지원한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;장점-2&quot;&gt;장점&lt;/h4&gt;
 
@@ -778,6 +918,8 @@ destroy-method!
   &lt;li&gt;컴파일타임 위빙은 추가적인 컴파일 단계를 필요로함&lt;/li&gt;
   &lt;li&gt;포인트컷 문법이 좀 더 복잡하다.&lt;/li&gt;
 &lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;spring-aop-vs-aspectj&quot;&gt;Spring AOP vs AspectJ&lt;/h3&gt;
 
@@ -802,8 +944,8 @@ destroy-method!
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td&gt;성능&lt;/td&gt;
-      &lt;td&gt;비교적 빠름&lt;/td&gt;
-      &lt;td&gt;비교적 느림&lt;/td&gt;
+      &lt;td&gt;비교적 빠름(컴파일타임 위빙)&lt;/td&gt;
+      &lt;td&gt;비교적 느림(런타임 위빙)&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td&gt;타겟&lt;/td&gt;
@@ -813,16 +955,159 @@ destroy-method!
   &lt;/tbody&gt;
 &lt;/table&gt;
 
+&lt;p&gt;AspectJ는 AOP의 완전한 구현체를 목표로 하고 있으므로 AOP 인터페이스의 모든 기능을 지원한다.&lt;/p&gt;
+
+&lt;p&gt;하지만 Spring AOP는 AOP의 상위 인터페이스이자 AOP의 일부 구현체로 모든 기능을 지원하지 않는다.&lt;/p&gt;
+
+&lt;p&gt;경우에 따라 AspectJ의 구현체를 요구하므로 실질적으로 사용시에는 AspectJ 라이브러리를 포함하게 될 것이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;aspect-예제&quot;&gt;Aspect 예제&lt;/h3&gt;
+
+&lt;h4 id=&quot;1-특정-메소드-호출-이전-aop&quot;&gt;1. 특정 메소드 호출 이전 AOP&lt;/h4&gt;
+
+&lt;h4 id=&quot;aspect-1&quot;&gt;Aspect&lt;/h4&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Aspect&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LoggingAspect&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;nd&quot;&gt;@Before&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(public void getUser())&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;before&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@Before Advice on method&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;target&quot;&gt;Target&lt;/h4&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;UserDAO&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getClass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;UserDAO.getUser()&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;main&quot;&gt;Main&lt;/h4&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Application&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;nc&quot;&gt;ApplicationContext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AnnotationConfigApplicationContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;AppConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+		&lt;span class=&quot;nc&quot;&gt;UserDAO&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userDAO&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;userDAO&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;UserDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;userDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+		&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;AbstractApplicationContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;실행결과&quot;&gt;실행결과&lt;/h4&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Before Advice on method
+class com.csupreme19.aopdemo.dao.UserDAOUserDAO.getUser()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;pointcut-designatorpcd&quot;&gt;Pointcut Designator(PCD)&lt;/h3&gt;
+
+&lt;p&gt;포인트컷 지정자로 포인트컷에 해당하는 문자열은 다음과 같은 패턴을 가진다.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(접근 지정자? 리턴타입 패키지.클래스? 메소드명(파라미터명) throws Exception?)&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;within(패키지.클래스)&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 이 외에도 @target, @annotation 등의 PCD들이 존재한다.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;뒤에 ?가 붙은 것은 Optional 패턴으로 비어 있어도 상관 없음&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;접근지정자는 public만 사용 가능하다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 예시&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(public void com.csupreme19.demo.myClass.methodA() throws RuntimeException)&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;within(com.csupreme19.demo.myClass)&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 필수 패턴만 적을시&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(void methodA())&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// * asterisk로 문자열 대치 가능&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(* method*())&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// (): 파라미터 없음&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// (*): 단일 파라미터 대치&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// (..): 모든 파라미터 대치&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(* get*(..))&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// &amp;amp;&amp;amp;(and), ||(or), !(not) 3가지 논리 연산자 가능&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(* get*(..)) || execution(* set*(..))&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Pointcut 선언적으로 사용 가능&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(* get*(..))&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@Pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(* set*(..))&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@Before&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;getter() || setter()&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;포인트컷은&lt;/p&gt;
+
+&lt;p&gt;해당 포인트컷을 메서드로 정의하여 아래와 같이 사용하는 것도 가능하다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;aspect-order&quot;&gt;Aspect Order&lt;/h3&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Aspect&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Order&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LoggingAspect&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;nd&quot;&gt;@Before&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(* get*())&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;before&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@Before Advice on get method&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Aspect&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Order&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SecurityAspect&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;nd&quot;&gt;@Before&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(* set*(..))&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;before&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@Before Advice on set method&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Order(Integer)&lt;/code&gt; 어노테이션으로 순서 명시 가능 작은 수일 수록 먼저 실행된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;aop-best-practices&quot;&gt;AOP Best Practices&lt;/h3&gt;
+
+&lt;p&gt;AOP는 공통 관심사로 공통 로직을 담당하므로 아래와 같이 작성하는 것이 좋다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;코드는 최대한 간결하게&lt;/li&gt;
+  &lt;li&gt;코드는 최대한 빠르게&lt;/li&gt;
+  &lt;li&gt;무겁고 느린 연산 피하기&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;hr /&gt;
 
 &lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;&lt;a href=&quot;https://docs.spring.io/spring-framework/docs/current/reference/html/overview.html#overview&quot;&gt;https://docs.spring.io/spring-framework/docs/current/reference/html/overview.html#overview&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://docs.spring.io/spring-framework/docs/5.0.0.M5/spring-framework-reference/html/overview.html&quot;&gt;https://docs.spring.io/spring-framework/docs/5.0.0.M5/spring-framework-reference/html/overview.html&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#spring-core&quot;&gt;https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#spring-core&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.udemy.com/course/spring-hibernate-tutorial/&quot;&gt;https://www.udemy.com/course/spring-hibernate-tutorial/&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Spring" /><category term="Java" /><category term="J2EE" /><category term="EJB" /><category term="POJO" /><category term="IoC" /><category term="AOP" /><category term="DI" /><summary type="html">Spring Framework 정리</summary></entry><entry><title type="html">Jekyll Liquid 문법 빠져나오기(중괄호 무시)</title><link href="http://localhost:4000/2021/11/29/jekyll-escape-liquid.html" rel="alternate" type="text/html" title="Jekyll Liquid 문법 빠져나오기(중괄호 무시)" /><published>2021-11-29T00:00:00+09:00</published><updated>2021-11-29T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/29/jekyll-escape-liquid</id><content type="html" xml:base="http://localhost:4000/2021/11/29/jekyll-escape-liquid.html">&lt;h1 id=&quot;jekyll-liquid-문법-빠져나오기중괄호-무시&quot;&gt;Jekyll Liquid 문법 빠져나오기(중괄호 무시)&lt;/h1&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.spring.io/spring-framework/docs/current/reference/html/overview.html#overview&quot;&gt;docs.spring.io overview&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.spring.io/spring-framework/docs/5.0.0.M5/spring-framework-reference/html/overview.html&quot;&gt;docs.spring.io 5.0.0 overview&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#spring-core&quot;&gt;docs.spring.io spring-core&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.udemy.com/course/spring-hibernate-tutorial/&quot;&gt;Udemy Spring &amp;amp; Hibernate for Beginners&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.yes24.com/Product/Goods/59192207&quot;&gt;스프링 철저 입문&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Spring" /><category term="Java" /><category term="J2EE" /><category term="EJB" /><category term="POJO" /><category term="IoC" /><category term="AOP" /><category term="DI" /><category term="Singleton" /><summary type="html">Spring Framework 정리</summary></entry><entry><title type="html">Jekyll Liquid 문법 빠져나오기(중괄호 무시)</title><link href="http://localhost:4000/2021/11/29/jekyll-escape-liquid.html" rel="alternate" type="text/html" title="Jekyll Liquid 문법 빠져나오기(중괄호 무시)" /><published>2021-11-29T00:00:00+09:00</published><updated>2021-11-29T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/29/jekyll-escape-liquid</id><content type="html" xml:base="http://localhost:4000/2021/11/29/jekyll-escape-liquid.html">&lt;h1 id=&quot;jekyll-liquid-문법-빠져나오기중괄호-무시&quot;&gt;Jekyll Liquid 문법 빠져나오기(중괄호 무시)&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/contents/jekyll.png&quot; alt=&quot;jekyll.png&quot; /&gt;&lt;/p&gt;
 

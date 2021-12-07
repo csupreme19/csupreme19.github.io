@@ -5,7 +5,7 @@ url: "https://csupreme19.github.io"
 # THEME-SPECIFIC CONFIGURATION
 title: Seunghoon Choi                             # site's title
 description: "개발일지"      # used by search engines
-avatar: assets/img/triangle.png                         # Empty for no avatar in navbar
+avatar: assets/img/profile-icon.jpeg                         # Empty for no avatar in navbar
 favicon: assets/favicon.ico                             # Icon displayed in the tab
 
 # Header and footer text
