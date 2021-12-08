@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-12-07T18:04:03+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>개발일지</subtitle><entry><title type="html">Spring Framework 정리</title><link href="http://localhost:4000/2021/12/03/spring-framework.html" rel="alternate" type="text/html" title="Spring Framework 정리" /><published>2021-12-03T00:00:00+09:00</published><updated>2021-12-03T00:00:00+09:00</updated><id>http://localhost:4000/2021/12/03/spring-framework</id><content type="html" xml:base="http://localhost:4000/2021/12/03/spring-framework.html">&lt;h1 id=&quot;spring-framework-정리&quot;&gt;Spring Framework 정리&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-12-08T19:52:36+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>개발일지</subtitle><entry><title type="html">Spring Framework 정리</title><link href="http://localhost:4000/2021/12/03/spring-framework.html" rel="alternate" type="text/html" title="Spring Framework 정리" /><published>2021-12-03T00:00:00+09:00</published><updated>2021-12-03T00:00:00+09:00</updated><id>http://localhost:4000/2021/12/03/spring-framework</id><content type="html" xml:base="http://localhost:4000/2021/12/03/spring-framework.html">&lt;h1 id=&quot;spring-framework-정리&quot;&gt;Spring Framework 정리&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/titles/spring-logo.svg&quot; alt=&quot;spring-logo.svg&quot; /&gt;&lt;/p&gt;
 
@@ -12,33 +12,33 @@
 
 &lt;p&gt;스프링이란 Spring Framework를 의미하기도 하지만 더 나아가 Spring Boot, Spring Data, Spring Cloud, Spring Batch 등 다양한 스프링 프로젝트를 포함하는 스프링 생태계(Spring Ecosystem)를 말한다.&lt;/p&gt;
 
-&lt;p&gt;초기에는 스프링 프레임워크로 시작을 하였으나 점차 추가적인 모듈/프로젝트들이 추가되었고 현재의 스프링 생태계를 구성하고 있다.&lt;/p&gt;
-
-&lt;p&gt;스프링 프로젝트들은 활발한 오픈소스 생태계를 구성하고 있어 활발하게 확장되고 있다.&lt;/p&gt;
+&lt;p&gt;초기에는 스프링 프레임워크로 시작을 하였으나 점차 모듈/프로젝트들이 추가되었고 현재의 다양한 스프링 프로젝트가 존재하는 스프링 생태계를 구성하게 되었다.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;&lt;a href=&quot;https://github.com/orgs/spring-projects/repositories&quot;&gt;Spring Projects Github&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;스프링 프로젝트들은 오픈소스 생태계를 구성하고 있어 활발하게 확장되고 있다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;통상적으로 Spring를 말할때는 Spring Framework를 의미하고 추가적인 프로젝트들은 Spring Data, Spring Cloud등의 이름으로 부르고 있다.&lt;/p&gt;
 
-&lt;p&gt;어떠한 프로젝트가 있는지는 spring.io 공식 홈페이지에서 확인할 수 있다.&lt;/p&gt;
-
 &lt;blockquote&gt;
   &lt;p&gt;&lt;a href=&quot;https://spring.io/projects&quot;&gt;spring.io/projects&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;어떤 프로젝트가 있는지는 spring.io 공식 홈페이지에서 확인할 수 있다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;hr /&gt;
 
 &lt;h2 id=&quot;spring-등장-배경&quot;&gt;Spring 등장 배경&lt;/h2&gt;
 
-&lt;p&gt;Spring 탄생 이전에는 자바를 이용한 엔터프라이즈 앱/서비스를 개발할 때 J2EE(Java EE)를 사용하여야했다.&lt;/p&gt;
+&lt;p&gt;스프링 탄생 이전에는 자바를 이용한 엔터프라이즈 앱/서비스를 개발할 때 J2EE(Java EE)를 사용해야만 했다.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/contents/sf-7.png&quot; alt=&quot;sf-7.png&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;EJB의 개념은 매우 뛰어났으나 스프링 등장 이전의 EJB v1, EJB v2는&lt;/p&gt;
+&lt;p&gt;EJB의 개념은 매우 뛰어났으나 스프링 등장 이전의 EJB v1, v2는&lt;/p&gt;
 
-&lt;p&gt;EJB를 구현하기 위해서 XML 디스크립터를 작성하고 홈 인터페이스, 컴포넌트 인터페이스를 생성해야만 하여 매우 복잡하였고 이는 곧 느린 성능을 의미하였다.&lt;/p&gt;
+&lt;p&gt;EJB를 구현하기 위해서는 XML 디스크립터 작성, 홈 인터페이스, 컴포넌트 인터페이스를 생성 등의 과정이 있어 매우 복잡하였고 이는 곧 느린 성능을 의미하였다.&lt;/p&gt;
 
 &lt;p&gt;이런 복잡한 EJB에 대한 대안으로 POJO(Plain Old Java Object) 객체를 사용하는 것이 낫다는 주장이 나왔다.&lt;/p&gt;
 
@@ -60,9 +60,9 @@
 
 &lt;p&gt;2004년에 Spring 1.0을 시작으로 현재는 Spring 5까지 나왔으며&lt;/p&gt;
 
-&lt;p&gt;추후에는 Java EE가 역으로 Spring의 영향을 받아서 EJB를 갈아 엎었으며 현재는 EJB도 스프링과 매우 유사한 기능을 제공하고 있다.&lt;/p&gt;
+&lt;p&gt;추후에는 Java EE가 역으로 Spring의 영향을 받아서 EJB를 갈아 엎었으며 현재는 Java EE도 스프링과 매우 유사한 기능을 제공하고 있다.&lt;/p&gt;
 
-&lt;p&gt;하지만 예전의 EJB의 악평과 그 사이에 스프링 프레임워크가 매우 큰 인기를 끌어서 Java EE를 이용하는 비율은 많이 줄었다.&lt;/p&gt;
+&lt;p&gt;하지만 예전의 EJB의 악평과 그 사이에 스프링 프레임워크가 매우 큰 인기를 끌게 되어 Java EE를 이용하는 비율은 많이 줄어들었다.&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -145,7 +145,9 @@
 
 &lt;h3 id=&quot;3-spring-messaging&quot;&gt;3. Spring Messaging&lt;/h3&gt;
 
-&lt;p&gt;Spring Integration 프로젝트의 추상체를 제공하여 메시지 기반의 어플리케이션을 지원한다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Spring Integration 프로젝트의 추상체를 제공하여 메시지 기반의 어플리케이션을 지원한다.&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -205,7 +207,9 @@
 
 &lt;h3 id=&quot;6-spring-test&quot;&gt;6. Spring Test&lt;/h3&gt;
 
-&lt;p&gt;JUnit, TestNG 같은 단위 테스트, 통합 테스트 라이브러리를 지원하는 모듈로 Mock 객체와 단위테스트시 Spring Container, 스프링 빈에 접근하기 위한 ApplicationContext를 제공한다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;JUnit, TestNG 같은 단위 테스트, 통합 테스트 라이브러리를 지원하는 모듈로 Mock 객체와 단위테스트시 Spring Container, 스프링 빈에 접근하기 위한 ApplicationContext를 제공한다.&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;hr /&gt;
 
@@ -233,7 +237,7 @@
   flowchart LR
     A[Application]
     B[Class A]
-    A--new--&amp;gt;B
+    A--new Class A--&amp;gt;B
     B-.return Instance A.-&amp;gt;A
 &lt;/div&gt;
 
@@ -246,13 +250,13 @@
 
 &lt;span class=&quot;nc&quot;&gt;Cat&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myCat&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Cat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 
-&lt;span class=&quot;c1&quot;&gt;// sysout&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 출력&lt;/span&gt;
 &lt;span class=&quot;nc&quot;&gt;Constructed&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;기존 초기 자바 어플리케이션의 경우 위와 같이 개발자가 객체의 생성과 초기화 등의 라이프사이클을 관리해주어야 하였다.&lt;/p&gt;
 
-&lt;p&gt;하지만 이런 방식은 생성된 Cat을 여러 클래스에서 사용 및 관리하기가 힘들고 또한 여러개의 중복된 Cat 객체가 생성될 가능성이 있다.&lt;/p&gt;
+&lt;p&gt;하지만 이런 방식은 생성된 객체(인스컨스)을 여러 클래스에서 사용 및 관리하기가 힘들고 또한 여러개의 중복된 객체가 생성될 가능성이 있다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -263,7 +267,7 @@
     A[Application]
     B[Spring Container]
     C[XML Configuration]
-    D[Cat Bean]
+    D[Bean]
     C--1. Metadata--&amp;gt;B
     B--2. Generate---D
     A--3. getBean--&amp;gt;B
@@ -300,7 +304,7 @@
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;ApplicationContext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ClassPathXmlApplicationContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;applicationContext.xml&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;nc&quot;&gt;Cat&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myCat&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;cat&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Cat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 
-&lt;span class=&quot;c1&quot;&gt;// sysout&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 출력&lt;/span&gt;
 &lt;span class=&quot;nc&quot;&gt;Constructed&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -318,11 +322,11 @@
 
 &lt;p&gt;스프링 컨테이너에 빈을 등록하여 관리하는데 해당 Bean이 POJO 형태가 아니라 여러 Dependency를 가지고 있으면 어떻게 될까?&lt;/p&gt;
 
-&lt;p&gt;알다시피 객체지향 관점에서 대부분의 객체는 의존성을 가지고 있다.&lt;/p&gt;
+&lt;p&gt;모두 알고 있듯이 객체지향 관점에서 대부분의 객체는 의존성을 가지고 있다.&lt;/p&gt;
 
 &lt;p&gt;해당 객체는 스프링 컨테이너에서 사용 못하고 개발자가 직접 수동으로 생성해야 할까?&lt;/p&gt;
 
-&lt;p&gt;스프링에서는 이러한 의존성을 해결하기 위하여 의존성 주입이라는 개념이 등장한다.&lt;/p&gt;
+&lt;p&gt;이러한 의존성을 해결하기 위하여 의존성 주입이라는 개념이 등장한다.&lt;/p&gt;
 
 &lt;div class=&quot;mermaid&quot;&gt;
   flowchart LR
@@ -340,7 +344,7 @@
 &lt;/div&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;초기 스프링 컨테이너 구동시 IoC 개념에 의해 모든 Bean은 생성된다.&lt;/li&gt;
+  &lt;li&gt;초기 스프링 컨테이너 구동시 스프링 컨테이너에 의해 모든 Bean이 생성된다.&lt;/li&gt;
   &lt;li&gt;이후 DI를 통해 의존성을 주입하여 의존성이 주입된 Bean이 준비된다.&lt;/li&gt;
   &lt;li&gt;스프링 컨테이너에서 getBean을 통하여 사용하는 모든 Bean은 DI가 완료된 빈이다.&lt;/li&gt;
 &lt;/ol&gt;
@@ -429,7 +433,7 @@
     A[Class B]
     B[Class C]
     C[Class D]
-    subgraph Application Context
+    subgraph Spring Container
     D[Spring Container]
     I[Spring Container]
     J[Spring Container]
@@ -473,7 +477,7 @@
   &lt;p&gt;Prototype 스코프 빈의 경우 스프링 컨테이너에서 라이프사이클을 보장하지 않는다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;singleton, prototype 이외에도 request, session, global-session 스코프가 존재한다.&lt;/p&gt;
+&lt;p&gt;singleton, prototype 이외에도 request, session, global-session 등의 스코프가 존재한다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -591,13 +595,11 @@ Closed Application Context!
 
 &lt;p&gt;AOP는 Aspect Oriented Programming 관점 지향 프로그래밍이다.&lt;/p&gt;
 
-&lt;p&gt;어떤 로직에서 부가 기능(관심사, 공통 로직)을 분리한 관점으로 보는 것&lt;/p&gt;
-
 &lt;p&gt;&lt;img src=&quot;/assets/img/contents/sf-6.png&quot; alt=&quot;sf-6.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;핵심 기능(비즈니스 로직)에서 부가 기능(로깅, 트랜잭션, 예외)을 분리하기 위하여 횡단 분리(cross-cutting)하는 것(관점)&lt;/p&gt;
 
-&lt;p&gt;공통 기능을 관점 지향으로 바라보고 해당 기능을 비즈니스 로직에 영향을 주지 않으면서 적용할 수 있다.&lt;/p&gt;
+&lt;p&gt;Aspect로 분리하여 공통 기능을 비즈니스 로직과 코드에 영향을 주지 않게 적용할 수 있다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -646,8 +648,6 @@ Closed Application Context!
 
 &lt;p&gt;해당 기능을 구현했는데 보안 체크 로직을 바꿔달라는 요구사항이 온다면?&lt;/p&gt;
 
-&lt;p&gt;위 3 중복 로직을 모두 변경하여야한다.&lt;/p&gt;
-
 &lt;p&gt;해당 클래스가 2, 3개라면 큰 문제가 없겠지만 100개 아니 1000개라면 상상도 하기 싫다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
@@ -687,7 +687,7 @@ Closed Application Context!
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h4 id=&quot;2-위임delegation&quot;&gt;2. 위임(Delegation)&lt;/h4&gt;
+&lt;h4 id=&quot;2-위임delegation을-써보자&quot;&gt;2. 위임(Delegation)을 써보자&lt;/h4&gt;
 
 &lt;p&gt;그럼 상속이 아닌 위임으로는?&lt;/p&gt;
 
@@ -728,7 +728,7 @@ Closed Application Context!
 
 &lt;h3 id=&quot;aop를-사용한다면&quot;&gt;AOP를 사용한다면&lt;/h3&gt;
 
-&lt;p&gt;기존의 OOP를 이용하여 문제를 해결할 수는 있으나 절대로 아름다운 코드라고는 할 수 없다.&lt;/p&gt;
+&lt;p&gt;기존의 OOP를 이용하여 문제를 해결할 수는 있으나 아름다운 코드라고는 할 수 없다.&lt;/p&gt;
 
 &lt;p&gt;이러한 문제를 해결하기 위하여 나온 개념이 관점 지향 프로그래밍 AOP이다.&lt;/p&gt;
 
@@ -777,7 +777,7 @@ Closed Application Context!
 
 &lt;p&gt;어떤 액션을 취할지 정의한 공통 코드(실제 구현 코드)&lt;/p&gt;
 
-&lt;p&gt;Advice에는 시점에 따른 4가지 타입이 있다.&lt;/p&gt;
+&lt;p&gt;Advice에는 시점에 따른 5가지 타입이 있다.&lt;/p&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
@@ -822,6 +822,8 @@ Closed Application Context!
 
 &lt;p&gt;횡단 관심사로 어떤 포인트컷에 어떤 어드바이스를 취할지 정의된 코드 모듈(로그 출력, 캐싱, 예외처리 등)&lt;/p&gt;
 
+&lt;p&gt;Advice + Pointcut라고 생각할 수 있다.&lt;/p&gt;
+
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;weaving&quot;&gt;Weaving&lt;/h4&gt;
@@ -861,11 +863,11 @@ Closed Application Context!
     A--&amp;gt;B---C---D--&amp;gt;E
 &lt;/div&gt;
 
-&lt;p&gt;Spring 프레임워크에서 기본적으로 제공하는 AOP이며 일반 AOP 인터페이스를 기반으로한 새로운 인터페이스이다.&lt;/p&gt;
+&lt;p&gt;Spring 프레임워크에서 기본적으로 제공하는 AOP이며 일반 AOP 인터페이스를 기반으로한 새로운 인터페이스이자 일부 구현체이다.&lt;/p&gt;
 
 &lt;p&gt;스프링 프레임워크 뒷단에서는 보안, 트랜잭션, 캐싱등을 구현할때 Spring AOP를 사용한다고 한다.&lt;/p&gt;
 
-&lt;p&gt;AOP Proxy를 통하여 Aspect 위빙된 타겟 어플리케이션과 통신한다.&lt;/p&gt;
+&lt;p&gt;AOP Proxy를 통하여 Aspect 위빙된 타겟 어플리케이션과 통신하는 방식을 가지고 있다.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Spring AOP는 AOP 인터페이스의 일부만을 구현하고 있다.&lt;/p&gt;
@@ -989,18 +991,6 @@ Closed Application Context!
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h4 id=&quot;main&quot;&gt;Main&lt;/h4&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Application&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;nc&quot;&gt;ApplicationContext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AnnotationConfigApplicationContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;AppConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-		&lt;span class=&quot;nc&quot;&gt;UserDAO&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userDAO&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;userDAO&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;UserDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-		&lt;span class=&quot;n&quot;&gt;userDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-		&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;AbstractApplicationContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
 &lt;h4 id=&quot;실행결과&quot;&gt;실행결과&lt;/h4&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Before Advice on method
@@ -1053,10 +1043,6 @@ class com.csupreme19.aopdemo.dao.UserDAOUserDAO.getUser()
 &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;포인트컷은&lt;/p&gt;
-
-&lt;p&gt;해당 포인트컷을 메서드로 정의하여 아래와 같이 사용하는 것도 가능하다.&lt;/p&gt;
-
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;aspect-order&quot;&gt;Aspect Order&lt;/h3&gt;
@@ -1083,7 +1069,9 @@ class com.csupreme19.aopdemo.dao.UserDAOUserDAO.getUser()
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Order(Integer)&lt;/code&gt; 어노테이션으로 순서 명시 가능 작은 수일 수록 먼저 실행된다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Order(Integer)&lt;/code&gt; 어노테이션으로 동일 타겟에 대하여 순서 지정이 가능하다.&lt;/p&gt;
+
+&lt;p&gt;낮은 수일 수록 먼저 실행된다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -1093,7 +1081,7 @@ class com.csupreme19.aopdemo.dao.UserDAOUserDAO.getUser()
 
 &lt;ul&gt;
   &lt;li&gt;코드는 최대한 간결하게&lt;/li&gt;
-  &lt;li&gt;코드는 최대한 빠르게&lt;/li&gt;
+  &lt;li&gt;코드는 최대한 실행속도가 빠르게&lt;/li&gt;
   &lt;li&gt;무겁고 느린 연산 피하기&lt;/li&gt;
 &lt;/ul&gt;
 

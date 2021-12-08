@@ -22,29 +22,29 @@ tags: [Spring, Java, J2EE, EJB, POJO, IoC, AOP, DI, Singleton]
 
 스프링이란 Spring Framework를 의미하기도 하지만 더 나아가 Spring Boot, Spring Data, Spring Cloud, Spring Batch 등 다양한 스프링 프로젝트를 포함하는 스프링 생태계(Spring Ecosystem)를 말한다.
 
-초기에는 스프링 프레임워크로 시작을 하였으나 점차 추가적인 모듈/프로젝트들이 추가되었고 현재의 스프링 생태계를 구성하고 있다.
-
-스프링 프로젝트들은 활발한 오픈소스 생태계를 구성하고 있어 활발하게 확장되고 있다.
+초기에는 스프링 프레임워크로 시작을 하였으나 점차 모듈/프로젝트들이 추가되었고 현재의 다양한 스프링 프로젝트가 존재하는 스프링 생태계를 구성하게 되었다.
 
 > [Spring Projects Github](https://github.com/orgs/spring-projects/repositories)
+>
+> 스프링 프로젝트들은 오픈소스 생태계를 구성하고 있어 활발하게 확장되고 있다.
 
 통상적으로 Spring를 말할때는 Spring Framework를 의미하고 추가적인 프로젝트들은 Spring Data, Spring Cloud등의 이름으로 부르고 있다.
 
-어떠한 프로젝트가 있는지는 spring.io 공식 홈페이지에서 확인할 수 있다.
-
 > [spring.io/projects](https://spring.io/projects)
+>
+> 어떤 프로젝트가 있는지는 spring.io 공식 홈페이지에서 확인할 수 있다.
 
 ---
 
 ## Spring 등장 배경
 
-Spring 탄생 이전에는 자바를 이용한 엔터프라이즈 앱/서비스를 개발할 때 J2EE(Java EE)를 사용하여야했다.
+스프링 탄생 이전에는 자바를 이용한 엔터프라이즈 앱/서비스를 개발할 때 J2EE(Java EE)를 사용해야만 했다.
 
 ![sf-7.png]({{ "/assets/img/contents/sf-7.png"}})
 
-EJB의 개념은 매우 뛰어났으나 스프링 등장 이전의 EJB v1, EJB v2는 
+EJB의 개념은 매우 뛰어났으나 스프링 등장 이전의 EJB v1, v2는 
 
-EJB를 구현하기 위해서 XML 디스크립터를 작성하고 홈 인터페이스, 컴포넌트 인터페이스를 생성해야만 하여 매우 복잡하였고 이는 곧 느린 성능을 의미하였다.
+EJB를 구현하기 위해서는 XML 디스크립터 작성, 홈 인터페이스, 컴포넌트 인터페이스를 생성 등의 과정이 있어 매우 복잡하였고 이는 곧 느린 성능을 의미하였다.
 
 이런 복잡한 EJB에 대한 대안으로 POJO(Plain Old Java Object) 객체를 사용하는 것이 낫다는 주장이 나왔다.
 
@@ -64,9 +64,9 @@ Spring은 J2EE에 대한 간단하고 가벼운 대안으로 POJO기반의 여�
 
 2004년에 Spring 1.0을 시작으로 현재는 Spring 5까지 나왔으며
 
-추후에는 Java EE가 역으로 Spring의 영향을 받아서 EJB를 갈아 엎었으며 현재는 EJB도 스프링과 매우 유사한 기능을 제공하고 있다.
+추후에는 Java EE가 역으로 Spring의 영향을 받아서 EJB를 갈아 엎었으며 현재는 Java EE도 스프링과 매우 유사한 기능을 제공하고 있다.
 
-하지만 예전의 EJB의 악평과 그 사이에 스프링 프레임워크가 매우 큰 인기를 끌어서 Java EE를 이용하는 비율은 많이 줄었다.
+하지만 예전의 EJB의 악평과 그 사이에 스프링 프레임워크가 매우 큰 인기를 끌게 되어 Java EE를 이용하는 비율은 많이 줄어들었다.
 
 ---
 
@@ -125,7 +125,7 @@ Spring의 기본이자 핵심 모듈로 Spring Container, IoC Container이다.
 
 ### 3. Spring Messaging
 
-Spring Integration 프로젝트의 추상체를 제공하여 메시지 기반의 어플리케이션을 지원한다.
+- Spring Integration 프로젝트의 추상체를 제공하여 메시지 기반의 어플리케이션을 지원한다.
 
 <br>
 
@@ -160,7 +160,7 @@ Spring Integration 프로젝트의 추상체를 제공하여 메시지 기반의
 
 ### 6. Spring Test
 
-JUnit, TestNG 같은 단위 테스트, 통합 테스트 라이브러리를 지원하는 모듈로 Mock 객체와 단위테스트시 Spring Container, 스프링 빈에 접근하기 위한 ApplicationContext를 제공한다.
+- JUnit, TestNG 같은 단위 테스트, 통합 테스트 라이브러리를 지원하는 모듈로 Mock 객체와 단위테스트시 Spring Container, 스프링 빈에 접근하기 위한 ApplicationContext를 제공한다.
 
 ---
 
@@ -188,9 +188,10 @@ Spring Framework의 핵심 모듈인 Spring Core에 대해서 알아본다.
   flowchart LR
     A[Application]
     B[Class A]
-    A--new-->B
+    A--new Class A-->B
     B-.return Instance A.->A
 </div>
+
 
 ```java
 // POJO
@@ -202,13 +203,13 @@ public class Cat {
 
 Cat myCat = new Cat();
 
-// sysout
+// 출력
 Constructed!
 ```
 
 기존 초기 자바 어플리케이션의 경우 위와 같이 개발자가 객체의 생성과 초기화 등의 라이프사이클을 관리해주어야 하였다.
 
-하지만 이런 방식은 생성된 Cat을 여러 클래스에서 사용 및 관리하기가 힘들고 또한 여러개의 중복된 Cat 객체가 생성될 가능성이 있다.
+하지만 이런 방식은 생성된 객체(인스컨스)을 여러 클래스에서 사용 및 관리하기가 힘들고 또한 여러개의 중복된 객체가 생성될 가능성이 있다.
 
 <br>
 
@@ -219,12 +220,13 @@ Constructed!
     A[Application]
     B[Spring Container]
     C[XML Configuration]
-    D[Cat Bean]
+    D[Bean]
     C--1. Metadata-->B
     B--2. Generate---D
     A--3. getBean-->B
     B-.4. Bean.->A
 </div>
+
 
 <br>
 
@@ -258,7 +260,7 @@ Constructed!
 ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 Cat myCat = ctx.getBean("cat", Cat.class);
 
-// sysout
+// 출력
 Constructed!
 ```
 
@@ -277,11 +279,11 @@ Constructed!
 
 스프링 컨테이너에 빈을 등록하여 관리하는데 해당 Bean이 POJO 형태가 아니라 여러 Dependency를 가지고 있으면 어떻게 될까?
 
-알다시피 객체지향 관점에서 대부분의 객체는 의존성을 가지고 있다.
+모두 알고 있듯이 객체지향 관점에서 대부분의 객체는 의존성을 가지고 있다.
 
 해당 객체는 스프링 컨테이너에서 사용 못하고 개발자가 직접 수동으로 생성해야 할까?
 
-스프링에서는 이러한 의존성을 해결하기 위하여 의존성 주입이라는 개념이 등장한다.
+이러한 의존성을 해결하기 위하여 의존성 주입이라는 개념이 등장한다.
 
 
 
@@ -302,7 +304,7 @@ Constructed!
 
 
 
-1. 초기 스프링 컨테이너 구동시 IoC 개념에 의해 모든 Bean은 생성된다.
+1. 초기 스프링 컨테이너 구동시 스프링 컨테이너에 의해 모든 Bean이 생성된다.
 2. 이후 DI를 통해 의존성을 주입하여 의존성이 주입된 Bean이 준비된다.
 3. 스프링 컨테이너에서 getBean을 통하여 사용하는 모든 Bean은 DI가 완료된 빈이다.
 
@@ -397,7 +399,7 @@ com.csupreme19.springdemo.Cat@1ed4ae0f
     A[Class B]
     B[Class C]
     C[Class D]
-    subgraph Application Context
+    subgraph Spring Container
     D[Spring Container]
     I[Spring Container]
     J[Spring Container]
@@ -412,6 +414,7 @@ com.csupreme19.springdemo.Cat@1ed4ae0f
     I<-.manage.->G
     J<-.manage.->H
 </div>
+
 
 스프링에서는 또다른 빈 스코프가 있는데 Prototype 스코프이다.
 
@@ -443,7 +446,7 @@ com.csupreme19.springdemo.Eye@6d4d66d2
 
 
 
-singleton, prototype 이외에도 request, session, global-session 스코프가 존재한다.
+singleton, prototype 이외에도 request, session, global-session 등의 스코프가 존재한다.
 
 <br>
 
@@ -543,15 +546,13 @@ Spring Framework의 또 다른 핵심 기능인 AOP 관점지향 프로그래밍
 
 AOP는 Aspect Oriented Programming 관점 지향 프로그래밍이다.
 
-어떤 로직에서 부가 기능(관심사, 공통 로직)을 분리한 관점으로 보는 것
-
 ![sf-6.png]({{ "/assets/img/contents/sf-6.png"}})
 
 
 
 핵심 기능(비즈니스 로직)에서 부가 기능(로깅, 트랜잭션, 예외)을 분리하기 위하여 횡단 분리(cross-cutting)하는 것(관점)
 
-공통 기능을 관점 지향으로 바라보고 해당 기능을 비즈니스 로직에 영향을 주지 않으면서 적용할 수 있다.
+Aspect로 분리하여 공통 기능을 비즈니스 로직과 코드에 영향을 주지 않게 적용할 수 있다.
 
 <br>
 
@@ -609,8 +610,6 @@ public class AccountController{
 
 해당 기능을 구현했는데 보안 체크 로직을 바꿔달라는 요구사항이 온다면?
 
-위 3 중복 로직을 모두 변경하여야한다.
-
 해당 클래스가 2, 3개라면 큰 문제가 없겠지만 100개 아니 1000개라면 상상도 하기 싫다.
 
 <br>
@@ -651,7 +650,7 @@ Logging 기능을 담당하는 부모 클래스를 만들고 로깅을 필요로
 
 <br>
 
-#### 2. 위임(Delegation)
+#### 2. 위임(Delegation)을 써보자
 
 그럼 상속이 아닌 위임으로는?
 
@@ -693,7 +692,7 @@ public class AccountController extends Logging {
 
 ### AOP를 사용한다면
 
-기존의 OOP를 이용하여 문제를 해결할 수는 있으나 절대로 아름다운 코드라고는 할 수 없다.
+기존의 OOP를 이용하여 문제를 해결할 수는 있으나 아름다운 코드라고는 할 수 없다.
 
 이러한 문제를 해결하기 위하여 나온 개념이 관점 지향 프로그래밍 AOP이다.
 
@@ -707,8 +706,6 @@ public class AccountController extends Logging {
    - 비즈니스 로직 기능에만 충실하도록 코드를 작성할 수 있어 가독성이 높아진다.
 3. 어플리케이션 코드 수정 없이 원하는 부분에만 적용이 가능하다.
    - 예외 발생시, 메서드 호출 전, 후 등
-
-
 
 #### 단점
 
@@ -727,7 +724,7 @@ public class AccountController extends Logging {
 
 어떤 액션을 취할지 정의한 공통 코드(실제 구현 코드)
 
-Advice에는 시점에 따른 4가지 타입이 있다.
+Advice에는 시점에 따른 5가지 타입이 있다.
 
 | 종류            | 시점                           |
 | --------------- | ------------------------------ |
@@ -748,6 +745,8 @@ Aspect가 해당 코드의 어느 시점에(어디에) 적용되는지 정의한
 #### Aspect
 
 횡단 관심사로 어떤 포인트컷에 어떤 어드바이스를 취할지 정의된 코드 모듈(로그 출력, 캐싱, 예외처리 등)
+
+Advice + Pointcut라고 생각할 수 있다.
 
 <br>
 
@@ -786,11 +785,11 @@ Java의 대표적인 두 가지 AOP 프레임워크를 지원한다.
 
 
 
-Spring 프레임워크에서 기본적으로 제공하는 AOP이며 일반 AOP 인터페이스를 기반으로한 새로운 인터페이스이다.
+Spring 프레임워크에서 기본적으로 제공하는 AOP이며 일반 AOP 인터페이스를 기반으로한 새로운 인터페이스이자 일부 구현체이다.
 
 스프링 프레임워크 뒷단에서는 보안, 트랜잭션, 캐싱등을 구현할때 Spring AOP를 사용한다고 한다.
 
-AOP Proxy를 통하여 Aspect 위빙된 타겟 어플리케이션과 통신한다.
+AOP Proxy를 통하여 Aspect 위빙된 타겟 어플리케이션과 통신하는 방식을 가지고 있다.
 
 > Spring AOP는 AOP 인터페이스의 일부만을 구현하고 있다. 
 >
@@ -881,19 +880,6 @@ public class UserDAO {
 }
 ```
 
-#### Main
-
-```java
-public class Application {
-	public static void main(String[] args) {
-		ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-		UserDAO userDAO = ctx.getBean("userDAO", UserDAO.class);
-		userDAO.getUser();
-		((AbstractApplicationContext)ctx).close();
-	}
-}
-```
-
 #### 실행결과
 
 ```
@@ -947,10 +933,6 @@ private void setter() {}
 private void () {}
 ```
 
-포인트컷은
-
-해당 포인트컷을 메서드로 정의하여 아래와 같이 사용하는 것도 가능하다.
-
 <br>
 
 ### Aspect Order
@@ -979,7 +961,9 @@ public class SecurityAspect {
 }
 ```
 
-`@Order(Integer)` 어노테이션으로 순서 명시 가능 작은 수일 수록 먼저 실행된다.
+`@Order(Integer)` 어노테이션으로 동일 타겟에 대하여 순서 지정이 가능하다.
+
+낮은 수일 수록 먼저 실행된다.
 
 <br>
 
@@ -988,7 +972,7 @@ public class SecurityAspect {
 AOP는 공통 관심사로 공통 로직을 담당하므로 아래와 같이 작성하는 것이 좋다.
 
 - 코드는 최대한 간결하게
-- 코드는 최대한 빠르게
+- 코드는 최대한 실행속도가 빠르게
 - 무겁고 느린 연산 피하기
 
 

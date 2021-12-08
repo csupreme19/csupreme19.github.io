@@ -1,4 +1,4 @@
-I"��<h1 id="spring-framework-정리">Spring Framework 정리</h1>
+I"s�<h1 id="spring-framework-정리">Spring Framework 정리</h1>
 
 <p><img src="/assets/img/titles/spring-logo.svg" alt="spring-logo.svg" /></p>
 
@@ -12,33 +12,33 @@
 
 <p>스프링이란 Spring Framework를 의미하기도 하지만 더 나아가 Spring Boot, Spring Data, Spring Cloud, Spring Batch 등 다양한 스프링 프로젝트를 포함하는 스프링 생태계(Spring Ecosystem)를 말한다.</p>
 
-<p>초기에는 스프링 프레임워크로 시작을 하였으나 점차 추가적인 모듈/프로젝트들이 추가되었고 현재의 스프링 생태계를 구성하고 있다.</p>
-
-<p>스프링 프로젝트들은 활발한 오픈소스 생태계를 구성하고 있어 활발하게 확장되고 있다.</p>
+<p>초기에는 스프링 프레임워크로 시작을 하였으나 점차 모듈/프로젝트들이 추가되었고 현재의 다양한 스프링 프로젝트가 존재하는 스프링 생태계를 구성하게 되었다.</p>
 
 <blockquote>
   <p><a href="https://github.com/orgs/spring-projects/repositories">Spring Projects Github</a></p>
+
+  <p>스프링 프로젝트들은 오픈소스 생태계를 구성하고 있어 활발하게 확장되고 있다.</p>
 </blockquote>
 
 <p>통상적으로 Spring를 말할때는 Spring Framework를 의미하고 추가적인 프로젝트들은 Spring Data, Spring Cloud등의 이름으로 부르고 있다.</p>
 
-<p>어떠한 프로젝트가 있는지는 spring.io 공식 홈페이지에서 확인할 수 있다.</p>
-
 <blockquote>
   <p><a href="https://spring.io/projects">spring.io/projects</a></p>
+
+  <p>어떤 프로젝트가 있는지는 spring.io 공식 홈페이지에서 확인할 수 있다.</p>
 </blockquote>
 
 <hr />
 
 <h2 id="spring-등장-배경">Spring 등장 배경</h2>
 
-<p>Spring 탄생 이전에는 자바를 이용한 엔터프라이즈 앱/서비스를 개발할 때 J2EE(Java EE)를 사용하여야했다.</p>
+<p>스프링 탄생 이전에는 자바를 이용한 엔터프라이즈 앱/서비스를 개발할 때 J2EE(Java EE)를 사용해야만 했다.</p>
 
 <p><img src="/assets/img/contents/sf-7.png" alt="sf-7.png" /></p>
 
-<p>EJB의 개념은 매우 뛰어났으나 스프링 등장 이전의 EJB v1, EJB v2는</p>
+<p>EJB의 개념은 매우 뛰어났으나 스프링 등장 이전의 EJB v1, v2는</p>
 
-<p>EJB를 구현하기 위해서 XML 디스크립터를 작성하고 홈 인터페이스, 컴포넌트 인터페이스를 생성해야만 하여 매우 복잡하였고 이는 곧 느린 성능을 의미하였다.</p>
+<p>EJB를 구현하기 위해서는 XML 디스크립터 작성, 홈 인터페이스, 컴포넌트 인터페이스를 생성 등의 과정이 있어 매우 복잡하였고 이는 곧 느린 성능을 의미하였다.</p>
 
 <p>이런 복잡한 EJB에 대한 대안으로 POJO(Plain Old Java Object) 객체를 사용하는 것이 낫다는 주장이 나왔다.</p>
 
@@ -60,9 +60,9 @@
 
 <p>2004년에 Spring 1.0을 시작으로 현재는 Spring 5까지 나왔으며</p>
 
-<p>추후에는 Java EE가 역으로 Spring의 영향을 받아서 EJB를 갈아 엎었으며 현재는 EJB도 스프링과 매우 유사한 기능을 제공하고 있다.</p>
+<p>추후에는 Java EE가 역으로 Spring의 영향을 받아서 EJB를 갈아 엎었으며 현재는 Java EE도 스프링과 매우 유사한 기능을 제공하고 있다.</p>
 
-<p>하지만 예전의 EJB의 악평과 그 사이에 스프링 프레임워크가 매우 큰 인기를 끌어서 Java EE를 이용하는 비율은 많이 줄었다.</p>
+<p>하지만 예전의 EJB의 악평과 그 사이에 스프링 프레임워크가 매우 큰 인기를 끌게 되어 Java EE를 이용하는 비율은 많이 줄어들었다.</p>
 
 <hr />
 
@@ -145,7 +145,9 @@
 
 <h3 id="3-spring-messaging">3. Spring Messaging</h3>
 
-<p>Spring Integration 프로젝트의 추상체를 제공하여 메시지 기반의 어플리케이션을 지원한다.</p>
+<ul>
+  <li>Spring Integration 프로젝트의 추상체를 제공하여 메시지 기반의 어플리케이션을 지원한다.</li>
+</ul>
 
 <p><br /></p>
 
@@ -205,7 +207,9 @@
 
 <h3 id="6-spring-test">6. Spring Test</h3>
 
-<p>JUnit, TestNG 같은 단위 테스트, 통합 테스트 라이브러리를 지원하는 모듈로 Mock 객체와 단위테스트시 Spring Container, 스프링 빈에 접근하기 위한 ApplicationContext를 제공한다.</p>
+<ul>
+  <li>JUnit, TestNG 같은 단위 테스트, 통합 테스트 라이브러리를 지원하는 모듈로 Mock 객체와 단위테스트시 Spring Container, 스프링 빈에 접근하기 위한 ApplicationContext를 제공한다.</li>
+</ul>
 
 <hr />
 
@@ -233,7 +237,7 @@
   flowchart LR
     A[Application]
     B[Class A]
-    A--new--&gt;B
+    A--new Class A--&gt;B
     B-.return Instance A.-&gt;A
 </div>
 
@@ -246,13 +250,13 @@
 
 <span class="nc">Cat</span> <span class="n">myCat</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Cat</span><span class="o">();</span>
 
-<span class="c1">// sysout</span>
+<span class="c1">// 출력</span>
 <span class="nc">Constructed</span><span class="o">!</span>
 </code></pre></div></div>
 
 <p>기존 초기 자바 어플리케이션의 경우 위와 같이 개발자가 객체의 생성과 초기화 등의 라이프사이클을 관리해주어야 하였다.</p>
 
-<p>하지만 이런 방식은 생성된 Cat을 여러 클래스에서 사용 및 관리하기가 힘들고 또한 여러개의 중복된 Cat 객체가 생성될 가능성이 있다.</p>
+<p>하지만 이런 방식은 생성된 객체(인스컨스)을 여러 클래스에서 사용 및 관리하기가 힘들고 또한 여러개의 중복된 객체가 생성될 가능성이 있다.</p>
 
 <p><br /></p>
 
@@ -263,7 +267,7 @@
     A[Application]
     B[Spring Container]
     C[XML Configuration]
-    D[Cat Bean]
+    D[Bean]
     C--1. Metadata--&gt;B
     B--2. Generate---D
     A--3. getBean--&gt;B
@@ -300,7 +304,7 @@
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ApplicationContext</span> <span class="n">ctx</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ClassPathXmlApplicationContext</span><span class="o">(</span><span class="s">"applicationContext.xml"</span><span class="o">);</span>
 <span class="nc">Cat</span> <span class="n">myCat</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">"cat"</span><span class="o">,</span> <span class="nc">Cat</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
 
-<span class="c1">// sysout</span>
+<span class="c1">// 출력</span>
 <span class="nc">Constructed</span><span class="o">!</span>
 </code></pre></div></div>
 
@@ -318,11 +322,11 @@
 
 <p>스프링 컨테이너에 빈을 등록하여 관리하는데 해당 Bean이 POJO 형태가 아니라 여러 Dependency를 가지고 있으면 어떻게 될까?</p>
 
-<p>알다시피 객체지향 관점에서 대부분의 객체는 의존성을 가지고 있다.</p>
+<p>모두 알고 있듯이 객체지향 관점에서 대부분의 객체는 의존성을 가지고 있다.</p>
 
 <p>해당 객체는 스프링 컨테이너에서 사용 못하고 개발자가 직접 수동으로 생성해야 할까?</p>
 
-<p>스프링에서는 이러한 의존성을 해결하기 위하여 의존성 주입이라는 개념이 등장한다.</p>
+<p>이러한 의존성을 해결하기 위하여 의존성 주입이라는 개념이 등장한다.</p>
 
 <div class="mermaid">
   flowchart LR
@@ -340,7 +344,7 @@
 </div>
 
 <ol>
-  <li>초기 스프링 컨테이너 구동시 IoC 개념에 의해 모든 Bean은 생성된다.</li>
+  <li>초기 스프링 컨테이너 구동시 스프링 컨테이너에 의해 모든 Bean이 생성된다.</li>
   <li>이후 DI를 통해 의존성을 주입하여 의존성이 주입된 Bean이 준비된다.</li>
   <li>스프링 컨테이너에서 getBean을 통하여 사용하는 모든 Bean은 DI가 완료된 빈이다.</li>
 </ol>
@@ -429,7 +433,7 @@
     A[Class B]
     B[Class C]
     C[Class D]
-    subgraph Application Context
+    subgraph Spring Container
     D[Spring Container]
     I[Spring Container]
     J[Spring Container]
@@ -473,7 +477,7 @@
   <p>Prototype 스코프 빈의 경우 스프링 컨테이너에서 라이프사이클을 보장하지 않는다.</p>
 </blockquote>
 
-<p>singleton, prototype 이외에도 request, session, global-session 스코프가 존재한다.</p>
+<p>singleton, prototype 이외에도 request, session, global-session 등의 스코프가 존재한다.</p>
 
 <p><br /></p>
 
@@ -591,13 +595,11 @@ Closed Application Context!
 
 <p>AOP는 Aspect Oriented Programming 관점 지향 프로그래밍이다.</p>
 
-<p>어떤 로직에서 부가 기능(관심사, 공통 로직)을 분리한 관점으로 보는 것</p>
-
 <p><img src="/assets/img/contents/sf-6.png" alt="sf-6.png" /></p>
 
 <p>핵심 기능(비즈니스 로직)에서 부가 기능(로깅, 트랜잭션, 예외)을 분리하기 위하여 횡단 분리(cross-cutting)하는 것(관점)</p>
 
-<p>공통 기능을 관점 지향으로 바라보고 해당 기능을 비즈니스 로직에 영향을 주지 않으면서 적용할 수 있다.</p>
+<p>Aspect로 분리하여 공통 기능을 비즈니스 로직과 코드에 영향을 주지 않게 적용할 수 있다.</p>
 
 <p><br /></p>
 
@@ -646,8 +648,6 @@ Closed Application Context!
 
 <p>해당 기능을 구현했는데 보안 체크 로직을 바꿔달라는 요구사항이 온다면?</p>
 
-<p>위 3 중복 로직을 모두 변경하여야한다.</p>
-
 <p>해당 클래스가 2, 3개라면 큰 문제가 없겠지만 100개 아니 1000개라면 상상도 하기 싫다.</p>
 
 <p><br /></p>
@@ -687,7 +687,7 @@ Closed Application Context!
 
 <p><br /></p>
 
-<h4 id="2-위임delegation">2. 위임(Delegation)</h4>
+<h4 id="2-위임delegation을-써보자">2. 위임(Delegation)을 써보자</h4>
 
 <p>그럼 상속이 아닌 위임으로는?</p>
 
@@ -728,7 +728,7 @@ Closed Application Context!
 
 <h3 id="aop를-사용한다면">AOP를 사용한다면</h3>
 
-<p>기존의 OOP를 이용하여 문제를 해결할 수는 있으나 절대로 아름다운 코드라고는 할 수 없다.</p>
+<p>기존의 OOP를 이용하여 문제를 해결할 수는 있으나 아름다운 코드라고는 할 수 없다.</p>
 
 <p>이러한 문제를 해결하기 위하여 나온 개념이 관점 지향 프로그래밍 AOP이다.</p>
 
