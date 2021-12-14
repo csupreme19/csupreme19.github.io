@@ -1,0 +1,108 @@
+I"�<h1 id="mac-eclipse-ats-오류-해결방법">Mac Eclipse ATS 오류 해결방법</h1>
+
+<p><img src="/assets/img/titles/log4j.png" alt="log4j.png" /></p>
+
+<p><a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=574611">https://bugs.eclipse.org/bugs/show_bug.cgi?id=574611</a></p>
+
+<p>맥에서 이클립스 Application Transport Security 오류 해결 방법에 대하여 정리하였다.</p>
+
+<hr />
+
+<h2 id="문제점">문제점</h2>
+
+<p><img src="/assets/img/contents/mea-1.png" alt="mea-1.png" /></p>
+
+<p>이클립스에서 Spring MVC를 이용해 개발중 위와 같은 문제가 발생하였다.</p>
+
+<p>Eclipse 내부 브라우저 사용시 위와 같은 에러 메시지가 발생하며 접근이 거부 되었다.</p>
+
+<hr />
+
+<h2 id="원인-파악">원인 파악</h2>
+
+<p>조금의 구글링을 해보니 iOS, Mac 환경에서 XCode 앱의 경우 ATS(Application Transport Security) 기능이 활성화 되어 있으며</p>
+
+<p>해당 정책으로 인하여 insecure한 리소스로의 접근을 기본적으로 차단하도록 설정되어 있다.</p>
+
+<p>http로의 접근을 차단하고 https로의 접근만 허용한다.</p>
+
+<blockquote>
+  <p>https://developer.apple.com/documentation/security/preventing_insecure_network_connections](https://developer.apple.com/documentation/security/preventing_insecure_network_connections)</p>
+
+  <p>iOS 9.0, mac 10.11 SDK 이상 부터 활성화 된 기능이다.</p>
+</blockquote>
+
+<p><img src="/assets/img/contents/mea-2.png" alt="mea-2.png" /></p>
+
+<p>현재 사용중인 Eclipse 2021-09는 macOS 10.14 SDK를 이용하여 개발된 애플리케이션으로 해당 기능이 활성화 되어 있다.</p>
+
+<p>취지는 좋으나 로컬 개발 환경 및 테스트 용도로는 http를 사용하는 경우가 많으므로</p>
+
+<p>https 사용을 강제하는 것은 개발자로서 매우 거슬리는 일이다.</p>
+
+<hr />
+
+<h2 id="spring-boot를-사용하는-경우">Spring boot를 사용하는 경우</h2>
+
+<p>스프링 부트를 사용하는 경우 <code class="language-plaintext highlighter-rouge">spring-boot-starter-logging</code>을 사용하게 되는데</p>
+
+<p>해당 디펜던시에 포함된 <code class="language-plaintext highlighter-rouge">log4j-to-slf4j</code>와 <code class="language-plaintext highlighter-rouge">log4j-api</code> 라이브러리의 경우 취약점 문제가 없다고 한다.</p>
+
+<p>기본적으로 spring-boot-starter를 사용하는경우 로그백을 사용하기 때문에 log4j2를 사용하도록 명시하지 않은 경우에는 문제 발생하지 않는다.</p>
+
+<blockquote>
+  <p><a href="https://spring.io/blog/2021/12/10/log4j2-vulnerability-and-spring-boot">https://spring.io/blog/2021/12/10/log4j2-vulnerability-and-spring-boot</a></p>
+</blockquote>
+
+<p>12월 23일 배포되는 v2.5.8과 v2.6.2에는 log4j 2.15.0 버전을 사용할 것이라고 함</p>
+
+<hr />
+
+<h2 id="해결방법">해결방법</h2>
+
+<h3 id="1-log4j2-2150-패치하기">1. Log4j2 2.15.0 패치하기</h3>
+
+<p>Lookup 기능을 기본값으로 비활성화시킨 log4j2 2.15.0 버전이 배포 되었다.</p>
+
+<blockquote>
+  <p><a href="https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-core/2.15.0/">Log4j2 2.15.0</a></p>
+</blockquote>
+
+<h4 id="maven">Maven</h4>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;properties&gt;</span>
+    <span class="nt">&lt;log4j2.version&gt;</span>2.15.0<span class="nt">&lt;/log4j2.version&gt;</span>
+<span class="nt">&lt;/properties&gt;</span>
+</code></pre></div></div>
+
+<h4 id="gradle-with-spring-boot">Gradle with Spring boot</h4>
+
+<p>spring dependency management에서 버전 관리해주므로 아래와 같이 사용</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ext</span><span class="o">[</span><span class="s1">'log4j2.version'</span><span class="o">]</span> <span class="o">=</span> <span class="s1">'2.15.0'</span>
+</code></pre></div></div>
+
+<h4 id="gradle">Gradle</h4>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
+  <span class="n">compile</span> <span class="nl">group:</span> <span class="s1">'org.apache.logging.log4j'</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">'log4j-api'</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">'2.15.0'</span>
+  <span class="n">compile</span> <span class="nl">group:</span> <span class="s1">'org.apache.logging.log4j'</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">'log4j-core'</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">'2.15.0'</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="2-프로퍼티로-lookup-비활성화하기">2. 프로퍼티로 lookup 비활성화하기</h3>
+
+<p>java 실행시 <code class="language-plaintext highlighter-rouge">log4j2.formatMsgNoLookups=true</code> 플래그 추가</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">java</span> <span class="o">-</span><span class="nc">Dlog4j2</span><span class="o">.</span><span class="na">formatMsgNoLookups</span><span class="o">=</span><span class="kc">true</span> <span class="o">-</span><span class="n">jar</span> <span class="n">myapp</span><span class="o">.</span><span class="na">jar</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://spring.io/blog/2021/12/10/log4j2-vulnerability-and-spring-boot">https://spring.io/blog/2021/12/10/log4j2-vulnerability-and-spring-boot</a></li>
+</ol>
+
+:ET

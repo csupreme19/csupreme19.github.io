@@ -12,6 +12,8 @@ tags: [Spring, Java, J2EE, EJB, POJO, IoC, AOP, DI, Singleton]
 
 ![spring-logo.svg]({{ "/assets/img/titles/spring-logo.svg"}})
 
+본 문서에서는 스프링 프레임워크에 대하여 정리해보았다.
+
 ---
 
 ## Spring이란?
@@ -137,7 +139,7 @@ Spring의 기본이자 핵심 모듈로 Spring Container, IoC Container이다.
   - 스프링에서는 DB에 접근하기 위한 추상화 프레임워크로 JDBC라는 것을 사용한다.
   - 각 DB별 Driver를 구현하여 데이터베이스에 접근, 에러코드 파싱이 가능하다.
 - `spring-tx`
-  - POJO에 트랜잭션 처리를 위한 어노테이션 및 인터페이스를 제공한다.
+  - POJO에 트랜잭션 처리를 위한 애너테이션 및 인터페이스를 제공한다.
 - `spring-orm`
   - JPA, Hibernate와 같은 ORM(객체관계 매핑) 인터페이스를 제공한다.
 - `spring-oxm`
@@ -238,7 +240,7 @@ Constructed!
 
 <br>
 
-#### XML 설정 예시
+#### Bean 설정하기(XML)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -264,7 +266,7 @@ Cat myCat = ctx.getBean("cat", Cat.class);
 Constructed!
 ```
 
-빈은 어플리케이션의 실행과 종료까지의 생명주기를 가지는 ApplicationContext에 등록되어 사용되고 해당 ApplicationContext는 XML 파일, 어노테이션, 자바 코드 등으로 설정할 수 있다.
+빈은 어플리케이션의 실행과 종료까지의 생명주기를 가지는 ApplicationContext에 등록되어 사용되고 해당 ApplicationContext는 XML 파일, 애너테이션, 자바 코드 등으로 설정할 수 있다.
 
 컨텍스트 생성 시점 Bean들을 주입(생성)하여 초기화하며 컨텍스트에서 `getBean()` 호출시 스프링 컨테이너에 객체가 존재하는지 확인하고 객체를 가져온다.
 
@@ -532,6 +534,91 @@ Closed Application Context!
 
 생성자 -> Bean 초기화 메서드 -> 빈 확인 -> 컨테이너 종료시 빈 종료 확인
 
+<br>
+
+### Spring Context with Annotation
+
+위의 applciation context xml 파일을 사용하지 않고 Annotation을 이용하여 스프링 컨테이너를 설정해보자.
+
+들어가기 전에 혼동이 올 수 있는 애너테이션을 확실히 정리하고 가자.
+
+#### @Component vs @Bean
+
+개발자가 직접 생성한 클래스를 빈의 형태로 등록하여 사용하고자 하는 경우 `@Component`
+
+```java
+@Component
+public class UserDAO {
+  public User getUser(String id, String name, String age) {
+    return new User(id, name, age);
+  }
+}
+```
+
+> @Component 애너테이션은 타겟이 클래스로 정해져있어 애초에 메서드 형태로 선언이 불가능하다.
+
+
+
+스프링 외부 라이브러리에서 생성되어 스프링 컨테이너에 빈 형태로 등록하여 사용하고자 하는 경우 `@Bean`
+
+```java
+@Configuration
+public class UserConfig {
+  @Bean
+  public ExternalUser externalUser() {
+    return new ExternalUser();
+  }
+}
+```
+
+>  `@Bean` 애너테이션은 타겟이 메서드로 지정되어 있어 애초에 클래스에 설정이 불가능하다.
+
+
+
+#### 1. AppConfig 작성
+
+```java
+@Configuration
+@ComponentScan("com.csupreme19.springdemo")
+public class AppConfig {
+}
+```
+
+ApplicationContext 생성시 사용할 Configuration을 작성한다.
+
+`@Configuration`: 해당 클래스가 여러개의  `@Bean`을 가지고 있을때 설정한다. 현재 빈이 존재하지 않으나 추후 설정시 사용하기 때문에 `@Configuration` 사용
+
+`@ComponentScan(basePackage)`: 스프링에 주입되는 빈(컴포넌트)들을 스캔할 베이스 패키지를 설정한다. 해당 패키지 안에 있는 `@Component`로 설정된 클래스들은 스프링 컨테이너 생성시 스프링 컨테이너에 의해 생성 및 의존성 주입된다.
+
+#### 2. Component 작성
+
+```java
+@Component
+public class UserDAO {
+	public User getUser(String id, String name, String age) {
+		return new User(id, name, age);
+	}
+}
+```
+
+스프링 컨테이너에 등록되는 컴포넌트(빈)을 작성한다.
+
+#### 3. 스프링 컨텍스트 생성
+
+```java
+public class Application {
+	public static void main(String[] args) {
+		ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+		UserDAO userDAO = ctx.getBean("userDAO", UserDAO.class);
+		((AbstractApplicationContext)ctx).close();
+	}
+}
+```
+
+위에서 설정한 AppConfig를 기반으로  `AnnotationConfigApplicationContext`를 생성한다.
+
+해당 컨텍스트에서 빈을 가져와 사용한다.
+
 ---
 
 ## Spring AOP
@@ -777,11 +864,14 @@ Java의 대표적인 두 가지 AOP 프레임워크를 지원한다.
   flowchart LR
     A[Application]
     B[AOP Proxy]
+  	subgraph Aspect
     C[Logging Aspect]
     D[Security Aspect]
+  	end
     E[Target Object]
     A-->B---C---D-->E
 </div>
+
 
 
 
@@ -854,7 +944,23 @@ AspectJ는 AOP의 완전한 구현체를 목표로 하고 있으므로 AOP 인�
 
 ### Aspect 예제
 
-#### 1. 특정 메소드 호출 이전 AOP
+#### AspectJ Auto Proxy 활성화하기
+
+```java
+@Configuration
+@EnableAspectJAutoProxy
+@ComponentScan("com.csupreme19.aopdemo")
+public class AppConfig {
+}
+```
+
+`@Aspect` 애너테이션을 처리하기 위해서는 AspectJ Auto Proxy를 활성화해야한다.
+
+스프링 어플리케이션 컨텍스트에 `@EnableAspectJAutoProxy` 애너테이션을 추가한다.
+
+
+
+
 
 #### Aspect
 
@@ -935,6 +1041,46 @@ private void () {}
 
 <br>
 
+### JoinPoint
+
+```java
+@Before("execution(* getUser(..))")
+public void before(JoinPoint joinPoint) {
+  System.out.println("@Before Advice on method");
+
+  MethodSignature methodSignature = (MethodSignature)joinPoint.getSignature();
+  System.out.println("Method signature: " + methodSignature);
+
+  Object[] args = joinPoint.getArgs();
+
+  for(Object arg : args) {
+    if(arg instanceof String){
+      System.out.println((String)arg);
+    }
+  }
+}
+```
+
+```java
+UserDAO userDAO = ctx.getBean("userDAO", UserDAO.class);
+User user = userDAO.getUser("1", "seunghoon.choi", "28");
+System.out.println(user.getName());
+
+// 출력
+@Before Advice on method
+Method signature: User com.csupreme19.aopdemo.dao.UserDAO.getUser(String,String,String)
+1
+seunghoon.choi
+28
+class com.csupreme19.aopdemo.dao.UserDAOUserDAO.getUser(id, name, age)
+```
+
+Advice가 실행되는 타겟 정보를 JoinPoint라는 인자로 받아서 확인이 가능하다.
+
+또한 실제 실행되는 메서드 정보를 MethodSignature라는 클래스를 이용하여 확인할 수 있다.
+
+<br>
+
 ### Aspect Order
 
 ```java
@@ -961,9 +1107,313 @@ public class SecurityAspect {
 }
 ```
 
-`@Order(Integer)` 어노테이션으로 동일 타겟에 대하여 순서 지정이 가능하다.
+`@Order(Integer)` 애너테이션으로 동일 타겟에 대하여 순서 지정이 가능하다.
 
 낮은 수일 수록 먼저 실행된다.
+
+<br>
+
+### Advice Type
+
+| 종류            | 시점                    |
+| --------------- | ----------------------- |
+| @Before         | 타겟 실행 이전          |
+| @AfterReturning | 리턴 이후               |
+| @AfterThrowing  | 예외 발생 이후          |
+| @After          | 타겟 실행 이후(finally) |
+| @Around         | 타겟 실행 이전, 이후    |
+
+<br>
+
+### @Before
+
+<div class="mermaid">
+sequenceDiagram
+  participant A as App
+  participant B as AOP Proxy
+  participant C as @Before
+  participant D as UserDAO
+  A->>B: getUser(..)
+  B->>C: getUser(..)
+  C->>D: getUser(..)
+  D-->>B: return data
+  B-->>A: return data
+</div>
+
+타겟 메서드 실행 이전 시점에 실행된다.
+
+```java
+// getUser 메서드 실행 이전에 실행
+@Before("execution(* getUser(..))")
+public void before(JoinPoint joinPoint) {
+  System.out.println("@Before Advice on method");
+}
+
+// 출력
+@Before Advice on method
+class com.csupreme19.aopdemo.dao.UserDAOUserDAO.getUser(id)
+```
+
+<br>
+
+### @AfterReturning
+
+<div class="mermaid">
+sequenceDiagram
+  participant A as App
+  participant B as AOP Proxy
+  participant C as UserDAO
+  participant D as @AfterReturning
+  A->>B: getUser(..)
+  B->>C: getUser(..)
+  C-->>D: return data
+  D-->>B: return data
+  B-->>A: return data
+</div>
+
+타겟 메서드가 값을 반환하면 실행된다.
+
+해당 메서드의 타입과 인자로 받는 타입값이 일치해야만 실행된다.
+
+```java
+// getUser 메서드가 실행되어 User 클래스 타입이 리턴되었을때 실행
+@AfterReturning(pointcut="execution(* getUser(..))", returning="result")
+public void afterReturning(JoinPoint joinPoint, User result) {
+  System.out.println("@AfterReturning Advice on method:: " + result);
+}
+
+// 반환 인자를 Object로 설정하면 모든 타입에 매핑된다.
+@AfterReturning(pointcut="execution(* getUser(..))", returning="result")
+public void afterReturning(JoinPoint joinPoint, Object result) {
+  System.out.println("@AfterReturning Advice on method:: " + result);
+}
+
+// 출력
+class com.csupreme19.aopdemo.dao.UserDAOUserDAO.getUser(id)
+@AfterReturning Advice on method:: com.csupreme19.model.User@6d025197
+```
+
+<br>
+
+#### Post processing
+
+<div class="mermaid">
+sequenceDiagram
+  participant A as App
+  participant B as AOP Proxy
+  participant C as UserDAO
+  participant D as @AfterReturning
+  A->>B: getUser(..)
+  B->>C: getUser(..)
+  C-->>+D: return data
+  D->>-D: post process
+  D-->>B: return modified data
+  B-->>A: return modified data
+</div>
+
+```java
+UserDAO userDAO = ctx.getBean("userDAO", UserDAO.class);
+User user = userDAO.getUser("1");
+```
+
+해당 Advice가 실행되는 시점은 getUser() 가 실행되어 user라는 변수에 할당되기 이전 시점이다.
+
+따라서 메모리 할당 이전에 Aspect 레벨에서 데이터 수정 등의 처리가 가능하다.
+
+> AOP는 기존 소스코드(로직)과 분리되어 작성되므로 해당 기능 사용시 데이터 변화에 주의할 것
+
+```java
+@AfterReturning(pointcut="execution(* getUser(..))", returning="result")
+public void afterReturning(JoinPoint joinPoint, User result) {
+  System.out.println("@AfterReturning Advice on method:: " + result.getName());
+  result.setName("John Doe");
+}
+```
+
+```java
+User user = userDAO.getUser("1");
+System.out.println(user.getName());
+
+// 출력
+class com.csupreme19.aopdemo.dao.UserDAOUserDAO.getUser(id)
+@AfterReturning Advice on method:: com.csupreme19.model.User@6d025197
+John Doe
+```
+
+<br>
+
+### @AfterThrowing
+
+<div class="mermaid">
+sequenceDiagram
+  participant A as App
+  participant B as AOP Proxy
+  participant C as UserDAO
+  participant D as @AfterThrowing
+  A->>B: getUser(..)
+  B->>C: getUser(..)
+  C-->>D: throw exception
+  D-->>B: throw exception
+  B-->>A: throw exception
+</div>
+
+```java
+@AfterThrowing(pointcut="execution(* getUser(..))", throwing="ex")
+public void afterThrowing(JoinPoint joinPoint, Exception ex) {
+  System.out.println("@AfterThrowing Advice on method");
+  System.out.println("Caught on afterThrowing advice: " + ex.getMessage());
+}
+```
+
+```java
+try{
+  User user = userDAO.getUser("1134513");
+} catch(Exception ex) {
+  System.out.println("Caught on afterThrowing main program: " + ex.getMessage());
+}
+
+// 출력
+class com.csupreme19.aopdemo.dao.UserDAOUserDAO.getUser(id, name, age)
+@AfterThrowing Advice on method
+Caught on afterThrowing advice: Not found
+Caught on afterThrowing main program: Not found
+```
+
+예외 발생 시 throw된 예외를 처리할 수 있다.
+
+Aspect에서 예외를 먼저 가져가고 AOP Proxy로 전달하여 메인 프로그램까지 도달하는 모습을 볼 수 있다.
+
+<br>
+
+### @After
+
+<div class="mermaid">
+sequenceDiagram
+  participant A as App
+  participant B as AOP Proxy
+  participant C as UserDAO
+  participant D as @After
+  A->>B: getUser(..)
+  B->>C: getUser(..)
+  alt is success
+  	C-->>D: return data
+  	C-->>B: return data
+    B-->>A: return data
+  end
+  alt is failure
+  	C-->>D: throw exception
+  	C-->>B: throw exception
+    B-->>A: throw exception
+  end
+
+</div>
+
+```java
+@After("execution(* getUser(..))")
+public void after(JoinPoint joinPoint) {
+  System.out.println("@After Advice on method");
+}
+```
+
+```java
+User user = userDAO.getUser("1", "seunghoon.choi", "28");
+try{
+  User user2 = userDAO.getUser("1134513");
+} catch(Exception ex) {
+  System.out.println("Caught on afterThrowing main program: " + ex.getMessage());
+}
+
+// 출력
+class com.csupreme19.aopdemo.dao.UserDAOUserDAO.getUser(id, name, age)
+@After Advice on method
+class com.csupreme19.aopdemo.dao.UserDAOUserDAO.getUser(id, name, age)
+@After Advice on method
+Caught on afterThrowing main program: Not found
+```
+
+해당 메서드가 실행 된 이후에 실행된다.
+
+해당 메서드 성공 여부와 상관없이 예외나 에러가 발생해도 해당 Advice는 실행된다. (finally와 비슷한 원리)
+
+<br>
+
+### @Around
+
+<div class="mermaid">
+sequenceDiagram
+  participant A as App
+  participant B as AOP Proxy
+  participant C as @Around
+  participant D as UserDAO
+  A->>B: getUser(..)
+  B->>C: getUser(..)
+  C->>D: getUser(..)
+  D-->>C: result
+  C-->>B: result
+  B-->>A: result
+</div>
+
+```java
+@Around("execution(* getUser(..))")
+public Object before(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+  System.out.println("@Around Advice on method begin");
+  long begin = System.currentTimeMillis();
+  
+  // 메소드 실행 정보 가져오기
+  Signature methodSignature = proceedingJoinPoint.getSignature();
+  System.out.println(methodSignature.toShortString());
+  
+  Object result = null;
+  try {
+    // 메소드 실행 제어
+    result = proceedingJoinPoint.proceed();
+  } catch (Exception ex) {
+    // 예외 처리
+    System.out.println(ex.getMessage());
+  }
+  
+  // 후처리
+  if(result instanceof User) {
+    ((User) result).setName("John Doe");
+  }
+  
+  long end = System.currentTimeMillis();
+  System.out.println("getUser execution time: " + String.valueOf(end-begin) + "ms");
+  System.out.println("@Around Advice on method end");
+  return result;
+}
+```
+
+```java
+User user = userDAO.getUser("1", "seunghoon.choi", "28");
+System.out.println(user.getName());
+
+// 출력(성공시)
+@Around Advice on method begin
+UserDAO.getUser(..)
+class com.csupreme19.aopdemo.dao.UserDAOUserDAO.getUser(id, name, age)
+getUser execution time: 10ms
+@Around Advice on method end
+seunghoon.choi
+
+// 출력(예외처리시)
+@Around Advice on method begin
+UserDAO.getUser(..)
+class com.csupreme19.aopdemo.dao.UserDAOUserDAO.getUser(id, name, age)
+Not found
+getUser execution time: 1ms
+@Around Advice on method end
+```
+
+메서드 실행 전 후로 Advice를 실행한다.
+
+위 4가지 타입의 기능을 모두 수행할 수 있다. (로깅, 보안처리, 예외처리, 실행시간 측정 등)
+
+@Around 어드바이스에서는 ProceedingJoinPoint라는 클래스를 인자로 받아서 타겟 메서드의 실행을 제어할 수 있다.
+
+메서드 실행 전후로 Advice가 실행되어 일반적으로 가장 자주 사용되는 Advice이다.
+
+위 예시처럼 로깅, 예외처리, 후처리 등이 모두 가능하기 때문이다.
 
 <br>
 
@@ -974,6 +1424,177 @@ AOP는 공통 관심사로 공통 로직을 담당하므로 아래와 같이 작
 - 코드는 최대한 간결하게
 - 코드는 최대한 실행속도가 빠르게
 - 무겁고 느린 연산 피하기
+
+---
+
+## Spring MVC(Spring Web)
+
+![sf-9.png]({{ "/assets/img/contents/sf-9.png"}})
+
+Spring Web은 자바에서 웹 애플리케이션 개발에 필요한 여러 기능들이 포함된 모듈(프레임워크)이다.
+
+MVC란 Model-View-Controller로 이루어지는 웹 개발시 사용하는 디자인 패턴이며
+
+스프링은 MVC 패턴을 활용하여 웹을 구성하기 때문에 Spring MVC라고도 불린다.
+
+<br>
+
+### Model View Controller(MVC)
+
+![sf-10.png]({{ "/assets/img/contents/sf-10.png"}})
+
+Model(데이터), View(화면), Controller(로직) 크게 세가지 레이어로 분리하여 처리한다.
+
+웹 브라우저에서 프론트 컨트롤러로 요청을 전달하고 프론트 컨트롤러에서는 모델을 생성하여 컨트롤러에게 전달한다.
+
+컨트롤러에서는 비즈니스 로직이 실행되며 해당 로직 실행 후 모델은 다시 프론트 컨트롤러에 전달되어
+
+프론트 컨트롤러는 뷰 템플릿에 모델을 전달한다.
+
+해당 뷰 템플릿에 전달된 모델을 토대로 페이지를 렌더링하여 사용자 브라우저에게 전달하게 된다.
+
+
+
+#### Front Controller
+
+스프링 MVC에서는 DispatcherServlet이라는 이름으로 개발되어 제공되고 있다.
+
+따라서 직접 구현하는 경우는 드물며 DispatcherServlet과 동일하게 부르기도 한다.
+
+
+
+#### Controller
+
+실제 비즈니스 로직이 구현되는 부분이다.
+
+요청을 받아 데이터를 처리하여 모델에 담아 뷰 템플릿으로 보내는 역할을 수행한다.
+
+
+
+#### Model
+
+DB, 컨트롤러 등에서 처리되어 가져온 실제 데이터가 담기는 컨테이너이다.
+
+
+
+#### View Template
+
+Model을 기반으로 처리하여 보여지는 화면단을 처리하는 템플릿이다.
+
+여러 템플릿 엔진을 지원하며 가장 많이 사용하는 것은 JSP와 JSTL이다.
+
+> JSP: Java Servlet Page
+>
+> JSTL: JSP Standard Tag Library
+
+<br>
+
+### Spring MVC를 왜 사용할까?
+
+위에서 말했던 Spring의 핵심 기능을 사용할 수 있다.
+
+- IoC, DI를 이용하여 UI의 재사용성이 높아진다.
+- Model(데이터), View(화면), Controller(로직)으로 레이어를 분리하여 결합도를 낮춘다.
+- 웹 기반 IoC 컨테이너, 웹 컨텍스트를 사용하여 애플리케이션 상태를 쉽게 관리할 수 있다.
+- HTTP 클라이언트, REST 클라이언트 등의 구현체를 제공한다.
+- 뷰 레이어의 다양한 확장성을 제공하여 다양한 템플릿 엔진 사용 가능하다.(서블릿, 머스타치, 타임리프, 벨로시티, 프리마커 등)
+
+<br>
+
+### Spring MVC 설정하기(XML)
+
+#### 1. web.xml 설정하기
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+  
+	<!-- 해당 웹앱의 이름을 설정 -->
+	<display-name>spring-mvc-demo</display-name>
+
+	<!-- 스프링 MVC 디스패처 서블릿을 설정한다 -->
+	<servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    	<!-- 해당 XML 파일 정보로 디스패처 서블릿을 생성 -->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/dispatcherServlet.xml</param-value>
+		</init-param>
+	</servlet>
+
+	<!-- 해당 디스패처 서블릿이 처리할 URL 패턴을 지정한다 -->
+	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+</web-app>
+```
+
+web.xml은 웹 애플리케이션의 배포 정보를 담고 있는 파일이다.
+
+위에서 말했듯이 Dispatcher Servlet은 스프링 개발팀에 의해 이미 개발구현되어 있으며 우리는 이것을 가져다 사용하면 된다.
+
+1. dispatcher라는 이름의  DispatcherServlet 서블릿을 설정한다.
+2. 해당 디스패처 서블릿이 매핑되는 url 패턴을 지정한다.
+
+루트 url로 지정했으므로 모든 요청에 대하여 해당 디스패처 서블릿이 처리하게 된다.
+
+디스패처 서블릿을 여러개 두어 각 URL 요청을 분리하여 처리할 수 있음을 알 수 있다.
+
+#### 2. dispatcherServlet.xml 설정하기
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+    	http://www.springframework.org/schema/beans/spring-beans.xsd
+    	http://www.springframework.org/schema/context
+    	http://www.springframework.org/schema/context/spring-context.xsd
+    	http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!-- 스프링 컴포넌트 스캔을 위한 설정 -->
+	<context:component-scan base-package="com.csupreme19.springdemo" />
+
+	<!-- 스프링 MVC 컴포넌트를 사용하기 위한 설정 -->
+	<mvc:annotation-driven/>
+
+	<!-- 스프링 MVC 뷰 리졸버를 사용하기 위한 설정 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+</beans>
+```
+
+![sf-11.png]({{ "/assets/img/contents/sf-11.png"}})
+
+뷰 리졸버에서 해당 뷰 페이지를 찾기 위하여 경로를 설정할 때 앞에 prefix와 suffix 경로를 붙여서 사용한다.
+
+
+
+#### 3. Controller 작성
+
+```java
+@Controller
+public class MainController {
+	@RequestMapping("/")
+	public String mainPage() {
+		return "main";
+	}
+}
+```
 
 
 

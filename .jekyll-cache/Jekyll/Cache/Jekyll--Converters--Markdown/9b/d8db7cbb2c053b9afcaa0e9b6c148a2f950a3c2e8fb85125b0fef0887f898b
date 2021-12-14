@@ -1,4 +1,4 @@
-I"n
+I"‚
 <p>This is a photo gallery made from the static files in the <code class="language-plaintext highlighter-rouge">assets/img/pexels</code> folder. 
 I wanted to create automatically a simple gallery from a folder without having to create a markdown page as you would for the portfolio.</p>
 
@@ -13,6 +13,14 @@ html { overflow-y: scroll; }
 <div id="masonry" class="grid">
 <div class="grid-sizer"></div>
 <div class="gutter-sizer"></div>
+
+  
+
+  
+
+  
+
+  
 
   
 
@@ -552,6 +560,8 @@ html { overflow-y: scroll; }
     
         <img src="/assets/img/pexels/triangular.jpeg" alt="" class="grid-item" style="padding: 0;" />
       
+  
+
   
 
   

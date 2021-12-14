@@ -1,6 +1,8 @@
-I"S�<h1 id="spring-framework-정리">Spring Framework 정리</h1>
+I" �<h1 id="spring-framework-정리">Spring Framework 정리</h1>
 
 <p><img src="/assets/img/titles/spring-logo.svg" alt="spring-logo.svg" /></p>
+
+<p>본 문서에서는 스프링 프레임워크에 대하여 정리해보았다.</p>
 
 <hr />
 
@@ -164,7 +166,7 @@
   </li>
   <li><code class="language-plaintext highlighter-rouge">spring-tx</code>
     <ul>
-      <li>POJO에 트랜잭션 처리를 위한 어노테이션 및 인터페이스를 제공한다.</li>
+      <li>POJO에 트랜잭션 처리를 위한 애너테이션 및 인터페이스를 제공한다.</li>
     </ul>
   </li>
   <li><code class="language-plaintext highlighter-rouge">spring-orm</code>
@@ -284,7 +286,7 @@
 
 <p><br /></p>
 
-<h4 id="xml-설정-예시">XML 설정 예시</h4>
+<h4 id="bean-설정하기xml">Bean 설정하기(XML)</h4>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">"http://www.springframework.org/schema/beans"</span>
@@ -308,7 +310,7 @@
 <span class="nc">Constructed</span><span class="o">!</span>
 </code></pre></div></div>
 
-<p>빈은 어플리케이션의 실행과 종료까지의 생명주기를 가지는 ApplicationContext에 등록되어 사용되고 해당 ApplicationContext는 XML 파일, 어노테이션, 자바 코드 등으로 설정할 수 있다.</p>
+<p>빈은 어플리케이션의 실행과 종료까지의 생명주기를 가지는 ApplicationContext에 등록되어 사용되고 해당 ApplicationContext는 XML 파일, 애너테이션, 자바 코드 등으로 설정할 수 있다.</p>
 
 <p>컨텍스트 생성 시점 Bean들을 주입(생성)하여 초기화하며 컨텍스트에서 <code class="language-plaintext highlighter-rouge">getBean()</code> 호출시 스프링 컨테이너에 객체가 존재하는지 확인하고 객체를 가져온다.</p>
 
@@ -580,6 +582,86 @@ Closed Application Context!
 </code></pre></div></div>
 
 <p>생성자 -&gt; Bean 초기화 메서드 -&gt; 빈 확인 -&gt; 컨테이너 종료시 빈 종료 확인</p>
+
+<p><br /></p>
+
+<h3 id="spring-context-with-annotation">Spring Context with Annotation</h3>
+
+<p>위의 applciation context xml 파일을 사용하지 않고 Annotation을 이용하여 스프링 컨테이너를 설정해보자.</p>
+
+<p>들어가기 전에 혼동이 올 수 있는 애너테이션을 확실히 정리하고 가자.</p>
+
+<h4 id="component-vs-bean">@Component vs @Bean</h4>
+
+<p>개발자가 직접 생성한 클래스를 빈의 형태로 등록하여 사용하고자 하는 경우 <code class="language-plaintext highlighter-rouge">@Component</code></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserDAO</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="nc">User</span> <span class="nf">getUser</span><span class="o">(</span><span class="nc">String</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">String</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">User</span><span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">age</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>@Component 애너테이션은 타겟이 클래스로 정해져있어 애초에 메서드 형태로 선언이 불가능하다.</p>
+</blockquote>
+
+<p>스프링 외부 라이브러리에서 생성되어 스프링 컨테이너에 빈 형태로 등록하여 사용하고자 하는 경우 <code class="language-plaintext highlighter-rouge">@Bean</code></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserConfig</span> <span class="o">{</span>
+  <span class="nd">@Bean</span>
+  <span class="kd">public</span> <span class="nc">ExternalUser</span> <span class="nf">externalUser</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">ExternalUser</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">@Bean</code> 애너테이션은 타겟이 메서드로 지정되어 있어 애초에 클래스에 설정이 불가능하다.</p>
+</blockquote>
+
+<h4 id="1-appconfig-작성">1. AppConfig 작성</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="nd">@ComponentScan</span><span class="o">(</span><span class="s">"com.csupreme19.springdemo"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AppConfig</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>ApplicationContext 생성시 사용할 Configuration을 작성한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">@Configuration</code>: 해당 클래스가 여러개의  <code class="language-plaintext highlighter-rouge">@Bean</code>을 가지고 있을때 설정한다. 현재 빈이 존재하지 않으나 추후 설정시 사용하기 때문에 <code class="language-plaintext highlighter-rouge">@Configuration</code> 사용</p>
+
+<p><code class="language-plaintext highlighter-rouge">@ComponentScan(basePackage)</code>: 스프링에 주입되는 빈(컴포넌트)들을 스캔할 베이스 패키지를 설정한다. 해당 패키지 안에 있는 <code class="language-plaintext highlighter-rouge">@Component</code>로 설정된 클래스들은 스프링 컨테이너 생성시 스프링 컨테이너에 의해 생성 및 의존성 주입된다.</p>
+
+<h4 id="2-component-작성">2. Component 작성</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserDAO</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="nc">User</span> <span class="nf">getUser</span><span class="o">(</span><span class="nc">String</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">String</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="k">new</span> <span class="nf">User</span><span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">age</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>스프링 컨테이너에 등록되는 컴포넌트(빈)을 작성한다.</p>
+
+<h4 id="3-스프링-컨텍스트-생성">3. 스프링 컨텍스트 생성</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Application</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">ApplicationContext</span> <span class="n">ctx</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AnnotationConfigApplicationContext</span><span class="o">(</span><span class="nc">AppConfig</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+		<span class="nc">UserDAO</span> <span class="n">userDAO</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">"userDAO"</span><span class="o">,</span> <span class="nc">UserDAO</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+		<span class="o">((</span><span class="nc">AbstractApplicationContext</span><span class="o">)</span><span class="n">ctx</span><span class="o">).</span><span class="na">close</span><span class="o">();</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>위에서 설정한 AppConfig를 기반으로  <code class="language-plaintext highlighter-rouge">AnnotationConfigApplicationContext</code>를 생성한다.</p>
+
+<p>해당 컨텍스트에서 빈을 가져와 사용한다.</p>
 
 <hr />
 
@@ -857,8 +939,10 @@ Closed Application Context!
   flowchart LR
     A[Application]
     B[AOP Proxy]
+  	subgraph Aspect
     C[Logging Aspect]
     D[Security Aspect]
+  	end
     E[Target Object]
     A--&gt;B---C---D--&gt;E
 </div>
@@ -967,7 +1051,18 @@ Closed Application Context!
 
 <h3 id="aspect-예제">Aspect 예제</h3>
 
-<h4 id="1-특정-메소드-호출-이전-aop">1. 특정 메소드 호출 이전 AOP</h4>
+<h4 id="aspectj-auto-proxy-활성화하기">AspectJ Auto Proxy 활성화하기</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="nd">@EnableAspectJAutoProxy</span>
+<span class="nd">@ComponentScan</span><span class="o">(</span><span class="s">"com.csupreme19.aopdemo"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AppConfig</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">@Aspect</code> 애너테이션을 처리하기 위해서는 AspectJ Auto Proxy를 활성화해야한다.</p>
+
+<p>스프링 어플리케이션 컨텍스트에 <code class="language-plaintext highlighter-rouge">@EnableAspectJAutoProxy</code> 애너테이션을 추가한다.</p>
 
 <h4 id="aspect-1">Aspect</h4>
 
@@ -1045,6 +1140,44 @@ class com.csupreme19.aopdemo.dao.UserDAOUserDAO.getUser()
 
 <p><br /></p>
 
+<h3 id="joinpoint">JoinPoint</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Before</span><span class="o">(</span><span class="s">"execution(* getUser(..))"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">before</span><span class="o">(</span><span class="nc">JoinPoint</span> <span class="n">joinPoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"@Before Advice on method"</span><span class="o">);</span>
+
+  <span class="nc">MethodSignature</span> <span class="n">methodSignature</span> <span class="o">=</span> <span class="o">(</span><span class="nc">MethodSignature</span><span class="o">)</span><span class="n">joinPoint</span><span class="o">.</span><span class="na">getSignature</span><span class="o">();</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Method signature: "</span> <span class="o">+</span> <span class="n">methodSignature</span><span class="o">);</span>
+
+  <span class="nc">Object</span><span class="o">[]</span> <span class="n">args</span> <span class="o">=</span> <span class="n">joinPoint</span><span class="o">.</span><span class="na">getArgs</span><span class="o">();</span>
+
+  <span class="k">for</span><span class="o">(</span><span class="nc">Object</span> <span class="n">arg</span> <span class="o">:</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">arg</span> <span class="k">instanceof</span> <span class="nc">String</span><span class="o">){</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">((</span><span class="nc">String</span><span class="o">)</span><span class="n">arg</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">UserDAO</span> <span class="n">userDAO</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">"userDAO"</span><span class="o">,</span> <span class="nc">UserDAO</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+<span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userDAO</span><span class="o">.</span><span class="na">getUser</span><span class="o">(</span><span class="s">"1"</span><span class="o">,</span> <span class="s">"seunghoon.choi"</span><span class="o">,</span> <span class="s">"28"</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+
+<span class="c1">// 출력</span>
+<span class="nd">@Before</span> <span class="nc">Advice</span> <span class="n">on</span> <span class="n">method</span>
+<span class="nc">Method</span> <span class="nl">signature:</span> <span class="nc">User</span> <span class="n">com</span><span class="o">.</span><span class="na">csupreme19</span><span class="o">.</span><span class="na">aopdemo</span><span class="o">.</span><span class="na">dao</span><span class="o">.</span><span class="na">UserDAO</span><span class="o">.</span><span class="na">getUser</span><span class="o">(</span><span class="nc">String</span><span class="o">,</span><span class="nc">String</span><span class="o">,</span><span class="nc">String</span><span class="o">)</span>
+<span class="mi">1</span>
+<span class="n">seunghoon</span><span class="o">.</span><span class="na">choi</span>
+<span class="mi">28</span>
+<span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">csupreme19</span><span class="o">.</span><span class="na">aopdemo</span><span class="o">.</span><span class="na">dao</span><span class="o">.</span><span class="na">UserDAOUserDAO</span><span class="o">.</span><span class="na">getUser</span><span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">age</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>Advice가 실행되는 타겟 정보를 JoinPoint라는 인자로 받아서 확인이 가능하다.</p>
+
+<p>또한 실제 실행되는 메서드 정보를 MethodSignature라는 클래스를 이용하여 확인할 수 있다.</p>
+
+<p><br /></p>
+
 <h3 id="aspect-order">Aspect Order</h3>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Aspect</span>
@@ -1069,9 +1202,327 @@ class com.csupreme19.aopdemo.dao.UserDAOUserDAO.getUser()
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p><code class="language-plaintext highlighter-rouge">@Order(Integer)</code> 어노테이션으로 동일 타겟에 대하여 순서 지정이 가능하다.</p>
+<p><code class="language-plaintext highlighter-rouge">@Order(Integer)</code> 애너테이션으로 동일 타겟에 대하여 순서 지정이 가능하다.</p>
 
 <p>낮은 수일 수록 먼저 실행된다.</p>
+
+<p><br /></p>
+
+<h3 id="advice-type">Advice Type</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>종류</th>
+      <th>시점</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>@Before</td>
+      <td>타겟 실행 이전</td>
+    </tr>
+    <tr>
+      <td>@AfterReturning</td>
+      <td>리턴 이후</td>
+    </tr>
+    <tr>
+      <td>@AfterThrowing</td>
+      <td>예외 발생 이후</td>
+    </tr>
+    <tr>
+      <td>@After</td>
+      <td>타겟 실행 이후(finally)</td>
+    </tr>
+    <tr>
+      <td>@Around</td>
+      <td>타겟 실행 이전, 이후</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h3 id="before">@Before</h3>
+
+<div class="mermaid">
+sequenceDiagram
+  participant A as App
+  participant B as AOP Proxy
+  participant C as @Before
+  participant D as UserDAO
+  A-&gt;&gt;B: getUser(..)
+  B-&gt;&gt;C: getUser(..)
+  C-&gt;&gt;D: getUser(..)
+  D--&gt;&gt;B: return data
+  B--&gt;&gt;A: return data
+</div>
+
+<p>타겟 메서드 실행 이전 시점에 실행된다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// getUser 메서드 실행 이전에 실행</span>
+<span class="nd">@Before</span><span class="o">(</span><span class="s">"execution(* getUser(..))"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">before</span><span class="o">(</span><span class="nc">JoinPoint</span> <span class="n">joinPoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"@Before Advice on method"</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">// 출력</span>
+<span class="nd">@Before</span> <span class="nc">Advice</span> <span class="n">on</span> <span class="n">method</span>
+<span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">csupreme19</span><span class="o">.</span><span class="na">aopdemo</span><span class="o">.</span><span class="na">dao</span><span class="o">.</span><span class="na">UserDAOUserDAO</span><span class="o">.</span><span class="na">getUser</span><span class="o">(</span><span class="n">id</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="afterreturning">@AfterReturning</h3>
+
+<div class="mermaid">
+sequenceDiagram
+  participant A as App
+  participant B as AOP Proxy
+  participant C as UserDAO
+  participant D as @AfterReturning
+  A-&gt;&gt;B: getUser(..)
+  B-&gt;&gt;C: getUser(..)
+  C--&gt;&gt;D: return data
+  D--&gt;&gt;B: return data
+  B--&gt;&gt;A: return data
+</div>
+
+<p>타겟 메서드가 값을 반환하면 실행된다.</p>
+
+<p>해당 메서드의 타입과 인자로 받는 타입값이 일치해야만 실행된다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// getUser 메서드가 실행되어 User 클래스 타입이 리턴되었을때 실행</span>
+<span class="nd">@AfterReturning</span><span class="o">(</span><span class="n">pointcut</span><span class="o">=</span><span class="s">"execution(* getUser(..))"</span><span class="o">,</span> <span class="n">returning</span><span class="o">=</span><span class="s">"result"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterReturning</span><span class="o">(</span><span class="nc">JoinPoint</span> <span class="n">joinPoint</span><span class="o">,</span> <span class="nc">User</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"@AfterReturning Advice on method:: "</span> <span class="o">+</span> <span class="n">result</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">// 반환 인자를 Object로 설정하면 모든 타입에 매핑된다.</span>
+<span class="nd">@AfterReturning</span><span class="o">(</span><span class="n">pointcut</span><span class="o">=</span><span class="s">"execution(* getUser(..))"</span><span class="o">,</span> <span class="n">returning</span><span class="o">=</span><span class="s">"result"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterReturning</span><span class="o">(</span><span class="nc">JoinPoint</span> <span class="n">joinPoint</span><span class="o">,</span> <span class="nc">Object</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"@AfterReturning Advice on method:: "</span> <span class="o">+</span> <span class="n">result</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">// 출력</span>
+<span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">csupreme19</span><span class="o">.</span><span class="na">aopdemo</span><span class="o">.</span><span class="na">dao</span><span class="o">.</span><span class="na">UserDAOUserDAO</span><span class="o">.</span><span class="na">getUser</span><span class="o">(</span><span class="n">id</span><span class="o">)</span>
+<span class="nd">@AfterReturning</span> <span class="nc">Advice</span> <span class="n">on</span> <span class="nl">method:</span><span class="o">:</span> <span class="n">com</span><span class="o">.</span><span class="na">csupreme19</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">User</span><span class="err">@</span><span class="mi">6</span><span class="n">d025197</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h4 id="post-processing">Post processing</h4>
+
+<div class="mermaid">
+sequenceDiagram
+  participant A as App
+  participant B as AOP Proxy
+  participant C as UserDAO
+  participant D as @AfterReturning
+  A-&gt;&gt;B: getUser(..)
+  B-&gt;&gt;C: getUser(..)
+  C--&gt;&gt;+D: return data
+  D-&gt;&gt;-D: post process
+  D--&gt;&gt;B: return modified data
+  B--&gt;&gt;A: return modified data
+</div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">UserDAO</span> <span class="n">userDAO</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">"userDAO"</span><span class="o">,</span> <span class="nc">UserDAO</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+<span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userDAO</span><span class="o">.</span><span class="na">getUser</span><span class="o">(</span><span class="s">"1"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>해당 Advice가 실행되는 시점은 getUser() 가 실행되어 user라는 변수에 할당되기 이전 시점이다.</p>
+
+<p>따라서 메모리 할당 이전에 Aspect 레벨에서 데이터 수정 등의 처리가 가능하다.</p>
+
+<blockquote>
+  <p>AOP는 기존 소스코드(로직)과 분리되어 작성되므로 해당 기능 사용시 데이터 변화에 주의할 것</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@AfterReturning</span><span class="o">(</span><span class="n">pointcut</span><span class="o">=</span><span class="s">"execution(* getUser(..))"</span><span class="o">,</span> <span class="n">returning</span><span class="o">=</span><span class="s">"result"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterReturning</span><span class="o">(</span><span class="nc">JoinPoint</span> <span class="n">joinPoint</span><span class="o">,</span> <span class="nc">User</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"@AfterReturning Advice on method:: "</span> <span class="o">+</span> <span class="n">result</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+  <span class="n">result</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"John Doe"</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userDAO</span><span class="o">.</span><span class="na">getUser</span><span class="o">(</span><span class="s">"1"</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+
+<span class="c1">// 출력</span>
+<span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">csupreme19</span><span class="o">.</span><span class="na">aopdemo</span><span class="o">.</span><span class="na">dao</span><span class="o">.</span><span class="na">UserDAOUserDAO</span><span class="o">.</span><span class="na">getUser</span><span class="o">(</span><span class="n">id</span><span class="o">)</span>
+<span class="nd">@AfterReturning</span> <span class="nc">Advice</span> <span class="n">on</span> <span class="nl">method:</span><span class="o">:</span> <span class="n">com</span><span class="o">.</span><span class="na">csupreme19</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">User</span><span class="err">@</span><span class="mi">6</span><span class="n">d025197</span>
+<span class="nc">John</span> <span class="nc">Doe</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="afterthrowing">@AfterThrowing</h3>
+
+<div class="mermaid">
+sequenceDiagram
+  participant A as App
+  participant B as AOP Proxy
+  participant C as UserDAO
+  participant D as @AfterThrowing
+  A-&gt;&gt;B: getUser(..)
+  B-&gt;&gt;C: getUser(..)
+  C--&gt;&gt;D: throw exception
+  D--&gt;&gt;B: throw exception
+  B--&gt;&gt;A: throw exception
+</div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@AfterThrowing</span><span class="o">(</span><span class="n">pointcut</span><span class="o">=</span><span class="s">"execution(* getUser(..))"</span><span class="o">,</span> <span class="n">throwing</span><span class="o">=</span><span class="s">"ex"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterThrowing</span><span class="o">(</span><span class="nc">JoinPoint</span> <span class="n">joinPoint</span><span class="o">,</span> <span class="nc">Exception</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"@AfterThrowing Advice on method"</span><span class="o">);</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Caught on afterThrowing advice: "</span> <span class="o">+</span> <span class="n">ex</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="o">{</span>
+  <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userDAO</span><span class="o">.</span><span class="na">getUser</span><span class="o">(</span><span class="s">"1134513"</span><span class="o">);</span>
+<span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Caught on afterThrowing main program: "</span> <span class="o">+</span> <span class="n">ex</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+<span class="o">}</span>
+
+<span class="c1">// 출력</span>
+<span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">csupreme19</span><span class="o">.</span><span class="na">aopdemo</span><span class="o">.</span><span class="na">dao</span><span class="o">.</span><span class="na">UserDAOUserDAO</span><span class="o">.</span><span class="na">getUser</span><span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">age</span><span class="o">)</span>
+<span class="nd">@AfterThrowing</span> <span class="nc">Advice</span> <span class="n">on</span> <span class="n">method</span>
+<span class="nc">Caught</span> <span class="n">on</span> <span class="n">afterThrowing</span> <span class="nl">advice:</span> <span class="nc">Not</span> <span class="n">found</span>
+<span class="nc">Caught</span> <span class="n">on</span> <span class="n">afterThrowing</span> <span class="n">main</span> <span class="nl">program:</span> <span class="nc">Not</span> <span class="n">found</span>
+</code></pre></div></div>
+
+<p>예외 발생 시 throw된 예외를 처리할 수 있다.</p>
+
+<p>Aspect에서 예외를 먼저 가져가고 AOP Proxy로 전달하여 메인 프로그램까지 도달하는 모습을 볼 수 있다.</p>
+
+<p><br /></p>
+
+<h3 id="after">@After</h3>
+
+<div class="mermaid">
+sequenceDiagram
+  participant A as App
+  participant B as AOP Proxy
+  participant C as UserDAO
+  participant D as @After
+  A-&gt;&gt;B: getUser(..)
+  B-&gt;&gt;C: getUser(..)
+  alt is success
+  	C--&gt;&gt;D: return data
+  	C--&gt;&gt;B: return data
+    B--&gt;&gt;A: return data
+  end
+  alt is failure
+  	C--&gt;&gt;D: throw exception
+  	C--&gt;&gt;B: throw exception
+    B--&gt;&gt;A: throw exception
+  end
+
+</div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@After</span><span class="o">(</span><span class="s">"execution(* getUser(..))"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">after</span><span class="o">(</span><span class="nc">JoinPoint</span> <span class="n">joinPoint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"@After Advice on method"</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userDAO</span><span class="o">.</span><span class="na">getUser</span><span class="o">(</span><span class="s">"1"</span><span class="o">,</span> <span class="s">"seunghoon.choi"</span><span class="o">,</span> <span class="s">"28"</span><span class="o">);</span>
+<span class="k">try</span><span class="o">{</span>
+  <span class="nc">User</span> <span class="n">user2</span> <span class="o">=</span> <span class="n">userDAO</span><span class="o">.</span><span class="na">getUser</span><span class="o">(</span><span class="s">"1134513"</span><span class="o">);</span>
+<span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Caught on afterThrowing main program: "</span> <span class="o">+</span> <span class="n">ex</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+<span class="o">}</span>
+
+<span class="c1">// 출력</span>
+<span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">csupreme19</span><span class="o">.</span><span class="na">aopdemo</span><span class="o">.</span><span class="na">dao</span><span class="o">.</span><span class="na">UserDAOUserDAO</span><span class="o">.</span><span class="na">getUser</span><span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">age</span><span class="o">)</span>
+<span class="nd">@After</span> <span class="nc">Advice</span> <span class="n">on</span> <span class="n">method</span>
+<span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">csupreme19</span><span class="o">.</span><span class="na">aopdemo</span><span class="o">.</span><span class="na">dao</span><span class="o">.</span><span class="na">UserDAOUserDAO</span><span class="o">.</span><span class="na">getUser</span><span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">age</span><span class="o">)</span>
+<span class="nd">@After</span> <span class="nc">Advice</span> <span class="n">on</span> <span class="n">method</span>
+<span class="nc">Caught</span> <span class="n">on</span> <span class="n">afterThrowing</span> <span class="n">main</span> <span class="nl">program:</span> <span class="nc">Not</span> <span class="n">found</span>
+</code></pre></div></div>
+
+<p>해당 메서드가 실행 된 이후에 실행된다.</p>
+
+<p>해당 메서드 성공 여부와 상관없이 예외나 에러가 발생해도 해당 Advice는 실행된다. (finally와 비슷한 원리)</p>
+
+<p><br /></p>
+
+<h3 id="around">@Around</h3>
+
+<div class="mermaid">
+sequenceDiagram
+  participant A as App
+  participant B as AOP Proxy
+  participant C as @Around
+  participant D as UserDAO
+  A-&gt;&gt;B: getUser(..)
+  B-&gt;&gt;C: getUser(..)
+  C-&gt;&gt;D: getUser(..)
+  D--&gt;&gt;C: result
+  C--&gt;&gt;B: result
+  B--&gt;&gt;A: result
+</div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Around</span><span class="o">(</span><span class="s">"execution(* getUser(..))"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="nc">Object</span> <span class="nf">before</span><span class="o">(</span><span class="nc">ProceedingJoinPoint</span> <span class="n">proceedingJoinPoint</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Throwable</span> <span class="o">{</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"@Around Advice on method begin"</span><span class="o">);</span>
+  <span class="kt">long</span> <span class="n">begin</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+  
+  <span class="c1">// 메소드 실행 정보 가져오기</span>
+  <span class="nc">Signature</span> <span class="n">methodSignature</span> <span class="o">=</span> <span class="n">proceedingJoinPoint</span><span class="o">.</span><span class="na">getSignature</span><span class="o">();</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">methodSignature</span><span class="o">.</span><span class="na">toShortString</span><span class="o">());</span>
+  
+  <span class="nc">Object</span> <span class="n">result</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="k">try</span> <span class="o">{</span>
+    <span class="c1">// 메소드 실행 제어</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">proceedingJoinPoint</span><span class="o">.</span><span class="na">proceed</span><span class="o">();</span>
+  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 예외 처리</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">ex</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+  <span class="o">}</span>
+  
+  <span class="c1">// 후처리</span>
+  <span class="k">if</span><span class="o">(</span><span class="n">result</span> <span class="k">instanceof</span> <span class="nc">User</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">((</span><span class="nc">User</span><span class="o">)</span> <span class="n">result</span><span class="o">).</span><span class="na">setName</span><span class="o">(</span><span class="s">"John Doe"</span><span class="o">);</span>
+  <span class="o">}</span>
+  
+  <span class="kt">long</span> <span class="n">end</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"getUser execution time: "</span> <span class="o">+</span> <span class="nc">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">end</span><span class="o">-</span><span class="n">begin</span><span class="o">)</span> <span class="o">+</span> <span class="s">"ms"</span><span class="o">);</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"@Around Advice on method end"</span><span class="o">);</span>
+  <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userDAO</span><span class="o">.</span><span class="na">getUser</span><span class="o">(</span><span class="s">"1"</span><span class="o">,</span> <span class="s">"seunghoon.choi"</span><span class="o">,</span> <span class="s">"28"</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+
+<span class="c1">// 출력(성공시)</span>
+<span class="nd">@Around</span> <span class="nc">Advice</span> <span class="n">on</span> <span class="n">method</span> <span class="n">begin</span>
+<span class="nc">UserDAO</span><span class="o">.</span><span class="na">getUser</span><span class="o">(..)</span>
+<span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">csupreme19</span><span class="o">.</span><span class="na">aopdemo</span><span class="o">.</span><span class="na">dao</span><span class="o">.</span><span class="na">UserDAOUserDAO</span><span class="o">.</span><span class="na">getUser</span><span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">age</span><span class="o">)</span>
+<span class="n">getUser</span> <span class="n">execution</span> <span class="nl">time:</span> <span class="mi">10</span><span class="n">ms</span>
+<span class="nd">@Around</span> <span class="nc">Advice</span> <span class="n">on</span> <span class="n">method</span> <span class="n">end</span>
+<span class="n">seunghoon</span><span class="o">.</span><span class="na">choi</span>
+
+<span class="c1">// 출력(예외처리시)</span>
+<span class="nd">@Around</span> <span class="nc">Advice</span> <span class="n">on</span> <span class="n">method</span> <span class="n">begin</span>
+<span class="nc">UserDAO</span><span class="o">.</span><span class="na">getUser</span><span class="o">(..)</span>
+<span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">csupreme19</span><span class="o">.</span><span class="na">aopdemo</span><span class="o">.</span><span class="na">dao</span><span class="o">.</span><span class="na">UserDAOUserDAO</span><span class="o">.</span><span class="na">getUser</span><span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">age</span><span class="o">)</span>
+<span class="nc">Not</span> <span class="n">found</span>
+<span class="n">getUser</span> <span class="n">execution</span> <span class="nl">time:</span> <span class="mi">1</span><span class="n">ms</span>
+<span class="nd">@Around</span> <span class="nc">Advice</span> <span class="n">on</span> <span class="n">method</span> <span class="n">end</span>
+</code></pre></div></div>
+
+<p>메서드 실행 전 후로 Advice를 실행한다.</p>
+
+<p>위 4가지 타입의 기능을 모두 수행할 수 있다. (로깅, 보안처리, 예외처리, 실행시간 측정 등)</p>
+
+<p>@Around 어드바이스에서는 ProceedingJoinPoint라는 클래스를 인자로 받아서 타겟 메서드의 실행을 제어할 수 있다.</p>
+
+<p>메서드 실행 전후로 Advice가 실행되어 일반적으로 가장 자주 사용되는 Advice이다.</p>
+
+<p>위 예시처럼 로깅, 예외처리, 후처리 등이 모두 가능하기 때문이다.</p>
 
 <p><br /></p>
 
@@ -1084,6 +1535,170 @@ class com.csupreme19.aopdemo.dao.UserDAOUserDAO.getUser()
   <li>코드는 최대한 실행속도가 빠르게</li>
   <li>무겁고 느린 연산 피하기</li>
 </ul>
+
+<hr />
+
+<h2 id="spring-mvcspring-web">Spring MVC(Spring Web)</h2>
+
+<p><img src="/assets/img/contents/sf-9.png" alt="sf-9.png" /></p>
+
+<p>Spring Web은 자바에서 웹 애플리케이션 개발에 필요한 여러 기능들이 포함된 모듈(프레임워크)이다.</p>
+
+<p>MVC란 Model-View-Controller로 이루어지는 웹 개발시 사용하는 디자인 패턴이며</p>
+
+<p>스프링은 MVC 패턴을 활용하여 웹을 구성하기 때문에 Spring MVC라고도 불린다.</p>
+
+<p><br /></p>
+
+<h3 id="model-view-controllermvc">Model View Controller(MVC)</h3>
+
+<p><img src="/assets/img/contents/sf-10.png" alt="sf-10.png" /></p>
+
+<p>Model(데이터), View(화면), Controller(로직) 크게 세가지 레이어로 분리하여 처리한다.</p>
+
+<p>웹 브라우저에서 프론트 컨트롤러로 요청을 전달하고 프론트 컨트롤러에서는 모델을 생성하여 컨트롤러에게 전달한다.</p>
+
+<p>컨트롤러에서는 비즈니스 로직이 실행되며 해당 로직 실행 후 모델은 다시 프론트 컨트롤러에 전달되어</p>
+
+<p>프론트 컨트롤러는 뷰 템플릿에 모델을 전달한다.</p>
+
+<p>해당 뷰 템플릿에 전달된 모델을 토대로 페이지를 렌더링하여 사용자 브라우저에게 전달하게 된다.</p>
+
+<h4 id="front-controller">Front Controller</h4>
+
+<p>스프링 MVC에서는 DispatcherServlet이라는 이름으로 개발되어 제공되고 있다.</p>
+
+<p>따라서 직접 구현하는 경우는 드물며 DispatcherServlet과 동일하게 부르기도 한다.</p>
+
+<h4 id="controller">Controller</h4>
+
+<p>실제 비즈니스 로직이 구현되는 부분이다.</p>
+
+<p>요청을 받아 데이터를 처리하여 모델에 담아 뷰 템플릿으로 보내는 역할을 수행한다.</p>
+
+<h4 id="model">Model</h4>
+
+<p>DB, 컨트롤러 등에서 처리되어 가져온 실제 데이터가 담기는 컨테이너이다.</p>
+
+<h4 id="view-template">View Template</h4>
+
+<p>Model을 기반으로 처리하여 보여지는 화면단을 처리하는 템플릿이다.</p>
+
+<p>여러 템플릿 엔진을 지원하며 가장 많이 사용하는 것은 JSP와 JSTL이다.</p>
+
+<blockquote>
+  <p>JSP: Java Servlet Page</p>
+
+  <p>JSTL: JSP Standard Tag Library</p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="spring-mvc를-왜-사용할까">Spring MVC를 왜 사용할까?</h3>
+
+<p>위에서 말했던 Spring의 핵심 기능을 사용할 수 있다.</p>
+
+<ul>
+  <li>IoC, DI를 이용하여 UI의 재사용성이 높아진다.</li>
+  <li>Model(데이터), View(화면), Controller(로직)으로 레이어를 분리하여 결합도를 낮춘다.</li>
+  <li>웹 기반 IoC 컨테이너, 웹 컨텍스트를 사용하여 애플리케이션 상태를 쉽게 관리할 수 있다.</li>
+  <li>HTTP 클라이언트, REST 클라이언트 등의 구현체를 제공한다.</li>
+  <li>뷰 레이어의 다양한 확장성을 제공하여 다양한 템플릿 엔진 사용 가능하다.(서블릿, 머스타치, 타임리프, 벨로시티, 프리마커 등)</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="spring-mvc-설정하기xml">Spring MVC 설정하기(XML)</h3>
+
+<h4 id="1-webxml-설정하기">1. web.xml 설정하기</h4>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;web-app</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="na">xmlns=</span><span class="s">"http://xmlns.jcp.org/xml/ns/javaee"</span>
+	<span class="na">xsi:schemaLocation=</span><span class="s">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"</span>
+	<span class="na">id=</span><span class="s">"WebApp_ID"</span> <span class="na">version=</span><span class="s">"3.1"</span><span class="nt">&gt;</span>
+  
+	<span class="c">&lt;!-- 해당 웹앱의 이름을 설정 --&gt;</span>
+	<span class="nt">&lt;display-name&gt;</span>spring-mvc-demo<span class="nt">&lt;/display-name&gt;</span>
+
+	<span class="c">&lt;!-- 스프링 MVC 디스패처 서블릿을 설정한다 --&gt;</span>
+	<span class="nt">&lt;servlet&gt;</span>
+		<span class="nt">&lt;servlet-name&gt;</span>dispatcher<span class="nt">&lt;/servlet-name&gt;</span>
+		<span class="nt">&lt;servlet-class&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="nt">&lt;/servlet-class&gt;</span>
+    	<span class="c">&lt;!-- 해당 XML 파일 정보로 디스패처 서블릿을 생성 --&gt;</span>
+		<span class="nt">&lt;init-param&gt;</span>
+			<span class="nt">&lt;param-name&gt;</span>contextConfigLocation<span class="nt">&lt;/param-name&gt;</span>
+			<span class="nt">&lt;param-value&gt;</span>/WEB-INF/dispatcherServlet.xml<span class="nt">&lt;/param-value&gt;</span>
+		<span class="nt">&lt;/init-param&gt;</span>
+	<span class="nt">&lt;/servlet&gt;</span>
+
+	<span class="c">&lt;!-- 해당 디스패처 서블릿이 처리할 URL 패턴을 지정한다 --&gt;</span>
+	<span class="nt">&lt;servlet-mapping&gt;</span>
+		<span class="nt">&lt;servlet-name&gt;</span>dispatcher<span class="nt">&lt;/servlet-name&gt;</span>
+		<span class="nt">&lt;url-pattern&gt;</span>/<span class="nt">&lt;/url-pattern&gt;</span>
+	<span class="nt">&lt;/servlet-mapping&gt;</span>
+	
+<span class="nt">&lt;/web-app&gt;</span>
+</code></pre></div></div>
+
+<p>web.xml은 웹 애플리케이션의 배포 정보를 담고 있는 파일이다.</p>
+
+<p>위에서 말했듯이 Dispatcher Servlet은 스프링 개발팀에 의해 이미 개발구현되어 있으며 우리는 이것을 가져다 사용하면 된다.</p>
+
+<ol>
+  <li>dispatcher라는 이름의  DispatcherServlet 서블릿을 설정한다.</li>
+  <li>해당 디스패처 서블릿이 매핑되는 url 패턴을 지정한다.</li>
+</ol>
+
+<p>루트 url로 지정했으므로 모든 요청에 대하여 해당 디스패처 서블릿이 처리하게 된다.</p>
+
+<p>디스패처 서블릿을 여러개 두어 각 URL 요청을 분리하여 처리할 수 있음을 알 수 있다.</p>
+
+<h4 id="2-dispatcherservletxml-설정하기">2. dispatcherServlet.xml 설정하기</h4>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">"http://www.springframework.org/schema/beans"</span>
+	<span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> 
+	<span class="na">xmlns:context=</span><span class="s">"http://www.springframework.org/schema/context"</span>
+	<span class="na">xmlns:mvc=</span><span class="s">"http://www.springframework.org/schema/mvc"</span>
+	<span class="na">xsi:schemaLocation=</span><span class="s">"
+		http://www.springframework.org/schema/beans
+    	http://www.springframework.org/schema/beans/spring-beans.xsd
+    	http://www.springframework.org/schema/context
+    	http://www.springframework.org/schema/context/spring-context.xsd
+    	http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd"</span><span class="nt">&gt;</span>
+
+	<span class="c">&lt;!-- 스프링 컴포넌트 스캔을 위한 설정 --&gt;</span>
+	<span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">"com.csupreme19.springdemo"</span> <span class="nt">/&gt;</span>
+
+	<span class="c">&lt;!-- 스프링 MVC 컴포넌트를 사용하기 위한 설정 --&gt;</span>
+	<span class="nt">&lt;mvc:annotation-driven/&gt;</span>
+
+	<span class="c">&lt;!-- 스프링 MVC 뷰 리졸버를 사용하기 위한 설정 --&gt;</span>
+	<span class="nt">&lt;bean</span>
+		<span class="na">class=</span><span class="s">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"prefix"</span> <span class="na">value=</span><span class="s">"/WEB-INF/view/"</span> <span class="nt">/&gt;</span>
+		<span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"suffix"</span> <span class="na">value=</span><span class="s">".jsp"</span> <span class="nt">/&gt;</span>
+	<span class="nt">&lt;/bean&gt;</span>
+
+<span class="nt">&lt;/beans&gt;</span>
+</code></pre></div></div>
+
+<p><img src="/assets/img/contents/sf-11.png" alt="sf-11.png" /></p>
+
+<p>뷰 리졸버에서 해당 뷰 페이지를 찾기 위하여 경로를 설정할 때 앞에 prefix와 suffix 경로를 붙여서 사용한다.</p>
+
+<h4 id="3-controller-작성">3. Controller 작성</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Controller</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainController</span> <span class="o">{</span>
+	<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/"</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">mainPage</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="s">"main"</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <hr />
 

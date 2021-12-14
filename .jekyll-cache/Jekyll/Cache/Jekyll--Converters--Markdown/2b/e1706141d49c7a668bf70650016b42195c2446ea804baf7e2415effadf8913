@@ -1,22 +1,32 @@
-I"<h1 id="스프링부트와-log4j2-취약점">스프링부트와 log4j2 취약점</h1>
+I"�<h1 id="mac-eclipse-ats-오류-해결방법">Mac Eclipse ATS 오류 해결방법</h1>
 
-<p><img src="/assets/img/titles/spring-logo.svg" alt="spring-logo.svg" /></p>
+<p><img src="/assets/img/titles/log4j.png" alt="log4j.png" /></p>
 
-<p><a href="https://spring.io/blog/2021/12/10/log4j2-vulnerability-and-spring-boot">https://spring.io/blog/2021/12/10/log4j2-vulnerability-and-spring-boot</a></p>
+<p><a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=574611">https://bugs.eclipse.org/bugs/show_bug.cgi?id=574611</a></p>
+
+<p>맥에서 이클립스 Application Transport Security 오류 해결 방법에 대하여 정리하였다.</p>
 
 <hr />
 
-<h2 id="log4j2-취약점-발견">log4j2 취약점 발견</h2>
+<h2 id="문제점">문제점</h2>
 
-<p><img src="/assets/img/contents/lvsb-1.png" alt="lvsb-1.png" /></p>
+<p><img src="/assets/img/contents/mea-1.png" alt="mea-1.png" /></p>
 
-<p>자바 진영 대표 로깅 라이브러리 apache log4j2에서 최근 보안 취약점이 발견 되었다.</p>
+<p>이클립스에서 Spring MVC를 이용해 개발중 위와 같은 문제가 발생하였다.</p>
+
+<p>Eclipse 내부 브라우저 사용시 위와 같은 에러 메시지가 발생하며 접근이 거부 되었다.</p>
+
+<p>조금의 구글링을 해보니 iOS, Mac 환경에서 XCode 앱의 경우 ATS(Application Transport Security) 기능이 활성화 되어 있으며</p>
+
+<p>해당 정책으로 인하여 insecure한 리소스로의 접근을 기본적으로 차단하도록 설정되어 있다. (예를 들자면 http://)</p>
 
 <blockquote>
-  <p><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-44228">CVE-2021-44228</a></p>
+  <p><a href="https://developer.apple.com/documentation/security/preventing_insecure_network_connections">https://developer.apple.com/documentation/security/preventing_insecure_network_connections</a></p>
+
+  <p>iOS 9.0, mac 10.11 이상 부터 활성화 된 기능이다.</p>
 </blockquote>
 
-<p><code class="language-plaintext highlighter-rouge">Log4j2 2.14.1</code> 이하 버전에서 JNDI lookup을 사용하여 권한을 취득하는 취약점</p>
+<p><code class="language-plaintext highlighter-rouge">Log4j2 2.0-beta9 ~ 2.14.1</code> 버전에서 JNDI lookup을 사용하여 권한을 취득하는 취약점</p>
 
 <p>대부분의 서버에서 사용하고 있는 라이브러리여서 버전 확인 후 패치가 시급해보인다.</p>
 
@@ -42,7 +52,7 @@
 
 <h3 id="1-log4j2-2150-패치하기">1. Log4j2 2.15.0 패치하기</h3>
 
-<p>Lookup 기능을 기본값으로 비활성화시킨 log4j2 2.15.0 버전이 배포 되었습니다.</p>
+<p>Lookup 기능을 기본값으로 비활성화시킨 log4j2 2.15.0 버전이 배포 되었다.</p>
 
 <blockquote>
   <p><a href="https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-core/2.15.0/">Log4j2 2.15.0</a></p>
