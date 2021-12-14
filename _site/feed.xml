@@ -1,4 +1,184 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-12-14T18:49:20+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>개발일지</subtitle><entry><title type="html">Mac Eclipse ATS 오류 해결방법</title><link href="http://localhost:4000/2021/12/14/mac-eclipse-ATS.html" rel="alternate" type="text/html" title="Mac Eclipse ATS 오류 해결방법" /><published>2021-12-14T00:00:00+09:00</published><updated>2021-12-14T00:00:00+09:00</updated><id>http://localhost:4000/2021/12/14/mac-eclipse-ATS</id><content type="html" xml:base="http://localhost:4000/2021/12/14/mac-eclipse-ATS.html">&lt;h1 id=&quot;mac-eclipse-ats-오류-원인-및-해결방법&quot;&gt;Mac Eclipse ATS 오류 원인 및 해결방법&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-12-14T22:48:39+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>개발일지</subtitle><entry><title type="html">Spring Web 둘 이상의 fragment들이 발견된 경우</title><link href="http://localhost:4000/2021/12/14/spring-mvc-web-fragment.html" rel="alternate" type="text/html" title="Spring Web 둘 이상의 fragment들이 발견된 경우" /><published>2021-12-14T00:00:00+09:00</published><updated>2021-12-14T00:00:00+09:00</updated><id>http://localhost:4000/2021/12/14/spring-mvc-web-fragment</id><content type="html" xml:base="http://localhost:4000/2021/12/14/spring-mvc-web-fragment.html">&lt;h1 id=&quot;spring-web-둘-이상의-fragment들이-발견된-경우&quot;&gt;Spring Web 둘 이상의 fragment들이 발견된 경우&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/titles/spring-logo.svg&quot; alt=&quot;spring-logo.svg&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Spring Web, Spring MVC를 사용할 때 서버 실행시 web_fragment가 둘 이상 발견되는 경우 해결방법을 정리하였다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;문제점&quot;&gt;문제점&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/smwf-1.png&quot; alt=&quot;smwf-1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;에러-메시지한글&quot;&gt;에러 메시지(한글)&lt;/h4&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;Caused&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;by:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;lang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;IllegalArgumentException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;이름이&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spring_web&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;인&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;둘&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;이상의&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fragment들이&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;발견되었습니다&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;이는&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;상대적&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;순서배열에서&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;불허됩니다&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;상세&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;정보는&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;서블릿&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;스펙&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;8.2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;장을&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;참조하십시오&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;절대적&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;순서배열을&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;사용하는&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;것을&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;고려해&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;보십시오&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;apache&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;tomcat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;util&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;descriptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;web&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;WebXml&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;orderWebFragments&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;WebXml&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2262&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;apache&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;tomcat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;util&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;descriptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;web&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;WebXml&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;orderWebFragments&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;WebXml&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2220&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;apache&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;catalina&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;startup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ContextConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;webConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ContextConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1294&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;apache&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;catalina&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;startup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ContextConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;configureStart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ContextConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;986&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;apache&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;catalina&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;startup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ContextConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;lifecycleEvent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ContextConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;303&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;apache&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;catalina&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;util&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;LifecycleBase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fireLifecycleEvent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;LifecycleBase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;123&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;apache&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;catalina&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;core&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;StandardContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;startInternal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;StandardContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5135&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;apache&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;catalina&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;util&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;LifecycleBase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;LifecycleBase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;183&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;27&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;more&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;에러-메시지영어&quot;&gt;에러 메시지(영어)&lt;/h4&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;Caused&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;by:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;lang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;IllegalArgumentException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;More&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;than&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;one&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fragment&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spring_web&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;was&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;found&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;This&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;legal&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;relative&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ordering&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;See&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;section&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;8.2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Servlet&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;specification&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;details&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Consider&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;absolute&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ordering&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;apache&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;tomcat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;util&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;descriptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;web&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;WebXml&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;orderWebFragments&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;WebXml&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2262&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;apache&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;tomcat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;util&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;descriptor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;web&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;WebXml&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;orderWebFragments&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;WebXml&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2220&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;apache&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;catalina&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;startup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ContextConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;webConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ContextConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1294&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;apache&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;catalina&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;startup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ContextConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;configureStart&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ContextConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;986&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;apache&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;catalina&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;startup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ContextConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;lifecycleEvent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ContextConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;303&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;apache&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;catalina&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;util&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;LifecycleBase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fireLifecycleEvent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;LifecycleBase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;123&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;apache&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;catalina&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;core&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;StandardContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;startInternal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;StandardContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5135&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;apache&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;catalina&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;util&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;LifecycleBase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;LifecycleBase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;183&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;27&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;more&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Spring Web MVC 프로젝트 구동시 위와같은 오류 메시지가 발생하는 경우 원인을 알아보고 해결 방법을 찾아보자.&lt;/p&gt;
+
+&lt;p&gt;스프링을 기초부터 다시 정리하는 과정에서 스프링 프레임워크 jar 파일들을 직접 임포트하여 사용하였는데 해당 과정에서 spring_web 프래그먼트 충돌이 발생하였다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;원인-파악&quot;&gt;원인 파악&lt;/h2&gt;
+
+&lt;div class=&quot;row&quot;&gt;
+    
+    &lt;div style=&quot;flex: 50.0%&quot;&gt;
+        &lt;img src=&quot;/assets/img//contents/smwf-2.png&quot; alt=&quot;smwf-2.png&quot; /&gt;
+    &lt;/div&gt;
+    
+    &lt;div style=&quot;flex: 50.0%&quot;&gt;
+        &lt;img src=&quot;/assets/img//contents/smwf-3.png&quot; alt=&quot;smwf-3.png&quot; /&gt;
+    &lt;/div&gt;
+    
+&lt;/div&gt;
+
+&lt;p&gt;위와 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spring-web-5.3.9.jar&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spring-web-5.3.9-sources.jar&lt;/code&gt; 두 jar 파일에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web-fragment.xml&lt;/code&gt; 가 존재하는 것을 확인할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/smwf-4.png&quot; alt=&quot;smwf-4.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;실제로 Tomcat 서버 정보를 보면 두개의 jar 파일이 물려있는 것을 확인할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;각 라이브러리의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web-frgment.xml&lt;/code&gt;이 충돌되어 발생하는 문제인 것을 확인할 수 있었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;그러면-도대체-web-fragmentxml이-뭘까&quot;&gt;그러면 도대체 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web-fragment.xml&lt;/code&gt;이 뭘까?&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web-fragment.xml&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;web-fragment&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://java.sun.com/xml/ns/javaee&quot;&lt;/span&gt;
+	&lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;
+	&lt;span class=&quot;na&quot;&gt;xsi:schemaLocation=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-fragment_3_0.xsd&quot;&lt;/span&gt;
+	&lt;span class=&quot;na&quot;&gt;version=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;3.0&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;metadata-complete=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;true&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;name&amp;gt;&lt;/span&gt;spring_web&lt;span class=&quot;nt&quot;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;distributable/&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/web-fragment&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;두 jar 파일에 있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web-fragment.xml&lt;/code&gt; 설정값이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web.xml&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;web-app&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;
+	&lt;span class=&quot;na&quot;&gt;xmlns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://xmlns.jcp.org/xml/ns/javaee&quot;&lt;/span&gt;
+	&lt;span class=&quot;na&quot;&gt;xsi:schemaLocation=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd&quot;&lt;/span&gt;
+	&lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;WebApp_ID&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;version=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;3.1&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+...	
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/web-app&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Spring MVC web.xml과의 차이점을 살펴보자&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/smwf-5.png&quot; alt=&quot;smwf-5.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/smwf-6.png&quot; alt=&quot;smwf-6.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;위 두 부분이 차이나는 것을 확인할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web-fragment.xml&lt;/code&gt; 이란 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web.xml&lt;/code&gt;의 논리적인 부분 파일이라고 보면 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web.xml&lt;/code&gt;이 루트 엘리먼트로 web-app을 바라보고 있는 것과 달리 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web-fragment.xml&lt;/code&gt;은 web-fragment 스키마를 루트로 두고 있는 것을 확인할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;서블릿 3.0부터 서블릿 컨텍스트는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WEB-INF/web.xml&lt;/code&gt; 뿐만 아니라 라이브러리 jar 파일 안의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;META-INF/web-frgament.xml&lt;/code&gt;도 함께 탐색을 한다고 한다.&lt;/p&gt;
+
+&lt;p&gt;즉, 라이브러리 그 자체의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web.xml&lt;/code&gt; 파일이라고 생각하면 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spring-web-5.3.9.jar&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spring-web-5.3.9-sources.jar&lt;/code&gt;에 담겨있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web-frgament.xml&lt;/code&gt; 파일이 동일한 spring_web이라는 이름을 가지고 있으므로 서로 충돌이 발생한 것이다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;해결-방법&quot;&gt;해결 방법&lt;/h2&gt;
+
+&lt;h3 id=&quot;1--중복-jar-삭제&quot;&gt;1.  중복 jar 삭제&lt;/h3&gt;
+
+&lt;p&gt;일반적인 경우가 아니라 여러 버전의 스프링 jar 라이브러리를 가지고 있는 경우에 발생하므로 실제 사용할 라이브러리 jar를 제외하고 충돌나는 jar 파일을 지운다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-sources.jar&lt;/code&gt;의 경우 컴파일된 코드가 아닌 실제 소스 코드를 가져올 수 있는 라이브러리로 실제 앱 구동시 필요하지 않다.&lt;/p&gt;
+
+&lt;p&gt;따라서 나의 경우에는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spring-web-5.3.9-sources.jar&lt;/code&gt;을 제거하여 해결하였다.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-절대적-순서-사용&quot;&gt;2. 절대적 순서 사용&lt;/h3&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;web-app&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;
+	&lt;span class=&quot;na&quot;&gt;xmlns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://xmlns.jcp.org/xml/ns/javaee&quot;&lt;/span&gt;
+	&lt;span class=&quot;na&quot;&gt;xsi:schemaLocation=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd&quot;&lt;/span&gt;
+	&lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;WebApp_ID&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;version=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;3.1&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- 추가 --&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;absolute-ordering/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/web-app&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;web fragment 파일들을 불러오는 순서를 절대적 순서로 변경하면 문제가 해결된다.&lt;/p&gt;
+
+&lt;p&gt;이에 대해서 좀 더 구글링을 해보았는데 해결 방법만 나와있고 어느곳에서도 어떤 방식으로 해결했는지에 대한 뚜렷한 설명은 하고 있지 않다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;이름이 [spring_web]인, 둘 이상의 fragment들이 발견되었습니다. 이는 상대적 순서배열에서 불허됩니다. 상세 정보는 서블릿 스펙 8.2.2 2c 장을 참조하십시오. 절대적 순서배열을 사용하는 것을 고려해 보십시오.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;추측으로는 기본값으로 web-fragment 순서들은 상대적 순서로 설정되어 있으며 이를 절대적 순서로 바꾸었을 시 이름이 겹쳐도 문제가 발생하지 않는 것으로 보인다.&lt;/p&gt;
+
+&lt;p&gt;역시 에러메시지에 해답이 존재하는 것 같다.&lt;/p&gt;
+
+&lt;p&gt;위의 경우엔 web.xml 파일을 사용하고 있으므로 애너테이션 방식에서는 사용할 수 없다는 단점이 존재한다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;참고&quot;&gt;참고&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/smwf-7.png&quot; alt=&quot;smwf-7.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;메이븐 같은 빌드 툴을 사용할 시에도 동일하게 발생하는 것으로 보인다.&lt;/p&gt;
+
+&lt;p&gt;원래 자바 jar 라이브러리들간의 충돌은 일어나서는 안된다.&lt;/p&gt;
+
+&lt;p&gt;하지만 스프링 컨텍스트, 서블릿 컨테이너라는 스프링의 독자적인 특징으로 인하여 발생하는 버그라고 생각하면 될 것 같다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://repo.spring.io/ui/native/release/org/springframework/spring/5.3.9&quot;&gt;https://repo.spring.io/ui/native/release/org/springframework/spring/5.3.9&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;spring repo에서 배포하는 dist 파일에 애초에 저 두 jar 파일이 같이 포함되어 있다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.roseindia.net/servlets/servlet3/webfragmentsOrdering.shtml&quot;&gt;https://www.roseindia.net/servlets/servlet3/webfragmentsOrdering.shtml&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://stackoverflow.com/questions/56281548/how-do-frameworks-like-spring-configure-the-servlet-container-without-web-xml&quot;&gt;https://stackoverflow.com/questions/56281548/how-do-frameworks-like-spring-configure-the-servlet-container-without-web-xml&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.udemy.com/course/spring-hibernate-tutorial/&quot;&gt;Udemy Spring &amp;amp; Hibernate for Beginners&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="mac" /><category term="ATS" /><category term="iOS" /><category term="eclipse" /><summary type="html">Spring Web 둘 이상의 fragment들이 발견된 경우</summary></entry><entry><title type="html">Mac Eclipse ATS 오류 해결방법</title><link href="http://localhost:4000/2021/12/14/mac-eclipse-ATS.html" rel="alternate" type="text/html" title="Mac Eclipse ATS 오류 해결방법" /><published>2021-12-14T00:00:00+09:00</published><updated>2021-12-14T00:00:00+09:00</updated><id>http://localhost:4000/2021/12/14/mac-eclipse-ATS</id><content type="html" xml:base="http://localhost:4000/2021/12/14/mac-eclipse-ATS.html">&lt;h1 id=&quot;mac-eclipse-ats-오류-원인-및-해결방법&quot;&gt;Mac Eclipse ATS 오류 원인 및 해결방법&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/titles/eclipse-logo.png&quot; alt=&quot;eclipse-logo.png&quot; /&gt;&lt;/p&gt;
 
@@ -27,7 +207,7 @@
 &lt;p&gt;http로의 접근을 차단하고 https로의 접근만 허용한다.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;https://developer.apple.com/documentation/security/preventing_insecure_network_connections&quot;&gt;https://developer.apple.com/documentation/security/preventing_insecure_network_connections&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;https://developer.apple.com/documentation/security/preventing_insecure_network_connections&quot;&gt;Preventing Insecure Network Connections&lt;/a&gt;&lt;/p&gt;
 
   &lt;p&gt;iOS 9.0, macOS 10.11 SDK 이상 부터 활성화 된 기능이며 Eclipse 2021-06 부터 해당 SDK를 사용한 것으로 보임&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -855,7 +1035,9 @@ Closed Application Context!
   &lt;p&gt;@Component 애너테이션은 타겟이 클래스로 정해져있어 애초에 메서드 형태로 선언이 불가능하다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;스프링 외부 라이브러리에서 생성되어 스프링 컨테이너에 빈 형태로 등록하여 사용하고자 하는 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Bean&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;외부 라이브러리에서 생성되어 스프링 컨테이너에 빈 형태로 등록하여 사용하고자 하는 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Bean&lt;/code&gt;을 주로 사용한다.&lt;/p&gt;
+
+&lt;p&gt;직접 생성한 클래스를 Bean으로 등록하여 사용할 수는 있으나 클래스 레벨에서 설정이 불가능 하기 때문에 일반적으로는 위와 같이 사용한다.&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Configuration&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;UserConfig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -1812,6 +1994,8 @@ sequenceDiagram
 
 &lt;p&gt;해당 뷰 템플릿에 전달된 모델을 토대로 페이지를 렌더링하여 사용자 브라우저에게 전달하게 된다.&lt;/p&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h4 id=&quot;front-controller&quot;&gt;Front Controller&lt;/h4&gt;
 
 &lt;p&gt;스프링 MVC에서는 DispatcherServlet이라는 이름으로 개발되어 제공되고 있다.&lt;/p&gt;
@@ -1902,6 +2086,8 @@ sequenceDiagram
 
 &lt;p&gt;디스패처 서블릿을 여러개 두어 각 URL 요청을 분리하여 처리할 수 있음을 알 수 있다.&lt;/p&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h4 id=&quot;2-dispatcherservletxml-설정하기&quot;&gt;2. dispatcherServlet.xml 설정하기&lt;/h4&gt;
 
 &lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;&lt;/span&gt;
@@ -1935,7 +2121,7 @@ sequenceDiagram
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/contents/sf-11.png&quot; alt=&quot;sf-11.png&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;뷰 리졸버에서 해당 뷰 페이지를 찾기 위하여 경로를 설정할 때 앞에 prefix와 suffix 경로를 붙여서 사용한다.&lt;/p&gt;
+&lt;p&gt;뷰 리졸버에서 해당 뷰 페이지를 찾기 위하여 경로를 설정할 때 prefix와 suffix 경로를 붙여서 사용한다.&lt;/p&gt;
 
 &lt;h4 id=&quot;3-controller-작성&quot;&gt;3. Controller 작성&lt;/h4&gt;
 
@@ -1948,6 +2134,54 @@ sequenceDiagram
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;h4 id=&quot;4-view-page-작성&quot;&gt;4. View page 작성&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/WEB-INF/view/main.jsp&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-jsp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;%@ page &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;java&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt; contentType=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/html; charset=UTF-8&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;
+    pageEncoding=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;UTF-8&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;%&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;UTF-8&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Insert title here&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+Hi
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;spring-mvc-설정하기annotation&quot;&gt;Spring MVC 설정하기(Annotation)&lt;/h3&gt;
+
+&lt;h4 id=&quot;1-webmvcconfig-작성&quot;&gt;1. WebMvcConfig 작성&lt;/h4&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Configuration&lt;/span&gt; 
+&lt;span class=&quot;nd&quot;&gt;@EnableWebMvc&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@ComponentScan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;basePackages&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;com.csupreme19.springdemo&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WebMvcConfig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ViewResolver&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;viewResolver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;nc&quot;&gt;InternalResourceViewResolver&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;viewResolver&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;InternalResourceViewResolver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;viewResolver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setPrefix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/WEB-INF/view/&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;viewResolver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setSuffix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;.jsp&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;viewResolver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Configuration&lt;/code&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Bean&lt;/code&gt; 등록을 위한  Configuration 설정&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@EnableWebMvc&lt;/code&gt;: Spring MVC 설정(@Controller, @RequestMapping 등)을 사용하기 위한 설정, &lt;mvc:annotation-driven&gt;&lt;/mvc:annotation-driven&gt;과 같은 역할&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ComponentScan&lt;/code&gt;: 등록된 컴포넌트를 사용하기 위한 설정&lt;/p&gt;
+
+&lt;p&gt;추가로  ViewResolver를 빈으로 등록해준다.&lt;/p&gt;
+
+&lt;h4 id=&quot;2&quot;&gt;2.&lt;/h4&gt;
+
 &lt;hr /&gt;
 
 &lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
@@ -1958,7 +2192,62 @@ sequenceDiagram
   &lt;li&gt;&lt;a href=&quot;https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#spring-core&quot;&gt;docs.spring.io spring-core&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.udemy.com/course/spring-hibernate-tutorial/&quot;&gt;Udemy Spring &amp;amp; Hibernate for Beginners&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;http://www.yes24.com/Product/Goods/59192207&quot;&gt;스프링 철저 입문&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Spring" /><category term="Java" /><category term="J2EE" /><category term="EJB" /><category term="POJO" /><category term="IoC" /><category term="AOP" /><category term="DI" /><category term="Singleton" /><summary type="html">Spring Framework 정리</summary></entry><entry><title type="html">Jekyll Mermaid js 사용하기</title><link href="http://localhost:4000/2021/11/29/jekyll-mermaid.html" rel="alternate" type="text/html" title="Jekyll Mermaid js 사용하기" /><published>2021-11-29T00:00:00+09:00</published><updated>2021-11-29T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/29/jekyll-mermaid</id><content type="html" xml:base="http://localhost:4000/2021/11/29/jekyll-mermaid.html">&lt;h1 id=&quot;jekyll-mermaid-js-사용하기&quot;&gt;Jekyll Mermaid js 사용하기&lt;/h1&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Spring" /><category term="Java" /><category term="J2EE" /><category term="EJB" /><category term="POJO" /><category term="IoC" /><category term="AOP" /><category term="DI" /><category term="Singleton" /><summary type="html">Spring Framework 정리</summary></entry><entry><title type="html">Jekyll Liquid 문법 빠져나오기(중괄호 무시)</title><link href="http://localhost:4000/2021/11/29/jekyll-escape-liquid.html" rel="alternate" type="text/html" title="Jekyll Liquid 문법 빠져나오기(중괄호 무시)" /><published>2021-11-29T00:00:00+09:00</published><updated>2021-11-29T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/29/jekyll-escape-liquid</id><content type="html" xml:base="http://localhost:4000/2021/11/29/jekyll-escape-liquid.html">&lt;h1 id=&quot;jekyll-liquid-문법-빠져나오기중괄호-무시&quot;&gt;Jekyll Liquid 문법 빠져나오기(중괄호 무시)&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/jekyll.png&quot; alt=&quot;jekyll.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jekyllrb.com/docs/liquid/&quot;&gt;Jekyll Liquid&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Jekyll 작성시 Liquid template &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{{ , }}&lt;/code&gt; 이중 중괄호 및 중괄호 빠져나오기 (무시하기)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;escape-liquid&quot;&gt;Escape Liquid&lt;/h2&gt;
+
+&lt;p&gt;Jekyll은 내부 템플릿 언어로 &lt;a href=&quot;https://shopify.github.io/liquid/&quot;&gt;Liquid&lt;/a&gt;를 사용한다.&lt;/p&gt;
+
+&lt;p&gt;Liquid는 Ruby로 작성된 템플릿 언어로&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;o&quot;&gt;{{&lt;/span&gt; variable &lt;span class=&quot;o&quot;&gt;}}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;{{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;sentence &lt;span class=&quot;o&quot;&gt;}}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;등의 중괄호를 이용한 문법을 통하여 템플릿 변수나 로직을 실행한다.&lt;/p&gt;
+
+&lt;p&gt;문서를 작성하다 보니 아래와 같은 에러를 발견하게 되었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/jel-1.png&quot; alt=&quot;jel-1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이는 kubernetes에서 사용하는 go-template이 똑같은 이중괄호를 사용해서 나타난 문제였다.&lt;/p&gt;
+
+&lt;p&gt;이를 해결하기 위해서는 아래와 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{% raw %}&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{% endraw %}&lt;/code&gt;  사이에 문법을 적어주면 된다.&lt;/p&gt;
+
+&lt;h4 id=&quot;raw&quot;&gt;Raw&lt;/h4&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{% raw %}
+$ kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/monitoring-user -o jsonpath=&quot;{.secrets[0].name}&quot;) -o go-template=&quot;{{.data.token | base64decode}}&quot;
+eyJhbGciOiJSUzI1NiIsImtpZCI6IlVmM2...
+{% endraw %}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;template-processed&quot;&gt;Template processed&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; kubernetes-dashboard get secret &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;kubectl &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; kubernetes-dashboard get sa/monitoring-user &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;jsonpath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;{.secrets[0].name}&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; go-template&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;{{.data.token | base64decode}}&quot;&lt;/span&gt;
+eyJhbGciOiJSUzI1NiIsImtpZCI6IlVmM2...
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://jekyllrb.com/docs/liquid/&quot;&gt;Jekyll Liquid&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://shopify.github.io/liquid/tags/template/&quot;&gt;Liquid Template&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Blog" /><category term="Jekyll" /><category term="Liquid" /><category term="Markdown" /><category term="Template" /><summary type="html">Jekyll Liquid 문법 빠져나오기(중괄호 무시)</summary></entry><entry><title type="html">Jekyll Mermaid js 사용하기</title><link href="http://localhost:4000/2021/11/29/jekyll-mermaid.html" rel="alternate" type="text/html" title="Jekyll Mermaid js 사용하기" /><published>2021-11-29T00:00:00+09:00</published><updated>2021-11-29T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/29/jekyll-mermaid</id><content type="html" xml:base="http://localhost:4000/2021/11/29/jekyll-mermaid.html">&lt;h1 id=&quot;jekyll-mermaid-js-사용하기&quot;&gt;Jekyll Mermaid js 사용하기&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/contents/jekyll.png&quot; alt=&quot;jekyll.png&quot; /&gt;&lt;/p&gt;
 
@@ -2326,62 +2615,7 @@ sequenceDiagram
   &lt;li&gt;&lt;a href=&quot;https://mermaid-js.github.io/mermaid/#/&quot;&gt;Mermaid-js&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/Sylhare/Type-on-Strap&quot;&gt;Type-on-Strap&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/jeffreytse/jekyll-spaceship&quot;&gt;jekyll-spaceship&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Blog" /><category term="Jekyll" /><category term="Mermaid" /><category term="Liquid" /><category term="Markdown" /><category term="Template" /><summary type="html">Jekyll Mermaid js 사용하기</summary></entry><entry><title type="html">Jekyll Liquid 문법 빠져나오기(중괄호 무시)</title><link href="http://localhost:4000/2021/11/29/jekyll-escape-liquid.html" rel="alternate" type="text/html" title="Jekyll Liquid 문법 빠져나오기(중괄호 무시)" /><published>2021-11-29T00:00:00+09:00</published><updated>2021-11-29T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/29/jekyll-escape-liquid</id><content type="html" xml:base="http://localhost:4000/2021/11/29/jekyll-escape-liquid.html">&lt;h1 id=&quot;jekyll-liquid-문법-빠져나오기중괄호-무시&quot;&gt;Jekyll Liquid 문법 빠져나오기(중괄호 무시)&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/jekyll.png&quot; alt=&quot;jekyll.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jekyllrb.com/docs/liquid/&quot;&gt;Jekyll Liquid&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Jekyll 작성시 Liquid template &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{{ , }}&lt;/code&gt; 이중 중괄호 및 중괄호 빠져나오기 (무시하기)&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;escape-liquid&quot;&gt;Escape Liquid&lt;/h2&gt;
-
-&lt;p&gt;Jekyll은 내부 템플릿 언어로 &lt;a href=&quot;https://shopify.github.io/liquid/&quot;&gt;Liquid&lt;/a&gt;를 사용한다.&lt;/p&gt;
-
-&lt;p&gt;Liquid는 Ruby로 작성된 템플릿 언어로&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;o&quot;&gt;{{&lt;/span&gt; variable &lt;span class=&quot;o&quot;&gt;}}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;{{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;sentence &lt;span class=&quot;o&quot;&gt;}}&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;등의 중괄호를 이용한 문법을 통하여 템플릿 변수나 로직을 실행한다.&lt;/p&gt;
-
-&lt;p&gt;문서를 작성하다 보니 아래와 같은 에러를 발견하게 되었다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/jel-1.png&quot; alt=&quot;jel-1.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;이는 kubernetes에서 사용하는 go-template이 똑같은 이중괄호를 사용해서 나타난 문제였다.&lt;/p&gt;
-
-&lt;p&gt;이를 해결하기 위해서는 아래와 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{% raw %}&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{% endraw %}&lt;/code&gt;  사이에 문법을 적어주면 된다.&lt;/p&gt;
-
-&lt;h4 id=&quot;raw&quot;&gt;Raw&lt;/h4&gt;
-
-&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{% raw %}
-$ kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/monitoring-user -o jsonpath=&quot;{.secrets[0].name}&quot;) -o go-template=&quot;{{.data.token | base64decode}}&quot;
-eyJhbGciOiJSUzI1NiIsImtpZCI6IlVmM2...
-{% endraw %}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;template-processed&quot;&gt;Template processed&lt;/h4&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; kubernetes-dashboard get secret &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;kubectl &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; kubernetes-dashboard get sa/monitoring-user &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;jsonpath&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;{.secrets[0].name}&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; go-template&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;{{.data.token | base64decode}}&quot;&lt;/span&gt;
-eyJhbGciOiJSUzI1NiIsImtpZCI6IlVmM2...
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;a href=&quot;https://jekyllrb.com/docs/liquid/&quot;&gt;Jekyll Liquid&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://shopify.github.io/liquid/tags/template/&quot;&gt;Liquid Template&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Blog" /><category term="Jekyll" /><category term="Liquid" /><category term="Markdown" /><category term="Template" /><summary type="html">Jekyll Liquid 문법 빠져나오기(중괄호 무시)</summary></entry><entry><title type="html">Jekyll과 Github pages를 사용하여 블로그 만들기</title><link href="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html" rel="alternate" type="text/html" title="Jekyll과 Github pages를 사용하여 블로그 만들기" /><published>2021-11-18T00:00:00+09:00</published><updated>2021-11-18T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/18/github-pages-with-jekyll</id><content type="html" xml:base="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html">&lt;h1 id=&quot;jekyll과-github-pages를-사용하여-간단하게-블로그를-만들어보자&quot;&gt;Jekyll과 Github pages를 사용하여 간단하게 블로그를 만들어보자&lt;/h1&gt;
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Blog" /><category term="Jekyll" /><category term="Mermaid" /><category term="Liquid" /><category term="Markdown" /><category term="Template" /><summary type="html">Jekyll Mermaid js 사용하기</summary></entry><entry><title type="html">Jekyll과 Github pages를 사용하여 블로그 만들기</title><link href="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html" rel="alternate" type="text/html" title="Jekyll과 Github pages를 사용하여 블로그 만들기" /><published>2021-11-18T00:00:00+09:00</published><updated>2021-11-18T00:00:00+09:00</updated><id>http://localhost:4000/2021/11/18/github-pages-with-jekyll</id><content type="html" xml:base="http://localhost:4000/2021/11/18/github-pages-with-jekyll.html">&lt;h1 id=&quot;jekyll과-github-pages를-사용하여-간단하게-블로그를-만들어보자&quot;&gt;Jekyll과 Github pages를 사용하여 간단하게 블로그를 만들어보자&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/titles/github-pages.png&quot; alt=&quot;github-pages.png&quot; /&gt;&lt;/p&gt;
 
@@ -4104,238 +4338,4 @@ dummy-pod                  0/1     Completed   5          3m33s
   &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html&quot;&gt;Query DSL&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-pipeline-bucket-script-aggregation.html&quot;&gt;Bucket script aggregation&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html&quot;&gt;Aggregations&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Elasticsearch" /><category term="Query" /><category term="DSL" /><category term="Elastic" /><category term="ELK" /><summary type="html">Elasticsearch 모니터링 쿼리 예제</summary></entry><entry><title type="html">Pod OOMKilled 원인 찾기</title><link href="http://localhost:4000/2021/10/02/kubernetes-pod-oom-troubleshooting.html" rel="alternate" type="text/html" title="Pod OOMKilled 원인 찾기" /><published>2021-10-02T00:00:00+09:00</published><updated>2021-10-02T00:00:00+09:00</updated><id>http://localhost:4000/2021/10/02/kubernetes-pod-oom-troubleshooting</id><content type="html" xml:base="http://localhost:4000/2021/10/02/kubernetes-pod-oom-troubleshooting.html">&lt;h1 id=&quot;kubernetes-kpod-oomkilled-원인-찾기&quot;&gt;Kubernetes kPod OOMKilled 원인 찾기&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/titles/kubernetes-logo.png&quot; alt=&quot;kubernetes-logo.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Kubernetes Pod OOMKilled 원인 찾는 과정을 정리한 문서이다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;oomkilled-원인을-찾아서&quot;&gt;OOMKilled 원인을 찾아서…&lt;/h2&gt;
-
-&lt;h3 id=&quot;발단&quot;&gt;발단&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/kpot-1.png&quot; alt=&quot;kpot-1.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;오전 1시 50분 production 운영 cluster에 올라간 Pod중 하나가 죽었다는 알림이 발생하였다.&lt;/p&gt;
-
-&lt;p&gt;보통 k8s cluster에서는 controller-manager과 kube-scheduler에 의해 자동 복구 되므로 큰 이슈는 없으나 추후 문제를 최소화하기 위하여 기록해본다.&lt;/p&gt;
-
-&lt;p&gt;상태는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OOMKilled&lt;/code&gt;로 파드에 Out Of Memory가 발생하여 재시작됨&lt;/p&gt;
-
-&lt;h4 id=&quot;1-해당-시점-로그-확인&quot;&gt;1. 해당 시점 로그 확인&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/kpot-2.png&quot; alt=&quot;kpot-2.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Elastic Stack을 구축하여 메트릭과 로그를 수집하고 있으므로 Kibana에서 Application Log를 살펴보았다.(stdout)&lt;/p&gt;
-
-&lt;p&gt;유의미한 로그는 찾기 힘들지만 1시 50분에 재구동된 사실을 double-check 할 수 있었다.&lt;/p&gt;
-
-&lt;h4 id=&quot;2-해당-시점-메트릭-확인&quot;&gt;2. 해당 시점 메트릭 확인&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/kpot-3.png&quot; alt=&quot;kpot-3.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;메모리 사용량이 지속적으로 누적되어 100%를 초과하여 아웃 오브 메모리가 발생하였다.&lt;/p&gt;
-
-&lt;h4 id=&quot;3-상세-내용-확인&quot;&gt;3. 상세 내용 확인&lt;/h4&gt;
-
-&lt;p&gt;상세 내용을 확인하기 위하여 OOMKilled가 발생한 해당 서비스 deployment에 Java APM Agent를 적용 후 경과를 관찰하였다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/kpot-4.png&quot; alt=&quot;kpot-4.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/kpot-5.png&quot; alt=&quot;kpot-5.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;System memory usage, Heap memory, Thread count가 지속적으로 상승하는 것을 확인하였다.&lt;/p&gt;
-
-&lt;p&gt;Java heap 메모리 누수로 인한 것으로 결론지었다.&lt;/p&gt;
-
-&lt;p&gt;하지만&lt;/p&gt;
-
-&lt;h3 id=&quot;메모리-사용량이-이상하다&quot;&gt;메모리 사용량이 이상하다?&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/kpot-6.png&quot; alt=&quot;kpot-6.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;위 메모리 사용량의 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kubernetes.pod.memory.usage.limit.pct&lt;/code&gt; 메트릭을 이용하여 확인하였는데.&lt;/p&gt;
-
-&lt;p&gt;해당 메트릭은 일부 파드의 경우 위와 같이 메모리가 99.9% 사용량(1.5GB)을 유지하지만 Pod 상태에는 문제가 없다는 것을 발견하였다.&lt;/p&gt;
-
-&lt;p&gt;99.9%가 유지되는 것도 이상하지만 OOMKilled가 발생하지 않고 정상적으로 작동하는 것이 이상하다고 생각하여 아래와 같이 생각해보았다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;메트릭 정보가 잘못된 경우&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kubernetes.pod.memory.usage.limit.pct&lt;/code&gt; 메트릭이 메모리 사용량만을 나타내는 것이 아닌 경우&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h4 id=&quot;kubectl-top-확인&quot;&gt;kubectl top 확인&lt;/h4&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;kubectl top pod &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; production | g
-&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;서비스명&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-prd-deploy-86975ffd89-kvdr4&lt;/span&gt;	54m	298Mi
-&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;서비스명&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-prd-deploy-86975ffd89-n4r85&lt;/span&gt;	43m	254Mi
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;실제 pod의 메모리 사용량으로 산정되는것과 다른 것을 확인할 수 있었다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/kpot-7.png&quot; alt=&quot;kpot-7.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;kubernetes metricbeat에 따르면 kubernetes 메모리 관련 메트릭은 위와 같다.&lt;/p&gt;
-
-&lt;p&gt;kubelet은 내부적으로 cAdvisor를 사용하여 자원 사용량을 모니터링한다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;https://github.com/google/cadvisor&quot;&gt;cAdvisor&lt;/a&gt;는 리눅스 cgroup의 메트릭 정보를 수집하는 오픈소스이다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;이중 위 빨간 박스의 3가지 메트릭은 cAdvisor의 프로메테우스 형식의 메트릭에 대응된다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kubernetes.pod.memory.usage.bytes&lt;/code&gt; = &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;container_memory_usage_bytes&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kubernetes.pod.memory.working_set.bytes&lt;/code&gt; = &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;container_memory_working_set_bytes&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kubernetes.pod.memory.rss.bytes&lt;/code&gt; = &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;container_memory_rss&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;container_memory_working_set_bytes&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;최근 할당된 메모리, 더티 메모리, 커널 메모리를 포함하는 메모리 사용량&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;container_memory_rss&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;swap 캐시 메모리를 포함하는 메모리 사용량&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/kpot-8.png&quot; alt=&quot;kpot-8.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;실제 메트릭 정보를 살펴보면 Pod의 메모리 사용량은&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kubernetes.pod.memory.working_set.bytes&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kubernetes.pod.memory.rss.bytes&lt;/code&gt;에 근접한다는 것을 확인할 수 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;메모리-확인-결과&quot;&gt;메모리 확인 결과&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kubernetes.pod.memory.working_set.bytes&lt;/code&gt;이 limit에 도달하거나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kubernetes.pod.memory.rss.bytes&lt;/code&gt;가 limit에 가깝다면 OOMKilled의 대상이될 가능성이 높아진다.&lt;/p&gt;
-
-&lt;p&gt;kubectl pod 조회 결과 나타나는 메모리 사용량은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kubernetes.pod.memory.working_set.bytes&lt;/code&gt;와 동일하다.&lt;/p&gt;
-
-&lt;p&gt;따라서 두 메트릭을 조회하여 limit에 근접하는 경우 OOMKilled 가능성이 높음을 확인할 수 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;메모리-누수-pod-확인-결과&quot;&gt;메모리 누수 Pod 확인 결과&lt;/h3&gt;
-
-&lt;p&gt;모든 pod를 수동으로 확인 결과 사용 메모리가 꾸준히 우상향하는 Pod 리스트&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;{서비스1}&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/kpot-9.png&quot; alt=&quot;kpot-9.png&quot; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;{서비스2}&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/kpot-10.png&quot; alt=&quot;kpot-10.png&quot; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;{서비스3}&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/kpot-11.png&quot; alt=&quot;kpot-11.png&quot; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;{서비스4}&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/kpot-12.png&quot; alt=&quot;kpot-12.png&quot; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;{서비스5}&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/kpot-13.png&quot; alt=&quot;kpot-13.png&quot; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;{서비스6}&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/kpot-14.png&quot; alt=&quot;kpot-14.png&quot; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;{서비스7}&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/kpot-15.png&quot; alt=&quot;kpot-15.png&quot; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;{서비스8}&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/kpot-16.png&quot; alt=&quot;kpot-16.png&quot; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;{서비스9}&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/kpot-17.png&quot; alt=&quot;kpot-17.png&quot; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;{서비스10}&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/kpot-18.png&quot; alt=&quot;kpot-18.png&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;jvm-heap-메모리-확인-결과&quot;&gt;JVM Heap 메모리 확인 결과&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/kpot-5.png&quot; alt=&quot;kpot-5.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/kpot-19.png&quot; alt=&quot;kpot-19.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;파드 메모리 확인 결과&lt;/p&gt;
-
-&lt;p&gt;system memory와 thread count는 지속적으로 증가하지만 heap memory는 약 250mb 도달시 GC되는 것을 확인할 수 있었다.&lt;/p&gt;
-
-&lt;p&gt;따라서 JVM Heap Memory 문제는 아니라고 판단하여 OS 레벨을 확인해보았다.&lt;/p&gt;
-
-&lt;h3 id=&quot;os-memory-leak&quot;&gt;OS memory leak?&lt;/h3&gt;
-
-&lt;p&gt;top, free 명령어를 이용하여 메모리 모니터링을 해보았으나 유의미한 값을 찾지는 못하였다.&lt;/p&gt;
-
-&lt;h3 id=&quot;다시-jvm으로&quot;&gt;다시 JVM으로…&lt;/h3&gt;
-
-&lt;p&gt;APM에서 수집한 JVM 메트릭 정보를 다시 확인해보니 Non-Heap Memory와 thread count가 지속적으로 증가하는 것을 확인하였다.&lt;/p&gt;
-
-&lt;h4 id=&quot;thread-count-증가&quot;&gt;Thread count 증가&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/kpot-20.png&quot; alt=&quot;kpot-20.png&quot; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;non-heap-memory-증가&quot;&gt;Non Heap memory 증가&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/kpot-21.png&quot; alt=&quot;kpot-21.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;106mb에서 107.5mb로 점진적으로 증가한 모습을 보였다.&lt;/p&gt;
-
-&lt;p&gt;확인 결과 2개의 파드를 제외하고 모두 non-heap memory가 증가되는 것으로 보임&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;후기&quot;&gt;후기&lt;/h2&gt;
-
-&lt;p&gt;Memory 누수가 어디서 발생하는지는 찾았지만 JVM 메모리 모니터링 및 디버깅을 통하여 deep dive로 직접적인 원인을 찾지 못하여 찜찜하다.&lt;/p&gt;
-
-&lt;p&gt;현재 다른 업무로 인하여 관심에서 멀어졌으나 언제 한번 기회가 된다면 다시 찾아봐야겠다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;https://stackoverflow.com/a/39330016&quot;&gt;https://stackoverflow.com/a/39330016&lt;/a&gt;&lt;/p&gt;
-
-  &lt;p&gt;Java 8 부터 Class Metadata가 Non-Heap 메모리에 저장되어 그럴 수 있다고 하는데… 한번 살펴봐야겠다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.magalix.com/blog/memory_working_set-vs-memory_rss&quot;&gt;https://www.magalix.com/blog/memory_working_set-vs-memory_rss&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.getoutsidedoor.com/2021/03/30/kubernetes-pod-memory-monitoring/&quot;&gt;https://www.getoutsidedoor.com/2021/03/30/kubernetes-pod-memory-monitoring/&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://engineering.linecorp.com/ko/blog/prometheus-container-kubernetes-cluster/&quot;&gt;https://engineering.linecorp.com/ko/blog/prometheus-container-kubernetes-cluster/&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://stackoverflow.com/a/39330016&quot;&gt;https://stackoverflow.com/a/39330016&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Kubernetes" /><category term="K8S" /><category term="Pod" /><category term="JVM" /><category term="Heap" /><category term="Memory" /><summary type="html">Kubernetes kPod OOMKilled 원인 찾기</summary></entry></feed>
+&lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Elasticsearch" /><category term="Query" /><category term="DSL" /><category term="Elastic" /><category term="ELK" /><summary type="html">Elasticsearch 모니터링 쿼리 예제</summary></entry></feed>

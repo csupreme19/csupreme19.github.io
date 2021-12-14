@@ -76,6 +76,8 @@ Index setup finished.
 Loaded Ingest pipelines
 ```
 > debian 패키지로 설치한 경우 공식문서에서는 non-root user로 실행권장(`apm-server`라는 유저가 자동 생성됨)
+
+
 #### 4. apm-server 실행
 
 ```shell

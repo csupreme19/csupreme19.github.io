@@ -8,7 +8,7 @@ tags: [Kubernetes, K8S, Pod, JVM, Heap, Memory]
 
 ---
 
-# Kubernetes kPod OOMKilled 원인 찾기
+# Kubernetes Pod OOMKilled 원인 찾기
 
 ![kubernetes-logo.png]({{ "/assets/img/titles/kubernetes-logo.png"}})
 

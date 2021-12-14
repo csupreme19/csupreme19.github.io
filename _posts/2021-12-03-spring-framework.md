@@ -559,7 +559,9 @@ public class UserDAO {
 
 
 
-스프링 외부 라이브러리에서 생성되어 스프링 컨테이너에 빈 형태로 등록하여 사용하고자 하는 경우 `@Bean`
+외부 라이브러리에서 생성되어 스프링 컨테이너에 빈 형태로 등록하여 사용하고자 하는 경우 `@Bean`을 주로 사용한다.
+
+직접 생성한 클래스를 Bean으로 등록하여 사용할 수는 있으나 클래스 레벨에서 설정이 불가능 하기 때문에 일반적으로는 위와 같이 사용한다.
 
 ```java
 @Configuration
@@ -1453,7 +1455,7 @@ Model(데이터), View(화면), Controller(로직) 크게 세가지 레이어로
 
 해당 뷰 템플릿에 전달된 모델을 토대로 페이지를 렌더링하여 사용자 브라우저에게 전달하게 된다.
 
-
+<br>
 
 #### Front Controller
 
@@ -1546,6 +1548,8 @@ web.xml은 웹 애플리케이션의 배포 정보를 담고 있는 파일이다
 
 디스패처 서블릿을 여러개 두어 각 URL 요청을 분리하여 처리할 수 있음을 알 수 있다.
 
+<br>
+
 #### 2. dispatcherServlet.xml 설정하기
 
 ```xml
@@ -1580,7 +1584,7 @@ web.xml은 웹 애플리케이션의 배포 정보를 담고 있는 파일이다
 
 ![sf-11.png]({{ "/assets/img/contents/sf-11.png"}})
 
-뷰 리졸버에서 해당 뷰 페이지를 찾기 위하여 경로를 설정할 때 앞에 prefix와 suffix 경로를 붙여서 사용한다.
+뷰 리졸버에서 해당 뷰 페이지를 찾기 위하여 경로를 설정할 때 prefix와 suffix 경로를 붙여서 사용한다.
 
 
 
@@ -1595,6 +1599,58 @@ public class MainController {
 	}
 }
 ```
+
+
+
+#### 4. View page 작성
+
+`/WEB-INF/view/main.jsp`
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+Hi
+</body>
+</html>
+```
+
+<br>
+
+### Spring MVC 설정하기(Annotation)
+
+#### 1. WebMvcConfig 작성
+
+```java
+@Configuration 
+@EnableWebMvc
+@ComponentScan(basePackages="com.csupreme19.springdemo")
+public class WebMvcConfig {
+	@Bean
+	public ViewResolver viewResolver() {
+		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+		viewResolver.setPrefix("/WEB-INF/view/");
+		viewResolver.setSuffix(".jsp");
+		return viewResolver;
+	}
+}
+```
+
+`@Configuration`: `@Bean` 등록을 위한  Configuration 설정
+
+`@EnableWebMvc`: Spring MVC 설정(@Controller, @RequestMapping 등)을 사용하기 위한 설정, <mvc:annotation-driven />과 같은 역할
+
+`@ComponentScan`: 등록된 컴포넌트를 사용하기 위한 설정
+
+추가로  ViewResolver를 빈으로 등록해준다.
+
+#### 2. 
 
 
 

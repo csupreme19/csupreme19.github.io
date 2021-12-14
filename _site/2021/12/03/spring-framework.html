@@ -849,7 +849,9 @@ Closed Application Context!
   <p>@Component 애너테이션은 타겟이 클래스로 정해져있어 애초에 메서드 형태로 선언이 불가능하다.</p>
 </blockquote>
 
-<p>스프링 외부 라이브러리에서 생성되어 스프링 컨테이너에 빈 형태로 등록하여 사용하고자 하는 경우 <code class="language-plaintext highlighter-rouge">@Bean</code></p>
+<p>외부 라이브러리에서 생성되어 스프링 컨테이너에 빈 형태로 등록하여 사용하고자 하는 경우 <code class="language-plaintext highlighter-rouge">@Bean</code>을 주로 사용한다.</p>
+
+<p>직접 생성한 클래스를 Bean으로 등록하여 사용할 수는 있으나 클래스 레벨에서 설정이 불가능 하기 때문에 일반적으로는 위와 같이 사용한다.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserConfig</span> <span class="o">{</span>
@@ -1806,6 +1808,8 @@ sequenceDiagram
 
 <p>해당 뷰 템플릿에 전달된 모델을 토대로 페이지를 렌더링하여 사용자 브라우저에게 전달하게 된다.</p>
 
+<p><br /></p>
+
 <h4 id="front-controller">Front Controller</h4>
 
 <p>스프링 MVC에서는 DispatcherServlet이라는 이름으로 개발되어 제공되고 있다.</p>
@@ -1896,6 +1900,8 @@ sequenceDiagram
 
 <p>디스패처 서블릿을 여러개 두어 각 URL 요청을 분리하여 처리할 수 있음을 알 수 있다.</p>
 
+<p><br /></p>
+
 <h4 id="2-dispatcherservletxml-설정하기">2. dispatcherServlet.xml 설정하기</h4>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
@@ -1929,7 +1935,7 @@ sequenceDiagram
 
 <p><img src="/assets/img/contents/sf-11.png" alt="sf-11.png" /></p>
 
-<p>뷰 리졸버에서 해당 뷰 페이지를 찾기 위하여 경로를 설정할 때 앞에 prefix와 suffix 경로를 붙여서 사용한다.</p>
+<p>뷰 리졸버에서 해당 뷰 페이지를 찾기 위하여 경로를 설정할 때 prefix와 suffix 경로를 붙여서 사용한다.</p>
 
 <h4 id="3-controller-작성">3. Controller 작성</h4>
 
@@ -1941,6 +1947,54 @@ sequenceDiagram
 	<span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
+
+<h4 id="4-view-page-작성">4. View page 작성</h4>
+
+<p><code class="language-plaintext highlighter-rouge">/WEB-INF/view/main.jsp</code></p>
+
+<div class="language-jsp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;%@ page </span><span class="na">language=</span><span class="s">"java"</span><span class="na"> contentType=</span><span class="s">"text/html; charset=UTF-8"</span><span class="na">
+    pageEncoding=</span><span class="s">"UTF-8"</span><span class="nt">%&gt;</span>
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;title&gt;</span>Insert title here<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+Hi
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="spring-mvc-설정하기annotation">Spring MVC 설정하기(Annotation)</h3>
+
+<h4 id="1-webmvcconfig-작성">1. WebMvcConfig 작성</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span> 
+<span class="nd">@EnableWebMvc</span>
+<span class="nd">@ComponentScan</span><span class="o">(</span><span class="n">basePackages</span><span class="o">=</span><span class="s">"com.csupreme19.springdemo"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WebMvcConfig</span> <span class="o">{</span>
+	<span class="nd">@Bean</span>
+	<span class="kd">public</span> <span class="nc">ViewResolver</span> <span class="nf">viewResolver</span><span class="o">()</span> <span class="o">{</span>
+		<span class="nc">InternalResourceViewResolver</span> <span class="n">viewResolver</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">InternalResourceViewResolver</span><span class="o">();</span>
+		<span class="n">viewResolver</span><span class="o">.</span><span class="na">setPrefix</span><span class="o">(</span><span class="s">"/WEB-INF/view/"</span><span class="o">);</span>
+		<span class="n">viewResolver</span><span class="o">.</span><span class="na">setSuffix</span><span class="o">(</span><span class="s">".jsp"</span><span class="o">);</span>
+		<span class="k">return</span> <span class="n">viewResolver</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">@Configuration</code>: <code class="language-plaintext highlighter-rouge">@Bean</code> 등록을 위한  Configuration 설정</p>
+
+<p><code class="language-plaintext highlighter-rouge">@EnableWebMvc</code>: Spring MVC 설정(@Controller, @RequestMapping 등)을 사용하기 위한 설정, <mvc:annotation-driven></mvc:annotation-driven>과 같은 역할</p>
+
+<p><code class="language-plaintext highlighter-rouge">@ComponentScan</code>: 등록된 컴포넌트를 사용하기 위한 설정</p>
+
+<p>추가로  ViewResolver를 빈으로 등록해준다.</p>
+
+<h4 id="2">2.</h4>
 
 <hr />
 

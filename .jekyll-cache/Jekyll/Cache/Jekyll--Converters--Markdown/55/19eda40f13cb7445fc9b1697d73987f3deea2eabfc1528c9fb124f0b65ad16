@@ -1,0 +1,238 @@
+I"�3<h1 id="elastic-apm-server-구축하기">Elastic APM Server 구축하기</h1>
+
+<p><img src="/assets/img/titles/elastic-logo.png" alt="elastic-logo.png" /></p>
+
+<p>Elastic APM Server 구축기</p>
+
+<hr />
+
+<h2 id="개요">개요</h2>
+
+<p><img src="/assets/img/contents/eas-1.png" alt="eas-1.png" /></p>
+
+<p><a href="https://www.elastic.co/guide/en/apm/server/7.12/overview.html">APM Server Overview</a></p>
+
+<p>APM Server는 APM Agent로부터 메트릭, 로그 정보등을 수집하고 엘라스틱서치 Document로 변환하여 인덱스에 저장하는 역할을 한다.</p>
+
+<h3 id="apm">APM?</h3>
+
+<p>APM(Application Performance Monitoring)</p>
+
+<p>어플리케이션 성능 지표 등을 모니터링하는 것을 말한다.</p>
+
+<p>어플리케이션 레벨의 메트릭 정보, 로그 정보, 트랜잭션 추적, API 레이턴시 등 인프라/컨테이너 레벨에서는 알기 힘든 정보들을 가시화해준다.</p>
+
+<p>Java APM을 예로들면 아래와 같은 정보들을 모니터링 가능하다.</p>
+
+<ul>
+  <li>HTTP Requests/Responses</li>
+  <li>Latency</li>
+  <li>Throughput</li>
+  <li>Transactions</li>
+  <li>Error rate</li>
+  <li>Dependencies</li>
+  <li>JVM Metrics</li>
+  <li>DB Queries</li>
+</ul>
+
+<hr />
+
+<h2 id="elasitc-apm-서버-설치">Elasitc APM 서버 설치</h2>
+<h3 id="apm-server-설치deb">apm-server 설치(deb)</h3>
+<h4 id="1-설치">1. 설치</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> /root
+<span class="nv">$ </span>curl <span class="nt">-L</span> <span class="nt">-O</span> https://artifacts.elastic.co/downloads/apm-server/apm-server-7.12.1-amd64.deb
+<span class="nv">$ </span>dpkg <span class="nt">-i</span> apm-server-7.12.1-amd64.deb
+</code></pre></div></div>
+<h4 id="2-apm-serveryml-설정">2. apm-server.yml 설정</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>vim /etc/apm-server/apm-server.yml
+</code></pre></div></div>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#-------------------------- Elasticsearch output --------------------------</span>
+<span class="na">output.elasticsearch</span><span class="pi">:</span>
+  <span class="na">hosts</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">http://{엘라스틱서치1}:9200"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">http://{엘라스틱서치2}:9200"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">http://{엘라스틱서치3}:9200"</span><span class="pi">]</span>
+  <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">protocol</span><span class="pi">:</span> <span class="s2">"</span><span class="s">http"</span>
+  <span class="na">username</span><span class="pi">:</span> <span class="s2">"</span><span class="s">elastic"</span>
+  <span class="na">password</span><span class="pi">:</span> <span class="s2">"</span><span class="s">changeme"</span>
+</code></pre></div></div>
+<h4 id="3-환경설정">3. 환경설정</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-u</span> apm-server apm-server setup
+Index setup finished.
+Loaded Ingest pipelines
+</code></pre></div></div>
+<blockquote>
+  <p>debian 패키지로 설치한 경우 공식문서에서는 non-root user로 실행권장(<code class="language-plaintext highlighter-rouge">apm-server</code>라는 유저가 자동 생성됨)</p>
+</blockquote>
+
+<h4 id="4-apm-server-실행">4. apm-server 실행</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-u</span> apm-server apm-server <span class="nt">-e</span>
+</code></pre></div></div>
+<h4 id="5-접속-확인">5. 접속 확인</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-ivs</span> localhost:8200
+</code></pre></div></div>
+
+<h3 id="apm-server-설치k8s">apm-server 설치(k8s)</h3>
+
+<p><a href="https://hub.kubeapps.com/charts/elastic/apm-server/7.12.1">charts/apm-server</a></p>
+
+<p>헬름 차트를 사용하여 K8S에 배포</p>
+
+<h4 id="1-gitlab-접속">1. gitlab 접속</h4>
+
+<h4 id="2-argocd-git-저장소">2. argocd git 저장소</h4>
+
+<p>폴더 elastic/apm-server 생성</p>
+
+<blockquote>
+  <p>ArgoCD와 같은 GitOps 미적용시 일반 디렉토리로 대체</p>
+</blockquote>
+
+<h4 id="3-헬름-차트-다운로드">3. 헬름 차트 다운로드</h4>
+
+<p><a href="https://github.com/elastic/helm-charts/tree/v7.12.1/apm-server">helm-charts/apm-server</a></p>
+
+<p>git clone 또는 helm pull</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone git@github.com:elastic/helm-charts.git
+</code></pre></div></div>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>helm repo add elastic https://helm.elastic.co
+<span class="nv">$ </span>helm pull elastic/apm-server
+</code></pre></div></div>
+
+<h4 id="4-helm-template에-secret-추가">4. helm template에 secret 추가</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>elastic/apm-server/templates
+<span class="nv">$ </span>vim secret.yaml
+</code></pre></div></div>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="pi">{{</span><span class="nv">- if .Values.secret</span> <span class="pi">}}</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Secret</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="pi">{{</span> <span class="nv">.Values.secret.name</span> <span class="pi">}}</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="pi">{{</span> <span class="nv">.Chart.Name</span> <span class="pi">}}</span>
+    <span class="na">release</span><span class="pi">:</span> <span class="pi">{{</span> <span class="nv">.Release.Name | quote</span> <span class="pi">}}</span>
+    <span class="na">heritage</span><span class="pi">:</span> <span class="pi">{{</span> <span class="nv">.Release.Service</span> <span class="pi">}}</span>
+<span class="na">type</span><span class="pi">:</span> <span class="pi">{{</span> <span class="nv">.Values.secret.kind</span> <span class="pi">}}</span>
+<span class="na">data</span><span class="pi">:</span> 
+  <span class="pi">{{</span><span class="nv">- range $key</span><span class="pi">,</span> <span class="nv">$value</span> <span class="pi">:</span><span class="nv">= .Values.secret.data</span> <span class="pi">}}</span>
+  <span class="pi">{{</span> <span class="nv">$key</span> <span class="pi">}}</span><span class="err">:</span> <span class="pi">{{</span> <span class="nv">$value | quote</span> <span class="pi">}}</span>
+  <span class="pi">{{</span><span class="nv">- end</span> <span class="pi">}}</span>
+<span class="pi">{{</span><span class="nv">- end -</span><span class="pi">}}</span>
+
+</code></pre></div></div>
+<blockquote>
+  <p>elastic apm-server 헬름 차트에서 secret 타입 템플릿을 제공하지 않으므로 직접 작성하는 과정이다.</p>
+</blockquote>
+
+<h4 id="5-valuesyaml-수정">5. <code class="language-plaintext highlighter-rouge">values.yaml</code> 수정</h4>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nn">---</span>
+<span class="c1"># Allows you to add config files</span>
+<span class="na">apmConfig</span><span class="pi">:</span>
+  <span class="na">apm-server.yml</span><span class="pi">:</span> <span class="pi">|</span>
+    <span class="s">apm-server:</span>
+      <span class="s">host: "0.0.0.0:8200"</span>
+    <span class="s">queue: {}</span>
+    <span class="s">output.elasticsearch:</span>
+      <span class="s">hosts: ["http://{엘라스틱서치1}:9200", "http://{엘라스틱서치2}:9200", "http://{엘라스틱서치3}:9200"]</span>
+      <span class="s">username: "${ELASTICSEARCH_USERNAME}"</span>
+      <span class="s">password: "${ELASTICSEARCH_PASSWORD}"</span>
+
+<span class="c1"># Extra environment variables to append to the DaemonSet pod spec.</span>
+<span class="c1"># This will be appended to the current 'env:' key. You can use any of the kubernetes env</span>
+<span class="c1"># syntax here</span>
+<span class="na">extraEnvs</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s1">'</span><span class="s">ELASTICSEARCH_USERNAME'</span>
+    <span class="na">valueFrom</span><span class="pi">:</span>
+      <span class="na">secretKeyRef</span><span class="pi">:</span>
+        <span class="na">name</span><span class="pi">:</span> <span class="s">elastic-credentials</span>
+        <span class="na">key</span><span class="pi">:</span> <span class="s">username</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s1">'</span><span class="s">ELASTICSEARCH_PASSWORD'</span>
+    <span class="na">valueFrom</span><span class="pi">:</span>
+      <span class="na">secretKeyRef</span><span class="pi">:</span>
+        <span class="na">name</span><span class="pi">:</span> <span class="s">elastic-credentials</span>
+        <span class="na">key</span><span class="pi">:</span> <span class="s">password</span>
+
+<span class="c1"># secret은 새로 만든 템플릿의 value이므로 추가</span>
+<span class="c1"># Allows kubernetes secret</span>
+<span class="na">secret</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">elastic-credentials</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">Opaque</span>
+  <span class="na">data</span><span class="pi">:</span>
+    <span class="na">username</span><span class="pi">:</span> <span class="s">ZWxhc3RpYw==</span>
+    <span class="na">password</span><span class="pi">:</span> <span class="s">Szg2eWN5aEFERUtvV1Vid2dPMGo=</span>
+
+<span class="c1"># 노드 선택을 위한 셀렉터</span>
+<span class="na">nodeSelector</span><span class="pi">:</span> 
+  <span class="na">zone</span><span class="pi">:</span> <span class="s">private</span>
+  <span class="na">role</span><span class="pi">:</span> <span class="s">worker</span>
+  
+</code></pre></div></div>
+<h4 id="6-git-commit--push">6. git commit &amp; push</h4>
+
+<h4 id="7-argocd-new-app">7. ArgoCD new App</h4>
+
+<ul>
+  <li>Application Name: apm-server</li>
+  <li>Project: default</li>
+  <li>Repository URL: ssh://git@{gitlab 주소}:30722/{group명}/{gitops 저장소 주소}.git</li>
+  <li>Path: elastic/apm-server</li>
+  <li>Cluster URL: https://kubernetes.default.svc</li>
+  <li>Namespace: elastic</li>
+</ul>
+
+<ol>
+  <li>
+    <h4 id="argocd-sync">ArgoCD Sync</h4>
+
+    <p><img src="/assets/img/contents/eas-2.png" alt="eas-2.png" /></p>
+
+    <blockquote>
+      <p>ArgoCD와 같은 GitOps 미사용시 해당 헬름 upgrade하여 직접 배포</p>
+
+      <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>helm <span class="nb">install </span>apm-server elastic/apm-server <span class="nt">-f</span> values.yaml
+</code></pre></div>      </div>
+
+    </blockquote>
+  </li>
+</ol>
+
+<h4 id="9-배포-확인">9. 배포 확인</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl <span class="nb">exec</span> <span class="nt">-it</span> apm-server-apm-server-6ccd949d46-hfh29 bash <span class="nt">-n</span> elastic
+
+bash-4.2<span class="nv">$ </span>curl <span class="nt">-i</span> localhost:8200
+HTTP/1.1 200 OK
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+Date: Thu, 22 Jul 2021 08:05:23 GMT
+Content-Length: 125
+
+<span class="o">{</span>
+  <span class="s2">"build_date"</span>: <span class="s2">"2021-04-20T19:55:39Z"</span>,
+  <span class="s2">"build_sha"</span>: <span class="s2">"32f34ed4298d648bf9476790f2a8a54d72805bb6"</span>,
+  <span class="s2">"version"</span>: <span class="s2">"7.12.1"</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://www.elastic.co/guide/en/apm/server/7.12/overview.html">APM Server Overview</a></li>
+  <li><a href="https://hub.kubeapps.com/charts/elastic/apm-server/7.12.1">charts/apm-server</a></li>
+  <li><a href="https://github.com/elastic/helm-charts/tree/v7.12.1/apm-server">helm-charts/apm-server</a></li>
+</ol>
+
+:ET

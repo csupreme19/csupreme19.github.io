@@ -36,7 +36,7 @@ Eclipse 내부 브라우저 사용시 위와 같은 에러 메시지가 발생�
 
 http로의 접근을 차단하고 https로의 접근만 허용한다.
 
->[https://developer.apple.com/documentation/security/preventing_insecure_network_connections](https://developer.apple.com/documentation/security/preventing_insecure_network_connections)
+>[Preventing Insecure Network Connections](https://developer.apple.com/documentation/security/preventing_insecure_network_connections)
 >
 >iOS 9.0, macOS 10.11 SDK 이상 부터 활성화 된 기능이며 Eclipse 2021-06 부터 해당 SDK를 사용한 것으로 보임
 

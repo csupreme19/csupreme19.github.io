@@ -1,0 +1,127 @@
+I"�E<h1 id="spring-web-둘-이상의-fragment들이-발견된-경우">Spring Web 둘 이상의 fragment들이 발견된 경우</h1>
+
+<p><img src="/assets/img/titles/spring-logo.svg" alt="spring-logo.svg" /></p>
+
+<p>Spring Web, Spring MVC를 사용할 때 서버 실행시 web_fragment가 둘 이상 발견되는 경우 해결방법을 정리하였다.</p>
+
+<hr />
+
+<h2 id="문제점">문제점</h2>
+
+<p><img src="/assets/img/contents/smwf-1.png" alt="smwf-1.png" /></p>
+
+<h4 id="에러-메시지한글">에러 메시지(한글)</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Caused</span> <span class="nl">by:</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">IllegalArgumentException</span><span class="o">:</span> <span class="n">이름이</span> <span class="o">[</span><span class="n">spring_web</span><span class="o">]</span><span class="n">인</span><span class="o">,</span> <span class="n">둘</span> <span class="n">이상의</span> <span class="n">fragment들이</span> <span class="n">발견되었습니다</span><span class="o">.</span> <span class="n">이는</span> <span class="n">상대적</span> <span class="n">순서배열에서</span> <span class="n">불허됩니다</span><span class="o">.</span> <span class="n">상세</span> <span class="n">정보는</span> <span class="n">서블릿</span> <span class="n">스펙</span> <span class="mf">8.2</span><span class="o">.</span><span class="mi">2</span> <span class="mi">2</span><span class="n">c</span> <span class="n">장을</span> <span class="n">참조하십시오</span><span class="o">.</span> <span class="n">절대적</span> <span class="n">순서배열을</span> <span class="n">사용하는</span> <span class="n">것을</span> <span class="n">고려해</span> <span class="n">보십시오</span><span class="o">.</span>
+	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">tomcat</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">descriptor</span><span class="o">.</span><span class="na">web</span><span class="o">.</span><span class="na">WebXml</span><span class="o">.</span><span class="na">orderWebFragments</span><span class="o">(</span><span class="nc">WebXml</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">2262</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">tomcat</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">descriptor</span><span class="o">.</span><span class="na">web</span><span class="o">.</span><span class="na">WebXml</span><span class="o">.</span><span class="na">orderWebFragments</span><span class="o">(</span><span class="nc">WebXml</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">2220</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">startup</span><span class="o">.</span><span class="na">ContextConfig</span><span class="o">.</span><span class="na">webConfig</span><span class="o">(</span><span class="nc">ContextConfig</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">1294</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">startup</span><span class="o">.</span><span class="na">ContextConfig</span><span class="o">.</span><span class="na">configureStart</span><span class="o">(</span><span class="nc">ContextConfig</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">986</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">startup</span><span class="o">.</span><span class="na">ContextConfig</span><span class="o">.</span><span class="na">lifecycleEvent</span><span class="o">(</span><span class="nc">ContextConfig</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">303</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">LifecycleBase</span><span class="o">.</span><span class="na">fireLifecycleEvent</span><span class="o">(</span><span class="nc">LifecycleBase</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">123</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">StandardContext</span><span class="o">.</span><span class="na">startInternal</span><span class="o">(</span><span class="nc">StandardContext</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">5135</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">LifecycleBase</span><span class="o">.</span><span class="na">start</span><span class="o">(</span><span class="nc">LifecycleBase</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">183</span><span class="o">)</span>
+	<span class="o">...</span> <span class="mi">27</span> <span class="n">more</span>
+</code></pre></div></div>
+
+<h4 id="에러-메시지영어">에러 메시지(영어)</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Caused</span> <span class="nl">by:</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">IllegalArgumentException</span><span class="o">:</span> <span class="nc">More</span> <span class="n">than</span> <span class="n">one</span> <span class="n">fragment</span> <span class="n">with</span> <span class="n">the</span> <span class="n">name</span> <span class="o">[</span><span class="n">spring_web</span><span class="o">]</span> <span class="n">was</span> <span class="n">found</span><span class="o">.</span> <span class="nc">This</span> <span class="n">is</span> <span class="n">not</span> <span class="n">legal</span> <span class="n">with</span> <span class="n">relative</span> <span class="n">ordering</span><span class="o">.</span> <span class="nc">See</span> <span class="n">section</span> <span class="mf">8.2</span><span class="o">.</span><span class="mi">2</span> <span class="mi">2</span><span class="n">c</span> <span class="n">of</span> <span class="n">the</span> <span class="nc">Servlet</span> <span class="n">specification</span> <span class="k">for</span> <span class="n">details</span><span class="o">.</span> <span class="nc">Consider</span> <span class="n">using</span> <span class="n">absolute</span> <span class="n">ordering</span><span class="o">.</span>
+	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">tomcat</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">descriptor</span><span class="o">.</span><span class="na">web</span><span class="o">.</span><span class="na">WebXml</span><span class="o">.</span><span class="na">orderWebFragments</span><span class="o">(</span><span class="nc">WebXml</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">2262</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">tomcat</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">descriptor</span><span class="o">.</span><span class="na">web</span><span class="o">.</span><span class="na">WebXml</span><span class="o">.</span><span class="na">orderWebFragments</span><span class="o">(</span><span class="nc">WebXml</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">2220</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">startup</span><span class="o">.</span><span class="na">ContextConfig</span><span class="o">.</span><span class="na">webConfig</span><span class="o">(</span><span class="nc">ContextConfig</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">1294</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">startup</span><span class="o">.</span><span class="na">ContextConfig</span><span class="o">.</span><span class="na">configureStart</span><span class="o">(</span><span class="nc">ContextConfig</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">986</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">startup</span><span class="o">.</span><span class="na">ContextConfig</span><span class="o">.</span><span class="na">lifecycleEvent</span><span class="o">(</span><span class="nc">ContextConfig</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">303</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">LifecycleBase</span><span class="o">.</span><span class="na">fireLifecycleEvent</span><span class="o">(</span><span class="nc">LifecycleBase</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">123</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">StandardContext</span><span class="o">.</span><span class="na">startInternal</span><span class="o">(</span><span class="nc">StandardContext</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">5135</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">catalina</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">LifecycleBase</span><span class="o">.</span><span class="na">start</span><span class="o">(</span><span class="nc">LifecycleBase</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">183</span><span class="o">)</span>
+	<span class="o">...</span> <span class="mi">27</span> <span class="n">more</span>
+</code></pre></div></div>
+
+<p>Spring Web MVC 프로젝트 구동시 위와같은 오류 메시지가 발생하는 경우 원인을 알아보고 해결 방법을 찾아보자.</p>
+
+<p>스프링을 기초부터 다시 정리하는 과정에서 스프링 프레임워크 jar 파일들을 직접 임포트하여 사용하였는데 해당 과정에서 spring_web 프래그먼트 충돌이 발생하였다.</p>
+
+<hr />
+
+<h2 id="원인-파악">원인 파악</h2>
+
+<div class="row">
+    
+    <div style="flex: 50.0%">
+        <img src="/assets/img//contents/smwf-2.png" alt="smwf-2.png" />
+    </div>
+    
+    <div style="flex: 50.0%">
+        <img src="/assets/img//contents/smwf-3.png" alt="smwf-3.png" />
+    </div>
+    
+</div>
+
+<p>위와 같이 <code class="language-plaintext highlighter-rouge">spring-web-5.3.9.jar</code>와 <code class="language-plaintext highlighter-rouge">spring-web-5.3.9-sources.jar</code> 두 jar 파일에 <code class="language-plaintext highlighter-rouge">web-fragment.xml</code> 가 존재하는 것을 확인할 수 있다.</p>
+
+<p><img src="/assets/img/contents/smwf-4.png" alt="smwf-4.png" /></p>
+
+<p>실제로 Tomcat 서버 정보를 보면 두개의 jar 파일이 물려있는 것을 확인할 수 있다.</p>
+
+<p>각 라이브러리의 <code class="language-plaintext highlighter-rouge">web-frgment.xml</code>이 충돌되어 발생하는 문제인 것을 확인할 수 있었다.</p>
+
+<h3 id="그러면-도대체-web-fragmentxml이-뭘까">그러면 도대체 <code class="language-plaintext highlighter-rouge">web-fragment.xml</code>이 뭘까?</h3>
+
+<p><code class="language-plaintext highlighter-rouge">web-fragment.xml</code></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;</span>
+<span class="nt">&lt;web-fragment</span> <span class="na">xmlns=</span><span class="s">"http://java.sun.com/xml/ns/javaee"</span>
+	<span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="na">xsi:schemaLocation=</span><span class="s">"http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-fragment_3_0.xsd"</span>
+	<span class="na">version=</span><span class="s">"3.0"</span> <span class="na">metadata-complete=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+
+	<span class="nt">&lt;name&gt;</span>spring_web<span class="nt">&lt;/name&gt;</span>
+	<span class="nt">&lt;distributable/&gt;</span>
+
+<span class="nt">&lt;/web-fragment&gt;</span>
+</code></pre></div></div>
+
+<p>두 jar 파일에 있는 <code class="language-plaintext highlighter-rouge">web-fragment.xml</code> 설정값이다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">web.xml</code></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;web-app</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="na">xmlns=</span><span class="s">"http://xmlns.jcp.org/xml/ns/javaee"</span>
+	<span class="na">xsi:schemaLocation=</span><span class="s">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"</span>
+	<span class="na">id=</span><span class="s">"WebApp_ID"</span> <span class="na">version=</span><span class="s">"3.1"</span><span class="nt">&gt;</span>
+...	
+<span class="nt">&lt;/web-app&gt;</span>
+</code></pre></div></div>
+
+<p>Spring MVC web.xml과의 차이점을 살펴보자</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;web-fragment</span> <span class="na">xmlns=</span><span class="s">"http://java.sun.com/xml/ns/javaee"</span>
+	<span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="na">xsi:schemaLocation=</span><span class="s">"http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-fragment_3_0.xsd"</span><span class="nt">/&gt;</span>
+
+<span class="nt">&lt;web-app</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="na">xmlns=</span><span class="s">"http://xmlns.jcp.org/xml/ns/javaee"</span>
+	<span class="na">xsi:schemaLocation=</span><span class="s">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"</span>
+         <span class="na">id=</span><span class="s">"WebApp_ID"</span> <span class="na">version=</span><span class="s">"3.1"</span><span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p>위 두 부분이 차이나는 것을 확인할 수 있다.</p>
+
+<p>Web-fragment xml의 경우</p>
+
+<hr />
+
+<h2 id="해결-방법">해결 방법</h2>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=574611">https://bugs.eclipse.org/bugs/show_bug.cgi?id=574611</a></li>
+  <li><a href="https://stackoverflow.com/questions/56281548/how-do-frameworks-like-spring-configure-the-servlet-container-without-web-xml">https://stackoverflow.com/questions/56281548/how-do-frameworks-like-spring-configure-the-servlet-container-without-web-xml</a></li>
+</ol>
+
+:ET
