@@ -2,7 +2,7 @@
 layout: post
 title: Spring Web 둘 이상의 fragment들이 발견된 경우
 feature-img: assets/img/titles/spring-logo.svg
-thumbnail: assets/img/contents/mea-1.png
+thumbnail: assets/img/contents/smwf-1.png
 author: csupreme19
 tags: [mac, ATS, iOS, eclipse]
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-12-14T22:48:39+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>개발일지</subtitle><entry><title type="html">Spring Web 둘 이상의 fragment들이 발견된 경우</title><link href="http://localhost:4000/2021/12/14/spring-mvc-web-fragment.html" rel="alternate" type="text/html" title="Spring Web 둘 이상의 fragment들이 발견된 경우" /><published>2021-12-14T00:00:00+09:00</published><updated>2021-12-14T00:00:00+09:00</updated><id>http://localhost:4000/2021/12/14/spring-mvc-web-fragment</id><content type="html" xml:base="http://localhost:4000/2021/12/14/spring-mvc-web-fragment.html">&lt;h1 id=&quot;spring-web-둘-이상의-fragment들이-발견된-경우&quot;&gt;Spring Web 둘 이상의 fragment들이 발견된 경우&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-12-15T17:01:31+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>개발일지</subtitle><entry><title type="html">Spring Web 둘 이상의 fragment들이 발견된 경우</title><link href="http://localhost:4000/2021/12/14/spring-mvc-web-fragment.html" rel="alternate" type="text/html" title="Spring Web 둘 이상의 fragment들이 발견된 경우" /><published>2021-12-14T00:00:00+09:00</published><updated>2021-12-14T00:00:00+09:00</updated><id>http://localhost:4000/2021/12/14/spring-mvc-web-fragment</id><content type="html" xml:base="http://localhost:4000/2021/12/14/spring-mvc-web-fragment.html">&lt;h1 id=&quot;spring-web-둘-이상의-fragment들이-발견된-경우&quot;&gt;Spring Web 둘 이상의 fragment들이 발견된 경우&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/titles/spring-logo.svg&quot; alt=&quot;spring-logo.svg&quot; /&gt;&lt;/p&gt;
 
@@ -359,9 +359,31 @@
   &lt;p&gt;&lt;a href=&quot;https://krcert.or.kr/data/secNoticeView.do?bulletin_writing_sequence=36389&quot;&gt;인터넷침해대응센터 보안공지&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Log4j2 2.0-beta9 ~ 2.14.1&lt;/code&gt; 버전에서 JNDI lookup을 사용하여 권한을 취득하는 취약점&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Log4j2 2.0-beta9 ~ 2.14.1&lt;/code&gt; 버전에서 JNDI LDAP Lookup을 사용하여 권한을 취득하는 취약점&lt;/p&gt;
 
 &lt;p&gt;대부분의 서버에서 사용하고 있는 라이브러리여서 버전 확인 후 패치가 시급해보인다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;20211215-업데이트&quot;&gt;2021.12.15 업데이트&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/lvsb-2.png&quot; alt=&quot;lvsb-2.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;log4j2 2.15.0 버전에서 패치한 내용이 완벽하지 않다는 취약점이 발견되었다.&lt;/p&gt;
+
+&lt;p&gt;2.15.0 버전에서는 JNDI LDAP Lookup을 비활성화하고 로컬호스트에서만 가능하게 했는데&lt;/p&gt;
+
+&lt;p&gt;기본값이 아닌 특정 패턴 레이아웃을 사용하면 입력 데이터를 조작할 수 있는 것으로 밝혀졌다.&lt;/p&gt;
+
+&lt;p&gt;최근 배포된 2.16.0에서는 이런 취약점을 해결할 수 있도록 메시지 룩업 패턴 기능을 제거하였다.&lt;/p&gt;
+
+&lt;p&gt;따라서 기존 방법으로 패치하지 말고 2.16.0으로 업데이트가 필요하다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2021-45046&quot;&gt;CVE-2021-45046&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;https://krcert.or.kr/data/secNoticeView.do?bulletin_writing_sequence=36389&quot;&gt;인터넷침해대응센터 보안공지&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;hr /&gt;
 
@@ -371,30 +393,38 @@
 
 &lt;p&gt;해당 디펜던시에 포함된 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;log4j-to-slf4j&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;log4j-api&lt;/code&gt; 라이브러리의 경우 취약점 문제가 없다고 한다.&lt;/p&gt;
 
-&lt;p&gt;기본적으로 spring-boot-starter를 사용하는경우 로그백을 사용하기 때문에 log4j2를 사용하도록 명시하지 않은 경우에는 문제 발생하지 않는다.&lt;/p&gt;
+&lt;p&gt;오직 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;log4j-core&lt;/code&gt; 라이브러리가 포함된 경우에만 취약점이 존재한다.&lt;/p&gt;
+
+&lt;p&gt;또한 기본적으로 spring-boot-starter를 사용하는경우 로그백을 사용하기 때문에 log4j2를 사용하도록 명시하지 않은 경우에는 문제 발생하지 않는다.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;&lt;a href=&quot;https://spring.io/blog/2021/12/10/log4j2-vulnerability-and-spring-boot&quot;&gt;https://spring.io/blog/2021/12/10/log4j2-vulnerability-and-spring-boot&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;12월 23일 배포되는 v2.5.8과 v2.6.2에는 log4j 2.15.0 버전을 사용할 것이라고 함&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;12월 23일 배포되는 v2.5.8과 v2.6.2에는 log4j 2.15.0 버전을 사용할 것이라고 함&lt;/del&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
 &lt;h2 id=&quot;해결방법&quot;&gt;해결방법&lt;/h2&gt;
 
-&lt;h3 id=&quot;1-log4j2-2150-패치하기&quot;&gt;1. Log4j2 2.15.0 패치하기&lt;/h3&gt;
+&lt;h3 id=&quot;1-log4j2-2160-패치하기&quot;&gt;1. Log4j2 2.16.0 패치하기&lt;/h3&gt;
 
-&lt;p&gt;Lookup 기능을 기본값으로 비활성화시킨 log4j2 2.15.0 버전이 배포 되었다.&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;Lookup 기능을 기본값으로 비활성화시킨 log4j2 2.15.0 버전이 배포 되었다.&lt;/del&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-core/2.15.0/&quot;&gt;Log4j2 2.15.0&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;del&gt;&lt;a href=&quot;https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-core/2.15.0/&quot;&gt;Log4j2 2.15.0&lt;/a&gt;&lt;/del&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;최근 취약점이 해결된 Log4j2 2.16.0 버전으로 업데이트한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-core/2.16.0/&quot;&gt;Log4j2 2.16.0&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h4 id=&quot;maven&quot;&gt;Maven&lt;/h4&gt;
 
 &lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;properties&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;log4j2.version&amp;gt;&lt;/span&gt;2.15.0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/log4j2.version&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;log4j2.version&amp;gt;&lt;/span&gt;2.16.0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/log4j2.version&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/properties&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -402,23 +432,38 @@
 
 &lt;p&gt;spring dependency management에서 버전 관리해주므로 아래와 같이 사용&lt;/p&gt;
 
-&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;ext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;log4j2.version&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;2.15.0&apos;&lt;/span&gt;
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;ext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;log4j2.version&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;2.16.0&apos;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h4 id=&quot;gradle&quot;&gt;Gradle&lt;/h4&gt;
 
 &lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;compile&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;group:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;org.apache.logging.log4j&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;name:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;log4j-api&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;version:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;2.15.0&apos;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;compile&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;group:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;org.apache.logging.log4j&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;name:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;log4j-core&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;version:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;2.15.0&apos;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;compile&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;group:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;org.apache.logging.log4j&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;name:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;log4j-api&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;version:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;2.16.0&apos;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;compile&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;group:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;org.apache.logging.log4j&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;name:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;log4j-core&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;version:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;2.16.0&apos;&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;2-프로퍼티로-lookup-비활성화하기&quot;&gt;2. 프로퍼티로 lookup 비활성화하기&lt;/h3&gt;
+&lt;h3 id=&quot;2-프로퍼티로-lookup-비활성화하기&quot;&gt;&lt;del&gt;2. 프로퍼티로 lookup 비활성화하기&lt;/del&gt;&lt;/h3&gt;
 
-&lt;p&gt;java 실행시 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;log4j2.formatMsgNoLookups=true&lt;/code&gt; 플래그 추가&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;java 실행시 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;log4j2.formatMsgNoLookups=true&lt;/code&gt; 플래그 추가&lt;/del&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;java&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Dlog4j2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;formatMsgNoLookups&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;jar&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myapp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;jar&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2021-45046&quot;&gt;CVE-2021-45046&lt;/a&gt;에 유효하지 않다.&lt;/p&gt;
+
+  &lt;p&gt;2.16.0 버전으로 패치할 것&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;3-jndilookupclass-제거-임시조치&quot;&gt;3. JndiLookup.class 제거 (임시조치)&lt;/h3&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;zip &lt;span class=&quot;nt&quot;&gt;-q&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; log4j-core-&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.jar org/apache/logging/log4j/core/lookup/JndiLookup.class
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;라이브러리 자체에서 해당 기능을 하는 클래스를 제거하는 방법이다.&lt;/p&gt;
+
+&lt;p&gt;급한 경우 사용&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -426,6 +471,9 @@
 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2021/12/10/log4j2-vulnerability-and-spring-boot&quot;&gt;https://spring.io/blog/2021/12/10/log4j2-vulnerability-and-spring-boot&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2021-44228&quot;&gt;CVE-2021-44228&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://krcert.or.kr/data/secNoticeView.do?bulletin_writing_sequence=36389&quot;&gt;인터넷침해대응센터 보안공지&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln/detail/CVE-2021-45046&quot;&gt;CVE-2021-45046&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="Spring" /><category term="Spring boot" /><category term="vulnerability" /><category term="log4j2" /><category term="logback" /><category term="logging" /><summary type="html">스프링부트와 log4j2 취약점</summary></entry><entry><title type="html">Spring Framework 정리</title><link href="http://localhost:4000/2021/12/03/spring-framework.html" rel="alternate" type="text/html" title="Spring Framework 정리" /><published>2021-12-03T00:00:00+09:00</published><updated>2021-12-03T00:00:00+09:00</updated><id>http://localhost:4000/2021/12/03/spring-framework</id><content type="html" xml:base="http://localhost:4000/2021/12/03/spring-framework.html">&lt;h1 id=&quot;spring-framework-정리&quot;&gt;Spring Framework 정리&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/titles/spring-logo.svg&quot; alt=&quot;spring-logo.svg&quot; /&gt;&lt;/p&gt;

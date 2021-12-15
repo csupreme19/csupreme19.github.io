@@ -1,0 +1,129 @@
+I"<h1 id="스프링부트와-log4j2-취약점">스프링부트와 log4j2 취약점</h1>
+
+<p><img src="/assets/img/titles/log4j.png" alt="log4j.png" /></p>
+
+<p><a href="https://spring.io/blog/2021/12/10/log4j2-vulnerability-and-spring-boot">https://spring.io/blog/2021/12/10/log4j2-vulnerability-and-spring-boot</a></p>
+
+<hr />
+
+<h2 id="log4j2-취약점-발견">log4j2 취약점 발견</h2>
+
+<p><img src="/assets/img/contents/lvsb-1.png" alt="lvsb-1.png" /></p>
+
+<p>자바 진영 대표 로깅 라이브러리 apache log4j2에서 최근 보안 취약점이 발견 되었다.</p>
+
+<blockquote>
+  <p><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-44228">CVE-2021-44228</a></p>
+
+  <p><a href="https://krcert.or.kr/data/secNoticeView.do?bulletin_writing_sequence=36389">인터넷침해대응센터 보안공지</a></p>
+</blockquote>
+
+<p><code class="language-plaintext highlighter-rouge">Log4j2 2.0-beta9 ~ 2.14.1</code> 버전에서 JNDI LDAP Lookup을 사용하여 권한을 취득하는 취약점</p>
+
+<p>대부분의 서버에서 사용하고 있는 라이브러리여서 버전 확인 후 패치가 시급해보인다.</p>
+
+<hr />
+
+<h2 id="20211215-업데이트">2021.12.15 업데이트</h2>
+
+<p><img src="/assets/img/contents/lvsb-2.png" alt="lvsb-2.png" /></p>
+
+<p>log4j2 2.15.0 버전에서 패치한 내용이 완벽하지 않다는 취약점이 발견되었다.</p>
+
+<p>2.15.0 버전에서는 JNDI LDAP Lookup을 비활성화하고 로컬호스트에서만 가능하게 했는데</p>
+
+<p>기본값이 아닌 특정 패턴 레이아웃을 사용하면 입력 데이터를 조작할 수 있는 것으로 밝혀졌다.</p>
+
+<p>최근 배포된 2.16.0에서는 이런 취약점을 해결할 수 있도록 아예 메시지 룩업 패턴 기능을 제거하였다.</p>
+
+<p>따라서 기존 방법으로 패치하지 말고 2.16.0으로 업데이트가 필요하다.</p>
+
+<blockquote>
+  <p><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-45046">CVE-2021-45046</a></p>
+
+  <p><a href="https://krcert.or.kr/data/secNoticeView.do?bulletin_writing_sequence=36389">인터넷침해대응센터 보안공지</a></p>
+</blockquote>
+
+<hr />
+
+<h2 id="spring-boot를-사용하는-경우">Spring boot를 사용하는 경우</h2>
+
+<p>스프링 부트를 사용하는 경우 <code class="language-plaintext highlighter-rouge">spring-boot-starter-logging</code>을 사용하게 되는데</p>
+
+<p>해당 디펜던시에 포함된 <code class="language-plaintext highlighter-rouge">log4j-to-slf4j</code>와 <code class="language-plaintext highlighter-rouge">log4j-api</code> 라이브러리의 경우 취약점 문제가 없다고 한다.</p>
+
+<p>오직 <code class="language-plaintext highlighter-rouge">log4j-core</code> 라이브러리가 포함된 경우에만 문제가 발생한다.</p>
+
+<p>기본적으로 spring-boot-starter를 사용하는경우 로그백을 사용하기 때문에 log4j2를 사용하도록 명시하지 않은 경우에는 문제 발생하지 않는다.</p>
+
+<blockquote>
+  <p><a href="https://spring.io/blog/2021/12/10/log4j2-vulnerability-and-spring-boot">https://spring.io/blog/2021/12/10/log4j2-vulnerability-and-spring-boot</a></p>
+</blockquote>
+
+<p>12월 23일 배포되는 v2.5.8과 v2.6.2에는 log4j 2.15.0 버전을 사용할 것이라고 함</p>
+
+<hr />
+
+<h2 id="해결방법">해결방법</h2>
+
+<h3 id="1-log4j2-2160-패치하기">1. Log4j2 2.16.0 패치하기</h3>
+
+<p><del>Lookup 기능을 기본값으로 비활성화시킨 log4j2 2.15.0 버전이 배포 되었다.</del></p>
+
+<blockquote>
+  <p><del><a href="https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-core/2.15.0/">Log4j2 2.15.0</a></del></p>
+</blockquote>
+
+<p>최근 취약점이 해결된 Log4j2 2.16.0 버전으로 업데이트한다.</p>
+
+<blockquote>
+  <p><a href="https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-core/2.16.0/">Log4j2 2.16.0</a></p>
+</blockquote>
+
+<h4 id="maven">Maven</h4>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;properties&gt;</span>
+    <span class="nt">&lt;log4j2.version&gt;</span>2.16.0<span class="nt">&lt;/log4j2.version&gt;</span>
+<span class="nt">&lt;/properties&gt;</span>
+</code></pre></div></div>
+
+<h4 id="gradle-with-spring-boot">Gradle with Spring boot</h4>
+
+<p>spring dependency management에서 버전 관리해주므로 아래와 같이 사용</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ext</span><span class="o">[</span><span class="s1">'log4j2.version'</span><span class="o">]</span> <span class="o">=</span> <span class="s1">'2.16.0'</span>
+</code></pre></div></div>
+
+<h4 id="gradle">Gradle</h4>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
+  <span class="n">compile</span> <span class="nl">group:</span> <span class="s1">'org.apache.logging.log4j'</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">'log4j-api'</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">'2.16.0'</span>
+  <span class="n">compile</span> <span class="nl">group:</span> <span class="s1">'org.apache.logging.log4j'</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">'log4j-core'</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">'2.16.0'</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="2-프로퍼티로-lookup-비활성화하기"><del>2. 프로퍼티로 lookup 비활성화하기</del></h3>
+
+<p><del>java 실행시 <code class="language-plaintext highlighter-rouge">log4j2.formatMsgNoLookups=true</code> 플래그 추가</del></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">java</span> <span class="o">-</span><span class="nc">Dlog4j2</span><span class="o">.</span><span class="na">formatMsgNoLookups</span><span class="o">=</span><span class="kc">true</span> <span class="o">-</span><span class="n">jar</span> <span class="n">myapp</span><span class="o">.</span><span class="na">jar</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-45046">CVE-2021-45046</a>에 유효하지 않다.</p>
+
+  <p>2.16.0 버전으로 패치할 것</p>
+</blockquote>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://spring.io/blog/2021/12/10/log4j2-vulnerability-and-spring-boot">https://spring.io/blog/2021/12/10/log4j2-vulnerability-and-spring-boot</a></li>
+  <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-44228">CVE-2021-44228</a></li>
+  <li><a href="https://krcert.or.kr/data/secNoticeView.do?bulletin_writing_sequence=36389">인터넷침해대응센터 보안공지</a></li>
+  <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-45046">CVE-2021-45046</a></li>
+</ol>
+
+:ET
