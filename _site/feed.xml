@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-12-15T17:01:31+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>개발일지</subtitle><entry><title type="html">Spring Web 둘 이상의 fragment들이 발견된 경우</title><link href="http://localhost:4000/2021/12/14/spring-mvc-web-fragment.html" rel="alternate" type="text/html" title="Spring Web 둘 이상의 fragment들이 발견된 경우" /><published>2021-12-14T00:00:00+09:00</published><updated>2021-12-14T00:00:00+09:00</updated><id>http://localhost:4000/2021/12/14/spring-mvc-web-fragment</id><content type="html" xml:base="http://localhost:4000/2021/12/14/spring-mvc-web-fragment.html">&lt;h1 id=&quot;spring-web-둘-이상의-fragment들이-발견된-경우&quot;&gt;Spring Web 둘 이상의 fragment들이 발견된 경우&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-12-15T17:44:14+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Seunghoon Choi</title><subtitle>개발일지</subtitle><entry><title type="html">Spring Web 둘 이상의 fragment들이 발견된 경우</title><link href="http://localhost:4000/2021/12/14/spring-mvc-web-fragment.html" rel="alternate" type="text/html" title="Spring Web 둘 이상의 fragment들이 발견된 경우" /><published>2021-12-14T00:00:00+09:00</published><updated>2021-12-14T00:00:00+09:00</updated><id>http://localhost:4000/2021/12/14/spring-mvc-web-fragment</id><content type="html" xml:base="http://localhost:4000/2021/12/14/spring-mvc-web-fragment.html">&lt;h1 id=&quot;spring-web-둘-이상의-fragment들이-발견된-경우&quot;&gt;Spring Web 둘 이상의 fragment들이 발견된 경우&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/titles/spring-logo.svg&quot; alt=&quot;spring-logo.svg&quot; /&gt;&lt;/p&gt;
 
@@ -68,7 +68,15 @@
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;그러면-도대체-web-fragmentxml이-뭘까&quot;&gt;그러면 도대체 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web-fragment.xml&lt;/code&gt;이 뭘까?&lt;/h3&gt;
+&lt;h3 id=&quot;web-fragmentxml이-뭘까&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web-fragment.xml&lt;/code&gt;이 뭘까?&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web-fragment.xml&lt;/code&gt; 이란 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web.xml&lt;/code&gt;의 논리적인 부분 파일이라고 보면 된다.&lt;/p&gt;
+
+&lt;p&gt;서블릿 3.0부터 여러개의 xml 설정값을 지원한다.&lt;/p&gt;
+
+&lt;p&gt;이에따라 서블릿 컨텍스트는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WEB-INF/web.xml&lt;/code&gt; 뿐만 아니라 라이브러리 jar 파일 안의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;META-INF/web-frgament.xml&lt;/code&gt;도 함께 탐색을 한다고 한다.&lt;/p&gt;
+
+&lt;p&gt;즉 라이브러리 그 자체의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web.xml&lt;/code&gt; 파일이라고 생각하면 된다.&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web-fragment.xml&lt;/code&gt;&lt;/p&gt;
 
@@ -105,13 +113,7 @@
 
 &lt;p&gt;위 두 부분이 차이나는 것을 확인할 수 있다.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web-fragment.xml&lt;/code&gt; 이란 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web.xml&lt;/code&gt;의 논리적인 부분 파일이라고 보면 된다.&lt;/p&gt;
-
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web.xml&lt;/code&gt;이 루트 엘리먼트로 web-app을 바라보고 있는 것과 달리 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web-fragment.xml&lt;/code&gt;은 web-fragment 스키마를 루트로 두고 있는 것을 확인할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;서블릿 3.0부터 서블릿 컨텍스트는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WEB-INF/web.xml&lt;/code&gt; 뿐만 아니라 라이브러리 jar 파일 안의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;META-INF/web-frgament.xml&lt;/code&gt;도 함께 탐색을 한다고 한다.&lt;/p&gt;
-
-&lt;p&gt;즉, 라이브러리 그 자체의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web.xml&lt;/code&gt; 파일이라고 생각하면 된다.&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spring-web-5.3.9.jar&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spring-web-5.3.9-sources.jar&lt;/code&gt;에 담겨있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;web-frgament.xml&lt;/code&gt; 파일이 동일한 spring_web이라는 이름을 가지고 있으므로 서로 충돌이 발생한 것이다.&lt;/p&gt;
 
@@ -141,14 +143,21 @@
 
 &lt;p&gt;web fragment 파일들을 불러오는 순서를 절대적 순서로 변경하면 문제가 해결된다.&lt;/p&gt;
 
-&lt;p&gt;이에 대해서 좀 더 구글링을 해보았는데 해결 방법만 나와있고 어느곳에서도 어떤 방식으로 해결했는지에 대한 뚜렷한 설명은 하고 있지 않다.&lt;/p&gt;
-
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;이름이 [spring_web]인, 둘 이상의 fragment들이 발견되었습니다. 이는 상대적 순서배열에서 불허됩니다. 상세 정보는 서블릿 스펙 8.2.2 2c 장을 참조하십시오. 절대적 순서배열을 사용하는 것을 고려해 보십시오.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;추측으로는 기본값으로 web-fragment 순서들은 상대적 순서로 설정되어 있으며 이를 절대적 순서로 바꾸었을 시 이름이 겹쳐도 문제가 발생하지 않는 것으로 보인다.&lt;/p&gt;
+&lt;p&gt;현재 구성된 서블릿 3.1의 스펙 8.2.2 2c를 보면 다음과 같다.&lt;/p&gt;
 
-&lt;p&gt;역시 에러메시지에 해답이 존재하는 것 같다.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;c. Duplicate name exception: if, when traversing the web-fragments, multiple
+members with the same &amp;lt;name&amp;gt; element are encountered, the application must
+log an informative error message including information to help fix the
+problem, and must fail to deploy. For example, one way to fix this problem is
+for the user to use absolute ordering, in which case relative ordering is ignored.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이름이 같은 web-fragment가 존재할 경우 예외를 발생시키도록 규정되어 있다.&lt;/p&gt;
+
+&lt;p&gt;기본값으로 web-fragment 순서들은 상대적 순서로 설정되어 있으며 이를 절대적 순서를 사용하여 문제를 해결하도록 규정하고 있다.&lt;/p&gt;
 
 &lt;p&gt;위의 경우엔 web.xml 파일을 사용하고 있으므로 애너테이션 방식에서는 사용할 수 없다는 단점이 존재한다.&lt;/p&gt;
 
@@ -162,7 +171,7 @@
 
 &lt;p&gt;원래 자바 jar 라이브러리들간의 충돌은 일어나서는 안된다.&lt;/p&gt;
 
-&lt;p&gt;하지만 스프링 컨텍스트, 서블릿 컨테이너라는 스프링의 독자적인 특징으로 인하여 발생하는 버그라고 생각하면 될 것 같다.&lt;/p&gt;
+&lt;p&gt;하지만 서블릿 스펙상 충돌이 일어나도록 라이브러리를 배포한 스프링의 이슈라고 보면 될 것 같다.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;&lt;a href=&quot;https://repo.spring.io/ui/native/release/org/springframework/spring/5.3.9&quot;&gt;https://repo.spring.io/ui/native/release/org/springframework/spring/5.3.9&lt;/a&gt;&lt;/p&gt;
@@ -178,6 +187,7 @@
   &lt;li&gt;&lt;a href=&quot;https://www.roseindia.net/servlets/servlet3/webfragmentsOrdering.shtml&quot;&gt;https://www.roseindia.net/servlets/servlet3/webfragmentsOrdering.shtml&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://stackoverflow.com/questions/56281548/how-do-frameworks-like-spring-configure-the-servlet-container-without-web-xml&quot;&gt;https://stackoverflow.com/questions/56281548/how-do-frameworks-like-spring-configure-the-servlet-container-without-web-xml&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.udemy.com/course/spring-hibernate-tutorial/&quot;&gt;Udemy Spring &amp;amp; Hibernate for Beginners&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://javaee.github.io/servlet-spec/downloads/servlet-3.1/Final/servlet-3_1-final.pdf&quot;&gt;Servlet 3.1 Specification&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;</content><author><name>csupreme19</name></author><category term="mac" /><category term="ATS" /><category term="iOS" /><category term="eclipse" /><summary type="html">Spring Web 둘 이상의 fragment들이 발견된 경우</summary></entry><entry><title type="html">Mac Eclipse ATS 오류 해결방법</title><link href="http://localhost:4000/2021/12/14/mac-eclipse-ATS.html" rel="alternate" type="text/html" title="Mac Eclipse ATS 오류 해결방법" /><published>2021-12-14T00:00:00+09:00</published><updated>2021-12-14T00:00:00+09:00</updated><id>http://localhost:4000/2021/12/14/mac-eclipse-ATS</id><content type="html" xml:base="http://localhost:4000/2021/12/14/mac-eclipse-ATS.html">&lt;h1 id=&quot;mac-eclipse-ats-오류-원인-및-해결방법&quot;&gt;Mac Eclipse ATS 오류 원인 및 해결방법&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/titles/eclipse-logo.png&quot; alt=&quot;eclipse-logo.png&quot; /&gt;&lt;/p&gt;
@@ -447,7 +457,7 @@
 
 &lt;p&gt;&lt;del&gt;java 실행시 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;log4j2.formatMsgNoLookups=true&lt;/code&gt; 플래그 추가&lt;/del&gt;&lt;/p&gt;
 
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;java&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Dlog4j2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;formatMsgNoLookups&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;jar&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myapp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;jar&lt;/span&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// java -Dlog4j2.formatMsgNoLookups=true -jar myapp.jar&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;blockquote&gt;
@@ -463,7 +473,7 @@
 
 &lt;p&gt;라이브러리 자체에서 해당 기능을 하는 클래스를 제거하는 방법이다.&lt;/p&gt;
 
-&lt;p&gt;급한 경우 사용&lt;/p&gt;
+&lt;p&gt;당장의 업데이트가 불가피할때 클래스 자체를 지워버리는 방법이다;&lt;/p&gt;
 
 &lt;hr /&gt;
 

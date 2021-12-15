@@ -1,4 +1,4 @@
-I"&<h1 id="스프링부트와-log4j2-취약점">스프링부트와 log4j2 취약점</h1>
+I"8<h1 id="스프링부트와-log4j2-취약점">스프링부트와 log4j2 취약점</h1>
 
 <p><img src="/assets/img/titles/log4j.png" alt="log4j.png" /></p>
 
@@ -34,7 +34,7 @@
 
 <p>기본값이 아닌 특정 패턴 레이아웃을 사용하면 입력 데이터를 조작할 수 있는 것으로 밝혀졌다.</p>
 
-<p>최근 배포된 2.16.0에서는 이런 취약점을 해결할 수 있도록 아예 메시지 룩업 패턴 기능을 제거하였다.</p>
+<p>최근 배포된 2.16.0에서는 이런 취약점을 해결할 수 있도록 메시지 룩업 패턴 기능을 제거하였다.</p>
 
 <p>따라서 기존 방법으로 패치하지 말고 2.16.0으로 업데이트가 필요하다.</p>
 
@@ -60,7 +60,7 @@
   <p><a href="https://spring.io/blog/2021/12/10/log4j2-vulnerability-and-spring-boot">https://spring.io/blog/2021/12/10/log4j2-vulnerability-and-spring-boot</a></p>
 </blockquote>
 
-<p>12월 23일 배포되는 v2.5.8과 v2.6.2에는 log4j 2.15.0 버전을 사용할 것이라고 함</p>
+<p><del>12월 23일 배포되는 v2.5.8과 v2.6.2에는 log4j 2.15.0 버전을 사용할 것이라고 함</del></p>
 
 <hr />
 
@@ -106,7 +106,7 @@
 
 <p><del>java 실행시 <code class="language-plaintext highlighter-rouge">log4j2.formatMsgNoLookups=true</code> 플래그 추가</del></p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">java</span> <span class="o">-</span><span class="nc">Dlog4j2</span><span class="o">.</span><span class="na">formatMsgNoLookups</span><span class="o">=</span><span class="kc">true</span> <span class="o">-</span><span class="n">jar</span> <span class="n">myapp</span><span class="o">.</span><span class="na">jar</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span> <span class="n">java</span> <span class="o">-</span><span class="nc">Dlog4j2</span><span class="o">.</span><span class="na">formatMsgNoLookups</span><span class="o">=</span><span class="kc">true</span> <span class="o">-</span><span class="n">jar</span> <span class="n">myapp</span><span class="o">.</span><span class="na">jar</span>
 </code></pre></div></div>
 
 <blockquote>
@@ -114,6 +114,15 @@
 
   <p>2.16.0 버전으로 패치할 것</p>
 </blockquote>
+
+<h3 id="3-jndilookupclass-제거-임시조치">3. JndiLookup.class 제거 (임시조치)</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>zip <span class="nt">-q</span> <span class="nt">-d</span> log4j-core-<span class="k">*</span>.jar org/apache/logging/log4j/core/lookup/JndiLookup.class
+</code></pre></div></div>
+
+<p>라이브러리 자체에서 해당 기능을 하는 클래스를 제거하는 방법이다.</p>
+
+<p>급한 경우 사용</p>
 
 <hr />
 

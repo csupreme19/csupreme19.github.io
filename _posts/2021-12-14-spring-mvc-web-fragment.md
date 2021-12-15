@@ -70,7 +70,17 @@ Spring Web MVC 프로젝트 구동시 위와같은 오류 메시지가 발생하
 
 <br>
 
-### 그러면 도대체 `web-fragment.xml`이 뭘까?
+### `web-fragment.xml`이 뭘까?
+
+`web-fragment.xml` 이란 `web.xml`의 논리적인 부분 파일이라고 보면 된다.
+
+서블릿 3.0부터 여러개의 xml 설정값을 지원한다.
+
+이에따라 서블릿 컨텍스트는 `WEB-INF/web.xml` 뿐만 아니라 라이브러리 jar 파일 안의 `META-INF/web-frgament.xml`도 함께 탐색을 한다고 한다.
+
+즉 라이브러리 그 자체의 `web.xml` 파일이라고 생각하면 된다.
+
+
 
 `web-fragment.xml`
 
@@ -109,17 +119,13 @@ Spring MVC web.xml과의 차이점을 살펴보자
 
 위 두 부분이 차이나는 것을 확인할 수 있다.
 
-`web-fragment.xml` 이란 `web.xml`의 논리적인 부분 파일이라고 보면 된다.
-
 `web.xml`이 루트 엘리먼트로 web-app을 바라보고 있는 것과 달리 `web-fragment.xml`은 web-fragment 스키마를 루트로 두고 있는 것을 확인할 수 있다.
 
-
-
-서블릿 3.0부터 서블릿 컨텍스트는 `WEB-INF/web.xml` 뿐만 아니라 라이브러리 jar 파일 안의 `META-INF/web-frgament.xml`도 함께 탐색을 한다고 한다.
-
-즉, 라이브러리 그 자체의 `web.xml` 파일이라고 생각하면 된다.
-
 `spring-web-5.3.9.jar`와 `spring-web-5.3.9-sources.jar`에 담겨있는 `web-frgament.xml` 파일이 동일한 spring_web이라는 이름을 가지고 있으므로 서로 충돌이 발생한 것이다.
+
+
+
+
 
 ---
 
@@ -148,15 +154,23 @@ Spring MVC web.xml과의 차이점을 살펴보자
 
 web fragment 파일들을 불러오는 순서를 절대적 순서로 변경하면 문제가 해결된다.
 
-이에 대해서 좀 더 구글링을 해보았는데 해결 방법만 나와있고 어느곳에서도 어떤 방식으로 해결했는지에 대한 뚜렷한 설명은 하고 있지 않다.
-
 ```
 이름이 [spring_web]인, 둘 이상의 fragment들이 발견되었습니다. 이는 상대적 순서배열에서 불허됩니다. 상세 정보는 서블릿 스펙 8.2.2 2c 장을 참조하십시오. 절대적 순서배열을 사용하는 것을 고려해 보십시오.
 ```
 
-추측으로는 기본값으로 web-fragment 순서들은 상대적 순서로 설정되어 있으며 이를 절대적 순서로 바꾸었을 시 이름이 겹쳐도 문제가 발생하지 않는 것으로 보인다.
+현재 구성된 서블릿 3.1의 스펙 8.2.2 2c를 보면 다음과 같다.
 
-역시 에러메시지에 해답이 존재하는 것 같다.
+```
+c. Duplicate name exception: if, when traversing the web-fragments, multiple
+members with the same <name> element are encountered, the application must
+log an informative error message including information to help fix the
+problem, and must fail to deploy. For example, one way to fix this problem is
+for the user to use absolute ordering, in which case relative ordering is ignored.
+```
+
+이름이 같은 web-fragment가 존재할 경우 예외를 발생시키도록 규정되어 있다.
+
+기본값으로 web-fragment 순서들은 상대적 순서로 설정되어 있으며 이를 절대적 순서를 사용하여 문제를 해결하도록 규정하고 있다.
 
 위의 경우엔 web.xml 파일을 사용하고 있으므로 애너테이션 방식에서는 사용할 수 없다는 단점이 존재한다.
 
@@ -170,7 +184,7 @@ web fragment 파일들을 불러오는 순서를 절대적 순서로 변경하�
 
 원래 자바 jar 라이브러리들간의 충돌은 일어나서는 안된다.
 
-하지만 스프링 컨텍스트, 서블릿 컨테이너라는 스프링의 독자적인 특징으로 인하여 발생하는 버그라고 생각하면 될 것 같다.
+하지만 서블릿 스펙상 충돌이 일어나도록 라이브러리를 배포한 스프링의 이슈라고 보면 될 것 같다.
 
 > [https://repo.spring.io/ui/native/release/org/springframework/spring/5.3.9](https://repo.spring.io/ui/native/release/org/springframework/spring/5.3.9)
 >
@@ -183,3 +197,4 @@ web fragment 파일들을 불러오는 순서를 절대적 순서로 변경하�
 1. [https://www.roseindia.net/servlets/servlet3/webfragmentsOrdering.shtml](https://www.roseindia.net/servlets/servlet3/webfragmentsOrdering.shtml)
 2. [https://stackoverflow.com/questions/56281548/how-do-frameworks-like-spring-configure-the-servlet-container-without-web-xml](https://stackoverflow.com/questions/56281548/how-do-frameworks-like-spring-configure-the-servlet-container-without-web-xml)
 3. [Udemy Spring & Hibernate for Beginners](https://www.udemy.com/course/spring-hibernate-tutorial/)
+4. [Servlet 3.1 Specification](https://javaee.github.io/servlet-spec/downloads/servlet-3.1/Final/servlet-3_1-final.pdf)
