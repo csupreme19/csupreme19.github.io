@@ -1,6 +1,6 @@
 <div class="posts">
     {% unless paginator.posts %}
-    <article><section class="post-content"><p>There are no blog posts</p></section></article>
+    <article><section class="post-content"><p>게시물이 존재하지 않습니다.</p></section></article>
     {% endunless %}
     {% for post in paginator.posts %}
     <div class="post-teaser">

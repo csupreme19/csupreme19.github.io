@@ -9,7 +9,10 @@
     <p class="meta">
       {% if author.name %}{{ author.name }} - {% endif %}
       {% assign x = date | date: "%m" | minus: 1 %}
+      {{ date | date: "%Y년 %m월 %d일" }}
+      {% comment %}
       {{ site.data.language.str_months[x] | default: date | date: "%B" }} {{ date | date: "%d, %Y" }}
+      {% endcomment %}
     </p>
   {%- if author.url -%}</a>{%- endif -%}
 </div>

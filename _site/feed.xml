@@ -5,8 +5,8 @@
     <description>개발 블로그</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 16 Dec 2021 17:02:43 +0900</pubDate>
-    <lastBuildDate>Thu, 16 Dec 2021 17:02:43 +0900</lastBuildDate>
+    <pubDate>Thu, 16 Dec 2021 17:49:22 +0900</pubDate>
+    <lastBuildDate>Thu, 16 Dec 2021 17:49:22 +0900</lastBuildDate>
     <generator>Jekyll v4.2.1</generator>
     
       <item>
