@@ -49,10 +49,15 @@
     <script>
       const cookieName = 'cookie-notice-dismissed-http://localhost:4000';
       const isCookieConsent = 'false';
-      const analyticsName = '';
+      const analyticsName = 'G-HVJZ84KLQM';
     </script>
 
     
+    
+        <!-- Global site tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-HVJZ84KLQM"></script>
+        <!-- Page analysis (analytics.js) -->
+        <script async src='https://www.google-analytics.com/analytics.js'></script>
     
 
     <!-- seo tags -->
@@ -61,19 +66,19 @@
     <meta property="og:type" content="website" />
     
     <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Search | Seunghoon Choi</title>
+<title>검색 | Seunghoon Choi</title>
 <meta name="generator" content="Jekyll v4.2.1" />
-<meta property="og:title" content="Search" />
+<meta property="og:title" content="검색" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="개발일지" />
-<meta property="og:description" content="개발일지" />
+<meta name="description" content="개발 블로그" />
+<meta property="og:description" content="개발 블로그" />
 <link rel="canonical" href="http://localhost:4000/search/" />
 <meta property="og:url" content="http://localhost:4000/search/" />
 <meta property="og:site_name" content="Seunghoon Choi" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Search" />
+<meta property="twitter:title" content="검색" />
 <script type="application/ld+json">
-{"description":"개발일지","url":"http://localhost:4000/search/","@type":"WebPage","headline":"Search","@context":"https://schema.org"}</script>
+{"headline":"검색","description":"개발 블로그","url":"http://localhost:4000/search/","@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -81,12 +86,12 @@
     <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Seunghoon Choi" />
 
     <!-- Twitter Cards -->
-    <meta name="twitter:title" content="Search">
+    <meta name="twitter:title" content="검색">
     <meta name="twitter:description" content="실행하고 정리하고 기록하기">
     
     <meta name="twitter:card" content="summary">
     <meta name="twitter:image" content="http://localhost:4000/assets/img/pexels/search-map.jpeg">
-    <meta name="twitter:image:alt" content="Search">
+    <meta name="twitter:image:alt" content="검색">
 </head>
 
   <body>
@@ -119,22 +124,17 @@
             
         
             
-            <li class="separator"> | </li>
-            <li>
-                <a class="clear" aria-label="About" title="About" href="/about/">
-                     About 
-                </a>
-            </li>
+            
+        
             
             
         
             
-            <li class="separator"> | </li>
-            <li>
-                <a class="clear" aria-label="Gallery" title="Gallery" href="/gallery/">
-                     Gallery 
-                </a>
-            </li>
+            
+        
+            
+            
+        
             
             
         
@@ -147,20 +147,7 @@
             
             <li class="separator"> | </li>
             <li>
-                <a class="clear" aria-label="Portfolio" title="Portfolio" href="/portfolio/">
-                     Portfolio 
-                </a>
-            </li>
-            
-            
-        
-            
-            
-        
-            
-            <li class="separator"> | </li>
-            <li>
-                <a class="clear" aria-label="Search" title="Search" href="/search/">
+                <a class="clear" aria-label="검색" title="검색" href="/search/">
                      <i class="fas fa-search" aria-hidden="true"></i>
                     
                 </a>
@@ -169,16 +156,16 @@
             
         
             
+            
+        
+            
             <li class="separator"> | </li>
             <li>
-                <a class="clear" aria-label="Tags" title="Tags" href="/tags/">
+                <a class="clear" aria-label="태그" title="태그" href="/tags/">
                      <i class="fas fa-tags" aria-hidden="true"></i>
                     
                 </a>
             </li>
-            
-            
-        
             
             
         
@@ -225,9 +212,7 @@
   <header id="main" style="background-image: url('/assets/img/pexels/search-map.jpeg')">
     <div class="title-padder">
       
-        <h1 id="Search" class="title"> Search</h1>
-        
-        <h2 class="subtitle">What are you looking for?</h2>
+        <h1 id="%EA%B2%80%EC%83%89" class="title"> 검색</h1>
         
       
     </div>
@@ -236,7 +221,7 @@
   <section class="post-content">
   
 	<!-- Html Elements for Search -->
-<input type="text" id="search-input" placeholder="Enter keywords..." class="search-bar" autofocus>
+<input type="text" id="search-input" placeholder='검색어를 입력하세요...' class="search-bar" autofocus>
 <br>
 <br>
 <ul id="results-container"></ul>
@@ -248,7 +233,7 @@
             resultsContainer: document.getElementById('results-container'),
             json: '/assets/data/search.json',
             searchResultTemplate: '<div class="search-title"><a href="{url}"><h3> {title}</h3></a><div class="meta">{date} <div class="right"><i class="fas fa-tag"></i> {tags}</div></div><p>{excerpt}</p></div><hr> ',
-            noResultsText: 'No result found',
+            noResultsText: '검색 결과가 없습니다.',
             limit: 10,
             fuzzy: false,
             exclude: []
