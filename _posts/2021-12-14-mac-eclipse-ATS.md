@@ -4,7 +4,7 @@ title: Mac Eclipse ATS 오류 해결방법
 feature-img: assets/img/titles/eclipse-logo.png
 thumbnail: assets/img/contents/mea-1.png
 author: csupreme19
-tags: [mac, ATS, iOS, eclipse]
+tags: [Mac, ATS, iOS, Eclipse]
 
 ---
 
