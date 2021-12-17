@@ -20,27 +20,22 @@
 
         <!-- Menu -->
         <ul class="hide">
-            {% assign name_page = "" %}
 
-            {% for page in site.pages %}
+            {% assign sorted = site.pages | sort: 'layout' %}
+            {% for page in sorted %}
             {% unless page.title == null or page.hide or name_page contains page.title %}
             <li class="separator"> | </li>
             <li>
                 <a class="clear" aria-label="{{ page.title }}" title="{{ page.title }}"
-                    href="{{ page.url | relative_url }}">
-                    {% if page.icon %} <i class="fas {{ page.icon }}" aria-hidden="true"></i>
-                    {% else %} {{ page.title }} {% endif%}
+                    href="{{ page.url | relative_url }}"> {% if page.icon %} <i class="fas {{ page.icon }}"
+                        aria-hidden="true"></i>{% endif%}
+                    {{ page.title }}
                 </a>
             </li>
             {% endunless %}
             {% assign name_page = page.title | append: name_page %}
             {% endfor %}
 
-            {% if site.color_theme == 'auto' %}
-            <li class="separator"> | </li>
-            <li><a id="theme-toggle" title="{{ page.title }} " aria-label="{{ page.title }}"
-                    onclick="themeToggle()"></a></li>
-            {% endif %}
         </ul>
 
     </nav>
