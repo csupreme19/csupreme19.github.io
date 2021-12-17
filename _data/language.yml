@@ -1,0 +1,21 @@
+# Localization strings
+str_follow_on: "Follow on"
+str_rss_follow: "Follow RSS feed"
+str_share_on: "Share on"
+str_add_to: "Add to"
+str_email: "Email"
+str_tweet: "Tweet"
+str_pin_it: "Pin it"
+str_next_post: "다음 게시물"
+str_previous_post: "이전 게시물"
+str_next_page: "다음"
+str_previous_page: "이전"
+str_javascript_required_disqus: "Please enable JavaScript to view comments."
+str_no_result_found: "검색 결과가 없습니다."
+str_cookie_approve: "Approve"
+str_cookie_disclaimer: "We would like to use third party cookies and scripts to improve the functionality of this website."
+str_months: [1월, 2월, 3월, 4월, 5월, 6월, 7월, 8월, 9월, 10월, 11월, 12월]
+str_search_input_placeholder: "검색어를 입력하세요..."
+
+# Localization settings 
+cusdis_lang: # zh-cn, es, tr, pt-BR

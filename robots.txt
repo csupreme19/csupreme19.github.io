@@ -1,0 +1,6 @@
+ User-agent: *
+ Allow: /
+ Disallow: /about
+ Disallow: /gallery
+ Disallow: /portfolio
+ Sitemap: {{ '/sitemap.xml' | relative_url | prepend: site.url }}
