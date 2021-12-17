@@ -4,6 +4,7 @@ title: MySQL dump & restore
 feature-img: assets/img/titles/mysql-logo.png
 thumbnail: assets/img/titles/mysql-logo.png
 author: csupreme19
+categories: DB MySQL
 tags: [MySQL, DB, RDBMS, SQL, Dump, Restore]
 
 ---

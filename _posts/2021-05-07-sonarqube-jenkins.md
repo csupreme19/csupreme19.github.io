@@ -4,6 +4,7 @@ title: SonarQube 설치 및 Jenkins pipeline 연동하기
 feature-img: assets/img/titles/sonarqube.png
 thumbnail: assets/img/contents/sj-1.png
 author: csupreme19
+categories: DevOps CICD
 tags: [Sonarqube, Jenkins, Helm, Docker, Docker-Compose]
 
 ---

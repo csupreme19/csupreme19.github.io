@@ -4,6 +4,7 @@ title: Elastic Stack Observability 개요
 feature-img: assets/img/titles/elastic-logo.png
 thumbnail: assets/img/contents/eo-1.png
 author: csupreme19
+categories: DevOps Elastic
 tags: [Elasticsearch, Elastic, ELK, Kibana, Logstash, Monitoring, Observability]
 
 ---

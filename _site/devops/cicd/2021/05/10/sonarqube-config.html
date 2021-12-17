@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<!--
+    Type on Strap jekyll theme v2.3.9
+    Theme free for personal and commercial use under the MIT license
+    https://github.com/sylhare/Type-on-Strap/blob/master/LICENSE
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.5, maximum-scale=5">
+
+    <!-- Theme Mode-->
+    
+    <script>
+        const isAutoTheme = false;
+        document.documentElement.setAttribute('data-theme', "dark")
+    </script>
+    
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="Seunghoon Choi" href="http://localhost:4000/feed.xml"/>
+
+    
+
+    <!-- KaTeX 0.13.9 -->
+    
+    <script defer src="/assets/js/vendor/katex.min.js"></script>
+    <script defer src="/assets/js/vendor/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    
+
+    <!-- Mermaid 8.9.2 -->
+    
+    <script defer src="/assets/js/vendor/mermaid.min.js" onload="mermaid.initialize({startOnLoad:true});"></script>
+    
+
+    <!-- Simple Jekyll Search 1.9.1 -->
+    <script src="/assets/js/vendor/simple-jekyll-search.min.js" type="text/javascript"></script>
+
+    <!-- Google Analytics / Cookie Consent -->
+    <script>
+      const cookieName = 'cookie-notice-dismissed-http://localhost:4000';
+      const isCookieConsent = 'false';
+      const analyticsName = 'G-HVJZ84KLQM';
+    </script>
+
+    
+    
+        <!-- Global site tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-HVJZ84KLQM"></script>
+        <!-- Page analysis (analytics.js) -->
+        <script async src='https://www.google-analytics.com/analytics.js'></script>
+    
+
+    <!-- seo tags -->
+    <meta property="og:image" content="http://localhost:4000/assets/img/contents/sc-1.png">
+    
+    <meta property="og:type" content="website" />
+    
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>SonarQube 설정 및 트러블슈팅 | Seunghoon Choi</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="SonarQube 설정 및 트러블슈팅" />
+<meta name="author" content="csupreme19" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="SonarQube 설정 및 트러블슈팅" />
+<meta property="og:description" content="SonarQube 설정 및 트러블슈팅" />
+<link rel="canonical" href="http://localhost:4000/devops/cicd/2021/05/10/sonarqube-config.html" />
+<meta property="og:url" content="http://localhost:4000/devops/cicd/2021/05/10/sonarqube-config.html" />
+<meta property="og:site_name" content="Seunghoon Choi" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-05-10T00:00:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="SonarQube 설정 및 트러블슈팅" />
+<script type="application/ld+json">
+{"datePublished":"2021-05-10T00:00:00+09:00","description":"SonarQube 설정 및 트러블슈팅","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/devops/cicd/2021/05/10/sonarqube-config.html"},"url":"http://localhost:4000/devops/cicd/2021/05/10/sonarqube-config.html","author":{"@type":"Person","name":"csupreme19"},"@type":"BlogPosting","headline":"SonarQube 설정 및 트러블슈팅","dateModified":"2021-05-10T00:00:00+09:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <!-- RSS -->
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Seunghoon Choi" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:title" content="SonarQube 설정 및 트러블슈팅">
+    <meta name="twitter:description" content="SonarQube 설정 및 트러블슈팅SonarQube Documentation본 문서에서는 Sonarqube Jenkins 연동, GitLab 연동, Ingress 인증서 설정, 웹훅 설정 등 내용을 모아 정리하였으며설정시 오류를 해결했던 내역을(트러블슈팅) 정리하였다.SonarQ...">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="http://localhost:4000/assets/img/contents/sc-1.png">
+    <meta name="twitter:image:alt" content="SonarQube 설정 및 트러블슈팅">
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+        
+		<a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/profile-icon.jpeg" />
+		</a>
+        
+        <a class="site-title" aria-label="Seunghoon Choi" href="/">
+        Seunghoon Choi
+		</a>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fas fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        
+
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Development" title="Development" href="/development/">
+                     Development 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="검색" title="검색" href="/search/">
+                     <i class="fas fa-search" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="태그" title="태그" href="/tags/">
+                     <i class="fas fa-tags" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+        
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image" >
+  <header id="main" style="">
+    <div class="title-padder">
+      
+      <h1 id="SonarQube+%EC%84%A4%EC%A0%95+%EB%B0%8F+%ED%8A%B8%EB%9F%AC%EB%B8%94%EC%8A%88%ED%8C%85" class="title">SonarQube 설정 및 트러블슈팅</h1>
+      
+
+
+<div class="post-info"><a href="https://github.com/csupreme19" target="_blank">
+      <img alt="Author's avatar" src="https://avatars.githubusercontent.com/u/76021703?s=400&v=4">
+    
+    <p class="meta">
+      csupreme19 - 
+      
+      2021년 05월 10일
+      
+    </p></a></div>
+
+      
+    </div>
+  </header>
+
+  <section class="post-content">
+  
+      <h1 id="sonarqube-설정-및-트러블슈팅">SonarQube 설정 및 트러블슈팅</h1>
+
+<p><img src="/assets/img/titles/sonarqube.png" alt="sonarqube.png" /></p>
+
+<p><a href="https://docs.sonarqube.org/latest/">SonarQube Documentation</a></p>
+
+<p>본 문서에서는 Sonarqube Jenkins 연동, GitLab 연동, Ingress 인증서 설정, 웹훅 설정 등 내용을 모아 정리하였으며</p>
+
+<p>설정시 오류를 해결했던 내역을(트러블슈팅) 정리하였다.</p>
+
+<hr />
+
+<h2 id="sonarqube-설정">SonarQube 설정</h2>
+
+<h3 id="sonarqube-ingress-ssl-인증서-적용">SonarQube Ingress SSL 인증서 적용</h3>
+
+<h4 id="1-k8s-secret-생성">1. k8s Secret 생성</h4>
+
+<blockquote>
+  <p>k8s secret 생성은 <a href="/2021/04/03/kubernetes-ingress.html">Kubernetes Nginx Ingress 적용</a> 참고</p>
+</blockquote>
+
+<h4 id="2-ingress-리소스-설정">2. Ingress 리소스 설정</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>vim sonarqube-ingress.yaml
+</code></pre></div></div>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">networking.k8s.io/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Ingress</span>
+ <span class="s">metadata</span><span class="err">:</span>
+   <span class="na">name</span><span class="pi">:</span> <span class="s">sonarqube</span>
+   <span class="na">namespace</span><span class="pi">:</span> <span class="s">default</span>
+   <span class="na">annotations</span><span class="pi">:</span>
+     <span class="na">kubernetes.io/ingress.class</span><span class="pi">:</span> <span class="s2">"</span><span class="s">nginx"</span>
+     <span class="na">nginx.ingress.kubernetes.io/ssl-redirect</span><span class="pi">:</span> <span class="s2">"</span><span class="s">false"</span>
+     <span class="na">nginx.ingress.kubernetes.io/force-ssl-redirect</span><span class="pi">:</span> <span class="s2">"</span><span class="s">false"</span>
+     <span class="na">nginx.ingress.kubernetes.io/proxy-body-size</span><span class="pi">:</span> <span class="s2">"</span><span class="s">20M"</span><span class="err">		</span><span class="s">// 20M 초과시 HTTP 413 방지하기 위하여</span>
+ <span class="na">spec</span><span class="pi">:</span>
+   <span class="na">rules</span><span class="pi">:</span>
+   <span class="pi">-</span> <span class="na">host</span><span class="pi">:</span> <span class="s">sonarqube.yourdomain.com</span> <span class="c1"># 추가</span>
+     <span class="na">http</span><span class="pi">:</span><span class="err">	</span><span class="c1"># -(하이픈) 제거</span>
+       <span class="na">paths</span><span class="pi">:</span>
+       <span class="pi">-</span> <span class="na">pathType</span><span class="pi">:</span> <span class="s">Prefix</span>
+         <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/sonarqube"</span>
+         <span class="na">backend</span><span class="pi">:</span>
+           <span class="na">service</span><span class="pi">:</span>
+             <span class="na">name</span><span class="pi">:</span> <span class="s">sonarqube-sonarqube</span>
+             <span class="na">port</span><span class="pi">:</span>
+               <span class="na">number</span><span class="pi">:</span> <span class="m">9000</span>
+   <span class="na">tls</span><span class="pi">:</span><span class="err">	</span><span class="c1"># tls 이하 부분 모두 추가</span>
+   <span class="pi">-</span> <span class="na">hosts</span><span class="pi">:</span>
+     <span class="pi">-</span> <span class="s">sonarqube.yourdomain.com</span> <span class="c1"># 등록한 도메인명 입력</span>
+     <span class="na">secretName</span><span class="pi">:</span> <span class="s">secret-tls</span> <span class="c1"># k8s secret 리소스명 입력</span>
+</code></pre></div></div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl apply <span class="nt">-f</span> sonarqube-ingress.yaml
+</code></pre></div></div>
+
+<blockquote>
+  <p>Nginx Ingress Controller 사용하였다.
+Ingress HTTP, HTTPS(/sonarqube) -&gt; sonarqube 서비스(9000)</p>
+
+  <blockquote>
+    <p>tls 설정에 도메인 입력시 IP 주소로는 Ingress 동작하지 않음</p>
+  </blockquote>
+</blockquote>
+
+<h4 id="3-인증서-적용-확인">3. 인증서 적용 확인</h4>
+
+<p><img src="/assets/img/contents/sc-1.png" alt="sc-1.png" /></p>
+
+<p>도메인 접속 및 확인</p>
+
+<blockquote>
+  <p>Jenkins의 SonarQube Server 설정 값에 기존의 IP주소로 되어있는 경우 도메인 주소로 변경 필요(http)</p>
+</blockquote>
+
+<hr />
+<h3 id="jenkins-webhook-설정">Jenkins Webhook 설정</h3>
+
+<p>SonarQube가 검사를 끝낸 뒤 성공/실패 여부를 전달하기 위하여 SonarQube에 Jenkins로의 Webhook이 설정되어 있어야함</p>
+
+<p><img src="/assets/img/contents/sc-2.png" alt="sc-2.png" /></p>
+
+<h4 id="1-sonarqube-대시보드-로그인">1. SonarQube 대시보드 로그인</h4>
+
+<h4 id="2-administration--configuration--webhooks">2. Administration &gt; Configuration &gt; Webhooks</h4>
+
+<h4 id="3-create">3. Create</h4>
+
+<ul>
+  <li>Name: 원하는 이름(<code class="language-plaintext highlighter-rouge">jenkins-webhook</code>)</li>
+  <li>URL: jenkins 주소 (http 사용할 것)</li>
+  <li>Secret: (선택)</li>
+</ul>
+
+<h4 id="4-빌드시-웹훅-동작-여부를-이-페이지에서-실시간으로-확인-가능">4. 빌드시 웹훅 동작 여부를 이 페이지에서 실시간으로 확인 가능</h4>
+
+<hr />
+<h3 id="jenkins-파이프라인---javascript-typescript-연동">Jenkins 파이프라인 - JavaScript, TypeScript 연동</h3>
+
+<p>JavaScript는 기본적으로 브라우저 위에서 실행되는 언어이기 때문에 이를 실행할 수 있는 프레임워크인 NodeJS가 젠킨스에 필요하다.</p>
+
+<h4 id="1-nodejs-플러그인-설치">1. NodeJS 플러그인 설치</h4>
+
+<ol>
+  <li>Jenkins 관리 &gt; 플러그인 관리 &gt; 설치가능 &gt; nodejs 검색</li>
+  <li>재시작 없이 설치하기(업데이트, 디펜던시 추가 등으로 재시작 필요시 재시작 후 설치하기)</li>
+</ol>
+
+<p><img src="/assets/img/contents/sc-3.png" alt="sc-3.png" /></p>
+
+<h4 id="2-nodejs-tools-설정">2. NodeJS Tools 설정</h4>
+
+<ol>
+  <li>Jenkins 관리 &gt; Global Tool Configuration</li>
+  <li>NodeJS &gt; NodeJS installations…</li>
+  <li>nodejs installer 정보 입력
+    <ul>
+      <li>Name: 원하는 이름(nodejs)</li>
+      <li>Install automatically: 체크</li>
+      <li>Install from nodejs.org</li>
+      <li>Version: NodeJS 14.17.0 (원하는 버전 but latest LTS 버전인 14버전 권장)</li>
+    </ul>
+  </li>
+  <li>저장</li>
+</ol>
+
+<h4 id="3-적용할-pipeline에-nodejs-tool-환경-추가">3. 적용할 pipeline에 nodejs tool 환경 추가</h4>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">node</span> <span class="o">(</span><span class="s1">'jenkins-slave'</span><span class="o">){</span>
+    <span class="o">...</span>
+    <span class="n">env</span><span class="o">.</span><span class="na">NODEJS_HOME</span> <span class="o">=</span> <span class="s2">"${tool 'nodejs'}"</span>	<span class="c1">// 2-3 항목에서 입력한 nodejs installer 이름</span>
+    <span class="n">env</span><span class="o">.</span><span class="na">PATH</span><span class="o">=</span><span class="s2">"${env.NODEJS_HOME}/bin:${env.PATH}"</span>
+    <span class="n">sh</span> <span class="s1">'npm --version'</span>
+    <span class="o">...</span>
+</code></pre></div></div>
+<p>위와같이 설정해주면 jenkins-slave에서 <code class="language-plaintext highlighter-rouge">node</code>, <code class="language-plaintext highlighter-rouge">npm</code> 명령어 사용 가능</p>
+
+<h4 id="4-sonar-property-추가">4. sonar property 추가</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sonarqube {
+       properties {
+                property "sonar.sources", "src/main"
+                property "sonar.tests", "src/test"
+       }
+}
+</code></pre></div></div>
+<blockquote>
+  <p>위 코드는 gradle 프로젝트 build.gradle 파일 기준</p>
+</blockquote>
+
+<p>소나큐브 검증시 기본적으로 java 경로만 잡는 경우</p>
+
+<p><code class="language-plaintext highlighter-rouge">sonar.sources = src/main</code>, <code class="language-plaintext highlighter-rouge">sonar.tests = src/test</code> 등으로 경로를 지정해주어야 JS 코드도 검사 가능</p>
+
+<hr />
+<h3 id="sonarqube-for-maven-설정">SonarQube for Maven 설정</h3>
+
+<p>Maven의 경우 설치형이기 때문에 별도로 dependency 설정이 필요하지 않다.</p>
+
+<p>sonar-maven-plugin을 저장소에서 가져와서 바로 실행한다.</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">stage</span><span class="o">(</span><span class="s2">"SonarQube analysis"</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">withSonarQubeEnv</span><span class="o">(</span><span class="s1">'sonarqube server'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">sh</span> <span class="s1">'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="n">stage</span><span class="o">(</span><span class="s2">"Quality Gate"</span><span class="o">){</span>
+        <span class="n">timeout</span><span class="o">(</span><span class="nl">time:</span> <span class="mi">1</span><span class="o">,</span> <span class="nl">unit:</span> <span class="s1">'HOURS'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">def</span> <span class="n">qg</span> <span class="o">=</span> <span class="n">waitForQualityGate</span><span class="o">()</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">qg</span><span class="o">.</span><span class="na">status</span> <span class="o">!=</span> <span class="s1">'OK'</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">error</span> <span class="s2">"Pipeline aborted due to quality gate failure: ${qg.status}"</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+<h3 id="sonarqube-for-gradle-설정">SonarQube for Gradle 설정</h3>
+
+<p>Gradle 프로젝트의 경우 보통 gradlew의 wrapper 형태로 제공되는 경우가 대부분이다.</p>
+
+<p>따라서 sonarqube 플러그인을 프로젝트의 build.gradle dependency에 추가해주어야한다.</p>
+
+<p>아래 부분 프로젝트의 build.gradle에 추가</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span> <span class="n">plugin</span> <span class="err">부분</span> <span class="err">추가</span>
+	<span class="n">plugin</span> <span class="o">{</span>
+    	<span class="n">id</span> <span class="s1">'org.sonarqube'</span> <span class="n">version</span> <span class="s1">'3.0'</span>
+    <span class="o">}</span>
+<span class="err">#</span> <span class="err">또는</span>
+    <span class="n">buildscript</span> <span class="o">{</span>
+        <span class="n">repositories</span> <span class="o">{</span>
+            <span class="n">jcenter</span><span class="o">()</span>
+        <span class="o">}</span>
+        <span class="n">dependencies</span> <span class="o">{</span>
+            <span class="n">classpath</span><span class="o">(</span><span class="s2">"org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.0"</span><span class="o">)</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    
+	<span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'org.sonarqube'</span>
+
+
+<span class="err">#</span> <span class="n">repository</span> <span class="err">추가</span>
+	<span class="n">repositories</span> <span class="o">{</span>   	
+		<span class="n">jcenter</span><span class="o">()</span>
+	<span class="o">}</span>
+    
+<span class="err">#</span> <span class="n">sonarqube</span> <span class="err">프로퍼티</span> <span class="err">추가</span>
+    <span class="n">sonarqube</span> <span class="o">{</span>
+		<span class="n">properties</span> <span class="o">{</span>
+			<span class="n">property</span> <span class="s2">"sonar.sources"</span><span class="o">,</span> <span class="s2">"src/main"</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+    
+<span class="err">#</span> <span class="n">multi</span> <span class="n">module</span> <span class="n">project</span><span class="err">의</span> <span class="err">경우</span>
+<span class="err">#</span> <span class="err">아래와</span> <span class="err">같이</span> <span class="err">검사할</span> <span class="err">모듈명</span> <span class="err">명시</span> <span class="err">후</span> <span class="err">안에</span> <span class="err">적용</span>
+<span class="n">project</span><span class="o">(</span><span class="s2">":project-web"</span><span class="o">)</span> <span class="o">{</span>
+	<span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'org.sonarqube'</span>
+
+	<span class="n">sonarqube</span> <span class="o">{</span>
+		<span class="n">properties</span> <span class="o">{</span>
+			<span class="n">property</span> <span class="s2">"sonar.sources"</span><span class="o">,</span> <span class="s2">"src/main"</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+<span class="err">#</span> <span class="err">또는</span> <span class="err">전체</span> <span class="err">적용시</span>
+<span class="n">subprojects</span> <span class="o">{</span>
+	<span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">'org.sonarqube'</span>
+
+	<span class="n">sonarqube</span> <span class="o">{</span>
+		<span class="n">properties</span> <span class="o">{</span>
+			<span class="n">property</span> <span class="s2">"sonar.sources"</span><span class="o">,</span> <span class="s2">"src/main"</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<p>빌드시 sonarqube gradle plugin 다운로드 및 검사 확인</p>
+
+<hr />
+<h3 id="sonarqube-quality-profiles-적용">SonarQube Quality Profiles 적용</h3>
+
+<p>기본적으로 각 언어별 Sonar way라는 Default Profile이 적용되어 있음</p>
+
+<p><img src="/assets/img/contents/sc-4.png" alt="sc-4.png" /></p>
+
+<ol>
+  <li>sonarqube 대시보드 로그인</li>
+  <li>(선택) Quality Profiles &gt; Create 또는 Java Sonar way 프로필 설정 &gt; Copy
+    <ul>
+      <li>Name: 원하는 이름</li>
+      <li>Language: 원하는 언어</li>
+      <li>Parent: none</li>
+    </ul>
+  </li>
+  <li>새로 생성한 Profile 설정 &gt; Set as Default</li>
+  <li>설정 &gt; Activate More Rules에서 추가로 적용할 Rule 탐색</li>
+  <li>Activate 클릭하여 적용</li>
+</ol>
+
+<hr />
+<h3 id="sonarqube-gitlab-계정그룹-연동">SonarQube GitLab 계정/그룹 연동</h3>
+
+<p>SonarQube 로그인시 GitLab OAuth2를 사용하여 gitlab 계정 연동을 할 수 있다.</p>
+
+<h4 id="1-gitlab-사이드">1. GitLab 사이드</h4>
+<ol>
+  <li>GitLab OAuth2 Application 등록
+    <ol>
+      <li>Admin Area &gt; Applications &gt; New application</li>
+      <li>New application 입력
+        <ul>
+          <li>Name: 원하는 어플리케이션 이름 입력(GitLab SonarQube)</li>
+          <li>Redirect URI: <code class="language-plaintext highlighter-rouge">${sonarqube-uri}/oauth2/callback/gitlab</code> 입력 (public URL이어야한다.)</li>
+          <li>Trusted: 현재 등록하는 어플리케이션을 신뢰할 것인지? 체크</li>
+          <li>Confidential: Client Secret을 암호화통신할 것인지? 체크</li>
+          <li>Scopes: api 체크(gitlab oauth2 api 사용권한)</li>
+        </ul>
+      </li>
+      <li>Submit 후 앱 정보 확인</li>
+      <li>Application ID, Secret 복사</li>
+    </ol>
+  </li>
+</ol>
+
+<h4 id="2-sonarqube-사이드">2. SonarQube 사이드</h4>
+
+<p><img src="/assets/img/contents/sc-5.png" alt="sc-5.png" /></p>
+
+<ol>
+  <li>Server Base URL 설정
+    <ol>
+      <li>Administration &gt; Configuration &gt; General Settings</li>
+      <li>Server base URL 입력
+        <ul>
+          <li>외부 연동시 기본적으로 public 통신이기 때문에 public url 입력
+            <ul>
+              <li>https://sonarqube.yourdomain.com/sonarqube</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Save</li>
+    </ol>
+  </li>
+  <li>ALM Integration 설정
+    <ol>
+      <li>Administration &gt; Configuration &gt; ALM Integrations &gt; GitLab</li>
+      <li>GitLab Authentication 항목 입력
+        <ul>
+          <li>Enabled: true</li>
+          <li>GitLab URL: public gitlab URL 입력(<code class="language-plaintext highlighter-rouge">https://gitlab.yourdomain.com</code>)</li>
+          <li>Application ID, Secret: 1-4에서 복사한 항목 각각 입력</li>
+          <li>Allow users to sign-up: gitlab oauth2로 처음 로그인하는 사용자를 sonarqube에 등록할 것인지? 체크</li>
+          <li>Synchronize user groups: 소나큐브에 gitlab 그룹명과 일치하는 그룹이 생성되어 있다면 유저를 자동으로 등록한다. 체크</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <h4 id="java-cacerts-인증서-설정kubernetes-tls-secret">Java caCerts 인증서 설정(Kubernetes TLS Secret)</h4>
+
+    <blockquote>
+      <p>Java에서는 https 통신시 기본적으로 java keystore에 인증서를 요구한다.<br />위에서 public 경로를 http로 설정하였으면 상관 없으나 https로 설정한 경우 진행</p>
+
+      <p>현재 Java 기반 서비스들은 Kubernetes 환경에 떠있으므로 해당 환경으로 진행</p>
+      <ol>
+        <li>기존 k8s에 <code class="language-plaintext highlighter-rouge">kubernetes.io/tls</code> 타입으로 떠있는 tls 타입 시크릿은 사용불가하므로 opaque 타입(기본타입) secret을 생성한다.</li>
+        <li>sonarqube-secret.yaml 생성
+          <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 	<span class="nv">$ </span>vim sonarqube-secret.yaml
+</code></pre></div>          </div>
+          <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Secret</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">sonarqube-secret</span>
+<span class="na">data</span><span class="pi">:</span>
+  <span class="na">cert-1.crt</span><span class="pi">:</span> <span class="s">MIIFIzCC...</span> <span class="c1"># .crt(X.509 포맷)의 인증서값</span>
+</code></pre></div>          </div>
+          <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kubectl apply <span class="nt">-f</span> sonarqube-secret.yaml
+</code></pre></div>          </div>
+        </li>
+        <li>helm values.yaml 수정
+          <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>vim values.yaml
+</code></pre></div>          </div>
+          <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">...</span>
+ <span class="na">caCerts</span><span class="pi">:</span>
+   <span class="na">image</span><span class="pi">:</span> <span class="s">adoptopenjdk/openjdk11:alpine</span>
+   <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+   <span class="na">secret</span><span class="pi">:</span> <span class="s">sonarqube-secret</span>
+<span class="nn">...</span>
+</code></pre></div>          </div>
+          <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># helm upgrade</span>
+<span class="nv">$ </span>helm upgrade sonarqube oteemocharts/sonarqube <span class="nt">-f</span> values.yaml
+</code></pre></div>          </div>
+        </li>
+      </ol>
+    </blockquote>
+  </li>
+  <li>
+    <h4 id="테스트">테스트</h4>
+
+    <ol>
+      <li>로그아웃 후 메인페이지에 들어가면 아래 이미지와 같이 Log in with GitLab 버튼 생성 확인
+ <img src="/assets/img/contents/sc-6.png" alt="sc-6.png" /></li>
+      <li>버튼 누르면 GitLab에 로그인되어 있는 경우 자동으로 소나큐브 사용자 생성 및 연동이 완료된다.</li>
+      <li>gitlab 그룹명과 일치하는 그룹을 미리 생성해 놓으면 로그인시 해당 유저 그룹 자동 연동</li>
+    </ol>
+  </li>
+</ol>
+
+<hr />
+<h3 id="sonarqube-배지">SonarQube 배지</h3>
+
+<p><img src="/assets/img/contents/sc-7.png" alt="sc-7.png" /></p>
+
+<p>각 프로젝트 대시보드 &gt; 우상단 Project Information</p>
+
+<p>markdown 형태로 실시간 정보 배지를 embed 가능</p>
+
+<p>대신 해당 배지를 사용하려면 SonarQube 프로젝트가 Public으로 설정되어야하며 이는 소스 취약점을 외부에서 누구나 볼 수 있다는 것을 의미한다.</p>
+
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<h3 id="1-분석-권한-없음">1. 분석 권한 없음</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>ERROR] Error during SonarScanner execution
+<span class="o">[</span>ERROR] You<span class="s1">'re not authorized to run analysis. Please contact the project administrator.
+</span></code></pre></div></div>
+
+<p>빌드 후 검증 수행시 위와 같은 오류가 날 때</p>
+
+<p>SonarQube 플러그인 설치 및 실행은 완료되었으나 Jenkins - SonarQube 연동 계정이 Analysis 실행 권한이 없는 경우이다.</p>
+
+<p><img src="/assets/img/contents/sc-8.png" alt="sc-8.png" /></p>
+
+<ol>
+  <li>SonarQube 대시보드 로그인(관리자 계정 필요)</li>
+  <li>Administration &gt; Security &gt; Global Permissions</li>
+  <li>연동된 유저가 속한 그룹 혹은 유저 자체에 Execute Analysis 권한 체크</li>
+</ol>
+
+<h3 id="2-class-파일-없음">2. class 파일 없음</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>ERROR] Failed to execute goal org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar <span class="o">(</span>default-cli<span class="o">)</span> on project sample-project: Your project contains .java files, please provide compiled classes with sonar.java.binaries property, or exclude them from the analysis with sonar.exclusions property. -&gt; <span class="o">[</span>Help 1]
+</code></pre></div></div>
+
+<p>pipeline 또는 job 실행 순서에 빌드 이전에 분석을 시도하고 있는지 체크할 것.</p>
+
+<p>Java의 경우 sonarqube는 신뢰도를 높이기 위하여 .java 파일만으로 코드 분석을 하지 않고 .java와 .class 파일을 함께 분석한다고 한다.</p>
+
+<blockquote>
+  <p><a href="https://docs.sonarqube.org/latest/analysis/languages/java/#header-2">https://docs.sonarqube.org/latest/analysis/languages/java/#header-2</a> 참고</p>
+</blockquote>
+
+<p>따라서 컴파일된 .class 파일이 있어야하므로 maven 또는 gradle 플러그인을 사용하여야함.</p>
+
+<p>만약 없을 경우, 수동으로 컴파일하여 .class 파일을 넣어줘야함.</p>
+
+<h3 id="3-소스-분석시-http-413-request-entity-too-large">3. 소스 분석시 HTTP 413 REQUEST ENTITY TOO LARGE</h3>
+
+<p>소스 분석시 <code class="language-plaintext highlighter-rouge">HTTP 413 REQUEST ENTITY TOO LARGE</code>가 나오는 경우</p>
+
+<p>검증할 소스가 sonarqube의 max body size(기본값: 20m)를 초과하여 나오는 경우로</p>
+
+<p>아래와 같이 sonarqube-ingress.yaml에 proxy body size 설정</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">...</span>
+   <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">networking.k8s.io/v1</span>
+   <span class="na">kind</span><span class="pi">:</span> <span class="s">Ingress</span>
+    <span class="s">metadata</span><span class="err">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">sonarqube</span>
+      <span class="na">namespace</span><span class="pi">:</span> <span class="s">default</span>
+      <span class="na">annotations</span><span class="pi">:</span>
+        <span class="na">kubernetes.io/ingress.class</span><span class="pi">:</span> <span class="s2">"</span><span class="s">nginx"</span>
+        <span class="na">nginx.ingress.kubernetes.io/ssl-redirect</span><span class="pi">:</span> <span class="s2">"</span><span class="s">false"</span>
+        <span class="na">nginx.ingress.kubernetes.io/force-ssl-redirect</span><span class="pi">:</span> <span class="s2">"</span><span class="s">false"</span>
+        <span class="na">nginx.ingress.kubernetes.io/proxy-body-size</span><span class="pi">:</span> <span class="s2">"</span><span class="s">20M"</span><span class="err">		</span><span class="s">// 20M 초과시 HTTP 413 방지하기 위하여</span>
+<span class="nn">...</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-jenkins/">SonarScanner for Jenkins</a></li>
+  <li><a href="https://www.jenkins.io/doc/pipeline/steps/sonar/#sonarqube-scanner-for-jenkins">SonarQube Scanner for Jenkins</a></li>
+  <li><a href="https://docs.sonarqube.org/latest/analysis/gitlab-integration/">SonarQube GitLab Integration</a></li>
+</ol>
+
+    
+  </section>
+
+  <!-- Social media shares -->
+  
+
+
+   <!-- Tag list -->
+  
+  
+
+
+  <div class="tag-list">
+    <ul>
+      
+        <li class="meta">Tags</li>
+      
+
+      
+        <li><a class="button" href="/tags#GitLab">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> GitLab</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#Ingress">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Ingress</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#Jenkins">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Jenkins</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#Kubernetes">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Kubernetes</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#Sonarqube">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Sonarqube</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#Webhook">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Webhook</p>
+        </a></li>
+      
+    </ul>
+  </div>
+
+
+
+</article>
+
+<!-- Post navigation -->
+
+<div id="post-nav">
+    
+    <div id="previous-post">
+        <a alt="Tomcat session clustering 적용기" href="/development/2021/05/24/tomcat-session-clustering.html">
+            <p>이전 게시물</p>
+            Tomcat session clustering 적용기
+        </a>
+    </div>
+    
+
+    
+    <div id="next-post">
+        <a alt="SonarQube 설치 및 Jenkins pipeline 연동하기" href="/devops/cicd/2021/05/07/sonarqube-jenkins.html">
+            <p>다음 게시물</p>
+            SonarQube 설치 및 Jenkins pipeline 연동하기
+        </a>
+    </div>
+    
+</div>
+
+
+
+<!--Utterances-->
+ <script src="https://utteranc.es/client.js"
+        repo='csupreme19/csupreme19.github.io'
+        issue-term="comment"
+        theme="preferred-color-scheme"
+		
+        crossorigin="anonymous"
+        async>
+</script>
+ 
+
+<!-- Cusdis -->
+
+
+<!-- Disqus -->
+
+
+<!-- To change color of links in the page -->
+<style>
+  header#main {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+  
+  
+  
+  
+  header#main { background-image: url('/assets/img/titles/sonarqube.png'); }
+  
+</style>
+
+    </div>
+    <footer class="site-footer">
+    <p class="text">
+        이 블로그는 <a href="https://jekyllrb.com/">Jekyll</a>을 사용하며 <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a> 테마를 사용합니다.
+</p>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+        
+        
+        
+        <li>
+            <a href="https://github.com/csupreme19"
+               title="Follow on Github"
+               target="_blank"
+               rel="me">
+            <span class="fa-stack fa-lg">
+              <i class="fas fa-circle fa-stack-2x"></i>
+              <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+            </span>
+            </a>
+        </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+        
+        
+        
+        <li>
+            <a href="mailto:csupreme19@gmail.com"
+               title="Follow on Mail"
+               target="_blank"
+               rel="me">
+            <span class="fa-stack fa-lg">
+              <i class="fas fa-circle fa-stack-2x"></i>
+              <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+            </span>
+            </a>
+        </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+                </ul>
+            </div>
+</footer>
+
+
+
+  </body>
+</html>

@@ -4,6 +4,7 @@ title: PostgreSQL 백업 및 복구 방법
 feature-img: assets/img/titles/postgresql-logo.svg
 thumbnail: assets/img/titles/postgresql-logo.svg
 author: csupreme19
+categories: DB PostgreSQL
 tags: [PostgreSQL, Postgres, RDBMS, DB, Backup, Restore]
 
 ---

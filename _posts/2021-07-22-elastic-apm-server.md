@@ -4,6 +4,7 @@ title: Elastic APM Server 구축하기
 feature-img: assets/img/titles/elastic-logo.png
 thumbnail: assets/img/contents/eas-1.png
 author: csupreme19
+categories: DevOps Elastic
 tags: [Elasticsearch, Elastic, ELK, APM, ArgoCD, GitOps, Helm]
 
 ---

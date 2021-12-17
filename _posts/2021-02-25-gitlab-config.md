@@ -4,6 +4,7 @@ title: GitLab 백업 및 기타 설정 그리고 트러블슈팅
 feature-img: assets/img/titles/gitlab-horizontal-color.png
 thumbnail: assets/img/contents/gc-1.png
 author: csupreme19
+categories: DevOps CICD
 tags: [Gitlab, Docker, SSH, Git, Backup, Restore, SSL, TLS, SMTP, Nginx]
 
 ---

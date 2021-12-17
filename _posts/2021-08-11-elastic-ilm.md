@@ -4,6 +4,7 @@ title: Elasticsearch ILM 로그 주기 관리
 feature-img: assets/img/titles/elastic-logo.png
 thumbnail: assets/img/contents/el-1.png
 author: csupreme19
+categories: DevOps Elastic
 tags: [Elasticsearch, Elastic, ELK, Index, ILM]
 
 ---

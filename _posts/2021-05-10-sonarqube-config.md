@@ -4,6 +4,7 @@ title: SonarQube 설정 및 트러블슈팅
 feature-img: assets/img/titles/sonarqube.png
 thumbnail: assets/img/contents/sc-1.png
 author: csupreme19
+categories: DevOps CICD
 tags: [Sonarqube, Jenkins, Webhook, Ingress, Kubernetes, GitLab]
 
 ---

@@ -4,6 +4,7 @@ title: MySQL 설치 및 사용자 생성
 feature-img: assets/img/titles/mysql-logo.png
 thumbnail: assets/img/titles/mysql-logo.png
 author: csupreme19
+categories: DB MySQL
 tags: [MySQL, DB, RDBMS, Docker, Docker-compose]
 
 ---

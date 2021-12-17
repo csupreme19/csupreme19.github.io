@@ -4,6 +4,7 @@ title: Kubernetes Metricbeat 적용하기
 feature-img: assets/img/titles/kubernetes-logo.png
 thumbnail: assets/img/contents/km-1.png
 author: csupreme19
+categories: DevOps Elastic
 tags: [Kubernetes, Helm, K8S, Metricbeat, ArgoCD, GitOps, ELK, Elastic, Elasticsearch, Metric, Monitoring, Observability]
 
 ---

@@ -4,6 +4,7 @@ title: Jekyll과 Github pages를 사용하여 블로그 만들기
 feature-img: assets/img/titles/github-pages.png
 thumbnail: assets/img/contents/jekyll.png
 author: csupreme19
+categories: ETC
 tags: [Blog, Github, Github pages, Jekyll]
 
 ---

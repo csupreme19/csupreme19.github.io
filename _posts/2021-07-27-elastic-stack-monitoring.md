@@ -4,6 +4,7 @@ title: Elastic Stack Monitoring with Metricbeat
 feature-img: assets/img/titles/elastic-logo.png
 thumbnail: assets/img/contents/km-1.png
 author: csupreme19
+categories: DevOps Elastic
 tags: [Elasticsearch, Elastic, ELK, Metricbeat, Metric, Monitoring, Observability]
 
 ---

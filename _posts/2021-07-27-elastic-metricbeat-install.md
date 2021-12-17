@@ -4,6 +4,7 @@ title: Elastic Metricbeat 설치 및 설정
 feature-img: assets/img/titles/elastic-beats-logo.png
 thumbnail: assets/img/contents/emi-1.png
 author: csupreme19
+categories: DevOps Elastic
 tags: [Elasticsearch, Elastic, ELK, Metricbeat, Beat]
 
 ---

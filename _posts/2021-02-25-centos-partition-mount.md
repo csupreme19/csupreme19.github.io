@@ -4,6 +4,7 @@ title: CentOS 파티션 생성 및 마운트
 feature-img: assets/img/titles/centos-logo.jpeg
 thumbnail: assets/img/contents/cpm-1.png
 author: csupreme19
+categories: System Linux
 tags: [Centos, RHEL, Linux, OS, Partition, Mount]
 
 ---

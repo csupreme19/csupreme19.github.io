@@ -4,6 +4,7 @@ title: Kubernetes DNS Debug
 feature-img: assets/img/titles/kubernetes-logo.png
 thumbnail: assets/img/titles/kubernetes-logo.png
 author: csupreme19
+categories: DevOps Kubernetes
 tags: [Kubernetes, K8S, DNS, Proxy, Debug]
 
 ---

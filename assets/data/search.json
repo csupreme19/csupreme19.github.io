@@ -7,7 +7,7 @@
     "category" : "{{ post.category }}",
     "tags"     : "{{ post.tags | join: ', ' | prepend: " " }}",
     "url"      : "{{ post.url | relative_url }}",
-    "date"     : "{{ post.date | date: "%B %-d, %Y" }}",
+    "date"     : "{{ post.date | date: "%Y년 %m월 %d일" }}",
     "excerpt"  : {{ post.content | strip_html | truncate: '250' | escape | jsonify }},
   "content"  : {{ post.content | strip_html | escape | jsonify }}
 } {% unless forloop.last %},{% endunless %}
@@ -20,7 +20,7 @@
   "category" : "{{ page.category }}",
   "tags"     : "{{ page.tags | join: ', ' | prepend: " " }}",
   "url"      : "{{ page.url | relative_url }}",
-  "date"     : "{{ page.date | date: "%B %-d, %Y" }}",
+  "date"     : "{{ page.date | date: "%Y년 %m월 %d일" }}",
   "excerpt"  : {{ page.content | strip_html | truncate: '250' | jsonify }},
   "content"  : {{ page.content | strip_html | escape | jsonify }}
   {% endif %}

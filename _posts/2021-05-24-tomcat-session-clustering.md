@@ -4,6 +4,7 @@ title: Tomcat session clustering 적용기
 feature-img: assets/img/titles/tomcat-logo.svg
 thumbnail: assets/img/contents/tsc-1.png
 author: csupreme19
+categories: Development
 tags: [Tomcat, Session, Clustering, Multicast, Replication]
 ---
 

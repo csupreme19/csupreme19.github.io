@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<!--
+    Type on Strap jekyll theme v2.3.9
+    Theme free for personal and commercial use under the MIT license
+    https://github.com/sylhare/Type-on-Strap/blob/master/LICENSE
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.5, maximum-scale=5">
+
+    <!-- Theme Mode-->
+    
+    <script>
+        const isAutoTheme = false;
+        document.documentElement.setAttribute('data-theme', "dark")
+    </script>
+    
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="Seunghoon Choi" href="http://localhost:4000/feed.xml"/>
+
+    
+
+    <!-- KaTeX 0.13.9 -->
+    
+    <script defer src="/assets/js/vendor/katex.min.js"></script>
+    <script defer src="/assets/js/vendor/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    
+
+    <!-- Mermaid 8.9.2 -->
+    
+    <script defer src="/assets/js/vendor/mermaid.min.js" onload="mermaid.initialize({startOnLoad:true});"></script>
+    
+
+    <!-- Simple Jekyll Search 1.9.1 -->
+    <script src="/assets/js/vendor/simple-jekyll-search.min.js" type="text/javascript"></script>
+
+    <!-- Google Analytics / Cookie Consent -->
+    <script>
+      const cookieName = 'cookie-notice-dismissed-http://localhost:4000';
+      const isCookieConsent = 'false';
+      const analyticsName = 'G-HVJZ84KLQM';
+    </script>
+
+    
+    
+        <!-- Global site tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-HVJZ84KLQM"></script>
+        <!-- Page analysis (analytics.js) -->
+        <script async src='https://www.google-analytics.com/analytics.js'></script>
+    
+
+    <!-- seo tags -->
+    <meta property="og:image" content="http://localhost:4000/assets/img/titles/postgresql-logo.svg">
+    
+    <meta property="og:type" content="website" />
+    
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>PostgreSQL Shutdown mode | Seunghoon Choi</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="PostgreSQL Shutdown mode" />
+<meta name="author" content="csupreme19" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="PostgreSQL Shutdown mode" />
+<meta property="og:description" content="PostgreSQL Shutdown mode" />
+<link rel="canonical" href="http://localhost:4000/db/postgresql/2021/08/06/postgresql-shutdown-mode.html" />
+<meta property="og:url" content="http://localhost:4000/db/postgresql/2021/08/06/postgresql-shutdown-mode.html" />
+<meta property="og:site_name" content="Seunghoon Choi" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-08-06T00:00:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="PostgreSQL Shutdown mode" />
+<script type="application/ld+json">
+{"datePublished":"2021-08-06T00:00:00+09:00","description":"PostgreSQL Shutdown mode","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/db/postgresql/2021/08/06/postgresql-shutdown-mode.html"},"url":"http://localhost:4000/db/postgresql/2021/08/06/postgresql-shutdown-mode.html","author":{"@type":"Person","name":"csupreme19"},"@type":"BlogPosting","headline":"PostgreSQL Shutdown mode","dateModified":"2021-08-06T00:00:00+09:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <!-- RSS -->
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Seunghoon Choi" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:title" content="PostgreSQL Shutdown mode">
+    <meta name="twitter:description" content="PostgreSQL Shutdown modePostgres 셧다운 모드에 대하여 알아보고 모드를 바꿔본다.PostgreSQL Shutdown ModeShutting Down the serverPostgres를 중지하는 방법은 3가지가 있다.      Smart Shutdown(SI...">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="http://localhost:4000/assets/img/titles/postgresql-logo.svg">
+    <meta name="twitter:image:alt" content="PostgreSQL Shutdown mode">
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+        
+		<a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/profile-icon.jpeg" />
+		</a>
+        
+        <a class="site-title" aria-label="Seunghoon Choi" href="/">
+        Seunghoon Choi
+		</a>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fas fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        
+
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Development" title="Development" href="/development/">
+                     Development 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="검색" title="검색" href="/search/">
+                     <i class="fas fa-search" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="태그" title="태그" href="/tags/">
+                     <i class="fas fa-tags" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+        
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image" >
+  <header id="main" style="">
+    <div class="title-padder">
+      
+      <h1 id="PostgreSQL+Shutdown+mode" class="title">PostgreSQL Shutdown mode</h1>
+      
+
+
+<div class="post-info"><a href="https://github.com/csupreme19" target="_blank">
+      <img alt="Author's avatar" src="https://avatars.githubusercontent.com/u/76021703?s=400&v=4">
+    
+    <p class="meta">
+      csupreme19 - 
+      
+      2021년 08월 06일
+      
+    </p></a></div>
+
+      
+    </div>
+  </header>
+
+  <section class="post-content">
+  
+      <h1 id="postgresql-shutdown-mode">PostgreSQL Shutdown mode</h1>
+
+<p><img src="/assets/img/titles/postgresql-logo.svg" alt="postgresql-logo.svg" /></p>
+
+<p>Postgres 셧다운 모드에 대하여 알아보고 모드를 바꿔본다.</p>
+
+<hr />
+<h2 id="postgresql-shutdown-mode-1">PostgreSQL Shutdown Mode</h2>
+
+<p><a href="https://www.postgresql.org/docs/11/server-shutdown.html">Shutting Down the server</a></p>
+
+<p>Postgres를 중지하는 방법은 3가지가 있다.</p>
+
+<ol>
+  <li>
+    <h4 id="smart-shutdownsigterm">Smart Shutdown(SIGTERM)</h4>
+  </li>
+  <li>
+    <h4 id="fast-shutdownsigint">Fast Shutdown(SIGINT)</h4>
+  </li>
+  <li>
+    <h4 id="immediate-shutdownsigquit">Immediate Shutdown(SIGQUIT)</h4>
+  </li>
+</ol>
+
+<h3 id="smart-shutdownsigterm-1">Smart Shutdown(SIGTERM)</h3>
+
+<p><code class="language-plaintext highlighter-rouge">pg_ctl shutdown -m s[mart]</code></p>
+
+<p>내부적으로 SIGTERM 명령과 동일</p>
+
+<p>pg_ctl shutdown</p>
+
+<p>새로운 connection 접속을 막고 현재 connection의 쿼리를 모두 수행후 세션이 종료되면 Server shutdown을 진행한다.</p>
+
+<p>가장 안전한 방법이지만 long query가 존재할 경우 서버의 중지가 느릴 수 있음</p>
+
+<h3 id="fast-shutdownsigint-1">Fast Shutdown(SIGINT)</h3>
+
+<p><code class="language-plaintext highlighter-rouge">pg_ctl shutdown -m f[ast]</code></p>
+
+<p>내부적으로 SIGINT 명령과 동일</p>
+
+<p>새로운 connection 접속을 막고 현재 connection의 쿼리를 중지(abort)하고 Server shutdown을 진행한다.</p>
+
+<p>수행중인 query는 rollback 되며 서버를 즉시 중지할 수 있는 장점이 있다.</p>
+
+<h3 id="immediate-shutdownsigquit-1">Immediate Shutdown(SIGQUIT)</h3>
+
+<p><code class="language-plaintext highlighter-rouge">pg_ctl shutdown -m i[mmediate]</code></p>
+
+<p>내부적으로 SIGQUIT(SIGKILL) 명령과 동일</p>
+
+<p>쿼리 수행여부와 관계없이 서버를 즉시 kill한다.</p>
+
+<p>일반적인 Server shutdown의 프로세스를 하지 않으므로 서버 재시작시 복구 모드에 돌입한다.</p>
+
+<h3 id="shutdown-기본-모드-확인">Shutdown 기본 모드 확인</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl <span class="nb">cat </span>postgresql@11-main.service
+...
+<span class="o">[</span>Service]
+<span class="nv">ExecStart</span><span class="o">=</span>-/usr/bin/pg_ctlcluster <span class="nt">--skip-systemctl-redirect</span> %i start
+<span class="nv">ExecStop</span><span class="o">=</span>/usr/bin/pg_ctlcluster <span class="nt">--skip-systemctl-redirect</span> <span class="nt">-m</span> fast %i stop
+<span class="nv">ExecReload</span><span class="o">=</span>/usr/bin/pg_ctlcluster <span class="nt">--skip-systemctl-redirect</span> %i reload
+...
+</code></pre></div></div>
+
+<p>위 예시에서는 설정값이 fast shutdown 모드로 되어 있음을 확인할 수 있다.</p>
+
+<h3 id="shutdown-모드-수정">Shutdown 모드 수정</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl edit postgresql@11-main.service
+<span class="o">[</span>Service]
+<span class="nv">ExecStop</span><span class="o">=</span>
+<span class="nv">ExecStop</span><span class="o">=</span>/usr/bin/pg_ctlcluster <span class="nt">--skip-systemctl-redirect</span> <span class="nt">-m</span> smart %i stop
+</code></pre></div></div>
+
+<p>override.conf 생성 및 적용 확인</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl <span class="nb">cat </span>postgresql@11-main.service
+<span class="c"># /etc/systemd/system/postgresql@11-main.service.d/override.conf</span>
+<span class="o">[</span>Service]
+<span class="nv">ExecStop</span><span class="o">=</span>
+<span class="nv">ExecStop</span><span class="o">=</span>/usr/bin/pg_ctlcluster <span class="nt">--skip-systemctl-redirect</span> <span class="nt">-m</span> smart %i stop
+</code></pre></div></div>
+
+<p>이후 다시 기본 설정 사용하고 싶으면 <code class="language-plaintext highlighter-rouge">postgresql@11-main.service.d/override.conf</code> 제거</p>
+
+<hr />
+
+<h2 id="참고사항">참고사항</h2>
+
+<h3 id="명령어systemctl">명령어(systemctl)</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl <span class="o">[</span>start|stop|restart|status|cat] <span class="o">[</span>service]
+<span class="nv">$ </span>systemctl start postgresql@11-main.service	<span class="c"># 구동</span>
+<span class="nv">$ </span>systemctl stop postgresql@11-main.service		<span class="c"># 중지</span>
+<span class="nv">$ </span>systemctl restart postgresql@11-main.service	<span class="c"># 재기동</span>
+<span class="nv">$ </span>systemctl status postgresql@11-main.service	<span class="c"># 서비스 상태</span>
+<span class="nv">$ </span>systemctl <span class="nb">cat </span>postgresql@11-main.service		<span class="c"># 서비스 정의</span>
+<span class="nv">$ </span>journalctl <span class="nt">-u</span> postgresql@11-main.service		<span class="c"># 서비스 상세 로그 확인</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="https://www.postgresql.org/docs/11/server-shutdown.html">Shutting Down the server</a>https://stackoverflow.com/a/48576319)</li>
+</ol>
+
+    
+  </section>
+
+  <!-- Social media shares -->
+  
+
+
+   <!-- Tag list -->
+  
+  
+
+
+  <div class="tag-list">
+    <ul>
+      
+        <li class="meta">Tags</li>
+      
+
+      
+        <li><a class="button" href="/tags#DB">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> DB</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#PostgreSQL">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> PostgreSQL</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#Postgres">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Postgres</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#RDBMS">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> RDBMS</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#Shutdown">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Shutdown</p>
+        </a></li>
+      
+    </ul>
+  </div>
+
+
+
+</article>
+
+<!-- Post navigation -->
+
+<div id="post-nav">
+    
+    <div id="previous-post">
+        <a alt="시스템 Graceful shutdown" href="/system/linux/2021/08/10/system-graceful-shutdown.html">
+            <p>이전 게시물</p>
+            시스템 Graceful shutdown
+        </a>
+    </div>
+    
+
+    
+    <div id="next-post">
+        <a alt="PostgreSQL pg_ctl vs pg_ctlcluster" href="/db/postgresql/2021/08/06/postgresql-pg_ctlcluster.html">
+            <p>다음 게시물</p>
+            PostgreSQL pg_ctl vs pg_ctlcluster
+        </a>
+    </div>
+    
+</div>
+
+
+
+<!--Utterances-->
+ <script src="https://utteranc.es/client.js"
+        repo='csupreme19/csupreme19.github.io'
+        issue-term="comment"
+        theme="preferred-color-scheme"
+		
+        crossorigin="anonymous"
+        async>
+</script>
+ 
+
+<!-- Cusdis -->
+
+
+<!-- Disqus -->
+
+
+<!-- To change color of links in the page -->
+<style>
+  header#main {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+  
+  
+  
+  
+  header#main { background-image: url('/assets/img/titles/postgresql-logo.svg'); }
+  
+</style>
+
+    </div>
+    <footer class="site-footer">
+    <p class="text">
+        이 블로그는 <a href="https://jekyllrb.com/">Jekyll</a>을 사용하며 <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a> 테마를 사용합니다.
+</p>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+        
+        
+        
+        <li>
+            <a href="https://github.com/csupreme19"
+               title="Follow on Github"
+               target="_blank"
+               rel="me">
+            <span class="fa-stack fa-lg">
+              <i class="fas fa-circle fa-stack-2x"></i>
+              <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+            </span>
+            </a>
+        </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+        
+        
+        
+        <li>
+            <a href="mailto:csupreme19@gmail.com"
+               title="Follow on Mail"
+               target="_blank"
+               rel="me">
+            <span class="fa-stack fa-lg">
+              <i class="fas fa-circle fa-stack-2x"></i>
+              <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+            </span>
+            </a>
+        </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+                </ul>
+            </div>
+</footer>
+
+
+
+  </body>
+</html>

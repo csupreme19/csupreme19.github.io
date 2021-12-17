@@ -4,6 +4,7 @@ title: PostgreSQL Shutdown mode
 feature-img: assets/img/titles/postgresql-logo.svg
 thumbnail: assets/img/titles/postgresql-logo.svg
 author: csupreme19
+categories: DB PostgreSQL
 tags: [Postgres, PostgreSQL, RDBMS, DB, Shutdown]
 
 ---

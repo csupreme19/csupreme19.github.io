@@ -4,6 +4,7 @@ title: Jekyll Liquid 문법 빠져나오기(중괄호 무시)
 feature-img: assets/img/contents/jekyll.png
 thumbnail: assets/img/contents/jel-1.png
 author: csupreme19
+categories: ETC
 tags: [Blog, Jekyll, Liquid, Markdown, Template]
 
 ---

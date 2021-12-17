@@ -4,6 +4,7 @@ title: Nginx Proxy 설치하기
 feature-img: assets/img/titles/nginx-logo.svg
 thumbnail: assets/img/titles/nginx-logo.svg
 author: csupreme19
+categories: OSS Nginx
 tags: [Nginx, Proxy]
 
 ---

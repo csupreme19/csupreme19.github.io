@@ -4,6 +4,7 @@ title: Spring Framework 정리
 feature-img: assets/img/titles/spring-logo.svg
 thumbnail: assets/img/contents/sf-1.png
 author: csupreme19
+category: Devlopment Spring
 tags: [Spring, Java, J2EE, EJB, POJO, IoC, AOP, DI, Singleton, Web, Servlet]
 
 ---

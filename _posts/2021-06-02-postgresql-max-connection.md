@@ -4,6 +4,7 @@ title: PostgreSQL max_connections 설정
 feature-img: assets/img/titles/postgresql-logo.svg
 thumbnail: assets/img/titles/postgresql-logo.svg
 author: csupreme19
+categories: DB PostgreSQL
 tags: [Postgres, PostgreSQL, RDBMS, DB]
 
 ---

@@ -4,6 +4,7 @@ title: 시스템 Graceful shutdown
 feature-img: assets/img/titles/ubuntu-logo.svg
 thumbnail: assets/img/titles/ubuntu-logo.svg
 author: csupreme19
+categories: System Linux
 tags: [System, OS, Ubuntu, Linux, Debian]
 
 ---

@@ -4,6 +4,7 @@ title: Pod OOMKilled 원인 찾기
 feature-img: assets/img/titles/kubernetes-logo.png
 thumbnail: assets/img/contents/kpot-1.png
 author: csupreme19
+categories: DevOps Kubernetes
 tags: [Kubernetes, K8S, Pod, JVM, Heap, Memory]
 
 ---

@@ -5,8 +5,8 @@
     <description>개발 블로그</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 16 Dec 2021 17:49:22 +0900</pubDate>
-    <lastBuildDate>Thu, 16 Dec 2021 17:49:22 +0900</lastBuildDate>
+    <pubDate>Fri, 17 Dec 2021 16:23:23 +0900</pubDate>
+    <lastBuildDate>Fri, 17 Dec 2021 16:23:23 +0900</lastBuildDate>
     <generator>Jekyll v4.2.1</generator>
     
       <item>
@@ -204,8 +204,8 @@ for the user to use absolute ordering, in which case relative ordering is ignore
 &lt;/ol&gt;
 </description>
         <pubDate>Tue, 14 Dec 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/12/14/spring-mvc-web-fragment.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/12/14/spring-mvc-web-fragment.html</guid>
+        <link>http://localhost:4000/development/spring/2021/12/14/spring-mvc-web-fragment.html</link>
+        <guid isPermaLink="true">http://localhost:4000/development/spring/2021/12/14/spring-mvc-web-fragment.html</guid>
         
         <category>Spring</category>
         
@@ -213,6 +213,10 @@ for the user to use absolute ordering, in which case relative ordering is ignore
         
         <category>Web</category>
         
+        
+        <category>Development</category>
+        
+        <category>Spring</category>
         
       </item>
     
@@ -383,8 +387,8 @@ for the user to use absolute ordering, in which case relative ordering is ignore
 
 </description>
         <pubDate>Tue, 14 Dec 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/12/14/mac-eclipse-ATS.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/12/14/mac-eclipse-ATS.html</guid>
+        <link>http://localhost:4000/system/security/2021/12/14/mac-eclipse-ATS.html</link>
+        <guid isPermaLink="true">http://localhost:4000/system/security/2021/12/14/mac-eclipse-ATS.html</guid>
         
         <category>Mac</category>
         
@@ -394,6 +398,10 @@ for the user to use absolute ordering, in which case relative ordering is ignore
         
         <category>Eclipse</category>
         
+        
+        <category>System</category>
+        
+        <category>Security</category>
         
       </item>
     
@@ -538,8 +546,8 @@ for the user to use absolute ordering, in which case relative ordering is ignore
 
 </description>
         <pubDate>Mon, 13 Dec 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/12/13/log4j2-vulnerability-spring-boot.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/12/13/log4j2-vulnerability-spring-boot.html</guid>
+        <link>http://localhost:4000/development/spring/2021/12/13/log4j2-vulnerability-spring-boot.html</link>
+        <guid isPermaLink="true">http://localhost:4000/development/spring/2021/12/13/log4j2-vulnerability-spring-boot.html</guid>
         
         <category>Spring</category>
         
@@ -554,941 +562,9 @@ for the user to use absolute ordering, in which case relative ordering is ignore
         <category>Security</category>
         
         
-      </item>
-    
-      <item>
-        <title>Hibernate 정리</title>
-        <description>&lt;h1 id=&quot;hibernate-정리&quot;&gt;Hibernate 정리&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/titles/hibernate-logo.png&quot; alt=&quot;hibernate-logo.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;본 문서에서는 대표적인 JPA 프레임워크인 하이버네이트에 대해서 정리해보았다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;hibernate&quot;&gt;Hibernate&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/hibernate-1.png&quot; alt=&quot;hibernate-1.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;자바 객체를 데이터베이스에 저장하는 프레임워크이다.&lt;/p&gt;
-
-&lt;h3 id=&quot;특징&quot;&gt;특징&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;로우 레벨 SQL을 내부적으로 처리해준다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;JDBC 코드 작성을 줄여준다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;ORM(Object to Relational Mapping)을 지원한다.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;orm&quot;&gt;ORM?&lt;/h3&gt;
-
-&lt;p&gt;Object To Relational Mapping; 객체 관계 매핑&lt;/p&gt;
-
-&lt;p&gt;쉽게 얘기하면 자바 클래스와 데이터베이스 테이블을 매핑시키는 것&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;aop가-도대체-뭐야&quot;&gt;AOP가 도대체 뭐야?&lt;/h3&gt;
-
-&lt;p&gt;AOP는 Aspect Oriented Programming 관점 지향 프로그래밍이다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/sf-6.png&quot; alt=&quot;sf-6.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;핵심 기능(비즈니스 로직)에서 부가 기능(로깅, 트랜잭션, 예외)을 분리하기 위하여 횡단 분리(cross-cutting)하는 것&lt;/p&gt;
-
-&lt;p&gt;Aspect로 분리하여 공통 기능을 비즈니스 로직과 코드에 영향을 주지 않게 적용할 수 있다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;aop를-왜-써&quot;&gt;AOP를 왜 써?&lt;/h3&gt;
-
-&lt;p&gt;아래와 같은 DAO가 있다고 하자.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;addAccount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Account&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;account&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;nc&quot;&gt;Session&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;session&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sessionFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getCurrentSession&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;currentSession&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;account&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;로깅과 보안 처리에 대한 요구사항이 들어왔다.&lt;/p&gt;
-
-&lt;p&gt;아래와 같이 코드는 늘어날 것이다.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;addAccount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Account&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;account&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;// 로깅 코드 &lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;// 보안 체크&lt;/span&gt;
-	&lt;span class=&quot;nc&quot;&gt;Session&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;session&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sessionFactory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getCurrentSession&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;currentSession&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;account&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;보안 체크시 사용하기 위한 userId라는 새로운 인자가 추가되었다.&lt;/p&gt;
-
-&lt;p&gt;로깅을 DAO뿐만이 아니라 서비스와 컨트롤러에도 적용하고 싶다면 아래와 같이 코드는 늘어날 것이다.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AccountService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;// 로깅 코드&lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;// 보안 체크&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;accountDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addAccount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;account&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AccountController&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;// 로깅 코드&lt;/span&gt;
-	&lt;span class=&quot;c1&quot;&gt;// 보안 체크&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;accountService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addAccount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;account&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;동일한 기능을 하는 중복코드가 벌써 3개나 생겨버렸다.&lt;/p&gt;
-
-&lt;p&gt;만약 이 기능을  addAccount 메소드가 아닌 모든 메서드에 적용하고 싶다면?&lt;/p&gt;
-
-&lt;p&gt;해당 기능을 구현했는데 보안 체크 로직을 바꿔달라는 요구사항이 온다면?&lt;/p&gt;
-
-&lt;p&gt;해당 클래스가 2, 3개라면 큰 문제가 없겠지만 100개 아니 1000개라면 상상도 하기 싫다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;oop로-해결해보자-oop의-한계&quot;&gt;OOP로 해결해보자, OOP의 한계&lt;/h3&gt;
-
-&lt;h4 id=&quot;1-상속을-쓰면-되잖아&quot;&gt;1. 상속을 쓰면 되잖아&lt;/h4&gt;
-
-&lt;p&gt;객체지향이 좋은게 뭐겠어? =&amp;gt; 상속과 다형성이지&lt;/p&gt;
-
-&lt;p&gt;한번 해보자&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Logging&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// logging&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AccountService&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Logging&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;accountDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addAccount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;account&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AccountController&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Logging&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;accountService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addAccount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;account&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Logging 기능을 담당하는 부모 클래스를 만들고 로깅을 필요로하는 모든 클래스에 대하여 상속을 하였다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;문제는 Java에서는 다중 상속을 지원하지 않는다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;별도의 인터페이스를 상속 받는 클래스에는 사용이 불가능하다.&lt;/p&gt;
-
-&lt;p&gt;마찬가지로 다중상속이 안되어 보안 처리에 대한 클래스를 별도로 분리할 수 없다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;2-위임delegation을-써보자&quot;&gt;2. 위임(Delegation)을 써보자&lt;/h4&gt;
-
-&lt;p&gt;그럼 상속이 아닌 위임으로는?&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Logging&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// logging&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Security&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;checkSecurity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// security&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AccountServiceImpl&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AccountService&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;nc&quot;&gt;Logging&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-	&lt;span class=&quot;nc&quot;&gt;Security&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;security&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Security&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;security&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;checkSecurity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;accountDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addAccount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;account&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AccountController&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Logging&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;nc&quot;&gt;Logging&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-	&lt;span class=&quot;nc&quot;&gt;Security&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;security&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Security&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;logger&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;security&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;checkSecurity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-	&lt;span class=&quot;n&quot;&gt;accountService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addAccount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;account&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;언뜻 보기에는 위 상속 버전에서 발생한 다중상속을 해결하여 문제를 해결한 것 처럼 보이나&lt;/p&gt;
-
-&lt;p&gt;결론적으로는 코드의 복잡도만 늘어났고 로깅/보안 체크 수정시에는 모든 클래스를 수정해야하는 문제가 있다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;aop를-사용한다면&quot;&gt;AOP를 사용한다면&lt;/h3&gt;
-
-&lt;p&gt;기존의 OOP를 이용하여 문제를 해결할 수는 있으나 아름다운 코드라고는 할 수 없다.&lt;/p&gt;
-
-&lt;p&gt;이러한 문제를 해결하기 위하여 나온 개념이 관점 지향 프로그래밍 AOP이다.&lt;/p&gt;
-
-&lt;h4 id=&quot;장점&quot;&gt;장점&lt;/h4&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;AOP를 사용한다면 Aspect 코드를 단일 클래스에서 관리할 수 있다.
-    &lt;ul&gt;
-      &lt;li&gt;로깅 코드를 수정하고 싶다면 해당 Aspect만 수정하면 되는 것이다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;소스코드의 비즈니스 로직과 부가 기능 로직을 분리할 수 있다.
-    &lt;ul&gt;
-      &lt;li&gt;비즈니스 로직 기능에만 충실하도록 코드를 작성할 수 있어 가독성이 높아진다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;어플리케이션 코드 수정 없이 원하는 부분에만 적용이 가능하다.
-    &lt;ul&gt;
-      &lt;li&gt;예외 발생시, 메서드 호출 전, 후 등&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h4 id=&quot;단점&quot;&gt;단점&lt;/h4&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;많은 수의 Aspect는 어플리케이션 호출 흐름을 이해하기 어렵게 만든다.
-    &lt;ul&gt;
-      &lt;li&gt;관점 지향 프로그래밍에서는 비즈니스 로직과 Aspect 로직이 분리되므로 많은 부분에 AOP가 적용된다면 흐름을 이해하기 힘들 수 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;아주 약간의 성능 저하(런타임 Weaving의 경우에만 한함)
-    &lt;ul&gt;
-      &lt;li&gt;런타임에 위빙을 하는 경우 실행시 미미하지만 약간의 성능 지연이 발생할 수 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;aop-용어-정리&quot;&gt;AOP 용어 정리&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/contents/sf-8.png&quot; alt=&quot;sf-8.png&quot; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;advice&quot;&gt;Advice&lt;/h4&gt;
-
-&lt;p&gt;어떤 액션을 취할지 정의한 공통 코드(실제 구현 코드)&lt;/p&gt;
-
-&lt;p&gt;Advice에는 시점에 따른 5가지 타입이 있다.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;종류&lt;/th&gt;
-      &lt;th&gt;시점&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Before&lt;/td&gt;
-      &lt;td&gt;메소드 실행 전&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;After finally&lt;/td&gt;
-      &lt;td&gt;메소드 실행 후(finally)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;After returning&lt;/td&gt;
-      &lt;td&gt;메소드 실행 후(success)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;After throwing&lt;/td&gt;
-      &lt;td&gt;메소드 실행 후(exception)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Around&lt;/td&gt;
-      &lt;td&gt;메소드 실행 전, 메소드 실행 후&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h4 id=&quot;join-point&quot;&gt;Join Point&lt;/h4&gt;
-
-&lt;p&gt;Aspect가 해당 코드의 어느 시점에(어디에) 적용되는지 정의한 지점으로 포인트컷의 후보군이 된다.&lt;/p&gt;
-
-&lt;h4 id=&quot;pointcut&quot;&gt;Pointcut&lt;/h4&gt;
-
-&lt;p&gt;조인포인트중 표현식을 통해 필터링한 특정 조인포인트로 적용 대상을 결정&lt;/p&gt;
-
-&lt;h4 id=&quot;aspect&quot;&gt;Aspect&lt;/h4&gt;
-
-&lt;p&gt;횡단 관심사로 어떤 포인트컷에 어떤 어드바이스를 취할지 정의된 코드 모듈(로그 출력, 캐싱, 예외처리 등)&lt;/p&gt;
-
-&lt;p&gt;Advice + Pointcut라고 생각할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;weaving&quot;&gt;Weaving&lt;/h4&gt;
-
-&lt;p&gt;Aspect를 목표 타겟 객체에 연결하는 것&lt;/p&gt;
-
-&lt;p&gt;컴파일타임 위빙, 로드타임 위빙, 런타임 위빙이 있다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;컴파일타임 위빙은 추가적인 컴파일 단계가 필요하며 런타임 위빙이 가장 느리다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;aop-프레임워크&quot;&gt;AOP 프레임워크&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Spring AOP&lt;/li&gt;
-  &lt;li&gt;AspectJ&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Java의 대표적인 두 가지 AOP 프레임워크를 지원한다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;spring-aop&quot;&gt;Spring AOP&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/titles/spring-icon-logo.png&quot; alt=&quot;spring-icon-logo.png&quot; /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;mermaid&quot;&gt;
-  flowchart LR
-    A[Application]
-    B[AOP Proxy]
-  	subgraph Aspect
-    C[Logging Aspect]
-    D[Security Aspect]
-  	end
-    E[Target Object]
-    A--&amp;gt;B---C---D--&amp;gt;E
-&lt;/div&gt;
-
-&lt;p&gt;Spring 프레임워크에서 기본적으로 제공하는 AOP이며 일반 AOP 인터페이스를 기반으로한 새로운 인터페이스이자 일부 구현체이다.&lt;/p&gt;
-
-&lt;p&gt;스프링 프레임워크 뒷단에서는 보안, 트랜잭션, 캐싱등을 구현할때 Spring AOP를 사용한다고 한다.&lt;/p&gt;
-
-&lt;p&gt;AOP Proxy를 통하여 Aspect 위빙된 타겟 어플리케이션과 통신하는 방식을 가지고 있다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Spring AOP는 AOP 인터페이스의 일부만을 구현하고 있다.&lt;/p&gt;
-
-  &lt;p&gt;따라서 특정 기능을 사용하려면 결국 AspectJ 라이브러리가 필요하다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;장점-1&quot;&gt;장점&lt;/h4&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;AspectJ 보다 사용이 간단하다.&lt;/li&gt;
-  &lt;li&gt;프록시 패턴을 사용한다.&lt;/li&gt;
-  &lt;li&gt;@Aspect 애노테이션을 통해 AspectJ로의 이관이 쉽게 가능하다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h4 id=&quot;단점-1&quot;&gt;단점&lt;/h4&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;메소드 레벨의 조인포인트만 가능하다.&lt;/li&gt;
-  &lt;li&gt;스프링 컨테이너의 Bean에만 적용이 가능하다.&lt;/li&gt;
-  &lt;li&gt;런타임 위빙으로 약간의 성능 저하가 있을 수 있다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;aspectj&quot;&gt;AspectJ&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.eclipse.org/aspectj&quot;&gt;https://www.eclipse.org/aspectj&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;AOP 인터페이스의 확실한 구현체 프레임워크로 2001년에 발표된 오리지널 AOP 프레임워크이다.&lt;/p&gt;
-
-&lt;p&gt;AOP 기능의 모든 기능을 지원하며 생성자, 필드 joinpoint 및 컴파일 타임, 로드타임 위빙을 지원한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;장점-2&quot;&gt;장점&lt;/h4&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;모든 조인포인트를 지원한다.&lt;/li&gt;
-  &lt;li&gt;스프링 빈뿐만이 아니라 POJO도 지원한다.&lt;/li&gt;
-  &lt;li&gt;Spring AOP에 비해 더 좋은 성능을 가진다.&lt;/li&gt;
-  &lt;li&gt;AOP의 모든 기능을 제공한다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h4 id=&quot;단점-2&quot;&gt;단점&lt;/h4&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;컴파일타임 위빙은 추가적인 컴파일 단계를 필요로함&lt;/li&gt;
-  &lt;li&gt;포인트컷 문법이 좀 더 복잡하다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;spring-aop-vs-aspectj&quot;&gt;Spring AOP vs AspectJ&lt;/h3&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;비교군&lt;/th&gt;
-      &lt;th&gt;AspectJ&lt;/th&gt;
-      &lt;th&gt;Spring AOP&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;조인포인트&lt;/td&gt;
-      &lt;td&gt;메소드, 생성자, 필드&lt;/td&gt;
-      &lt;td&gt;메소드&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;위빙&lt;/td&gt;
-      &lt;td&gt;컴파일타임, 포스트 컴파일타임, 로드타임&lt;/td&gt;
-      &lt;td&gt;런타임&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;성능&lt;/td&gt;
-      &lt;td&gt;비교적 빠름(컴파일타임 위빙)&lt;/td&gt;
-      &lt;td&gt;비교적 느림(런타임 위빙)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;타겟&lt;/td&gt;
-      &lt;td&gt;Spring Bean, POJO&lt;/td&gt;
-      &lt;td&gt;Spring Bean&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;AspectJ는 AOP의 완전한 구현체를 목표로 하고 있으므로 AOP 인터페이스의 모든 기능을 지원한다.&lt;/p&gt;
-
-&lt;p&gt;하지만 Spring AOP는 AOP의 상위 인터페이스이자 AOP의 일부 구현체로 모든 기능을 지원하지 않는다.&lt;/p&gt;
-
-&lt;p&gt;경우에 따라 AspectJ의 구현체를 요구하므로 실질적으로 사용시에는 AspectJ 라이브러리를 포함하게 될 것이다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;aspect-예제&quot;&gt;Aspect 예제&lt;/h3&gt;
-
-&lt;h4 id=&quot;aspectj-auto-proxy-활성화하기&quot;&gt;AspectJ Auto Proxy 활성화하기&lt;/h4&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Configuration&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@EnableAspectJAutoProxy&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@ComponentScan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;com.csupreme19.aopdemo&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AppConfig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Aspect&lt;/code&gt; 애너테이션을 처리하기 위해서는 AspectJ Auto Proxy를 활성화해야한다.&lt;/p&gt;
-
-&lt;p&gt;스프링 어플리케이션 컨텍스트에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@EnableAspectJAutoProxy&lt;/code&gt; 애너테이션을 추가한다.&lt;/p&gt;
-
-&lt;h4 id=&quot;aspect-1&quot;&gt;Aspect&lt;/h4&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Aspect&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LoggingAspect&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;nd&quot;&gt;@Before&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(public void getUser())&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;before&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@Before Advice on method&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;target&quot;&gt;Target&lt;/h4&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;UserDAO&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getClass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;UserDAO.getUser()&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;실행결과&quot;&gt;실행결과&lt;/h4&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Before Advice on method
-class com.csupreme19.aopdemo.dao.UserDAOUserDAO.getUser()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;pointcut-designatorpcd&quot;&gt;Pointcut Designator(PCD)&lt;/h3&gt;
-
-&lt;p&gt;포인트컷 지정자로 포인트컷에 해당하는 문자열은 다음과 같은 패턴을 가진다.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(접근 지정자? 리턴타입 패키지.클래스? 메소드명(파라미터명) throws Exception?)&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;within(패키지.클래스)&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// 이 외에도 @target, @annotation 등의 PCD들이 존재한다.&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;뒤에 ?가 붙은 것은 Optional 패턴으로 비어 있어도 상관 없음&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;접근지정자는 public만 사용 가능하다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 예시&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(public void com.csupreme19.demo.myClass.methodA() throws RuntimeException)&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;within(com.csupreme19.demo.myClass)&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 필수 패턴만 적을시&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(void methodA())&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// * asterisk로 문자열 대치 가능&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(* method*())&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// (): 파라미터 없음&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// (*): 단일 파라미터 대치&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// (..): 모든 파라미터 대치&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(* get*(..))&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// &amp;amp;&amp;amp;(and), ||(or), !(not) 3가지 논리 연산자 가능&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(* get*(..)) || execution(* set*(..))&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Pointcut 선언적으로 사용 가능&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(* get*(..))&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
-
-&lt;span class=&quot;nd&quot;&gt;@Pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(* set*(..))&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
-
-&lt;span class=&quot;nd&quot;&gt;@Before&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;getter() || setter()&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;joinpoint&quot;&gt;JoinPoint&lt;/h3&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Before&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(* getUser(..))&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;before&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;JoinPoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;joinPoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@Before Advice on method&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-  &lt;span class=&quot;nc&quot;&gt;MethodSignature&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;methodSignature&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;MethodSignature&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;joinPoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getSignature&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Method signature: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;methodSignature&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-  &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;joinPoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getArgs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
-      &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;UserDAO&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userDAO&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;userDAO&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;UserDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;seunghoon.choi&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;28&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 출력&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Before&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Advice&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;method&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;Method&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;signature:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;csupreme19&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;aopdemo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;dao&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;UserDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;seunghoon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;choi&lt;/span&gt;
-&lt;span class=&quot;mi&quot;&gt;28&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;csupreme19&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;aopdemo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;dao&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;UserDAOUserDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Advice가 실행되는 타겟 정보를 JoinPoint라는 인자로 받아서 확인이 가능하다.&lt;/p&gt;
-
-&lt;p&gt;또한 실제 실행되는 메서드 정보를 MethodSignature라는 클래스를 이용하여 확인할 수 있다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;aspect-order&quot;&gt;Aspect Order&lt;/h3&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Aspect&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Order&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LoggingAspect&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;nd&quot;&gt;@Before&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(* get*())&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;before&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@Before Advice on get method&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Aspect&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Order&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SecurityAspect&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;nd&quot;&gt;@Before&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(* set*(..))&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;before&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@Before Advice on set method&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Order(Integer)&lt;/code&gt; 애너테이션으로 동일 타겟에 대하여 순서 지정이 가능하다.&lt;/p&gt;
-
-&lt;p&gt;낮은 수일 수록 먼저 실행된다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;advice-type&quot;&gt;Advice Type&lt;/h3&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;종류&lt;/th&gt;
-      &lt;th&gt;시점&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;@Before&lt;/td&gt;
-      &lt;td&gt;타겟 실행 이전&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;@AfterReturning&lt;/td&gt;
-      &lt;td&gt;리턴 이후&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;@AfterThrowing&lt;/td&gt;
-      &lt;td&gt;예외 발생 이후&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;@After&lt;/td&gt;
-      &lt;td&gt;타겟 실행 이후(finally)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;@Around&lt;/td&gt;
-      &lt;td&gt;타겟 실행 이전, 이후&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;before&quot;&gt;@Before&lt;/h3&gt;
-
-&lt;div class=&quot;mermaid&quot;&gt;
-sequenceDiagram
-  participant A as App
-  participant B as AOP Proxy
-  participant C as @Before
-  participant D as UserDAO
-  A-&amp;gt;&amp;gt;B: getUser(..)
-  B-&amp;gt;&amp;gt;C: getUser(..)
-  C-&amp;gt;&amp;gt;D: getUser(..)
-  D--&amp;gt;&amp;gt;B: return data
-  B--&amp;gt;&amp;gt;A: return data
-&lt;/div&gt;
-
-&lt;p&gt;타겟 메서드 실행 이전 시점에 실행된다.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// getUser 메서드 실행 이전에 실행&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Before&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(* getUser(..))&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;before&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;JoinPoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;joinPoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@Before Advice on method&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 출력&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Before&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Advice&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;method&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;csupreme19&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;aopdemo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;dao&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;UserDAOUserDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;afterreturning&quot;&gt;@AfterReturning&lt;/h3&gt;
-
-&lt;div class=&quot;mermaid&quot;&gt;
-sequenceDiagram
-  participant A as App
-  participant B as AOP Proxy
-  participant C as UserDAO
-  participant D as @AfterReturning
-  A-&amp;gt;&amp;gt;B: getUser(..)
-  B-&amp;gt;&amp;gt;C: getUser(..)
-  C--&amp;gt;&amp;gt;D: return data
-  D--&amp;gt;&amp;gt;B: return data
-  B--&amp;gt;&amp;gt;A: return data
-&lt;/div&gt;
-
-&lt;p&gt;타겟 메서드가 값을 반환하면 실행된다.&lt;/p&gt;
-
-&lt;p&gt;해당 메서드의 타입과 인자로 받는 타입값이 일치해야만 실행된다.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// getUser 메서드가 실행되어 User 클래스 타입이 리턴되었을때 실행&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@AfterReturning&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(* getUser(..))&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;returning&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;result&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;afterReturning&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;JoinPoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;joinPoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@AfterReturning Advice on method:: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 반환 인자를 Object로 설정하면 모든 타입에 매핑된다.&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@AfterReturning&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(* getUser(..))&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;returning&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;result&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;afterReturning&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;JoinPoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;joinPoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@AfterReturning Advice on method:: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 출력&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;csupreme19&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;aopdemo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;dao&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;UserDAOUserDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@AfterReturning&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Advice&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;method:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;csupreme19&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d025197&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;post-processing&quot;&gt;Post processing&lt;/h4&gt;
-
-&lt;div class=&quot;mermaid&quot;&gt;
-sequenceDiagram
-  participant A as App
-  participant B as AOP Proxy
-  participant C as UserDAO
-  participant D as @AfterReturning
-  A-&amp;gt;&amp;gt;B: getUser(..)
-  B-&amp;gt;&amp;gt;C: getUser(..)
-  C--&amp;gt;&amp;gt;+D: return data
-  D-&amp;gt;&amp;gt;-D: post process
-  D--&amp;gt;&amp;gt;B: return modified data
-  B--&amp;gt;&amp;gt;A: return modified data
-&lt;/div&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;UserDAO&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userDAO&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;userDAO&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;UserDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;해당 Advice가 실행되는 시점은 getUser() 가 실행되어 user라는 변수에 할당되기 이전 시점이다.&lt;/p&gt;
-
-&lt;p&gt;따라서 메모리 할당 이전에 Aspect 레벨에서 데이터 수정 등의 처리가 가능하다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;AOP는 기존 소스코드(로직)과 분리되어 작성되므로 해당 기능 사용시 데이터 변화에 주의할 것&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@AfterReturning&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(* getUser(..))&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;returning&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;result&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;afterReturning&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;JoinPoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;joinPoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@AfterReturning Advice on method:: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;John Doe&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 출력&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;csupreme19&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;aopdemo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;dao&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;UserDAOUserDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@AfterReturning&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Advice&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;method:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;csupreme19&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d025197&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;John&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Doe&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;afterthrowing&quot;&gt;@AfterThrowing&lt;/h3&gt;
-
-&lt;div class=&quot;mermaid&quot;&gt;
-sequenceDiagram
-  participant A as App
-  participant B as AOP Proxy
-  participant C as UserDAO
-  participant D as @AfterThrowing
-  A-&amp;gt;&amp;gt;B: getUser(..)
-  B-&amp;gt;&amp;gt;C: getUser(..)
-  C--&amp;gt;&amp;gt;D: throw exception
-  D--&amp;gt;&amp;gt;B: throw exception
-  B--&amp;gt;&amp;gt;A: throw exception
-&lt;/div&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@AfterThrowing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pointcut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(* getUser(..))&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;throwing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ex&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;afterThrowing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;JoinPoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;joinPoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@AfterThrowing Advice on method&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Caught on afterThrowing advice: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1134513&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Caught on afterThrowing main program: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 출력&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;csupreme19&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;aopdemo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;dao&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;UserDAOUserDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@AfterThrowing&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Advice&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;method&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;Caught&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;afterThrowing&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;advice:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;found&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;Caught&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;afterThrowing&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;program:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;found&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;예외 발생 시 throw된 예외를 처리할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;Aspect에서 예외를 먼저 가져가고 AOP Proxy로 전달하여 메인 프로그램까지 도달하는 모습을 볼 수 있다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;after&quot;&gt;@After&lt;/h3&gt;
-
-&lt;div class=&quot;mermaid&quot;&gt;
-sequenceDiagram
-  participant A as App
-  participant B as AOP Proxy
-  participant C as UserDAO
-  participant D as @After
-  A-&amp;gt;&amp;gt;B: getUser(..)
-  B-&amp;gt;&amp;gt;C: getUser(..)
-  alt is success
-  	C--&amp;gt;&amp;gt;D: return data
-  	C--&amp;gt;&amp;gt;B: return data
-    B--&amp;gt;&amp;gt;A: return data
-  end
-  alt is failure
-  	C--&amp;gt;&amp;gt;D: throw exception
-  	C--&amp;gt;&amp;gt;B: throw exception
-    B--&amp;gt;&amp;gt;A: throw exception
-  end
-
-&lt;/div&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@After&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(* getUser(..))&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;after&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;JoinPoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;joinPoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@After Advice on method&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;seunghoon.choi&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;28&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1134513&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Caught on afterThrowing main program: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 출력&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;csupreme19&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;aopdemo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;dao&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;UserDAOUserDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@After&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Advice&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;method&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;csupreme19&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;aopdemo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;dao&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;UserDAOUserDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@After&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Advice&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;method&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;Caught&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;afterThrowing&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;program:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;found&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;해당 메서드가 실행 된 이후에 실행된다.&lt;/p&gt;
-
-&lt;p&gt;해당 메서드 성공 여부와 상관없이 예외나 에러가 발생해도 해당 Advice는 실행된다. (finally와 비슷한 원리)&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;around&quot;&gt;@Around&lt;/h3&gt;
-
-&lt;div class=&quot;mermaid&quot;&gt;
-sequenceDiagram
-  participant A as App
-  participant B as AOP Proxy
-  participant C as @Around
-  participant D as UserDAO
-  A-&amp;gt;&amp;gt;B: getUser(..)
-  B-&amp;gt;&amp;gt;C: getUser(..)
-  C-&amp;gt;&amp;gt;D: getUser(..)
-  D--&amp;gt;&amp;gt;C: result
-  C--&amp;gt;&amp;gt;B: result
-  B--&amp;gt;&amp;gt;A: result
-&lt;/div&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Around&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;execution(* getUser(..))&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;before&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ProceedingJoinPoint&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;proceedingJoinPoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Throwable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@Around Advice on method begin&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;currentTimeMillis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-  
-  &lt;span class=&quot;c1&quot;&gt;// 메소드 실행 정보 가져오기&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;Signature&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;methodSignature&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;proceedingJoinPoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getSignature&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;methodSignature&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toShortString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-  
-  &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 메소드 실행 제어&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;proceedingJoinPoint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;proceed&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 예외 처리&lt;/span&gt;
-    &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-  
-  &lt;span class=&quot;c1&quot;&gt;// 후처리&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;John Doe&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-  
-  &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;currentTimeMillis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;getUser execution time: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;valueOf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ms&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@Around Advice on method end&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;seunghoon.choi&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;28&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 출력(성공시)&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Around&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Advice&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;UserDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(..)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;csupreme19&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;aopdemo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;dao&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;UserDAOUserDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;getUser&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;execution&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;time:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ms&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Around&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Advice&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;seunghoon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;choi&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 출력(예외처리시)&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Around&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Advice&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;UserDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(..)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;csupreme19&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;aopdemo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;dao&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;UserDAOUserDAO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;Not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;found&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;getUser&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;execution&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;time:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ms&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Around&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Advice&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;메서드 실행 전 후로 Advice를 실행한다.&lt;/p&gt;
-
-&lt;p&gt;위 4가지 타입의 기능을 모두 수행할 수 있다. (로깅, 보안처리, 예외처리, 실행시간 측정 등)&lt;/p&gt;
-
-&lt;p&gt;@Around 어드바이스에서는 ProceedingJoinPoint라는 클래스를 인자로 받아서 타겟 메서드의 실행을 제어할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;메서드 실행 전후로 Advice가 실행되어 일반적으로 가장 자주 사용되는 Advice이다.&lt;/p&gt;
-
-&lt;p&gt;위 예시처럼 로깅, 예외처리, 후처리 등이 모두 가능하기 때문이다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;aop-best-practices&quot;&gt;AOP Best Practices&lt;/h3&gt;
-
-&lt;p&gt;AOP는 공통 관심사로 공통 로직을 담당하므로 아래와 같이 작성하는 것이 좋다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;코드는 최대한 간결하게&lt;/li&gt;
-  &lt;li&gt;코드는 최대한 실행속도가 빠르게&lt;/li&gt;
-  &lt;li&gt;무겁고 느린 연산 피하기&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;a href=&quot;https://docs.spring.io/spring-framework/docs/current/reference/html/overview.html#overview&quot;&gt;docs.spring.io overview&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://docs.spring.io/spring-framework/docs/5.0.0.M5/spring-framework-reference/html/overview.html&quot;&gt;docs.spring.io 5.0.0 overview&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.udemy.com/course/spring-hibernate-tutorial/&quot;&gt;Udemy Spring &amp;amp; Hibernate for Beginners&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.yes24.com/Product/Goods/59192207&quot;&gt;스프링 철저 입문&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-</description>
-        <pubDate>Mon, 13 Dec 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/12/13/hibernate.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/12/13/hibernate.html</guid>
-        
-        <category>ORM</category>
-        
-        <category>JPA</category>
-        
-        <category>JDBC</category>
-        
-        <category>Hibernate</category>
-        
-        <category>DB</category>
-        
-        <category>RDBMS</category>
-        
-        <category>Java</category>
+        <category>Development</category>
         
         <category>Spring</category>
-        
         
       </item>
     
@@ -1817,8 +893,8 @@ Hi
 
 </description>
         <pubDate>Mon, 06 Dec 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/12/06/spring-web.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/12/06/spring-web.html</guid>
+        <link>http://localhost:4000/development/spring/2021/12/06/spring-web.html</link>
+        <guid isPermaLink="true">http://localhost:4000/development/spring/2021/12/06/spring-web.html</guid>
         
         <category>Spring</category>
         
@@ -1830,6 +906,10 @@ Hi
         
         <category>Servlet</category>
         
+        
+        <category>Development</category>
+        
+        <category>Spring</category>
         
       </item>
     
@@ -2748,8 +1828,8 @@ sequenceDiagram
 
 </description>
         <pubDate>Mon, 06 Dec 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/12/06/spring-AOP.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/12/06/spring-AOP.html</guid>
+        <link>http://localhost:4000/development/spring/2021/12/06/spring-AOP.html</link>
+        <guid isPermaLink="true">http://localhost:4000/development/spring/2021/12/06/spring-AOP.html</guid>
         
         <category>Spring</category>
         
@@ -2757,6 +1837,10 @@ sequenceDiagram
         
         <category>AOP</category>
         
+        
+        <category>Development</category>
+        
+        <category>Spring</category>
         
       </item>
     
@@ -3003,8 +2087,8 @@ sequenceDiagram
 
 </description>
         <pubDate>Fri, 03 Dec 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/12/03/spring-framework.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/12/03/spring-framework.html</guid>
+        <link>http://localhost:4000/devlopment%20spring/2021/12/03/spring-framework.html</link>
+        <guid isPermaLink="true">http://localhost:4000/devlopment%20spring/2021/12/03/spring-framework.html</guid>
         
         <category>Spring</category>
         
@@ -3028,6 +2112,8 @@ sequenceDiagram
         
         <category>Servlet</category>
         
+        
+        <category>Devlopment Spring</category>
         
       </item>
     
@@ -3547,8 +2633,8 @@ Closed Application Context!
 
 </description>
         <pubDate>Fri, 03 Dec 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/12/03/spring-core.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/12/03/spring-core.html</guid>
+        <link>http://localhost:4000/development/spring/2021/12/03/spring-core.html</link>
+        <guid isPermaLink="true">http://localhost:4000/development/spring/2021/12/03/spring-core.html</guid>
         
         <category>Spring</category>
         
@@ -3560,6 +2646,10 @@ Closed Application Context!
         
         <category>Singleton</category>
         
+        
+        <category>Development</category>
+        
+        <category>Spring</category>
         
       </item>
     
@@ -3937,8 +3027,8 @@ sequenceDiagram
 
 </description>
         <pubDate>Mon, 29 Nov 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/11/29/jekyll-mermaid.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/11/29/jekyll-mermaid.html</guid>
+        <link>http://localhost:4000/etc/2021/11/29/jekyll-mermaid.html</link>
+        <guid isPermaLink="true">http://localhost:4000/etc/2021/11/29/jekyll-mermaid.html</guid>
         
         <category>Blog</category>
         
@@ -3952,6 +3042,8 @@ sequenceDiagram
         
         <category>Template</category>
         
+        
+        <category>ETC</category>
         
       </item>
     
@@ -4016,8 +3108,8 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6IlVmM2...
 
 </description>
         <pubDate>Mon, 29 Nov 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/11/29/jekyll-escape-liquid.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/11/29/jekyll-escape-liquid.html</guid>
+        <link>http://localhost:4000/etc/2021/11/29/jekyll-escape-liquid.html</link>
+        <guid isPermaLink="true">http://localhost:4000/etc/2021/11/29/jekyll-escape-liquid.html</guid>
         
         <category>Blog</category>
         
@@ -4029,6 +3121,8 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6IlVmM2...
         
         <category>Template</category>
         
+        
+        <category>ETC</category>
         
       </item>
     
@@ -4532,8 +3626,8 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
 
 </description>
         <pubDate>Thu, 18 Nov 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/11/18/github-pages-with-jekyll.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/11/18/github-pages-with-jekyll.html</guid>
+        <link>http://localhost:4000/etc/2021/11/18/github-pages-with-jekyll.html</link>
+        <guid isPermaLink="true">http://localhost:4000/etc/2021/11/18/github-pages-with-jekyll.html</guid>
         
         <category>Blog</category>
         
@@ -4543,6 +3637,8 @@ Configuration file: /Users/csupreme19/git/csupreme19.github.io/_config.yml
         
         <category>Jekyll</category>
         
+        
+        <category>ETC</category>
         
       </item>
     
@@ -4639,8 +3735,8 @@ dummy-pod                  0/1     Completed   5          3m33s
 &lt;/ol&gt;
 </description>
         <pubDate>Thu, 14 Oct 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/10/14/kubernetes-pod-fail-test.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/10/14/kubernetes-pod-fail-test.html</guid>
+        <link>http://localhost:4000/devops/kubernetes/2021/10/14/kubernetes-pod-fail-test.html</link>
+        <guid isPermaLink="true">http://localhost:4000/devops/kubernetes/2021/10/14/kubernetes-pod-fail-test.html</guid>
         
         <category>Kubernetes</category>
         
@@ -4650,6 +3746,10 @@ dummy-pod                  0/1     Completed   5          3m33s
         
         <category>Fail</category>
         
+        
+        <category>DevOps</category>
+        
+        <category>Kubernetes</category>
         
       </item>
     
@@ -5093,8 +4193,8 @@ dummy-pod                  0/1     Completed   5          3m33s
 &lt;/ol&gt;
 </description>
         <pubDate>Wed, 06 Oct 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/10/06/java-elastic-api-alert.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/10/06/java-elastic-api-alert.html</guid>
+        <link>http://localhost:4000/development/2021/10/06/java-elastic-api-alert.html</link>
+        <guid isPermaLink="true">http://localhost:4000/development/2021/10/06/java-elastic-api-alert.html</guid>
         
         <category>Java</category>
         
@@ -5112,6 +4212,8 @@ dummy-pod                  0/1     Completed   5          3m33s
         
         <category>Webhook</category>
         
+        
+        <category>Development</category>
         
       </item>
     
@@ -5826,8 +4928,8 @@ dummy-pod                  0/1     Completed   5          3m33s
 &lt;/ol&gt;
 </description>
         <pubDate>Wed, 06 Oct 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/10/06/elasticsearch-monitoring-query-sample.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/10/06/elasticsearch-monitoring-query-sample.html</guid>
+        <link>http://localhost:4000/devops/elastic/2021/10/06/elasticsearch-monitoring-query-sample.html</link>
+        <guid isPermaLink="true">http://localhost:4000/devops/elastic/2021/10/06/elasticsearch-monitoring-query-sample.html</guid>
         
         <category>Elasticsearch</category>
         
@@ -5839,6 +4941,10 @@ dummy-pod                  0/1     Completed   5          3m33s
         
         <category>ELK</category>
         
+        
+        <category>DevOps</category>
+        
+        <category>Elastic</category>
         
       </item>
     
@@ -6081,8 +5187,8 @@ dummy-pod                  0/1     Completed   5          3m33s
 &lt;/ol&gt;
 </description>
         <pubDate>Sat, 02 Oct 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/10/02/kubernetes-pod-oom-troubleshooting.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/10/02/kubernetes-pod-oom-troubleshooting.html</guid>
+        <link>http://localhost:4000/devops/kubernetes/2021/10/02/kubernetes-pod-oom-troubleshooting.html</link>
+        <guid isPermaLink="true">http://localhost:4000/devops/kubernetes/2021/10/02/kubernetes-pod-oom-troubleshooting.html</guid>
         
         <category>Kubernetes</category>
         
@@ -6096,6 +5202,10 @@ dummy-pod                  0/1     Completed   5          3m33s
         
         <category>Memory</category>
         
+        
+        <category>DevOps</category>
+        
+        <category>Kubernetes</category>
         
       </item>
     
@@ -6676,8 +5786,8 @@ flowchart LR
 &lt;/ol&gt;
 </description>
         <pubDate>Fri, 01 Oct 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/10/01/kubernetes-RBAC-auth.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/10/01/kubernetes-RBAC-auth.html</guid>
+        <link>http://localhost:4000/devops/kubernetes/2021/10/01/kubernetes-RBAC-auth.html</link>
+        <guid isPermaLink="true">http://localhost:4000/devops/kubernetes/2021/10/01/kubernetes-RBAC-auth.html</guid>
         
         <category>Kubernetes</category>
         
@@ -6693,6 +5803,10 @@ flowchart LR
         
         <category>Security</category>
         
+        
+        <category>DevOps</category>
+        
+        <category>Kubernetes</category>
         
       </item>
     
@@ -6749,8 +5863,8 @@ APT::Periodic::Unattended-Upgrade &lt;span class=&quot;s2&quot;&gt;&quot;0&quot;
 
 </description>
         <pubDate>Thu, 09 Sep 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/09/09/unattended-upgrade.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/09/09/unattended-upgrade.html</guid>
+        <link>http://localhost:4000/system/linux/2021/09/09/unattended-upgrade.html</link>
+        <guid isPermaLink="true">http://localhost:4000/system/linux/2021/09/09/unattended-upgrade.html</guid>
         
         <category>Linux</category>
         
@@ -6766,6 +5880,10 @@ APT::Periodic::Unattended-Upgrade &lt;span class=&quot;s2&quot;&gt;&quot;0&quot;
         
         <category>Upgrade</category>
         
+        
+        <category>System</category>
+        
+        <category>Linux</category>
         
       </item>
     
@@ -6847,8 +5965,8 @@ APT::Periodic::Unattended-Upgrade &lt;span class=&quot;s2&quot;&gt;&quot;0&quot;
 
 </description>
         <pubDate>Wed, 11 Aug 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/08/11/elastic-ilm.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/08/11/elastic-ilm.html</guid>
+        <link>http://localhost:4000/devops/elastic/2021/08/11/elastic-ilm.html</link>
+        <guid isPermaLink="true">http://localhost:4000/devops/elastic/2021/08/11/elastic-ilm.html</guid>
         
         <category>Elasticsearch</category>
         
@@ -6860,6 +5978,10 @@ APT::Periodic::Unattended-Upgrade &lt;span class=&quot;s2&quot;&gt;&quot;0&quot;
         
         <category>ILM</category>
         
+        
+        <category>DevOps</category>
+        
+        <category>Elastic</category>
         
       </item>
     
@@ -7134,8 +6256,8 @@ reboot   system boot  3.10.0-957.el7.x Tue Jun  8 17:43 - 10:06 &lt;span class=&
 &lt;/ol&gt;
 </description>
         <pubDate>Tue, 10 Aug 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/08/10/system-graceful-shutdown.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/08/10/system-graceful-shutdown.html</guid>
+        <link>http://localhost:4000/system/linux/2021/08/10/system-graceful-shutdown.html</link>
+        <guid isPermaLink="true">http://localhost:4000/system/linux/2021/08/10/system-graceful-shutdown.html</guid>
         
         <category>System</category>
         
@@ -7147,6 +6269,10 @@ reboot   system boot  3.10.0-957.el7.x Tue Jun  8 17:43 - 10:06 &lt;span class=&
         
         <category>Debian</category>
         
+        
+        <category>System</category>
+        
+        <category>Linux</category>
         
       </item>
     
@@ -7265,8 +6391,8 @@ reboot   system boot  3.10.0-957.el7.x Tue Jun  8 17:43 - 10:06 &lt;span class=&
 &lt;/ol&gt;
 </description>
         <pubDate>Fri, 06 Aug 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/08/06/postgresql-shutdown-mode.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/08/06/postgresql-shutdown-mode.html</guid>
+        <link>http://localhost:4000/db/postgresql/2021/08/06/postgresql-shutdown-mode.html</link>
+        <guid isPermaLink="true">http://localhost:4000/db/postgresql/2021/08/06/postgresql-shutdown-mode.html</guid>
         
         <category>Postgres</category>
         
@@ -7278,6 +6404,10 @@ reboot   system boot  3.10.0-957.el7.x Tue Jun  8 17:43 - 10:06 &lt;span class=&
         
         <category>Shutdown</category>
         
+        
+        <category>DB</category>
+        
+        <category>PostgreSQL</category>
         
       </item>
     
@@ -7357,8 +6487,8 @@ ExecStart=-/usr/bin/pg_ctlcluster --skip-systemctl-redirect %i start
 &lt;/ol&gt;
 </description>
         <pubDate>Fri, 06 Aug 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/08/06/postgresql-pg_ctlcluster.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/08/06/postgresql-pg_ctlcluster.html</guid>
+        <link>http://localhost:4000/db/postgresql/2021/08/06/postgresql-pg_ctlcluster.html</link>
+        <guid isPermaLink="true">http://localhost:4000/db/postgresql/2021/08/06/postgresql-pg_ctlcluster.html</guid>
         
         <category>Postgres</category>
         
@@ -7368,6 +6498,10 @@ ExecStart=-/usr/bin/pg_ctlcluster --skip-systemctl-redirect %i start
         
         <category>DB</category>
         
+        
+        <category>DB</category>
+        
+        <category>PostgreSQL</category>
         
       </item>
     
@@ -7638,8 +6772,8 @@ ExecStart=-/usr/bin/pg_ctlcluster --skip-systemctl-redirect %i start
 
 </description>
         <pubDate>Fri, 06 Aug 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/08/06/elastic-filebeat-modules.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/08/06/elastic-filebeat-modules.html</guid>
+        <link>http://localhost:4000/devops/elastic/2021/08/06/elastic-filebeat-modules.html</link>
+        <guid isPermaLink="true">http://localhost:4000/devops/elastic/2021/08/06/elastic-filebeat-modules.html</guid>
         
         <category>Elasticsearch</category>
         
@@ -7651,6 +6785,10 @@ ExecStart=-/usr/bin/pg_ctlcluster --skip-systemctl-redirect %i start
         
         <category>Beat</category>
         
+        
+        <category>DevOps</category>
+        
+        <category>Elastic</category>
         
       </item>
     
@@ -7760,8 +6898,8 @@ ExecStart=-/usr/bin/pg_ctlcluster --skip-systemctl-redirect %i start
 &lt;/ol&gt;
 </description>
         <pubDate>Thu, 05 Aug 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/08/05/elastic-filebeat-install.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/08/05/elastic-filebeat-install.html</guid>
+        <link>http://localhost:4000/devops/elastic/2021/08/05/elastic-filebeat-install.html</link>
+        <guid isPermaLink="true">http://localhost:4000/devops/elastic/2021/08/05/elastic-filebeat-install.html</guid>
         
         <category>Elasticsearch</category>
         
@@ -7773,6 +6911,10 @@ ExecStart=-/usr/bin/pg_ctlcluster --skip-systemctl-redirect %i start
         
         <category>Beat</category>
         
+        
+        <category>DevOps</category>
+        
+        <category>Elastic</category>
         
       </item>
     
@@ -8140,8 +7282,8 @@ $ nginx -s reload
 
 </description>
         <pubDate>Mon, 02 Aug 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/08/02/elastic-metricbeat-modules.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/08/02/elastic-metricbeat-modules.html</guid>
+        <link>http://localhost:4000/devops/elastic/2021/08/02/elastic-metricbeat-modules.html</link>
+        <guid isPermaLink="true">http://localhost:4000/devops/elastic/2021/08/02/elastic-metricbeat-modules.html</guid>
         
         <category>Elasticsearch</category>
         
@@ -8153,6 +7295,10 @@ $ nginx -s reload
         
         <category>Beat</category>
         
+        
+        <category>DevOps</category>
+        
+        <category>Elastic</category>
         
       </item>
     
@@ -8401,8 +7547,8 @@ $ nginx -s reload
 
 </description>
         <pubDate>Tue, 27 Jul 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/07/27/elastic-stack-monitoring.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/07/27/elastic-stack-monitoring.html</guid>
+        <link>http://localhost:4000/devops/elastic/2021/07/27/elastic-stack-monitoring.html</link>
+        <guid isPermaLink="true">http://localhost:4000/devops/elastic/2021/07/27/elastic-stack-monitoring.html</guid>
         
         <category>Elasticsearch</category>
         
@@ -8418,6 +7564,10 @@ $ nginx -s reload
         
         <category>Observability</category>
         
+        
+        <category>DevOps</category>
+        
+        <category>Elastic</category>
         
       </item>
     
@@ -8535,8 +7685,8 @@ $ nginx -s reload
 &lt;/ol&gt;
 </description>
         <pubDate>Tue, 27 Jul 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/07/27/elastic-observability.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/07/27/elastic-observability.html</guid>
+        <link>http://localhost:4000/devops/elastic/2021/07/27/elastic-observability.html</link>
+        <guid isPermaLink="true">http://localhost:4000/devops/elastic/2021/07/27/elastic-observability.html</guid>
         
         <category>Elasticsearch</category>
         
@@ -8552,6 +7702,10 @@ $ nginx -s reload
         
         <category>Observability</category>
         
+        
+        <category>DevOps</category>
+        
+        <category>Elastic</category>
         
       </item>
     
@@ -8729,8 +7883,8 @@ output.elasticsearch:
 &lt;/ol&gt;
 </description>
         <pubDate>Tue, 27 Jul 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/07/27/elastic-metricbeat-install.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/07/27/elastic-metricbeat-install.html</guid>
+        <link>http://localhost:4000/devops/elastic/2021/07/27/elastic-metricbeat-install.html</link>
+        <guid isPermaLink="true">http://localhost:4000/devops/elastic/2021/07/27/elastic-metricbeat-install.html</guid>
         
         <category>Elasticsearch</category>
         
@@ -8742,6 +7896,10 @@ output.elasticsearch:
         
         <category>Beat</category>
         
+        
+        <category>DevOps</category>
+        
+        <category>Elastic</category>
         
       </item>
     
@@ -9061,8 +8219,8 @@ spec:
 
 </description>
         <pubDate>Tue, 27 Jul 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/07/27/elastic-apm-java-agent.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/07/27/elastic-apm-java-agent.html</guid>
+        <link>http://localhost:4000/devops/elastic/2021/07/27/elastic-apm-java-agent.html</link>
+        <guid isPermaLink="true">http://localhost:4000/devops/elastic/2021/07/27/elastic-apm-java-agent.html</guid>
         
         <category>Elasticsearch</category>
         
@@ -9082,6 +8240,10 @@ spec:
         
         <category>JVM</category>
         
+        
+        <category>DevOps</category>
+        
+        <category>Elastic</category>
         
       </item>
     
@@ -9448,8 +8610,8 @@ postgres    | 2021-08-05 23:30:28.801 KST &lt;span class=&quot;o&quot;&gt;[&lt;/
 &lt;/ol&gt;
 </description>
         <pubDate>Thu, 22 Jul 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/07/22/postgresql-backup-restore.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/07/22/postgresql-backup-restore.html</guid>
+        <link>http://localhost:4000/db/postgresql/2021/07/22/postgresql-backup-restore.html</link>
+        <guid isPermaLink="true">http://localhost:4000/db/postgresql/2021/07/22/postgresql-backup-restore.html</guid>
         
         <category>PostgreSQL</category>
         
@@ -9463,6 +8625,10 @@ postgres    | 2021-08-05 23:30:28.801 KST &lt;span class=&quot;o&quot;&gt;[&lt;/
         
         <category>Restore</category>
         
+        
+        <category>DB</category>
+        
+        <category>PostgreSQL</category>
         
       </item>
     
@@ -9707,8 +8873,8 @@ Content-Length: 125
 
 </description>
         <pubDate>Thu, 22 Jul 2021 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2021/07/22/elastic-apm-server.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/07/22/elastic-apm-server.html</guid>
+        <link>http://localhost:4000/devops/elastic/2021/07/22/elastic-apm-server.html</link>
+        <guid isPermaLink="true">http://localhost:4000/devops/elastic/2021/07/22/elastic-apm-server.html</guid>
         
         <category>Elasticsearch</category>
         
@@ -9724,6 +8890,187 @@ Content-Length: 125
         
         <category>Helm</category>
         
+        
+        <category>DevOps</category>
+        
+        <category>Elastic</category>
+        
+      </item>
+    
+      <item>
+        <title>Kubernetes Metricbeat 적용하기</title>
+        <description>&lt;h1 id=&quot;kubernetes-metricbeat&quot;&gt;Kubernetes Metricbeat&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/titles/kubernetes-logo.png&quot; alt=&quot;kubernetes-logo.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Kubernetes 클러스터, 노드, 파드의 메트릭 정보 수집을 위한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kube-state-metrics&lt;/code&gt;와 metricbeat를 배포하여 메트릭 정보를 수집, 모니터링한다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;개요&quot;&gt;개요&lt;/h2&gt;
+
+&lt;p&gt;Kubernetes 메트릭 정보 수집을 위해 Metricbeat를 DaemonSet 형태로 띄워 메트릭 수집&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;kube-state-metrics&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kube-state-metrics&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;kube-system의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kube-state-metrics&lt;/code&gt; deployment 필요&lt;/p&gt;
+
+&lt;p&gt;helm-chart를 이용하여 구성할 것임&lt;/p&gt;
+
+&lt;p&gt;GitOps인 ArgoCD를 활용하여 구성한다고 가정&lt;/p&gt;
+
+&lt;p&gt;아닌 경우 일반 디렉토리 생성하여 구성하여도 동일함&lt;/p&gt;
+
+&lt;h3 id=&quot;kube-state-metrics-using-helm&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kube-state-metrics&lt;/code&gt; using helm&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-state-metrics&quot;&gt;helm-charts/kube-state-metrics&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;1-gitlab-argocd-repo에-kube-system-디렉토리-생성새-네임스페이스이므로&quot;&gt;1. GitLab ArgoCD repo에 kube-system 디렉토리 생성(새 네임스페이스이므로)&lt;/h4&gt;
+
+&lt;h4 id=&quot;2-kube-systemkube-state-metrics-디렉토리-생성&quot;&gt;2. kube-system/kube-state-metrics 디렉토리 생성&lt;/h4&gt;
+
+&lt;h4 id=&quot;3-위-helm-링크에서-helm-chart-다운받아-kube-state-metrics에-넣기&quot;&gt;3. 위 helm 링크에서 helm chart 다운받아 kube-state-metrics에 넣기&lt;/h4&gt;
+
+&lt;h4 id=&quot;4-valuesyaml-수정&quot;&gt;4. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;values.yaml&lt;/code&gt; 수정&lt;/h4&gt;
+
+&lt;p&gt;worker 노드에 파드를 띄우기 위해 아래 nodeSelector 지정&lt;/p&gt;
+
+&lt;p&gt;(zone과 role에 대한 label이 노드에 이미 지정되어 있다고 가정)&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;nodeSelector&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+ &lt;span class=&quot;na&quot;&gt;zone&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;private&lt;/span&gt;
+ &lt;span class=&quot;na&quot;&gt;role&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;kong&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;5-argocd-new-app-생성kube-system&quot;&gt;5. ArgoCD New App 생성(kube-system)&lt;/h4&gt;
+
+&lt;h4 id=&quot;6-argocd-sync-진행&quot;&gt;6. ArgoCD sync 진행&lt;/h4&gt;
+
+&lt;h4 id=&quot;7-배포-확인&quot;&gt;7. 배포 확인&lt;/h4&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;metricbeat-kubernetes&quot;&gt;Metricbeat-kubernetes&lt;/h2&gt;
+
+&lt;p&gt;kubernetes 메트릭을 모니터링하기위해 metricbeat를 DaemonSet 형태로 k8s cluster에 띄워야함&lt;/p&gt;
+
+&lt;h3 id=&quot;metricbeat-kubernetes-daemonset-배포&quot;&gt;Metricbeat-kubernetes DaemonSet 배포&lt;/h3&gt;
+
+&lt;h4 id=&quot;1-gitlab-argocd-repo-kube-systemmetricbeat-kubernetes-생성&quot;&gt;1. GitLab ArgoCD repo kube-system/metricbeat-kubernetes 생성&lt;/h4&gt;
+
+&lt;h4 id=&quot;2-metricbeat-kubernetesyaml-다운로드&quot;&gt;2. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;metricbeat-kubernetes.yaml&lt;/code&gt; 다운로드&lt;/h4&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 현재 ELK 버전 7.12.1이므로 버전을 맞춘다.&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-L&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-O&lt;/span&gt;    https://raw.githubusercontent.com/elastic/beats/7.12/deploy/kubernetes/metricbeat-kubernetes.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;3-위에서-받은-metricbeat-kubernetesyaml-gitlab-repo에-파일-추가&quot;&gt;3. 위에서 받은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;metricbeat-kubernetes.yaml&lt;/code&gt; gitlab repo에 파일 추가&lt;/h4&gt;
+
+&lt;h4 id=&quot;4-valuesyaml-수정-1&quot;&gt;4. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;values.yaml&lt;/code&gt; 수정&lt;/h4&gt;
+
+&lt;p&gt;elastic search 호스트 지정&lt;/p&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ELASTICSEARCH_HOST&lt;/span&gt;
+   &lt;span class=&quot;na&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;elasticsearch&lt;/span&gt;
+ &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ELASTICSEARCH_PORT&lt;/span&gt;
+   &lt;span class=&quot;na&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;9200&quot;&lt;/span&gt;
+ &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ELASTICSEARCH_USERNAME&lt;/span&gt;
+   &lt;span class=&quot;na&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;elastic&lt;/span&gt;
+ &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ELASTICSEARCH_PASSWORD&lt;/span&gt;
+   &lt;span class=&quot;na&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;changeme&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;5-argocd-sync-진행&quot;&gt;5. ArgoCD sync 진행&lt;/h4&gt;
+
+&lt;h4 id=&quot;6-배포-확인&quot;&gt;6. 배포 확인&lt;/h4&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;kibana-대시보드-확인&quot;&gt;Kibana 대시보드 확인&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/contents/km-1.png&quot; alt=&quot;km-1.png&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;참고사항&quot;&gt;참고사항&lt;/h2&gt;
+
+&lt;h3 id=&quot;수집-영역&quot;&gt;수집 영역&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;kubelet&lt;/li&gt;
+  &lt;li&gt;kube-state-metrics&lt;/li&gt;
+  &lt;li&gt;apiserver&lt;/li&gt;
+  &lt;li&gt;controller-manager&lt;/li&gt;
+  &lt;li&gt;scheduler&lt;/li&gt;
+  &lt;li&gt;proxy&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;metricsets&quot;&gt;Metricsets&lt;/h3&gt;
+&lt;p&gt;사용 가능한 Metricset들 리스트&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    apiserver
+    container
+    controllermanager
+    event
+    node
+    pod
+    proxy
+    scheduler
+    state_container
+    state_cronjob
+    state_daemonset
+    state_deployment
+    state_node
+    state_persistentvolumeclaim
+    state_pod
+    state_replicaset
+    state_resourcequota
+    state_service
+    state_statefulset
+    state_storageclass
+    system
+    volume
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/beats/metricbeat/current/running-on-kubernetes.html&quot;&gt;Run Metricbeat on Kubernetes&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.elastic.co/kr/blog/kubernetes-observability-tutorial-k8s-metrics-collection-and-analysis&quot;&gt;Kubernetes 통합 가시성 자습서: 메트릭 수집 및 분석&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/kubernetes/kube-state-metrics#kubernetes-deployment&quot;&gt;kube-state-metrics&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-state-metrics&quot;&gt;helm-charts/kube-state-metrics&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Wed, 30 Jun 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/devops/elastic/2021/06/30/kubernetes-metricbeat.html</link>
+        <guid isPermaLink="true">http://localhost:4000/devops/elastic/2021/06/30/kubernetes-metricbeat.html</guid>
+        
+        <category>Kubernetes</category>
+        
+        <category>Helm</category>
+        
+        <category>K8S</category>
+        
+        <category>Metricbeat</category>
+        
+        <category>ArgoCD</category>
+        
+        <category>GitOps</category>
+        
+        <category>ELK</category>
+        
+        <category>Elastic</category>
+        
+        <category>Elasticsearch</category>
+        
+        <category>Metric</category>
+        
+        <category>Monitoring</category>
+        
+        <category>Observability</category>
+        
+        
+        <category>DevOps</category>
+        
+        <category>Elastic</category>
         
       </item>
     

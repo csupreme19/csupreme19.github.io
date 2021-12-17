@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<!--
+    Type on Strap jekyll theme v2.3.9
+    Theme free for personal and commercial use under the MIT license
+    https://github.com/sylhare/Type-on-Strap/blob/master/LICENSE
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.5, maximum-scale=5">
+
+    <!-- Theme Mode-->
+    
+    <script>
+        const isAutoTheme = false;
+        document.documentElement.setAttribute('data-theme', "dark")
+    </script>
+    
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="Seunghoon Choi" href="http://localhost:4000/feed.xml"/>
+
+    
+
+    <!-- KaTeX 0.13.9 -->
+    
+    <script defer src="/assets/js/vendor/katex.min.js"></script>
+    <script defer src="/assets/js/vendor/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    
+
+    <!-- Mermaid 8.9.2 -->
+    
+    <script defer src="/assets/js/vendor/mermaid.min.js" onload="mermaid.initialize({startOnLoad:true});"></script>
+    
+
+    <!-- Simple Jekyll Search 1.9.1 -->
+    <script src="/assets/js/vendor/simple-jekyll-search.min.js" type="text/javascript"></script>
+
+    <!-- Google Analytics / Cookie Consent -->
+    <script>
+      const cookieName = 'cookie-notice-dismissed-http://localhost:4000';
+      const isCookieConsent = 'false';
+      const analyticsName = 'G-HVJZ84KLQM';
+    </script>
+
+    
+    
+        <!-- Global site tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-HVJZ84KLQM"></script>
+        <!-- Page analysis (analytics.js) -->
+        <script async src='https://www.google-analytics.com/analytics.js'></script>
+    
+
+    <!-- seo tags -->
+    <meta property="og:image" content="http://localhost:4000/assets/img/contents/tsc-1.png">
+    
+    <meta property="og:type" content="website" />
+    
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Tomcat session clustering 적용기 | Seunghoon Choi</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Tomcat session clustering 적용기" />
+<meta name="author" content="csupreme19" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Tomcat session clustering 적용기" />
+<meta property="og:description" content="Tomcat session clustering 적용기" />
+<link rel="canonical" href="http://localhost:4000/development/2021/05/24/tomcat-session-clustering.html" />
+<meta property="og:url" content="http://localhost:4000/development/2021/05/24/tomcat-session-clustering.html" />
+<meta property="og:site_name" content="Seunghoon Choi" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-05-24T00:00:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Tomcat session clustering 적용기" />
+<script type="application/ld+json">
+{"datePublished":"2021-05-24T00:00:00+09:00","description":"Tomcat session clustering 적용기","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/development/2021/05/24/tomcat-session-clustering.html"},"url":"http://localhost:4000/development/2021/05/24/tomcat-session-clustering.html","author":{"@type":"Person","name":"csupreme19"},"@type":"BlogPosting","headline":"Tomcat session clustering 적용기","dateModified":"2021-05-24T00:00:00+09:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <!-- RSS -->
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Seunghoon Choi" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:title" content="Tomcat session clustering 적용기">
+    <meta name="twitter:description" content="Tomcat session clustering 적용기Clustering/Session Replication How-To본 문서에서는 Kubernetes 환경에서의 Tomcat간 세션 공유를 위한 session clustering 적용기를 다룬다.문제점  flowchart LR  s...">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="http://localhost:4000/assets/img/contents/tsc-1.png">
+    <meta name="twitter:image:alt" content="Tomcat session clustering 적용기">
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+        
+		<a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/profile-icon.jpeg" />
+		</a>
+        
+        <a class="site-title" aria-label="Seunghoon Choi" href="/">
+        Seunghoon Choi
+		</a>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fas fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        
+
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Development" title="Development" href="/development/">
+                     Development 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="검색" title="검색" href="/search/">
+                     <i class="fas fa-search" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="태그" title="태그" href="/tags/">
+                     <i class="fas fa-tags" aria-hidden="true"></i>
+                    
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+        
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image" >
+  <header id="main" style="">
+    <div class="title-padder">
+      
+      <h1 id="Tomcat+session+clustering+%EC%A0%81%EC%9A%A9%EA%B8%B0" class="title">Tomcat session clustering 적용기</h1>
+      
+
+
+<div class="post-info"><a href="https://github.com/csupreme19" target="_blank">
+      <img alt="Author's avatar" src="https://avatars.githubusercontent.com/u/76021703?s=400&v=4">
+    
+    <p class="meta">
+      csupreme19 - 
+      
+      2021년 05월 24일
+      
+    </p></a></div>
+
+      
+    </div>
+  </header>
+
+  <section class="post-content">
+  
+      <h1 id="tomcat-session-clustering-적용기">Tomcat session clustering 적용기</h1>
+
+<p><img src="/assets/img/titles/tomcat-logo.svg" alt="tomcat-logo.png" /></p>
+
+<p><a href="http://tomcat.apache.org/tomcat-9.0-doc/cluster-howto.html">Clustering/Session Replication How-To</a></p>
+
+<p>본 문서에서는 Kubernetes 환경에서의 Tomcat간 세션 공유를 위한 session clustering 적용기를 다룬다.</p>
+
+<hr />
+
+<h2 id="문제점">문제점</h2>
+
+<div class="mermaid">
+  flowchart LR
+  subgraph k8s
+  subgraph Node A
+  A[Tomcat A]
+  end
+  subgraph Node B
+  B[Tomcat B]
+  end
+  C[Service]
+  end
+  D[User]
+  D--&gt;C
+  C--&gt;A &amp; B
+  A x-.session.-x B
+</div>
+
+<p>Spring boot 기반 Tomcat  서비스는 클라이언트에서 요청시 세션을 Tomcat이 올라가 있는 노드에만 local 저장된다.</p>
+
+<p>이 경우 Pod replication, crash/shutdown 등으로 인하여 노드간 세션이 공유되지 않아 접속이 끊기는 문제가 발생할 수 있음</p>
+
+<hr />
+
+<h2 id="요구사항">요구사항</h2>
+
+<p>Kubernetes 클러스터 내에서 Pod 간 세션을 유지할 수 있는 방법 수립</p>
+
+<ol>
+  <li>유지보수가 쉬울 것(관리 포인트 적을 것)</li>
+  <li>어플리케이션(서비스) 코드에 영향이 없을 것</li>
+  <li>구성하는데 추가적인 리소스가 들어가지 않을 것</li>
+</ol>
+
+<hr />
+
+<h2 id="방법">방법</h2>
+
+<h3 id="1-sticky-session">1. Sticky session</h3>
+
+<p><img src="/assets/img/contents/tsc-1.png" alt="tsc-1.png" /></p>
+
+<p>클라이언트가 세션을 맺은 서버랑만 통신하는 것</p>
+
+<p>사용자 입장에서는 세션이 끊기지 않고 유지되는 장점이 있으나</p>
+
+<p>pod crash, shutdown 등의 문제로 pod 재시작, 중지시 세션이 끊기는 문제가 있다.</p>
+
+<p>kubernetes session affinity 설정으로 비교적 간단히 설정이 가능하나</p>
+
+<p>완벽한 session replication이 아니다.</p>
+
+<h3 id="2-tomcat-session-in-memory-replicationmulticast">2. Tomcat session in-memory replication(Multicast)</h3>
+
+<p>Tomcat에서 기본적으로 제공하는 클러스터링</p>
+
+<p>서버 인메모리에 저장하고 SimpleTCPCluster와 같은 클래스를 이용하여 리플리케이션하는 방법</p>
+
+<p>tomcat xml(server.xml, pom.xml) 수정이 필요하여 spring boot에서 기본으로 제공하는 embedded tomcat에서 사용이 안된다고 하나 java config를 이용하여 embedded tomcat도 설정 가능한 것으로 보인다.</p>
+
+<p>multicast 기능을 지원해야하지만 multicast는 대부분의 cloud 환경에서는 제공하지 않음</p>
+
+<p>Tomcat 설정 파일을 바꾸려면 Spring boot의 경우 <code class="language-plaintext highlighter-rouge">@Configuration</code> 설정을 통하여 Bean을 주입해야하여 소스코드 추가가 필요하다.</p>
+
+<h3 id="3-tomcat-session-persistence-replication">3. Tomcat session persistence replication</h3>
+
+<p>redis, dynamoDB와 같은 DB에 세션 정보를 저장하고 각 서버로 클러스터링 하는 방법</p>
+
+<p>session이 별도의 저장소에 저장되어 사용되는 장점이 있음</p>
+
+<hr />
+<h2 id="tomcat-session-in-memory-replicationmulticast-테스트">Tomcat session in-memory replication(Multicast) 테스트</h2>
+
+<p><a href="http://tomcat.apache.org/tomcat-9.0-doc/cluster-howto.html">Clustering/Session Replication How-To</a></p>
+
+<h3 id="epc-multicast-지원-테스트">EPC Multicast 지원 테스트</h3>
+
+<p>현재 사용중인 클라우드(EPC)에서 Multicast 기능을 지원하는지 테스트한다.</p>
+
+<p>멀티캐스트 IP 대역은 사설 224.0.1.0 ~ 238.255.255.255의 대역 IP가 예약되어 있으며</p>
+
+<p>멀티캐스트 사용을 위해서는 L2 장비가 IGMP 프로토콜을 지원해야한다고 한다.</p>
+
+<blockquote>
+  <p>AWS와 같은 메이저 클라우드에서는 지원을 안한다고 하니 확인 필요</p>
+</blockquote>
+
+<p><strong>iperf</strong>라는 네트워크 테스트 툴을 이용하여 EPC에서 멀티캐스트 IP 대역 사용이 가능한지 테스트한다.</p>
+
+<h4 id="kubernetes-worker-노드에서-진행">kubernetes worker 노드에서 진행</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># iperf 설치 (root 진행)</span>
+<span class="nv">$ </span>wget <span class="nt">-O</span> /usr/bin/iperf https://iperf.fr/download/ubuntu/iperf_2.0.9
+<span class="nv">$ </span><span class="nb">chmod</span> +x /usr/bin/iperf
+
+<span class="c"># Server side</span>
+<span class="nv">$ </span>iperf <span class="nt">-s</span> <span class="nt">-u</span> <span class="nt">-B</span> 228.0.0.4 <span class="nt">-i</span> 1 <span class="nt">-p</span> 45564
+<span class="nt">------------------------------------------------------------</span>
+Server listening on UDP port 45564
+Binding to <span class="nb">local </span>address 228.0.0.4
+Joining multicast group  228.0.0.4
+Receiving 1470 byte datagrams
+UDP buffer size:  208 KByte <span class="o">(</span>default<span class="o">)</span>
+<span class="nt">------------------------------------------------------------</span>
+<span class="o">[</span>  3] <span class="nb">local </span>228.0.0.4 port 45564 connected with 10.213.196.14 port 49293
+<span class="o">[</span> ID] Interval       Transfer     Bandwidth        Jitter   Lost/Total Datagrams
+<span class="o">[</span>  3]  0.0- 1.0 sec   129 KBytes  1.06 Mbits/sec   0.006 ms    0/   90 <span class="o">(</span>0%<span class="o">)</span>
+<span class="o">[</span>  3]  1.0- 2.0 sec   128 KBytes  1.05 Mbits/sec   0.011 ms    0/   89 <span class="o">(</span>0%<span class="o">)</span>
+<span class="o">[</span>  3]  2.0- 3.0 sec   128 KBytes  1.05 Mbits/sec   0.007 ms    0/   89 <span class="o">(</span>0%<span class="o">)</span>
+<span class="o">[</span>  3]  0.0- 3.0 sec   386 KBytes  1.05 Mbits/sec   0.007 ms    0/  269 <span class="o">(</span>0%<span class="o">)</span>
+
+<span class="c"># Client side (다른 노드에서 실행)</span>
+<span class="nv">$ </span>iperf <span class="nt">-c</span> 228.0.0.4 <span class="nt">-u</span> <span class="nt">-T</span> 32 <span class="nt">-t</span> 3 <span class="nt">-i</span> 1 <span class="nt">-p</span> 45564
+<span class="nt">------------------------------------------------------------</span>
+Client connecting to 228.0.0.4, UDP port 45564
+Sending 1470 byte datagrams, IPG target: 11215.21 us <span class="o">(</span>kalman adjust<span class="o">)</span>
+Setting multicast TTL to 32
+UDP buffer size:  208 KByte <span class="o">(</span>default<span class="o">)</span>
+<span class="nt">------------------------------------------------------------</span>
+<span class="o">[</span>  3] <span class="nb">local </span>10.213.196.14 port 49293 connected with 228.0.0.5 port 45564
+<span class="o">[</span> ID] Interval       Transfer     Bandwidth
+<span class="o">[</span>  3]  0.0- 1.0 sec   131 KBytes  1.07 Mbits/sec
+<span class="o">[</span>  3]  1.0- 2.0 sec   128 KBytes  1.05 Mbits/sec
+<span class="o">[</span>  3]  2.0- 3.0 sec   128 KBytes  1.05 Mbits/sec
+<span class="o">[</span>  3]  0.0- 3.0 sec   386 KBytes  1.05 Mbits/sec
+<span class="o">[</span>  3] Sent 269 datagrams
+</code></pre></div></div>
+
+<blockquote>
+  <p>Tomcat의 경우 기본 multicast 주소는 <code class="language-plaintext highlighter-rouge">228.0.0.4</code>에 포트는 <code class="language-plaintext highlighter-rouge">45564</code> 사용</p>
+</blockquote>
+
+<p>서버에서 클라이언트 각각 실행하여 클라이언트에서 송신하는 메시지가 서버에 멀티캐스트 되는지 확인</p>
+
+<p>다른 노드에서 실행시 정상 송수신을 확인하였다. (Zone: Prd-private)</p>
+
+<hr />
+
+<h3 id="tomcat-session-clustering-샘플-프로젝트-작성">Tomcat session clustering 샘플 프로젝트 작성</h3>
+
+<h4 id="buildgradle-작성"><code class="language-plaintext highlighter-rouge">build.gradle</code> 작성</h4>
+
+<div class="language-gradle highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plugins</span> <span class="o">{</span>
+	<span class="n">id</span> <span class="s1">'org.springframework.boot'</span> <span class="n">version</span> <span class="s1">'2.5.0'</span>
+	<span class="n">id</span> <span class="s1">'io.spring.dependency-management'</span> <span class="n">version</span> <span class="s1">'1.0.11.RELEASE'</span>
+	<span class="n">id</span> <span class="s1">'java'</span>
+<span class="o">}</span>
+
+<span class="n">group</span> <span class="o">=</span> <span class="s1">'com.example'</span>
+<span class="n">version</span> <span class="o">=</span> <span class="s1">'0.0.1-SNAPSHOT'</span>
+<span class="n">sourceCompatibility</span> <span class="o">=</span> <span class="s1">'1.8'</span>
+
+<span class="k">repositories</span> <span class="o">{</span>
+	<span class="n">mavenCentral</span><span class="o">()</span>
+<span class="o">}</span>
+
+<span class="k">dependencies</span> <span class="o">{</span>
+	<span class="n">implementation</span> <span class="s1">'org.springframework.boot:spring-boot-starter-web'</span>
+	<span class="n">implementation</span> <span class="s1">'org.projectlombok:lombok:1.18.12'</span>
+	<span class="n">annotationProcessor</span> <span class="s1">'org.projectlombok:lombok:1.18.12'</span>
+	<span class="n">implementation</span> <span class="s1">'org.apache.tomcat:tomcat-catalina-ha:9.0.46'</span>
+	<span class="n">testImplementation</span> <span class="s1">'org.springframework.boot:spring-boot-starter-test'</span>
+<span class="o">}</span>
+
+<span class="n">test</span> <span class="o">{</span>
+	<span class="n">useJUnitPlatform</span><span class="o">()</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="세션-정보-확인을-위한-간단한-controller-작성">세션 정보 확인을 위한 간단한 <code class="language-plaintext highlighter-rouge">Controller</code> 작성</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainController</span> <span class="o">{</span>
+	<span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/"</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getSession</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">HttpSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+		<span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="s">"session ID: "</span> <span class="o">+</span> <span class="n">session</span><span class="o">.</span><span class="na">getId</span><span class="o">()</span> <span class="o">+</span> <span class="s">"\n\nsession created: "</span> <span class="o">+</span> <span class="n">session</span><span class="o">.</span><span class="na">getCreationTime</span><span class="o">()</span> <span class="o">+</span> <span class="s">"\n\nsession accessed: "</span> <span class="o">+</span> <span class="n">session</span><span class="o">.</span><span class="na">getLastAccessedTime</span><span class="o">();</span>
+		<span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="tomcat-config-설정">Tomcat config 설정</h4>
+
+<h4 id="tomcatclustercontextcustomizer"><code class="language-plaintext highlighter-rouge">TomcatClusterContextCustomizer</code></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TomcatClusterContextCustomizer</span> <span class="kd">implements</span> <span class="nc">TomcatContextCustomizer</span> <span class="o">{</span>
+	<span class="nd">@Value</span><span class="o">(</span><span class="s">"${env.multicast.receiver.port}"</span><span class="o">)</span>
+	<span class="kd">private</span> <span class="nc">Integer</span> <span class="n">receiverPort</span><span class="o">;</span>
+	
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">customize</span><span class="o">(</span><span class="kd">final</span> <span class="nc">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">context</span><span class="o">.</span><span class="na">setDistributable</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>	<span class="c1">// web.xml &lt;distribute/&gt;</span>
+		<span class="c1">// Manager setting</span>
+		<span class="nc">BackupManager</span> <span class="n">manager</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BackupManager</span><span class="o">();</span>
+		<span class="n">manager</span><span class="o">.</span><span class="na">setNotifyListenersOnReplication</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+		<span class="n">context</span><span class="o">.</span><span class="na">setManager</span><span class="o">(</span><span class="n">manager</span><span class="o">);</span>
+		<span class="n">configureCluster</span><span class="o">((</span><span class="nc">Engine</span><span class="o">)</span><span class="n">context</span><span class="o">.</span><span class="na">getParent</span><span class="o">().</span><span class="na">getParent</span><span class="o">());</span>
+	<span class="o">}</span>
+	
+	<span class="kd">private</span> <span class="kt">void</span> <span class="nf">configureCluster</span><span class="o">(</span><span class="nc">Engine</span> <span class="n">engine</span><span class="o">)</span> <span class="o">{</span>
+		<span class="c1">// Cluster setting</span>
+		<span class="nc">SimpleTcpCluster</span> <span class="n">cluster</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SimpleTcpCluster</span><span class="o">();</span>
+		<span class="n">cluster</span><span class="o">.</span><span class="na">setChannelSendOptions</span><span class="o">(</span><span class="mi">8</span><span class="o">);</span>
+		<span class="c1">// Channel setting</span>
+		<span class="nc">GroupChannel</span> <span class="n">channel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GroupChannel</span><span class="o">();</span>
+		<span class="c1">// Membership setting</span>
+		<span class="nc">McastService</span> <span class="n">mcastService</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">McastService</span><span class="o">();</span>
+		<span class="n">mcastService</span><span class="o">.</span><span class="na">setAddress</span><span class="o">(</span><span class="s">"228.0.0.4"</span><span class="o">);</span>
+		<span class="n">mcastService</span><span class="o">.</span><span class="na">setPort</span><span class="o">(</span><span class="mi">45564</span><span class="o">);</span>
+		<span class="n">mcastService</span><span class="o">.</span><span class="na">setFrequency</span><span class="o">(</span><span class="mi">500</span><span class="o">);</span>
+		<span class="n">mcastService</span><span class="o">.</span><span class="na">setDropTime</span><span class="o">(</span><span class="mi">3000</span><span class="o">);</span>
+		<span class="n">channel</span><span class="o">.</span><span class="na">setMembershipService</span><span class="o">(</span><span class="n">mcastService</span><span class="o">);</span>
+		<span class="c1">// Receiver setting</span>
+		<span class="nc">NioReceiver</span> <span class="n">receiver</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">NioReceiver</span><span class="o">();</span>
+		<span class="n">receiver</span><span class="o">.</span><span class="na">setAddress</span><span class="o">(</span><span class="s">"auto"</span><span class="o">);</span>	<span class="c1">// tomcat의 LAN 주소를 가져온다. Ipv4로 설정해야함</span>
+		<span class="n">receiver</span><span class="o">.</span><span class="na">setPort</span><span class="o">(</span><span class="mi">4000</span><span class="o">);</span>
+<span class="c1">//		receiver.setPort(receiverPort);   톰캣이 같은 node에서 replication 구동시 리시버 포트는 서로 달라야함 이 경우 별도 포트 지정</span>
+		<span class="n">receiver</span><span class="o">.</span><span class="na">setAutoBind</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+		<span class="n">receiver</span><span class="o">.</span><span class="na">setSelectorTimeout</span><span class="o">(</span><span class="mi">5000</span><span class="o">);</span>
+		<span class="n">receiver</span><span class="o">.</span><span class="na">setMaxThreads</span><span class="o">(</span><span class="mi">6</span><span class="o">);</span>
+		<span class="n">channel</span><span class="o">.</span><span class="na">setChannelReceiver</span><span class="o">(</span><span class="n">receiver</span><span class="o">);</span>
+		<span class="c1">// Sender setting</span>
+		<span class="nc">ReplicationTransmitter</span> <span class="n">sender</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ReplicationTransmitter</span><span class="o">();</span>
+		<span class="n">sender</span><span class="o">.</span><span class="na">setTransport</span><span class="o">(</span><span class="k">new</span> <span class="nc">PooledParallelSender</span><span class="o">());</span>
+		<span class="n">channel</span><span class="o">.</span><span class="na">setChannelSender</span><span class="o">(</span><span class="n">sender</span><span class="o">);</span>
+		<span class="c1">// Intercepter setting</span>
+		<span class="n">channel</span><span class="o">.</span><span class="na">addInterceptor</span><span class="o">(</span><span class="k">new</span> <span class="nc">TcpPingInterceptor</span><span class="o">());</span>
+		<span class="n">channel</span><span class="o">.</span><span class="na">addInterceptor</span><span class="o">(</span><span class="k">new</span> <span class="nc">TcpFailureDetector</span><span class="o">());</span>
+		<span class="n">channel</span><span class="o">.</span><span class="na">addInterceptor</span><span class="o">(</span><span class="k">new</span> <span class="nc">MessageDispatchInterceptor</span><span class="o">());</span>
+		<span class="n">cluster</span><span class="o">.</span><span class="na">addValve</span><span class="o">(</span><span class="k">new</span> <span class="nc">ReplicationValve</span><span class="o">());</span>
+		<span class="n">cluster</span><span class="o">.</span><span class="na">addValve</span><span class="o">(</span><span class="k">new</span> <span class="nc">JvmRouteBinderValve</span><span class="o">());</span>
+		<span class="n">cluster</span><span class="o">.</span><span class="na">setChannel</span><span class="o">(</span><span class="n">channel</span><span class="o">);</span>
+		<span class="n">cluster</span><span class="o">.</span><span class="na">addClusterListener</span><span class="o">(</span><span class="k">new</span> <span class="nc">ClusterSessionListener</span><span class="o">());</span>
+		<span class="n">engine</span><span class="o">.</span><span class="na">setCluster</span><span class="o">(</span><span class="n">cluster</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="tomcatclusterutil-작성"><code class="language-plaintext highlighter-rouge">TomcatClusterUtil</code> 작성</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TomcatClusterUtil</span> <span class="kd">implements</span> <span class="nc">WebServerFactoryCustomizer</span><span class="o">&lt;</span><span class="nc">TomcatServletWebServerFactory</span><span class="o">&gt;{</span>
+	<span class="nd">@Autowired</span>
+	<span class="nc">TomcatClusterContextCustomizer</span> <span class="n">tomcatClusterContextCustomizer</span><span class="o">;</span>
+	
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">customize</span><span class="o">(</span><span class="kd">final</span> <span class="nc">TomcatServletWebServerFactory</span> <span class="n">factory</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">factory</span><span class="o">.</span><span class="na">addContextCustomizers</span><span class="o">(</span><span class="n">tomcatClusterContextCustomizer</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>spring boot와 같이 설치형 tomcat이 아닌 embedded tomcat에서는 server.xml, web.xml과 같은 설정 파일의 직접 수정이 불가능하므로</p>
+
+<p><code class="language-plaintext highlighter-rouge">TomcatContextCustomizer</code>를 이용하여 Context에 설정한다.</p>
+
+<blockquote>
+  <p>항목별 자세한 설명은 <a href="http://tomcat.apache.org/tomcat-9.0-doc/cluster-howto.html">공식문서</a> 참고</p>
+</blockquote>
+
+<h4 id="인스턴스별-포트-설정을-위한-applicationyaml-작성">인스턴스별 포트 설정을 위한 <code class="language-plaintext highlighter-rouge">application.yaml</code> 작성</h4>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">spring</span><span class="pi">:</span>
+  <span class="na">profiles</span><span class="pi">:</span>
+    <span class="na">active</span><span class="pi">:</span> <span class="s">instance1</span>
+
+<span class="nn">---</span>
+<span class="na">spring</span><span class="pi">:</span>
+  <span class="na">config</span><span class="pi">:</span>
+    <span class="na">activate</span><span class="pi">:</span>
+      <span class="na">on-profile</span><span class="pi">:</span> <span class="s">instance1</span>
+<span class="na">server</span><span class="pi">:</span>
+  <span class="na">port</span><span class="pi">:</span> <span class="m">8080</span>
+<span class="na">env</span><span class="pi">:</span>
+  <span class="na">multicast.receiver.port</span><span class="pi">:</span> <span class="m">4000</span>
+
+<span class="nn">---</span>
+<span class="na">spring</span><span class="pi">:</span>
+  <span class="na">config</span><span class="pi">:</span>
+    <span class="na">activate</span><span class="pi">:</span>
+      <span class="na">on-profile</span><span class="pi">:</span> <span class="s">instance2</span>
+<span class="na">server</span><span class="pi">:</span>
+  <span class="na">port</span><span class="pi">:</span> <span class="m">8081</span>
+<span class="na">env</span><span class="pi">:</span>
+  <span class="na">multicast.receiver.port</span><span class="pi">:</span> <span class="m">4001</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>로컬 테스트시 같은 포트로 톰캣 인스턴스 실행이 불가능하므로 포트 설정을 하기 위함</p>
+</blockquote>
+
+<h4 id="spring-boot-run-configuration-설정">spring boot Run configuration 설정</h4>
+
+<ol>
+  <li>
+    <h5 id="tomcat-session-replication-test1">tomcat-session-replication-test1</h5>
+
+    <ul>
+      <li>Profile: instance1</li>
+      <li>JVM Arguments: -Djava.net.preferIPv4Stack=true</li>
+    </ul>
+  </li>
+  <li>
+    <h5 id="tomcat-session-replication-test2">tomcat-session-replication-test2</h5>
+
+    <ul>
+      <li>Profile: instance2</li>
+      <li>JVM Arguments: -Djava.net.preferIPv4Stack=true</li>
+    </ul>
+  </li>
+</ol>
+
+<blockquote>
+  <p>preferIPv4Stack <code class="language-plaintext highlighter-rouge">true</code>로 설정해야 위에서 Receiver주소 설정값 <code class="language-plaintext highlighter-rouge">receiver.setAddress("auto");</code>가 작동한다.</p>
+</blockquote>
+
+<h4 id="로드밸런서-설정">로드밸런서 설정</h4>
+
+<p>Tomcat에서 지원하는 session clustering을 사용하려면 로드밸런서를 통해 같은 도메인이름을 사용하여야 세션이 공유된다.</p>
+
+<p>서로 다른 도메인을 사용하거나 다른 서버인 경우 기본적으로 같은 session을 가지고 있다고 판단하지 않는 것 같다.</p>
+
+<p>따라서 같은 도메인 설정을 위한 로드밸런서 역할을 할 nginx를 사용하여 리버스 프록시 설정을한다.</p>
+
+<h4 id="맥-로컬-기준-작성">맥 로컬 기준 작성</h4>
+
+<h4 id="nginx-설치-및-설정">nginx 설치 및 설정</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew <span class="nb">install </span>nginx	<span class="c"># nginx 설치</span>
+<span class="nv">$ </span>vim /usr/local/etc/nginx/nginx.conf	<span class="c"># 로드밸런서 설정</span>
+ 17   http <span class="o">{</span>
+ 18     include       mime.types<span class="p">;</span>
+ 19     default_type  application/octet-stream<span class="p">;</span>
+ ...
+ 35     upstream myproject <span class="o">{</span>
+ 36       server 127.0.0.1:8080<span class="p">;</span>
+ 37       server 127.0.0.1:8081<span class="p">;</span>
+ 38     <span class="o">}</span>
+ 39
+ 40     server <span class="o">{</span>
+ 41         listen       80<span class="p">;</span>
+ 42         server_name  localhost<span class="p">;</span>
+ ...
+ 48         location / <span class="o">{</span>
+ 49           proxy_pass http://myproject<span class="p">;</span>
+ 50         <span class="o">}</span>
+ <span class="nv">$ </span>nginx	<span class="c"># local nginx 구동</span>
+</code></pre></div></div>
+
+<p>localhost:80 접속시 <code class="language-plaintext highlighter-rouge">127.0.0.1:8080</code>, <code class="language-plaintext highlighter-rouge">127.0.0.1:8081</code>로 각각 로드밸런싱</p>
+
+<hr />
+
+<h3 id="테스트local">테스트(Local)</h3>
+
+<h4 id="테스트-순서">테스트 순서</h4>
+<ol>
+  <li>tomcat-session-replication-test1 구동</li>
+  <li>localhost 접속</li>
+  <li>session 확인</li>
+  <li>tomcat-session-replication-test2 구동</li>
+  <li>tomcat-session-replication-test1 중지</li>
+  <li>localhost 접속</li>
+  <li>session 확인</li>
+</ol>
+
+<h4 id="테스트-진행-및-결과">테스트 진행 및 결과</h4>
+
+<ol>
+  <li>tomcat-session-replication-test1 구동
+<img src="/assets/img/contents/tsc-2.png" alt="tsc-2.png" /></li>
+  <li>localhost 접속</li>
+  <li>session 확인
+<img src="/assets/img/contents/tsc-3.png" alt="tsc-3.png" /></li>
+  <li>tomcat-session-replication-test2 구동</li>
+  <li>tomcat-session-replication-test1 중지
+<img src="/assets/img/contents/tsc-4.png" alt="tsc-4.png" /></li>
+  <li>localhost 접속</li>
+  <li>session 확인
+<img src="/assets/img/contents/tsc-5.png" alt="tsc-5.png" /></li>
+</ol>
+
+<p>session ID를 1번 인스턴스에서 생성했음에도 2번 tomcat으로 접속시 session ID가 서로 동일한 것을 확인할 수 있다.</p>
+
+<hr />
+
+<h3 id="테스트dev-epc">테스트(Dev EPC)</h3>
+
+<p>현시점 기준 172.x 대역의 개발 클러스터에 설정하여 세션 공유가 kubernetes 환경에서도 적용되는지 테스트한다.</p>
+
+<h3 id="kubernetes-배포">kubernetes 배포</h3>
+<ol>
+  <li>
+    <h4 id="gitlab-프로젝트-생성-및-commit">gitlab 프로젝트 생성 및 commit</h4>
+  </li>
+  <li>
+    <h4 id="이미지-빌드를-위한-dockerfile-k8s-배포를-위한-yaml-작성">이미지 빌드를 위한 <code class="language-plaintext highlighter-rouge">Dockerfile</code>, k8s 배포를 위한 <code class="language-plaintext highlighter-rouge">yaml</code> 작성</h4>
+
+    <ol>
+      <li>
+        <h5 id="dockerfile"><code class="language-plaintext highlighter-rouge">Dockerfile</code></h5>
+      </li>
+    </ol>
+
+    <div class="language-Dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> openjdk:8-jdk-alpine</span>
+   
+ ADD build/libs/tomcat-session-replication-test-0.0.1-SNAPSHOT.jar TomcatSessionClusteringTest.jar
+ RUN apk --no-cache add tzdata &amp;&amp; \
+         cp /usr/share/zoneinfo/Asia/Seoul /etc/localtime &amp;&amp; \
+         echo "Asia/Seoul" &gt; /etc/timezone
+   
+ ENTRYPOINT ["java", "-Duser.timezone=Asia/Seoul", "-Djava.net.preferIPv4Stack=true", "-jar", "/TomcatSessionClusteringTest.jar", "--spring.profiles.active=instance1"]
+    
+</code></pre></div>    </div>
+    <ol>
+      <li>
+        <h5 id="kubernetesyaml"><code class="language-plaintext highlighter-rouge">kubernetes.yaml</code></h5>
+      </li>
+    </ol>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+ <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">apps/v1</span>
+ <span class="na">kind</span><span class="pi">:</span> <span class="s">Deployment</span>
+ <span class="na">metadata</span><span class="pi">:</span>
+   <span class="na">namespace</span><span class="pi">:</span> <span class="s">development</span>
+   <span class="na">name</span><span class="pi">:</span> <span class="s">tomcatsessionclustertest-deploy</span>
+   <span class="na">labels</span><span class="pi">:</span>
+     <span class="na">app</span><span class="pi">:</span> <span class="s">tomcatsessionclustertest</span>
+ <span class="na">spec</span><span class="pi">:</span>
+   <span class="na">replicas</span><span class="pi">:</span> <span class="s">2</span><span class="err">	</span><span class="s"># pod를 2개 띄움</span>
+   <span class="na">selector</span><span class="pi">:</span>
+     <span class="na">matchLabels</span><span class="pi">:</span>
+       <span class="na">app</span><span class="pi">:</span> <span class="s">tomcatsessionclustertest</span>
+   <span class="na">template</span><span class="pi">:</span>
+     <span class="na">metadata</span><span class="pi">:</span>
+       <span class="na">labels</span><span class="pi">:</span>
+         <span class="na">app</span><span class="pi">:</span> <span class="s">tomcatsessionclustertest</span>
+     <span class="na">spec</span><span class="pi">:</span>
+       <span class="na">containers</span><span class="pi">:</span>
+       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">tomcatsessionclustertest</span>
+         <span class="na">image</span><span class="pi">:</span> <span class="s">gitlab.yourdomain.com/tomcatsessionclustertest:latest</span>
+         <span class="na">volumeMounts</span><span class="pi">:</span>
+         <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">tz-seoul</span>
+           <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/etc/localtime</span>
+         <span class="na">ports</span><span class="pi">:</span> 
+         <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">8080</span>
+       <span class="na">imagePullSecrets</span><span class="pi">:</span>
+       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">reg</span>
+       <span class="na">volumes</span><span class="pi">:</span>
+       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">tz-seoul</span>
+         <span class="na">hostPath</span><span class="pi">:</span> 
+           <span class="na">path</span><span class="pi">:</span> <span class="s">/usr/share/zoneinfo/Asia/Seoul</span>
+       <span class="na">affinity</span><span class="pi">:</span>
+       <span class="c1"># 같은 node에 뜨지 않게 하기 위한 Affinity 설정</span>
+         <span class="na">podAntiAffinity</span><span class="pi">:</span>
+           <span class="na">requiredDuringSchedulingIgnoredDuringExecution</span><span class="pi">:</span>
+           <span class="pi">-</span> <span class="na">labelSelector</span><span class="pi">:</span>
+               <span class="na">matchExpressions</span><span class="pi">:</span>
+               <span class="pi">-</span> <span class="na">key</span><span class="pi">:</span> <span class="s">app.kubernetes.io/name</span>
+                 <span class="na">operator</span><span class="pi">:</span> <span class="s">In</span>
+                 <span class="na">values</span><span class="pi">:</span>
+                 <span class="pi">-</span> <span class="s">tomcatsessionclustertest</span>
+              <span class="na">topologyKey</span><span class="pi">:</span> <span class="s">kubernetes.io/hostname</span>
+ <span class="s">---</span>
+ <span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+ <span class="na">kind</span><span class="pi">:</span> <span class="s">Service</span>
+ <span class="na">metadata</span><span class="pi">:</span>
+   <span class="na">namespace</span><span class="pi">:</span> <span class="s">development</span>
+   <span class="na">name</span><span class="pi">:</span> <span class="s">tomcatsessionclustertest-svc</span>
+   <span class="na">labels</span><span class="pi">:</span>
+     <span class="na">app</span><span class="pi">:</span> <span class="s">tomcatsessionclustertest</span>
+ <span class="na">spec</span><span class="pi">:</span>
+   <span class="na">ports</span><span class="pi">:</span>
+   <span class="pi">-</span> <span class="na">port</span><span class="pi">:</span> <span class="m">8080</span>
+     <span class="na">nodePort</span><span class="pi">:</span> <span class="m">32599</span>
+     <span class="na">targetPort</span><span class="pi">:</span> <span class="m">8080</span>
+   <span class="na">selector</span><span class="pi">:</span>
+     <span class="na">app</span><span class="pi">:</span> <span class="s">tomcatsessionclustertest</span>
+   <span class="na">type</span><span class="pi">:</span> <span class="s">NodePort</span>
+      
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <h4 id="jenkins-등록">Jenkins 등록</h4>
+  </li>
+</ol>
+
+<p>파이프라인 아래와 같이 수정</p>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">node</span> <span class="o">(</span><span class="s1">'jenkins-slave'</span><span class="o">){</span>
+    <span class="kt">def</span> <span class="n">gitBranch</span> <span class="o">=</span> <span class="s1">'master'</span>
+    <span class="kt">def</span> <span class="n">gitCredId</span> <span class="o">=</span> <span class="s1">'gitlab-ssh-key'</span>
+    <span class="kt">def</span> <span class="n">gitUrl</span> <span class="o">=</span> <span class="s1">'ssh://git@gitlab.yourdomain.com/group/'</span>
+    <span class="kt">def</span> <span class="n">projectUrl</span> <span class="o">=</span> <span class="n">gitUrl</span> <span class="o">+</span> <span class="s1">'tomcat-session-clustering-test.git'</span>
+    <span class="kt">def</span> <span class="n">dockerRepoUrl</span> <span class="o">=</span> <span class="s1">'http://nexus.yourdomain.com'</span>
+    <span class="kt">def</span> <span class="n">imageName</span> <span class="o">=</span> <span class="s1">'tomcatsessionclustertest'</span>
+    <span class="kt">def</span> <span class="n">defaultYaml</span> <span class="o">=</span> <span class="s1">'kubernetes.yaml'</span>
+    <span class="kt">def</span> <span class="n">deployYaml</span> <span class="o">=</span> <span class="s1">'kubernetes_deploy.yaml'</span>
+
+    <span class="n">stage</span><span class="o">(</span><span class="s1">'Checkout'</span><span class="o">)</span>    <span class="o">{</span>
+         <span class="n">git</span><span class="o">(</span>
+            <span class="nl">url:</span> <span class="n">projectUrl</span><span class="o">,</span>
+            <span class="nl">credentialsId:</span> <span class="n">gitCredId</span><span class="o">,</span>
+            <span class="nl">branch:</span> <span class="n">gitBranch</span>
+        <span class="o">)</span>
+    <span class="o">}</span>
+    
+    <span class="n">stage</span><span class="o">(</span><span class="s1">'Build'</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">sh</span> <span class="s2">"chmod +x ./gradlew"</span>
+        <span class="n">sh</span> <span class="s2">"./gradlew clean build -x test"</span>
+    <span class="o">}</span>
+
+    <span class="n">stage</span><span class="o">(</span><span class="s1">'Analysis &amp; Push'</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">parallel</span> <span class="o">(</span>
+            <span class="s1">'Docker Build'</span><span class="o">:</span> <span class="o">{</span>
+                <span class="kt">def</span> <span class="n">dockerfile</span> <span class="o">=</span> <span class="s1">'Dockerfile'</span>
+                <span class="n">app</span> <span class="o">=</span> <span class="n">docker</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="s2">"${imageName}:${env.BUILD_ID}"</span><span class="o">,</span><span class="s2">"-f ${dockerfile} ./"</span><span class="o">)</span>
+            <span class="o">}</span>
+        <span class="o">)</span>
+        
+        <span class="n">parallel</span> <span class="o">(</span>
+            <span class="s1">'Registry Push'</span><span class="o">:</span> <span class="o">{</span>
+                <span class="n">docker</span><span class="o">.</span><span class="na">withRegistry</span><span class="o">(</span><span class="s2">"${dockerRepoUrl}"</span><span class="o">,</span> <span class="s2">"dockerhub"</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">app</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="s2">"$BUILD_ID"</span><span class="o">)</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">)</span>
+    <span class="o">}</span>
+    
+    <span class="n">stage</span><span class="o">(</span><span class="s1">'Kube Deploy'</span><span class="o">){</span>
+        
+        <span class="n">sh</span> <span class="s2">"cat ${defaultYaml} | sed 's/latest/${env.BUILD_ID}/g' &gt; ${deployYaml}"</span>
+
+        <span class="n">withKubeConfig</span><span class="o">(</span><span class="nl">credentialsId:</span> <span class="s1">'jenkins-builder'</span><span class="o">,</span> <span class="nl">serverUrl:</span> <span class="s1">'https://kubernetes'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">sh</span> <span class="s2">"kubectl apply -f ${deployYaml}"</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    
+<span class="o">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>CI/CD 환경 및 Kubernetes 환경은 각각 다르므로 위 파이프라인은 참고만 할 것</p>
+</blockquote>
+
+<ol>
+  <li>
+    <h4 id="kubernetes-배포-확인">kubernetes 배포 확인</h4>
+  </li>
+</ol>
+
+<p>kubernetes 대시보드 접속 또는 명령어 확인</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># alias k=kubectl</span>
+<span class="nv">$ </span>k get po <span class="nt">-n</span> development
+<span class="nv">$ </span>k get svc <span class="nt">-n</span> development
+</code></pre></div></div>
+
+<h3 id="외부-접속-설정-및-접속-테스트">외부 접속 설정 및 접속 테스트</h3>
+
+<ol>
+  <li>방화벽 오픈
+    <ul>
+      <li>외부 -&gt; kubernetes 32599 NodePort</li>
+    </ul>
+  </li>
+  <li>접속 확인
+<img src="/assets/img/contents/tsc-6.png" alt="tsc-6.png" /></li>
+  <li>접속 로그 확인
+<img src="/assets/img/contents/tsc-7.png" alt="tsc-7.png" /></li>
+  <li>접속된 파드 제거
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>k get pod <span class="nt">-n</span> development
+<span class="nv">$ </span>k delete pod tomcatsessionclustertest-deploy-7d75d5548b-rknfh <span class="nt">-n</span> development
+</code></pre></div>    </div>
+  </li>
+  <li>재접속
+<img src="/assets/img/contents/tsc-8.png" alt="tsc-8.png" /></li>
+</ol>
+
+<h3 id="테스트-결과">테스트 결과</h3>
+
+<p><img src="/assets/img/contents/tsc-6.png" alt="tsc-6.png" /></p>
+
+<p><img src="/assets/img/contents/tsc-8.png" alt="tsc-8.png" /></p>
+
+<p>세션 공유가 되지 않는것으로 확인되었다.</p>
+
+<p>kubernetes 환경에서 host 서버간 multicast 통신은 되는 것으로 판단되나 파드간 multicast 통신을 위해서는 <code class="language-plaintext highlighter-rouge">multus-cni</code>를 사용하여 NIC로 호스트와 연결해야함</p>
+
+<blockquote>
+  <p>참고: <a href="https://stackoverflow.com/a/61234801/15263734">https://stackoverflow.com/a/61234801/15263734</a></p>
+</blockquote>
+
+<p>Code dependency도 높고 kubernetes 환경에 별도의 CNI 설치를 요구하므로 사용이 어렵다.</p>
+
+<hr />
+<h2 id="tomcat-session-persistence-replication-테스트">Tomcat session persistence replication 테스트</h2>
+
+<p>Redis, dynamoDB, hazelcast 등의 in-memory DB를 이용하여 세션을 저장하고 공유하는 방법 테스트</p>
+
+<p>현재 EPC에서 Redis를 사용하기 때문에 redis를 이용하여 세션 저장하는 방법 테스트</p>
+
+<h3 id="테스트local-1">테스트(LOCAL)</h3>
+
+<h4 id="맥-로컬-기준-작성-1">맥 로컬 기준 작성</h4>
+
+<h4 id="1-redis-설치">1. Redis 설치</h4>
+
+<p><a href="https://hub.docker.com/_/redis/">https://hub.docker.com/_/redis/</a></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker pull redis
+<span class="nv">$ </span>docker run <span class="nt">--name</span> redis <span class="nt">-p</span> 6379:6379 <span class="nt">-d</span> redis
+<span class="nv">$ </span>docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS                                       NAMES
+2e96b0e93c0a   redis     <span class="s2">"docker-entrypoint.s…"</span>   4 seconds ago   Up 2 seconds   0.0.0.0:6379-&gt;6379/tcp, :::6379-&gt;6379/tcp   redis
+</code></pre></div></div>
+
+<h4 id="2-샘플-프로젝트-작성">2. 샘플 프로젝트 작성</h4>
+
+<h5 id="buildgradle"><code class="language-plaintext highlighter-rouge">build.gradle</code></h5>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
+	<span class="n">implementation</span> <span class="err">'</span><span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">boot</span><span class="o">:</span><span class="n">spring</span><span class="o">-</span><span class="n">boot</span><span class="o">-</span><span class="n">starter</span><span class="o">-</span><span class="n">web</span><span class="err">'</span>
+	<span class="n">testImplementation</span> <span class="err">'</span><span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">boot</span><span class="o">:</span><span class="n">spring</span><span class="o">-</span><span class="n">boot</span><span class="o">-</span><span class="n">starter</span><span class="o">-</span><span class="n">test</span><span class="err">'</span>
+	<span class="n">implementation</span> <span class="err">'</span><span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">boot</span><span class="o">:</span><span class="n">spring</span><span class="o">-</span><span class="n">boot</span><span class="o">-</span><span class="n">starter</span><span class="o">-</span><span class="n">data</span><span class="o">-</span><span class="n">redis</span><span class="err">'</span>
+	<span class="n">implementation</span> <span class="err">'</span><span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">.</span><span class="na">session</span><span class="o">:</span><span class="n">spring</span><span class="o">-</span><span class="n">session</span><span class="o">-</span><span class="n">data</span><span class="o">-</span><span class="n">redis</span><span class="err">'</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h5 id="applicationyaml"><code class="language-plaintext highlighter-rouge">application.yaml</code></h5>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">spring</span><span class="pi">:</span>
+  <span class="na">profiles</span><span class="pi">:</span>
+    <span class="na">active</span><span class="pi">:</span> <span class="s">local</span>
+
+<span class="nn">---</span>
+<span class="na">spring</span><span class="pi">:</span>
+  <span class="na">config</span><span class="pi">:</span>
+    <span class="na">activate</span><span class="pi">:</span>
+      <span class="na">on-profile</span><span class="pi">:</span> <span class="s">local</span>
+  <span class="na">redis</span><span class="pi">:</span>
+    <span class="na">host</span><span class="pi">:</span> <span class="s">127.0.0.1</span>
+    <span class="na">port</span><span class="pi">:</span> <span class="m">6379</span>
+<span class="na">server</span><span class="pi">:</span>
+  <span class="na">port</span><span class="pi">:</span> <span class="m">8080</span>
+
+<span class="nn">---</span>
+<span class="na">spring</span><span class="pi">:</span>
+  <span class="na">config</span><span class="pi">:</span>
+    <span class="na">activate</span><span class="pi">:</span>
+      <span class="na">on-profile</span><span class="pi">:</span> <span class="s">development</span>
+  <span class="na">redis</span><span class="pi">:</span>
+    <span class="na">host</span><span class="pi">:</span> <span class="s">172.25.0.163</span>
+    <span class="na">port</span><span class="pi">:</span> <span class="m">6379</span>
+<span class="na">server</span><span class="pi">:</span>
+  <span class="na">port</span><span class="pi">:</span> <span class="m">8080</span>
+</code></pre></div></div>
+
+<h5 id="maincontrollerjava"><code class="language-plaintext highlighter-rouge">MainController.java</code></h5>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainController</span> <span class="o">{</span>
+	
+	<span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/"</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getSession</span><span class="o">(</span><span class="nc">HttpServletRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">HttpSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+		<span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="s">"session ID: "</span> <span class="o">+</span> <span class="n">session</span><span class="o">.</span><span class="na">getId</span><span class="o">()</span> <span class="o">+</span> <span class="s">"\n\nsession created: "</span> <span class="o">+</span> <span class="n">session</span><span class="o">.</span><span class="na">getCreationTime</span><span class="o">()</span> <span class="o">+</span> <span class="s">"\n\nsession accessed: "</span> <span class="o">+</span> <span class="n">session</span><span class="o">.</span><span class="na">getLastAccessedTime</span><span class="o">();</span>
+      	<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">request</span><span class="o">.</span><span class="na">getLocalPort</span><span class="o">());</span>
+		<span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+	<span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>SpringBootApplication에 <code class="language-plaintext highlighter-rouge">@EnableRedisHttpSession</code> 추가</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootApplication</span>
+<span class="nd">@EnableRedisHttpSession</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TomcatSessionReplicationTestApplication</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="nc">TomcatSessionReplicationTestApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="spring-boot-run-configuration-설정-1">Spring boot Run configuration 설정</h4>
+
+<ol>
+  <li>
+    <h5 id="tomcat-session-replication-test1-1">tomcat-session-replication-test1</h5>
+
+    <ul>
+      <li>JVM Arguments: -Djava.net.preferIPv4Stack=true</li>
+      <li>Program Arguments: –server.port=8080</li>
+    </ul>
+  </li>
+  <li>
+    <h5 id="tomcat-session-replication-test2-1">tomcat-session-replication-test2</h5>
+
+    <ul>
+      <li>JVM Arguments: -Djava.net.preferIPv4Stack=true</li>
+      <li>Program Arguments: –server.port=8081</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="테스트local-2">테스트(Local)</h3>
+
+<h4 id="테스트-순서-1">테스트 순서</h4>
+
+<ol>
+  <li>tomcat-session-replication-test1 구동</li>
+  <li>localhost 접속</li>
+  <li>session 확인</li>
+  <li>tomcat-session-replication-test2 구동</li>
+  <li>tomcat-session-replication-test1 중지</li>
+  <li>localhost 접속</li>
+  <li>session 확인</li>
+  <li>redis key 확인</li>
+</ol>
+
+<h4 id="테스트-진행">테스트 진행</h4>
+<ol>
+  <li>tomcat-session-replication-test1 구동
+<img src="/assets/img/contents/tsc-9.png" alt="tsc-9.png" /></li>
+  <li>localhost 접속</li>
+  <li>session 확인
+<img src="/assets/img/contents/tsc-10.png" alt="tsc-10.png" /></li>
+  <li>tomcat-session-replication-test2 구동</li>
+  <li>tomcat-session-replication-test1 중지
+<img src="/assets/img/contents/tsc-11.png" alt="tsc-11.png" /></li>
+  <li>localhost 접속</li>
+  <li>session 확인
+<img src="/assets/img/contents/tsc-12.png" alt="tsc-12.png" /></li>
+  <li>redis key 확인
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run <span class="nt">-it</span> redis bash
+root@c5aeb4bf0493:/data# redis-cli <span class="nt">-h</span> 192.168.0.56		<span class="c"># host local ip</span>
+192.168.0.56:6379&gt; keys <span class="k">*</span>
+1<span class="o">)</span> <span class="s2">"spring:session:expirations:1622602500000"</span>
+2<span class="o">)</span> <span class="s2">"spring:session:sessions:expires:063e4085-0cfc-4c49-b0c9-65a334327e13"</span>
+3<span class="o">)</span> <span class="s2">"spring:session:sessions:063e4085-0cfc-4c49-b0c9-65a334327e13"</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>redis에 session 정보가 저장이 되는 것을 확인 가능</p>
+
+<p><img src="/assets/img/contents/tsc-10.png" alt="tsc-10.png" /></p>
+
+<p><img src="/assets/img/contents/tsc-12.png" alt="tsc-12.png" /></p>
+
+<p>session ID를 1번 인스턴스에서 생성했음에도 2번 tomcat으로 접속시 session ID가 서로 동일한 것을 확인할 수 있다.</p>
+
+<h3 id="테스트dev-epc-1">테스트(Dev EPC)</h3>
+
+<h3 id="kubernetes-배포-1">Kubernetes 배포</h3>
+
+<p>2번 테스트 항목의 Kubernetes 배포 과정과 똑같음</p>
+
+<p>Dockerfile <code class="language-plaintext highlighter-rouge">"--spring.profiles.active=development"</code>로 수정</p>
+
+<h3 id="테스트-진행pod-fail">테스트 진행(Pod fail)</h3>
+<ol>
+  <li>접속 확인
+<img src="/assets/img/contents/tsc-13.png" alt="tsc-13.png" /></li>
+  <li>접속 로그 확인
+<img src="/assets/img/contents/tsc-14.png" alt="tsc-14.png" /></li>
+  <li>접속된 파드 중지
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>k get pod <span class="nt">-n</span> development
+<span class="nv">$ </span>k delete pod tomcatsessionclustertest-deploy-79d5796f9c-dwxv2 <span class="nt">-n</span> development
+</code></pre></div>    </div>
+  </li>
+  <li>재접속
+<img src="/assets/img/contents/tsc-15.png" alt="tsc-15.png" /></li>
+</ol>
+
+<p>톰캣 세션이 끊기지 않은 것을 확인할 수 있다.</p>
+
+<blockquote>
+  <p>Redis가 죽으면 세션 접속 시점에 redis에 접속하므로 계속 reconnecting해 서비스가 죽는 문제가 존재하기는 한다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="결론">결론</h2>
+
+<h3 id="1-sticky-session-1">1. Sticky session</h3>
+
+<p><img src="/assets/img/contents/tsc-1.png" alt="tsc-1.png" /></p>
+
+<p>클라이언트가 세션을 맺은 tomcat에 대해서만 통신을 하여 일반적인 상황에서는 세션이 유지되지만</p>
+
+<p>정상적인 상황에서 로드밸런싱이 전혀 되지 않으며 해당 pod, node가 죽었을 때 세션이 끊기는 문제가 있다.</p>
+
+<h3 id="2-tomcat-session-in-memory-replicationmulticast-1">2. Tomcat session in-memory replication(Multicast)</h3>
+
+<p>Tomcat에서 기본적으로 가이드하고 있는 Session Replication 방법</p>
+
+<p><img src="/assets/img/contents/tsc-6.png" alt="tsc-6.png" /></p>
+
+<p><img src="/assets/img/contents/tsc-8.png" alt="tsc-8.png" /></p>
+
+<p>로컬 환경에서는 세션이 유지되었으나 클라우드 환경에서는 다른 노드간 세션이 유지되지 않는 것으로 확인되었다.</p>
+
+<p>Tomcat 서버 인메모리에 세션 정보를 저장하고 SimpleTCPCluster와 같은 클래스를 이용하여 리플리케이션 한다.</p>
+
+<p>multicast 기능을 지원해야하지만 multicast는 대부분의 cloud 환경에서는 제공하지 않는다고 한다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 유지보수가 쉬울 것(관리 포인트 적을 것)
+2. 어플리케이션(서비스) 코드에 영향이 없을 것
+3. 구성하는데 추가적인 리소스가 들어가지 않을 것
+</code></pre></div></div>
+
+<p>무엇보다도 세션 클러스터링 요구사항의 2, 3 번에 위배되므로 합리적인 방법이 아니다.</p>
+
+<h3 id="3-tomcat-session-persistence-replication-1">3. Tomcat session persistence replication</h3>
+
+<p>redis, dynamoDB와 같은 DB에 세션 정보를 저장하고 각 서버로 레플리케이션 하는 방법</p>
+
+<p><img src="/assets/img/contents/tsc-13.png" alt="tsc-13.png" /></p>
+
+<p><img src="/assets/img/contents/tsc-15.png" alt="tsc-13.png" /></p>
+
+<p>다른 노드간 세션이 유지되는 것을 확인할 수 있었다.</p>
+
+<p>session이 in-memory가 아닌 별도의 저장소에 저장되어 사용되는 장점이 있으며 코드 수정이 거의 없다는 장점이 있다.</p>
+
+<blockquote>
+  <p>redis 라이브러리 때문에 의존성이 아예 없을 수는 없다.</p>
+</blockquote>
+
+<p>따라서 가장 합리적인 Session clustering / Session replication이라고 할 수 있다.</p>
+
+<hr />
+
+<h2 id="reference">Reference</h2>
+
+<ol>
+  <li><a href="http://tomcat.apache.org/tomcat-9.0-doc/cluster-howto.html">Clustering/Session Replication How-To</a></li>
+  <li><a href="https://stackoverflow.com/a/61234801/15263734">https://stackoverflow.com/a/61234801/15263734</a></li>
+</ol>
+
+    
+  </section>
+
+  <!-- Social media shares -->
+  
+
+
+   <!-- Tag list -->
+  
+  
+
+
+  <div class="tag-list">
+    <ul>
+      
+        <li class="meta">Tags</li>
+      
+
+      
+        <li><a class="button" href="/tags#Clustering">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Clustering</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#Multicast">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Multicast</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#Replication">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Replication</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#Session">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Session</p>
+        </a></li>
+      
+        <li><a class="button" href="/tags#Tomcat">
+          <p><i class="fas fa-tag fa-fw fa-sm"></i> Tomcat</p>
+        </a></li>
+      
+    </ul>
+  </div>
+
+
+
+</article>
+
+<!-- Post navigation -->
+
+<div id="post-nav">
+    
+    <div id="previous-post">
+        <a alt="Nginx Proxy 설치하기" href="/oss/nginx/2021/05/25/nginx-install.html">
+            <p>이전 게시물</p>
+            Nginx Proxy 설치하기
+        </a>
+    </div>
+    
+
+    
+    <div id="next-post">
+        <a alt="SonarQube 설정 및 트러블슈팅" href="/devops/cicd/2021/05/10/sonarqube-config.html">
+            <p>다음 게시물</p>
+            SonarQube 설정 및 트러블슈팅
+        </a>
+    </div>
+    
+</div>
+
+
+
+<!--Utterances-->
+ <script src="https://utteranc.es/client.js"
+        repo='csupreme19/csupreme19.github.io'
+        issue-term="comment"
+        theme="preferred-color-scheme"
+		
+        crossorigin="anonymous"
+        async>
+</script>
+ 
+
+<!-- Cusdis -->
+
+
+<!-- Disqus -->
+
+
+<!-- To change color of links in the page -->
+<style>
+  header#main {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+  
+  
+  
+  
+  header#main { background-image: url('/assets/img/titles/tomcat-logo.svg'); }
+  
+</style>
+
+    </div>
+    <footer class="site-footer">
+    <p class="text">
+        이 블로그는 <a href="https://jekyllrb.com/">Jekyll</a>을 사용하며 <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a> 테마를 사용합니다.
+</p>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+        
+        
+        
+        <li>
+            <a href="https://github.com/csupreme19"
+               title="Follow on Github"
+               target="_blank"
+               rel="me">
+            <span class="fa-stack fa-lg">
+              <i class="fas fa-circle fa-stack-2x"></i>
+              <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+            </span>
+            </a>
+        </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        
+        
+        
+        
+        <li>
+            <a href="mailto:csupreme19@gmail.com"
+               title="Follow on Mail"
+               target="_blank"
+               rel="me">
+            <span class="fa-stack fa-lg">
+              <i class="fas fa-circle fa-stack-2x"></i>
+              <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+            </span>
+            </a>
+        </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+                </ul>
+            </div>
+</footer>
+
+
+
+  </body>
+</html>

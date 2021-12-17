@@ -4,6 +4,7 @@ title: Elasticsearch 모니터링 쿼리 예제
 feature-img: assets/img/titles/elastic-logo.png
 thumbnail: assets/img/titles/elastic-logo.png
 author: csupreme19
+categories: DevOps Elastic
 tags: [Elasticsearch, Query, DSL, Elastic, ELK]
 
 ---

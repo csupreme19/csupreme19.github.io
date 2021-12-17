@@ -4,6 +4,7 @@ title: PostgreSQL WAL 아카이브 백업
 feature-img: assets/img/titles/postgresql-logo.svg
 thumbnail: assets/img/titles/postgresql-logo.svg
 author: csupreme19
+categories: DB PostgreSQL
 tags: [PostgreSQL, Postgres, RDBMS, DB, Backup, Restore]
 
 ---

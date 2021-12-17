@@ -4,6 +4,7 @@ title: Elastic APM Java Agent 적용하기
 feature-img: assets/img/titles/elastic-logo.png
 thumbnail: assets/img/contents/eaja-1.png
 author: csupreme19
+categories: DevOps Elastic
 tags: [Elasticsearch, Elastic, ELK, APM, ArgoCD, GitOps, Helm, Java, JVM]
 
 ---

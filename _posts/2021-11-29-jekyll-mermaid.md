@@ -4,6 +4,7 @@ title: Jekyll Mermaid js 사용하기
 feature-img: assets/img/contents/jekyll.png
 thumbnail: assets/img/contents/jm-1.png
 author: csupreme19
+categories: ETC
 tags: [Blog, Jekyll, Mermaid, Liquid, Markdown, Template]
 
 ---

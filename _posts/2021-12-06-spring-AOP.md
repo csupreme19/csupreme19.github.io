@@ -4,6 +4,7 @@ title: Spring AOP 정리
 feature-img: assets/img/titles/spring-logo.svg
 thumbnail: assets/img/contents/sf-5.png
 author: csupreme19
+categories: Development Spring
 tags: [Spring, Java, AOP]
 
 ---

@@ -4,6 +4,7 @@ title: GitLab 구축하기
 feature-img: assets/img/titles/gitlab-horizontal-color.png
 thumbnail: assets/img/contents/gi-1.png
 author: csupreme19
+categories: DevOps CICD
 tags: [Gitlab, Docker, SSH, Git]
 
 ---

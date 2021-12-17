@@ -4,6 +4,7 @@ title: Spring Web 정리
 feature-img: assets/img/titles/spring-logo.svg
 thumbnail: assets/img/contents/sf-9.png
 author: csupreme19
+categories: Development Spring
 tags: [Spring, Java, MVC, Web, Servlet]
 
 ---

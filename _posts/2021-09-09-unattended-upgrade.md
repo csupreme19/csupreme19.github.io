@@ -4,6 +4,7 @@ title: Apt 자동 업그레이드 비활성화(Unattended upgrade)
 feature-img: assets/img/titles/ubuntu-logo.svg
 thumbnail: assets/img/titles/ubuntu-logo.svg
 author: csupreme19
+categories: System Linux
 tags: [Linux, OS, Ubuntu, Debian, Package Manager, APT, Upgrade]
 
 ---

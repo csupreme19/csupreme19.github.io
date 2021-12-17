@@ -4,6 +4,7 @@ title: Elastic API 알람 모듈 개발기
 feature-img: assets/img/titles/spring-logo.svg
 thumbnail: assets/img/contents/jeaa-1.png
 author: csupreme19
+categories: Development
 tags: [Java, Spring, Spring boot, Scheduler, Elasticsearch, Kibana, Slack, Webhook]
 
 ---

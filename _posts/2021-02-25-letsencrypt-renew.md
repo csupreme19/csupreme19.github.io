@@ -4,6 +4,7 @@ title: Let's Encrypt 인증서 발급 및 갱신
 feature-img: assets/img/titles/letsencrypt-horizontal.png
 thumbnail: assets/img/contents/lr-1.png
 author: csupreme19
+categories: System Security
 tags: [Certificate, Certbot, Domain, DNS]
 
 ---

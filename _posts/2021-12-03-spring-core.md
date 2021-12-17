@@ -4,6 +4,7 @@ title: Spring Core 정리
 feature-img: assets/img/titles/spring-logo.svg
 thumbnail: assets/img/contents/sf-3.png
 author: csupreme19
+categories: Development Spring
 tags: [Spring, Java, IoC, DI, Singleton]
 
 ---
