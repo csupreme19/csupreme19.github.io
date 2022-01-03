@@ -564,7 +564,7 @@ private PersonDetail personDetail;
 
 ### Fetch Type
 
-
+<br>
 
 #### Eager Loading
 
@@ -582,7 +582,7 @@ public class Author {
 
 만약 해당 테이블이 수많은 연관 테이블을 조인하고 있다면 성능 이슈가 발생할 수 있다.
 
-
+<br>
 
 #### Lazy Loading
 
@@ -602,7 +602,7 @@ public class Author {
 
 레이지 로딩을 사용하기 위해서는 연관 엔티티를 가져오는 시점에 세션이 열려있어야 한다.
 
-
+<br>
 
 #### Default Fetch Types
 
