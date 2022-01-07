@@ -19,15 +19,15 @@ tags: [Kubernetes, K8S, Authorization, Authentication, RBAC, ABAC, Security]
 
 ---
 
-## 인가(Authentication) vs 인증(Authorization)
+## 인증(Authentication) vs 인가(Authorization)
 
 ![authorization-authentication.jpeg]({{ "/assets/img/contents/authorization-authentication.jpeg"}})
 
-**인가(Authentication)**
+**인증(Authentication)**
 
 해당 사용자가 누구인지 확인하는 것(회원가입, 로그인)
 
-**인증(Authorization)**
+**인가(Authorization)**
 
 해당 사용자에 대한 권한을 허락하는 것(호, 자원 접근)
 

@@ -2,7 +2,7 @@
 layout: post
 title: Clean Code 정리
 feature-img: assets/img/titles/clean-code.png
-thumbnail: assets/img/contents/cc-1.png
+thumbnail: assets/img/titles/clean-code.png
 author: csupreme19
 categories: Development
 tags: [Book, Clean Code]
@@ -63,7 +63,7 @@ tags: [Book, Clean Code]
 
 ![cc-2.png]({{ "/assets/img/contents/cc-2.png"}})
 
-> 소프트웨어 공학에서 가장 힘든 것이 이름짓기라카더라
+> 코딩에서 가장 힘든 것이 이름짓기라카더라
 
 <br>
 
@@ -92,7 +92,7 @@ a1[], a2[] 대신 source, destination을 사용한다면 바로 이해할 수 �
 
 ### 잘못된 정보를 피하라
 
-#### 1. 일반적인 단어
+#### 1. 널리 쓰이는 단어
 
 ```java
 int hp, aix, sco;
@@ -193,10 +193,10 @@ const int WORK_DAYS_PER_WEEK = 5;
 
 int taskWeeks = ( TASK_DAYS / WORK_DAYS_PER_WEEK);
 
-int taskWeeks = (230 / 7);
+int taskWeeks = (230 / 5);
 ```
 
-만약 `WORK_DAYS_PER_WEEK` 대신 7로 검색한다면 7이 포함된 수많은 수식과 코드들이 나올 것이다.
+만약 `WORK_DAYS_PER_WEEK` 대신 5로 검색한다면 5가 포함된 수많은 수식과 코드들이 나올 것이다.
 
 <br>
 
@@ -299,11 +299,11 @@ public String getName() {}
 // 기발한 이름
 public int detonate() {}
 
-// 의도된 동작 이름
+// 기발하지 않은 일반적인 이름
 public int delete() {}
 ```
 
-멋있지만 짜증난다.
+기발한 이름은 본인이 생각하기엔 멋있을지 몰라도 보는 사람은 짜증난다.
 
 <br>
 
@@ -314,6 +314,7 @@ public int delete() {}
 public int fetchName() {}
 public int retrieveName() {}
 public int getName() {}
+
 public Class DeviceController {}
 public Class DeviceManager {}
 public Class DeviceDriver {}
@@ -352,8 +353,6 @@ public Class AAAuthentication {}
 ```
 
 AA(Admin App)이라는 애플리케이션을 작성한다고 가정했을때 위와 같이 AA를 모두 붙이게 된다면 A를 입력하고 자동완성할 때 모든 클래스가 열거된다.
-
-바람직하지 못하다.
 
 
 
@@ -496,9 +495,78 @@ Circle makeCircle(double x, double y, double radius);
 Circle makeCircle(Point center, double radius);
 ```
 
-인수가 여러개가 존재한다면 인수를 객체로 설정하여 인수를 줄일 수 있다.
+인수가 여러개가 존재한다면 인수를 객체로 넘겨라
+
+#### 가변 인수
+
+```java
+public String format(String format, Object... args) {}
+```
+
+인수가 가변적일때 사용하는 것을 권장
+
+#### 출력 인수
+
+```java
+public void appendFooter(StringBuffer report) {}
+
+// 출력 인수
+appendFooter(report);
+
+// this 사용
+report.appendFooter();
+```
+
+위와 같은 출력인수 대신 객체지향에서는 this라는 키워드를 사용한다.
+
+함수에서 상태를 변경해야할때 인수의 상태를 변경하지 말고 함수가 속한 객체의 상태를 변경해야한다.
 
 <br>
+
+### 함수명
+
+```java
+// 동사 + 명사 쌍
+setName(name)
+
+// 동사 + 명사 + 인수(순서)
+assertExpectedEqualsActual(expected, actual)
+```
+
+함수명을 작성할때 동사 + 명사 쌍으로 작성하되 인수가 여러개인 경우 함수명에 키워드로 순서를 명시
+
+<br>
+
+### 명령과 조회를 분리
+
+```java
+public boolean set(String key, String value) {}
+
+// 설정하는 함수인가 조회하는 함수인가 혼란스러움
+if(set("username","johndoe"))
+```
+
+위에서 얘기한 함수는 한가지만을 해야한다는 정의에도 부합한다.
+
+위 함수는 key인 키값을 찾아 value로 설정하고 성공하면 true, 실패하면 false를 리턴한다고 하자
+
+명령과 조회가 한꺼번에 되고 있어 호출시 코드가 지저분해진다.
+
+```java
+if(keyExists("username")) {
+  set("username","johndoe");
+  ...
+}
+```
+
+위와 같이 명령과 조회를 분리한다면 훨씬 보기좋은 코드가 작성된다.
+
+<br>
+
+### 오류 코드보다 예외 사용
+
+```
+```
 
 
 
