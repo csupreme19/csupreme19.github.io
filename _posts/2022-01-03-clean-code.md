@@ -205,8 +205,6 @@ int taskWeeks = (230 / 5);
 > vUsing adjHungarian nnotation vmakes nreading ncode adjdifficult.
 >
 > [https://stackoverflow.com/a/112080](https://stackoverflow.com/a/112080)
->
-> 명헝가리식 명표기법 조을 동사용 조하는 명것 조은 명코드 명읽기 조를 부더 부어렵게 동만든다.
 
 ```java
 // 변수명 앞에 타입에 해당하는 문자를 붙여주었다.
@@ -880,7 +878,9 @@ unencoded data.
 
 <br>
 
-### 적절한 코드 길이
+#### 적절한 코드 길이
+
+#### 자바 프로젝트 평균 줄수
 
 | 프로젝트 | 평균      |
 | -------- | --------- |
@@ -1177,7 +1177,7 @@ final STring outputDir = scratchDir.getAbsolutePath();
 
 위 예시에서는 getOptions로 불러온 객체의 getScratchDir로 불러온 객체의 getAbsolutePath를 가져온다.
 
-위와 같은 코드를 기차 충돌(Train wreck)이라고 부른다.
+위와 같은 코드를 **기차 충돌(Train wreck)**이라고 부른다.
 
 연속으로 호출하는 객체가 자료구조라면 상관 없지만 객체라면 디미터 법칙에 위배된다.
 
@@ -1778,7 +1778,7 @@ D --5. 사용--> E;
 
 ### 의존성 주입(DI)
 
-의존성 주입: 생성과 사용을 분리하는 제어 역전 기법을 의존성 관리에 적용한 것.
+생성과 사용을 분리하는 제어 역전 기법을 의존성 관리에 적용한 것.
 
 객체지향 관점에서 대부분의 객체는 의존성을 가지고 있다.
 
@@ -2032,10 +2032,8 @@ private void replace(Image newImage) {
 네 규칙 중 우선순위가 가장 낮음
 
 - 중복을 제거한다
-
-- 의도를 표현한다
-
-  SRP를 준수한다.
+- 의도를 표현한다.
+- SRP를 준수한다.
 
 가능한 엄격한 정책은 멀리하고 항상 실용적인 방식을 택한다.
 
