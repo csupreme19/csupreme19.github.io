@@ -10,7 +10,7 @@ favicon: assets/favicon.ico                             # Icon displayed in the 
 
 # Header and footer text
 header_text: 실행하고 정리하고 기록하기  # Change Blog header text
-header_feature_image: assets/img/header-feature-image.jpg
+header_feature_image: assets/img/header-feature-image.webp
 footer_text: >
   이 블로그는 <a href="https://jekyllrb.com/">Jekyll</a>을 사용하며 <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a> 테마를 사용합니다.
 
