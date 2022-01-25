@@ -29,6 +29,8 @@ cookie_consent: false                                   # To respect the usage o
 color_theme: dark
 #color_theme: auto                                       # auto, dark or light
 #prefers-colors-scheme: dark
+#emoji:
+#  src: "https://github.githubassets.com/images/icons/"
 
 # Comments
 comments:
@@ -52,7 +54,12 @@ collections:
 # BUILD SETTINGS
 sass:
   style: compressed
-plugins: [jekyll-paginate, jekyll-seo-tag, jekyll-feed, jemoji]
+#plugins: [jekyll-paginate, jekyll-seo-tag, jekyll-feed]
+plugins: 
+  - jekyll-paginate
+  - jekyll-seo-tag
+  - jekyll-feed
+  - jemoji
 exclude: [".jekyll-cache", ".idea", "vendor/*", "assets/node_modules/*"]
 
 # theme: type-on-strap                                  # if using the theme as a jekyll theme gem

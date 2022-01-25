@@ -17,8 +17,6 @@ tags: [Book, Clean Code]
 
 로버트 C.마틴 저 **클린 코드: 애자일 소프트웨어 장인 정신**을 읽고 정리해보았다.
 
-:+1:
-
 ---
 
 ## 1. 깨끗한 코드
@@ -51,7 +49,7 @@ tags: [Book, Clean Code]
 
 > 코드 작성 시간 < 코드 읽기 시간
 
-우리는 코딩을 할 때 실제로 코드를 작성하는 시간보다 코드를 읽고 이해하는 시간이 훨씬 많다는 것을 경험으로 알고 있다.
+실제로 코드를 작성하는 시간보다 코드를 읽고 이해하는 시간이 훨씬 많다.
 
 <br>
 
@@ -88,10 +86,6 @@ tags: [Book, Clean Code]
 >  함수, 변수, 인수, 클래스, 패키지, 디렉토리, 빌드 파일
 
 이름을 잘 짓는 것 만으로도 가독성이 높은 코드를 작성하는데 큰 도움이 된다.
-
-![cc-2.png]({{ "/assets/img/contents/cc-2.png"}})
-
-> 코딩에서 가장 힘든 것이 이름짓기
 
 <br>
 
@@ -415,6 +409,10 @@ AA(Admin App)이라는 애플리케이션을 작성한다고 가정했을때 위
 
 다시 말해, if/else, while문 등에 들어가는 블록은 한줄이어야 한다.
 
+![cc-9.png]({{ "/assets/img/contents/cc-9.png"}})
+
+> 우리가 피해야 할 것
+
 <br>
 
 ### 한가지만 해라!
@@ -437,18 +435,18 @@ AA(Admin App)이라는 애플리케이션을 작성한다고 가정했을때 위
 
 ```java
 public class UserFactoryImpl implements UserFactory {
-	public User makeUser(UserRecord r) throws InvaliedUserType {
-		switch (r.type) {
-			case ADMIN:
-				return new AdminUser(r);
-			case MAINTAINER:
-				return new MaintainerUser(r);
-			case DEVELOPER:
-				return new DeveloperUser(r);
-			default:
-				throw new InvalidUserType(r.type);
-		}
-	}
+  public User makeUser(UserRecord r) throws InvaliedUserType {
+    switch (r.type) {
+      case ADMIN:
+        return new AdminUser(r);
+      case MAINTAINER:
+        return new MaintainerUser(r);
+      case DEVELOPER:
+        return new DeveloperUser(r);
+      default:
+        throw new InvalidUserType(r.type);
+    }
+  }
 }
 ```
 
@@ -617,16 +615,16 @@ if(keyExists("username")) {
 ```java
 // 오류 코드 사용
 if(deleteUser(user) == CODE_OK) {
-	logger.log("user deleted");
+  logger.log("user deleted");
 } else {
-	logger.log("delete failed");
+  logger.log("delete failed");
 }
 
 // 예외 처리 사용
 try{
-	deleteUser(user);
+  deleteUser(user);
 } catch (Exception e){
-	logger.log(e.getMessage());
+  logger.log(e.getMessage());
 }
 ```
 
@@ -644,7 +642,7 @@ try{
 
 코드는 변화하고 진화하지만 그에 맞게 주석을 유지하고 보수하기란 현실적으로 불가능하다.
 
-주석이 코드에서 분리되어 거짓말을 하는 경우를 흔히 볼 수 있다.
+주석이 코드에서 분리되어 거짓말을 하는 경우가 많음
 
 항상 주석은 코드를 따라가지 않는다.
 
@@ -654,7 +652,7 @@ try{
 
 부정확한 주석은 없는 주석보다 잘못된 정보를 제공하므로 훨씬 나쁘다.
 
-그래서 애초에 주석이 필요없는 방향으로 가는 것이 필요하다.
+그래서 애초에 주석이 필요 없는 방향으로 가는 것이 필요하다.
 
 <br>
 
@@ -676,9 +674,7 @@ if(employee.isEligibleForFullBenefits())
 
 좋은 주석이란 주석을 달지 않는 것이다.
 
-그럼에도 아래와 같은 예시는 좋은 예시라고 볼 수 있다.
-
-
+그럼에도 주석이 필요할때는 아래와 같은 예시가 좋다.
 
 #### TODO 주석
 
@@ -701,7 +697,7 @@ protected VersionInfo makerVersion() throws Exception {
 
 ![cc-3.png]({{ "/assets/img/contents/cc-3.png"}})
 
-표준 Java 라이브러리의 Javadocs가 훌륭한 예시이다.
+표준 Java 라이브러리의 Javadocs가 훌륭한 예시
 
 잘 작성된 Javadocs는 유용하고 생산성을 높여준다.
 
@@ -714,16 +710,15 @@ protected VersionInfo makerVersion() throws Exception {
 #### 주절거리는 주석
 
 ```java
-public void loadProperteis()
-{
-	try {
-		String path = location+"/"+FILE;
-		FileInputStream stream = new FileInputStream(path);
-		loadedProperties.load(stream);
-	}
-	catch(IOException e){
-		// 속성 파일이 없으면 기본값을 모두 메모리로 읽어들였다는 의미
-	}
+public void loadProperteis() {
+  try {
+    String path = location+"/"+FILE;
+    FileInputStream stream = new FileInputStream(path);
+    loadedProperties.load(stream);
+  }
+  catch(IOException e){
+    // 속성 파일이 없으면 기본값을 모두 메모리로 읽어들였다는 의미
+  }
 }
 ```
 
@@ -739,11 +734,10 @@ public void loadProperteis()
 // this.closed가 true일때 반환되는 유틸
 // 타임아웃에 도달하면 예외 던짐
 public void waitForClose(long timeoutMillis) throws Exception {
-  if(!closed){
+  if(!closed) {
     wait(timeoutMillis);
-    if(!closed){
-			throw new Exception("could not be closed");      
-    }
+  if(!closed) {
+    throw new Exception("could not be closed");      
   }
 }
 ```
@@ -759,19 +753,16 @@ i++;	// i 증가
 ```java
 public abstract class ContainerBase extends LifecycleMBeanBase implements Container {
     // ----------------------------------------------------- Instance Variables
-
-
+  
     /**
      * The child Containers belonging to this Container, keyed by name.
      */
     protected final HashMap<String, Container> children = new HashMap<>();
 
-
     /**
      * The processor delay for this component.
      */
     protected int backgroundProcessorDelay = -1;
-
 
     /**
      * The future allowing control of the background processor.
@@ -790,7 +781,7 @@ public abstract class ContainerBase extends LifecycleMBeanBase implements Contai
 
 ```
 
-위는 톰캣의 `ContainerBase.java`이다.
+> 톰캣의 `ContainerBase.java`에서 발췌한 코드
 
 Javadocs와 중복되며 기록 외에는 쓸데없는 주석이 많다.
 
@@ -854,7 +845,7 @@ InputStreamResponse resposne = new InputStreamResponse();
 
 주석처리된 코드는 다른 사람이 지우기를 주저한다.
 
-원저자가 이유가 있어서 남겨두었겠지 혹은 중요하다는 생각에 지우면 안된다고 생각한다.
+원저자가 이유가 있어서 남겨두었겠지 또는 중요하다는 생각에 지우면 안된다고 생각한다.
 
 이런 쓸모없는 코드가 계속 추가되다보면 코드가 더러워진다.
 
@@ -880,7 +871,7 @@ else {
 return this.pngBytes;
 ```
 
-아파치 commons에서 발췌한 코드
+>  아파치 commons에서 발췌한 코드
 
 누가 어떤 의미로 주석으로 처리하여 남겨두었는지 알 수 없다.
 
@@ -899,7 +890,7 @@ return this.pngBytes;
 
 주석은 사람이 읽으라고 만든 것
 
-주석이 HTML 태그를 삽입하는 건 개발자의 몫이 아니라 개발환경 툴의 몫이다.
+주석에 HTML 태그를 삽입하는 건 개발자의 몫이 아니라 개발툴의 몫
 
 
 
@@ -933,9 +924,13 @@ unencoded data.
 
 팀 합의하에 간단한 규칙을 정하고 모두가 따라야한다.
 
+![cc-10.png]({{ "/assets/img/contents/cc-10.png"}})
+
+> 팀 협의하에 규칙을 정하자
+
 <br>
 
-#### 적절한 코드 길이
+### 적절한 코드 길이
 
 #### 자바 프로젝트 평균 줄수
 
@@ -947,7 +942,9 @@ unencoded data.
 | ant      | 200~500줄 |
 | Tomcat   | 200~500줄 |
 
-대다수 자바 프로젝트의 평균 파일 크기는 약 65줄로 500줄을 넘지않고 대부분 200줄정도로도 대규모의 시스템을 구현할 수 있다.
+대다수 자바 프로젝트의 평균 파일 크기는 약 65줄로 500줄을 넘지않고 
+
+대부분 200줄정도로도 대규모의 시스템을 구현할 수 있음을 보여준다.
 
 <br>
 
@@ -1035,7 +1032,7 @@ public String getPageName(){}
 
 어떤 함수가 다른 함수를 호출한다면 해당 함수는 세로로 가까이 배치한다.
 
-
+<br>
 
 ### 가로 밀집
 
@@ -1050,18 +1047,18 @@ lines.addLine(lineSize, lineCount);	// 쉼표 뒤 공백으로 인수 분리 명
 
 ```java
 public class User {
-	private   String            name;
-	private   String            email;
-	private   int               age;
-	protected UserDetail        detail;
-	private   SomeLongClassName someLongName;
-	private   Long              requestParsingTimeLimit;
+  private   String            name;
+  private   String            email;
+  private   int               age;
+  protected UserDetail        detail;
+  private   SomeLongClassName someLongName;
+  private   Long              requestParsingTimeLimit;
   
-	public void User(String name, String email){
-		this.name =               name;
-		this.email =              email;
-		requestParsingTimeLimit	= 10000;
-	}
+  public void User(String name, String email){
+    this.name =                 name;
+    this.email =                email;
+    requestParsingTimeLimit	=   10000;
+  }
 }
 ```
 
@@ -1082,6 +1079,12 @@ public class Comment extends Text {
 IDE에서 자동으로 관리해주기 때문에 중요성을 잃어버리기 쉽지만 가독성에 아주 중요하다.
 
 위와 같이 짧은 코드인 경우에는 한 줄에 쓰고싶은 욕망이 들지만 규칙을 지키기 위하여 들여쓰기를 해준다.
+
+![cc-11.png]({{ "/assets/img/contents/cc-11.png"}})
+
+> 들여쓰기 논쟁
+>
+> [커밋 통계](http://sideeffect.kr/popularconvention#java)에 따르면 스페이스파가 더 압도적
 
 ---
 
@@ -1107,13 +1110,15 @@ public interface Point {
 }
 ```
 
-위 구체적 클래스에서는 직교 좌표계를 사용하도록 강제한다.
+구체적 클래스에서는 직교 좌표계 사용이 강제됨
 
-하지만 아래 추상화 클래스를 이용한다면 직교 좌표계 뿐만 아니라 원통 좌표계와 같은 다른 좌표계도 사용이 가능하여 확장성이 좋다.
+추상화 클래스(인터페이스)를 이용한다면 원통 좌표계 같은 다른 좌표계도 사용이 가능
 
 <br>
 
 ### 자료/객체 비대칭
+
+![cc-12.png]({{ "/assets/img/contents/cc-12.png"}})
 
 자료 구조와 객체는 비대칭적인 특징을 지닌다.
 
@@ -1121,7 +1126,9 @@ public interface Point {
 
 **객체**: 추상화 뒤로 **자료를 숨기며** 그를 다루는 **함수를 제공한다**.
 
-##### 예시) 절차적인 도형
+<br>
+
+#### 절차적인 도형
 
 ```java
 public class Square extends Shape {
@@ -1161,13 +1168,13 @@ public class Geometry {
 }
 ```
 
-위 코드는 if else로 이루어진 절차지향 프로그램이기 때문에 객체 지향 관점에서 봤을때 아름답지 못한 코드이다.
+객체 지향 관점에서 봤을때 아름답지 못한 코드이다.
 
 하지만 새로운 함수가 추가되었을 때 각각의 도형 클래스를 변경할 필요가 없다.
 
+<br>
 
-
-##### 예시) 다형적인 도형
+#### 예시) 다형적인 도형
 
 ```java
 public class Square extends Shape {
@@ -1210,9 +1217,9 @@ public class Geometry {
 
 다형성을 활용한 예시이다.
 
-이 경우에는 절차적인 프로세스가 존재하지 않지만 새로운 함수가 추가되었을때 각각의 도형 클래스들에 함수를 추가해주어야 한다.
+이 경우에는 새로운 함수가 추가되었을때 각각의 도형 클래스들에 함수를 추가해주어야 한다.
 
-때로는 단순한 자료구조와 절차적인 코드가 적합한 경우가 있다.
+**때로는 단순한 자료구조와 절차적인 코드가 적합한 경우가 있다.**
 
 <br>
 
@@ -1232,7 +1239,7 @@ final STring outputDir = scratchDir.getAbsolutePath();
 
 위 예시에서는 getOptions로 불러온 객체의 getScratchDir로 불러온 객체의 getAbsolutePath를 가져온다.
 
-위와 같은 코드를 **기차 충돌(Train wreck)**이라고 부른다.
+위와 같은 코드를 기차 충돌(Train wreck)이라고 부른다.
 
 연속으로 호출하는 객체가 자료구조라면 상관 없지만 객체라면 디미터 법칙에 위배된다.
 
@@ -1300,7 +1307,7 @@ public class Address {
 
 위 DTO코드에 save나 find같이 탐색 함수가 추가된 경우는 특수한 경우로 일반적으로 객체가 아닌 자료 구조로 가정한다.
 
-하지만 해당 레코드에 비즈니스 로직을 추가하여 개발하는 경우가 있으나 이는 바람직하지 못하다.
+간혹 해당 레코드에 개발자가 비즈니스 로직을 추가하는 경우가 있는데 바람직하지 못하다.
 
 <br>
 
@@ -1319,6 +1326,8 @@ public class Address {
 ## 7. 오류 처리
 
 ### Try-Catch-Finally문부터 작성하라
+
+![cc-13.png]({{ "/assets/img/contents/cc-13.png"}})
 
 Try catch finally 블록은 트랜잭션과 비슷한 역할을 한다.
 
@@ -1361,33 +1370,32 @@ try {
 
 ```java
 public class LocalPortWrapper {
-	private LocalPort innerPort;
+  private LocalPort innerPort;
   
-	public LocalPortWrapper(int portNumber) {
-		innerPort = new LocalPort(portNumber);
+  public LocalPortWrapper(int portNumber) {
+    innerPort = new LocalPort(portNumber);
   }
   
-	public void open(){
-	try {
-		port.open();
-		} catch (DeviceResponseException e) {
-			throw new PortDeviceFailure(e);
-		} catch (UnlockedException e) {
-			throw new PortDeviceFailure(e);
-		} catch (GMXError e) {
-			throw new PortDeviceFailure(e);
+  public void open(){
+  try {
+    port.open();
+    } catch (DeviceResponseException e) {
+      throw new PortDeviceFailureException(e);
+    } catch (UnlockedException e) {
+      throw new PortDeviceFailureException(e);
+    } catch (GMXError e) {
+      throw new PortDeviceFailureException(e);
     } finally {
-    	...
+      ...
     }
   }
 }
-
 ```
 
 ```java
 try {
   port.open();
-} catch (DeviceResponseException e) {
+} catch (PortDeviceFailureException e) {
   reportPortError(e);
   logger.log(e.getMessage(), e);
 } finally {
@@ -1395,7 +1403,7 @@ try {
 }
 ```
 
-실제로 외부 API를 사용한다면 래퍼 클래스가 매우 유용하다.
+외부 API를 사용하는 경우 래퍼 클래스가 매우 유용하다.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
 
 <br>
 
@@ -1415,8 +1423,6 @@ public void register(User user){
 null값을 반환하는 코드는 개발자에게 null 체크를 강요한다.
 
 누구 하나라도 null 검사를 누락하는 순간 프로그램은 NPE(Null Pointer Exception)이 발생하며 멈출수도 있다.
-
-null 검사를 누락하지 않으면 된다고는 하지만 실제로 개발시 null 체크가 많은 것을 확인할 수 있다.
 
 메서드에서 null을 반환하고 싶다면 대신 예외를 던지거나 특수 사례 객체를 반환한다.
 
@@ -1439,7 +1445,7 @@ public class Calculator {
 
 ## 8. 경계
 
-개발할때 시스템에 들어가는 외부 패키지나 라이브러리를 사용한다.
+개발할 때 시스템에 들어가는 외부 패키지나 라이브러리를 사용한다.
 
 **인터페이스 제공자**: 확장성을 최대한 넓혀 더 많은 환경에 제공하려 하고
 
@@ -1478,7 +1484,7 @@ Devices 클래스 안에서 객체 유형을 관리하기 때문
 
 ### 아직 존재하지 않는 코드 사용하기
 
-개발 도중 아직 정의되지 않은 외부 코드나 깊숙히 들어가야할 때가 있다.
+개발 도중 아직 정의되지 않은 외부 코드와 인터페이스 해야할 때가 있음
 
 통제 밖이거나 정의되지 않은 코드를 사용할 때 별도 인터페이스로 분리하여 설계한다.
 
@@ -1502,7 +1508,9 @@ Devices 클래스 안에서 객체 유형을 관리하기 때문
 
 ## 9. 단위 테스트
 
-TDD 이전의 테스트란  단순히 프로그램이 돌아가는 사실을 확인하는 일회성 코드였다.
+### TDD 이전의 테스트
+
+ 단순히 프로그램이 돌아가는 사실을 확인하는 일회성 코드였다.
 
 ### TDD 법칙
 
@@ -1533,6 +1541,8 @@ TDD 이전의 테스트란  단순히 프로그램이 돌아가는 사실을 확
 <br>
 
 ### 깨끗한 테스트 코드 만들기
+
+![cc-14.png]({{ "/assets/img/contents/cc-14.png"}})
 
 깨끗한 테스트 코드를 만들려면 세 가지가 필요하다.
 
@@ -1724,6 +1734,8 @@ assert 문을 하나만 쓰는 것이 아니라 한 개념에 대해서 하나�
 
 ### 단일 책임 원칙(Single Responsibility Principle, SRP)
 
+모든 클래스는 하나의 책임만을 가져야한다.
+
 ```java
 public class SuperDashboard extends JFrame implements MetaDataUser {
   public Component getLastFocusedComponent();
@@ -1743,8 +1755,6 @@ public class SuperDashboard extends JFrame implements MetaDataUser {
 
 
 
-단일 책임 원칙: 모든 클래스는 하나의 책임만을 가져야한다.
-
 ```java
 public class Version {
   public int getMajorVersionNumber(){}
@@ -1759,7 +1769,7 @@ public class Version {
 
 <br>
 
-### 인터페이스: 변경으로부터 격리
+### 인터페이스로 변경으로부터 격리
 
 요구사항은 변한다 => 코드가 변한다 => 변경으로부터 격리 필요
 
@@ -1823,19 +1833,6 @@ B --2. 생성--> D;
 A --3. 실행--> C;
 C --4. 사용--> D;
 </div>
-
-```mermaid
-flowchart LR;
-A[main]
-B[생성자]
-C[App]
-D[객체]
-A --1. 구축--> B;
-B --2. 생성--> D;
-A --3. 실행--> C;
-C --4. 사용--> D;
-```
-
 화살표가 main에서 애플리케이션으로 간다. => 애플리케이션은 객체의 생성이나 파괴 같은 라이프사이클에 관여하지 않는다.
 
 <br>
@@ -1856,22 +1853,6 @@ C --4-1. 객체 요청--> D;
 C --4-2. 객체 생성--> E;
 D --5. 사용--> E;
 </div>
-
-```mermaid
-flowchart LR;
-A[main]
-B[Factory Implementation]
-C[App]
-D[Factory Interface\n+ MakeItem]
-E[Item]
-A --1. 구현--> B;
-B --2. 구현--> D;
-A --3. 실행--> C;
-C --4-1. 객체 요청--> D;
-C --4-2. 객체 생성--> E;
-D --5. 사용--> E;
-```
-
 어플리케이션이 객체의 생성 시점만 정의하고 싶은 경우 팩토리 패턴을 사용
 
 앱이 생성 시점을 결정하지만 객체의 생성은 앱이 모른다.
