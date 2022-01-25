@@ -23,7 +23,7 @@ tags: [Book, Clean Code]
 
 ### 코드(Code)
 
-코드는 고객의 요구사항을 상세히 표현하는 언어
+코드는 고객의 **요구사항**을 상세히 **표현**하는 **언어**
 
 <br>
 
@@ -89,18 +89,22 @@ tags: [Book, Clean Code]
 
 ![cc-2.png]({{ "/assets/img/contents/cc-2.png"}})
 
-> 코딩에서 가장 힘든 것이 이름짓기라카더라
+> 코딩에서 가장 힘든 것이 이름짓기
 
 <br>
 
-### 의도를 알 수 있도록하라
+### 의도를 분명히
+
+변수명이 모호하면 코드 맥락을 이해하기 힘들다.
 
 ```java
-int d;	// 의도가 분명하지 않음
-int daysSinceCreation;	// 의도가 분명한 변수명
+int d;
+int daysSinceCreation;
 ```
 
-위 변수 이름을 보면 d라는 이름만을 보고 해당 변수가 어떤 데이터를 담고 있는지 알 수 없다.
+d라는 이름을 보고 어떤 변수인지 유추하기 힘듦
+
+daytsSinceCreation은 생성 후 몇일이 지났는지 나타낸다고 알 수 있음
 
 ```java
 public static void copyChars(char a1[], char a2[]) {
@@ -110,13 +114,11 @@ public static void copyChars(char a1[], char a2[]) {
 }
 ```
 
-a1[], a2[] 대신 source, destination을 사용한다면 바로 이해할 수 있다.
-
-변수명이 모호하면 코드 맥락을 이해하기 힘들다.
+a1[], a2[] 대신 source, destination을 사용한다면 바로 이해할 수 있음
 
 <br>
 
-### 잘못된 정보를 피하라
+### 잘못된 정보 피하기
 
 #### 1. 널리 쓰이는 단어
 
@@ -132,7 +134,7 @@ int hp, aix, sco;
 Map<String, String> userList;
 ```
 
-Map 자료형에 List라는 이름이 포함된 이름을 사용한다면 List 자료형으로 착각할 수 있다.
+이름에 자료형을 넣는다면 자료형을 착각할 수 있다.
 
 #### 3. 비슷한 이름
 
@@ -141,7 +143,7 @@ public class XYZControllerStringHandler;
 public class XYZControllerHandlerString;
 ```
 
-서로 다른 역할을 하는 두 클래스가 위와 같은 이름을 가지고 있다면 어떤 것이 핸들러인지 알 수 있을까?
+서로 **다른 역할**을 하는 두 클래스가 비슷한 이름을 가지고 있다면 어떤 것이 핸들러인지 알 수 있을까?
 
 #### 4. l과 O와 같은 혼동될 수 있는 변수명
 
@@ -153,7 +155,9 @@ else
   l = O1;
 ```
 
-일반적으로 Consolas와 같은 개발 폰트를 사용하면 o, O, 0, l, 1, I와 같은 헷갈리는 단어들을 구분해주기는 하지만 가독성을 저해한다.
+o, O, 0, l, 1, I와 같은 비슷한 글자는 가독성을 해친다.
+
+Consolas와 같은 개발 폰트를 사용하면 구분이 쉽기는 하지만 사용하지 말 것
 
 <br>
 
@@ -170,7 +174,9 @@ public class TheProduct {}
 public class AProduct {}
 ```
 
-위 클래스는 의미없는 불용어(Noise Word)를 추가한 명명법에 불과하다. 모두 Product라는 이름으로 대체할 수 있다.
+의미없는 **불용어(Noise Word)**를 추가한 명명법에 불과하다. 
+
+모두 Product라는 이름으로 대체할 수 있다.
 
 <br>
 
@@ -191,7 +197,7 @@ String telVariable;
 
 <br>
 
-### 발음이 쉬운 이름
+### 발음이 쉬운 이름 사용
 
 ```java
 class DtaRcrd102 {
@@ -205,13 +211,13 @@ class Customer {
 }
 ```
 
-"젠 와이 엠 디 에이치 엠 에스"와 같은 우스꽝스러운 발음은 이해하기 힘들뿐더러 추가적인 설명을 요구한다.
+"젠 와이 엠 디 에이치 엠 에스"와 같은 발음은 협업시 소통을 저해하고 이해하기 힘들어 추가적인 설명을 요구한다.
 
 아래와 같이 명명하면 누구나 쉽게 생성일자라는 것을 알 수 있다.
 
 <br>
 
-### 검색하기 쉬운 이름
+### 검색하기 쉬운 이름 사용
 
 ```java
 const int TASK_DAYS = 230;
@@ -233,16 +239,18 @@ int taskWeeks = (230 / 5);
 > [https://stackoverflow.com/a/112080](https://stackoverflow.com/a/112080)
 
 ```java
-// 변수명 앞에 타입에 해당하는 문자를 붙여주었다.
+// 변수명 앞에 타입에 해당하는 문자를 붙임
 boolean bCheck;
 char chInitial;
 int iSize;
-// 멤버변수 사용시엔 m_ 접두어를 적어주기도 하였다.
+// 멤버변수 사용시엔 m_ 접두어
 int m_length;
 String m_desc;
 ```
 
-헝가리식 표기법은 예전 C 컴파일러가 타입을 점검하지 않거나 IDE의 기능이 부실했을 때 자료형을 쉽게 알 수 있도록 변수명에 타입을 적어주는 방법이었다.
+헝가리식 표기법은 예전 C 컴파일러가 타입을 점검하지 않거나 IDE의 기능이 부실했을 때나 사용하던 것
+
+자료형을 쉽게 알 수 있도록 변수명에 타입을 적어주는 방식
 
 요즘에는 컴파일러가 타입 체크를 할 뿐더러 IDE가 코드 작성 단계에서 타입체크를 하므로 사용하지 말 것.
 
@@ -251,18 +259,20 @@ String m_desc;
 ### 인터페이스 클래스와 구현 클래스
 
 ```java
-// Old
+// 예전
 public Interface IShapeFactory {}
 public Class ShapeFactory {}
 
-// Now
+// 현재
 public Interface ShapeFactory {}
 public Class ShapeFactoryImpl {}
 ```
 
-옛 코드에서 많이 사용하던 방식인데 인터페이스 이름에 접두어 I는 붙이지 않는 편이 좋다.
+인터페이스 이름에 접두어 I는 붙이지 않는 편이 좋다.
 
-호출시에 인터페이스를 호출하게 되는데 굳이 인터페이스임을 알릴 필요도 없으며 (추상화) I라는 접두어로 추가적인 정보는 필요 없다.
+호출시에 추상화된 인터페이스를 호출하게 되는데 
+
+굳이 인터페이스임을 알릴 필요도 없으며 I라는 접두어로 추가적인 정보를 줄 필요도 없다.
 
 위와 같이 명명하면 사용자는 인터페이스를 신경 쓸 필요 없이 ShapeFactory라고만 인식하여 호출하면 된다. 
 
@@ -276,7 +286,9 @@ int b;
 int c;
 ```
 
-문자 하나만 사용하는 경우 최악이다.(반복문의 i, j, k는 전통적으로 이터레이션에 사용하였으므로 괜찮다.)
+문자 하나만 사용하는 경우는 절대 피하자
+
+>  관용적으로 반복문의 i, j, k...는 이터레이션에 사용하였으므로 괜찮다.
 
 <br>
 
@@ -308,14 +320,14 @@ public int save() {}
 public int success() {}
 public void user() {}
 
-// 자바의 경우 접근자, 변경자, 조건자는 자바빈 명세에따라 get, set, is 사용
+// 자바의 경우
 public void setName() {}
 public String getName() {}
 ```
 
 메서드명은 동사, 동사구로 이름을 짓는다.
 
-자바의 경우 접근자, 변경자, 조건자는 자바빈 명세에따라 get, set, is 접두어 사용
+>  자바의 경우 접근자, 변경자, 조건자는 자바빈 명세에따라 get, set, is 접두어 사용
 
 <br>
 
@@ -325,7 +337,7 @@ public String getName() {}
 // 기발한 이름
 public int detonate() {}
 
-// 기발하지 않은 일반적인 이름
+// 평범한 이름
 public int delete() {}
 ```
 
@@ -341,12 +353,13 @@ public int fetchName() {}
 public int retrieveName() {}
 public int getName() {}
 
+// 마찬가지
 public Class DeviceController {}
 public Class DeviceManager {}
 public Class DeviceDriver {}
 ```
 
-위와 같이 같은 개념에 대하여 여러 단어를 혼동해서 사용한다면 가독성을 저해한다.
+위와 같이 같은 개념에 대하여 여러 단어를 혼동해서 사용한다면 가독성을 낮춤
 
 <br>
 
@@ -380,7 +393,7 @@ public Class AAAuthentication {}
 
 AA(Admin App)이라는 애플리케이션을 작성한다고 가정했을때 위와 같이 AA를 모두 붙이게 된다면 A를 입력하고 자동완성할 때 모든 클래스가 열거된다.
 
-
+앞의 AA는 불필요하므로 제거
 
 ---
 
@@ -392,7 +405,9 @@ AA(Admin App)이라는 애플리케이션을 작성한다고 가정했을때 위
 
 - 규칙 2: **더 작게!**
 
-함수는 100줄을 넘어서는 안된다. 아니 20줄도 길다.
+함수는 100줄을 넘어서는 안된다.
+
+아니 20줄도 길다.
 
 중첩 구조가 생길만큼 함수가 길면 안된다. 
 
@@ -416,7 +431,7 @@ AA(Admin App)이라는 애플리케이션을 작성한다고 가정했을때 위
 
 <br>
 
-### switch문 피해라
+### switch문 사용 자제
 
 ```java
 public class UserFactoryImpl implements UserFactory {
@@ -510,11 +525,11 @@ assertEquals(message, expected, actual);
 render(true)
 ```
 
-플래그 인수를 사용한다는 것은 해당 함수가 한 가지 이상의 일을 한다는 것을 의미한다.
+플래그 인수를 사용한다는 것은 해당 함수가 **한 가지 이상의 일**을 한다는 것을 의미한다.
 
 참이면 A 로직, 거짓이면 B로직 = 2개의 로직
 
-따라서 절대 사용하지 말 것.
+따라서 인수로 플래그를 받는다면 **함수를 분리**할 것
 
 #### 인수 객체
 
@@ -523,7 +538,7 @@ Circle makeCircle(double x, double y, double radius);
 Circle makeCircle(Point center, double radius);
 ```
 
-인수가 여러개가 존재한다면 인수를 객체로 넘겨라
+인수가 여러개가 존재한다면 인수를 객체로 넘기는 것을 고려
 
 #### 가변 인수
 
@@ -531,21 +546,25 @@ Circle makeCircle(Point center, double radius);
 public String format(String format, Object... args) {}
 ```
 
-인수가 가변적일때 사용하는 것을 권장
+인수가 가변적일때 사용
 
 #### 출력 인수
 
 ```java
 public void appendFooter(StringBuffer report) {}
 
-// 출력 인수
+// 출력 인수인 경우
 appendFooter(report);
 
-// this 사용
+// this 사용하는 경우
 report.appendFooter();
 ```
 
-위와 같은 출력인수 대신 객체지향에서는 this라는 키워드를 사용한다.
+직관적이지 않아 상태 추적이 어려움
+
+인수는 항상 입력이어야 한다.
+
+위와 같은 출력인수 대신 객체지향에서는 this라는 키워드를 사용
 
 함수에서 상태를 변경해야할때 인수의 상태를 변경하지 말고 함수가 속한 객체의 상태를 변경해야한다.
 
@@ -570,7 +589,7 @@ assertExpectedEqualsActual(expected, actual)
 ```java
 public boolean set(String key, String value) {}
 
-// 설정하는 함수인가 조회하는 함수인가 혼란스러움
+// 설정하는 함수인가 조회하는 함수인가 혼동됨
 if(set("username","johndoe"))
 ```
 
@@ -578,7 +597,7 @@ if(set("username","johndoe"))
 
 위 함수는 key인 키값을 찾아 value로 설정하고 성공하면 true, 실패하면 false를 리턴한다고 하자
 
-명령과 조회가 한꺼번에 되고 있어 호출시 코드가 지저분해진다.
+설정과 조회가 한꺼번에 되고 있어 호출시 코드가 지저분해진다.
 
 ```java
 if(keyExists("username")) {
@@ -587,7 +606,7 @@ if(keyExists("username")) {
 }
 ```
 
-위와 같이 명령과 조회를 분리한다면 훨씬 보기좋은 코드가 작성된다.
+위와 같이 설정과 조회를 분리한다면 훨씬 보기좋은 코드가 작성된다.
 
 <br>
 
@@ -616,6 +635,10 @@ try{
 ## 4. 주석
 
 ### 주석은 거짓말을 한다
+
+![cc-8.png]({{ "/assets/img/contents/cc-8.png"}})
+
+> 오직 신만이 알고 있다
 
 코드는 변화하고 진화하지만 그에 맞게 주석을 유지하고 보수하기란 현실적으로 불가능하다.
 
