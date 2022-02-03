@@ -38,7 +38,7 @@ Metricbeat를 사용하여 ELS(Elastic Stack) 모니터링 구축
 ---
 ### Metricbeat 설치
 
-[Elastic Metricbeat 설치 및 설정](2021-07-27-elastic-metricbeat-install) 참고
+[Elastic Metricbeat 설치 및 설정]({% post_url 2021-07-27-elastic-metricbeat-install %}) 참고
 
 ---
 ### Metricbeat 설정

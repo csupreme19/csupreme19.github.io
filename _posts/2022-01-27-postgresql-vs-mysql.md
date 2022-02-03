@@ -4,9 +4,8 @@ title: PostgreSQL vs MySQL 비교
 feature-img: assets/img/titles/postgresql-vs-mysql.png
 thumbnail: assets/img/contents/pm-1.png
 author: csupreme19
-categories: Development
-tags: [Book, Clean Code]
-
+categories: DB PostgreSQL MySQL
+tags: [Postgres, PostgreSQL, MySQL, RDBMS, DB]
 ---
 
 # PostgreSQL vs MySQL 비교

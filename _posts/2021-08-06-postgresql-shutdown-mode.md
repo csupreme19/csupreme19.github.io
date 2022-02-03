@@ -115,4 +115,4 @@ $ journalctl -u postgresql@11-main.service		# 서비스 상세 로그 확인
 
 ## Reference
 
-1. [Shutting Down the server](https://www.postgresql.org/docs/11/server-shutdown.html)https://stackoverflow.com/a/48576319)
+1. [Shutting Down the server](https://www.postgresql.org/docs/11/server-shutdown.html)

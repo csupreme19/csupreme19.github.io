@@ -171,7 +171,7 @@ $ systemctl start metricbeat.service
 
 ## Metricbeat 모듈 설정
 
-[Elastic Metricbeat 모듈 설정](/2021/08/02/elastic-metricbeat-modules.html) 참고
+[Elastic Metricbeat 모듈 설정]({% post_url 2021-08-02-elastic-metricbeat-modules %}) 참고
 
 ---
 

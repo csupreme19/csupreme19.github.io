@@ -431,7 +431,7 @@ return StringUtils.equals(responseInfo, "ok") ? 1 : 0;
 
 쿼리의 경우 별도 문서에 따로 정리함
 
-> [Elasticsearch 모니터링 쿼리 예제](/2021/10/06/elasticsearch-monitoring-query-sample)
+> [Elasticsearch 모니터링 쿼리 예제]({% post_url 2021-10-06-elasticsearch-monitoring-query-sample %}) 참고
 
 ---
 

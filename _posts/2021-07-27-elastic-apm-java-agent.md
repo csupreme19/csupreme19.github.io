@@ -22,7 +22,7 @@ Elastic APM Java Agent 적용기
 
 apm-agent를 사용하기 위해서는 apm-server가 필요하다.
 
-apm-server가 구축되어 있지 않으면 [Elastic APM Server](/2021/07/22/elastic-apm-server.html) 문서 참고
+apm-server가 구축되어 있지 않으면 [Elastic APM Server]({% post_url 2021-07-22-elastic-apm-server %}) 문서 참고
 
 APM Java Agent 공식 지원 설치 방법은 3가지가 있다.
 

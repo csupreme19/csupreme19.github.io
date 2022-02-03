@@ -23,7 +23,7 @@ tags: [PostgreSQL, Postgres, RDBMS, DB, Backup, Restore]
 
 Postgres 백업 방식은 [Continuous Archiving](https://www.postgresql.org/docs/14/continuous-archiving.html) 방식으로 두 가지의 파일을 백업하고 있다.
 
-> [PostgreSQL WAL 아카이브 백업](/2021/06/26/postgresql-archive-backup.html)
+> [PostgreSQL WAL 아카이브 백업]({% post_url 2021-06-26-postgresql-archive-backup %}) 참고
 
 1. `basebackup`
 
@@ -40,6 +40,7 @@ Postgres 백업 방식은 [Continuous Archiving](https://www.postgresql.org/docs
 1. pg_wal 자동 archiving 설정
 
 `postgresql.conf` 설정파일 수정
+
 ```shell
 wal_level = replica
 archive_mode = on
@@ -112,7 +113,7 @@ Postgresql 12 이전 버전에서는`recovery.conf`를 사용하지만 12버전�
    $ systemctl stop postgresql@11-main.service
    ```
 
-   shutdown 종류에 관한 설명은 [Postgresql shutdown ](/2021/08/06/postgresql-shutdown-mode)참고
+   shutdown 종류에 관한 설명은 [Postgresql shutdown ]({% post_url 2021-08-06-postgresql-shutdown-mode %})참고
 
 2. 용량이 충분하다면 data 디렉토리 아니면 `pg_wal` 디렉토리만이라도 백업
    ```shell
@@ -201,7 +202,7 @@ Postgresql 12 이전 버전에서는`recovery.conf`를 사용하지만 12버전�
    
    `recovery_target` 미지정시 마지막 WAL 레코드까지 복구 수행함
    
-   자세한 내용은 [Recovery Target Settings](https://www.postgresql.org/docs/11/recovery-target-settings.html) 참조
+   자세한 내용은 [Recovery Target Settings](https://www.postgresql.org/docs/11/recovery-target-settings.html) 참고
 7. `recovery.signal` 생성
    ```shell
    $ touch /data/psotgres/pgdata/recovery.signal

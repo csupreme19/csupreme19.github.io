@@ -108,7 +108,7 @@ $ journalctl -u filebeat
 
 ## Filebeat 모듈 설정
 
-[Elastic Filebeat 모듈 설정](/2021/08/06/elastic-filebeat-modules.html) 참고
+[Elastic Filebeat 모듈 설정]({% post_url 2021-08-06-elastic-filebeat-modules %}) 참고
 
 ---
 

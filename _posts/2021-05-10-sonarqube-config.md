@@ -27,7 +27,7 @@ tags: [Sonarqube, Jenkins, Webhook, Ingress, Kubernetes, GitLab]
 
 #### 1. k8s Secret 생성
 
-> k8s secret 생성은 [Kubernetes Nginx Ingress 적용](/2021/04/03/kubernetes-ingress.html) 참고
+> k8s secret 생성은 [Kubernetes Nginx Ingress 적용]({% post_url 2021-04-03-kubernetes-ingress %}) 참고
 
 #### 2. Ingress 리소스 설정
 

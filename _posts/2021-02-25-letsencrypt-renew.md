@@ -235,4 +235,3 @@ $ dig +noall +answer _acme-challenge.sbubdomain.yourdomain.com txt
 1. [Let's Encrypt Docs](https://letsencrypt.org/docs/)
 2. [Certbot](https://certbot.eff.org/lets-encrypt)
 3. [Secret](https://kubernetes.io/docs/concepts/configuration/secret/)
-4. [Certified Kubernetes Administrator(CKA) with Practice Tests](https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/)

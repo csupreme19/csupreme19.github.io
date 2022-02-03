@@ -23,7 +23,7 @@ tags: [Elasticsearch, Elastic, ELK, Filebeat, Beat]
 
 ### Filebeat 설치
 
-[Elastic Filebeat 설치 및 설정](/2021/08/05/elastic-filebeat-install.html) 참고
+[Elastic Filebeat 설치 및 설정]({% post_url 2021-08-05-elastic-filebeat-install %}) 참고
 
 ---
 ### Module 확인

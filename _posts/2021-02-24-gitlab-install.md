@@ -2,7 +2,7 @@
 layout: post
 title: GitLab 구축하기
 feature-img: assets/img/titles/gitlab-horizontal-color.png
-thumbnail: assets/img/contents/gi-1.png
+thumbnail: assets/img/titles/gitlab-horizontal-color.png
 author: csupreme19
 categories: DevOps CICD
 tags: [Gitlab, Docker, SSH, Git]
@@ -160,7 +160,7 @@ Enabled Git access protocols - Only SSH로 변경 - Save Changes
 
 ### 추가 설정
 
-SSH, Backup, Mail 등 추가 설정은 [GitLab 백업 및 기타 설정](/2021/02/25/gitlab-config.html) 문서 참고
+SSH, Backup, Mail 등 추가 설정은 [GitLab 백업 및 기타 설정 그리고 트러블슈팅]({% post_url 2021-02-25-gitlab-config %}) 문서 참고
 
 ---
 

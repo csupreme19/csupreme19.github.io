@@ -24,7 +24,7 @@ tags: [Elasticsearch, Elastic, ELK, Metricbeat, Beat]
 ---
 ### Metricbeat 설치
 
-[Metricbeat 설치 및 설정](/2021/07/27/elastic-metricbeat-install.html) 참고
+[Metricbeat 설치 및 설정]({% post_url 2021-07-27-elastic-metricbeat-install %}) 참고
 
 
 ---
@@ -201,7 +201,7 @@ mysql > flush privileges;
 
 ```
 
-> 자세한 내용은 [MySQL 설치 및 사용자 생성](http://localhost:4000/2021/05/31/mysql-install.html) 참고
+> 자세한 내용은 [MySQL 설치 및 사용자 생성]({% post_url 2021-05-31-mysql-install %}) 참고
 
 #### mysql dashboards
 

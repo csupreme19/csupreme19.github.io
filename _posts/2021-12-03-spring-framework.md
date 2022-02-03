@@ -110,7 +110,7 @@ Spring의 기본이자 핵심 모듈로 Spring Container, IoC Container이다.
 
 > Spring Core 내용은 아래 문서를 참고하세요.
 >
-> [Spring Core 정리](/2021/12/03/spring-core.html)
+> [Spring Core 정리]({% post_url 2021-12-03-spring-core %})
 
 <br>
 
@@ -128,7 +128,7 @@ Spring의 기본이자 핵심 모듈로 Spring Container, IoC Container이다.
 
 > Spring AOP 내용은 아래 문서를 참고하세요.
 >
-> [Spring AOP 정리](/2021/12/06/spring-AOP.html)
+> [Spring AOP 정리]({% post_url 2021-12-06-spring-AOP %})
 
 <br>
 
@@ -167,7 +167,7 @@ Spring의 기본이자 핵심 모듈로 Spring Container, IoC Container이다.
 
 > Spring Web 내용은 아래 문서를 참고하세요.
 >
-> [Spring Web 정리](/2021/12/06/spring-web.html)
+> [Spring Web 정리]({% post_url 2021-12-06-spring-web %})
 
 <br>
 
