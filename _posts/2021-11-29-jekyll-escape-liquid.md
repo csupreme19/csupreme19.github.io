@@ -15,13 +15,13 @@ tags: [Blog, Jekyll, Liquid, Markdown, Template]
 
 [Jekyll Liquid](https://jekyllrb.com/docs/liquid/)
 
-Jekyll 작성시 Liquid template `{{ "{{" }} , }}` 이중 중괄호 및 중괄호 빠져나오기 (무시하기)
+Jekyll 작성시 Liquid template `{{ "{{" }} , }}` 이중 중괄호 및 중괄호 빠져나오는 방법에 대해서 작성하였어요.
 
 ---
 
 ## Escape Liquid
 
-Jekyll은 내부 템플릿 언어로 [Liquid](https://shopify.github.io/liquid/)를 사용한다.
+Jekyll은 내부 템플릿 언어로 [Liquid](https://shopify.github.io/liquid/)를 사용하는데
 
 Liquid는 Ruby로 작성된 템플릿 언어로
 
@@ -32,15 +32,15 @@ Liquid는 Ruby로 작성된 템플릿 언어로
 {% endraw %}
 ```
 
-등의 중괄호를 이용한 문법을 통하여 템플릿 변수나 로직을 실행한다.
+등의 중괄호를 이용한 문법을 통하여 템플릿 변수나 로직을 실행해요.
 
-문서를 작성하다 보니 아래와 같은 에러를 발견하게 되었다.
+문서를 작성하다 보니 아래와 같은 에러를 발견하게 되었어요.
 
 ![jel-1.png]({{ "/assets/img/contents/jel-1.png"}})
 
-이는 kubernetes에서 사용하는 go-template이 똑같은 이중괄호를 사용해서 나타난 문제였다.
+이는 kubernetes에서 사용하는 go-template이 똑같은 이중괄호를 사용해서 나타난 문제였고
 
-이를 해결하기 위해서는 아래와 같이 `{{ "{% raw" }} %}`, `{{ "{% endraw" }} %}`  사이에 문법을 적어주면 된다.
+이를 해결하기 위해서는 아래와 같이 `{{ "{% raw" }} %}`, `{{ "{% endraw" }} %}`  사이에 문법을 적어주면 돼요.
 
 #### Raw
 

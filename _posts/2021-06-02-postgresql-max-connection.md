@@ -15,7 +15,7 @@ tags: [Postgres, PostgreSQL, RDBMS, DB]
 
 [Connection Settings](https://www.postgresql.org/docs/9.4/runtime-config-connection.html)
 
-PostgreSQL max_connections 설정 방법
+PostgreSQL max_connections 설정 방법을 작성해봤어요.
 
 ---
 ## max_connections Queries
@@ -55,6 +55,8 @@ WHERE state = 'active' or state = 'idle';
 > 쿼리 출처
 >
 > > [https://dba.stackexchange.com/a/161761](https://dba.stackexchange.com/a/161761)<br>[https://stackoverflow.com/a/48576319](https://stackoverflow.com/a/48576319)
+
+<br>
 
 ### max_connections 조정
 

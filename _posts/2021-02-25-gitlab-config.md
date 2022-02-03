@@ -15,7 +15,7 @@ tags: [Gitlab, Docker, SSH, Git, Backup, Restore, SSL, TLS, SMTP, Nginx]
 
 [Configuring Omnibus GitLab](https://docs.gitlab.com/omnibus/settings/README.html)
 
-GitLab 백업, SSH, 메일 서버 등 설정
+GitLab 백업, SSH, 메일 서버 등 설정에 대한 내용을 정리했어요.
 
 ---
 ## Backup 설정
@@ -35,7 +35,9 @@ GitLab 백업, SSH, 메일 서버 등 설정
 - 백업 실행: 3일마다 새벽 2시
 - 보관 주기: 30일
 
-> `gitlab.rb`, `gitlab-secrets.json`과 같은 설정파일들은 기본적으로 백업되지 않으며 필요시 별도로 백업 실행
+> `gitlab.rb`, `gitlab-secrets.json`과 같은 설정파일들은 기본적으로 백업되지 않으며 필요시 별도로 백업이 필요해요.
+
+<br>
 
 ### 수동 Backup
 
@@ -58,7 +60,7 @@ $ gitlab-rake gitlab:backup:create
 $ cd /data/docker_volumes/gitlab/data/backups
 ```
 
-[TIMESTAMP]_gitlab_backup.tar 생성 확인
+[TIMESTAMP]_gitlab_backup.tar 생성을 확인해요.
 
 
 
@@ -69,21 +71,20 @@ $ cd /data/docker_volumes/gitlab/data/backups
 /data/docker_volumes/gitlab/config/gitlab.rb
 ```
 
-위 두 파일 별도로 백업할 것
+설정 파일 백업이 필요할 시 위 두 파일 별도로 백업할 필요가 있어요.
 
-
+<br>
 
 ### 수동 Restore
 
 #### 1. 복구 준비
 
-1. ##### 복구된 버전과 복구하려는 gitlab 버전이 같아야함
+1. ##### 복구된 버전과 복구하려는 gitlab 버전 동일
 2. ##### gitlab reconfigure 실행 필요
-3. ##### gitlab이 실행되고 있어야함
-4. ##### 복구할 파일(.tar) 위치는 /var/opt/gitlab/backups 에 있다고 가정
+3. ##### gitlab이 실행중
+4. ##### 복구할 파일(.tar) 위치는 /var/opt/gitlab/backups에 있다고 가정
 
-
-DB 접근하는 프로세스 종료
+5. ##### DB 접근하는 프로세스 종료
 
 ```sh
 # gitlab shell 진입
@@ -110,9 +111,9 @@ $ docker exec -t gitlab-ce gitlab-rake gitlab:backup:restore BACKUP={TIMESTAMP} 
 
 예를 들어 파일명이 1612940314_2021_092_10_13.8.1_gitlab_backup.tar이라면
 
-[TIMESTAMP]_gitlab_backup.tar 이므로 TIMESTAMP는 1612940314_2021_092_10_13.8.1
+[TIMESTAMP]_gitlab_backup.tar 이므로 TIMESTAMP는 1612940314_2021_092_10_13.8.1의 형태로 나와요.
 
-복구 시점에 psql must be owner of 관련 오류는 정상임
+복구 시점에 psql must be owner of 관련 오류는 정상이에요.
 
 #### 3. 서비스 재구동 및 점검
 
@@ -124,13 +125,13 @@ $ gitlab-ctl restart
 $ gitlab-rake gitlab:check SANITIZE=true
 ```
 
-
+<br>
 
 ### 자동 Backup 설정
 
 #### 1. NFS 설정
 
-mount 및 권한 설정은 완료되었다는 가정하에 작성하였습니다.
+mount 및 권한 설정은 완료되었다는 가정하에 작성하였어요.
 
 GitLab 백업 폴더 생성
 
@@ -161,7 +162,7 @@ gitlab_rails 설정값 변경(추가)
 - backup_path: 백업 경로(local)
 - backup_keep_time: 백업 파일 보관 주기 (2592000초 = 30일)
 
-gitlab이 설치된 volume의  gitlab.rb 설정파일 수정해도 됨
+gitlab이 설치된 volume의 gitlab.rb 설정파일 수정하는 방법도 가능해요.
 
 
 
@@ -206,7 +207,7 @@ $ vim ~/gitlab-ce/gitlab_backup.sh
  echo "gitlab-backup done."
 ```
 
-> 위 스크립트는 백업 명령 실행 후 백업 파일을 mv, rm 하는 간단한 스크립트이며 상황별로 다를 수 있음
+> 위 스크립트는 백업 명령 실행 후 백업 파일을 mv, rm 하는 간단한 스크립트이며 상황별로 다를 수 있어요.
 
 
 
@@ -217,7 +218,7 @@ $ crontab -e
 0 2 */3 * * /root/gitlab-ce/gitlab_backup.sh > /root/gitlab-ce/gitlab_backup.sh.log
 ```
 
-gitlab 컨테이너 내부에서 crontab 설정도 가능
+gitlab 컨테이너 내부에서 crontab 설정도 가능해요.
 
 - CRON=1: 에러가 발생한 경우에만 출력
 
@@ -233,20 +234,24 @@ $ run-parts /var/spool/cron -v
 ---
 ## Email 설정(SMTP)
 
-> docker container 환경에서 gitlab의 email 설정
+도커 컨테이너 환경에서의 GitLab 메일 설정에 대한 내용이에요.
+
+<br>
 
 ### 사전 준비 사항
-  - mail server 정보 확인: gmail 또는 별도 무료 사용 가능한 mail server 확보
-  - 본 문서에서는 mailgun 서버를 적용
+  - mail server gmail 또는 별도 무료 사용 가능한 mail server 확보
+  - 본 문서에서는 mailgun 서버 적용
 
   - [SMTP Settings#Mailgun](https://docs.gitlab.com/omnibus/settings/smtp.html#mailgun)
+
+<br>
 
 ### SMTP 설정
 
 #### 1. gitlab의 설정파일 수정
-docker-compose.yml의 gitlab environment에 추가 또는 gitlab 설치된 volume에서 gitlab.rb 파일 찾아 수정 
+docker-compose.yml의 gitlab environment에 추가하거나 gitlab 설치된 volume에서 gitlab.rb 파일 찾아 수정해요.
 
-해당 파일 내용 중 mailgun 메일서버 정보를 추가
+해당 파일 내용 중 mailgun 메일서버 정보를 추가해요.
 
 ```shell
 # mailgun smtp 설정
@@ -255,8 +260,8 @@ gitlab_rails['smtp_address'] = "smtp.mailgun.org"
 gitlab_rails['smtp_port'] = 587
 gitlab_rails['smtp_authentication'] = "plain"
 gitlab_rails['smtp_enable_starttls_auto'] = true
-gitlab_rails['smtp_user_name'] = "mail서버 발급받은 id"
-gitlab_rails['smtp_password'] = "암호"
+gitlab_rails['smtp_user_name'] = "{SMTP 아이디}"
+gitlab_rails['smtp_password'] = "{SMTP 암호}"
 gitlab_rails['smtp_domain'] = "mg.gitlab.com"
 ```
 
@@ -292,7 +297,7 @@ email이 왔는지 확인
 $ ssh-keygen -t rsa
 ```
 
-RSA 키 발급, passphrase는 일반적으로 비워둠(Enter)
+RSA 키 발급, passphrase는 일반적으로 비워두므로 엔터키를 눌러 진행해요.
 
 
 
@@ -303,7 +308,7 @@ chmod 755 ~/.ssh/id_rsa.pub
 vi ~/.ssh/id_rsa.pub
 ```
 
-id_rsa.pub안의 퍼블릭키 복사해두기
+id_rsa.pub안의 퍼블릭키를 복사해요.
 
 
 
@@ -313,11 +318,11 @@ id_rsa.pub안의 퍼블릭키 복사해두기
 
 User Settings - SSH Keys
 
-id_rsa.pub에 있는 전체 키 내용 복사하여 붙여넣기
+id_rsa.pub에 있는 전체 키 내용 복사하여 붙여넣기해요.
 
-Title은 자신이 구분할  수 있는 제목 아무거나
+Title은 본인이 구분할 수 있는 제목 아무거나 상관없어요.
 
-만료일은 해당 키의 만료일로 설정
+만료일은 해당 키의 만료일로 설정해요.
 
 #### 4. git 계정 설정
 
@@ -341,7 +346,7 @@ Welcome to GitLab, @csupreme!
 
 -v: 디버그 로그 확인
 
-처음 접속시 호스트 키 저장 여부를 물으면 yes
+처음 접속시 호스트 키 저장 여부를 물으면 yes를 입력해요.
 
 #### 6. Git clone 확인
 
@@ -350,7 +355,7 @@ Welcome to GitLab, @csupreme!
 git clone ssh://git@gitlab.yourdomain.com:20722/csupreme/commit-test.git
 ```
 
-별도의 사용자, 암호 입력 없이 SSH Key를 이용하여 clone 확인
+별도의 사용자, 암호 입력 없이 SSH Key를 이용하여 clone 확인해요.
 
 ---
 ## Nginx SSL 설정
@@ -358,6 +363,8 @@ git clone ssh://git@gitlab.yourdomain.com:20722/csupreme/commit-test.git
 
 - Docker Container 환경(GitLab Omnibus)
 - Let's Encrypt Key 발급 완료
+
+<br>
 
 ### Nginx 설정
 
@@ -375,11 +382,11 @@ git clone ssh://git@gitlab.yourdomain.com:20722/csupreme/commit-test.git
         - '20722:22'
 ```
 
-letsencrypt['enable'] = false로 설정하는 이유
-
-gitlab-ctl reconfigure시 자동으로 인증서를 갱신하여 덮어쓰기 때문
-
-수동으로 발급한 인증서이므로 letsencrypt의 자동 갱신 기능을 비활성화 하기 위해
+> letsencrypt['enable'] = false로 설정하는 이유
+>
+> gitlab-ctl reconfigure시 자동으로 인증서를 갱신하여 덮어쓰기 때문에
+>
+> 수동으로 발급한 인증서이므로 letsencrypt의 자동 갱신 기능을 비활성화 하기 위해서 사용했어요.
 
 #### 2. SSL 인증서 복사
 
@@ -424,9 +431,8 @@ $ cat /data/docker_volumes/gitlab/logs/nginx/gitlab_access.log
 
 ![gc-3.png]({{ "/assets/img/contents/gc-3.png"}})
 
-로그 확인
-
 ```sh
+# 로그 확인
 $ cat /data/docker_volumes/gitlab/logs/sshd/current
 ```
 
@@ -458,7 +464,7 @@ $ cat /data/docker_volumes/gitlab/logs/sshd/current
 
 ```
 
-Private Key 파일 권한이 755로 되어 있어 SSHD에서 자체적으로 Bad Permission을 리턴
+Private Key 파일 권한이 755로 되어 있어 SSHD에서 자체적으로 Bad Permission을 리턴했네요.
 
 
 
@@ -486,14 +492,17 @@ Welcome to GitLab, @csupreme!
 $ git clone ssh://git@gitlab.yourdomain.com:20722/csupreme/commit-test.git
 ```
 
+권한 수정 후 접속하니 정상인 것을 확인할 수 있었어요.
+
+<br>
 
 ### 2. ssh 접속시 아래와 같이 Host 정보가 변경되었다고 나올 때
 
 ![gc-4.png]({{ "/assets/img/contents/gc-4.png"}})
 
-기존 서버의 IP는 동일하지만 서버의 SHA256 fingerprint가 바뀐 상황
+기존 서버의 IP는 동일하지만 서버의 SHA256 fingerprint가 바뀐 상황이에요.
 
-ssh의 known_host에 있는 해당 서버의 RSA Host key키 부분을 삭제한 뒤 접속하면 된다.
+ssh의 known_host에 있는 해당 서버의 RSA Host key키 부분을 삭제한 뒤 접속하면 돼요.
 
 ```sh
 $ vim /Users/{USERNAME}/.ssh/known_hosts
@@ -503,7 +512,7 @@ $ vim /Users/{USERNAME}/.ssh/known_hosts
 
 ![gc-5.png]({{ "/assets/img/contents/gc-5.png"}})
 
-접속시 바뀐 호스트 키 등록 yes후 진행
+접속시 바뀐 호스트 키 등록 yes후 진행해요.
 
 ---
 

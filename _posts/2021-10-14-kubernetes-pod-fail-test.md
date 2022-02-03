@@ -13,15 +13,13 @@ tags: [Kubernetes, K8S, Pod, Fail]
 
 [Container restart policy](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy)
 
-강제로 죽는 pod를 배포 후 해당 파드가 어떻게 restart 되는지 살펴보았다.
+강제로 죽는 pod를 배포 후 해당 파드가 어떻게 restart 되는지 살펴보았어요.
 
 ---
 
 ## 실험
 
 ### 실험 절차
-
-
 
 #### 1. Pod 배포
 
@@ -49,7 +47,7 @@ $ k run dummy-pod --image ubuntu
 pod/dummy-pod created
 ```
 
-
+<br>
 
 #### 2. Pod 상태 확인
 
@@ -83,17 +81,17 @@ NAME                       READY   STATUS      RESTARTS   AGE
 dummy-pod                  0/1     Completed   5          3m33s
 ```
 
-10, 30, 60, 110, 210초에 각각 restart되는 것으로 확인
+10, 30, 60, 110, 210초에 각각 restart되는 것으로 확인 되었고
 
-공식 문서에 따르면 지수 백오프 지연(10초, 20초, 40초, ...)로 10초로 시작하여 2배씩 재시작 간격이 증가한다고 함(최대 300초(5분))
+공식 문서에 따르면 지수 백오프 지연(10초, 20초, 40초, ...)로 10초로 시작하여 2배씩 재시작 간격이 증가한다고 하네요.(최대 300초(5분))
 
-지수배는 아니지만 비슷하게 재시작 된 것을 확인할 수 있었다.
+지수배는 아니지만 비슷하게 재시작 된 것을 확인할 수 있었어요.
 
-
+<br>
 
 #### 3. 결론
 
-아래와 같이 다양한 기준을 적용하여 파드가 계속 재시작중인지 restart 횟수 만으로 판별 가능
+아래와 같이 다양한 기준을 적용하여 파드가 계속 재시작중인지 restart 횟수 만으로 판별 가능하다고 결론지었어요.
 - 파드 배포 후 1분 내 2번 이상(10, 30, 60초)
 - 파드 배포 후 3분 내 4번 이상(10, 30, 60, 110, 210초)
 

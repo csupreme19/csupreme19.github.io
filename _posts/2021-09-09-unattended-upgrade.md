@@ -16,17 +16,22 @@ tags: [Linux, OS, Ubuntu, Debian, Package Manager, APT, Upgrade]
 ---
 ## 개요
 
-Ubuntu 16, 18, 20에서는 기본적으로 Apt 패키지의 Unattended upgrade라는 자동 업데이트 타이머가 활성화 되어 있다. (크론잡 형태)
+Ubuntu 16, 18, 20에서는 기본적으로 Apt 패키지의 Unattended upgrade라는 자동 업데이트 타이머 크론잡 형태로 활성화 되어 있어
 
-리눅스 커널, SSH, OpenSSL 등의 보안 패치를 위하여 자동으로  업데이트를 진행하도록 기본 설정되어 있다.
+리눅스 커널, SSH, OpenSSL 등의 보안 패치를 위하여 자동으로 업데이트를 진행하도록 기본 설정되어 있어요.
 
-보안 취약점을 패치한다는 취지에서는 좋지만 Install, Upgrade된 버전을 사용하려면 서버 재시작이 필수이며
+보안 취약점을 패치한다는 취지에서는 좋지만 Install, Upgrade된 버전을 사용하려면 서버 재시작이 필수이고
 
-커널 업데이트로 인하여 OS레벨에서의 문제점이나 장애가 발생할 수 있다.
+커널 업데이트로 인하여 OS레벨에서의 문제점이나 장애가 발생할 수 있어
 
-이런 장애는 파악하기 매우 어려우므로 운영 관점에서는 해당 기능을 비활성화 하는 것이 좋다.
+이런 장애는 파악하기 매우 어려우므로 운영 관점에서는 해당 기능을 비활성화 하는 것이 좋아요.
+
+---
+
+## Unattended upgrade 비활성화
 
 ### apt 로그 확인
+
 ```shell
 $ cd /var/log/apt
 $ tail history.log

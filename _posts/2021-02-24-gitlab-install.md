@@ -15,17 +15,14 @@ tags: [Gitlab, Docker, SSH, Git]
 
 [Gitlab Docker Images](https://docs.gitlab.com/omnibus/docker/#install-gitlab-using-docker-compose)
 
-Docker를 활용한 Gitlab 컨테이너 구축 및 기초 설정
+Docker를 활용한 Gitlab 컨테이너 환경의 구축 방법을 정리했어요.
 
 ---
 
 ## GitLab 구축
 
----
 ### Docker Compose 설치
-docker-compose 버전이 매번 변경 됨
-
-최신 버전 설치 스크립트는 [docker-compose home](https://docs.docker.com/compose/install/) 에서 확인
+최신 버전 설치 스크립트는 [docker-compose home](https://docs.docker.com/compose/install/) 에서 확인할 수 있어요.
 
 #### 1. Docker compose stable 설치
 
@@ -73,7 +70,7 @@ version: '3'
 
 services:
   gitlab:
-    # gitlab 백업 후 복원 시 gitlab의 버전이 일치해야 하기 때문에 최신 버전 대신 특정 버전을 사용
+    # gitlab 백업 후 복원 시 gitlab의 버전이 일치해야 하기 때문에 버전 고정
     # image: 'gitlab/gitlab-ce:latest'
     image: 'gitlab/gitlab-ce:13.8.4-ce.0'
     restart: always
@@ -85,7 +82,7 @@ services:
       external_url 'http://gitlab.yourdomain.com:20780'
       gitlab_rails['time_zone'] = 'Asia/Seoul'
     ports:
-      - '20780:20780'
+      - '20780:20780'	# 외부 포트와 동일하게 매핑
       - '20443:443'
       - '20722:22'
     volumes:
@@ -94,7 +91,7 @@ services:
       - '/data/docker_volumes/gitlab/data:/var/opt/gitlab'
 ```
 
-> 현재 gitlab wiki의 file attach API 버그로 접속한 포트가 아닌 설정값의 external_url을 host로 물고 가고 있어서 도커 포트 매핑을 동일한 포트로 설정
+> gitlab wiki의 file attach API 버그로 접속한 포트가 아닌 external_url을 host로 보고 있어 도커 포트 매핑을 동일한 포트로 설정했어요.
 
 
 
@@ -121,13 +118,11 @@ $ docker-compose ps -a
 
 
 
-##### 4. GitLab Web 접속 확인
+#### 4. GitLab Web 접속 확인
 
 ![gi-3.png]({{ "/assets/img/contents/gi-3.png"}})
 
-
-
-#### 5. 초기 접속시 root 계정 비밀번호 설정
+초기 접속시 root 계정 비밀번호 설정이 필요해요.
 
 
 ---
@@ -141,7 +136,7 @@ $ docker-compose ps -a
 
 Admin Area - Settings - General - Sign-up restrictions에서
 
-Sign-up enabled 체크 해제
+Sign-up enabled 체크 해제하여 계정 등록을 비활성화하는 것이 좋아요.
 
 
 
@@ -153,14 +148,14 @@ Admin Area - Settings - General - Visibility and access controls
 
 Enabled Git access protocols - Only SSH로 변경 - Save Changes
 
-> Application level에서 막는 것으로 Https 프로토콜 및 포트 접근을 막는 것은 아님
+> Application 레벨에서 막는 것으로 Https 프로토콜 및 포트 접근을 막는 것은 아니에요.
 
 
 ---
 
 ### 추가 설정
 
-SSH, Backup, Mail 등 추가 설정은 [GitLab 백업 및 기타 설정 그리고 트러블슈팅]({% post_url 2021-02-25-gitlab-config %}) 문서 참고
+SSH, Backup, Mail 등 추가 설정은 [GitLab 백업 및 기타 설정 그리고 트러블슈팅]({% post_url 2021-02-25-gitlab-config %}) 문서 참고하세요.
 
 ---
 

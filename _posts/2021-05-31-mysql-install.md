@@ -13,7 +13,7 @@ tags: [MySQL, DB, RDBMS, Docker, Docker-compose]
 
 ![mysql-logo.png]({{ "/assets/img/titles/mysql-logo.png"}})
 
-MySQL을 docker-compose로 설치 후 사용자 생성, 권한 설정을 진행한 내용이다.
+MySQL을 docker-compose로 설치 후 사용자 생성, 권한 설정을 진행한 내용을 정리해봤어요.
 
 ---
 
@@ -25,11 +25,13 @@ $ mkdir -p /data/mysql
 ```
 
 ### 2. `docker-compose.yaml` 작성
-접속 port는 13306(docker 외부) - 3306(docker 내부) 로 설정.
+> 접속 port는 13306(외부) : 3306(내부) 로 설정하여 진행했어요.
 
 ```sh
 $ vim docker-compose.yaml
 ```
+
+
 
 ```yaml
 version: '3.1'
@@ -101,13 +103,13 @@ bash-4.4# whoami
 root
 ```
 
-
+<br>
 
 ### 2. MySQL 사용자 생성
 
-MySQL 계정의 경우 계정명과 호스트가 같이 있다.
+MySQL 계정의 경우 계정명과 호스트가 같이 있는 구조로
 
-위처럼 localhost로 host 생성하는 경우 localhost에서만 접속 가능(외부 접속 불가)하므로 외부 접속을 위한 계정을 생성해보자.
+위처럼 localhost로 host 생성하는 경우 localhost에서만 접속 가능하므로 외부 접속을 위한 계정을 생성해야 해요.
 
 
 
@@ -135,8 +137,6 @@ mysql>
 
 
 #### 2. 사용자 생성
-
-
 
 ```sh
 # 사용자 확인
@@ -189,6 +189,5 @@ mysql > grant all privileges on *.* to csupreme19@'%';
 # 권한 적용 필수
 mysql> flush privileges;
 ```
-
 
 

@@ -14,7 +14,7 @@ tags: [Tomcat, Session, Clustering, Multicast, Replication]
 
 [Clustering/Session Replication How-To](http://tomcat.apache.org/tomcat-9.0-doc/cluster-howto.html)
 
-본 문서에서는 Kubernetes 환경에서의 Tomcat간 세션 공유를 위한 session clustering 적용기를 다룬다.
+본 문서에서는 Kubernetes 환경에서의 Tomcat간 세션 공유를 위한 세션 클러스터링을 도입해본 경험을 정리해봤어요.
 
 ---
 
@@ -39,15 +39,15 @@ tags: [Tomcat, Session, Clustering, Multicast, Replication]
 
 
 
-Spring boot 기반 Tomcat  서비스는 클라이언트에서 요청시 세션을 Tomcat이 올라가 있는 노드에만 local 저장된다.
+Spring boot 기반 Tomcat  서비스는 클라이언트에서 요청시 세션을 Tomcat이 올라가 있는 서버의 메모리에만 저장되는데
 
-이 경우 Pod replication, crash/shutdown 등으로 인하여 노드간 세션이 공유되지 않아 접속이 끊기는 문제가 발생할 수 있음
+이 경우 Pod replication, crash/shutdown 등으로 인하여 노드간 세션이 공유되지 않아 접속이 끊기는 문제가 발생할 수 있어요.
 
 ---
 
 ## 요구사항
 
-Kubernetes 클러스터 내에서 Pod 간 세션을 유지할 수 있는 방법 수립
+Kubernetes 클러스터 내에서 Pod 간 세션을 유지할 수 있는 방법을 찾아보려고 해요.
 
 1. 유지보수가 쉬울 것(관리 포인트 적을 것)
 2. 어플리케이션(서비스) 코드에 영향이 없을 것
@@ -61,33 +61,37 @@ Kubernetes 클러스터 내에서 Pod 간 세션을 유지할 수 있는 방법 
 
 ![tsc-1.png]({{ "/assets/img/contents/tsc-1.png"}})
 
-클라이언트가 세션을 맺은 서버랑만 통신하는 것
+클라이언트가 세션을 맺은 서버랑만 통신하는 것으로
 
-사용자 입장에서는 세션이 끊기지 않고 유지되는 장점이 있으나 
+사용자 입장에서는 세션이 끊기지 않고 유지되는 장점이 있지만
 
-pod crash, shutdown 등의 문제로 pod 재시작, 중지시 세션이 끊기는 문제가 있다.
+pod crash, shutdown 등의 문제로 pod 재시작, 중지시 세션이 끊기는 문제가 있어요.
 
 kubernetes session affinity 설정으로 비교적 간단히 설정이 가능하나
 
-완벽한 session replication이 아니다.
+완벽한 session replication이 아니라고 생각했어요.
+
+<br>
 
 ### 2. Tomcat session in-memory replication(Multicast)
 
 Tomcat에서 기본적으로 제공하는 클러스터링
 
-서버 인메모리에 저장하고 SimpleTCPCluster와 같은 클래스를 이용하여 리플리케이션하는 방법
+서버 인메모리에 저장하고 SimpleTCPCluster와 같은 클래스를 이용하여 리플리케이션하는 방법으로
 
-tomcat xml(server.xml, pom.xml) 수정이 필요하여 spring boot에서 기본으로 제공하는 embedded tomcat에서 사용이 안된다고 하나 java config를 이용하여 embedded tomcat도 설정 가능한 것으로 보인다.
+tomcat xml(server.xml, pom.xml) 수정이 필요하여 spring boot에서 기본으로 제공하는 embedded tomcat에서 사용이 안된다고 하나 java config를 이용하여 embedded tomcat도 설정 가능한 것으로 확인했어요.
 
-multicast 기능을 지원해야하지만 multicast는 대부분의 cloud 환경에서는 제공하지 않음
+multicast 기능을 지원해야하지만 multicast는 대부분의 cloud 환경에서는 제공하지 않는 것으로 조사했고
 
-Tomcat 설정 파일을 바꾸려면 Spring boot의 경우 `@Configuration` 설정을 통하여 Bean을 주입해야하여 소스코드 추가가 필요하다.
+Tomcat 설정 파일을 바꾸려면 Spring boot의 경우 `@Configuration` 설정을 통하여 Bean을 주입해야하여 소스코드 추가가 필요했어요.
+
+<br>
 
 ### 3. Tomcat session persistence replication
 
 redis, dynamoDB와 같은 DB에 세션 정보를 저장하고 각 서버로 클러스터링 하는 방법
 
-session이 별도의 저장소에 저장되어 사용되는 장점이 있음
+session이 별도의 저장소에 저장되어 사용되는 장점이 있어서 이 방법을 사용하기로 했어요.
 
 ---
 ## Tomcat session in-memory replication(Multicast) 테스트
@@ -96,15 +100,15 @@ session이 별도의 저장소에 저장되어 사용되는 장점이 있음
 
 ### EPC Multicast 지원 테스트
 
-현재 사용중인 클라우드(EPC)에서 Multicast 기능을 지원하는지 테스트한다.
+현재 사용중인 클라우드(EPC)에서 Multicast 기능을 지원하는지 테스트해보았어요.
 
 멀티캐스트 IP 대역은 사설 224.0.1.0 ~ 238.255.255.255의 대역 IP가 예약되어 있으며
 
-멀티캐스트 사용을 위해서는 L2 장비가 IGMP 프로토콜을 지원해야한다고 한다.
+멀티캐스트 사용을 위해서는 L2 장비가 IGMP 프로토콜을 지원해야한다고 하네요.
 
->AWS와 같은 메이저 클라우드에서는 지원을 안한다고 하니 확인 필요
+>AWS와 같은 메이저 클라우드에서는 지원을 안한다고 하니 확인이 필요해요.
 
-**iperf**라는 네트워크 테스트 툴을 이용하여 EPC에서 멀티캐스트 IP 대역 사용이 가능한지 테스트한다.
+**iperf**라는 네트워크 테스트 툴을 이용하여 EPC에서 멀티캐스트 IP 대역 사용이 가능한지 테스트해보았어요.
 
 
 
@@ -150,9 +154,9 @@ UDP buffer size:  208 KByte (default)
 
 > Tomcat의 경우 기본 multicast 주소는 `228.0.0.4`에 포트는 `45564` 사용
 
-서버에서 클라이언트 각각 실행하여 클라이언트에서 송신하는 메시지가 서버에 멀티캐스트 되는지 확인
+서버에서 클라이언트 각각 실행하여 클라이언트에서 송신하는 메시지가 서버에 멀티캐스트 되는지 확인해 보았는데
 
-다른 노드에서 실행시 정상 송수신을 확인하였다. (Zone: Prd-private)
+다른 노드에서 실행시 정상 송수신을 확인했어요.
 
 ---
 
@@ -284,9 +288,9 @@ public class TomcatClusterUtil implements WebServerFactoryCustomizer<TomcatServl
 
 spring boot와 같이 설치형 tomcat이 아닌 embedded tomcat에서는 server.xml, web.xml과 같은 설정 파일의 직접 수정이 불가능하므로
 
-`TomcatContextCustomizer`를 이용하여 Context에 설정한다.
+위와 같이 `TomcatContextCustomizer`를 이용하여 Context에 설정해야 해요.
 
-> 항목별 자세한 설명은 [공식문서](http://tomcat.apache.org/tomcat-9.0-doc/cluster-howto.html) 참고
+> 항목별 자세한 설명은 [공식문서](http://tomcat.apache.org/tomcat-9.0-doc/cluster-howto.html) 참고하세요.
 
 
 
@@ -318,7 +322,7 @@ env:
   multicast.receiver.port: 4001
 ```
 
-> 로컬 테스트시 같은 포트로 톰캣 인스턴스 실행이 불가능하므로 포트 설정을 하기 위함
+> 로컬 테스트시 같은 포트로 톰캣 인스턴스 실행이 불가능하므로 포트 설정을 하기 위함이에요.
 
 
 
@@ -333,15 +337,15 @@ env:
    - Profile: instance2
    - JVM Arguments: -Djava.net.preferIPv4Stack=true
 
-> preferIPv4Stack `true`로 설정해야 위에서 Receiver주소 설정값 `receiver.setAddress("auto");`가 작동한다.
+> preferIPv4Stack `true`로 설정해야 위에서 Receiver주소 설정값 `receiver.setAddress("auto");`가 작동해요.
 
 #### 로드밸런서 설정
 
-Tomcat에서 지원하는 session clustering을 사용하려면 로드밸런서를 통해 같은 도메인이름을 사용하여야 세션이 공유된다.
+Tomcat에서 지원하는 session clustering을 사용하려면 로드밸런서를 통해 같은 도메인이름을 사용하여야 세션이 공유돼요.
 
-서로 다른 도메인을 사용하거나 다른 서버인 경우 기본적으로 같은 session을 가지고 있다고 판단하지 않는 것 같다.
+서로 다른 도메인을 사용하거나 다른 서버인 경우 기본적으로 같은 session을 가지고 있다고 판단하지 않는 것 같네요.
 
-따라서 같은 도메인 설정을 위한 로드밸런서 역할을 할 nginx를 사용하여 리버스 프록시 설정을한다.
+따라서 같은 도메인 설정을 위한 로드밸런서 역할을 할 nginx를 사용하여 리버스 프록시 설정을 진행했어요.
 
 
 
@@ -371,7 +375,7 @@ $ vim /usr/local/etc/nginx/nginx.conf	# 로드밸런서 설정
  $ nginx	# local nginx 구동
 ```
 
-localhost:80 접속시 `127.0.0.1:8080`, `127.0.0.1:8081`로 각각 로드밸런싱
+localhost:80 접속시 `127.0.0.1:8080`, `127.0.0.1:8081`로 각각 로드밸런싱해주도록 설정했어요.
 
 
 
@@ -388,7 +392,7 @@ localhost:80 접속시 `127.0.0.1:8080`, `127.0.0.1:8081`로 각각 로드밸런
 6. localhost 접속
 7. session 확인
 
-
+<br>
 
 #### 테스트 진행 및 결과
 
@@ -404,21 +408,19 @@ localhost:80 접속시 `127.0.0.1:8080`, `127.0.0.1:8081`로 각각 로드밸런
 7. session 확인
 ![tsc-5.png]({{ "/assets/img/contents/tsc-5.png"}})
 
-session ID를 1번 인스턴스에서 생성했음에도 2번 tomcat으로 접속시 session ID가 서로 동일한 것을 확인할 수 있다.
+session ID를 1번 인스턴스에서 생성했음에도 2번 tomcat으로 접속시 session ID가 서로 동일한 것을 확인할 수 있었어요.
 
 ---
 
 ### 테스트(Dev EPC)
 
-현시점 기준 172.x 대역의 개발 클러스터에 설정하여 세션 공유가 kubernetes 환경에서도 적용되는지 테스트한다.
+개발 클러스터에도 동일하게 설정하여 세션 공유가 kubernetes 환경에서도 적용되는지 테스트해봤어요.
 
 ### kubernetes 배포
 1. #### gitlab 프로젝트 생성 및 commit
 2. #### 이미지 빌드를 위한 `Dockerfile`, k8s 배포를 위한 `yaml` 작성
    
    1. ##### `Dockerfile`
-   
-   
    
    ```Dockerfile
    FROM openjdk:8-jdk-alpine
@@ -499,7 +501,7 @@ session ID를 1번 인스턴스에서 생성했음에도 2번 tomcat으로 접�
    ```
 3. #### Jenkins 등록
 
-파이프라인 아래와 같이 수정
+파이프라인을 아래와 같이 수정했어요.
 ```groovy
 node ('jenkins-slave'){
     def gitBranch = 'master'
@@ -553,11 +555,11 @@ node ('jenkins-slave'){
 }
 ```
 
-> CI/CD 환경 및 Kubernetes 환경은 각각 다르므로 위 파이프라인은 참고만 할 것
+> CI/CD 환경 및 Kubernetes 환경은 각각 다르므로 위 파이프라인은 참고만 하는 것을 권장해요.
 
 4. #### kubernetes 배포 확인
 
-  kubernetes 대시보드 접속 또는 명령어 확인
+  kubernetes 대시보드 접속 또는 명령어를 이용해 확인해요.
 
 ```shell
 # alias k=kubectl
@@ -565,7 +567,7 @@ $ k get po -n development
 $ k get svc -n development
 ```
 
-
+<br>
 
 ### 외부 접속 설정 및 접속 테스트
 
@@ -583,7 +585,7 @@ $ k delete pod tomcatsessionclustertest-deploy-7d75d5548b-rknfh -n development
 5. 재접속
 ![tsc-8.png]({{ "/assets/img/contents/tsc-8.png"}})
 
-
+<br>
 
 ### 테스트 결과
 
@@ -591,20 +593,20 @@ $ k delete pod tomcatsessionclustertest-deploy-7d75d5548b-rknfh -n development
 
 ![tsc-8.png]({{ "/assets/img/contents/tsc-8.png"}})
 
-세션 공유가 되지 않는것으로 확인되었다.
+세션 공유가 되지 않는것으로 확인이 되었어요.
 
-kubernetes 환경에서 host 서버간 multicast 통신은 되는 것으로 판단되나 파드간 multicast 통신을 위해서는 `multus-cni`를 사용하여 NIC로 호스트와 연결해야함
+kubernetes 환경에서 host 서버간 multicast 통신은 되는 것으로 판단되나 파드간 multicast 통신을 위해서는 `multus-cni`를 사용하여 NIC로 호스트와 연결해야한다고 하네요.
 
 > 참고: [https://stackoverflow.com/a/61234801/15263734](https://stackoverflow.com/a/61234801/15263734)
 
-Code dependency도 높고 kubernetes 환경에 별도의 CNI 설치를 요구하므로 사용이 어렵다.
+Code dependency도 높고 kubernetes 환경에 별도의 CNI 설치를 요구하므로 사용이 어렵다는 것을 확인했어요.
 
 ---
 ## Tomcat session persistence replication 테스트
 
-Redis, dynamoDB, hazelcast 등의 in-memory DB를 이용하여 세션을 저장하고 공유하는 방법 테스트
+Redis, dynamoDB, hazelcast 등의 in-memory DB를 이용하여 세션을 저장하고 공유하는 방법을 테스트 해보았어요.
 
-현재 EPC에서 Redis를 사용하기 때문에 redis를 이용하여 세션 저장하는 방법 테스트
+먼저 EPC에서 Redis를 사용하기 때문에 redis를 이용하여 세션 저장하는 방법을 테스트해봤어요.
 
 ### 테스트(LOCAL)
 
@@ -706,7 +708,7 @@ public class TomcatSessionReplicationTestApplication {
    - JVM Arguments: -Djava.net.preferIPv4Stack=true
    - Program Arguments: --server.port=8081
 
-
+<br>
 
 ### 테스트(Local)
 
@@ -720,6 +722,8 @@ public class TomcatSessionReplicationTestApplication {
 6. localhost 접속
 7. session 확인
 8. redis key 확인
+
+<br>
 
 #### 테스트 진행
 1. tomcat-session-replication-test1 구동
@@ -743,7 +747,7 @@ root@c5aeb4bf0493:/data# redis-cli -h 192.168.0.56		# host local ip
 3) "spring:session:sessions:063e4085-0cfc-4c49-b0c9-65a334327e13"
 ```
 
-redis에 session 정보가 저장이 되는 것을 확인 가능
+redis에 session 정보가 저장되는 것을 확인 가능했어요.
 
 
 
@@ -751,15 +755,15 @@ redis에 session 정보가 저장이 되는 것을 확인 가능
 
 ![tsc-12.png]({{ "/assets/img/contents/tsc-12.png"}})
 
-session ID를 1번 인스턴스에서 생성했음에도 2번 tomcat으로 접속시 session ID가 서로 동일한 것을 확인할 수 있다.
+session ID를 1번 인스턴스에서 생성했음에도 2번 tomcat으로 접속시 session ID가 서로 동일한 것을 확인할 수 있었어요.
 
-
+<br>
 
 ### 테스트(Dev EPC)
 
 ### Kubernetes 배포
 
-2번 테스트 항목의 Kubernetes 배포 과정과 똑같음
+전체적으로 2번 테스트 항목의 Kubernetes 배포 과정과 동일했어요.
 
 Dockerfile `"--spring.profiles.active=development"`로 수정
 
@@ -776,9 +780,9 @@ $ k delete pod tomcatsessionclustertest-deploy-79d5796f9c-dwxv2 -n development
 4. 재접속
 ![tsc-15.png]({{ "/assets/img/contents/tsc-15.png"}})
 
-톰캣 세션이 끊기지 않은 것을 확인할 수 있다.
+톰캣 세션이 끊기지 않은 것을 확인할 수 있었어요.
 
-> Redis가 죽으면 세션 접속 시점에 redis에 접속하므로 계속 reconnecting해 서비스가 죽는 문제가 존재하기는 한다.
+> Redis가 죽으면 세션 접속 시점에 redis에 접속하므로 계속 reconnecting해 서비스가 죽는 문제가 존재하기는 하지만...
 
 
 ---
@@ -791,9 +795,9 @@ $ k delete pod tomcatsessionclustertest-deploy-79d5796f9c-dwxv2 -n development
 
 클라이언트가 세션을 맺은 tomcat에 대해서만 통신을 하여 일반적인 상황에서는 세션이 유지되지만
 
-정상적인 상황에서 로드밸런싱이 전혀 되지 않으며 해당 pod, node가 죽었을 때 세션이 끊기는 문제가 있다.
+정상적인 상황에서 로드밸런싱이 전혀 되지 않으며 해당 pod, node가 죽었을 때 세션이 끊기는 문제가 있어요.
 
-
+<br>
 
 ### 2. Tomcat session in-memory replication(Multicast)
 
@@ -803,11 +807,11 @@ Tomcat에서 기본적으로 가이드하고 있는 Session Replication 방법
 
 ![tsc-8.png]({{ "/assets/img/contents/tsc-8.png"}})
 
-로컬 환경에서는 세션이 유지되었으나 클라우드 환경에서는 다른 노드간 세션이 유지되지 않는 것으로 확인되었다.
+로컬 환경에서는 세션이 유지되었으나 클라우드 환경에서는 다른 노드간 세션이 유지되지 않는 것으로 확인되었어요.
 
-Tomcat 서버 인메모리에 세션 정보를 저장하고 SimpleTCPCluster와 같은 클래스를 이용하여 리플리케이션 한다.
+Tomcat 서버 인메모리에 세션 정보를 저장하고 SimpleTCPCluster와 같은 클래스를 이용하여 리플리케이션 하는 방법으로
 
-multicast 기능을 지원해야하지만 multicast는 대부분의 cloud 환경에서는 제공하지 않는다고 한다.
+multicast 기능을 지원해야하지만 multicast는 대부분의 cloud 환경에서는 제공하지 않는다고 하네요.
 
 ```
 1. 유지보수가 쉬울 것(관리 포인트 적을 것)
@@ -815,25 +819,25 @@ multicast 기능을 지원해야하지만 multicast는 대부분의 cloud 환경
 3. 구성하는데 추가적인 리소스가 들어가지 않을 것
 ```
 
-무엇보다도 세션 클러스터링 요구사항의 2, 3 번에 위배되므로 합리적인 방법이 아니다.
+무엇보다도 세션 클러스터링 요구사항의 2, 3 번에 위배되므로 합리적인 방법이 아니라고 생각했어요.
 
-
+<br>
 
 ### 3. Tomcat session persistence replication
 
-redis, dynamoDB와 같은 DB에 세션 정보를 저장하고 각 서버로 레플리케이션 하는 방법
+redis, dynamoDB와 같은 DB에 세션 정보를 저장하고 각 서버로 레플리케이션 하는 방법으로
 
 ![tsc-13.png]({{ "/assets/img/contents/tsc-13.png"}})
 
 ![tsc-13.png]({{ "/assets/img/contents/tsc-15.png"}})
 
-다른 노드간 세션이 유지되는 것을 확인할 수 있었다.
+다른 노드간 세션이 유지되는 것을 확인할 수 있었어요.
 
-session이 in-memory가 아닌 별도의 저장소에 저장되어 사용되는 장점이 있으며 코드 수정이 거의 없다는 장점이 있다.
+session이 in-memory가 아닌 별도의 저장소에 저장되어 사용되는 장점이 있으며 코드 수정이 거의 없다는 장점이 있었고
 
-> redis 라이브러리 때문에 의존성이 아예 없을 수는 없다.
+> redis 라이브러리 때문에 의존성이 아예 없을 수는 없어서 아쉽네요.
 
-따라서 가장 합리적인 Session clustering / Session replication이라고 할 수 있다.
+따라서 가장 합리적인 Session clustering / Session replication이라고 생각했어요.
 
 ---
 

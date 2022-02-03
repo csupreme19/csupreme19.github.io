@@ -15,7 +15,7 @@ tags: [Elasticsearch, Query, DSL, Elastic, ELK]
 
 [Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html)
 
-Elasticsearch metric을 조회하여 host, k8s 등을 모니터링 할 수 있도록 쿼리를 작성해보았다.
+Elasticsearch metric을 조회하여 host, k8s 등을 모니터링 할 수 있도록 쿼리를 작성해봤어요.
 
 ---
 
@@ -23,9 +23,9 @@ Elasticsearch metric을 조회하여 host, k8s 등을 모니터링 할 수 있�
 
 ### 1. VM Metric Monitoring
 
-VM 서버 자체가 실패한 경우와 마지막 메트릭 수집 시점 알림
+VM 서버 자체가 실패한 경우와 마지막 메트릭 수집 시점을 조회하는 쿼리예요.
 
-VM 리소스 정보 임계점이 넘으면 알림(Disk, CPU, Memory)
+VM 리소스 정보 임계점이 넘으면 조회(Disk, CPU, Memory)
 
 #### 1. VM health check
 
@@ -271,7 +271,7 @@ POST metricbeat-*/_search?filter_path=**.key,**.cpu_max,**.memory_max
 
 ##### cpu_max
 
-$$system.cpu.user.pct+system.cpu.system.pct/system.cpu.cores$$
+$$(system.cpu.user.pct+system.cpu.system.pct)/system.cpu.cores$$
 
 ##### memory_max
 
@@ -425,7 +425,7 @@ POST metricbeat-*/_search?filter_path=**.key,**.disk_max.*.used
 
 ### 2. Kubernetes Cluster Monitoring
 
-Kubernetes 클러스터의 health와 Deployment, pod 장애 상태 알림
+Kubernetes 클러스터의 health와 Deployment, pod 장애 상태를 조회하는 쿼리예요.
 
 #### 1. Kubernetes deployment
 
@@ -492,7 +492,7 @@ POST metricbeat-*/_search?filter_path=aggregations.group.buckets.key,aggregation
 
 k8s deployment 워크로드 상태 조회
 
-최근 30초간 desired pod > available pod인 deployment만 조회한다.
+최근 30초간 desired pod > available pod인 deployment만 조회하도록 작성하였어요.
 
 #### 응답 예시
 
@@ -636,18 +636,18 @@ POST metricbeat-*/_search?filter_path=aggregations.group.buckets.key,aggregation
 }
 ```
 
-최근 1분간 재시작 장애가 발생하는 pod 조회
+최근 1분간 재시작 장애가 발생하는 pod 조회하는 쿼리로
 
-아래와 같은 상태는 정상 상태라고 판단하였다.
+아래와 같은 상태는 정상 상태라고 판단하였어요.
 
 - Completed 
-  - initContainer, Job, 일회성 pod들은 해당 상태로 라이프사이클이 종료된다.
+  - initContainer, Job, 일회성 pod들은 해당 상태로 라이프사이클이 종료되기 때문에 정상이에요.
 - ContainerCreating
-  - available이 아니지만 컨테이너 생성중인 정상 상태
+  - available이 아니지만 컨테이너 생성중인 정상 상태예요.
 - PodInitializing
   - 위와 마찬가지
 
->[파드 장애 판별](/2021/10/14/kubernetes-pod-fail-test)
+>[파드 장애 판별](/2021/10/14/kubernetes-pod-fail-test) 참고하세요.
 
 #### 응답 예시
 

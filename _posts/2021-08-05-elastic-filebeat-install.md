@@ -15,14 +15,14 @@ tags: [Elasticsearch, Elastic, ELK, Filebeat, Beat]
 
 [Filebeat Overview](https://www.elastic.co/guide/en/beats/filebeat/7.16/filebeat-overview.html)
 
-로그 정보를 수집하는 Filebeat를 각 VM(Ubuntu)에 설치하여 로그 파일을 Elasticsearch로 전송한다.
+로그 정보를 수집하는 Filebeat를 각 VM(Ubuntu)에 설치하여 로그 파일을 Elasticsearch로 전송하는 방법을 정리해봤어요.
 
 ---
 ## Filebeat란?
 
 ![efi-1.png]({{ "/assets/img/contents/efi-1.png"}})
 
-Elastic Stack에 포함되는 오픈소스로 파일 데이터와 로그 데이터를 경량화된 방식으로 수집하고 Logstash, Elasticsearch, Kibana 등으로 전달하는 수집기
+Elastic Stack에 포함되는 오픈소스로 파일 데이터와 로그 데이터를 경량화된 방식으로 수집하고 Logstash, Elasticsearch, Kibana 등으로 전달하는 수집기예요.
 
 ---
 ## Filebeat 설치
@@ -47,15 +47,15 @@ $ vim filebeat.yml
 $ systemctl enable filebeat
 ```
 
-### yaml에 elasticsearch, kibana 호스트 정보 설정
+### elasticsearch, kibana 호스트 정보 설정
 
 ```yaml
 # =================================== Kibana ===================================
 setup.kibana:
-  host: "10.213.196.6:5601"
+  host: "{키바나 주소}:5601"
 # ---------------------------- Elasticsearch Output ----------------------------
 output.elasticsearch:
-  hosts: ["10.213.196.68:9200","10.213.196.23:9200","10.213.196.44:9200"]
+  hosts: ["{엘라스틱서치 노드1}:9200","{엘라스틱서치 노드2}:9200","{엘라스틱서치 노드3}:9200"]
   protocol: "http"
   username: "elastic"
   password: "elastic"
@@ -65,23 +65,21 @@ filebeat.inputs:
   enabled: false
 ```
 
-### elasticsearch https 보안 설정 되어 있을 경우
+### elasticsearch https 설정 되어 있을 경우
 
 ```yaml
 # ---------------------------- Elasticsearch Output ----------------------------
 output.elasticsearch:
-  hosts: ["10.213.196.68:9200","10.213.196.23:9200","10.213.196.44:9200"]
+  hosts: ["{엘라스틱서치 노드1}:9200","{엘라스틱서치 노드2}:9200","{엘라스틱서치 노드3}:9200"]
   protocol: "https"
   username: "elastic"
   password: "elastic"
   
-  # ssl verification을 하지 않거나 인증서를 수동으로 등록하여야한다. 아래 택 1
-  
-  # ssl 검증하지 않기
+  # ssl 검증하지 않는 경우
   ssl.verification_mode: "none"
   
   # ssl 인증서
-    ssl:
+  ssl:
     certificate_authorities: ["/etc/elasticsearch/certs/ca.crt"]
     certificate: "/etc/elasticsearch/certs/data1.crt"
     key: "/etc/elasticsearch/certs/data1.key"
@@ -108,7 +106,7 @@ $ journalctl -u filebeat
 
 ## Filebeat 모듈 설정
 
-[Elastic Filebeat 모듈 설정]({% post_url 2021-08-06-elastic-filebeat-modules %}) 참고
+[Elastic Filebeat 모듈 설정]({% post_url 2021-08-06-elastic-filebeat-modules %}) 참고하세요.
 
 ---
 

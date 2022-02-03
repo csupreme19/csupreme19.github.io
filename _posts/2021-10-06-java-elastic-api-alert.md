@@ -13,13 +13,21 @@ tags: [Java, Spring, Spring boot, Scheduler, Elasticsearch, Kibana, Slack, Webho
 
 ![spring-logo.svg]({{ "/assets/img/titles/spring-logo.svg"}})
 
+Spring boot 기반 엘라스틱서치 알람 모듈 개발 경험을 정리해봤어요.
+
 ---
 
 ## 배경
 
-Elastic Kibana의 Alert 기능을 사용하려면 유료 구독형 라이선스(Gold License 이상)가 필요
+Elastic Kibana의 Alert 기능을 사용하려면 유료 구독형 라이선스(Gold License 이상)가 필요한데
 
-현재 Basic License를 사용중이기 때문에 메트릭 정보를 수집하고 판단하여 slack, mail, 문자 등으로 알람을 줄 수 있는 모듈을 개발
+현재 Basic License를 사용중이기 때문에 알림 기능을 사용할 수 없었어요.
+
+메트릭 정보를 수집하고 판단하여 slack, mail, 문자 등으로 알람을 줄 수 있는 모듈을 개발하기로 제안하였어요.
+
+---
+
+## 모니터링 요소
 
 ### 1. Monitoring(입력)
 
@@ -38,7 +46,7 @@ Elastic Kibana의 Alert 기능을 사용하려면 유료 구독형 라이선스(
 ---
 ## Monitoring(입력)
 
-모니터링 요소는 크게 3가지로 나뉜다.
+모니터링 요소는 크게 3가지로 나뉜다고 생각했어요.
 
 ##### 1. VM Metrics
 ![jeaa-1.png]({{ "/assets/img/contents/jeaa-1.png"}})
@@ -67,12 +75,12 @@ Application Transaction, Erros, Latency 정보 모니터링
 
 ##### ![jeaa-5.jpeg]({{ "/assets/img/contents/jeaa-5.jpeg"}})
 
-사내 문자 서버 및 에이전트 사용중
+사내 문자 서버 및 에이전트 사용중이에요.
 
 ##### 2. Slack
 ![jeaa-6.png]({{ "/assets/img/contents/jeaa-6.png"}})
 
-Slack Webhook API 요청
+Slack Webhook API 요청을 통해 구현 예정이에요.
 
 ---
 ## 개발 스택
@@ -111,12 +119,12 @@ Slack Webhook API 요청
 
 [Java REST Client](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/index.html)
 
-Elasticsearch에서는 공식적으로 REST 호출을 할 수 있는 자바 클라이언트 라이브러리를 제공한다.
+Elasticsearch에서는 공식적으로 REST 호출을 할 수 있는 자바 클라이언트 라이브러리를 제공해요.
 
 - Java Low Level REST Client
 - Java High Level REST Client
 
-두 명세를 제공하며 엘라스틱서치 query dsl을 그대로 사용하기 위하여 Low level REST Client를 사용할 것이다.
+두 명세를 제공하며 엘라스틱서치 query dsl을 그대로 사용하기 위하여 Low level REST Client를 사용할 예정이에요.
 
 #### `build.gradle` dependency 추가
 
@@ -130,7 +138,7 @@ dependencies {
 
 > [Maven Central](https://search.maven.org/search?q=g:org.elasticsearch.client)
 
-
+<br>
 
 #### `ElasticsearchRestClientUtil` 작성
 
@@ -209,7 +217,7 @@ public class ElasticsearchRestClientUtil {
 3. 요청시 파라미터와 json포맷 body를 받도록 설계
 4. 주입된 `EnvironmentConfig` Bean 사용을 위하여 `@PostConstruct`에서 초기화
 
-
+<br>
 
 #### Query 상수 생성
 
@@ -300,7 +308,7 @@ import org.elasticsearch.client.Response;
 ```
 
 ```json
-# 쿼리 응답 예시
+// 쿼리 응답 예시
 {
   "hits": {
     "hits": [
@@ -316,9 +324,9 @@ import org.elasticsearch.client.Response;
 }
 ```
 
-Elasticsearch API 쿼리 조회 후 받은 응답값 JSON 파싱
+Elasticsearch API 쿼리 조회 후 받은 응답값 JSON 파싱했어요.
 
-
+<br>
 
 ## Spring Scheduler 설정
 
@@ -379,16 +387,16 @@ public class RestScheduler {
 }
 ```
 
-> 서비스 구현체의 상세한 비즈니스 로직은 생략
+> 서비스 구현체의 상세한 비즈니스 로직은 생략하였어요.
 
 1. `@EnableScheduling` 어노테이션으로 Spring Scheduler 활성화
 2. `@Scheduled(fixedRate=CHECKVM_RESOURCES_SCHEDULE_RATE_SEC * 1000)` 스케줄러 등록 및 주기 설정
 
-
+<br>
 
 ### Slack Webhook 설정
 
-[Incoming Webhooks](https://api.slack.com/messaging/webhooks) 참고
+[Incoming Webhooks](https://api.slack.com/messaging/webhooks) 참고하세요.
 
 #### 호출 예시
 
@@ -423,15 +431,15 @@ return StringUtils.equals(responseInfo, "ok") ? 1 : 0;
 
 ![jeaa-6.png]({{ "/assets/img/contents/jeaa-6.png"}})
 
-응답 확인
+응답을 확인할 수 있어요.
 
 ---
 
 ## Elasticsearch Query DSL
 
-쿼리의 경우 별도 문서에 따로 정리함
+쿼리의 경우 별도 문서에 따로 정리했어요.
 
-> [Elasticsearch 모니터링 쿼리 예제]({% post_url 2021-10-06-elasticsearch-monitoring-query-sample %}) 참고
+> [Elasticsearch 모니터링 쿼리 예제]({% post_url 2021-10-06-elasticsearch-monitoring-query-sample %}) 참고하세요.
 
 ---
 

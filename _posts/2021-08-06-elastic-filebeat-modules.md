@@ -15,7 +15,7 @@ tags: [Elasticsearch, Elastic, ELK, Filebeat, Beat]
 
 [Filebeat Modules](https://www.elastic.co/guide/en/beats/filebeat/7.16/filebeat-modules.html)
 
-로그 정보를 수집하는 Filebeat의 모듈별 Output 설정방법을 정리하였다.
+로그 정보를 수집하는 Filebeat의 모듈별 Output 설정방법을 정리해봤어요.
 
 ---
 ## Module 설정
@@ -23,12 +23,12 @@ tags: [Elasticsearch, Elastic, ELK, Filebeat, Beat]
 
 ### Filebeat 설치
 
-[Elastic Filebeat 설치 및 설정]({% post_url 2021-08-05-elastic-filebeat-install %}) 참고
+[Elastic Filebeat 설치 및 설정]({% post_url 2021-08-05-elastic-filebeat-install %}) 참고하세요.
 
 ---
 ### Module 확인
 
-데이터를 수집하기 위한 filebeat의 module list 확인
+데이터를 수집하기 위한 filebeat의 module list 확인해 봤어요.
 
 ```sh
 $ filebeat modules list
@@ -42,7 +42,7 @@ $ filebeat modules enable system
 ---
 ### Kafka module 설정
 
-Kafka가 설치되어 있는 VM에 진행
+Kafka가 설치되어 있는 VM에 진행했어요.
 
 #### 모듈 활성화
 
@@ -66,7 +66,7 @@ $ filebeat modules enable postgresql
       - "/data/kafka-logs/kafka-*.log*"
 ```
 
-> ref: [https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-kafka.html](https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-kafka.html)
+> [kafka 모듈 설정값](https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-kafka.html)
 
 #### kafka dashboards
 ![efm-1.png]({{ "/assets/img/contents/efm-1.png"}})
@@ -74,7 +74,7 @@ $ filebeat modules enable postgresql
 ---
 ### Nginx module 설정
 
-Nginx가 설치되어 있는 VM에 진행
+Nginx가 설치되어 있는 VM에 진행했어요.
 
 #### 모듈 활성화
 
@@ -100,7 +100,7 @@ $ filebeat modules enable nginx
       - "/var/log/nginx/error.log*"
 ```
 
-> ref: [https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-nginx.html](https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-nginx.html)
+> [nginx 모듈 설정값](https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-nginx.html)
 
 #### nginx dashboards
 
@@ -110,9 +110,9 @@ $ filebeat modules enable nginx
 
 #### 추가 사항
 
-access.log에 관리자 페이지 관련하여 access_log가 많이 쌓이는 경우
+access.log에 관리자 페이지 관련하여 access_log가 많이 쌓이는 경우가 있어서
 
-아래와 같이 access_log off; 추가
+아래와 같이 access_log off; 추가해주었어요.
 
 ```shell
 $ cd /etc/nginx/conf.d
@@ -125,7 +125,7 @@ $ vim management.conf
 ---
 ### PostgreSQL module 설정
 
-PostgreSQL이 설치되어 있는 VM에 진행
+PostgreSQL이 설치되어 있는 VM에 진행했어요.
 
 #### 모듈 활성화
 
@@ -145,7 +145,7 @@ $ filebeat modules enable postgresql
       - "/data/postgres/pgdata/log/*.log*"
 ```
 
-> ref: [https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-postgresql.html](https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-postgresql.html)
+> [postgresql 모듈 설정값](https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-postgresql.html)
 
 #### postgresql dashboards
 
@@ -154,7 +154,7 @@ $ filebeat modules enable postgresql
 ---
 ### MySQL module 설정
 
-MySQL이 설치되어 있는 VM에 진행
+MySQL이 설치되어 있는 VM에 진행했어요.
 
 #### 모듈 활성화
 
@@ -179,7 +179,7 @@ $ filebeat modules enable mysql
       - "/data/mysql/logs/mysql-slow.log*"
 ```
 
-> ref: [https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-mysql.html](https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-mysql.html)
+> [mysql 모듈 설정값](https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-mysql.html)
 
 #### mysql dashboards
 
@@ -188,7 +188,7 @@ $ filebeat modules enable mysql
 ---
 ### MongoDB module 설정
 
-MongoDB가 설치되어 있는 VM에 진행
+MongoDB가 설치되어 있는 VM에 진행했어요.
 
 #### 모듈 활성화
 
@@ -208,7 +208,7 @@ $ filebeat modules enable mongodb
       - "/data/mongo/logs/*.log*"
 ```
 
-> ref: [https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-mongodb.html](https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-mongodb.html)
+> [mongodb 모듈 설정값](https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-mongodb.html)
 
 #### mongodb dashboards
 
@@ -217,7 +217,7 @@ $ filebeat modules enable mongodb
 ---
 ### Redis module 설정
 
-Redis가 설치되어 있는 VM에 진행
+Redis가 설치되어 있는 VM에 진행했어요.
 
 #### 모듈 활성화
 
@@ -237,7 +237,7 @@ $ filebeat modules enable redis
       - "/data/redis/redis-server.log*"
 ```
 
-> ref: [https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-redis.html](https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-redis.html)
+> [redis 모듈 설정값](https://www.elastic.co/guide/en/beats/filebeat/7.x/filebeat-module-redis.html)
 
 #### redis dashboards
 
@@ -254,7 +254,7 @@ $ cd /usr/share/filebeat
 $ filebeat setup -e -c /etc/filebeat/filebeat.yml --dashboards
 ```
 
-setup 완료 후 마지막 문장에 dashboard가 정상 로딩된 것을 확인
+setup 완료 후 마지막 문장에 dashboard가 정상 로딩된 것을 확인할 수 있어요.
 ![efm-8.png]({{ "/assets/img/contents/efm-8.png"}})
 
 ---
@@ -263,6 +263,8 @@ setup 완료 후 마지막 문장에 dashboard가 정상 로딩된 것을 확인
 ```sh
 $ systemctl start filebeat.service
 ```
+
+<br>
 
 ## Filebeat log 확인
 

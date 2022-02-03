@@ -15,12 +15,10 @@ tags: [Kubernetes, K8S, DNS, Proxy, Debug]
 
 [Debugging DNS Resolution](https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/)
 
-kubenretes DNS 서비스 접근시 디버깅 과정 정리
+kubenretes DNS 서비스 접속 디버깅 과정을 정리해봤어요.
 
 ---
 ## Kubernetes DNS Debugging
-
-kubenretes cluster 내부에서 DNS 이용하여 서비스 접근시 디버깅 과정 정리
 
 ### 디버깅 순서
 
@@ -90,7 +88,7 @@ Name:      kong-kong-proxy.kong.svc
 Address 1: 10.104.186.93 kong-kong-proxy.kong.svc.cluster.local
 ```
 
-서비스의 경우 `my-svc.my-namespace.svc.cluster-domian.example`의 형태로 DNS 이름이 정해진다.
+서비스의 경우 `my-svc.my-namespace.svc.cluster-domian.example`의 형태로 DNS 이름이 정해져요.
 
 > 예) 
 >
@@ -120,10 +118,8 @@ $ curl -v kong-kong.proxy.kong.svc
 * Connection #0 to host kong-kong-proxy.kong.svc.cluster.local left intact
 {"message":"no Route matched with those values"}/
 ```
-> alpine 이미지의 경우 curl 패키지 없어서 설치해야함
+> alpine 이미지의 경우 curl 패키지 없어서 설치해야해요.
 >
-
-서비스 접속 확인
 
 
 ---

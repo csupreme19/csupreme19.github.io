@@ -15,21 +15,20 @@ tags: [Elasticsearch, Elastic, ELK, Metricbeat, Beat]
 
 [Metricbeat Modules](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-modules.html)
 
-메트릭 정보를 수집하는 Metricbeat의 모듈별 Output 설정방법을 정리하였다.
+메트릭 정보를 수집하는 Metricbeat의 모듈별 Output 설정방법을 정리해봤어요.
 
 ---
 
 ## Module 설정
 
----
 ### Metricbeat 설치
 
-[Metricbeat 설치 및 설정]({% post_url 2021-07-27-elastic-metricbeat-install %}) 참고
+[Metricbeat 설치 및 설정]({% post_url 2021-07-27-elastic-metricbeat-install %}) 참고하세요.
 
 
 ---
 ### Module 확인
-metric을 수집하기 위한 metricbeat의 module들 list 확인
+metric을 수집하기 위한 metricbeat의 module들의 목록을 확인해봤어요.
 ```sh
 $ metricbeat modules list
 ```
@@ -39,14 +38,14 @@ $ metricbeat modules list
 # 필요 시 system 모듈 설정
 $ vi /etc/metricbeat/modules.d/system.yml
 
-# 추가 module 없이 활성화를 하면 system metric만 수집함.
+# 추가 module 없이 활성화를 하면 system metric만 수집
 $ metricbeat modules enable
 ```
 
 ---
 ### Postgresql module 설정
 
-Postgres이 설치되어 있는 VM에 진행
+Postgres이 설치되어 있는 VM에 진행했어요.
 
 #### 모듈 활성화
 
@@ -67,12 +66,12 @@ $ metricbeat modules enable postgresql
     - activity
     - statement
   period: 10s
-  hosts: ["postgres://10.213.196.207:5432?sslmode=disable"]
+  hosts: ["postgres://{postgres 서버}:5432?sslmode=disable"]
   username: postgres
   password: {암호}
 ```
 
-> ref: [https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-module-postgresql.html](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-module-postgresql.html)
+> [postgresql 모듈 설정값](https://www.elastic.co/guide/en/beats/metricbeat/current/metricbeat-module-postgresql.html)
 
 #### postgresql dashboards
 ![emm-1.png]({{ "/assets/img/contents/emm-1.png"}})
@@ -80,7 +79,7 @@ $ metricbeat modules enable postgresql
 ---
 ### Redis module 설정
 
-Redis가 설치되어 있는 VM에 진행
+Redis가 설치되어 있는 VM에 진행했어요.
 
 #### 모듈 활성화
 
@@ -102,7 +101,7 @@ $ metricbeat modules enable redis
   hosts: ["127.0.0.1:6379"]
 ```
 
-> ref: [https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-redis.html](https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-redis.html)
+> [redis 모듈 설정값](https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-redis.html)
 
 #### redis dashboards
 
@@ -111,7 +110,7 @@ $ metricbeat modules enable redis
 ---
 ### Mongodb module 설정
 
-Mongodb가 설치되어 있는 VM에 진행
+Mongodb가 설치되어 있는 VM에 진행했어요.
 
 #### 모듈 활성화
 
@@ -135,7 +134,7 @@ $ metricbeat modules enable mongodb
   hosts: ["localhost:27017"]
 ```
 
-> ref: [https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-mongodb.html](https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-mongodb.html)
+> [mongodb 모듈 설정값](https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-mongodb.html)
 
 #### mongodb dashboards
 
@@ -144,7 +143,7 @@ $ metricbeat modules enable mongodb
 ---
 ### MySQL module 설정
 
-MySQL이 설치되어 있는 VM에 진행
+MySQL이 설치되어 있는 VM에 진행했어요.
 
 #### 모듈 활성화
 
@@ -167,19 +166,18 @@ $ metricbeat modules enable mysql
   hosts: ["metricbeat:password1234@tcp(127.0.0.1:13306)/"]
 ```
 
-> ref: [https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-mysql.html](https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-mysql.html)
+> [mysql 모듈 설정값](https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-mysql.html)
 
 #### 접속 에러시
 
-mysql의 root 계정이 localhost에서만 접속하도록 되어 있는지 확인
+mysql의 root 계정이 localhost에서만 접속하도록 되어 있는지 확인해야 해요.
 
-ex) docker의 경우 컨테이너 접속시 host ip로 접속
 ```sh
 # host ip 확인
 $ ifconfig
 ```
 
-mysql 접속하여 계정 생성 및 권한부여
+mysql 접속하여 계정 생성 및 권한부여를 진행했어요.
 ```sh
 $ docer exec -it mysql bash
 mysql> select host, user from mysql.user;
@@ -201,7 +199,7 @@ mysql > flush privileges;
 
 ```
 
-> 자세한 내용은 [MySQL 설치 및 사용자 생성]({% post_url 2021-05-31-mysql-install %}) 참고
+> 자세한 내용은 [MySQL 설치 및 사용자 생성]({% post_url 2021-05-31-mysql-install %}) 참고하세요.
 
 #### mysql dashboards
 
@@ -210,7 +208,7 @@ mysql > flush privileges;
 ---
 ### Nginx module 설정
 
-Nginx가 설치되어 있는 VM에 진행
+Nginx가 설치되어 있는 VM에 진행했어요.
 
 #### 모듈 활성화
 
@@ -235,11 +233,11 @@ $ metricbeat modules enable nginx
   server_status_path: "server-status"
 ```
 
-> ref: [https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-nginx.html](https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-nginx.html)
+> [nginx 모듈 설정값](https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-nginx.html)
 
 #### nginx의 `ngx_http_stub_status_module` 모듈 활성화
 
-```
+```sh
 $ cd /etc/nginx/conf.d
 $ vim status.conf
     server {
@@ -257,7 +255,7 @@ $ chown nginx:nginx status.conf
 $ nginx -s reload
 ```
 
-> metricbeat가 10초마다 localhost:9000/server-status를 호출하여 stub status 정보 가져감
+> metricbeat가 10초마다 localhost:9000/server-status를 호출하여 stub status 정보 가져가도록 설정되어 있어요.
 
 #### nginx dashboards
 
@@ -270,7 +268,7 @@ $ nginx -s reload
 ---
 ### Kafka module 설정
 
-Kafka가 설치되어 있는 VM에 진행
+Kafka가 설치되어 있는 VM에 진행했어요.
 
 #### 모듈 활성화
 
@@ -294,15 +292,17 @@ $ metricbeat modules enable kafka
   hosts: ["localhost:9092"]
 ```
 
-> ref: [https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-kafka.html](https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-kafka.html)
+> [kafka 모듈 설정값](https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-kafka.html)
 
 #### Kafka with jolokia
 
-broker, consumer, producer metricset을 가져오려면 jolokia를 이용하여 jmx 모니터링하여야한다.
+kafka 모듈의 경우 broker, consumer, producer metricset 등의 추가 메트릭을 가져오려면 jolokia를 이용하여 
 
-kafka에 jolokia가 javaagent로 붙어서 jvm 위에 실행
+jmx 모니터링하여야 한다고 하네요.
 
-[https://dev.to/martinhynar/monitoring-kafka-brokers-using-jolokia-metricbeat-and-elasticsearch-5678](https://dev.to/martinhynar/monitoring-kafka-brokers-using-jolokia-metricbeat-and-elasticsearch-5678) 참고
+kafka에 jolokia가 javaagent로 붙어서 jvm 위에 실행되며 아래 링크 참고 부탁드릴게요.
+
+[https://dev.to/martinhynar/monitoring-kafka-brokers-using-jolokia-metricbeat-and-elasticsearch-5678](https://dev.to/martinhynar/monitoring-kafka-brokers-using-jolokia-metricbeat-and-elasticsearch-5678)
 
 #### kafka dashboards
 
@@ -311,7 +311,7 @@ kafka에 jolokia가 javaagent로 붙어서 jvm 위에 실행
 ---
 ### Zookeeper module 설정
 
-Zookeeper가 설치되어 있는 VM에 진행
+Zookeeper가 설치되어 있는 VM에 진행했어요.
 
 #### 모듈 활성화
 
@@ -333,7 +333,7 @@ $ metricbeat modules enable zookeeper
   hosts: ["localhost:2181"]
 ```
 
-> ref: [https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-zookeeper.html](https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-zookeeper.html)
+> [zookeeper 모듈 설정값](https://www.elastic.co/guide/en/beats/metricbeat/7.x/metricbeat-module-zookeeper.html)
 
 #### zookeeper dashboards
 
@@ -349,7 +349,7 @@ $ cd /usr/share/metricbeat
 $ metricbeat setup -e -c /etc/metricbeat/metricbeat.yml --dashboards
 ```
 
-setup 완료 후 마지막 문장에 dashboard가 정상 로딩된 것을 확인
+setup 완료 후 마지막 문장에 dashboard가 정상 로딩된 것을 확인할 수 있어요.
 ![emm-10.png]({{ "/assets/img/contents/emm-10.png"}})
 
 ---
@@ -358,6 +358,8 @@ setup 완료 후 마지막 문장에 dashboard가 정상 로딩된 것을 확인
 ```sh
 $ systemctl start metricbeat.service
 ```
+
+<br>
 
 ## Metricbeat log 확인
 

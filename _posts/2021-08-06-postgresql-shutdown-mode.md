@@ -13,51 +13,60 @@ tags: [Postgres, PostgreSQL, RDBMS, DB, Shutdown]
 
 ![postgresql-logo.svg]({{ "/assets/img/titles/postgresql-logo.svg"}})
 
-Postgres 셧다운 모드에 대하여 알아보고 모드를 바꿔본다.
+Postgres 셧다운 모드에 대하여 알아보고 셧다운 모드를 바꿔봤어요.
 
 ---
 ## PostgreSQL Shutdown Mode
 
 [Shutting Down the server](https://www.postgresql.org/docs/11/server-shutdown.html)
 
-Postgres를 중지하는 방법은 3가지가 있다.
+Postgres를 중지하는 방법은 3가지가 있어요.
 
 1. #### Smart Shutdown(SIGTERM)
 2. #### Fast Shutdown(SIGINT)
 3. #### Immediate Shutdown(SIGQUIT)
 
+---
+
 ### Smart Shutdown(SIGTERM)
 
 `pg_ctl shutdown -m s[mart]`
 
-내부적으로 SIGTERM 명령과 동일
+내부적으로 SIGTERM 명령과 동일해요.
 
-pg_ctl shutdown 
+`pg_ctl shutdown`
 
-새로운 connection 접속을 막고 현재 connection의 쿼리를 모두 수행후 세션이 종료되면 Server shutdown을 진행한다.
+새로운 connection 접속을 막고 현재 connection의 쿼리를 모두 수행 후 세션이 종료되면 Server shutdown을 진행하는 모드예요.
 
-가장 안전한 방법이지만 long query가 존재할 경우 서버의 중지가 느릴 수 있음
+가장 안전한 방법이지만 long query가 존재할 경우 서버의 중지가 느릴 수 있어요.
+
+<br>
 
 ### Fast Shutdown(SIGINT)
 
 `pg_ctl shutdown -m f[ast]`
 
-내부적으로 SIGINT 명령과 동일
+내부적으로 SIGINT 명령과 동일해요.
 
-새로운 connection 접속을 막고 현재 connection의 쿼리를 중지(abort)하고 Server shutdown을 진행한다.
+새로운 connection 접속을 막고 현재 connection의 쿼리를 중지(abort)하고 Server shutdown을 진행하는 모드예요.
 
-수행중인 query는 rollback 되며 서버를 즉시 중지할 수 있는 장점이 있다.
+수행중인 query는 rollback 되며 서버를 즉시 중지할 수 있는 장점이 있어요.
 
+<br>
 
 ### Immediate Shutdown(SIGQUIT)
 
 `pg_ctl shutdown -m i[mmediate]`
 
-내부적으로 SIGQUIT(SIGKILL) 명령과 동일
+내부적으로 SIGQUIT(SIGKILL) 명령과 동일해요.
 
-쿼리 수행여부와 관계없이 서버를 즉시 kill한다.
+쿼리 수행여부와 관계없이 서버를 즉시 kill해요.
 
-일반적인 Server shutdown의 프로세스를 하지 않으므로 서버 재시작시 복구 모드에 돌입한다.
+일반적인 Server shutdown의 프로세스를 하지 않으므로 서버 재시작시 복구 모드에 돌입해요.
+
+<br>
+
+---
 
 ### Shutdown 기본 모드 확인
 
@@ -71,7 +80,9 @@ ExecReload=/usr/bin/pg_ctlcluster --skip-systemctl-redirect %i reload
 ...
 ```
 
-위 예시에서는 설정값이 fast shutdown 모드로 되어 있음을 확인할 수 있다.
+위 예시에서는 설정값이 fast shutdown 모드로 되어 있음을 확인할 수 있어요.
+
+<br>
 
 ### Shutdown 모드 수정
 
@@ -82,7 +93,7 @@ ExecStop=
 ExecStop=/usr/bin/pg_ctlcluster --skip-systemctl-redirect -m smart %i stop
 ```
 
-override.conf 생성 및 적용 확인
+override.conf 생성 및 적용 확인할 수 있어요.
 
 ```shell
 $ systemctl cat postgresql@11-main.service
@@ -92,7 +103,7 @@ ExecStop=
 ExecStop=/usr/bin/pg_ctlcluster --skip-systemctl-redirect -m smart %i stop
 ```
 
-이후 다시 기본 설정 사용하고 싶으면 `postgresql@11-main.service.d/override.conf` 제거
+이후 다시 기본 설정 사용하고 싶으면 `postgresql@11-main.service.d/override.conf` 제거하면 돼요.
 
 ---
 

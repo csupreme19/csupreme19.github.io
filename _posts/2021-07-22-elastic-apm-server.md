@@ -13,7 +13,7 @@ tags: [Elasticsearch, Elastic, ELK, APM, ArgoCD, GitOps, Helm]
 
 ![elastic-logo.png]({{ "/assets/img/titles/elastic-logo.png"}})
 
-Elastic APM Server 구축기
+Elastic APM Server 구축해본 경험을 정리해봤어요.
 
 ---
 
@@ -23,17 +23,19 @@ Elastic APM Server 구축기
 
 [APM Server Overview](https://www.elastic.co/guide/en/apm/server/7.12/overview.html)
 
-APM Server는 APM Agent로부터 메트릭, 로그 정보등을 수집하고 엘라스틱서치 Document로 변환하여 인덱스에 저장하는 역할을 한다.
+APM Server는 APM Agent로부터 메트릭, 로그 정보등을 수집하고 엘라스틱서치 Document로 변환하여 인덱스에 저장하는 역할을 해요.
+
+<br>
 
 ### APM?
 
 APM(Application Performance Monitoring)
 
-어플리케이션 성능 지표 등을 모니터링하는 것을 말한다.
+어플리케이션 성능 지표 등을 모니터링하는 것을 말하며
 
-어플리케이션 레벨의 메트릭 정보, 로그 정보, 트랜잭션 추적, API 레이턴시 등 인프라/컨테이너 레벨에서는 알기 힘든 정보들을 가시화해준다.
+어플리케이션 레벨의 메트릭 정보, 로그 정보, 트랜잭션 추적, API 레이턴시 등 인프라/컨테이너 레벨에서는 알기 힘든 정보들을 가시화해줄 수 있어요.
 
-Java APM을 예로들면 아래와 같은 정보들을 모니터링 가능하다.
+Java APM을 예로들면 아래와 같은 정보들을 모니터링 가능해요.
 
 - HTTP Requests/Responses
 - Latency
@@ -76,7 +78,7 @@ $ sudo -u apm-server apm-server setup
 Index setup finished.
 Loaded Ingest pipelines
 ```
-> debian 패키지로 설치한 경우 공식문서에서는 non-root user로 실행권장(`apm-server`라는 유저가 자동 생성됨)
+> debian 패키지로 설치한 경우 공식문서에서는 non-root user로 실행을 권장해요(`apm-server`라는 유저가 자동 생성됨)
 
 
 #### 4. apm-server 실행
@@ -94,15 +96,15 @@ $ curl -ivs localhost:8200
 
 [charts/apm-server](https://hub.kubeapps.com/charts/elastic/apm-server/7.12.1)
 
-헬름 차트를 사용하여 K8S에 배포
+헬름 차트를 사용하여 쿠버네티스에 배포할 예정이에요.
 
 #### 1. gitlab 접속
 
 #### 2. argocd git 저장소
 
-폴더 elastic/apm-server 생성
+폴더 elastic/apm-server 생성하고
 
-> ArgoCD와 같은 GitOps 미적용시 일반 디렉토리로 대체
+> ArgoCD와 같은 GitOps 미적용시 일반 디렉토리로 대체 가능해요.
 
 #### 3. 헬름 차트 다운로드
 
@@ -147,7 +149,7 @@ data:
 {{- end -}}
 {% endraw %}
 ```
-> elastic apm-server 헬름 차트에서 secret 타입 템플릿을 제공하지 않으므로 직접 작성하는 과정이다.
+> elastic apm-server 헬름 차트에서 secret 타입 템플릿을 제공하지 않으므로 직접 작성하는 과정이에요.
 
 
 #### 5. `values.yaml` 수정
@@ -207,17 +209,16 @@ nodeSelector:
 - Cluster URL: https://kubernetes.default.svc
 - Namespace: elastic
 
-8. #### ArgoCD Sync
+#### 8. ArgoCD Sync
 
-   ![eas-2.png]({{ "/assets/img/contents/eas-2.png"}})
+![eas-2.png]({{ "/assets/img/contents/eas-2.png"}})
 
-   > ArgoCD와 같은 GitOps 미사용시 해당 헬름 upgrade하여 직접 배포
-   >
-   > ```sh
-   > $ helm install apm-server elastic/apm-server -f values.yaml
-   > ```
-   >
-   > 
+> ArgoCD와 같은 GitOps 미사용시 해당 헬름 upgrade를 이용하여 직접 배포할 예정이에요.
+>
+> ```sh
+> $ helm install apm-server elastic/apm-server -f values.yaml
+> ```
+>
 
 #### 9. 배포 확인
 

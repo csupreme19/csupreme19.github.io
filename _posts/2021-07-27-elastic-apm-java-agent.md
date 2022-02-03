@@ -13,18 +13,18 @@ tags: [Elasticsearch, Elastic, ELK, APM, ArgoCD, GitOps, Helm, Java, JVM]
 
 ![elastic-logo.png]({{ "/assets/img/titles/elastic-logo.png"}})
 
-Elastic APM Java Agent 적용기
+Elastic APM Java Agent 적용했던 경험을 정리해봤어요.
 
 ---
 
 ### APM Agent 설치
 [APM Agents](https://www.elastic.co/guide/en/apm/agent/index.html)
 
-apm-agent를 사용하기 위해서는 apm-server가 필요하다.
+apm-agent를 사용하기 위해서는 apm-server가 필요해요.
 
-apm-server가 구축되어 있지 않으면 [Elastic APM Server]({% post_url 2021-07-22-elastic-apm-server %}) 문서 참고
+apm-server가 구축되어 있지 않으면 [Elastic APM Server]({% post_url 2021-07-22-elastic-apm-server %}) 참고하세요.
 
-APM Java Agent 공식 지원 설치 방법은 3가지가 있다.
+APM Java Agent 공식 지원 설치 방법은 3가지가 있어요.
 
 #### 1. Manual setup with -javaagent flag
 
@@ -32,7 +32,7 @@ APM Java Agent 공식 지원 설치 방법은 3가지가 있다.
 
 #### 3. Programmatic API setup to self-attach
 
-본 문서에서는 최종적으로 아래 `-javaagent`와 k8s의 InitContainer를 사용하는 방법을 사용
+본 문서에서는 최종적으로 아래 `-javaagent`와 k8s의 InitContainer를 사용하는 방법을 사용했어요.
 
 #### 4. -javaagent flag with Kubernetes InitContainer
 
@@ -41,7 +41,7 @@ APM Java Agent 공식 지원 설치 방법은 3가지가 있다.
 ### Manual setup with -javaagent flag
 [APM Java Agent Reference](https://www.elastic.co/guide/en/apm/agent/java/current/index.html)
 
-별도 코드 수정이 필요없는 -javaagent 플래그를 이용한 에이전트 설치 방법
+별도 코드 수정이 필요없는 -javaagent 플래그를 이용한 에이전트 설치 방법이에요.
 
 #### 1. Dockerfile 수정
 
@@ -54,7 +54,7 @@ ADD https://search.maven.org/remotecontent?filepath=co/elastic/apm/elastic-apm-a
 ENTRYPOINT ["java", "-javaagent:/elastic-apm-agent.jar", "-Delastic.apm.service_name=your-project", "-Delastic.apm.application_packages=com.company.app", "-Delastic.apm.server_url=http://{엘라스틱 APM 서버 주소}:{포트}", "-Delastic.apm.environment=local", "-jar", "your-project.jar"]
 ```
 
-> maven repo에서 APM Agent jar를 받아서 -javaagent 플래그로 JVM 위에 같이 실행한다.
+> maven repo에서 APM Agent jar를 받아서 -javaagent 플래그로 JVM 위에 같이 실행해요.
 
 ##### 플래그
 - -Delastic.apm.service_name=your-project
@@ -69,7 +69,7 @@ ENTRYPOINT ["java", "-javaagent:/elastic-apm-agent.jar", "-Delastic.apm.service_
 - -Delastic.apm.environment=local
   - APM 모니터링 환경(옵션)
 
-그 외 자세한 configuration 값은 [APM Java Agent Configuration](https://www.elastic.co/guide/en/apm/agent/java/current/configuration.html) 참고
+그 외 자세한 configuration 값은 [APM Java Agent Configuration](https://www.elastic.co/guide/en/apm/agent/java/current/configuration.html) 참고하세요.
 
 #### 2. Jenkins 빌드
 
@@ -85,7 +85,7 @@ ENTRYPOINT ["java", "-javaagent:/elastic-apm-agent.jar", "-Delastic.apm.service_
 2021-07-27 14:21:12,340 [elastic-apm-server-healthcheck] INFO  co.elastic.apm.agent.report.ApmServerHealthChecker - Elastic APM server is available: {  "build_date": "2021-04-20T19:55:39Z",  "build_sha": "32f34ed4298d648bf9476790f2a8a54d72805bb6",  "version": "7.12.1"}
 ```
 
-Application 시작 전에 위와 같은 로그가 나오면 정상 동작 확인
+Application 시작 전에 위와 같은 로그가 나오며 정상 동작이 된 것을 확인할 수 있어요.
 
 ---
 
@@ -93,13 +93,13 @@ Application 시작 전에 위와 같은 로그가 나오면 정상 동작 확인
 
 [Automatic setup with `apm-agent-attach-cli.jar`](https://www.elastic.co/guide/en/apm/agent/java/current/setup-attach-cli.html#setup-attach-cli-supported-environments)
 
-해당 방법은 현재 Host에서 실행되는 모든 JVM에 적용하므로 원하는 서비스만 선택 적용이 어렵다는 단점이 있음
+해당 방법은 현재 Host에서 실행되는 모든 JVM에 적용하므로 원하는 서비스만 선택 적용이 어렵다는 단점이 있고
 
-또한 서비스별 config를 적용할 수 있는 가이드가 제공되지 않는다.
+또한 서비스별 config를 적용할 수 있는 가이드가 제공되지 않아요.
 
-APM 서버에서 수집하는 서비스명이 동일하게 나오는 문제가 있음
+추가로 APM 서버에서 수집하는 서비스명이 동일하게 나오는 문제가 있어요.
 
-아래는 모든 k8s worker 노드에 수행되어야함
+아래는 모든 k8s worker 노드에 수행되어야 해요.
 
 #### 1. apm-agent-attach-cli.jar 다운로드
 
@@ -137,7 +137,7 @@ done
 {% endraw %}
 ```
 
-현재 구동중인 JVM 컨테이너와 앞으로 구동될 JVM 컨테이너에 java agent attach하는 방법
+현재 구동중인 JVM 컨테이너와 앞으로 구동될 JVM 컨테이너에 java agent attach하는 방법이에요.
 
 #### 3. jq 설치
 
@@ -147,7 +147,7 @@ $ jq --version
 jq-1.5-1-a5b5cbe
 ```
 
-위 attach 스크립트에서 java를 검사하는 방법은 jq 사용하여 json 검사하는 방법이므로 jq 설치 필요
+위 attach 스크립트에서 java를 검사하는 방법은 jq 사용하여 json 검사하는 방법이므로 jq 패키지 설치가 필요해요.
 
 #### 4. 스크립트 실행
 
@@ -162,11 +162,11 @@ $ ./attach.sh &
 
 [Programmatic API setup to self-attach](https://www.elastic.co/guide/en/apm/agent/java/current/setup-attach-api.html)
 
-소스코드 dependency 추가하여 직접 설정하는 방법
+소스코드 dependency 추가하여 직접 설정하는 방법이에요.
 
-어플리케이션 코드에 직접적인 코드 및 수정이 필요하므로 별로 추천하지는 않는다.
+어플리케이션 코드에 직접적인 코드 및 수정이 필요하므로 개인적으로 추천하는 방법은 아니에요.
 
-마이크로서비스에서의 많은 서비스들 일일이 추가하기도 어렵고 중복되기 때문
+마이크로서비스에서의 많은 서비스들 일일이 추가하기도 어렵고 중복되기 때문이에요.
 
 #### 1. `pom.xml` 
 
@@ -193,7 +193,7 @@ public class MyApplication {
 }
 ```
 
-각 어플리케이션의 java main class에 위 코드를 추가한다.
+각 어플리케이션의 java main class에 위 코드를 추가해줘요.
 
 ---
 
@@ -201,7 +201,7 @@ public class MyApplication {
 
 참고: [엘라스틱서치 APM을 이용해서 쿠버네티스 환경의 자바 어플리케이션 모니터링하기(1)](https://m.blog.naver.com/olpaemi/221788820388)
 
-`-javaagent` 와 Kubernetes에서 제공하는 InitContainer 기능을 사용하는 방법
+`-javaagent` 와 Kubernetes에서 제공하는 InitContainer 기능을 사용하는 방법이에요.
 
 #### InitContainer
 
@@ -218,18 +218,15 @@ flowchart LR
   C-.Delete.->A
   C--Mount-->B
 </div>
-
 [Init Containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)
 
-Deployment 파드 안에 컨테이너 앱 실행 이전에 실행된다.
+Deployment 파드 안에 컨테이너 앱 실행 이전에 실행되는 컨테이너로
 
-InitContainer는 항상 실행이 보장되어 있으므로 서비스와 모니터링을 별개의 레벨로 분리할 수 있음
-
-
+InitContainer는 항상 실행이 보장되어 있으므로 서비스와 모니터링을 별개의 레벨로 분리할 수 있어요.
 
 공유 볼륨을 이용하여 apm-agent jar를 공유 볼륨에 넣어놓고
 
-컨테이너 실행시 InitContainer에서 apm-agent jar를 복사하는 방식
+컨테이너 실행시 InitContainer에서 apm-agent jar를 복사하는 방식이에요.
 
 #### `kubernetes.yaml` 수정(추가된 부분만 작성)
 
@@ -273,7 +270,7 @@ spec:
 ...
 ```
 
-적용 이후 Jenkins 배포
+적용 이후 Jenkins 배포를 해봤어요.
 
 #### pod 로그 확인
 
@@ -289,7 +286,7 @@ Picked up JAVA_TOOL_OPTIONS: -javaagent:/elastic/apm-agent/elastic-apm-agent.jar
 2021-08-04 14:14:02,030 [elastic-apm-server-healthcheck] INFO  co.elastic.apm.agent.report.ApmServerHealthChecker - Elastic APM server is available: {  "build_date": "2021-04-20T19:55:39Z",  "build_sha": "32f34ed4298d648bf9476790f2a8a54d72805bb6",  "version": "7.12.1"}
 ```
 
-apm-server 접속 및 available 확인
+apm-server 접속 및 availablity를 확인했어요.
 
 ### Kibana 확인
 
@@ -301,7 +298,7 @@ apm-server 접속 및 available 확인
 
 ![eaja-4.png]({{ "/assets/img/contents/eaja-4.png"}})
 
-인덱스 정상 수집 확인
+인덱스 정상 수집이 되는 것을 확인할 수 있었어요.
 
 ---
 

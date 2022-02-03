@@ -15,14 +15,14 @@ tags: [Kubernetes, K8S, Dashboard, Ingress, RBAC, Security]
 
 [kubernetes dashboard](https://github.com/kubernetes/dashboard)
 
-Kubernetes dashboard를 구성 후 외부접속 설정
+쿠버네티스 대시보드 구성 후 외부접속 설정하는 방법을 정리했어요.
 
 ---
 ## Kubernetes dashboard 설치
 
 ### Using K8S Deployment
 
-#### 1. kubernetes dashboard template 가져오기
+#### 1. kubernetes dashboard template
 
 ```sh
 $ wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.2.0/aio/deploy/recommended.yaml
@@ -58,9 +58,9 @@ subjects:
   namespace: kubernetes-dashboard
 ```
 
-위 설정은 현재 k8s에 미리 정의되어 있는 cluster-admin 역할을 바인딩하므로 해당 SA의 토큰으로 접속시 cluster의 모든 권한을 획득한다.
+현재 k8s에 미리 정의되어 있는 cluster-admin 역할을 바인딩하므로 해당 SA의 토큰으로 접속시 cluster의 모든 권한을 획득하는 설정이에요.
 
-모니터링 SA의 경우 아래와 같이 신규 Role을 생성하여 권한을 지정하여 바인딩한다.
+모니터링 SA의 경우 아래와 같이 신규 Role을 생성하여 권한 지정하여 바인딩했어요.
 
 ```sh
 ---
@@ -93,7 +93,7 @@ subjects:
   namespace: kubernetes-dashboard
 ```
 
-> 네임스페이스, 디플로이먼트, 파드 3가지 리소스에 대해서 읽기 권한만 부여
+> 네임스페이스, 디플로이먼트, 파드 3가지 리소스에 대해서 읽기 권한만 부여하도록 설정했어요.
 
 #### 3. 로컬 접속 테스트
 
@@ -105,7 +105,7 @@ Starting to serve on 127.0.0.1:8001
 $ curl -v http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 ```
 
-> 참고: `kubernetes-dashboard.yaml`의 모든 리소스는 모두 kubernetes-dashboard라는 namespace안에 존재한다.
+> 참고: `kubernetes-dashboard.yaml`의 모든 리소스는 모두 kubernetes-dashboard라는 namespace안에 존재해요.
 
 #### 4. 베어러 토큰 발급
 
@@ -119,14 +119,14 @@ $ kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard g
 $ cat token
 ```
 
-Kubernetes dashboard는 기본적으로 API형태로의 로컬 접근만 허용하고 있어 외부 접속 설정이 따로 필요하다.
+Kubernetes dashboard는 기본적으로 API형태로의 로컬 접근만 허용하고 있어 외부 접속 설정이 따로 필요해요.
 
 ---
 ## Kubernetes Dashboard 외부 접속 설정
 
->  참고: Kubernetes Dashboard는 기본적으로 https 연결을 하도록 설정되어 있으며 로컬에서의 접근만 허용한다
+>  참고: Kubernetes Dashboard는 기본적으로 https 연결을 하도록 설정되어 있으며 로컬에서의 접근만 허용해요.
 
-Kubernetes를 외부에 노출시키는 방법은 크게 4가지가 있다.
+Kubernetes를 외부에 노출시키는 방법은 크게 4가지가 있어요.
 
 #### 1. Proxy 방식
 
@@ -136,11 +136,13 @@ Kubernetes를 외부에 노출시키는 방법은 크게 4가지가 있다.
 
 #### 4. Ingress 방식
 
-본 문서에서는 4번 Ingress 방식을 사용한다.
+본 문서에서는 4번 Ingress 방식을 사용할 예정이에요.
+
+<br>
 
 ### 1. Proxy 방식
 
-> kubectl proxy를 이용하여 포트와 주소를 지정한 후 Host 머신에 띄우는 방식
+> kubectl proxy를 이용하여 포트와 주소를 지정한 후 Host 머신에 띄우는 방식이에요.
 
 ```sh
 $ kubectl proxy --port=9090 --address=10.109.190.106 --accept-hosts='^*$'
@@ -148,18 +150,20 @@ $ kubectl proxy --port=9090 --address=10.109.190.106 --accept-hosts='^*$'
 $ curl -k -v http://10.109.190.106:9090/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
 ```
 
-Host가 외부에 노출되어 있는 상황이라면 해당 IP를 이용하여 외부에서도 접근이 가능하다.
+Host가 외부에 노출되어 있는 상황이라면 해당 IP를 이용하여 외부에서도 접근이 가능해요.
 
 #### 단점
 
-- Host가 외부와 직접 연결되는 환경에서만 사용할 수 있다.
-- 대시보드가 localhost에서 띄워져야만 로그인 기능을 사용할 수 있다.
-- 외부에서 무차별 접속이 가능하며 모든 권한을 갖는다.
-- 방화벽 등 보안 설정이 추가로 필요하다.
+- Host가 외부와 직접 연결되는 환경에서만 사용할 수 있어요.
+- 대시보드가 localhost에서 띄워져야만 로그인 기능을 사용할 수 있어요.
+- 외부에서 무차별 접속이 가능하며 모든 권한을 가지게 돼요.
+- 방화벽 등 보안 설정이 추가로 필요해요.
+
+<br>
 
 ### 2. NodePort 방식
 
-> NodePort 방식의 서비스를 사용하여 포트를 직접 외부에 노출시키는 방식
+> NodePort 방식의 서비스를 사용하여 포트를 직접 외부에 노출시키는 방식이에요.
 
 ```sh
 $ vim kubernetes-dashboard.yaml
@@ -186,7 +190,7 @@ spec:
 ---
 ```
 
-Service type을 NodePort로 변경
+Service type을 NodePort로 변경하고
 
 ```sh
 $ kubectl get svc -n kubernetes-dashboard
@@ -196,38 +200,40 @@ kubernetes-dashboard	NodePort	10.109.190.106	<none>	443:31384/TCP	28s
 $ kubectl cluster-info
 ```
 
-NodePort 설정 확인
+NodePort 설정 확인해요.
 
-31384 포트로 외부에 오픈되어 있는 것을 확인할 수 있다.
-
-`https://master-ip:31384`로 접속 확인
+`https://master-ip:31384`로 접속 확인해보면 31384 포트로 외부에 오픈되어 있는 것을 확인할 수 있어요.
 
 #### 단점
 
-- Host가 외부와 직접 연결되는 환경에서만 사용할 수 있다.
-- 대시보드는 https 연결을 기본으로 하므로 인증서가 없어 접속 불가
+- Host가 외부와 직접 연결되는 환경에서만 사용할 수 있어요.
+- 대시보드는 https 연결을 기본으로 하므로 인증서가 없어 접속이 불가능해요.
+
+<br>
 
 ### 3. API Server 방식
 
-> 위의 Proxy 방식과 비슷하나 API 서버가 외부에 노출되어 있어 API 서버에 직접 접속하는 방식
+> 위의 Proxy 방식과 비슷하나 API 서버가 외부에 노출되어 있어 API 서버에 직접 접속하는 방식이에요.
 
 ```sh
 $ curl -k -v https://<master-ip>:<apiserver-port>/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 ```
 
-이 경우 kubernetes dashboard 인증서를 브라우저 자체에 따로 추가해주어야 하는 추가 작업이 존재한다. (본 문서에서는 다루지 않는다.)
+이 경우 kubernetes dashboard 인증서를 브라우저 자체에 따로 추가해주어야 하는 추가 작업이 존재하고
 
-게다가 kube-apiserver를 외부에 직접 노출하는것은 권장하지 않는다.
+kube-apiserver를 외부에 직접 노출하는것은 권장하는 방법이 아니에요.
 
 #### 단점
 
-- Host가 외부와 직접 연결되는 환경에서만 사용할 수 있다.
-- Kubernetes 관리자가 아닌 사용자가 직접 브라우저에 인증서를 설치하는 과정이 필요하다.
-- Kubernetes API Server를 외부와 직접 노출하는 것은 바람직하지 않다.
+- Host가 외부와 직접 연결되는 환경에서만 사용할 수 있어요.
+- Kubernetes 관리자가 아닌 사용자가 직접 브라우저에 인증서를 설치하는 과정이 필요해요.
+- Kubernetes API Server를 외부와 직접 노출하는 것은 바람직하지 않아요.
+
+<br>
 
 ### 4. Ingress 방식
 
-> Kubernetes service를 외부와 연결시켜주는 Ingress를 사용하는 방식
+> Kubernetes service를 외부와 연결시켜주는 Ingress를 사용하는 방식이에요.
 
 #### 선행사항
 
@@ -236,7 +242,7 @@ $ curl -k -v https://<master-ip>:<apiserver-port>/api/v1/namespaces/kubernetes-d
 
 kubernetes-dashboard는 https 요청을 강제하지만 외부에서 Ingress Controller로 들어오는 부분이 
 
-TLS 인증 처리가 되어 있으므로 kubernetes 내부에서 동작하는 dashboard 서비스 및 pod는 http를 사용 가능하다.
+TLS 인증 처리가 되어 있으므로 kubernetes 내부에서 동작하는 dashboard 서비스 및 pod는 http를 사용 가능해요.
 
 #### 1. `kubernetes-dashboard.yaml` 수정
 
@@ -352,7 +358,7 @@ ingress-nginx-controller             NodePort    10.104.33.237   <none>        8
 
 ![kd-1.png]({{ "/assets/img/contents/kd-1.png"}})
 
-http를 이용하여 접속할시 로그인이 비활성화 된다.
+http를 이용하여 접속할시 로그인이 비활성화 돼요.
 
 `https://external-ip:32452/` 접속
 (방화벽 포트포워딩 된 경우 해당 포트로 접속)
@@ -361,9 +367,9 @@ http를 이용하여 접속할시 로그인이 비활성화 된다.
 
 ![kd-3.png]({{ "/assets/img/contents/kd-3.png"}})
 
-https를 이용하여 접속시 로그인은 활성화 되지만 인증서 정보가 유효하지 않다고 나온다.
+https를 이용하여 접속시 로그인은 활성화 되지만 인증서 정보가 유효하지 않다고 나오는데
 
-이제 SSL 인증서를 서버 Ingress에 적용할 차례이다.
+이제 SSL 인증서를 서버 Ingress에 적용할 차례예요.
 
 #### 4. Kubernetes secret 생성
 
@@ -376,11 +382,11 @@ $ kubectl get secret -n kubernetes-dashboard
 $ kubectl describe secret secret-tls -n kubernetes-dashboard
 ```
 
-ssl 인증서 정보를 담고 있는 kubernetes secret을 생성한다.
+ssl 인증서 정보를 담고 있는 kubernetes secret을 생성하는데
 
-이 때, namespace는 Pod의 namespace와 동일해야하므로 설정해준다.
+이 때, namespace는 Pod의 namespace와 동일하게 설정해줘야 해요.
 
-> 인증서 경로는 ssl 하위에 있다고 가정
+> 인증서 경로는 ssl 하위에 있다고 가정했어요.
 
 #### 5. `kubernetes-dashboard-ingress.yaml` 수정
 
@@ -454,23 +460,23 @@ $ cat token
 
 ![kd-3.png]({{ "/assets/img/contents/kd-3.png"}})
 
-로그인 화면에서 Token 입력 후 로그인
+로그인 화면에서 Token 입력 후 로그인해보면
 
 ![kd-6.png]({{ "/assets/img/contents/kd-6.png"}})
 
-로그인 확인
+로그인이 되는 것을 확인할 수 있어요.
 
 ---
 
 ## Metric-server 설치
-각 서버에서 cpu, memory metric을 가져와 dashboard에서 그래프로 보여주려면 설치해야한다.
+각 서버에서 cpu, memory metric을 가져와 dashboard에서 그래프로 보여주려면 설치해야해요.
 ```sh
 $ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 ```
 
 metrics-server error because it doesn't contain any IP SANs 에러 발생할 경우
 
-deployment에 아래를 추가한다.
+deployment에 아래를 추가해야 해요.
 
 ```yaml
  - args:
@@ -486,15 +492,17 @@ deployment에 아래를 추가한다.
 
 위와 같이 404 page not found가 나오는 경우
 
-Ingress에서 서비스를 찾지 못한 경우로 경로 설정을 잘 확인해본다.
+Ingress에서 서비스를 찾지 못한 경우로 경로 설정을 다시 한번 확인해보세요.
 
-나는 ingress Path 설정을 `"/"`가 아니라 `"/dashboard"`로 해놓았었는데 root path가 아니면 적용이 되지 않는 버그가 존재하였다.
+저의 경우 ingress Path 설정을 `"/"`가 아니라 `"/dashboard"`로 해놓았었는데 root path가 아니면 적용이 되지 않는 버그가 있었어요.
+
+<br>
 
 ### 2. kubernetes-dashboard pod가 자꾸 죽어서 재시작되는 경우
 
-위에서 대시보드가 http 프로토콜로 작동하도록 설정한 부분에 누락되거나 잘못 설정한 값이 있는지 확인
+위에서 대시보드가 http 프로토콜로 작동하도록 설정한 부분에 누락되거나 잘못 설정한 값이 있는지 확인해보세요.
 
-나는 deployment쪽의 Liveness probe 설정에 http가 아닌 https로 되어 있어서 문제가 발생하였다.
+저의 경우 deployment쪽의 Liveness probe 설정에 http가 아닌 https로 되어 있어서 문제가 발생했었어요.
 
 
 ---

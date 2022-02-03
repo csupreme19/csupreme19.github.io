@@ -15,7 +15,7 @@ tags: [Kubernetes, K8S, Authorization, Authentication, RBAC, ABAC, Security]
 
 [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 
-본 문서에서는 쿠버네티스 API 서버에 접근하기 위한 4가지 인증 방식을 살펴보고 그 중 RBAC 인증 적용방법에 대하여 정리하였다.
+본 문서에서는 쿠버네티스 API 서버에 접근하기 위한 4가지 인증 방식을 살펴보고 그 중 RBAC 인증 적용방법에 대하여 정리해봤어요.
 
 ---
 
@@ -35,27 +35,23 @@ tags: [Kubernetes, K8S, Authorization, Authentication, RBAC, ABAC, Security]
 
 ## Kubernetes 인증 방식
 
-Kubernetes API 서버에 접근하기 위해서는 인증 단계가 필요하다.
+Kubernetes API 서버에 접근하기 위해서는 인증 단계가 필요한데
 
-쿠버네티스에서는 인증 방식이 크게 4가지가 존재한다.
+쿠버네티스에서는 인증 방식이 크게 4가지가 존재해요.
 
 1. Node Authorization
 2. ABAC Authorization
 3. RBAC Authorization
 4. Webhook Authorization
 
-API Server의 `--authorization-mode`  flag를 확인하여 현재 활성화된 인증 모드를 확인할 수 있다.
-
-
+API Server의 `--authorization-mode`  flag를 확인하여 현재 활성화된 인증 모드를 확인할 수 있어요.
 
 ```sh
 $ cat /etc/kubernetes/manifests/kube-apiserver.yaml | grep -i authorization
     - --authorization-mode=Node,RBAC
 ```
 
-
-
-기본적으로 Node, RBAC 인증 방식이 활성화되어 있는 것을 확인할 수 있다.
+기본적으로 Node, RBAC 인증 방식이 활성화되어 있는 것을 확인할 수 있어요.
 
 ---
 
@@ -71,21 +67,17 @@ flowchart LR
   end
     A-->B
 </div>
+Kubernetes Node들은 Kubelet에서 API 서버에 요청할 때 TLS 인증을 요구해요.
 
+이 때 Kubelet의 Group은 `system:node`에 속해 있으며 해당 그룹에 속해있는 인증 요청은 Node Authorizer에 의하여 인증되게 돼요.
 
-
-
-Kubernetes Clsuter에 속하는 Node들은 Kubelet에서 API 서버에 요청할 때 TLS 인증을 이용한다.
-
-이 때 Kubelet의 Group은 `system:node`에 속해 있으며 해당 그룹에 속해있는 인증 요청은 Node Authorizer에 의하여 인증된다.
-
-이 방식은 보통 Kubernetes TLS 부트스트랩 과정에서 자동으로 설정되므로 더 자세한 내용은 [공식 문서](https://kubernetes.io/docs/reference/access-authn-authz/node/) 참고
+이 방식은 보통 Kubernetes TLS 부트스트랩 과정에서 자동으로 설정되므로 더 자세한 내용을 보고 싶다면 [공식 문서](https://kubernetes.io/docs/reference/access-authn-authz/node/)를 참고하세요.
 
 ---
 
 ### ABAC(Attribute Based Access Control)
 
-JSON 형식의 Policy 정의를 사용하여 해당 사용자를 인증하는 방식
+JSON 형식의 Policy 정의를 사용하여 해당 사용자를 인증하는 방식이에요.
 
 ##### Examples
 
@@ -99,28 +91,22 @@ flowchart LR
   B--ABAC-->C
   end
 </div>
-
-
 ```json
 {"apiVersion": "abac.authorization.kubernetes.io/v1beta1", "kind": "Policy", "spec": {"user":"admin",     "namespace": "*",              "resource": "*",         "apiGroup": "*"                   }}
 {"apiVersion": "abac.authorization.kubernetes.io/v1beta1", "kind": "Policy", "spec": {"group":"system:authenticated",  "nonResourcePath": "*", "readonly": true}}
 ```
 
-기본적으로 비활성화 되어 있으며 kube-apiserver에 `--authorization-mode=ABAC`, `--authorization-policy-file=파일명` 설정을 추가하여야 한다.
+기본적으로 비활성화 되어 있으며 kube-apiserver에 `--authorization-mode=ABAC`, `--authorization-policy-file=파일명` 설정을 추가하여 사용할 수 있어요.
 
-Poilicy 정의 후 API 서버를 재시작해야하고 접근권한을 파일로 정의하기 때문에 후술할 RBAC에 비하여 관리하기가 어렵다는 단점이 있다.
+Poilicy 정의 후 API 서버를 재시작해야하고 접근권한을 파일로 정의하기 때문에 후술할 RBAC에 비하여 관리하기가 어렵다는 단점이 있어요.
 
 ---
 
 ### RBAC(Role Based Access Control)
 
-사용자, 서비스의 접근 권한(인증)을 Role(ClusterRole)과 RoleBinding(ClusterRoleBinding) 자원에 기반하여 처리하는 방식으로 일반적으로 가장 많이 사용하고 관리하기 쉬운 인증 방식이다.
+사용자, 서비스의 접근 권한(인증)을 Role/ClusterRole과 RoleBinding/ClusterRoleBinding 자원에 기반하여 처리하는 방식으로 일반적으로 가장 많이 사용하고 관리하기 쉬운 인증 방식이에요.
 
-
-
-해당 User, SA(Service Account), Group등이 RoleBinding에 의하여 어떤 접근권한을 가지고 있는지 인증된다.
-
-
+해당 User, SA(Service Account), Group등이 RoleBinding에 의하여 어떤 접근권한을 가지고 있는지 인증돼요.
 
 <div class="mermaid">
 flowchart LR
@@ -141,7 +127,7 @@ flowchart LR
 
 Kubernetes 내부에서 제공하는 인증이 아닌 외부의 인증 정책을 사용하기 위한 방식
 
-Open Policy Agent와 같은 외부 오픈소스, Admission Controller를 사용할 때 사용한다.
+Open Policy Agent와 같은 외부 오픈소스, Admission Controller를 사용할 때 사용해요.
 
 <div class="mermaid">
 flowchart LR
@@ -167,9 +153,9 @@ flowchart LR
   A
 </div>
 
-어떤 리소스에 어떤 호출이 가능한지 권한/역할을 정의한 리소스이다.
+어떤 리소스에 어떤 호출이 가능한지 권한/역할을 정의한 리소스로
 
-Role과 ClusterRole이 있으며 ClusterRole은 Role과 달리 클러스터 레벨로 가지고 있어 네임스페이스가 존재하지 않는다.
+Role과 ClusterRole이 있으며 ClusterRole은 Role과 달리 클러스터 레벨로 가지고 있어 네임스페이스가 존재하지 않아요.
 
 #### Role 예제
 
@@ -196,13 +182,15 @@ rules:
   verbs: ["get", "watch", "list"]
 ```
 
-Resources에 해당하는 자원의 verb에 해당하는 요청이 가능하다.
+위 설정은 Resources에 해당하는 자원의 verb에 해당하는 요청이 가능해요.
 
-pod-reader를 예로 들면 pods를 get, watch, list 요청이 가능하다.
+pod-reader를 예로 들면 pods를 get, watch, list 요청이 가능해요.
 
 
 
-kubernetes의 자원 종류는 아래 명령어로 확인 가능하다.
+#### 참고)
+
+kubernetes의 자원 종류는 아래 명령어로 확인 가능해요.
 
 ```sh
 $ kubectl api-resources
@@ -239,21 +227,19 @@ PolicyRule:
              [*]                []              [*]
 ```
 
-
+<br>
 
 ### 2. ServiceAccount
 
-파드로 올라가있는 서비스에서 kubernetes 클러스터에 접근하기 위한 계정을 나타내는 리소스다. 
-
-
+파드로 올라가있는 서비스에서 kubernetes 클러스터에 접근하기 위한 계정을 나타내는 리소스예요.
 
 ![kra-1.png]({{ "/assets/img/contents/kra-1.png" }})
 
 > 이미지: [Certified Kubernetes Administrator(CKA) with Practice Tests](https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/) 발췌
 
-쉽게 말해 사용자 계정이 아닌 서비스의 계정이다.
+쉽게 말해 사용자 계정이 아닌 서비스의 계정으로
 
-후술할 추상적인 User, Group과 달리 Kubernetes 자원 형태로 실존한다.
+후술할 추상적인 User, Group과 달리 Kubernetes 자원 형태로 실존해요.
 
 <div class="mermaid">
 flowchart LR
@@ -279,8 +265,6 @@ metadata:
 $ kubectl get sa -n kube-system
 ```
 
-service account 생성시 해당 서비스 어카운트의 토큰을 가지고 있는 secret이 자동 생성된다.
-
 #### 서비스 어카운트 사용방법
 
 ```sh
@@ -295,7 +279,7 @@ Tokens:              monitoring-user-token-r6nss
 Events:              <none>
 ```
 
-service account 생성시 해당 서비스 어카운트의 토큰을 가지고 있는 secret이 자동 생성된다.
+service account 생성시 해당 서비스 어카운트의 토큰을 가지고 있는 secret이 자동 생성돼요.
 
 #### 토큰 확인
 
@@ -322,7 +306,7 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6IlVmM2...
 {% endraw %}
 ```
 
-API 호출시 Authorization 헤더에 해당 토큰을 넣어서 요청하면 인증을 할 수 있다.
+API 호출시 Authorization 헤더에 해당 토큰을 넣어서 요청하면 인증을 할 수 있어요.
 
 #### 자원에 적용
 
@@ -344,7 +328,7 @@ spec:
       ...
 ```
 
-Pod 명세 `serviceAccountName` 에 위에서 생성한 SA 추가하면 해당 Pod는 API Server에 정의된 권한을 가지고 접근할 수 있다.
+Pod 명세 `serviceAccountName` 에 위에서 생성한 SA 추가하면 해당 Pod는 API Server에 정의된 권한을 가지고 접근할 수 있어요.
 
 #### 요청 예시
 
@@ -353,32 +337,33 @@ Pod 명세 `serviceAccountName` 에 위에서 생성한 SA 추가하면 해당 P
 $ curl -H "Authorization: Bearer eyJhbGciOiJSUzI1..." -ivk https://10.213.196.211:6443 
 ```
 
+<br>
 
 ### 3. RoleBinding
 
-위에서 생성한 ServiceAccount가 실질적으로 권한을 가지려면 해당 어카운트가 어느 자원에 접근할 수 있는지 허락하는 단계가 필요하다.
+위에서 생성한 ServiceAccount가 실질적으로 권한을 가지려면 해당 어카운트가 어느 자원에 접근할 수 있는지 허락하는 단계가 필요해요.
 
-이것을 인증(Authorization)이라고 한다.
+> 이것을 인가(Authorization)이라고 한답니다.
 
-kubernetes에서는 RBAC, 즉 Role 역할을 기반으로하여 인증을 하기 때문에 Role을 ServiceAccount / User / Group에 바인딩하는 방법을 사용하며 이를 나타내기 위한 리소스가 RoleBinding이다.
+kubernetes에서는 RBAC, 즉 Role 역할을 기반으로하여 인증을 하기 때문에 Role을 ServiceAccount / User / Group에 바인딩하는 방법을 사용하며 이를 나타내기 위한 리소스가 RoleBinding이에요.
 
-RoleBinding과 ClusterRoleBinding이 있으며 ClusterRole의 경우 ClusterRoleBinding을 이용한다.
+RoleBinding과 ClusterRoleBinding이 있으며 ClusterRole의 경우 ClusterRoleBinding을 이용하고
 
-각각의 Role은 ServiceAccount, User, Group에 바인딩 될 수 있다.
+각각의 Role은 ServiceAccount, User, Group에 바인딩 될 수 있어요.
 
 #### **User / Group**
 
-ServiceAccount와 달리 Kubernetes API server의 User와 Group은 별도로 정의된 Kubernetes Resource가 아니다.
+ServiceAccount와 달리 Kubernetes API server의 User와 Group은 별도로 정의된 Kubernetes Resource가 아니며
 
-API server에 접근하기 위한 아래와 같은 보안 설정 파일에 정의되어 있는 User와 Group이라는 추상적인 개념이다.
+API server에 접근하기 위한 아래와 같은 보안 설정 파일에 정의되어 있는 User와 Group이라는 추상적인 개념이에요.
 
 - Static Password file
 - Static Token file
 - Certificates
 
-보통은 인증서 설정에 User와 Group 정보가 정의되어 있으며 `system:`  으로 시작하는 그룹은 미리 정의된 그룹이다.
+보통은 인증서 설정에 User와 Group 정보가 정의되어 있으며 `system:`  으로 시작하는 그룹은 미리 정의된 그룹이에요.
 
-User 정보는 kubeconfig에서 확인할 수 있다. 
+User 정보는 kubeconfig에서 확인할 수 있어요.
 
 ```sh
 $ kubectl config view
@@ -405,8 +390,6 @@ users:
     client-certificate-data: REDACTED
     client-key-data: REDACTED
 ```
-
-
 
 <div class="mermaid">
 flowchart LR
@@ -453,7 +436,7 @@ subjects:
   namespace: kubernetes-dashboard
 ---
 ```
-> ClusterRoleBinding 역시 클러스터 레벨이므로 네임스페이스가 따로 없음
+> ClusterRoleBinding 역시 클러스터 레벨이므로 네임스페이스가 따로 없어요.
 
 #### RoleBinding 확인
 
@@ -466,9 +449,7 @@ $ kubectl get pods --as jane	# User 권한 확인
 ---
 ### RBAC 사용 예시
 
->  시나리오: k8s dashboard에 접근하기 위한 모니터링 인증을 생성한다.
-
-
+>  **시나리오**: k8s dashboard에 접근하기 위한 모니터링 인증을 생성한다.
 
 #### 1. `kubernetes-dashboard-rbac.yaml` 작성
 
@@ -504,7 +485,7 @@ subjects:
   namespace: kubernetes-dashboard
 ```
 
-Cluster의 자원이 아닌 헬스체크등 URI로 API를 호출해야하는 경우 아래와 같이 `resources` 대신 `nonResourceURLs`를 사용한다.
+Cluster의 자원이 아닌 헬스체크등 URI로 API를 호출해야하는 경우 아래와 같이 `resources` 대신 `nonResourceURLs`를 사용해요.
 
 ```yaml
 ---
@@ -517,7 +498,7 @@ rules:
   verbs: ["get"]
 ```
 
-해당 ClusterRole을 가진 SA의 시크릿 토큰을 이용하여 위 URL에 해당하는 API를 호출할 수 있다.
+해당 ClusterRole을 가진 SA의 시크릿 토큰을 이용하여 위 URL에 해당하는 API를 호출할 수 있어요.
 
 #### 2. Token 확인
 
@@ -526,8 +507,6 @@ rules:
 $ kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/monitoring-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
 {% endraw %}
 ```
-
-
 
 #### 3. Kubernetes 클러스터 접근 테스트
 
@@ -574,16 +553,16 @@ livez check passed
 
 ## 요약
 
-Kubernetes API 서버에 접근하기 위한 인증방식은 크게 4가지가 있다.
+Kubernetes API 서버에 접근하기 위한 인증방식은 크게 4가지가 있어요.
 
 - Node
 - ABAC
 - RBAC
 - Webhook
 
-일반적으로 사용하는 인증 방식으로는 RBAC가 있으며 Role에 기반하여 인증하는 방식이다.
+일반적으로 사용하는 인증 방식으로는 RBAC가 있으며 Role에 기반하여 인증하는 방식이에요.
 
-전체적인 구조를 보자면 아래와 같다. (ClusterRole도 동일)
+전체적인 구조를 보자면 아래와 같아요. (ClusterRole도 동일해요.)
 
 <div class="mermaid">
 flowchart LR

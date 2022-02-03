@@ -15,9 +15,9 @@ tags: [Kubernetes, K8S, Ingress, Ingress Controller, Certificate, TLS, SSL, Ngin
 
 [Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 
-본 문서는 온프레미스 환경에서의 Ingress, SSL 인증서 적용 내용을 정리하였다.
+본 문서는 온프레미스 환경에서의 Ingress, SSL 인증서 적용 내용과
 
-nginx ingress controller를 이용하여 jenkins 서비스에 연결하는 과정을 정리하였다.
+nginx ingress controller를 이용하여 jenkins 서비스에 연결하는 과정을 정리해봤어요.
 
 ---
 ## 선행 사항
@@ -60,15 +60,17 @@ flowchart LR
 
 
 
-외부에서 클러스터에 접근할 때 요청받는 것이 Ingress이다. 쉽게 얘기하면 일반적인 proxy, gateway라고 보면 된다.
+외부에서 쿠버네티스 클러스터에 접근할 때 요청받는 것이 Ingress, 쉽게 얘기하면 쿠버네티스의 일반적인 proxy, gateway라고 보시면 될 것 같아요.
 
-동일하게 로드밸런서, 서비스 메쉬의 역할도 수행하며 경우에 따라서는 Blue Green 배포나 Canary 배포도 가능하다.
+동일하게 로드밸런서, 서비스 메쉬의 역할도 수행하며 경우에 따라서는 Blue Green 배포나 Canary 배포도 가능해요.
 
 외부 → Ingress → Service → Pod
 
-내부 서비스에 SSL 인증서를 적용하는 것이 아닌 Ingress에 인증서를 적용한다.
+내부 서비스에 SSL 인증서를 적용하는 것이 아닌 Ingress에 인증서를 적용해야 해요.
 
-이와 같이 적용하면 서비스 종속성 없이 앞단에서 인증서 적용이 가능하므로 뒷단의 서비스가 추가되어도 쉽게 적용이 가능하다.
+이와 같이 적용하면 서비스 종속성 없이 앞단에서 인증서 적용이 가능하므로 뒷단의 서비스가 추가되어도 쉽게 적용이 가능해요.
+
+<br>
 
 ### `Ingress Controller`와 `Ingress Resource`의 차이
 
@@ -81,8 +83,8 @@ flowchart LR
 > 이미지: [Certified Kubernetes Administrator(CKA) with Practice Tests](https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/) 발췌
 
 - `80:31280/TCP`, `443:32443/TCP`등의 서비스와 함께 NodePort 형식으로 외부와의 연결을 담당
-- 보통 nginx, haproxy 등 proxy 서버로 구현되어 있다.
-- Ingress Resource의 설정값(Ingress Rule)에 따라 클러스터 내의 Service로 연결한다.
+- 보통 nginx, haproxy 등 proxy 서버로 구현되어 있어요.
+- Ingress Resource의 설정값(Ingress Rule)에 따라 클러스터 내의 Service로 연결해요.
 
 #### Ingress Resource
 
@@ -105,18 +107,18 @@ spec:
               number: 8080
 ```
 
-- Ingress Controller에서 어떤 서비스로 라우팅할 것인지 규칙을 명세한 Resource이다.
-- path등의 값으로 어떤 service에 연결할 것인지에 대한 명세이다.
-- Kubernetes secret 리소스를 참고하여 tls 연결을 설정할 수 있다.
+- Ingress Controller에서 어떤 서비스로 라우팅할 것인지 규칙을 명세한 Resource
+- path등의 값으로 어떤 service에 연결할 것인지에 대한 명세
+- Kubernetes secret 리소스를 참고하여 tls 연결을 설정할 수 있어요.
 
 ---
 ## Ingress 적용
 
 ### 인증서 파일 구성
 
-PEM 포맷의 RSA crt, key가 필요하다.
+PEM 포맷의 RSA crt, key가 필요한데
 
-본 문서에서는 Let's Encrypt의 DNS 포맷으로 발급된 *.yourdomain.com 도메인 인증서를 사용한다.
+본 문서에서는 Let's Encrypt의 DNS 포맷으로 발급된 *.yourdomain.com 도메인 인증서를 사용할 예정이에요.
 
 ```sh
 # yourdomain.com.crt
@@ -133,14 +135,15 @@ MII...
 -----END RSA PRIVATE KEY-----
 ```
 
+<br>
 
 ### Kubernetes secret 생성
 
 kubernetes에서는 여러가지 시크릿 타입을 제공하는데 
 
-그 중 SSL 인증서에 대한 정보를 담고 있는 Secret 타입은 `kubernetes.io/tls` 이다.
+그 중 SSL 인증서에 대한 정보를 담고 있는 Secret 타입은 `kubernetes.io/tls` 이고
 
-secret 생성하는 두 가지 방법이 존재
+secret 생성하는 두 가지 방법이 존재해요.
 
 #### 1. secret yaml 파일 생성
 
@@ -160,9 +163,9 @@ data:
         MIIEpgIBAAKCAQEA7yn3bRHQ5FHMQ ...
 ```
 
-이 경우 인증서 값은 -----BEGIN CERTIFICATE-----와 -----END CERTIFICATE----- 사이에 있는 인코딩값을 넣어야한다고 한다.
+이 경우 인증서 값은 -----BEGIN CERTIFICATE-----와 -----END CERTIFICATE----- 사이에 있는 인코딩값을 넣어야한다고 하네요.
 
-> 확인결과 .crt 안에 있는 인증서 값을 모두 포함하여야함
+> 확인결과 .crt 안에 있는 인증서 값을 모두 포함하여야 되네요.
 
 ```sh
 $ kubectl create -f service-secret.yaml
@@ -177,9 +180,9 @@ kubernetes secret 생성
 $ kubectl create secret tls secret-tls --cert ssl/yourdomain.com.crt --key ssl/yourdomain.com.key
 ```
 
-Imperative 방식으로 생성
+Imperative 방식으로 생성하는 방법이에요.
 
-인증서 파일을 설정값으로 물고갈 수 있어서 권장
+인증서 파일을 설정값으로 물고갈 수 있어서 개인적으로 더 편하다고 생각하고 있어요.
 
 ```sh
 # secret 생성 확인
@@ -219,7 +222,9 @@ spec:
 # 적용
 $ kubectl apply -f jenkins-ingress.yaml
 ```
-위에서 생성한 Secret을 이용하면 Ingress에 인증서를 적용할 수 있다.
+위에서 생성한 Secret을 이용하면 Ingress에 인증서를 적용할 수 있어요.
+
+<br>
 
 ### 인증서 적용 확인
 
@@ -267,9 +272,11 @@ issuer=C = US, O = Let's Encrypt, CN = R3
 ---
 ### SSL Redirect 끄기
 
-위처럼 Ingress 설정에 tls를 적용하면 https 접속이 강제되므로 기존에 http에 운영중인 서비스에 영향이 있다.
+현재 http에서도 동일하게 서비스를 진행하고 있는데
 
-따라서 기존의 http 서비스는 https로 redirect 되지 않도록 설정하여야 한다.
+위처럼 Ingress 설정에 tls를 적용하면 https 접속이 강제되므로 기존에 http에 운영중인 서비스에 영향이 있어요.
+
+따라서 기존의 http 서비스는 https로 redirect 되지 않도록 설정하여야 해요.
 
 #### 1. Ingress rule 변경
 
@@ -288,7 +295,7 @@ metadata:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
 ```
 
-> Ingress rule의 `ssl-redirect` 설정은 host 주소와 port는 그대로 둔채 http 요청을 https로 리다이렉트한다.(서버에서 https redirect 응답)
+> Ingress rule의 `ssl-redirect` 설정은 host 주소와 port는 그대로 둔채 http 요청을 https로 리다이렉트하는 설정이에요.
 >
 > 예시) http://jenkins.yourdomain.com:31623/jenkins → https://jenkins.yourdomain.com:31623/jenkins
 
@@ -316,24 +323,19 @@ data:
   ssl-redirect: "false"
 ```
 
-> Ingress controller의 `ssl-redirect` 설정은 host 주소는 그대로지만 https의 default port인 443으로 redirect한다.
->
-> 예시) http://jenkins.yourdomain.com:31623/jenkins → https://jenkins.yourdomain.com/jenkins
+ingress-controller의 baremetal template에 있는 ConfigMap으로 띄워져 있으므로 해당 부분을 수정했어요.
 
-ingress-controller의 baremetal template에 있는 ConfigMap으로 띄워져 있으므로 해당 부분 수정
-
-만약 다른 환경으로 인하여 ConfigMap이 없는 경우 새로 생성하여 적용할 것
+만약 다른 환경으로 인하여 ConfigMap이 없는 경우 새로 생성하여 적용해야해요.
 
 ```sh
+# 설정 변경 적용
 $ kubectl apply -f deploy.yaml
 ```
-설정 변경 적용
+추가로 적용기간에는 http와 https의 포트를 서로 다르게하여 둘 다 접속 가능하도록 만들어야 했어요.
 
-추가로 적용기간에는 http와 https의 포트를 서로 다르게하여 둘 다 접속 가능하도록 만드는 것이 옳다.
+현재 http와 https를 동시 서비스 중으로 서로 다른 포트에서 접근을 하기 때문에
 
-현재 http와 https를 동시 서비스 중이기 때문에 서로 다른 포트에서 접근을 한다.
-
-따라서 수동으로 Host 주소와 port를 변경해주어야 한다.
+따라서 수동으로 Host 주소와 port를 변경해주어야 했어요.
 
 #### 3. Ingress rule 변경
 
@@ -370,37 +372,27 @@ $ curl -v http://jenkins.jenkins.yourdomain.com:32452
 < Connection: keep-alive
 < Location: https://jenkins.yourdomain.com:32452/
 ```
-테스트해보면 redirect가 정상적으로 되는 것을 확인할 수 있다.
+테스트해보면 redirect가 정상적으로 되는 것을 확인할 수 있었어요.
+
+<br>
 
 ### 크롬의 경우 HSTS 기능 끄기
 
 위와 같이 설정해도 크롬과 같은 웹브라우저의 경우 HSTS 기능때문에 웹브라우저 레벨에서 
 
-위에서 설정한 proxy가 아니라 호스트와 포트는 그대로인 상태로 http → https 리다이렉션이 강제된다.
+위에서 설정한 proxy가 아니라 호스트와 포트는 그대로인 상태로 http → https 리다이렉션이 강제되는 현상이 있었어요.
 
-> http 접속을 한 후에 서버에서 https 응답을 주는데 http 접속 이전에 브라우저에서 https로 변경하기 때문이다.
+> http 접속을 한 후에 서버에서 https 응답을 주는데 http 접속 이전에 브라우저에서 https로 변경하기 때문이에요.
 >
 
-시크릿 모드로 들어가서 테스트하거나 이미 크롬에 설정된 HSTS 설정을 제거해야한다.
+시크릿 모드로 들어가서 테스트하거나 이미 크롬에 설정된 HSTS 설정을 제거해야하는데 아래와 같이 진행해요.
 
 1. `chrome://net-internals/#hsts` 접속
 2. Query HSTS/PKP domain에서 HSTS 설정되어 있는지 검색
 ![ki-4.png]({{ "/assets/img/contents/ki-4.png"}})
 3. Delete domain security policies에서 해당 도메인 HSTS 설정 지우기
 
-이후 크롬을 통해 재접속하면 https redirect가 성공적으로 되는 것을 확인할 수 있다.
-
----
-## 참고사항
-1. Ingress controller 기본 인증서를 가져간다?
-
-```sh
-* successfully set certificate verify locations:
-*   CAfile: /etc/ssl/certs/ca-certificates.crt
-  CApath: /etc/ssl/certs
-```
-
-위처럼 Ingress Controller에서 기본 설정 SSL Cert를 가져간다고 나오는데 Ingress Controller에서 SSL을 설정하는 것이 아닌 Ingress의 Secret 설정에 있는 인증서 파일을 적용하는 것이기 때문에 무시해도 된다.
+이후 크롬을 통해 재접속하면 https redirect가 성공적으로 되는 것을 확인할 수 있어요.
 
 ---
 ## Troubleshooting
@@ -413,7 +405,9 @@ $ curl -v http://jenkins.jenkins.yourdomain.com:32452
   CApath: /etc/ssl/certs
 ```
 
-위처럼 Ingress Controller에서 기본 설정 SSL Cert를 가져간다고 나오는데 Ingress Controller에서 SSL을 설정하는 것이 아닌 Ingress의 Secret 설정에 있는 인증서 파일을 적용하는 것이기 때문에 무시해도 된다.
+위처럼 Ingress Controller에서 기본 설정 SSL Cert를 가져간다고 나오는데 Ingress Controller에서 SSL을 설정하는 것이 아닌 Ingress의 Secret 설정에 있는 인증서 파일을 적용하는 것이기 때문에 무시해도 무방해요.
+
+<br>
 
 ### Kubernetes Ingress Controller Fake Certificate 인증서가 적용될 때
 
@@ -427,15 +421,13 @@ Certificate:
         Issuer: O = Acme Co, CN = Kubernetes Ingress Controller Fake Certificate
 ```
 
-Ingress에 tls 설정을 추가할 경우 기본적으로 해당 서비스는 https를 사용하게 되며 인증서 설정을 별도로 해주지 않은 경우 Ingress Controller fake certificate를 기본적으로 사용하게 된다.
-
-이 경우는 위에서 설정한 인증서 적용이 안 된 경우이다.
+Ingress에 tls 설정을 추가할 경우 기본적으로 해당 서비스는 https를 사용하게 되며 인증서 설정을 별도로 해주지 않은 경우 Ingress Controller fake certificate를 기본적으로 사용하게 되는데 위에서 설정한 인증서 적용이 안 된 경우 발생해요.
 
 #### 1. kubernetes secret에서 cert와 key를 잘 물고 갔는지 확인
 
 #### 2. Ingress yaml 파일에 tls 적용이 제대로 되었는지 확인
 
-- ssl을 적용할 경우 연동되는 서비스와 tls 설정에 host 이름을 꼭 추가해주어야한다.
+- ssl을 적용할 경우 연동되는 서비스와 tls 설정에 host 이름을 꼭 추가해주어야해요.
 
 
 ---

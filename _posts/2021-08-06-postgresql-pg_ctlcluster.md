@@ -13,7 +13,7 @@ tags: [Postgres, PostgreSQL, RDBMS, DB]
 
 ![postgresql-logo.svg]({{ "/assets/img/titles/postgresql-logo.svg"}})
 
-pg_ctlcluster 명령어에 대하여 알아보자
+pg_ctlcluster 명령어에 대하여 알아봤어요.
 
 ---
 ## pg_ctl vs pg_ctlcluster
@@ -22,11 +22,11 @@ pg_ctlcluster 명령어에 대하여 알아보자
 
 [pg_ctl](https://www.postgresql.org/docs/11/app-pg-ctl.html)
 
-Ubuntu, Debian과 같은 일부 linux에서는 `pg_ctl` 대신 `pg_ctlcluster` 명령어를 제공한다.
+Ubuntu, Debian과 같은 일부 linux에서는 `pg_ctl` 대신 `pg_ctlcluster` 명령어를 제공해요.
 
-위 명령어를 사용하려면 `pg_cluster`를 따로 구성 후에 실행하여야 한다.
+위 명령어를 사용하려면 `pg_cluster`를 따로 구성 후에 실행하여야 해요.
 
-클러스터가 구성되어 있는지 확인하려면 아래 명령어 실행
+클러스터가 구성되어 있는지 확인하려면 아래 명령어 실행하여 확인할 수 있어요.
 ```shell
 $ /usr/bin/pg_lsclusters
 Ver Cluster Port Status Owner    Data directory              Log file
@@ -34,15 +34,15 @@ Ver Cluster Port Status Owner    Data directory              Log file
 13  main    5433 down   postgres /var/lib/postgresql/13/main /var/log/postgresql/postgresql-13-main.log
 ```
 
-> `pg_ctlcluster`를 강제로 사용하도록 하는 이유는 서로 다른 postgres를 동시에 사용하고 있는 경우가 존재하기 때문
+> `pg_ctlcluster`를 강제로 사용하도록 하는 이유는 서로 다른 postgres를 동시에 사용하고 있는 경우가 존재하기 때문이에요.
+
+<br>
 
 ### 서비스 형태로의 사용
 
-보통 deb와 같은 패키지 매니저를 이용하여 설치한 경우 `pg_ctl`, `pg_ctlcluster` 명령어 대신
+deb와 같은 패키지 매니저를 이용하여 설치한 경우 `pg_ctl`, `pg_ctlcluster` 명령어 대신 kernel의 systemd에 의해 관리되는 service의 형태로 실행돼요.
 
-kernel의 systemd에 의해 관리되는 service의 형태로 실행된다.
-
-> systemctl 명령어를 사용하여 실행하여도 내부적으로 `pg_ctlcluster` 호출
+> systemctl 명령어를 사용하여 실행하여도 내부적으로 `pg_ctlcluster` 호출하여 실행해요.
 
 #### 명령어
 
@@ -57,7 +57,7 @@ $ systemctl status postgresql@11-main.service	# 서비스 상태
 $ systemctl cat postgresql@11-main.service		# 서비스 정의
 ```
 
-아래의 명령어를 수행하여 현재 구성되어 있는 postgresql 서비스 정보 확인
+아래의 명령어를 수행하여 현재 구성되어 있는 postgresql 서비스 정보를 확인할 수 있어요.
 ```
 # 클러스터 구성되어 있는 경우에는 버전 명시
 $ systemctl cat postgresql.service
@@ -71,7 +71,7 @@ ExecStart=-/usr/bin/pg_ctlcluster --skip-systemctl-redirect %i start
 ...
 ```
 
-내부적으로 `pg_ctlcluster` 명령어 호출하도록 설정되어 있음을 확인할 수 있다.
+내부적으로 `pg_ctlcluster` 명령어 호출하도록 설정되어 있음을 확인할 수 있어요.
 
 
 ---

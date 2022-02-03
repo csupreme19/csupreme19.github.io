@@ -15,7 +15,7 @@ tags: [Nginx, Proxy]
 
 [Installing NGINX Open Source](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/?_ga=2.177804005.1113104653.1621840207-1766246859.1621579363)
 
-설치형 nginx 구축하기
+설치형 nginx 구축했던 내용을 정리해봤어요.
 
 ---
 ## nginx 설치
@@ -77,7 +77,7 @@ $ nginx -s reopen # 로그 재시작
 $ nginx -s stop # nginx 중지(fast shutdown)
 ```
 
-위와 같이 binary 직접 실행하는 방법도 있으나 systemd로 관리하는것이 더 좋으므로 아래와 같이 실행 권장
+위와 같이 binary 직접 실행하는 방법도 있으나 systemd로 관리하는것이 더 좋으므로 아래와 같이 실행을 권장해요.
 
 ```shell
 $ systemctl status nginx.service	# 상태 확인
@@ -87,7 +87,7 @@ $ systemctl restart nginx.service	# 재시작
 $ systemctl stop nginx.service		# 중지
 ```
 
-실행 후 아래와 같이 config 파일 경로가 맞는지 확인
+실행 후 아래와 같이 config 파일 경로가 맞는지 확인했어요.
 
 ```shell
 # -V는 configure 옵션 확인하는 플래그
@@ -102,14 +102,14 @@ $ /usr/sbin/nginx -V 2>&1 | grep --colour=auto conf
 
 `nginx /run/nginx.pid` 값에 심볼릭 링크가 제대로 걸리지 않은 경우
 
-`nginx` 명령어 대신 `nginx -c /etc/nginx/nginx.conf` 사용하여 nginx 구동
+`nginx` 명령어 대신 `nginx -c /etc/nginx/nginx.conf` 사용하여 nginx 구동하면 해결할 수 있었어요.
 
 ```shell
 $ nginx -c /etc/nginx/nginx.conf
 $ nginx -s reload
 ```
 
-> systemctl로 실행시 발생하는지는 확인하지 않음
+> systemctl로 실행시 발생하는지는 확인이 필요해요.
 
 
 ---

@@ -13,24 +13,22 @@ tags: [Kubernetes, Helm, K8S, Metricbeat, ArgoCD, GitOps, ELK, Elastic, Elastics
 
 ![kubernetes-logo.png]({{ "/assets/img/titles/kubernetes-logo.png"}})
 
-Kubernetes 클러스터, 노드, 파드의 메트릭 정보 수집을 위한 `kube-state-metrics`와 metricbeat를 배포하여 메트릭 정보를 수집, 모니터링한다.
+Kubernetes 클러스터, 노드, 파드의 메트릭 정보 수집을 위한 `kube-state-metrics`와 metricbeat를 배포하여 메트릭 정보를 수집, 모니터링한 경험을 작성해봤어요.
 
 ---
 
 ## 개요
 
-Kubernetes 메트릭 정보 수집을 위해 Metricbeat를 DaemonSet 형태로 띄워 메트릭 수집
+Kubernetes 메트릭 정보 수집을 위해 Metricbeat를 DaemonSet 형태로 띄워 메트릭을 수집해야 하는 상황이에요.
 
 
 ---
 ## `kube-state-metrics`
-kube-system의 `kube-state-metrics` deployment 필요
+kube-system의 `kube-state-metrics` deployment 필요해요.
 
- helm-chart를 이용하여 구성할 것임
+helm-chart를 이용하여 구성할 예정이에요.
 
-GitOps인 ArgoCD를 활용하여 구성한다고 가정
-
-아닌 경우 일반 디렉토리 생성하여 구성하여도 동일함
+GitOps인 ArgoCD를 활용하여 구성한다고 가정하였으며 일반 디렉토리 생성하여 구성하여도 동일해요.
 
 ### `kube-state-metrics` using helm
 
@@ -44,7 +42,7 @@ GitOps인 ArgoCD를 활용하여 구성한다고 가정
 
 #### 4. `values.yaml` 수정
 
-worker 노드에 파드를 띄우기 위해 아래 nodeSelector 지정
+worker 노드에 파드를 띄우기 위해 아래 nodeSelector 지정했어요.
 
 (zone과 role에 대한 label이 노드에 이미 지정되어 있다고 가정)
 
@@ -63,7 +61,9 @@ nodeSelector:
 ---
 ## Metricbeat-kubernetes
 
-kubernetes 메트릭을 모니터링하기위해 metricbeat를 DaemonSet 형태로 k8s cluster에 띄워야함
+kubernetes 메트릭을 모니터링하기위해 metricbeat를 DaemonSet 형태로 k8s cluster에 띄워야해요.
+
+<br>
 
 ### Metricbeat-kubernetes DaemonSet 배포
 
@@ -72,7 +72,7 @@ kubernetes 메트릭을 모니터링하기위해 metricbeat를 DaemonSet 형태�
 #### 2. `metricbeat-kubernetes.yaml` 다운로드
 
 ```shell
-# 현재 ELK 버전 7.12.1이므로 버전을 맞춘다.
+# ELK 버전 7.12.1
 $ curl -L -O    https://raw.githubusercontent.com/elastic/beats/7.12/deploy/kubernetes/metricbeat-kubernetes.yaml
 ```
 
@@ -80,8 +80,8 @@ $ curl -L -O    https://raw.githubusercontent.com/elastic/beats/7.12/deploy/kube
 
 #### 4. `values.yaml` 수정
 
-elastic search 호스트 지정
 ```yaml
+# Elasticsearch 호스트 지정
  - name: ELASTICSEARCH_HOST
    value: elasticsearch
  - name: ELASTICSEARCH_PORT
@@ -111,6 +111,8 @@ elastic search 호스트 지정
   - controller-manager
   - scheduler
   - proxy
+
+<br>
 
 ### Metricsets
 사용 가능한 Metricset들 리스트

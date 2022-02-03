@@ -13,7 +13,7 @@ tags: [MySQL, DB, RDBMS, SQL, Dump, Restore]
 
 ![mysql-logo.png]({{ "/assets/img/titles/mysql-logo.png"}})
 
-MySQL Dump 및 Restore 내용 정리
+MySQL 덤프와 복구에 관한 내용을 정리해봤어요.
 
 ---
 
@@ -27,7 +27,7 @@ MySQL Dump 및 Restore 내용 정리
 
 Dump된 결과물의 쿼리를 수행하는 것
 
-이론적으로는 dump 한 DB의 상태가 같아진다.
+이론적으로는 dump 한 DB의 상태가 같아져요.
 
 
 
