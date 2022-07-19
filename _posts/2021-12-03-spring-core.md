@@ -13,7 +13,7 @@ tags: [Spring, Java, IoC, DI, Singleton]
 
 ![spring-logo.svg]({{ "/assets/img/titles/spring-logo.svg"}})
 
-본 문서에서는 스프링 코어에 대하여 정리해봤어요.
+본 문서에서는 스프링 프레임워크의 스프링 코어에 대하여 정리해봤어요.
 
 ---
 
@@ -21,7 +21,7 @@ tags: [Spring, Java, IoC, DI, Singleton]
 
 ![sf-3.png]({{ "/assets/img/contents/sf-3.png"}})
 
-Spring의 기본이자 핵심 모듈로 Spring Container, IoC Container예요.
+Spring의 기본이자 핵심 모듈로 Spring Container, DI Container예요.
 
 스프링 프레임워크에서 지원하는 IoC, DI 등의 개념의 주체인 Bean을 관리하는 핵심 기능을 담당해요.
 
@@ -29,9 +29,9 @@ Spring의 기본이자 핵심 모듈로 Spring Container, IoC Container예요.
 >
 > Spring Framework에서 관리하는 자바 객체로 일반 자바 클래스와 같다고 생각하면 돼요.
 >
-> Spring에서는 기존의 J2EE의 EJB 방식의 복잡한 구현을 피하기 위하여 POJO를 사용하는데 
+> Spring에서는 기존의 EJB 방식의 복잡한 구현을 피하기 위하여 POJO를 사용하는데 
 >
-> 해당 POJO가 Spring Container에 의해 생성되고 관리되면 해당 객체는 Bean이라고 불러요.
+> 해당 POJO가 Spring Container에 의해 생성되고 관리되면 해당 객체는 Spring Bean이라고 불러요.
 
 아래와 같은 4가지 모듈로 구성돼요.
 
@@ -40,7 +40,7 @@ Spring의 기본이자 핵심 모듈로 Spring Container, IoC Container예요.
   - BeanFactory를 구현하여 Bean을 싱글턴 객체로 관리하므로 프로그래밍적으로 객체를 관리할 필요가 없어요.
   - 프로그램 로직/비즈니스 로직과 객체의 생성/관리를 분리하는 핵심 기능이에요.
 - `spring-context`
-  - 위에서 생성한 Bean의 라이프사이클, 스코프인 `ApplicationContext`등의 인터페이스를 제공해요.
+  - 위에서 생성한 Bean의 라이프사이클, 스코프인 `ApplicationContext`라는 BeanFactory의 인터페이스를 제공해요.
   - 스프링 컨테이너에서 관리하는 스프링 빈들을 사용하기 위한 인터페이스예요.
 - `spring-expression`
   - JSP 명세에 의한 EL(Expression Language)의 확장 기능을 제공해요.
@@ -54,13 +54,13 @@ Spring Framework의 핵심 모듈인 Spring Core에 대해서 알아볼 예정�
 
 일반적으로 스프링 프레임워크의 IoC, DI 등의 핵심 기능을 해당 모듈에서 담당하며
 
-스프링 컨테이너, IoC 컨테이너 그 자체라고 보아도 무방하다고 생각해요.
+스프링 컨테이너, DI 컨테이너 그 자체라고 보아도 무방하다고 생각해요.
 
 ---
 
-### Inversion Of Control(IoC)
+### Inversion Of Control(IoC) 원칙
 
-**제어의 역전(역전제어); 객체의 생성과 관리를 외부에 맡기는 것**
+**제어의 역전(역전제어); 객체의 생성을 객체 그 자신에 맡기는 것 **
 
 <br>
 
@@ -89,9 +89,11 @@ Cat myCat = new Cat();
 Constructed!
 ```
 
-기존 초기 자바 어플리케이션의 경우 위와 같이 개발자가 객체의 생성과 초기화 등의 라이프사이클을 관리해주어야 했는데
+기존 초기 자바 어플리케이션의 경우 위와 같이 클래스 자체가 객체의 생성과 초기화 등의 라이프사이클을 관리해주었어요.
 
-이는 단일 책임 원칙에 위배되며 생성된 객체(인스컨스)을 여러 클래스에서 사용 및 관리하기가 힘들고 또한 여러개의 중복된 객체가 생성될 가능성이 있었어요.
+이는 생성과 사용을 동일 객체에서 하기 때문에 단일 책임 원칙에 위배됩니다.
+
+생성된 객체를 여러 클래스에서 사용 및 관리하기가 힘들고 또한 여러개의 중복된 객체가 생성되는 단점이 있어요.
 
 <br>
 
@@ -112,11 +114,11 @@ Constructed!
 
 ![sf-4.png]({{ "/assets/img/contents/sf-4.png"}})
 
-이를 해결하기 위하여 스프링에서는 모든 객체의 생성과 관리를 Bean으로 등록하여 스프링 컨테이너에게 위임하는 방식을 사용하였는데
+이를 해결하기 위하여 스프링에서는 모든 객체의 생성과 관리를 객체 그 자신에게 맡기는데 
 
-이를 제어의 역전(Inversion Of Control)이라고 불러요.
+**제어가 역전** 되었다고 하여 **Inversion of Control**이라고 부릅니다.
 
-제어의 역전이라는 특성을 통하여 개발자는 더 이상 객체의 생성과 관리에 대하여 신경쓰지 않고 비즈니스 로직에만 집중하여 생산성을 높일 수 있어요.
+이 특성을 통하여 클래스에서 더 이상 객체의 라이프사이클에 대하여 신경쓰지 않고 사용할 수 있어요.
 
 <br>
 
@@ -146,7 +148,7 @@ Cat myCat = ctx.getBean("cat", Cat.class);
 Constructed!
 ```
 
-빈은 어플리케이션의 실행과 종료까지의 생명주기를 가지는 ApplicationContext에 등록되어 사용되고 해당 ApplicationContext는 XML 파일, 애너테이션, 자바 코드 등으로 설정할 수 있어요.
+빈은 어플리케이션의 실행과 종료까지의 생명주기를 가지는 ApplicationContext에 등록되어 사용되고 해당 어플리케이션 컨텍스트는 XML 파일, 애너테이션, 자바 코드 등으로 설정할 수 있어요.
 
 컨텍스트 생성 시점 Bean들을 생성/주입하여 초기화하며 컨텍스트에서 `getBean()` 호출시 스프링 컨테이너에 객체가 존재하는지 확인하고 객체를 가져오는 구조예요.
 
@@ -157,15 +159,17 @@ Constructed!
 
 ### Dependency Injection(DI)
 
-**의존성 주입; 객체의 의존성을 주입하는 것**
+**의존성 주입; 객체가 생성될 때 자신의 의존성을 주입하는 것**
+
+사실 IoC랑 DI는 따로 가는 개념이 아니라 같은 IoC가 DI고 DI가 IoC에요.
+
+역전 제어를 하기 위하여 필요한 프로세스가 DI이기 때문에 IoC 개념을 위한 프로세스라고 보시면 될 것 같아요.
 
 스프링 컨테이너에 빈을 등록하여 관리하는데 해당 Bean이 POJO 형태가 아니라 여러 Dependency를 가지고 있으면 어떻게 될까요?
 
-모두들 알고 있듯이 객체지향 관점에서 대부분의 객체는 의존성을 가지고 있어요.
-
 해당 객체는 스프링 컨테이너에서 사용 못하고 개발자가 직접 수동으로 생성해야 할까요?
 
-이러한 의존성을 해결하기 위하여 의존성 주입이라는 개념이 등장했어요.
+모두들 알고 있듯이 객체지향 관점에서 대부분의 객체는 의존성을 가지고 있어요.
 
 <div class="mermaid">
   flowchart LR
@@ -220,9 +224,13 @@ System.out.println(myCat.toString());
 System.out.println(myCat.eye.toString());
 ```
 
-Cat에 Eye라는 dependency를 추가했어요.
+Cat에 Eye라는 의존성을 추가했어요.
 
-스프링의 DI를 사용하려면 해당 Eye 또한 Bean으로 등록되어 있어야 이후 DI 시점에 주입이 될 수 있어요.
+스프링의 DI를 사용하려면 해당 클래스 또한 빈으로 등록되어 있어야 이후 DI 시점에 주입이 될 수 있어요.
+
+스프링이 구동되면 빈으로 등록된 객체는 본인의 생성자 또는 팩토리 메서드로 인스턴스를 생성하는데 
+
+이 과정에서 의존성이 있는 다른 객체를 주입하게 됩니다.
 
 ---
 

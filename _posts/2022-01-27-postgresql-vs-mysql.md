@@ -16,13 +16,13 @@ tags: [Postgres, PostgreSQL, MySQL, RDBMS, DB]
 
 ## 개요
 
-### 왜 PostgreSQL을 쓰나요?
+### 왜 PostgreSQL을 쓸까요?
 
 최근에 PostgreSQL과 MySQL의 차이점이 무엇이냐 PostgreSQL을 왜 쓰냐라는 질문을 받았는데
 
 둘 다 비슷한 오픈소스 RDBMS라고만 생각하고 있었고
 
-평소에 PPAS와 PostgreSQL을 사용하고 있지만 왜 쓰게 되었는지는 생각해본적이 없어서 이참에 정리해봤어요.
+평소에 PPAS와 PostgreSQL을 사용하고 있지만 왜 쓰게 되었는지는 생각해본적이 없어서 이참에 정리해봤습니다.
 
 ---
 
@@ -67,7 +67,7 @@ MySQL이 조금 더 인기 있는 것으로 보이네요.
 ### MySQL 특징
 
 - RDBMS(Relational DBMS)
-  - ORDBMS 보다 읽기 오퍼레이션이 더 빠르다네요.
+  - ORDBMS 보다 읽기 오퍼레이션이 더 빠름
 - 오픈소스 프로젝트로 오라클에서 관리
 - 1995년에 시작한 역사를 지녀 방대한 커뮤니티
 
@@ -87,7 +87,7 @@ MySQL이 조금 더 인기 있는 것으로 보이네요.
 
 ## 결론
 
-한마디로 정리하면 아래와 같아요.
+한마디로 정리하면 아래와 같습니다.
 
 <br>
 

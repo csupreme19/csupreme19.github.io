@@ -4,7 +4,7 @@ title: Spring Framework 정리
 feature-img: assets/img/titles/spring-logo.svg
 thumbnail: assets/img/contents/sf-1.png
 author: csupreme19
-category: Devlopment Spring
+category: Development Spring
 tags: [Spring, Java, J2EE, EJB, POJO, IoC, AOP, DI, Singleton, Web, Servlet]
 
 ---
@@ -31,13 +31,15 @@ tags: [Spring, Java, J2EE, EJB, POJO, IoC, AOP, DI, Singleton, Web, Servlet]
 >
 > 스프링 프로젝트들은 오픈소스 생태계를 구성하고 있어 활발하게 확장되고 있다네요.
 
-통상적으로 Spring를 말할때는 Spring Framework를 의미하고 추가적인 프로젝트들은 Spring Data, Spring Cloud등의 이름으로 부르고 있어요.
+통상적으로 스프링을 말할때는 Spring Framework 프로젝트를 의미하고 추가적인 프로젝트들은 Spring Data, Spring Cloud등의 이름으로 부르고 있으며 스프링 프레임워크는 모듈로 나누어져 있어 애플리케이션 요구사항에 따라 메시징, 트랜잭션, 영속성, 웹, 리액티브 웹 등의 기능을 제공하는 모듈을 추가하여 사용할 수 있어요.
 
 ---
 
 ## Spring 등장 배경
 
-스프링 탄생 이전에는 자바를 이용한 엔터프라이즈 앱/서비스를 개발할 때 J2EE(Java EE)를 사용해야만 했어요.
+결론부터 말하자면 J2EE 명세의 복잡함을 피하기 위한 보완 프로젝트로 등장하게 되었어요.
+
+스프링 탄생 이전에는 자바를 이용한 엔터프라이즈 앱/서비스를 개발할 때 J2EE(Java EE)를 사용해야만 했는데
 
 ![sf-7.png]({{ "/assets/img/contents/sf-7.png"}})
 
@@ -65,13 +67,36 @@ Spring은 J2EE에 대한 간단하고 가벼운 대안으로 POJO기반의 여�
 
 2004년에 Spring 1.0을 시작으로 현재는 Spring 5까지 나왔으며
 
-추후에는 Java EE가 역으로 Spring의 영향을 받아서 EJB를 갈아 엎었으며 현재는 Java EE도 스프링과 매우 유사한 기능을 제공하고 있어요.
+이후 Java EE가 역으로 스프링의 영향을 받아서 EJB를 갈아 엎었으며 현재는 Java EE도 스프링과 매우 유사한 기능을 제공하고 있지만
 
-하지만 예전의 EJB의 악평과 그 사이에 스프링 프레임워크가 매우 큰 인기를 끌게 되어 Java EE를 이용하는 비율은 많이 줄어들었다네요.
+스프링 프레임워크가 매우 큰 인기를 끌게 되어 Java EE를 이용하는 비율은 많이 줄어들었어요.
+
+
+
+스프링 프레임워크는 아래와 같은 J2EE 스펙뿐만 아니라
+
+- 서블릿 API, 웹소켓 API, 동시성 유틸, JSON 바인딩, 빈 검증, JPA, JMS
+
+핵심 기능인 DI와 공통 애너테이션을 스펙을 제공하므로 J2EE에 대한 확실한 성공적인 보완 프로젝트가 되었어요.
 
 ---
 
-## Spring Framework?
+## Spring 팀 철학
+
+1. 모든 수준에서 선택지를 제공
+   - 코드 변경 없이 여러 서드파티의 API와 구현체를 사용할 수 있도록 추상화한다.
+2. 다양한 관점을 수용
+   - 다양한 관점의 어플리케이션 선택을 제공하여 유연성을 제공하고 로직을 강제하지 않는다.
+3. 하위 호환성을 제공
+   - 스프링은 여러 JDK 버전을 공식 지원하고 스프링의 버전이 바뀔 때 마다 변경점 유지보수를 위한 서드파티 라이브러리를 지원한다.
+4. 뛰어난 API 설계
+   - 직관적이고 안정적인 API를 제공하는데 많은 힘을 쏟는다.
+5. 코드 품질에 엄격한 기준 적용
+   - 가능한 최신의 의미있는 정확한 javadoc을 작성한다.
+
+---
+
+## Spring Framework 구성
 
 ![sf-2.png]({{ "/assets/img/contents/sf-2.png"}})
 
@@ -100,10 +125,10 @@ Spring의 기본이자 핵심 모듈로 Spring Container이자 IoC Container이�
 - `spring-core`, `spring-beans`
   - 스프링 프레임워크의 핵심 기능 IoC, DI를 지원해요.
   - BeanFactory를 구현하여 Bean을 싱글턴 객체로 관리하므로 프로그래밍적으로 객체를 관리할 필요가 없어요.
-  - 프로그램 로직/비즈니스 로직과 객체의 생성/관리를 분리하는 핵심 기능
+  - 프로그램 로직/비즈니스 로직과 객체의 생성/관리를 분리하는 핵심 기능이에요.
 - `spring-context`
-  - 위에서 생성한 Bean의 라이프사이클, 스코프인 `ApplicationContext`등의 인터페이스를 제공해요.
-  - 스프링 컨테이너에서 관리하는 스프링 빈들을 사용하기 위한 인터페이스에요.
+  - 위에서 생성한 Bean의 라이프사이클, 스코프인 `ApplicationContext`라는 BeanFactory의 인터페이스를 제공해요.
+  - 스프링 컨테이너에서 관리하는 스프링 빈들을 사용하기 위한 인터페이스예요.
 - `spring-expression`
   - JSP 명세에 의한 EL(Expression Language)의 확장 기능을 제공해요.
   - 모델, 빈 객체에 쿼리하고 접근하기 위한 EL로 스프링 컨테이너의 오브젝트와 프로퍼티, 변수, 사칙연산 등을 제공해요.
